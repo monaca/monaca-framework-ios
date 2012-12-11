@@ -352,7 +352,7 @@
 		3E6A9A3215DFB21F004D530D /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3E6A9A3415DFB473004D530D /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3E7708DF161169CF0041CF4D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		3E7FD2B3159D8F2300E85C81 /* MonacaSandbox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MonacaSandbox.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3E7FD2B3159D8F2300E85C81 /* MonacaSandbox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = MonacaSandbox.app; path = Sandbox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E7FD2BA159D8F2400E85C81 /* MonacaSandbox-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MonacaSandbox-Info.plist"; sourceTree = "<group>"; };
 		3E7FD2BE159D8F2400E85C81 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3E7FD2C0159D8F2400E85C81 /* MonacaSandbox-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MonacaSandbox-Prefix.pch"; sourceTree = "<group>"; };
@@ -942,9 +942,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		3E4F513D15A05BF10054EB23 /* libMonacaFramework */ = {
+		3E4F513D15A05BF10054EB23 /* build libMonacaFramework.a */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3E4F51B915A05BF10054EB23 /* Build configuration list for PBXNativeTarget "libMonacaFramework" */;
+			buildConfigurationList = 3E4F51B915A05BF10054EB23 /* Build configuration list for PBXNativeTarget "build libMonacaFramework.a" */;
 			buildPhases = (
 				3E4F513E15A05BF10054EB23 /* Sources */,
 				3E4F516315A05BF10054EB23 /* Frameworks */,
@@ -955,14 +955,14 @@
 			);
 			dependencies = (
 			);
-			name = libMonacaFramework;
+			name = "build libMonacaFramework.a";
 			productName = MonacaFramework;
 			productReference = 3E4F51BC15A05BF10054EB23 /* libMonacaFramework.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		3E7FD2B2159D8F2300E85C81 /* Sandbox */ = {
+		3E7FD2B2159D8F2300E85C81 /* sandbox */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3E7FD2CD159D8F2400E85C81 /* Build configuration list for PBXNativeTarget "Sandbox" */;
+			buildConfigurationList = 3E7FD2CD159D8F2400E85C81 /* Build configuration list for PBXNativeTarget "sandbox" */;
 			buildPhases = (
 				3E7FD2AF159D8F2300E85C81 /* Sources */,
 				3E7FD2B0159D8F2300E85C81 /* Frameworks */,
@@ -972,7 +972,7 @@
 			);
 			dependencies = (
 			);
-			name = Sandbox;
+			name = sandbox;
 			productName = MonacaSandbox;
 			productReference = 3E7FD2B3159D8F2300E85C81 /* MonacaSandbox.app */;
 			productType = "com.apple.product-type.application";
@@ -998,8 +998,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				3E4F513D15A05BF10054EB23 /* libMonacaFramework */,
-				3E7FD2B2159D8F2300E85C81 /* Sandbox */,
+				3E4F513D15A05BF10054EB23 /* build libMonacaFramework.a */,
+				3E7FD2B2159D8F2300E85C81 /* sandbox */,
 			);
 		};
 /* End PBXProject section */
@@ -1386,7 +1386,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		3E4F51B915A05BF10054EB23 /* Build configuration list for PBXNativeTarget "libMonacaFramework" */ = {
+		3E4F51B915A05BF10054EB23 /* Build configuration list for PBXNativeTarget "build libMonacaFramework.a" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3E4F51BA15A05BF10054EB23 /* Debug */,
@@ -1395,7 +1395,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3E7FD2CD159D8F2400E85C81 /* Build configuration list for PBXNativeTarget "Sandbox" */ = {
+		3E7FD2CD159D8F2400E85C81 /* Build configuration list for PBXNativeTarget "sandbox" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3E7FD2CE159D8F2400E85C81 /* Debug */,
