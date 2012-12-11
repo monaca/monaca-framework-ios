@@ -19,9 +19,9 @@ MonacaFramework.xcodeproj/xcuserdata/*.xcuserdatad/
 ForteTemplateEngine.xcodeproj/project.xcworkspace
 ForteTemplateEngine.xcodeproj/xcuserdata
 
-MonacaViewTest/www/*
-!MonacaViewTest/www/.gitignore
-MonacaViewTest/www[a-zA-Z0-9]*
+MonacaSandbox/www/*
+!MonacaSandbox/www/.gitignore
+MonacaSandbox/www[a-zA-Z0-9]*
 
 # @see https://github.com/github/gitignore/blob/master/Objective-C.gitignore
 build/*

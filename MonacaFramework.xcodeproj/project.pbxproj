@@ -6,20 +6,6 @@
 	objectVersion = 46;
 	objects = {
 
-/* Begin PBXAggregateTarget section */
-		F5FB382914851B2C00DD6C7A /* MonacaFramework-Universal */ = {
-			isa = PBXAggregateTarget;
-			buildConfigurationList = F5FB382C14851B2C00DD6C7A /* Build configuration list for PBXAggregateTarget "MonacaFramework-Universal" */;
-			buildPhases = (
-				F5FB382E14851B7D00DD6C7A /* ShellScript */,
-			);
-			dependencies = (
-			);
-			name = "MonacaFramework-Universal";
-			productName = "MonacaFramework-Universal";
-		};
-/* End PBXAggregateTarget section */
-
 /* Begin PBXBuildFile section */
 		3E0F090015A81D000025EFC2 /* MFPGNativeComponent.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E0F08FD15A81D000025EFC2 /* MFPGNativeComponent.h */; };
 		3E0F090215A81D000025EFC2 /* MFPGNativeComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0F08FE15A81D000025EFC2 /* MFPGNativeComponent.m */; };
@@ -956,9 +942,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		3E4F513D15A05BF10054EB23 /* MonacaFramework */ = {
+		3E4F513D15A05BF10054EB23 /* libMonacaFramework */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3E4F51B915A05BF10054EB23 /* Build configuration list for PBXNativeTarget "MonacaFramework" */;
+			buildConfigurationList = 3E4F51B915A05BF10054EB23 /* Build configuration list for PBXNativeTarget "libMonacaFramework" */;
 			buildPhases = (
 				3E4F513E15A05BF10054EB23 /* Sources */,
 				3E4F516315A05BF10054EB23 /* Frameworks */,
@@ -969,14 +955,14 @@
 			);
 			dependencies = (
 			);
-			name = MonacaFramework;
+			name = libMonacaFramework;
 			productName = MonacaFramework;
 			productReference = 3E4F51BC15A05BF10054EB23 /* libMonacaFramework.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		3E7FD2B2159D8F2300E85C81 /* MonacaSandbox */ = {
+		3E7FD2B2159D8F2300E85C81 /* Sandbox */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3E7FD2CD159D8F2400E85C81 /* Build configuration list for PBXNativeTarget "MonacaSandbox" */;
+			buildConfigurationList = 3E7FD2CD159D8F2400E85C81 /* Build configuration list for PBXNativeTarget "Sandbox" */;
 			buildPhases = (
 				3E7FD2AF159D8F2300E85C81 /* Sources */,
 				3E7FD2B0159D8F2300E85C81 /* Frameworks */,
@@ -986,8 +972,8 @@
 			);
 			dependencies = (
 			);
-			name = MonacaSandbox;
-			productName = MonacaViewTest;
+			name = Sandbox;
+			productName = MonacaSandbox;
 			productReference = 3E7FD2B3159D8F2300E85C81 /* MonacaSandbox.app */;
 			productType = "com.apple.product-type.application";
 		};
@@ -1012,9 +998,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				3E4F513D15A05BF10054EB23 /* MonacaFramework */,
-				F5FB382914851B2C00DD6C7A /* MonacaFramework-Universal */,
-				3E7FD2B2159D8F2300E85C81 /* MonacaSandbox */,
+				3E4F513D15A05BF10054EB23 /* libMonacaFramework */,
+				3E7FD2B2159D8F2300E85C81 /* Sandbox */,
 			);
 		};
 /* End PBXProject section */
@@ -1052,19 +1037,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "";
-		};
-		F5FB382E14851B7D00DD6C7A /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Clean build for Simulator.\nxcodebuild -project ${PROJECT_NAME}.xcodeproj -sdk iphonesimulator${IPHONES_DEPLOYMENT_TARGET} -target ${PRODUCT_NAME} OBJROOT=${OBJROOT} SYMROOT=${SYMROOT} -configuration ${CONFIGURATION} -arch i386 clean build\n\n# Clean build for Device.\nxcodebuild -project ${PROJECT_NAME}.xcodeproj -sdk iphoneos${IPHONES_DEPLOYMENT_TARGET} -target ${PRODUCT_NAME} OBJROOT=${OBJROOT} SYMROOT=${SYMROOT} -configuration ${CONFIGURATION} clean build\n\nmkdir -p ${PROJECT_NAME}/Products/${CONFIGURATION}-universal\n\nlipo ${BUILD_DIR}/${CONFIGURATION}-iphoneos/lib${PRODUCT_NAME}.a ${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/lib${PRODUCT_NAME}.a -create -output ${PROJECT_NAME}/Products/${CONFIGURATION}-universal/lib${PRODUCT_NAME}.a";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1411,24 +1383,10 @@
 			};
 			name = Release;
 		};
-		F5FB382A14851B2C00DD6C7A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				PRODUCT_NAME = MonacaFramework;
-			};
-			name = Debug;
-		};
-		F5FB382B14851B2C00DD6C7A /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				PRODUCT_NAME = MonacaFramework;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		3E4F51B915A05BF10054EB23 /* Build configuration list for PBXNativeTarget "MonacaFramework" */ = {
+		3E4F51B915A05BF10054EB23 /* Build configuration list for PBXNativeTarget "libMonacaFramework" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3E4F51BA15A05BF10054EB23 /* Debug */,
@@ -1437,7 +1395,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3E7FD2CD159D8F2400E85C81 /* Build configuration list for PBXNativeTarget "MonacaSandbox" */ = {
+		3E7FD2CD159D8F2400E85C81 /* Build configuration list for PBXNativeTarget "Sandbox" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3E7FD2CE159D8F2400E85C81 /* Debug */,
@@ -1451,15 +1409,6 @@
 			buildConfigurations = (
 				F50460C613B361730050803F /* Debug */,
 				F50460C713B361730050803F /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		F5FB382C14851B2C00DD6C7A /* Build configuration list for PBXAggregateTarget "MonacaFramework-Universal" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				F5FB382A14851B2C00DD6C7A /* Debug */,
-				F5FB382B14851B2C00DD6C7A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
