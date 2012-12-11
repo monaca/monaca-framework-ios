@@ -15,7 +15,6 @@
 #import "MonacaURLProtocol.h"
 #import "CDVViewController.h"
 #import "CDVSplashScreen.h"
-#import "CDVSplashScreen+monacaSplashscreen.h"
 #import "Utility.h"
 
 #ifndef DISABLE_MONACA_TEMPLATE_ENGINE
