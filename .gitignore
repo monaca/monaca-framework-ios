@@ -1,1 +1,44 @@
+*.lo
+*.o
+*.so
+a.out
+*~
+*.testcase
+
+# Mac OSX
 .DS_Store
+
+# Xcode
+build/*
+*.pbxuser
+*.mode1v3
+
+MonacaFramework.xcodeproj/project.xcworkspace/xcuserdata/*.xcuserdatad/
+MonacaFramework.xcodeproj/xcuserdata/*.xcuserdatad/
+
+ForteTemplateEngine.xcodeproj/project.xcworkspace
+ForteTemplateEngine.xcodeproj/xcuserdata
+
+MonacaViewTest/www/*
+!MonacaViewTest/www/.gitignore
+MonacaViewTest/www[a-zA-Z0-9]*
+
+# @see https://github.com/github/gitignore/blob/master/Objective-C.gitignore
+build/*
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+*.xcworkspace
+!default.xcworkspace
+xcuserdata
+profile
+*.moved-aside
+
+UserInterfaceState.xcuserstate
+
+Products
