@@ -366,14 +366,14 @@
 		3E6A9A3215DFB21F004D530D /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3E6A9A3415DFB473004D530D /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3E7708DF161169CF0041CF4D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		3E7FD2B3159D8F2300E85C81 /* MonacaViewTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MonacaViewTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		3E7FD2BA159D8F2400E85C81 /* MonacaViewTest-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MonacaViewTest-Info.plist"; sourceTree = "<group>"; };
+		3E7FD2B3159D8F2300E85C81 /* MonacaSandbox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MonacaSandbox.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3E7FD2BA159D8F2400E85C81 /* MonacaSandbox-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MonacaSandbox-Info.plist"; sourceTree = "<group>"; };
 		3E7FD2BE159D8F2400E85C81 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		3E7FD2C0159D8F2400E85C81 /* MonacaViewTest-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MonacaViewTest-Prefix.pch"; sourceTree = "<group>"; };
+		3E7FD2C0159D8F2400E85C81 /* MonacaSandbox-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MonacaSandbox-Prefix.pch"; sourceTree = "<group>"; };
 		3E7FD31E159EA3ED00E85C81 /* MonacaURLProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonacaURLProtocol.h; sourceTree = "<group>"; };
 		3E7FD31F159EA3EE00E85C81 /* MonacaURLProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonacaURLProtocol.m; sourceTree = "<group>"; };
-		3E7FD328159EA92F00E85C81 /* Cordova.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Cordova.plist; path = MonacaViewTest/Cordova.plist; sourceTree = SOURCE_ROOT; };
-		3E7FD345159ED11A00E85C81 /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; name = www; path = MonacaViewTest/www; sourceTree = SOURCE_ROOT; };
+		3E7FD328159EA92F00E85C81 /* Cordova.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Cordova.plist; path = MonacaSandbox/Cordova.plist; sourceTree = SOURCE_ROOT; };
+		3E7FD345159ED11A00E85C81 /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; name = www; path = MonacaSandbox/www; sourceTree = SOURCE_ROOT; };
 		3E8F180B16187F60005B09FC /* CDVViewController+getMonacaBundlePlist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CDVViewController+getMonacaBundlePlist.h"; sourceTree = "<group>"; };
 		3E8F180C16187F60005B09FC /* CDVViewController+getMonacaBundlePlist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CDVViewController+getMonacaBundlePlist.m"; sourceTree = "<group>"; };
 		3E9B13AA1664AC82005908B7 /* CDVBarcodeScanner.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CDVBarcodeScanner.mm; sourceTree = "<group>"; };
@@ -626,8 +626,7 @@
 				3ECEE94315ECF82300DD807D /* Default@2x.png */,
 				3E7FD2B9159D8F2400E85C81 /* Supporting Files */,
 			);
-			name = MonacaSandbox;
-			path = MonacaViewTest;
+			path = MonacaSandbox;
 			sourceTree = "<group>";
 		};
 		3E7FD2B9159D8F2400E85C81 /* Supporting Files */ = {
@@ -638,9 +637,9 @@
 				3ED315E615DFA837008B7E1C /* 404 */,
 				3E7FD345159ED11A00E85C81 /* www */,
 				3E7FD328159EA92F00E85C81 /* Cordova.plist */,
-				3E7FD2BA159D8F2400E85C81 /* MonacaViewTest-Info.plist */,
+				3E7FD2BA159D8F2400E85C81 /* MonacaSandbox-Info.plist */,
 				3E7FD2BE159D8F2400E85C81 /* main.m */,
-				3E7FD2C0159D8F2400E85C81 /* MonacaViewTest-Prefix.pch */,
+				3E7FD2C0159D8F2400E85C81 /* MonacaSandbox-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -749,7 +748,7 @@
 		F50460A613B361730050803F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				3E7FD2B3159D8F2300E85C81 /* MonacaViewTest.app */,
+				3E7FD2B3159D8F2300E85C81 /* MonacaSandbox.app */,
 				3E4F51BC15A05BF10054EB23 /* libMonacaFramework.a */,
 			);
 			name = Products;
@@ -989,7 +988,7 @@
 			);
 			name = MonacaSandbox;
 			productName = MonacaViewTest;
-			productReference = 3E7FD2B3159D8F2300E85C81 /* MonacaViewTest.app */;
+			productReference = 3E7FD2B3159D8F2300E85C81 /* MonacaSandbox.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -1329,14 +1328,14 @@
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "MonacaViewTest/MonacaViewTest-Prefix.pch";
+				GCC_PREFIX_HEADER = "MonacaSandbox/MonacaSandbox-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
 				GCC_VERSION = "";
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				INFOPLIST_FILE = "MonacaViewTest/MonacaViewTest-Info.plist";
+				INFOPLIST_FILE = "MonacaSandbox/MonacaSandbox-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1365,10 +1364,10 @@
 					"\"$(SRCROOT)/MonacaFramework/Library/Vendor\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "MonacaViewTest/MonacaViewTest-Prefix.pch";
+				GCC_PREFIX_HEADER = "MonacaSandbox/MonacaSandbox-Prefix.pch";
 				GCC_VERSION = "";
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				INFOPLIST_FILE = "MonacaViewTest/MonacaViewTest-Info.plist";
+				INFOPLIST_FILE = "MonacaSandbox/MonacaSandbox-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
