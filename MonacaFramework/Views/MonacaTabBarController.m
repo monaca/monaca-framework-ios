@@ -77,10 +77,6 @@
         // Store a reference to the object representing the native component.
         [self.ncManager setComponent:container forID:container.cid];
     }
-    if ([components count]==0) {
-        NCContainer *container = [[[NCContainer alloc] init] autorelease];
-        [containers addObject:container];
-    }
     return containers;
 }
 

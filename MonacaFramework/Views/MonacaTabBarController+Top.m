@@ -49,11 +49,6 @@ setBackgroundColor(NSArray *components, NCToolbar *toolbar) {
     NSMutableArray *items = [NSMutableArray array];
     
     self.leftContainers = [self createContainers:components position:kNCPositionTop];
-    if (self.leftContainers.count == 1) {
-        NCContainer *container = [self.leftContainers objectAtIndex:0];
-        self.navigationItem.leftBarButtonItem = container.component;
-        return;
-    }
     
     for (NCContainer *container in self.leftContainers) {
         [items addObject:container.component];
@@ -133,7 +128,14 @@ setBackgroundColor(NSArray *components, NCToolbar *toolbar) {
 // NOTE: Center component (titleView) requires an UIView object.
 - (void)setCenterComponent:(NSArray *)components {
     // FIXME: Use only the first component.
-    self.centerContainer = [[self createContainers:components position:kNCPositionTop] objectAtIndex:0];
+    NSMutableArray *containers = [self createContainers:components position:kNCPositionTop];
+    
+    // Add null container when toolbar has 0 components.
+    if ([components count]==0) {
+        NCContainer *container = [[[NCContainer alloc] init] autorelease];
+        [containers addObject:container];
+    }
+    self.centerContainer = [containers objectAtIndex:0];
     
     // (mitsunori)ツール・バーのセンターに検索ボックスを置く場合は、コンポーネントの中のsearchBoxを探して、幅を広く取るようにする
     if ([self.centerContainer.type isEqualToString:kNCComponentSearchBox]) {
