@@ -366,6 +366,7 @@
             cdvViewController.webView.tag = kWebViewNormal;
             [[Utility currentTabBarController] applyUserInterface:nil];
         }
+        [MonacaEvent dispatchEvent:monacaEventFinishOpenPage withInfo:nil];
         NSString *html = [NSString stringWithContentsOfFile:filepath encoding:NSUTF8StringEncoding error:nil];
 #ifndef DISABLE_MONACA_TEMPLATE_ENGINE
         NSURL *url = ((NSURL *)[NSURL fileURLWithPath:filepath]);

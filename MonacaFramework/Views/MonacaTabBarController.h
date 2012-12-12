@@ -34,6 +34,8 @@
     NCManager *ncManager_;
     NSInteger activeIndex_;
     BOOL isInitialized_;
+    NSUInteger selectedTab_;
+    BOOL isLocked_;
 }
 
 - (NSMutableArray *)createContainers:(NSArray *)components position:(NSString *)aPosition;
@@ -53,6 +55,8 @@
 @property(nonatomic, retain) NCManager *ncManager;
 @property(nonatomic, assign) NSInteger activeIndex;
 
+@property(nonatomic, assign) NSUInteger selectedTab;
+@property(nonatomic, readwrite) BOOL isLocked;
 // this property should be used only self and category.
 @property(nonatomic, readonly) BOOL isInitialized;
 

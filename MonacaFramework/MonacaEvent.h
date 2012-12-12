@@ -14,6 +14,7 @@
 #define monacaEventNoUIFile @"monacaEventNoUIFile"
 #define monacaEventNCParseSuccess @"monacaEventNCParseSuccess"
 #define monacaEventNCParseError @"monacaEventNCParseError"
+#define monacaEventFinishOpenPage @"monacaEventFinishOpenPage"
 
 @interface MonacaEvent : NSObject
 + (void)dispatchEvent:(NSString *)eventName withInfo:(NSMutableDictionary *)info;

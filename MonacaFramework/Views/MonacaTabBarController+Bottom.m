@@ -455,19 +455,25 @@ stringByRelativePath(NSString *relativePath) {
 }
 
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
-    MonacaDelegate *delegate = (MonacaDelegate *)[UIApplication sharedApplication].delegate;
-    [delegate.viewController.cdvViewController.webView removeFromSuperview];
-    [viewController.view addSubview:delegate.viewController.cdvViewController.webView];
-    
-    self.activeIndex = self.selectedIndex;
-    NSArray *items = [[self dictionaryWithBottomBar] objectForKey:kNCTypeItems];
-    NSString *relativePath = [[items objectAtIndex:self.activeIndex] objectForKey:kNCTypeLink];
-    NSString *linkpath = stringByRelativePath(relativePath);
-    
-    // Load link url page.
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:linkpath]];
-    delegate.viewController.cdvViewController.webView.tag = kWebViewIgnoreStyle;
-    [delegate.viewController.cdvViewController.webView loadRequest:request];
+    if (self.isLocked == NO) {
+        self.isLocked = YES;
+        self.selectedTab = tabBarController.selectedIndex;
+
+        MonacaDelegate *delegate = (MonacaDelegate *)[UIApplication sharedApplication].delegate;
+        [delegate.viewController.cdvViewController.webView removeFromSuperview];
+        [viewController.view addSubview:delegate.viewController.cdvViewController.webView];
+
+        self.activeIndex = self.selectedIndex;
+        NSArray *items = [[self dictionaryWithBottomBar] objectForKey:kNCTypeItems];
+        NSString *relativePath = [[items objectAtIndex:self.activeIndex] objectForKey:kNCTypeLink];
+        NSString *linkpath = stringByRelativePath(relativePath);
+
+        // Load link url page.
+        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:linkpath]];
+        delegate.viewController.cdvViewController.webView.tag = kWebViewIgnoreStyle;
+        [delegate.viewController.cdvViewController.webView loadRequest:request];
+    }
+    tabBarController.selectedIndex = self.selectedTab;
 }
 
 - (void)hideTabbar {

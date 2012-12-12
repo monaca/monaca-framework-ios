@@ -22,7 +22,8 @@
 @synthesize ncManager = ncManager_;
 @synthesize activeIndex = activeIndex_;
 @synthesize isInitialized = isInitialized_;
-
+@synthesize isLocked = isLocked_;
+@synthesize selectedTab = selectedTab_;
 
 // iOS4 の場合、このメソッドは MonacaViewController の viewDidApper メソッドから呼ばれる
 - (void)viewWillAppear:(BOOL)animated {
