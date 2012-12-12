@@ -352,7 +352,7 @@
 		3E6A9A3215DFB21F004D530D /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3E6A9A3415DFB473004D530D /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3E7708DF161169CF0041CF4D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		3E7FD2B3159D8F2300E85C81 /* MonacaSandbox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = MonacaSandbox.app; path = Sandbox.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3E7FD2B3159D8F2300E85C81 /* sandbox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sandbox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E7FD2BA159D8F2400E85C81 /* MonacaSandbox-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MonacaSandbox-Info.plist"; sourceTree = "<group>"; };
 		3E7FD2BE159D8F2400E85C81 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3E7FD2C0159D8F2400E85C81 /* MonacaSandbox-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MonacaSandbox-Prefix.pch"; sourceTree = "<group>"; };
@@ -734,7 +734,7 @@
 		F50460A613B361730050803F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				3E7FD2B3159D8F2300E85C81 /* MonacaSandbox.app */,
+				3E7FD2B3159D8F2300E85C81 /* sandbox.app */,
 				3E4F51BC15A05BF10054EB23 /* libMonacaFramework.a */,
 			);
 			name = Products;
@@ -974,7 +974,7 @@
 			);
 			name = sandbox;
 			productName = MonacaSandbox;
-			productReference = 3E7FD2B3159D8F2300E85C81 /* MonacaSandbox.app */;
+			productReference = 3E7FD2B3159D8F2300E85C81 /* sandbox.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
