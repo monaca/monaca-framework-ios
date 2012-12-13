@@ -455,8 +455,8 @@ stringByRelativePath(NSString *relativePath) {
 }
 
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
-    if (isLocked_ == NO) {
-        isLocked_ = YES;
+    if (isLocked == NO) {
+        isLocked = YES;
 
         MonacaDelegate *delegate = (MonacaDelegate *)[UIApplication sharedApplication].delegate;
         [delegate.viewController.cdvViewController.webView removeFromSuperview];

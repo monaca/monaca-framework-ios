@@ -45,11 +45,13 @@
     if (nil != self) {
         self.viewDict = [NSMutableDictionary dictionary];
         self.ncManager = [[[NCManager alloc] init] autorelease];
-        isLocked_ = YES;
+        isLocked = YES;
+        isInitialized_ = NO;
 
         NSNotificationCenter* center = [NSNotificationCenter defaultCenter];
         [center addObserver:self selector:@selector(onWillLoadUIFile:) name:monacaEventWillLoadUIFile object:nil];
         [center addObserver:self selector:@selector(onDidLoadUIFile:) name:monacaEventDidLoadUIFile object:nil];
+        [center addObserver:self selector:@selector(onReloadPage:) name:monacaEventReloadPage object:nil];
     }
     return self;
 }
@@ -148,10 +150,13 @@
 #pragma mark - EventListener
 
 - (void)onWillLoadUIFile:(NSNotificationCenter *)center {
-    isLocked_ = YES;
+    isLocked = YES;
 }
 
 - (void)onDidLoadUIFile:(NSNotificationCenter *)center {
-    isLocked_ = NO;
+    isLocked = NO;
+}
+- (void)onReloadPage:(NSNotificationCenter *)center {
+    isInitialized_ = NO;
 }
 @end

@@ -348,7 +348,6 @@
                 
                 // when use splash screen, dosen't show native component. @see monacaSplashScreen.
                 uiSetting = [[NSMutableDictionary dictionaryWithDictionary:uiDict] retain];
-
                 // タブバーが存在し、かつ activeIndex が指定されている場合はその html ファイルを読む
                 NSMutableDictionary *bottomDict = [uiDict objectForKey:kNCPositionBottom];
                 NSString *containerType = [bottomDict objectForKey:kNCTypeContainer];
@@ -359,6 +358,7 @@
                     if (activeIndex != 0) {
                         NSString *dirpath = [filepath stringByDeletingLastPathComponent];
                         filepath = [NSString stringWithFormat:@"%@/%@", dirpath, [[items objectAtIndex:activeIndex] objectForKey:kNCTypeLink]];
+
                     }
                 }
             }
