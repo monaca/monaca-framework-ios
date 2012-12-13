@@ -455,9 +455,9 @@ stringByRelativePath(NSString *relativePath) {
 }
 
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
-    if (self.isLocked == NO) {
-        self.isLocked = YES;
-        self.selectedTab = tabBarController.selectedIndex;
+    if (isLocked_ == NO) {
+        isLocked_ = YES;
+        selectedTab_ = tabBarController.selectedIndex;
 
         MonacaDelegate *delegate = (MonacaDelegate *)[UIApplication sharedApplication].delegate;
         [delegate.viewController.cdvViewController.webView removeFromSuperview];
@@ -473,7 +473,7 @@ stringByRelativePath(NSString *relativePath) {
         delegate.viewController.cdvViewController.webView.tag = kWebViewIgnoreStyle;
         [delegate.viewController.cdvViewController.webView loadRequest:request];
     }
-    tabBarController.selectedIndex = self.selectedTab;
+    tabBarController.selectedIndex = selectedTab_;
 }
 
 - (void)hideTabbar {
