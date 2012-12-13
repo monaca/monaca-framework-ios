@@ -24,7 +24,7 @@ setTextColor(UIBarButtonItem *button, UIColor *color) {
 }
 
 static UIBarButtonItem *
-updateVisibility(UIBarButtonItem *button, NSDictionary *style, UIView *invisibleView) {
+updateVisibility(UIBarButtonItem *button, NSDictionary *style) {
     NSString *cid = [style objectForKey:kNCTypeID];
     UIView *view = [[Utility currentTabBarController].viewDict objectForKey:cid];
     [view setHidden:isFalse([style objectForKey:kNCStyleVisibility])];
@@ -38,7 +38,6 @@ updateVisibility(UIBarButtonItem *button, NSDictionary *style, UIView *invisible
 
 static UIBarButtonItem *
 updateButton(UIBarButtonItem *button, NSDictionary *style) {
-    UIView *invisibleView = nil;
     NSString *text = [style objectForKey:kNCStyleText];
     NSString *innerImagePath = [style objectForKey:kNCStyleInnerImage];
 
@@ -89,11 +88,10 @@ updateButton(UIBarButtonItem *button, NSDictionary *style) {
         imageButtonView.enabled = !disable;
         [imageButtonView setBackgroundImage:image forState:UIControlStateNormal];
         button.customView = imageButtonView;
-        invisibleView = button.customView;
-    } 
+    }
 
     // Visibility
-    updateVisibility(button, style, invisibleView);
+    updateVisibility(button, style);
 
     return button;
 }
