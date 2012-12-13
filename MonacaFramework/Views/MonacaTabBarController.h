@@ -34,7 +34,6 @@
     NCManager *ncManager_;
     NSInteger activeIndex_;
     BOOL isInitialized_;
-    NSUInteger selectedTab_;
     BOOL isLocked_;
 }
 
