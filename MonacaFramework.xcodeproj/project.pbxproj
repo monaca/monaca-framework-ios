@@ -247,11 +247,11 @@
 		3EDD680B16155CBA0018698B /* DatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EDD680816155CBA0018698B /* DatePicker.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		3EDD681C16155D0F0018698B /* ChildBrowser.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3EDD680D16155D0F0018698B /* ChildBrowser.bundle */; };
 		3EDD681F16155D0F0018698B /* ChildBrowserCommand.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EDD680F16155D0F0018698B /* ChildBrowserCommand.h */; };
-		3EDD682016155D0F0018698B /* ChildBrowserCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EDD681016155D0F0018698B /* ChildBrowserCommand.m */; };
-		3EDD682116155D0F0018698B /* ChildBrowserCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EDD681016155D0F0018698B /* ChildBrowserCommand.m */; };
+		3EDD682016155D0F0018698B /* ChildBrowserCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EDD681016155D0F0018698B /* ChildBrowserCommand.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		3EDD682116155D0F0018698B /* ChildBrowserCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EDD681016155D0F0018698B /* ChildBrowserCommand.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		3EDD682216155D0F0018698B /* ChildBrowserViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EDD681116155D0F0018698B /* ChildBrowserViewController.h */; };
-		3EDD682316155D0F0018698B /* ChildBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EDD681216155D0F0018698B /* ChildBrowserViewController.m */; };
-		3EDD682416155D0F0018698B /* ChildBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EDD681216155D0F0018698B /* ChildBrowserViewController.m */; };
+		3EDD682316155D0F0018698B /* ChildBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EDD681216155D0F0018698B /* ChildBrowserViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		3EDD682416155D0F0018698B /* ChildBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EDD681216155D0F0018698B /* ChildBrowserViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		3EDD682516155D0F0018698B /* ChildBrowserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EDD681316155D0F0018698B /* ChildBrowserViewController.xib */; };
 		3EE0E8011664B58000F1E677 /* CDVBarcodeScanner.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3E9B13AA1664AC82005908B7 /* CDVBarcodeScanner.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		3EE0E8061664B60A00F1E677 /* zxing-all-in-one.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E9B13AC1664AC82005908B7 /* zxing-all-in-one.cpp */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
