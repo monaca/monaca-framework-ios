@@ -59,7 +59,7 @@ updateSearchBox(UISearchBar *searchBox, NSDictionary *style) {
 }
 
 + (UISearchBar *)searchBox:(NSDictionary *)style {
-    UISearchBar *searchBox = [[[NCSearchBar alloc] init] autorelease];
+    UISearchBar *searchBox = [[NCSearchBar alloc] init];
     
     return updateSearchBox(searchBox, style);
 }

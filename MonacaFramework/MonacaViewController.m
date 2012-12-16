@@ -68,9 +68,9 @@
         return [NSMutableDictionary dictionary];
     } else {
         CFDictionaryRef cfUiDict = CFPropertyListCreateDeepCopy(kCFAllocatorDefault,
-                                                                jsonString,
+                                                                (__bridge CFPropertyListRef)(jsonString),
                                                                 kCFPropertyListMutableContainers);
-        NSMutableDictionary *uidict = [NSMutableDictionary dictionaryWithDictionary:(NSMutableDictionary *)cfUiDict];
+        NSMutableDictionary *uidict = [NSMutableDictionary dictionaryWithDictionary:(__bridge NSMutableDictionary *)cfUiDict];
         CFRelease(cfUiDict);
         return uidict;
     }
@@ -124,14 +124,14 @@
 - (id)initWithFileName:(NSString *)fileName query:(NSString *)aQuery{
     self = [self init];
     if (nil != self) {
-        cdvViewController = [[[CDVViewController alloc] init] autorelease];
+        cdvViewController = [[CDVViewController alloc] init];
         cdvViewController.wwwFolderName = @"www";
         cdvViewController.startPage = fileName;
         
         self.recall = NO;
         self.previousPath = nil;
         isFirstRendering = YES;
-        initialQuery = [aQuery retain];
+        initialQuery = aQuery;
         interfaceOrientationUnspecified = YES;
         interfaceOrientation = UIInterfaceOrientationPortrait;
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivedOrientationChange)
@@ -150,18 +150,16 @@
 }
 
 - (void)dealloc {
-    [appNavigationController release]; appNavigationController = nil;
-    [tabBarController release]; tabBarController = nil;
-    [cdvViewController release]; cdvViewController = nil;
-    [scrollView_ release]; scrollView_ = nil;
+    appNavigationController = nil;
+    tabBarController = nil;
+    cdvViewController = nil;
+    scrollView_ = nil;
     //    [previousPath_ release]; previousPath_ = nil;
-    [uiSetting release]; uiSetting = nil;
-    [initialQuery release]; initialQuery = nil;
+    uiSetting = nil;
+    initialQuery = nil;
     
     // TODO:fix leaking on popPage
     // [monacaTabViewControllers release]; monacaTabViewControllers = nil;
-
-    [super dealloc];
 }
 
 #pragma mark - UIScrollViewDelegate
@@ -347,7 +345,7 @@
                 [[Utility currentTabBarController] applyUserInterface:uiDict];
                 
                 // when use splash screen, dosen't show native component. @see monacaSplashScreen.
-                uiSetting = [[NSMutableDictionary dictionaryWithDictionary:uiDict] retain];
+                uiSetting = [NSMutableDictionary dictionaryWithDictionary:uiDict];
 
                 // タブバーが存在し、かつ activeIndex が指定されている場合はその html ファイルを読む
                 NSMutableDictionary *bottomDict = [uiDict objectForKey:kNCPositionBottom];

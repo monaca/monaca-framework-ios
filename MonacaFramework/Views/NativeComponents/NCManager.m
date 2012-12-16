@@ -48,8 +48,8 @@ search(NSString *cid, NSMutableDictionary *barStyle) {
 {
     self = [super init];
     if (nil != self) {
-        self.properties = [[[NSMutableDictionary alloc] init] autorelease];
-        self.components = [[[NSMutableDictionary alloc] init] autorelease];
+        self.properties = [[NSMutableDictionary alloc] init];
+        self.components = [[NSMutableDictionary alloc] init];
     }
     return self;
 }
@@ -58,7 +58,6 @@ search(NSString *cid, NSMutableDictionary *barStyle) {
 {
     self.components = nil;
     self.properties = nil;
-    [super dealloc];
 }
 
 /*

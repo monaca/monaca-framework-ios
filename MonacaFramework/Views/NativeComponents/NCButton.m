@@ -17,7 +17,7 @@
     self = [super init];
     
     if (self) {
-        self.imageButtonView = [[[UIButton alloc] init] autorelease];
+        self.imageButtonView = [[UIButton alloc] init];
     }
     
     return self;
@@ -29,10 +29,6 @@
         _position = aPosition;
     }
     return self;
-}
-
-- (void)dealloc {
-    [super dealloc];
 }
 
 @end

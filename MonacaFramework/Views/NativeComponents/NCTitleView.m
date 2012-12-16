@@ -32,7 +32,7 @@ static const CGFloat kSizeOfPortraitTitleFont     = 19.0f;
 
 static NCTitleLabel *
 labelForTitle(NSString *title, UIColor *color, CGFloat fontScale) {
-    NCTitleLabel *label = [[[NCTitleLabel alloc] init] autorelease];
+    NCTitleLabel *label = [[NCTitleLabel alloc] init];
     label.fontScale = fontScale;
     label.text = title;
     label.textColor = color;
@@ -43,7 +43,7 @@ labelForTitle(NSString *title, UIColor *color, CGFloat fontScale) {
 
 static NCTitleLabel *
 labelForSubtitle(NSString *subtitle, UIColor *color, CGFloat fontScale) {
-    NCTitleLabel *label = [[[NCTitleLabel alloc] init] autorelease];
+    NCTitleLabel *label = [[NCTitleLabel alloc] init];
     label.fontScale = fontScale;
     label.text = subtitle;
     label.textColor = color;
@@ -63,7 +63,6 @@ labelForSubtitle(NSString *subtitle, UIColor *color, CGFloat fontScale) {
 - (void)dealloc {
     self.titleLabel = nil;
     self.subtitleLabel = nil;
-    [super dealloc];
 }
 
 - (void)setTitle:(NSString *)title color:(UIColor *)color scale:(CGFloat)scale {

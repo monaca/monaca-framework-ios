@@ -57,10 +57,10 @@ setBackgroundColor(NSArray *components, NCToolbar *toolbar) {
     UIInterfaceOrientation orientation = [Utility currentInterfaceOrientation];
     double width = [Device widthOfWindow:orientation];
     double height = [Device heightOfNavigationBar:orientation];
-    NCToolbar *toolbar = [[[NCToolbar alloc] initWithFrame:CGRectMake(0.0f, 0.0f, width, height)] autorelease];
+    NCToolbar *toolbar = [[NCToolbar alloc] initWithFrame:CGRectMake(0.0f, 0.0f, width, height)];
     [toolbar setBackgroundColor:[UIColor clearColor]];
     toolbar.autoresizingMask = UIViewAutoresizingFlexibleHeight;
-    UIBarButtonItem *toolbarBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:toolbar] autorelease];
+    UIBarButtonItem *toolbarBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:toolbar];
     toolbar.items = items;
     [toolbar sizeToFit];
     
@@ -73,7 +73,7 @@ setBackgroundColor(NSArray *components, NCToolbar *toolbar) {
     
     // Adjust UIToolBar left margin.
     static const double kMargin = -5.0f;
-    UIBarButtonItem *negativeSpacer = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil] autorelease];
+    UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
     negativeSpacer.width = kMargin;
     
     // iOS4 cannot use leftBarButtonItems.
@@ -99,10 +99,10 @@ setBackgroundColor(NSArray *components, NCToolbar *toolbar) {
     UIInterfaceOrientation orientation = [Utility currentInterfaceOrientation];
     double width = [Device widthOfWindow:orientation];
     double height = [Device heightOfNavigationBar:orientation];
-    NCToolbar *toolbar = [[[NCToolbar alloc] initWithFrame:CGRectMake(0.0f, 0.0f, width, height)] autorelease];
+    NCToolbar *toolbar = [[NCToolbar alloc] initWithFrame:CGRectMake(0.0f, 0.0f, width, height)];
     [toolbar setBackgroundColor:[UIColor clearColor]];
     toolbar.autoresizingMask = UIViewAutoresizingFlexibleHeight;
-    UIBarButtonItem *toolbarBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:toolbar] autorelease];
+    UIBarButtonItem *toolbarBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:toolbar];
     
     toolbar.items = items;
     [toolbar sizeToFit];
@@ -116,7 +116,7 @@ setBackgroundColor(NSArray *components, NCToolbar *toolbar) {
     
     // Adjust UIToolBar right margin.
     static const double kMargin = -5.0f;
-    UIBarButtonItem *negativeSpacer = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil] autorelease];
+    UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
     negativeSpacer.width = kMargin;
     
     // iOS4 cannot use rightsBarButtonItems.
@@ -132,7 +132,7 @@ setBackgroundColor(NSArray *components, NCToolbar *toolbar) {
     
     // Add null container when toolbar has 0 components.
     if ([components count]==0) {
-        NCContainer *container = [[[NCContainer alloc] init] autorelease];
+        NCContainer *container = [[NCContainer alloc] init];
         [containers addObject:container];
     }
     self.centerContainer = [containers objectAtIndex:0];
@@ -175,7 +175,7 @@ setBackgroundColor(NSArray *components, NCToolbar *toolbar) {
             subtitleFontScale = [scale floatValue];
         }
         
-        NCTitleView *titleView = [[[NCTitleView alloc] init] autorelease];
+        NCTitleView *titleView = [[NCTitleView alloc] init];
         
         if (!titleColor || [titleColor isEqualToString:@""]) {
             [titleView setTitle:title color:[UIColor whiteColor] scale:titleFontScale];

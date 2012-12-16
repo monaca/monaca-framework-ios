@@ -118,11 +118,11 @@ updateButton(UIBarButtonItem *button, NSDictionary *style) {
     }
 #endif // MONACA_PRIVATE_API
     
-    NCButton *button = [[[NCButton alloc] initWithTitle:nil
+    NCButton *button = [[NCButton alloc] initWithTitle:nil
                                                   style:UIBarButtonItemStyleBordered
                                                  target:nil
                                                  action:nil
-                                                postion:aPosition] autorelease];
+                                                postion:aPosition];
     return updateButton(button, dict);
 }
 

@@ -23,7 +23,7 @@
     
     if ([plistName isEqualToString:@"Cordova"]) {
         NSDictionary *cordovaDictInInfo = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"Cordova"];
-        NSMutableDictionary *copyDict = [[[NSMutableDictionary alloc] initWithDictionary:temp] autorelease];
+        NSMutableDictionary *copyDict = [[NSMutableDictionary alloc] initWithDictionary:temp];
         if (cordovaDictInInfo == nil){
             return copyDict;
         }

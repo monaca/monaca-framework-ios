@@ -55,7 +55,7 @@
 
 - (void)startLoading
 {
-    NSError *error = [[[NSError alloc] initWithDomain:@"restricted file access" code:0 userInfo:nil] autorelease];
+    NSError *error = [[NSError alloc] initWithDomain:@"restricted file access" code:0 userInfo:nil];
     [self.client URLProtocol:self didFailWithError:error];
 }
 

@@ -191,11 +191,11 @@ stringByRelativePath(NSString *relativePath) {
     NSMutableArray *icons = [NSMutableArray array];
     
     UIBarButtonItem *spacer =
-    [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease];
+    [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     
     // Adjust UIToolBar left and right margin.
     static const double kMargin = -12.0f;
-    UIBarButtonItem *negativeSpacer = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil] autorelease];
+    UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
     negativeSpacer.width = kMargin;
     
     // Left side components.
@@ -207,7 +207,7 @@ stringByRelativePath(NSString *relativePath) {
             [items addObject:container.component];
         }
         
-        toolbar = [[[NCToolbar alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 0.0f, 44.0f)] autorelease];
+        toolbar = [[NCToolbar alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 0.0f, 44.0f)];
         [toolbar setBackgroundColor:[UIColor clearColor]];
         toolbar.autoresizingMask = UIViewAutoresizingFlexibleHeight;
         toolbar.items = items;
@@ -216,7 +216,7 @@ stringByRelativePath(NSString *relativePath) {
         setBackgroundColor(components, toolbar);
         
         [icons addObject:negativeSpacer];
-        [icons addObject:[[[UIBarButtonItem alloc] initWithCustomView:toolbar] autorelease]];
+        [icons addObject:[[UIBarButtonItem alloc] initWithCustomView:toolbar]];
         [icons addObject:spacer];
     }
     
@@ -241,7 +241,7 @@ stringByRelativePath(NSString *relativePath) {
             frame = CGRectMake(0, 0, width + kMargin * 2, height);
         }
         
-        toolbar = [[[NCToolbar alloc] initWithFrame:frame] autorelease];
+        toolbar = [[NCToolbar alloc] initWithFrame:frame];
         [toolbar setBackgroundColor:[UIColor clearColor]];
         toolbar.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
         
@@ -262,7 +262,7 @@ stringByRelativePath(NSString *relativePath) {
             if (![uidict objectForKey:kNCTypeLeft]) {
                 [icons addObject:spacer];
             }
-            [icons addObject:[[[UIBarButtonItem alloc] initWithCustomView:toolbar] autorelease]];
+            [icons addObject:[[UIBarButtonItem alloc] initWithCustomView:toolbar]];
             if (![uidict objectForKey:kNCTypeRight]) {
                 [icons addObject:spacer];
             }
@@ -278,7 +278,7 @@ stringByRelativePath(NSString *relativePath) {
             [items addObject:container.component];
         }
         
-        toolbar = [[[NCToolbar alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 0.0f, 44.0f)] autorelease];
+        toolbar = [[NCToolbar alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 0.0f, 44.0f)];
         [toolbar setBackgroundColor:[UIColor clearColor]];
         toolbar.autoresizingMask = UIViewAutoresizingFlexibleHeight;
         toolbar.items = items;
@@ -287,7 +287,7 @@ stringByRelativePath(NSString *relativePath) {
         setBackgroundColor(components, toolbar);
         
         [icons addObject:spacer];
-        [icons addObject:[[[UIBarButtonItem alloc] initWithCustomView:toolbar] autorelease]];
+        [icons addObject:[[UIBarButtonItem alloc] initWithCustomView:toolbar]];
         [icons addObject:negativeSpacer];
     }
     
@@ -400,7 +400,7 @@ stringByRelativePath(NSString *relativePath) {
         [style addEntriesFromDictionary:[item objectForKey:kNCTypeIOSStyle]];
         
         // Setup a view controller in the tab contoller.
-        UIViewController *controller = [[[UIViewController alloc] init] autorelease];
+        UIViewController *controller = [[UIViewController alloc] init];
         [controller.view setAutoresizesSubviews:YES];
         controller.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         
