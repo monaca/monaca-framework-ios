@@ -114,7 +114,7 @@ updateButton(UIBarButtonItem *button, NSDictionary *style) {
         } else if ([iosStyle isEqualToString:@"UIBarButtonSystemItemRedo"]) {
             item = UIBarButtonSystemItemRedo;
         }
-        return [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:item target:nil action:nil] autorelease];
+        return [[UIBarButtonItem alloc] initWithBarButtonSystemItem:item target:nil action:nil];
     }
 #endif // MONACA_PRIVATE_API
     
