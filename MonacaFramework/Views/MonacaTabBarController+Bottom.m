@@ -427,9 +427,8 @@ stringByRelativePath(NSString *relativePath) {
     // 指定されたタブをアクティブにする。isInitialized フラグによって、メモリ破壊後にこのメソッドが呼ばれた時に
     // UI ファイルの値を使用しないようにし、最後に見ていたタブをアクティブにする。
     NSMutableDictionary *style = [bottomBarStyle objectForKey:kNCTypeStyle];
-    NSString *activeIndex = [style objectForKey:kNCStyleActiveIndex];
-    if (activeIndex && !isInitialized_) {
-        self.activeIndex = [activeIndex intValue];
+    self.activeIndex = [[style objectForKey:kNCStyleActiveIndex] intValue];
+    if (!isInitialized_) {
         [self setSelectedIndex:self.activeIndex];
         [delegate.viewController.cdvViewController.webView removeFromSuperview];
         [((UIViewController *)[controllers objectAtIndex:self.activeIndex]).view addSubview:delegate.viewController.cdvViewController.webView];
