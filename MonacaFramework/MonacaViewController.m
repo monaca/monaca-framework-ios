@@ -311,7 +311,6 @@
         NSMutableDictionary *info = [NSMutableDictionary dictionary];
         [info setObject:[url path] forKey:@"path"];
         [MonacaEvent dispatchEvent:monacaEventOpenPage withInfo:info];
-        [MonacaEvent dispatchEvent:monacaEventWillLoadUIFile withInfo:info];
 
         // Treat anchor parameters.
         if (hasAnchor) {
@@ -320,6 +319,7 @@
                 return YES;
             }
         }
+        [MonacaEvent dispatchEvent:monacaEventWillLoadUIFile withInfo:info];
         self.previousPath = [url path];
 
         BOOL isDir;
@@ -359,6 +359,8 @@
                     if (activeIndex != 0) {
                         NSString *dirpath = [filepath stringByDeletingLastPathComponent];
                         filepath = [NSString stringWithFormat:@"%@/%@", dirpath, [[items objectAtIndex:activeIndex] objectForKey:kNCTypeLink]];
+                        // 初回表示時activeIndexが0以外の場合には、ここで指定してpreviousPathをactiveIndexの示すパスに対応させる。
+                        self.previousPath = filepath;
                     }
                 }
             }
