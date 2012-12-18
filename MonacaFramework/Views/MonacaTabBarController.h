@@ -34,7 +34,7 @@
     NCManager *ncManager_;
     NSInteger activeIndex_;
     BOOL isInitialized_;
-    BOOL isLocked_;
+    BOOL isLocked;
 }
 
 - (NSMutableArray *)createContainers:(NSArray *)components position:(NSString *)aPosition;

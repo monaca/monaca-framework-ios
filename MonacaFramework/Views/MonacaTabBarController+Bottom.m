@@ -427,9 +427,8 @@ stringByRelativePath(NSString *relativePath) {
     // 指定されたタブをアクティブにする。isInitialized フラグによって、メモリ破壊後にこのメソッドが呼ばれた時に
     // UI ファイルの値を使用しないようにし、最後に見ていたタブをアクティブにする。
     NSMutableDictionary *style = [bottomBarStyle objectForKey:kNCTypeStyle];
-    NSString *activeIndex = [style objectForKey:kNCStyleActiveIndex];
-    if (activeIndex && !isInitialized_) {
-        self.activeIndex = [activeIndex intValue];
+    self.activeIndex = [[style objectForKey:kNCStyleActiveIndex] intValue];
+    if (!isInitialized_) {
         [self setSelectedIndex:self.activeIndex];
         [delegate.viewController.cdvViewController.webView removeFromSuperview];
         [((UIViewController *)[controllers objectAtIndex:self.activeIndex]).view addSubview:delegate.viewController.cdvViewController.webView];
@@ -455,8 +454,8 @@ stringByRelativePath(NSString *relativePath) {
 }
 
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
-    if (isLocked_ == NO) {
-        isLocked_ = YES;
+    if (isLocked == NO) {
+        isLocked = YES;
 
         MonacaDelegate *delegate = (MonacaDelegate *)[UIApplication sharedApplication].delegate;
         [delegate.viewController.cdvViewController.webView removeFromSuperview];
