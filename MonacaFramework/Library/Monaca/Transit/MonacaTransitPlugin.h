@@ -9,7 +9,7 @@
 #import "CDVPlugin.h"
 
 @class MFViewController;
-@class MonacaNavigationController;
+@class MFNavigationController;
 
 @interface MonacaTransitPlugin : CDVPlugin
 

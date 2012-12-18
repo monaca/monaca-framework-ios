@@ -26,7 +26,7 @@
     return (MFDelegate *)[self appDelegate];
 }
 
-- (MonacaNavigationController *)monacaNavigationController
+- (MFNavigationController *)monacaNavigationController
 {
     return [[self monacaDelegate] monacaNavigationController];
 }
@@ -156,7 +156,7 @@
 
 - (void)pop:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options
 {
-    MonacaNavigationController *nav = [self monacaNavigationController];
+    MFNavigationController *nav = [self monacaNavigationController];
     NSLog(@"count: %d, %@", [[nav viewControllers] count], [[nav viewControllers] lastObject]);
     MFViewController *vc = (MFViewController*)[nav popViewControllerAnimated:YES];
     [vc destroy];
@@ -211,7 +211,7 @@
     transition.subtype = transitionSubtype;
     [transition setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionDefault]];
 
-    MonacaNavigationController *nav = [self monacaNavigationController];
+    MFNavigationController *nav = [self monacaNavigationController];
     [nav.view.layer addAnimation:transition forKey:kCATransition];
     [nav pushViewController:viewController animated:NO];
 }
@@ -244,7 +244,7 @@
     transition.subtype = transitionSubtype;
     [transition setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionDefault]];
 
-    MonacaNavigationController *nav = [self monacaNavigationController];
+    MFNavigationController *nav = [self monacaNavigationController];
     [nav.view.layer addAnimation:transition forKey:kCATransition];
     MFViewController *vc = (MFViewController*)[nav popViewControllerAnimated:YES];
     [vc destroy];

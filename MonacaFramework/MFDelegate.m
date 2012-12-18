@@ -55,7 +55,7 @@
     self.viewController = [[MFViewController alloc] initWithFileName:@"index.html" query:nil];
     [Utility setupMonacaViewController:self.viewController];
     
-    self.monacaNavigationController = [[MonacaNavigationController alloc] initWithRootViewController:self.viewController];
+    self.monacaNavigationController = [[MFNavigationController alloc] initWithRootViewController:self.viewController];
     
     [MonacaURLProtocol registerMonacaURLProtocol];
     

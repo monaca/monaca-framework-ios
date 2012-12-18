@@ -8,12 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "MFViewController.h"
-#import "MonacaNavigationController.h"
+#import "MFNavigationController.h"
 
 @interface MFDelegate : NSObject <UIApplicationDelegate, UIWebViewDelegate> {
  @private
     MFViewController *viewController_;
-    MonacaNavigationController *monacaNavigationController_;
+    MFNavigationController *monacaNavigationController_;
 }
 
 - (NSURL *)getBaseURL;
@@ -24,6 +24,6 @@
 @property (nonatomic, readwrite, retain) IBOutlet MFViewController *viewController;
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
-@property(nonatomic, retain) MonacaNavigationController *monacaNavigationController;
+@property(nonatomic, retain) MFNavigationController *monacaNavigationController;
 
 @end

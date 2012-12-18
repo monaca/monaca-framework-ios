@@ -6,15 +6,15 @@
 //  Copyright (c) 2012年 ASIAL CORPORATION. All rights reserved.
 //
 
-#import "MonacaNavigationController.h"
+#import "MFNavigationController.h"
 #import "MonacaTransitPlugin.h"
 #import "Utility.h"
 
-@interface MonacaNavigationController ()
+@interface MFNavigationController ()
 
 @end
 
-@implementation MonacaNavigationController
+@implementation MFNavigationController
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)aInterfaceOrientation
 {
