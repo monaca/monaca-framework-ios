@@ -455,19 +455,24 @@ stringByRelativePath(NSString *relativePath) {
 }
 
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
-    MonacaDelegate *delegate = (MonacaDelegate *)[UIApplication sharedApplication].delegate;
-    [delegate.viewController.cdvViewController.webView removeFromSuperview];
-    [viewController.view addSubview:delegate.viewController.cdvViewController.webView];
-    
-    self.activeIndex = self.selectedIndex;
-    NSArray *items = [[self dictionaryWithBottomBar] objectForKey:kNCTypeItems];
-    NSString *relativePath = [[items objectAtIndex:self.activeIndex] objectForKey:kNCTypeLink];
-    NSString *linkpath = stringByRelativePath(relativePath);
-    
-    // Load link url page.
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:linkpath]];
-    delegate.viewController.cdvViewController.webView.tag = kWebViewIgnoreStyle;
-    [delegate.viewController.cdvViewController.webView loadRequest:request];
+    if (isLocked_ == NO) {
+        isLocked_ = YES;
+
+        MonacaDelegate *delegate = (MonacaDelegate *)[UIApplication sharedApplication].delegate;
+        [delegate.viewController.cdvViewController.webView removeFromSuperview];
+        [viewController.view addSubview:delegate.viewController.cdvViewController.webView];
+
+        self.activeIndex = self.selectedIndex;
+        NSArray *items = [[self dictionaryWithBottomBar] objectForKey:kNCTypeItems];
+        NSString *relativePath = [[items objectAtIndex:self.activeIndex] objectForKey:kNCTypeLink];
+        NSString *linkpath = stringByRelativePath(relativePath);
+
+        // Load link url page.
+        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:linkpath]];
+        delegate.viewController.cdvViewController.webView.tag = kWebViewIgnoreStyle;
+        [delegate.viewController.cdvViewController.webView loadRequest:request];
+    }
+    self.selectedIndex = self.activeIndex;
 }
 
 - (void)hideTabbar {

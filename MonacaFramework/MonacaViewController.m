@@ -311,6 +311,7 @@
         NSMutableDictionary *info = [NSMutableDictionary dictionary];
         [info setObject:[url path] forKey:@"path"];
         [MonacaEvent dispatchEvent:monacaEventOpenPage withInfo:info];
+        [MonacaEvent dispatchEvent:monacaEventWillLoadUIFile withInfo:info];
 
         // Treat anchor parameters.
         if (hasAnchor) {
@@ -334,6 +335,7 @@
         } else {
             uipath = [[filepath stringByDeletingPathExtension] stringByAppendingPathExtension:@"ui"];
         }
+
         @try {
             if (cdvViewController.webView.tag != kWebViewIgnoreStyle) {
                 // Apply user interface definitions.
@@ -366,6 +368,7 @@
             cdvViewController.webView.tag = kWebViewNormal;
             [[Utility currentTabBarController] applyUserInterface:nil];
         }
+
         NSString *html = [NSString stringWithContentsOfFile:filepath encoding:NSUTF8StringEncoding error:nil];
 #ifndef DISABLE_MONACA_TEMPLATE_ENGINE
         NSURL *url = ((NSURL *)[NSURL fileURLWithPath:filepath]);
@@ -412,6 +415,7 @@
     // Black base color for background matches the native apps
     //theWebView.backgroundColor = [UIColor blackColor];
     
+    [MonacaEvent dispatchEvent:monacaEventDidLoadUIFile withInfo:nil];
     [MonacaTransitPlugin webViewDidFinishLoad:theWebView viewController:self];
     
     return [cdvViewController webViewDidFinishLoad:theWebView];

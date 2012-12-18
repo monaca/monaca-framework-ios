@@ -8,6 +8,7 @@
 
 #import "MonacaTabBarController.h"
 #import "Utility.h"
+#import "MonacaEvent.h"
 
 @implementation MonacaTabBarController
 
@@ -22,7 +23,6 @@
 @synthesize ncManager = ncManager_;
 @synthesize activeIndex = activeIndex_;
 @synthesize isInitialized = isInitialized_;
-
 
 // iOS4 の場合、このメソッドは MonacaViewController の viewDidApper メソッドから呼ばれる
 - (void)viewWillAppear:(BOOL)animated {
@@ -45,6 +45,11 @@
     if (nil != self) {
         self.viewDict = [NSMutableDictionary dictionary];
         self.ncManager = [[[NCManager alloc] init] autorelease];
+        isLocked_ = YES;
+
+        NSNotificationCenter* center = [NSNotificationCenter defaultCenter];
+        [center addObserver:self selector:@selector(onWillLoadUIFile:) name:monacaEventWillLoadUIFile object:nil];
+        [center addObserver:self selector:@selector(onDidLoadUIFile:) name:monacaEventDidLoadUIFile object:nil];
     }
     return self;
 }
@@ -140,4 +145,13 @@
     [self applyUserInterface:[[self.ncManager.properties copy] autorelease]];
 }
 
+#pragma mark - EventListener
+
+- (void)onWillLoadUIFile:(NSNotificationCenter *)center {
+    isLocked_ = YES;
+}
+
+- (void)onDidLoadUIFile:(NSNotificationCenter *)center {
+    isLocked_ = NO;
+}
 @end
