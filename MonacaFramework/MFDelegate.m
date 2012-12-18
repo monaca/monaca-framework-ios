@@ -12,7 +12,7 @@
 #import "MFViewController.h"
 #import "MonacaTabBarController.h"
 #import "NativeComponents.h"
-#import "MonacaURLProtocol.h"
+#import "MFSecureFileURLProtocol.h"
 #import "CDVViewController.h"
 #import "CDVSplashScreen.h"
 #import "Utility.h"
@@ -57,7 +57,7 @@
     
     self.monacaNavigationController = [[MFNavigationController alloc] initWithRootViewController:self.viewController];
     
-    [MonacaURLProtocol registerMonacaURLProtocol];
+    [MFSecureFileURLProtocol registerMonacaURLProtocol];
     
     self.window.rootViewController = self.monacaNavigationController;
     [self.window makeKeyAndVisible];

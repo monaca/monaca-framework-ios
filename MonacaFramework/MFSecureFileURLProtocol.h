@@ -7,7 +7,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MonacaURLProtocol : NSURLProtocol
+@interface MFSecureFileURLProtocol : NSURLProtocol
 + (void)registerMonacaURLProtocol;
 
 @end

@@ -142,7 +142,7 @@
 		3E4F515015A05BF10054EB23 /* UILabel+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = F5E0F7DE1506116900DC7988 /* UILabel+Resize.m */; };
 		3E4F515E15A05BF10054EB23 /* NCButton.m in Sources */ = {isa = PBXBuildFile; fileRef = D44C9E2A1592ED86006372F3 /* NCButton.m */; };
 		3E4F515F15A05BF10054EB23 /* NCSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = D44C9E2C1592ED86006372F3 /* NCSearchBar.m */; };
-		3E4F516015A05BF10054EB23 /* MonacaURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E7FD31F159EA3EE00E85C81 /* MonacaURLProtocol.m */; };
+		3E4F516015A05BF10054EB23 /* MFSecureFileURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E7FD31F159EA3EE00E85C81 /* MFSecureFileURLProtocol.m */; };
 		3E4F516115A05BF10054EB23 /* MonacaTransitPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4F50FE15A040DE0054EB23 /* MonacaTransitPlugin.m */; };
 		3E4F516215A05BF10054EB23 /* MFNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4F510315A0419E0054EB23 /* MFNavigationController.m */; };
 		3E4F516415A05BF10054EB23 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F57E523313D2E8DE00074B18 /* CoreMedia.framework */; };
@@ -181,7 +181,7 @@
 		3E4F518815A05BF10054EB23 /* MonacaTemplateEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = F5E0F7F81506117E00DC7988 /* MonacaTemplateEngine.h */; };
 		3E4F51B315A05BF10054EB23 /* NCButton.h in Headers */ = {isa = PBXBuildFile; fileRef = D44C9E291592ED86006372F3 /* NCButton.h */; };
 		3E4F51B415A05BF10054EB23 /* NCSearchBar.h in Headers */ = {isa = PBXBuildFile; fileRef = D44C9E2B1592ED86006372F3 /* NCSearchBar.h */; };
-		3E4F51B515A05BF10054EB23 /* MonacaURLProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E7FD31E159EA3ED00E85C81 /* MonacaURLProtocol.h */; };
+		3E4F51B515A05BF10054EB23 /* MFSecureFileURLProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E7FD31E159EA3ED00E85C81 /* MFSecureFileURLProtocol.h */; };
 		3E4F51B615A05BF10054EB23 /* MonacaTransitPlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E4F50FD15A040DE0054EB23 /* MonacaTransitPlugin.h */; };
 		3E4F51B715A05BF10054EB23 /* MFNavigationController.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E4F510215A0419E0054EB23 /* MFNavigationController.h */; };
 		3E52828B1662A09000902EA7 /* CDVSplashScreen+monacaSplashScreen.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E5282891662A09000902EA7 /* CDVSplashScreen+monacaSplashScreen.h */; };
@@ -206,7 +206,7 @@
 		3E7FD2FB159D926600E85C81 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F57E523313D2E8DE00074B18 /* CoreMedia.framework */; };
 		3E7FD31C159EA27700E85C81 /* MFDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F50460D813B3633B0050803F /* MFDelegate.m */; };
 		3E7FD31D159EA29700E85C81 /* MFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F50460DA13B3633B0050803F /* MFViewController.m */; };
-		3E7FD322159EA3EF00E85C81 /* MonacaURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E7FD31F159EA3EE00E85C81 /* MonacaURLProtocol.m */; };
+		3E7FD322159EA3EF00E85C81 /* MFSecureFileURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E7FD31F159EA3EE00E85C81 /* MFSecureFileURLProtocol.m */; };
 		3E7FD329159EA92F00E85C81 /* Cordova.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3E7FD328159EA92F00E85C81 /* Cordova.plist */; };
 		3E7FD32A159ECB7000E85C81 /* MonacaTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5921FB6146B80F00025DED5 /* MonacaTabBarController.m */; };
 		3E7FD32B159ECB9B00E85C81 /* NCManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F5E0F7D21506116900DC7988 /* NCManager.m */; };
@@ -356,8 +356,8 @@
 		3E7FD2BA159D8F2400E85C81 /* MonacaSandbox-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MonacaSandbox-Info.plist"; sourceTree = "<group>"; };
 		3E7FD2BE159D8F2400E85C81 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3E7FD2C0159D8F2400E85C81 /* MonacaSandbox-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MonacaSandbox-Prefix.pch"; sourceTree = "<group>"; };
-		3E7FD31E159EA3ED00E85C81 /* MonacaURLProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonacaURLProtocol.h; sourceTree = "<group>"; };
-		3E7FD31F159EA3EE00E85C81 /* MonacaURLProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonacaURLProtocol.m; sourceTree = "<group>"; };
+		3E7FD31E159EA3ED00E85C81 /* MFSecureFileURLProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFSecureFileURLProtocol.h; sourceTree = "<group>"; };
+		3E7FD31F159EA3EE00E85C81 /* MFSecureFileURLProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFSecureFileURLProtocol.m; sourceTree = "<group>"; };
 		3E7FD328159EA92F00E85C81 /* Cordova.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Cordova.plist; path = MonacaSandbox/Cordova.plist; sourceTree = SOURCE_ROOT; };
 		3E7FD345159ED11A00E85C81 /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; name = www; path = MonacaSandbox/www; sourceTree = SOURCE_ROOT; };
 		3E8F180B16187F60005B09FC /* CDVViewController+getMonacaBundlePlist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CDVViewController+getMonacaBundlePlist.h"; sourceTree = "<group>"; };
@@ -773,8 +773,8 @@
 				F50460D813B3633B0050803F /* MFDelegate.m */,
 				3E4F510215A0419E0054EB23 /* MFNavigationController.h */,
 				3E4F510315A0419E0054EB23 /* MFNavigationController.m */,
-				3E7FD31E159EA3ED00E85C81 /* MonacaURLProtocol.h */,
-				3E7FD31F159EA3EE00E85C81 /* MonacaURLProtocol.m */,
+				3E7FD31E159EA3ED00E85C81 /* MFSecureFileURLProtocol.h */,
+				3E7FD31F159EA3EE00E85C81 /* MFSecureFileURLProtocol.m */,
 				F50460DA13B3633B0050803F /* MFViewController.m */,
 				F50460AB13B361730050803F /* Supporting Files */,
 				F50460DF13B3633B0050803F /* Utility.h */,
@@ -885,7 +885,7 @@
 				3E4F518815A05BF10054EB23 /* MonacaTemplateEngine.h in Headers */,
 				3E4F51B315A05BF10054EB23 /* NCButton.h in Headers */,
 				3E4F51B415A05BF10054EB23 /* NCSearchBar.h in Headers */,
-				3E4F51B515A05BF10054EB23 /* MonacaURLProtocol.h in Headers */,
+				3E4F51B515A05BF10054EB23 /* MFSecureFileURLProtocol.h in Headers */,
 				3E4F51B615A05BF10054EB23 /* MonacaTransitPlugin.h in Headers */,
 				3E4F51B715A05BF10054EB23 /* MFNavigationController.h in Headers */,
 				3E0F090015A81D000025EFC2 /* MFPGNativeComponent.h in Headers */,
@@ -1065,7 +1065,7 @@
 				3E4F515015A05BF10054EB23 /* UILabel+Resize.m in Sources */,
 				3E4F515E15A05BF10054EB23 /* NCButton.m in Sources */,
 				3E4F515F15A05BF10054EB23 /* NCSearchBar.m in Sources */,
-				3E4F516015A05BF10054EB23 /* MonacaURLProtocol.m in Sources */,
+				3E4F516015A05BF10054EB23 /* MFSecureFileURLProtocol.m in Sources */,
 				3E4F516115A05BF10054EB23 /* MonacaTransitPlugin.m in Sources */,
 				3E4F516215A05BF10054EB23 /* MFNavigationController.m in Sources */,
 				3E0F090215A81D000025EFC2 /* MFPGNativeComponent.m in Sources */,
@@ -1124,7 +1124,7 @@
 				3E7FD2EB159D914100E85C81 /* MFDevice.m in Sources */,
 				3E7FD31C159EA27700E85C81 /* MFDelegate.m in Sources */,
 				3E7FD31D159EA29700E85C81 /* MFViewController.m in Sources */,
-				3E7FD322159EA3EF00E85C81 /* MonacaURLProtocol.m in Sources */,
+				3E7FD322159EA3EF00E85C81 /* MFSecureFileURLProtocol.m in Sources */,
 				3E7FD32A159ECB7000E85C81 /* MonacaTabBarController.m in Sources */,
 				3E7FD32B159ECB9B00E85C81 /* NCManager.m in Sources */,
 				3E7FD32C159ECBA400E85C81 /* NCContainer.m in Sources */,

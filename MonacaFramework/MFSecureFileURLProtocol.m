@@ -5,9 +5,9 @@
 //  Copyright (c) 2012年 Asial Corporation. All rights reserved.
 //
 
-#import "MonacaURLProtocol.h"
+#import "MFSecureFileURLProtocol.h"
 
-@implementation MonacaURLProtocol
+@implementation MFSecureFileURLProtocol
 
 + (void)registerMonacaURLProtocol
 {
