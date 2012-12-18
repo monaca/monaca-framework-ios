@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Device : NSObject
+@interface MFDevice : NSObject
 
 + (BOOL)isiPhone;
 + (BOOL)isiPad;

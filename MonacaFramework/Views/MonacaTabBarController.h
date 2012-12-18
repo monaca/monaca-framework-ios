@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "MonacaDelegate.h"
 #import "NativeComponents.h"
-#import "Device.h"
+#import "MFDevice.h"
 #import "Utility.h"
 
 @class PhoneGapViewController;

@@ -55,8 +55,8 @@ setBackgroundColor(NSArray *components, NCToolbar *toolbar) {
     }
     
     UIInterfaceOrientation orientation = [Utility currentInterfaceOrientation];
-    double width = [Device widthOfWindow:orientation];
-    double height = [Device heightOfNavigationBar:orientation];
+    double width = [MFDevice widthOfWindow:orientation];
+    double height = [MFDevice heightOfNavigationBar:orientation];
     NCToolbar *toolbar = [[NCToolbar alloc] initWithFrame:CGRectMake(0.0f, 0.0f, width, height)];
     [toolbar setBackgroundColor:[UIColor clearColor]];
     toolbar.autoresizingMask = UIViewAutoresizingFlexibleHeight;
@@ -97,8 +97,8 @@ setBackgroundColor(NSArray *components, NCToolbar *toolbar) {
     }
     
     UIInterfaceOrientation orientation = [Utility currentInterfaceOrientation];
-    double width = [Device widthOfWindow:orientation];
-    double height = [Device heightOfNavigationBar:orientation];
+    double width = [MFDevice widthOfWindow:orientation];
+    double height = [MFDevice heightOfNavigationBar:orientation];
     NCToolbar *toolbar = [[NCToolbar alloc] initWithFrame:CGRectMake(0.0f, 0.0f, width, height)];
     [toolbar setBackgroundColor:[UIColor clearColor]];
     toolbar.autoresizingMask = UIViewAutoresizingFlexibleHeight;

@@ -9,7 +9,7 @@
 #import "NCTitleView.h"
 #import "MonacaDelegate.h"
 #import "UILabel+Resize.h"
-#import "Device.h"
+#import "MFDevice.h"
 #import "Utility.h"
 
 
@@ -85,7 +85,7 @@ isEmpty(NCTitleLabel *label) {
 // Override.
 - (void)setFrame:(CGRect)frame {
     MonacaDelegate *delegate = ((MonacaDelegate *)[UIApplication sharedApplication].delegate);
-    CGFloat height = [Device heightOfNavigationBar:[Utility currentInterfaceOrientation]];
+    CGFloat height = [MFDevice heightOfNavigationBar:[Utility currentInterfaceOrientation]];
     [super setFrame:CGRectMake(0, 0, 0, height)];
 
     CGPoint center = self.center;

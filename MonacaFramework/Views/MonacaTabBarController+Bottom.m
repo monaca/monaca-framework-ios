@@ -236,8 +236,8 @@ stringByRelativePath(NSString *relativePath) {
         CGRect frame = CGRectMake(0.0f, 0.0f, 0.0f, 44.0f);
         if (isCenterOnly) {
             UIInterfaceOrientation orientation = [Utility currentInterfaceOrientation];
-            double width = [Device widthOfWindow:orientation];
-            double height = [Device heightOfNavigationBar:orientation];
+            double width = [MFDevice widthOfWindow:orientation];
+            double height = [MFDevice heightOfNavigationBar:orientation];
             frame = CGRectMake(0, 0, width + kMargin * 2, height);
         }
         
@@ -301,14 +301,14 @@ stringByRelativePath(NSString *relativePath) {
 - (void)showTabBar:(BOOL)visible {
     BOOL ignoreStatusbarHeight = [UIApplication sharedApplication].statusBarStyle == UIStatusBarStyleBlackTranslucent || [UIApplication sharedApplication].statusBarHidden;
     UIInterfaceOrientation orientation = [Utility currentInterfaceOrientation];
-    double heightOfWindow = [Device heightOfWindow:orientation];
+    double heightOfWindow = [MFDevice heightOfWindow:orientation];
     
-    const float kHeightOfStatusBar     = ignoreStatusbarHeight ? 0 : [Device heightOfStatusBar];
+    const float kHeightOfStatusBar     = ignoreStatusbarHeight ? 0 : [MFDevice heightOfStatusBar];
     const float kHeightOfWindow        = heightOfWindow - kHeightOfStatusBar;
-    const float kHeightOfNavigationBar = [Device heightOfNavigationBar:orientation];
+    const float kHeightOfNavigationBar = [MFDevice heightOfNavigationBar:orientation];
     //ステータスバーが透明の時は、タブバーの高さが無い、については一旦外します。 katsuya
-    //const float kHeightOfTabBar        = ignoreStatusbarHeight ? 0 : [Device heightOfTabBar];
-    const float kHeightOfTabBar        = [Device heightOfTabBar];
+    //const float kHeightOfTabBar        = ignoreStatusbarHeight ? 0 : [MFDevice heightOfTabBar];
+    const float kHeightOfTabBar        = [MFDevice heightOfTabBar];
     const float kHeightOfToolBar       = kHeightOfNavigationBar;
     
     BOOL isToolbarHidden = self.navigationController.toolbarHidden;

@@ -40,7 +40,7 @@
  * 4.3と5.1の互換性を保ちつつ、MonacaViewControllerをセットアップする
  */
 + (void) setupMonacaViewController:(MonacaViewController *)monacaViewController{
-    if ([Device iOSVersionMajor] < 5) {
+    if ([MFDevice iOSVersionMajor] < 5) {
     }else{
         BOOL forceStartupRotation = YES;
         UIDeviceOrientation curDevOrientation = [[UIDevice currentDevice] orientation];

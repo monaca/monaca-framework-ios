@@ -179,7 +179,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    if ([Device iOSVersionMajor] < 5) {
+    if ([MFDevice iOSVersionMajor] < 5) {
         [self.tabBarController viewDidAppear:animated];
     }
     [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
@@ -187,7 +187,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    if ([Device iOSVersionMajor] < 5) {
+    if ([MFDevice iOSVersionMajor] < 5) {
         [self.tabBarController viewWillAppear:animated];
     }
     if (!uiSetting) [tabBarController applyUserInterface:uiSetting];
@@ -236,12 +236,12 @@
 
     UINavigationController *currentController = self.appNavigationController;
     if (UIInterfaceOrientationIsPortrait(toInterfaceOrientation)) {
-        float width = [Device widthOfWindow:UIInterfaceOrientationPortrait];
-        float height = [Device heightOfNavigationBar:UIInterfaceOrientationPortrait];
+        float width = [MFDevice widthOfWindow:UIInterfaceOrientationPortrait];
+        float height = [MFDevice heightOfNavigationBar:UIInterfaceOrientationPortrait];
         currentController.navigationBar.frame = CGRectMake(currentController.navigationBar.frame.origin.x, currentController.navigationBar.frame.origin.y, width, height);
     } else if (UIInterfaceOrientationIsLandscape(toInterfaceOrientation)) {
-        float width = [Device widthOfWindow:UIInterfaceOrientationLandscapeLeft];
-        float height = [Device heightOfNavigationBar:UIInterfaceOrientationLandscapeLeft];
+        float width = [MFDevice widthOfWindow:UIInterfaceOrientationLandscapeLeft];
+        float height = [MFDevice heightOfNavigationBar:UIInterfaceOrientationLandscapeLeft];
         currentController.navigationBar.frame = CGRectMake(currentController.navigationBar.frame.origin.x, currentController.navigationBar.frame.origin.y, width, height);
     }
 
