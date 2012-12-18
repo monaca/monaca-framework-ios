@@ -1,12 +1,12 @@
 //
-//  MonacaTabBarController+Bottom.m
+//  MFTabBarController+Bottom.m
 //  MonacaFramework
 //
 //  Created by Nakagawa Hiroki on 12/02/17.
 //  Copyright (c) 2012年 ASIAL CORPORATION. All rights reserved.
 //
 
-#import "MonacaTabBarController+Bottom.h"
+#import "MFTabBarController+Bottom.h"
 
 /*
  * Supports iOS4. Cannot use setTintColor method in iOS4.

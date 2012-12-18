@@ -1,5 +1,5 @@
 //
-//  MonacaTabBarController+Top.h
+//  MFTabBarController+Top.h
 //  MonacaFramework
 //
 //  Created by Nakagawa Hiroki on 12/02/17.
