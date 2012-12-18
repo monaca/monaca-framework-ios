@@ -12,7 +12,7 @@
 #import "MonacaTemplateEngine.h"
 #import "MonacaTransitPlugin.h"
 #import "MFUtility.h"
-#import "MonacaEvent.h"
+#import "MFEvent.h"
 
 @interface MFViewController ()
 - (NSString *)careWWWdir:(NSString *)path;
@@ -40,7 +40,7 @@
     if (data == nil) {
         NSMutableDictionary *info = [NSMutableDictionary dictionary];
         [info setObject:path forKey:@"path"];
-        [MonacaEvent dispatchEvent:monacaEventNoUIFile withInfo:info];
+        [MFEvent dispatchEvent:monacaEventNoUIFile withInfo:info];
         return nil;
     }
     if (YES){
@@ -56,11 +56,11 @@
         NSMutableDictionary *info = [NSMutableDictionary dictionary];
         [info setObject:error forKey:@"error"];
         [info setObject:path forKey:@"path"];
-        [MonacaEvent dispatchEvent:monacaEventNCParseError withInfo:info];
+        [MFEvent dispatchEvent:monacaEventNCParseError withInfo:info];
     } else {
         NSMutableDictionary *info = [NSMutableDictionary dictionary];
         [info setObject:path forKey:@"path"];
-        [MonacaEvent dispatchEvent:monacaEventNCParseSuccess withInfo:info];
+        [MFEvent dispatchEvent:monacaEventNCParseSuccess withInfo:info];
     }
 
     // return ui dictionary
@@ -291,7 +291,7 @@
     if (errorPath != nil) {
         NSMutableDictionary *info = [NSMutableDictionary dictionary];
         [info setObject:errorPath forKey:@"path"];
-        [MonacaEvent dispatchEvent:monacaEvent404Error withInfo:info];
+        [MFEvent dispatchEvent:monacaEvent404Error withInfo:info];
         
         self.recall = YES;
         [MFUtility show404PageWithWebView:webView_ path:errorPath];
@@ -308,7 +308,7 @@
     if (self.recall == NO && [url isFileURL]) {
         NSMutableDictionary *info = [NSMutableDictionary dictionary];
         [info setObject:[url path] forKey:@"path"];
-        [MonacaEvent dispatchEvent:monacaEventOpenPage withInfo:info];
+        [MFEvent dispatchEvent:monacaEventOpenPage withInfo:info];
 
         // Treat anchor parameters.
         if (hasAnchor) {
@@ -317,7 +317,7 @@
                 return YES;
             }
         }
-        [MonacaEvent dispatchEvent:monacaEventWillLoadUIFile withInfo:info];
+        [MFEvent dispatchEvent:monacaEventWillLoadUIFile withInfo:info];
         self.previousPath = [url path];
 
         BOOL isDir;
@@ -415,7 +415,7 @@
     // Black base color for background matches the native apps
     //theWebView.backgroundColor = [UIColor blackColor];
     
-    [MonacaEvent dispatchEvent:monacaEventDidLoadUIFile withInfo:nil];
+    [MFEvent dispatchEvent:monacaEventDidLoadUIFile withInfo:nil];
     [MonacaTransitPlugin webViewDidFinishLoad:theWebView viewController:self];
     
     return [cdvViewController webViewDidFinishLoad:theWebView];

@@ -18,6 +18,6 @@
 #define monacaEventDidLoadUIFile @"monacaEventDidLoadUIFile"
 #define monacaEventReloadPage @"monacaEventReloadPage"
 
-@interface MonacaEvent : NSObject
+@interface MFEvent : NSObject
 + (void)dispatchEvent:(NSString *)eventName withInfo:(NSMutableDictionary *)info;
 @end

@@ -235,9 +235,9 @@
 		3EB4088E1663987A00DC00A9 /* CDVCamera+MonacaAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB4088C1663987A00DC00A9 /* CDVCamera+MonacaAction.m */; };
 		3EB4088F1663987A00DC00A9 /* CDVCamera+MonacaAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB4088C1663987A00DC00A9 /* CDVCamera+MonacaAction.m */; };
 		3EBC68C51664D23000244FE1 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EBC68C41664D23000244FE1 /* libiconv.dylib */; };
-		3EC494C6163A8E410085D937 /* MonacaEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EC494C4163A8E410085D937 /* MonacaEvent.h */; };
-		3EC494C7163A8E410085D937 /* MonacaEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC494C5163A8E410085D937 /* MonacaEvent.m */; };
-		3EC494C8163A8E410085D937 /* MonacaEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC494C5163A8E410085D937 /* MonacaEvent.m */; };
+		3EC494C6163A8E410085D937 /* MFEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EC494C4163A8E410085D937 /* MFEvent.h */; };
+		3EC494C7163A8E410085D937 /* MFEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC494C5163A8E410085D937 /* MFEvent.m */; };
+		3EC494C8163A8E410085D937 /* MFEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC494C5163A8E410085D937 /* MFEvent.m */; };
 		3ECEE94415ECF82300DD807D /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 3ECEE94115ECF82300DD807D /* Default-Portrait~ipad.png */; };
 		3ECEE94515ECF82300DD807D /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 3ECEE94215ECF82300DD807D /* Default.png */; };
 		3ECEE94615ECF82300DD807D /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3ECEE94315ECF82300DD807D /* Default@2x.png */; };
@@ -368,8 +368,8 @@
 		3EB4088B1663987A00DC00A9 /* CDVCamera+MonacaAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CDVCamera+MonacaAction.h"; sourceTree = "<group>"; };
 		3EB4088C1663987A00DC00A9 /* CDVCamera+MonacaAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CDVCamera+MonacaAction.m"; sourceTree = "<group>"; };
 		3EBC68C41664D23000244FE1 /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
-		3EC494C4163A8E410085D937 /* MonacaEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonacaEvent.h; sourceTree = "<group>"; };
-		3EC494C5163A8E410085D937 /* MonacaEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonacaEvent.m; sourceTree = "<group>"; };
+		3EC494C4163A8E410085D937 /* MFEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFEvent.h; sourceTree = "<group>"; };
+		3EC494C5163A8E410085D937 /* MFEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFEvent.m; sourceTree = "<group>"; };
 		3ECEE94115ECF82300DD807D /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = "<group>"; };
 		3ECEE94215ECF82300DD807D /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		3ECEE94315ECF82300DD807D /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
@@ -780,8 +780,8 @@
 				F50460DF13B3633B0050803F /* MFUtility.h */,
 				F50460E013B3633B0050803F /* MFUtility.m */,
 				F5921FB3146B80690025DED5 /* Views */,
-				3EC494C4163A8E410085D937 /* MonacaEvent.h */,
-				3EC494C5163A8E410085D937 /* MonacaEvent.m */,
+				3EC494C4163A8E410085D937 /* MFEvent.h */,
+				3EC494C5163A8E410085D937 /* MFEvent.m */,
 			);
 			path = MonacaFramework;
 			sourceTree = "<group>";
@@ -893,7 +893,7 @@
 				3EDD681F16155D0F0018698B /* ChildBrowserCommand.h in Headers */,
 				3EDD682216155D0F0018698B /* ChildBrowserViewController.h in Headers */,
 				3E8F180D16187F60005B09FC /* CDVViewController+getMonacaBundlePlist.h in Headers */,
-				3EC494C6163A8E410085D937 /* MonacaEvent.h in Headers */,
+				3EC494C6163A8E410085D937 /* MFEvent.h in Headers */,
 				3E52828B1662A09000902EA7 /* CDVSplashScreen+monacaSplashScreen.h in Headers */,
 				3EB4088D1663987A00DC00A9 /* CDVCamera+MonacaAction.h in Headers */,
 				3E9B13B31664AC82005908B7 /* zxing-all-in-one.h in Headers */,
@@ -1073,7 +1073,7 @@
 				3EDD682016155D0F0018698B /* ChildBrowserCommand.m in Sources */,
 				3EDD682316155D0F0018698B /* ChildBrowserViewController.m in Sources */,
 				3E8F180E16187F60005B09FC /* CDVViewController+getMonacaBundlePlist.m in Sources */,
-				3EC494C7163A8E410085D937 /* MonacaEvent.m in Sources */,
+				3EC494C7163A8E410085D937 /* MFEvent.m in Sources */,
 				3E52828C1662A09000902EA7 /* CDVSplashScreen+monacaSplashScreen.m in Sources */,
 				3EB4088E1663987A00DC00A9 /* CDVCamera+MonacaAction.m in Sources */,
 				3E9B13AE1664AC82005908B7 /* CDVBarcodeScanner.mm in Sources */,
@@ -1149,7 +1149,7 @@
 				3EDD682116155D0F0018698B /* ChildBrowserCommand.m in Sources */,
 				3EDD682416155D0F0018698B /* ChildBrowserViewController.m in Sources */,
 				3E8F180F16187F60005B09FC /* CDVViewController+getMonacaBundlePlist.m in Sources */,
-				3EC494C8163A8E410085D937 /* MonacaEvent.m in Sources */,
+				3EC494C8163A8E410085D937 /* MFEvent.m in Sources */,
 				3E52828D1662A09000902EA7 /* CDVSplashScreen+monacaSplashScreen.m in Sources */,
 				3EB4088F1663987A00DC00A9 /* CDVCamera+MonacaAction.m in Sources */,
 				3EE0E8011664B58000F1E677 /* CDVBarcodeScanner.mm in Sources */,

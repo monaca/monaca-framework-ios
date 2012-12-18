@@ -6,9 +6,9 @@
 //  Copyright (c) 2012年 ASIAL CORPORATION. All rights reserved.
 //
 
-#import "MonacaEvent.h"
+#import "MFEvent.h"
 
-@implementation MonacaEvent
+@implementation MFEvent
 
 + (void)dispatchEvent:(NSString *)eventName withInfo:(NSMutableDictionary *)info {
     NSNotification* notification = [NSNotification notificationWithName:eventName object:self userInfo:info];

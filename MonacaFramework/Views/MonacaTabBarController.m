@@ -8,7 +8,7 @@
 
 #import "MonacaTabBarController.h"
 #import "MFUtility.h"
-#import "MonacaEvent.h"
+#import "MFEvent.h"
 
 @implementation MonacaTabBarController
 
