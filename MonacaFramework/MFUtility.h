@@ -12,7 +12,7 @@
 #import "MonacaTabBarController.h"
 
 
-@interface Utility : NSObject {
+@interface MFUtility : NSObject {
 
 }
 

@@ -11,7 +11,7 @@
 #import "JSONKit.h"
 #import "MonacaTemplateEngine.h"
 #import "MonacaTransitPlugin.h"
-#import "Utility.h"
+#import "MFUtility.h"
 #import "MonacaEvent.h"
 
 @interface MFViewController ()
@@ -197,7 +197,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [Utility fixedLayout:self interfaceOrientation:self.interfaceOrientation];
+    [MFUtility fixedLayout:self interfaceOrientation:self.interfaceOrientation];
 
     // only first page, set splash screen setting.
     if ([self.navigationController viewControllers].count == 1) {
@@ -226,7 +226,7 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)aInterfaceOrientation
 {
-    return [Utility getAllowOrientationFromPlist:aInterfaceOrientation];
+    return [MFUtility getAllowOrientationFromPlist:aInterfaceOrientation];
 }
 
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
@@ -245,15 +245,15 @@
         currentController.navigationBar.frame = CGRectMake(currentController.navigationBar.frame.origin.x, currentController.navigationBar.frame.origin.y, width, height);
     }
 
-    if ([[Utility currentTabBarController] hasTitleView]) {
-        [[Utility currentTabBarController] changeTitleView];
+    if ([[MFUtility currentTabBarController] hasTitleView]) {
+        [[MFUtility currentTabBarController] changeTitleView];
     }
 }
 
 - (void)processDataTypes
 {
     // dataDetectorTypes from plist
-    id types = [[[Utility getAppDelegate] getApplicationPlist] objectForKey:@"DetectDataTypes"];
+    id types = [[[MFUtility getAppDelegate] getApplicationPlist] objectForKey:@"DetectDataTypes"];
     if ([types respondsToSelector:@selector(boolValue)]) {
         BOOL res = [types boolValue];
         cdvViewController.webView.dataDetectorTypes = res ? UIDataDetectorTypeAll : UIDataDetectorTypeNone;
@@ -294,7 +294,7 @@
         [MonacaEvent dispatchEvent:monacaEvent404Error withInfo:info];
         
         self.recall = YES;
-        [Utility show404PageWithWebView:webView_ path:errorPath];
+        [MFUtility show404PageWithWebView:webView_ path:errorPath];
         
         return NO;
     }
@@ -342,7 +342,7 @@
                 if (![fileManager fileExistsAtPath:uipath]) {
                     uiDict = nil;
                 }
-                [[Utility currentTabBarController] applyUserInterface:uiDict];
+                [[MFUtility currentTabBarController] applyUserInterface:uiDict];
                 
                 // when use splash screen, dosen't show native component. @see monacaSplashScreen.
                 uiSetting = [NSMutableDictionary dictionaryWithDictionary:uiDict];
@@ -366,7 +366,7 @@
         }
         @catch (NSException *exception) {
             cdvViewController.webView.tag = kWebViewNormal;
-            [[Utility currentTabBarController] applyUserInterface:nil];
+            [[MFUtility currentTabBarController] applyUserInterface:nil];
         }
 
         NSString *html = [NSString stringWithContentsOfFile:filepath encoding:NSUTF8StringEncoding error:nil];
@@ -386,7 +386,7 @@
         }else {
             query = request.URL.query;
         }
-        html = [Utility insertMonacaQueryParams:html query:query];
+        html = [MFUtility insertMonacaQueryParams:html query:query];
         //----------
         html = [self hookForLoadedHTML:html request:request];
 

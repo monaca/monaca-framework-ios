@@ -15,7 +15,7 @@
 #import "MFSecureFileURLProtocol.h"
 #import "CDVViewController.h"
 #import "CDVSplashScreen.h"
-#import "Utility.h"
+#import "MFUtility.h"
 
 #ifndef DISABLE_MONACA_TEMPLATE_ENGINE
 #import "MonacaTemplateEngine.h"
@@ -53,7 +53,7 @@
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.viewController = [[MFViewController alloc] initWithFileName:@"index.html" query:nil];
-    [Utility setupMonacaViewController:self.viewController];
+    [MFUtility setupMonacaViewController:self.viewController];
     
     self.monacaNavigationController = [[MFNavigationController alloc] initWithRootViewController:self.viewController];
     

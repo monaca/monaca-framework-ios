@@ -11,7 +11,7 @@
 #import "MFDelegate.h"
 #import "MFViewController.h"
 #import "MonacaTabBarController.h"
-#import "Utility.h"
+#import "MFUtility.h"
 
 #define kMonacaTransitPluginJsReactivate @"window.onReactivate"
 #define kMonacaTransitPluginOptionUrl @"url"
@@ -49,7 +49,7 @@
 - (void)setupViewController:(MFViewController *)viewController options:(NSDictionary *)options
 {
     viewController.monacaPluginOptions = options;
-    [Utility setupMonacaViewController:viewController];
+    [MFUtility setupMonacaViewController:viewController];
 }
 
 + (void)setBgColor:(MFViewController *)viewController color:(UIColor *)color
@@ -109,7 +109,7 @@
     if (viewController.monacaPluginOptions) {
         NSString *bgName = [viewController.monacaPluginOptions objectForKey:kMonacaTransitPluginOptionBg];
         if (bgName) {
-            NSURL *appWWWURL = [[Utility getAppDelegate] getBaseURL];
+            NSURL *appWWWURL = [[MFUtility getAppDelegate] getBaseURL];
             NSString *bgPath = [appWWWURL.path stringByAppendingFormat:@"/%@", bgName];
             UIImage *bgImage = [UIImage imageWithContentsOfFile:bgPath];
             if (bgImage) {
@@ -309,12 +309,12 @@
     if (jsonQueryParams.count > 0) {
         NSMutableArray *queryParams = [NSMutableArray array];
         for (NSString *key in jsonQueryParams) {
-            NSString *encodedKey = [Utility urlEncode:key];
+            NSString *encodedKey = [MFUtility urlEncode:key];
             NSString *encodedValue = nil;
             if ([[jsonQueryParams objectForKey:key] isEqual:[NSNull null]]){
                 [queryParams addObject:[NSString stringWithFormat:@"%@", encodedKey]];
             }else {
-                encodedValue = [Utility urlEncode:[jsonQueryParams objectForKey:key]];
+                encodedValue = [MFUtility urlEncode:[jsonQueryParams objectForKey:key]];
                 [queryParams addObject:[NSString stringWithFormat:@"%@=%@", encodedKey, encodedValue]];
             }
         }

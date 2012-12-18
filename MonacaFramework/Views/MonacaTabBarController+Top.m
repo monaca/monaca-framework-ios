@@ -19,7 +19,7 @@ setBackgroundColor(NSArray *components, NCToolbar *toolbar) {
         // Register component's view.
         NSString *cid = [(NSDictionary *)[components objectAtIndex:i] objectForKey:kNCTypeID];
         if (cid) {
-            [[Utility currentTabBarController].viewDict setObject:view forKey:cid];
+            [[MFUtility currentTabBarController].viewDict setObject:view forKey:cid];
         }
         [NCButtonBuilder setUpdatedTag:view];
         
@@ -54,7 +54,7 @@ setBackgroundColor(NSArray *components, NCToolbar *toolbar) {
         [items addObject:container.component];
     }
     
-    UIInterfaceOrientation orientation = [Utility currentInterfaceOrientation];
+    UIInterfaceOrientation orientation = [MFUtility currentInterfaceOrientation];
     double width = [MFDevice widthOfWindow:orientation];
     double height = [MFDevice heightOfNavigationBar:orientation];
     NCToolbar *toolbar = [[NCToolbar alloc] initWithFrame:CGRectMake(0.0f, 0.0f, width, height)];
@@ -96,7 +96,7 @@ setBackgroundColor(NSArray *components, NCToolbar *toolbar) {
         [items addObject:container.component];
     }
     
-    UIInterfaceOrientation orientation = [Utility currentInterfaceOrientation];
+    UIInterfaceOrientation orientation = [MFUtility currentInterfaceOrientation];
     double width = [MFDevice widthOfWindow:orientation];
     double height = [MFDevice heightOfNavigationBar:orientation];
     NCToolbar *toolbar = [[NCToolbar alloc] initWithFrame:CGRectMake(0.0f, 0.0f, width, height)];

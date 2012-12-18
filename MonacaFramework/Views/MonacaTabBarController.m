@@ -7,7 +7,7 @@
 //
 
 #import "MonacaTabBarController.h"
-#import "Utility.h"
+#import "MFUtility.h"
 #import "MonacaEvent.h"
 
 @implementation MonacaTabBarController
@@ -70,7 +70,7 @@
 }
 
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)orientation {
-    return [Utility getAllowOrientationFromPlist:orientation];
+    return [MFUtility getAllowOrientationFromPlist:orientation];
 }
 
 - (NSMutableArray *)createContainers:(NSArray *)components position:(NSString *)aPosition {

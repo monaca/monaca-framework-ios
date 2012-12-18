@@ -6,9 +6,9 @@
 //  Copyright 2011 ASIAL CORPORATION. All rights reserved.
 //
 
-#import "Utility.h"
+#import "MFUtility.h"
 
-@implementation Utility
+@implementation MFUtility
 
 + (MonacaTabBarController *)currentTabBarController {
     return (MonacaTabBarController *)((MFDelegate *)[UIApplication sharedApplication].delegate).viewController.tabBarController;
@@ -80,9 +80,9 @@
     NSString *pathFor404 = [[NSBundle mainBundle] pathForResource:@"404/index" ofType:@"html"];
     NSString *html = [NSString stringWithContentsOfFile:pathFor404 encoding:NSUTF8StringEncoding error:nil];
 
-    html = [html stringByReplacingOccurrencesOfString:@"%%%urlPlaceHolder%%%" withString:[Utility getWWWShortPath:aPath]];
+    html = [html stringByReplacingOccurrencesOfString:@"%%%urlPlaceHolder%%%" withString:[MFUtility getWWWShortPath:aPath]];
     [webView loadHTMLString:html baseURL:[NSURL fileURLWithPath:pathFor404]];
-    [[Utility currentTabBarController] applyUserInterface:nil];
+    [[MFUtility currentTabBarController] applyUserInterface:nil];
 }
 
 /*

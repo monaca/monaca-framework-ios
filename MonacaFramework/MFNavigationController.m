@@ -8,7 +8,7 @@
 
 #import "MFNavigationController.h"
 #import "MonacaTransitPlugin.h"
-#import "Utility.h"
+#import "MFUtility.h"
 
 @interface MFNavigationController ()
 
@@ -18,7 +18,7 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)aInterfaceOrientation
 {
-    return [Utility getAllowOrientationFromPlist:aInterfaceOrientation];
+    return [MFUtility getAllowOrientationFromPlist:aInterfaceOrientation];
 }
 
 - (void)loadView

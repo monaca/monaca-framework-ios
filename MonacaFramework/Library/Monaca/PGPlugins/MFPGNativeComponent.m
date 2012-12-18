@@ -8,7 +8,7 @@
 
 #import "MFPGNativeComponent.h"
 #import "NativeComponents.h"
-#import "Utility.h"
+#import "MFUtility.h"
 
 @interface MFPGNativeComponent()
 - (void)updateNCManagerPropertyStyle:(NSMutableDictionary *)properties style:(NSMutableDictionary *)currentStyle;
@@ -48,7 +48,7 @@
     }
     
     if (key) {
-        id component = [[Utility currentTabBarController].ncManager componentForID:key];
+        id component = [[MFUtility currentTabBarController].ncManager componentForID:key];
         if (!component) {
             NSLog(@"[Debug] No such component: %@", key);
             
@@ -56,14 +56,14 @@
         }
         
         // Overwrite style of the native component.
-        NSMutableDictionary *properties = [[Utility currentTabBarController].ncManager propertiesForID:key];
+        NSMutableDictionary *properties = [[MFUtility currentTabBarController].ncManager propertiesForID:key];
         NSMutableDictionary *currentStyle = [NSMutableDictionary dictionaryWithDictionary:[properties objectForKey:kNCTypeStyle]];
         [currentStyle addEntriesFromDictionary:style];
         [currentStyle addEntriesFromDictionary:[properties objectForKey:kNCTypeIOSStyle]];
 
         // Update top toolbar style.
         if ([component isKindOfClass:[NSString class]] && [component isEqualToString:kNCContainerTabbar]) {
-            MonacaTabBarController *controller = [Utility currentTabBarController];
+            MonacaTabBarController *controller = [MFUtility currentTabBarController];
             [self updateNCManagerPropertyStyle:properties style:currentStyle];
             [controller updateTopToolbar:currentStyle];
             return;
@@ -119,7 +119,7 @@
     NSString *propertyKey = [arguments objectAtIndex:2];
 
     if (key) {
-        id component = [[Utility currentTabBarController].ncManager componentForID:key];
+        id component = [[MFUtility currentTabBarController].ncManager componentForID:key];
         if (!component) {
             NSLog(@"[Debug] No such component: %@", key);
             return;
@@ -127,7 +127,7 @@
 
         NCContainer *container = (NCContainer *)component;
         if (![container isKindOfClass:[NSString class]] && [container.type isEqualToString:kNCComponentSearchBox]) {
-            NSMutableDictionary *properties = [[Utility currentTabBarController].ncManager propertiesForID:key];
+            NSMutableDictionary *properties = [[MFUtility currentTabBarController].ncManager propertiesForID:key];
             NSMutableDictionary *style = [NSMutableDictionary dictionary];
             [style addEntriesFromDictionary:[properties objectForKey:kNCTypeStyle]];
             [style addEntriesFromDictionary:[NCSearchBoxBuilder retrieve:container.component]];
@@ -137,7 +137,7 @@
         }
 
         CDVPluginResult *pluginResult = nil;
-        NSMutableDictionary *properties = [[Utility currentTabBarController].ncManager propertiesForID:key];
+        NSMutableDictionary *properties = [[MFUtility currentTabBarController].ncManager propertiesForID:key];
         NSString *property = [[properties objectForKey:kNCTypeStyle] objectForKey:propertyKey];
         
         // FIXME(nhiroki): デフォルト値を持つキーに対してはうまく取得できない。

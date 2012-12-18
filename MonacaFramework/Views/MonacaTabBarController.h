@@ -10,7 +10,7 @@
 #import "MFDelegate.h"
 #import "NativeComponents.h"
 #import "MFDevice.h"
-#import "Utility.h"
+#import "MFUtility.h"
 
 @class PhoneGapViewController;
 @class NCContainer;

@@ -9,14 +9,14 @@
 #import "CDVSplashScreen+monacaSplashScreen.h"
 #import "MFDelegate.h"
 #import "MFViewController.h"
-#import "Utility.h"
+#import "MFUtility.h"
 
 @implementation CDVSplashScreen (monacaSplashScreen)
 
 - (void) __showMonacaSplashScreen:(BOOL)show
 {
     // Legacy support - once deprecated classes removed, clean this up
-    MFDelegate *delegate = [Utility getAppDelegate];
+    MFDelegate *delegate = [MFUtility getAppDelegate];
     if ([delegate respondsToSelector:@selector(viewController)]) {
         id vc = [delegate performSelector:@selector(viewController)];
         if ([vc isKindOfClass:[MFViewController class]]) {

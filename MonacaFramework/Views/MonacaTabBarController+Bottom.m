@@ -20,7 +20,7 @@ setBackgroundColor(NSArray *components, NCToolbar *toolbar) {
         // Register component's view.
         NSString *cid = [(NSDictionary *)[components objectAtIndex:i] objectForKey:kNCTypeID];
         if (cid) {
-            [[Utility currentTabBarController].viewDict setObject:view forKey:cid];
+            [[MFUtility currentTabBarController].viewDict setObject:view forKey:cid];
         }
         [NCButtonBuilder setUpdatedTag:view];
         
@@ -235,7 +235,7 @@ stringByRelativePath(NSString *relativePath) {
         
         CGRect frame = CGRectMake(0.0f, 0.0f, 0.0f, 44.0f);
         if (isCenterOnly) {
-            UIInterfaceOrientation orientation = [Utility currentInterfaceOrientation];
+            UIInterfaceOrientation orientation = [MFUtility currentInterfaceOrientation];
             double width = [MFDevice widthOfWindow:orientation];
             double height = [MFDevice heightOfNavigationBar:orientation];
             frame = CGRectMake(0, 0, width + kMargin * 2, height);
@@ -300,7 +300,7 @@ stringByRelativePath(NSString *relativePath) {
 
 - (void)showTabBar:(BOOL)visible {
     BOOL ignoreStatusbarHeight = [UIApplication sharedApplication].statusBarStyle == UIStatusBarStyleBlackTranslucent || [UIApplication sharedApplication].statusBarHidden;
-    UIInterfaceOrientation orientation = [Utility currentInterfaceOrientation];
+    UIInterfaceOrientation orientation = [MFUtility currentInterfaceOrientation];
     double heightOfWindow = [MFDevice heightOfWindow:orientation];
     
     const float kHeightOfStatusBar     = ignoreStatusbarHeight ? 0 : [MFDevice heightOfStatusBar];
