@@ -7,7 +7,7 @@
 //
 
 #import "MFNavigationController.h"
-#import "MonacaTransitPlugin.h"
+#import "MFTransitPlugin.h"
 #import "MFUtility.h"
 
 @interface MFNavigationController ()
@@ -40,7 +40,7 @@
 
 - (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
-    [MonacaTransitPlugin changeDelegate:viewController];
+    [MFTransitPlugin changeDelegate:viewController];
 }
 
 @end

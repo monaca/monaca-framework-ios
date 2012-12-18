@@ -11,7 +11,7 @@
 @class MFViewController;
 @class MFNavigationController;
 
-@interface MonacaTransitPlugin : CDVPlugin
+@interface MFTransitPlugin : CDVPlugin
 
 + (BOOL)changeDelegate:(UIViewController *)viewController;
 + (void)viewDidLoad:(MFViewController *)viewController;

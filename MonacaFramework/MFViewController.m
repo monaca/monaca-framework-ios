@@ -10,7 +10,7 @@
 #import "MonacaTabBarController.h"
 #import "JSONKit.h"
 #import "MonacaTemplateEngine.h"
-#import "MonacaTransitPlugin.h"
+#import "MFTransitPlugin.h"
 #import "MFUtility.h"
 #import "MFEvent.h"
 
@@ -217,7 +217,7 @@
     [self initPlugins]; // 画面を消す手前でdestroyを実行すること
 
     // transit
-    [MonacaTransitPlugin viewDidLoad:self];
+    [MFTransitPlugin viewDidLoad:self];
 }
 
 - (void)viewDidUnload {
@@ -416,7 +416,7 @@
     //theWebView.backgroundColor = [UIColor blackColor];
     
     [MFEvent dispatchEvent:monacaEventDidLoadUIFile withInfo:nil];
-    [MonacaTransitPlugin webViewDidFinishLoad:theWebView viewController:self];
+    [MFTransitPlugin webViewDidFinishLoad:theWebView viewController:self];
     
     return [cdvViewController webViewDidFinishLoad:theWebView];
 }

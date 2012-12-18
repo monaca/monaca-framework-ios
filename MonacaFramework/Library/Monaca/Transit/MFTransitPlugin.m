@@ -7,7 +7,7 @@
 //
 #import <QuartzCore/QuartzCore.h>
 
-#import "MonacaTransitPlugin.h"
+#import "MFTransitPlugin.h"
 #import "MFDelegate.h"
 #import "MFViewController.h"
 #import "MonacaTabBarController.h"
@@ -17,7 +17,7 @@
 #define kMonacaTransitPluginOptionUrl @"url"
 #define kMonacaTransitPluginOptionBg  @"bg"
 
-@implementation MonacaTransitPlugin
+@implementation MFTransitPlugin
 
 #pragma mark - private methods
 
