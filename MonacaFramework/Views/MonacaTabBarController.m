@@ -32,7 +32,7 @@
 
 // iOS4 の場合、このメソッドは MonacaViewController の viewDidApper メソッドから呼ばれる
 - (void)viewDidAppear:(BOOL)animated {
-    MonacaDelegate *delegate = (MonacaDelegate *)[UIApplication sharedApplication].delegate;
+    MFDelegate *delegate = (MFDelegate *)[UIApplication sharedApplication].delegate;
     if ([self.viewControllers count] > 0) {
         [delegate.viewController.cdvViewController.webView removeFromSuperview];
         UIView *view = ((UIViewController *)[self.viewControllers objectAtIndex:self.activeIndex]).view;

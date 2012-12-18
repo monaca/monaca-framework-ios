@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-#import "MonacaDelegate.h"
+#import "MFDelegate.h"
 
 int main(int argc, char *argv[])
 {
     @autoreleasepool {
-        return UIApplicationMain(argc, argv, nil, NSStringFromClass([MonacaDelegate class]));
+        return UIApplicationMain(argc, argv, nil, NSStringFromClass([MFDelegate class]));
     }
 }

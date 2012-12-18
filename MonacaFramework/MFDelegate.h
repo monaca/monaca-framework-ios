@@ -1,5 +1,5 @@
 //
-//  MonacaDelegate.h
+//  MFDelegate.h
 //  Template
 //
 //  Created by Hiroki Nakagawa on 11/06/07.
@@ -10,7 +10,7 @@
 #import "MonacaViewController.h"
 #import "MonacaNavigationController.h"
 
-@interface MonacaDelegate : NSObject <UIApplicationDelegate, UIWebViewDelegate> {
+@interface MFDelegate : NSObject <UIApplicationDelegate, UIWebViewDelegate> {
  @private
     MonacaViewController *viewController_;
     MonacaNavigationController *monacaNavigationController_;

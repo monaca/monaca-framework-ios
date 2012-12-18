@@ -40,7 +40,7 @@ setBackgroundColor(NSArray *components, NCToolbar *toolbar) {
  */
 static NSString *
 stringByRelativePath(NSString *relativePath) {
-    MonacaDelegate *delegate = (MonacaDelegate *)[UIApplication sharedApplication].delegate;
+    MFDelegate *delegate = (MFDelegate *)[UIApplication sharedApplication].delegate;
     
     BOOL isDir;
     NSFileManager *fm = [NSFileManager defaultManager];
@@ -69,7 +69,7 @@ stringByRelativePath(NSString *relativePath) {
 
 + (UIToolbar *)updateBottomToolbar:(UIToolbar *)toolbar with:(NSDictionary *)style {
     // Visibility.
-    UINavigationController *navController = ((MonacaDelegate *)[UIApplication sharedApplication].delegate).viewController.tabBarController.navigationController;
+    UINavigationController *navController = ((MFDelegate *)[UIApplication sharedApplication].delegate).viewController.tabBarController.navigationController;
     BOOL hidden = isFalse([style objectForKey:kNCStyleVisibility]);
     
     if (!hidden && navController.toolbarHidden) {
@@ -384,7 +384,7 @@ stringByRelativePath(NSString *relativePath) {
     NSMutableDictionary *bottomBarStyle = [NSMutableDictionary dictionaryWithDictionary:[self dictionaryWithBottomBarStyle]];
     [bottomBarStyle addEntriesFromDictionary:uidict];
     
-    MonacaDelegate *delegate = (MonacaDelegate *)[UIApplication sharedApplication].delegate;
+    MFDelegate *delegate = (MFDelegate *)[UIApplication sharedApplication].delegate;
     [delegate.viewController.tabBarController.navigationController setToolbarHidden:YES];
     self.delegate = self;
     
@@ -457,7 +457,7 @@ stringByRelativePath(NSString *relativePath) {
     if (isLocked == NO) {
         isLocked = YES;
 
-        MonacaDelegate *delegate = (MonacaDelegate *)[UIApplication sharedApplication].delegate;
+        MFDelegate *delegate = (MFDelegate *)[UIApplication sharedApplication].delegate;
         [delegate.viewController.cdvViewController.webView removeFromSuperview];
         [viewController.view addSubview:delegate.viewController.cdvViewController.webView];
 

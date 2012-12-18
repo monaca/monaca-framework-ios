@@ -8,7 +8,7 @@
 #import <QuartzCore/QuartzCore.h>
 
 #import "MonacaTransitPlugin.h"
-#import "MonacaDelegate.h"
+#import "MFDelegate.h"
 #import "MonacaViewController.h"
 #import "MonacaTabBarController.h"
 #import "Utility.h"
@@ -21,9 +21,9 @@
 
 #pragma mark - private methods
 
-- (MonacaDelegate *)monacaDelegate
+- (MFDelegate *)monacaDelegate
 {
-    return (MonacaDelegate *)[self appDelegate];
+    return (MFDelegate *)[self appDelegate];
 }
 
 - (MonacaNavigationController *)monacaNavigationController
@@ -91,7 +91,7 @@
         return NO;
     }
 
-    MonacaDelegate *monacaDelegate = (MonacaDelegate *)[[UIApplication sharedApplication] delegate];
+    MFDelegate *monacaDelegate = (MFDelegate *)[[UIApplication sharedApplication] delegate];
     monacaDelegate.viewController = (MonacaViewController *)viewController;
 
     return YES;

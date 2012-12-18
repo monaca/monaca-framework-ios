@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "MonacaDelegate.h"
+#import "MFDelegate.h"
 #import "MonacaViewController.h"
 #import "MonacaTabBarController.h"
 
@@ -26,6 +26,6 @@
 + (NSString *)insertMonacaQueryParams:(NSString *)html query:(NSString *)aQuery;
 + (NSString *)urlEncode:(NSString *)text;
 + (NSString *)urlDecode:(NSString *)text;
-+ (MonacaDelegate *)getAppDelegate;
++ (MFDelegate *)getAppDelegate;
 
 @end

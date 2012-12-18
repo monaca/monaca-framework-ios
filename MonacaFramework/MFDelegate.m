@@ -1,5 +1,5 @@
 //
-//  MonacaFrameworkDelegate.m
+//  MFDelegate.m
 //  Template
 //
 //  Created by Hiroki Nakagawa on 11/06/07.
@@ -8,7 +8,7 @@
 
 #import <objc/runtime.h>
 
-#import "MonacaDelegate.h"
+#import "MFDelegate.h"
 #import "MonacaViewController.h"
 #import "MonacaTabBarController.h"
 #import "NativeComponents.h"
@@ -24,10 +24,10 @@
 @class MonacaViewController;
 
 // =====================================================================
-// MonacaDelegate class.
+// MFDelegate class.
 // =====================================================================
 
-@implementation MonacaDelegate
+@implementation MFDelegate
 
 @synthesize monacaNavigationController = monacaNavigationController_;
 @synthesize window;

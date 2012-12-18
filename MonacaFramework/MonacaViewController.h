@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "CDVViewController.h"
 
-@class MonacaDelegate;
+@class MFDelegate;
 @class MonacaTabBarController;
 
 @interface MonacaViewController : UIViewController <UIScrollViewDelegate, UIWebViewDelegate> {

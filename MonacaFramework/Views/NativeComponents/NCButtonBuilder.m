@@ -42,7 +42,7 @@ updateButton(UIBarButtonItem *button, NSDictionary *style) {
     NSString *innerImagePath = [style objectForKey:kNCStyleInnerImage];
 
     if (innerImagePath) {
-        NSURL *appWWWURL = [((MonacaDelegate *)[[UIApplication sharedApplication] delegate]) getBaseURL];
+        NSURL *appWWWURL = [((MFDelegate *)[[UIApplication sharedApplication] delegate]) getBaseURL];
         NSString *imagePath = [[appWWWURL path] stringByAppendingPathComponent:innerImagePath];
         UIImage *image = [UIImage imageWithContentsOfFile:imagePath];
         if (image) {
@@ -78,7 +78,7 @@ updateButton(UIBarButtonItem *button, NSDictionary *style) {
     
     NSString *imageName = [style objectForKey:kNCStyleImage];
     if (imageName) {
-        NSURL *appWWWURL = [((MonacaDelegate *)[[UIApplication sharedApplication] delegate]) getBaseURL];
+        NSURL *appWWWURL = [((MFDelegate *)[[UIApplication sharedApplication] delegate]) getBaseURL];
         NSString *imagePath = [[appWWWURL path] stringByAppendingPathComponent:imageName];
         UIImage *image = [UIImage imageWithContentsOfFile:imagePath];
         
@@ -139,7 +139,7 @@ isButtonView(UIView *view) {
 
 static void
 updateViewDictionary(NSDictionary *style) {
-    MonacaDelegate *delegate = (MonacaDelegate *)[UIApplication sharedApplication].delegate;
+    MFDelegate *delegate = (MFDelegate *)[UIApplication sharedApplication].delegate;
     NSString *cid = [style objectForKey:kNCTypeID];
 
     // NOTE(nhiroki):　UIToolbar に UIBarButtonItem のオブジェクトを追加すると、実際には

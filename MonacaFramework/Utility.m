@@ -11,11 +11,11 @@
 @implementation Utility
 
 + (MonacaTabBarController *)currentTabBarController {
-    return (MonacaTabBarController *)((MonacaDelegate *)[UIApplication sharedApplication].delegate).viewController.tabBarController;
+    return (MonacaTabBarController *)((MFDelegate *)[UIApplication sharedApplication].delegate).viewController.tabBarController;
 }
 
 + (UIInterfaceOrientation)currentInterfaceOrientation {
-    MonacaDelegate *delegate = ((MonacaDelegate *)[UIApplication sharedApplication].delegate);
+    MFDelegate *delegate = ((MFDelegate *)[UIApplication sharedApplication].delegate);
     return [delegate currentInterfaceOrientation];
 }
 
@@ -154,9 +154,9 @@
     return string;
 }
 
-+ (MonacaDelegate *)getAppDelegate
++ (MFDelegate *)getAppDelegate
 {
-    return ((MonacaDelegate *)[[UIApplication sharedApplication] delegate]);
+    return ((MFDelegate *)[[UIApplication sharedApplication] delegate]);
 }
 
 @end

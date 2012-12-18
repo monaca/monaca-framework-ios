@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MonacaDelegate.h"
+#import "MFDelegate.h"
 #import "NativeComponents.h"
 #import "MFDevice.h"
 #import "Utility.h"

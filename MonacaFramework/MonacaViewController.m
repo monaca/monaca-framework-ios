@@ -165,7 +165,7 @@
 #pragma mark - UIScrollViewDelegate
 
 - (BOOL)scrollViewShouldScrollToTop:(UIScrollView *)scrollView {
-    UIWebView *webView = ((MonacaDelegate *)[UIApplication sharedApplication].delegate).viewController.cdvViewController.webView;
+    UIWebView *webView = ((MFDelegate *)[UIApplication sharedApplication].delegate).viewController.cdvViewController.webView;
     NSString *js = [NSString stringWithFormat:@"window.onTapStatusBar && window.onTapStatusBar();"];
     [webView stringByEvaluatingJavaScriptFromString:js];
     return YES;
@@ -276,7 +276,7 @@
         return [cdvViewController webView:webView_ shouldStartLoadWithRequest:request navigationType:navigationType];
     }
     
-    MonacaDelegate *delegate = (MonacaDelegate *)[UIApplication sharedApplication].delegate;
+    MFDelegate *delegate = (MFDelegate *)[UIApplication sharedApplication].delegate;
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSString *startPagePath = [[delegate getBaseURL].path stringByAppendingFormat:@"/%@", self.cdvViewController.startPage];
     
