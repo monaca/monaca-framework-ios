@@ -10,7 +10,7 @@
 
 #import "MFDelegate.h"
 #import "MFViewController.h"
-#import "MonacaTabBarController.h"
+#import "MFTabBarController.h"
 #import "NativeComponents.h"
 #import "MFSecureFileURLProtocol.h"
 #import "CDVViewController.h"

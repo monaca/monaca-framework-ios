@@ -16,7 +16,7 @@
 @class NCContainer;
 @class NCManager;
 
-@interface MonacaTabBarController : UITabBarController <UITabBarControllerDelegate> {
+@interface MFTabBarController : UITabBarController <UITabBarControllerDelegate> {
  @private
     NCContainer *centerContainer_;
 

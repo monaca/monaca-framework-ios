@@ -63,7 +63,7 @@
 
         // Update top toolbar style.
         if ([component isKindOfClass:[NSString class]] && [component isEqualToString:kNCContainerTabbar]) {
-            MonacaTabBarController *controller = [MFUtility currentTabBarController];
+            MFTabBarController *controller = [MFUtility currentTabBarController];
             [self updateNCManagerPropertyStyle:properties style:currentStyle];
             [controller updateTopToolbar:currentStyle];
             return;
@@ -73,7 +73,7 @@
         if ([component isKindOfClass:[UIToolbar class]]) {
             UIToolbar *toolbar = (UIToolbar *)component;
             [self updateNCManagerPropertyStyle:properties style:currentStyle];
-            [MonacaTabBarController updateBottomToolbar:toolbar with:currentStyle];
+            [MFTabBarController updateBottomToolbar:toolbar with:currentStyle];
             return;
         }
 
@@ -86,10 +86,10 @@
         }
         
         // Update bottom tabbar style.
-        if ([component isKindOfClass:[MonacaTabBarController class]]) {
-            MonacaTabBarController *tabbar = (MonacaTabBarController *)component;
+        if ([component isKindOfClass:[MFTabBarController class]]) {
+            MFTabBarController *tabbar = (MFTabBarController *)component;
             [self updateNCManagerPropertyStyle:properties style:currentStyle];
-            [MonacaTabBarController updateBottomTabbarStyle:tabbar with:currentStyle];
+            [MFTabBarController updateBottomTabbarStyle:tabbar with:currentStyle];
             return;
         }
         

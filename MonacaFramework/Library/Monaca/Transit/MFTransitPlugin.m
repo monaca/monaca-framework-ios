@@ -10,7 +10,7 @@
 #import "MFTransitPlugin.h"
 #import "MFDelegate.h"
 #import "MFViewController.h"
-#import "MonacaTabBarController.h"
+#import "MFTabBarController.h"
 #import "MFUtility.h"
 
 #define kMonacaTransitPluginJsReactivate @"window.onReactivate"

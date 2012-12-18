@@ -10,12 +10,12 @@
 #import "CDVViewController.h"
 
 @class MFDelegate;
-@class MonacaTabBarController;
+@class MFTabBarController;
 
 @interface MFViewController : UIViewController <UIScrollViewDelegate, UIWebViewDelegate> {
  @private
     UINavigationController *appNavigationController;
-    MonacaTabBarController *tabBarController;
+    MFTabBarController *tabBarController;
     CDVViewController *cdvViewController;
     
     UIScrollView *scrollView_;
@@ -55,6 +55,6 @@
 
 @property (nonatomic, retain) UINavigationController *appNavigationController;
 @property (nonatomic, retain) CDVViewController *cdvViewController;
-@property (nonatomic, retain) MonacaTabBarController *tabBarController;
+@property (nonatomic, retain) MFTabBarController *tabBarController;
 
 @end

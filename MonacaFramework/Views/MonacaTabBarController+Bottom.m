@@ -55,7 +55,7 @@ stringByRelativePath(NSString *relativePath) {
 
 
 
-@implementation MonacaTabBarController (Bottom)
+@implementation MFTabBarController (Bottom)
 
 #pragma mark - Bottom toolbar
 
@@ -442,7 +442,7 @@ stringByRelativePath(NSString *relativePath) {
 }
 
 
-+ (void)updateBottomTabbarStyle:(MonacaTabBarController *)tabbarController with:(NSDictionary *)style {
++ (void)updateBottomTabbarStyle:(MFTabBarController *)tabbarController with:(NSDictionary *)style {
     BOOL invisible = isFalse([style objectForKey:kNCStyleVisibility]);
     
     if (invisible) {

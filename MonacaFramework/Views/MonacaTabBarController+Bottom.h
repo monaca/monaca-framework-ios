@@ -6,9 +6,9 @@
 //  Copyright (c) 2012年 ASIAL CORPORATION. All rights reserved.
 //
 
-#import "MonacaTabBarController.h"
+#import "MFTabBarController.h"
 
-@interface MonacaTabBarController (Bottom)
+@interface MFTabBarController (Bottom)
 
 + (UIToolbar *)updateBottomToolbar:(UIToolbar *)toolbar with:(NSDictionary *)style;
 - (void)applyBottomToolbar:(NSDictionary *)uidict;
@@ -16,6 +16,6 @@
 - (void)showTabBar:(BOOL)visible;
 - (void)hideTabbar;
 - (void)applyBottomTabbar:(NSDictionary *)uidict;
-+ (void)updateBottomTabbarStyle:(MonacaTabBarController *)tabbar with:(NSDictionary *)style;
++ (void)updateBottomTabbarStyle:(MFTabBarController *)tabbar with:(NSDictionary *)style;
 
 @end

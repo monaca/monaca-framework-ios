@@ -6,11 +6,11 @@
 //  Copyright (c) 2011 ASIAL CORPORATION. All rights reserved.
 //
 
-#import "MonacaTabBarController.h"
+#import "MFTabBarController.h"
 #import "MFUtility.h"
 #import "MFEvent.h"
 
-@implementation MonacaTabBarController
+@implementation MFTabBarController
 
 @synthesize centerContainer = centerContainer_;
 @synthesize leftContainers = leftContainers_;

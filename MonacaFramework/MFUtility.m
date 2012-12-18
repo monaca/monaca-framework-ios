@@ -10,8 +10,8 @@
 
 @implementation MFUtility
 
-+ (MonacaTabBarController *)currentTabBarController {
-    return (MonacaTabBarController *)((MFDelegate *)[UIApplication sharedApplication].delegate).viewController.tabBarController;
++ (MFTabBarController *)currentTabBarController {
+    return (MFTabBarController *)((MFDelegate *)[UIApplication sharedApplication].delegate).viewController.tabBarController;
 }
 
 + (UIInterfaceOrientation)currentInterfaceOrientation {

@@ -36,7 +36,7 @@ setBackgroundColor(NSArray *components, NCToolbar *toolbar) {
 
 
 
-@implementation MonacaTabBarController (Top)
+@implementation MFTabBarController (Top)
 
 - (NSMutableDictionary *)dictionaryWithTopBarStyle {
     NSMutableDictionary *style = [[self.ncManager.properties objectForKey:kNCPositionTop] objectForKey:kNCTypeStyle];
@@ -194,7 +194,7 @@ setBackgroundColor(NSArray *components, NCToolbar *toolbar) {
     }
 }
 
-- (MonacaTabBarController *)applyTopToolbar:(NSDictionary *)style {
+- (MFTabBarController *)applyTopToolbar:(NSDictionary *)style {
     // Visibility.
     BOOL hidden = isFalse([style objectForKey:kNCStyleVisibility]);
     if (hidden != self.navigationController.navigationBar.hidden) {
@@ -297,14 +297,14 @@ setBackgroundColor(NSArray *components, NCToolbar *toolbar) {
     return self;
 }
 
-- (MonacaTabBarController *)updateTopToolbar:(NSDictionary *)style {
+- (MFTabBarController *)updateTopToolbar:(NSDictionary *)style {
     NSMutableDictionary *topBarStyle = [NSMutableDictionary dictionaryWithDictionary:[self dictionaryWithTopBarStyle]];
     [topBarStyle addEntriesFromDictionary:style];
     [self applyTopToolbar:topBarStyle];
     return self;
 }
 
-- (MonacaTabBarController *)setTopToolbar:(NSDictionary *)style {
+- (MFTabBarController *)setTopToolbar:(NSDictionary *)style {
     NSMutableDictionary *topBarStyle = [NSMutableDictionary dictionaryWithDictionary:[self dictionaryWithTopBarStyle]];
     [topBarStyle addEntriesFromDictionary:style];
     [self applyTopToolbar:topBarStyle];

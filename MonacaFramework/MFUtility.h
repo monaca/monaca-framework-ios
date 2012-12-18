@@ -9,14 +9,14 @@
 #import <Foundation/Foundation.h>
 #import "MFDelegate.h"
 #import "MFViewController.h"
-#import "MonacaTabBarController.h"
+#import "MFTabBarController.h"
 
 
 @interface MFUtility : NSObject {
 
 }
 
-+ (MonacaTabBarController *) currentTabBarController;
++ (MFTabBarController *) currentTabBarController;
 + (UIInterfaceOrientation) currentInterfaceOrientation;
 + (BOOL) getAllowOrientationFromPlist:(UIInterfaceOrientation)interfaceOrientation;
 + (void) setupMonacaViewController:(MFViewController *)monacaViewController;

@@ -125,7 +125,7 @@
 		3E4F513F15A05BF10054EB23 /* MFDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F50460D813B3633B0050803F /* MFDelegate.m */; };
 		3E4F514015A05BF10054EB23 /* MFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F50460DA13B3633B0050803F /* MFViewController.m */; };
 		3E4F514115A05BF10054EB23 /* MFUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = F50460E013B3633B0050803F /* MFUtility.m */; };
-		3E4F514215A05BF10054EB23 /* MonacaTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5921FB6146B80F00025DED5 /* MonacaTabBarController.m */; };
+		3E4F514215A05BF10054EB23 /* MFTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5921FB6146B80F00025DED5 /* MFTabBarController.m */; };
 		3E4F514315A05BF10054EB23 /* MFDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = F54FBB3E14BBE04100F702D9 /* MFDevice.m */; };
 		3E4F514415A05BF10054EB23 /* MonacaTabBarController+Bottom.m in Sources */ = {isa = PBXBuildFile; fileRef = F5EF734314EE84A8003B7BA5 /* MonacaTabBarController+Bottom.m */; };
 		3E4F514515A05BF10054EB23 /* MonacaTabBarController+Top.m in Sources */ = {isa = PBXBuildFile; fileRef = F5EF734C14EE8AA1003B7BA5 /* MonacaTabBarController+Top.m */; };
@@ -161,7 +161,7 @@
 		3E4F517415A05BF10054EB23 /* MFUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = F50460DF13B3633B0050803F /* MFUtility.h */; };
 		3E4F517515A05BF10054EB23 /* MFDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = F57E51BC13D2CCC200074B18 /* MFDelegate.h */; };
 		3E4F517615A05BF10054EB23 /* MFViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = F57E51BD13D2CCC200074B18 /* MFViewController.h */; };
-		3E4F517715A05BF10054EB23 /* MonacaTabBarController.h in Headers */ = {isa = PBXBuildFile; fileRef = F5921FB5146B80F00025DED5 /* MonacaTabBarController.h */; };
+		3E4F517715A05BF10054EB23 /* MFTabBarController.h in Headers */ = {isa = PBXBuildFile; fileRef = F5921FB5146B80F00025DED5 /* MFTabBarController.h */; };
 		3E4F517815A05BF10054EB23 /* MFDevice.h in Headers */ = {isa = PBXBuildFile; fileRef = F54FBB3D14BBE04000F702D9 /* MFDevice.h */; };
 		3E4F517915A05BF10054EB23 /* MonacaTabBarController+Bottom.h in Headers */ = {isa = PBXBuildFile; fileRef = F5EF734214EE84A8003B7BA5 /* MonacaTabBarController+Bottom.h */; };
 		3E4F517A15A05BF10054EB23 /* MonacaTabBarController+Top.h in Headers */ = {isa = PBXBuildFile; fileRef = F5EF734B14EE8AA1003B7BA5 /* MonacaTabBarController+Top.h */; };
@@ -208,7 +208,7 @@
 		3E7FD31D159EA29700E85C81 /* MFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F50460DA13B3633B0050803F /* MFViewController.m */; };
 		3E7FD322159EA3EF00E85C81 /* MFSecureFileURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E7FD31F159EA3EE00E85C81 /* MFSecureFileURLProtocol.m */; };
 		3E7FD329159EA92F00E85C81 /* Cordova.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3E7FD328159EA92F00E85C81 /* Cordova.plist */; };
-		3E7FD32A159ECB7000E85C81 /* MonacaTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5921FB6146B80F00025DED5 /* MonacaTabBarController.m */; };
+		3E7FD32A159ECB7000E85C81 /* MFTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5921FB6146B80F00025DED5 /* MFTabBarController.m */; };
 		3E7FD32B159ECB9B00E85C81 /* NCManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F5E0F7D21506116900DC7988 /* NCManager.m */; };
 		3E7FD32C159ECBA400E85C81 /* NCContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = F5E0F7CE1506116900DC7988 /* NCContainer.m */; };
 		3E7FD32D159ECBCD00E85C81 /* NCButtonBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = F5E0F7CC1506116900DC7988 /* NCButtonBuilder.m */; };
@@ -411,8 +411,8 @@
 		F57E51BC13D2CCC200074B18 /* MFDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MFDelegate.h; path = MonacaFramework/MFDelegate.h; sourceTree = SOURCE_ROOT; };
 		F57E51BD13D2CCC200074B18 /* MFViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MFViewController.h; path = MonacaFramework/MFViewController.h; sourceTree = SOURCE_ROOT; };
 		F57E523313D2E8DE00074B18 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
-		F5921FB5146B80F00025DED5 /* MonacaTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonacaTabBarController.h; sourceTree = "<group>"; };
-		F5921FB6146B80F00025DED5 /* MonacaTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonacaTabBarController.m; sourceTree = "<group>"; };
+		F5921FB5146B80F00025DED5 /* MFTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFTabBarController.h; sourceTree = "<group>"; };
+		F5921FB6146B80F00025DED5 /* MFTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFTabBarController.m; sourceTree = "<group>"; };
 		F5955CF714A31F8B00E488FF /* Products */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Products; path = MonacaFramework/Products; sourceTree = "<group>"; };
 		F5E0F7C71506116900DC7988 /* NativeComponents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeComponents.h; sourceTree = "<group>"; };
 		F5E0F7C81506116900DC7988 /* NativeComponentsInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeComponentsInternal.h; sourceTree = "<group>"; };
@@ -835,8 +835,8 @@
 			isa = PBXGroup;
 			children = (
 				F503A593146BE13800764D05 /* NativeComponents */,
-				F5921FB6146B80F00025DED5 /* MonacaTabBarController.m */,
-				F5921FB5146B80F00025DED5 /* MonacaTabBarController.h */,
+				F5921FB6146B80F00025DED5 /* MFTabBarController.m */,
+				F5921FB5146B80F00025DED5 /* MFTabBarController.h */,
 				F5EF734214EE84A8003B7BA5 /* MonacaTabBarController+Bottom.h */,
 				F5EF734314EE84A8003B7BA5 /* MonacaTabBarController+Bottom.m */,
 				F5EF734B14EE8AA1003B7BA5 /* MonacaTabBarController+Top.h */,
@@ -865,7 +865,7 @@
 				3E4F517415A05BF10054EB23 /* MFUtility.h in Headers */,
 				3E4F517515A05BF10054EB23 /* MFDelegate.h in Headers */,
 				3E4F517615A05BF10054EB23 /* MFViewController.h in Headers */,
-				3E4F517715A05BF10054EB23 /* MonacaTabBarController.h in Headers */,
+				3E4F517715A05BF10054EB23 /* MFTabBarController.h in Headers */,
 				3E4F517815A05BF10054EB23 /* MFDevice.h in Headers */,
 				3E4F517915A05BF10054EB23 /* MonacaTabBarController+Bottom.h in Headers */,
 				3E4F517A15A05BF10054EB23 /* MonacaTabBarController+Top.h in Headers */,
@@ -1048,7 +1048,7 @@
 				3E4F513F15A05BF10054EB23 /* MFDelegate.m in Sources */,
 				3E4F514015A05BF10054EB23 /* MFViewController.m in Sources */,
 				3E4F514115A05BF10054EB23 /* MFUtility.m in Sources */,
-				3E4F514215A05BF10054EB23 /* MonacaTabBarController.m in Sources */,
+				3E4F514215A05BF10054EB23 /* MFTabBarController.m in Sources */,
 				3E4F514315A05BF10054EB23 /* MFDevice.m in Sources */,
 				3E4F514415A05BF10054EB23 /* MonacaTabBarController+Bottom.m in Sources */,
 				3E4F514515A05BF10054EB23 /* MonacaTabBarController+Top.m in Sources */,
@@ -1125,7 +1125,7 @@
 				3E7FD31C159EA27700E85C81 /* MFDelegate.m in Sources */,
 				3E7FD31D159EA29700E85C81 /* MFViewController.m in Sources */,
 				3E7FD322159EA3EF00E85C81 /* MFSecureFileURLProtocol.m in Sources */,
-				3E7FD32A159ECB7000E85C81 /* MonacaTabBarController.m in Sources */,
+				3E7FD32A159ECB7000E85C81 /* MFTabBarController.m in Sources */,
 				3E7FD32B159ECB9B00E85C81 /* NCManager.m in Sources */,
 				3E7FD32C159ECBA400E85C81 /* NCContainer.m in Sources */,
 				3E7FD32D159ECBCD00E85C81 /* NCButtonBuilder.m in Sources */,

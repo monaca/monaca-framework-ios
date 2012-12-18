@@ -7,7 +7,7 @@
 //
 
 #import "MFViewController.h"
-#import "MonacaTabBarController.h"
+#import "MFTabBarController.h"
 #import "JSONKit.h"
 #import "MonacaTemplateEngine.h"
 #import "MFTransitPlugin.h"
@@ -140,7 +140,7 @@
         // create native component items.
         monacaTabViewControllers = [[NSMutableArray alloc] init];
         [monacaTabViewControllers addObject:cdvViewController];
-        tabBarController = [[MonacaTabBarController alloc] init];
+        tabBarController = [[MFTabBarController alloc] init];
         [tabBarController setViewControllers:monacaTabViewControllers];
         
         appNavigationController = [[UINavigationController alloc] initWithRootViewController:tabBarController];

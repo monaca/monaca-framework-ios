@@ -6,13 +6,13 @@
 //  Copyright (c) 2012年 ASIAL CORPORATION. All rights reserved.
 //
 
-#import "MonacaTabBarController.h"
+#import "MFTabBarController.h"
 
-@interface MonacaTabBarController (Top)
+@interface MFTabBarController (Top)
 
 - (void)apply:(NSDictionary *)uidict;
-- (MonacaTabBarController *)updateTopToolbar:(NSDictionary *)style;
-- (MonacaTabBarController *)setTopToolbar:(NSDictionary *)style;
+- (MFTabBarController *)updateTopToolbar:(NSDictionary *)style;
+- (MFTabBarController *)setTopToolbar:(NSDictionary *)style;
 
 - (BOOL)hasTitleView;
 - (void)changeTitleView;

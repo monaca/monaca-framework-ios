@@ -7,7 +7,7 @@
 //
 
 #import "MFViewController.h"
-#import "MonacaTabBarController.h"
+#import "MFTabBarController.h"
 
 #define kNCTrue  @"true"
 #define kNCFalse @"false"
