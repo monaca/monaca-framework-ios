@@ -39,7 +39,7 @@
 /*
  * 4.3と5.1の互換性を保ちつつ、MonacaViewControllerをセットアップする
  */
-+ (void) setupMonacaViewController:(MonacaViewController *)monacaViewController{
++ (void) setupMonacaViewController:(MFViewController *)monacaViewController{
     if ([MFDevice iOSVersionMajor] < 5) {
     }else{
         BOOL forceStartupRotation = YES;
@@ -65,7 +65,7 @@
 /*
  * 表示される時のレイアウトを修正する
  */
-+ (void) fixedLayout:(MonacaViewController *)monacaViewController interfaceOrientation:(UIInterfaceOrientation)aInterfaceOrientation{
++ (void) fixedLayout:(MFViewController *)monacaViewController interfaceOrientation:(UIInterfaceOrientation)aInterfaceOrientation{
     if (aInterfaceOrientation == UIInterfaceOrientationPortrait || aInterfaceOrientation == UIInterfaceOrientationPortraitUpsideDown){
         monacaViewController.view.frame = [[UIScreen mainScreen] bounds];
         UIViewController *vc = [monacaViewController.tabBarController.viewControllers objectAtIndex:0];

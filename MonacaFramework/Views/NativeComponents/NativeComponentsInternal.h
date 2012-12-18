@@ -6,7 +6,7 @@
 //  Copyright (c) 2011 ASIAL CORPORATION. All rights reserved.
 //
 
-#import "MonacaViewController.h"
+#import "MFViewController.h"
 #import "MonacaTabBarController.h"
 
 #define kNCTrue  @"true"

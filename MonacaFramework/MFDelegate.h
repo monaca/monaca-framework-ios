@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MonacaViewController.h"
+#import "MFViewController.h"
 #import "MonacaNavigationController.h"
 
 @interface MFDelegate : NSObject <UIApplicationDelegate, UIWebViewDelegate> {
  @private
-    MonacaViewController *viewController_;
+    MFViewController *viewController_;
     MonacaNavigationController *monacaNavigationController_;
 }
 
@@ -21,7 +21,7 @@
 - (NSDictionary *)getApplicationPlist;
 
 // Actually, |viewController| has MonavaViewController object.
-@property (nonatomic, readwrite, retain) IBOutlet MonacaViewController *viewController;
+@property (nonatomic, readwrite, retain) IBOutlet MFViewController *viewController;
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property(nonatomic, retain) MonacaNavigationController *monacaNavigationController;

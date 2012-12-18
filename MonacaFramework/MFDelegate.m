@@ -9,7 +9,7 @@
 #import <objc/runtime.h>
 
 #import "MFDelegate.h"
-#import "MonacaViewController.h"
+#import "MFViewController.h"
 #import "MonacaTabBarController.h"
 #import "NativeComponents.h"
 #import "MonacaURLProtocol.h"
@@ -21,7 +21,7 @@
 #import "MonacaTemplateEngine.h"
 #endif  // DISABLE_MONACA_TEMPLATE_ENGINE
 
-@class MonacaViewController;
+@class MFViewController;
 
 // =====================================================================
 // MFDelegate class.
@@ -52,7 +52,7 @@
     }
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.viewController = [[MonacaViewController alloc] initWithFileName:@"index.html" query:nil];
+    self.viewController = [[MFViewController alloc] initWithFileName:@"index.html" query:nil];
     [Utility setupMonacaViewController:self.viewController];
     
     self.monacaNavigationController = [[MonacaNavigationController alloc] initWithRootViewController:self.viewController];

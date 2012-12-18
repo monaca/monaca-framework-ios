@@ -12,7 +12,7 @@
 @class MFDelegate;
 @class MonacaTabBarController;
 
-@interface MonacaViewController : UIViewController <UIScrollViewDelegate, UIWebViewDelegate> {
+@interface MFViewController : UIViewController <UIScrollViewDelegate, UIWebViewDelegate> {
  @private
     UINavigationController *appNavigationController;
     MonacaTabBarController *tabBarController;

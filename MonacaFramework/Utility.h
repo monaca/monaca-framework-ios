@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "MFDelegate.h"
-#import "MonacaViewController.h"
+#import "MFViewController.h"
 #import "MonacaTabBarController.h"
 
 
@@ -19,8 +19,8 @@
 + (MonacaTabBarController *) currentTabBarController;
 + (UIInterfaceOrientation) currentInterfaceOrientation;
 + (BOOL) getAllowOrientationFromPlist:(UIInterfaceOrientation)interfaceOrientation;
-+ (void) setupMonacaViewController:(MonacaViewController *)monacaViewController;
-+ (void) fixedLayout:(MonacaViewController *)monacaViewController interfaceOrientation:(UIInterfaceOrientation)aInterfaceOrientation;
++ (void) setupMonacaViewController:(MFViewController *)monacaViewController;
++ (void) fixedLayout:(MFViewController *)monacaViewController interfaceOrientation:(UIInterfaceOrientation)aInterfaceOrientation;
 + (void) show404PageWithWebView:(UIWebView *)webView path:(NSString *)aPath;
 + (NSString *)getWWWShortPath:(NSString *)path;
 + (NSString *)insertMonacaQueryParams:(NSString *)html query:(NSString *)aQuery;

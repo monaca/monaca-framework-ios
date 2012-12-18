@@ -6,7 +6,7 @@
 //  Copyright 2011 ASIAL CORPORATION. All rights reserved.
 //
 
-#import "MonacaViewController.h"
+#import "MFViewController.h"
 #import "MonacaTabBarController.h"
 #import "JSONKit.h"
 #import "MonacaTemplateEngine.h"
@@ -14,12 +14,12 @@
 #import "Utility.h"
 #import "MonacaEvent.h"
 
-@interface MonacaViewController ()
+@interface MFViewController ()
 - (NSString *)careWWWdir:(NSString *)path;
 - (void)processDataTypes;
 @end
 
-@implementation MonacaViewController
+@implementation MFViewController
 
 @synthesize scrollView = scrollView_;
 @synthesize previousPath = previousPath_;

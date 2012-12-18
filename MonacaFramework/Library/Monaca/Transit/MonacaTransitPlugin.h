@@ -8,14 +8,14 @@
 
 #import "CDVPlugin.h"
 
-@class MonacaViewController;
+@class MFViewController;
 @class MonacaNavigationController;
 
 @interface MonacaTransitPlugin : CDVPlugin
 
 + (BOOL)changeDelegate:(UIViewController *)viewController;
-+ (void)viewDidLoad:(MonacaViewController *)viewController;
-+ (void)webViewDidFinishLoad:(UIWebView*)theWebView viewController:(MonacaViewController *)viewController;
++ (void)viewDidLoad:(MFViewController *)viewController;
++ (void)webViewDidFinishLoad:(UIWebView*)theWebView viewController:(MFViewController *)viewController;
 
 - (NSString *)getRelativePathTo:(NSString *)filePath;
 - (void)push:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options;
@@ -27,6 +27,6 @@
 - (void)link:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options;
 - (NSString *) buildQuery:(NSDictionary *)jsonQueryParams urlString:(NSString *)urlString;
 - (NSString *) getQueryFromPluginArguments:(NSMutableArray *)arguments urlString:(NSString *)aUrlString;
-- (void)setupViewController:(MonacaViewController *)viewController options:(NSDictionary *)options;
+- (void)setupViewController:(MFViewController *)viewController options:(NSDictionary *)options;
 
 @end

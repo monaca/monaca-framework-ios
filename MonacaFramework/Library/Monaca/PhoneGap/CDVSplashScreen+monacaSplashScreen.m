@@ -8,7 +8,7 @@
 
 #import "CDVSplashScreen+monacaSplashScreen.h"
 #import "MFDelegate.h"
-#import "MonacaViewController.h"
+#import "MFViewController.h"
 #import "Utility.h"
 
 @implementation CDVSplashScreen (monacaSplashScreen)
@@ -19,8 +19,8 @@
     MFDelegate *delegate = [Utility getAppDelegate];
     if ([delegate respondsToSelector:@selector(viewController)]) {
         id vc = [delegate performSelector:@selector(viewController)];
-        if ([vc isKindOfClass:[MonacaViewController class]]) {
-            [((MonacaViewController*)vc) showSplash:show];
+        if ([vc isKindOfClass:[MFViewController class]]) {
+            [((MFViewController*)vc) showSplash:show];
         }
     }
 }

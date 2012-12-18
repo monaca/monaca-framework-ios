@@ -9,7 +9,7 @@
 
 #import "MonacaTransitPlugin.h"
 #import "MFDelegate.h"
-#import "MonacaViewController.h"
+#import "MFViewController.h"
 #import "MonacaTabBarController.h"
 #import "Utility.h"
 
@@ -46,13 +46,13 @@
 }
 
 // @see [MonacaDelegate application: didFinishLaunchingWithOptions:]
-- (void)setupViewController:(MonacaViewController *)viewController options:(NSDictionary *)options
+- (void)setupViewController:(MFViewController *)viewController options:(NSDictionary *)options
 {
     viewController.monacaPluginOptions = options;
     [Utility setupMonacaViewController:viewController];
 }
 
-+ (void)setBgColor:(MonacaViewController *)viewController color:(UIColor *)color
++ (void)setBgColor:(MFViewController *)viewController color:(UIColor *)color
 {
     viewController.cdvViewController.webView.backgroundColor = [UIColor clearColor];
     viewController.cdvViewController.webView.opaque = NO;
@@ -87,22 +87,22 @@
 
 + (BOOL)changeDelegate:(UIViewController *)viewController
 {
-    if(![viewController isKindOfClass:[MonacaViewController class]]){
+    if(![viewController isKindOfClass:[MFViewController class]]){
         return NO;
     }
 
     MFDelegate *monacaDelegate = (MFDelegate *)[[UIApplication sharedApplication] delegate];
-    monacaDelegate.viewController = (MonacaViewController *)viewController;
+    monacaDelegate.viewController = (MFViewController *)viewController;
 
     return YES;
 }
 
 #pragma mark - MonacaViewController actions
 
-+ (void)viewDidLoad:(MonacaViewController *)viewController
++ (void)viewDidLoad:(MFViewController *)viewController
 {
     // @todo MonacaViewController内部にて実行すべき事柄
-    if(![viewController isKindOfClass:[MonacaViewController class]]) {
+    if(![viewController isKindOfClass:[MFViewController class]]) {
         return;
     }
 
@@ -119,7 +119,7 @@
     }
 }
 
-+ (void)webViewDidFinishLoad:(UIWebView*)theWebView viewController:(MonacaViewController *)viewController
++ (void)webViewDidFinishLoad:(UIWebView*)theWebView viewController:(MFViewController *)viewController
 {
     if (!viewController.monacaPluginOptions || ![viewController.monacaPluginOptions objectForKey:kMonacaTransitPluginOptionBg]) {
         theWebView.backgroundColor = [UIColor blackColor];
@@ -147,7 +147,7 @@
     NSString *query = [self getQueryFromPluginArguments:arguments urlString:relativeUrlString];
     NSString *urlStringWithoutQuery = [[relativeUrlString componentsSeparatedByString:@"?"] objectAtIndex:0];
 
-    MonacaViewController *viewController = [[MonacaViewController alloc] initWithFileName:urlStringWithoutQuery query:query];
+    MFViewController *viewController = [[MFViewController alloc] initWithFileName:urlStringWithoutQuery query:query];
     [self setupViewController:viewController options:options];
     [[self class] changeDelegate:viewController];
 
@@ -158,7 +158,7 @@
 {
     MonacaNavigationController *nav = [self monacaNavigationController];
     NSLog(@"count: %d, %@", [[nav viewControllers] count], [[nav viewControllers] lastObject]);
-    MonacaViewController *vc = (MonacaViewController*)[nav popViewControllerAnimated:YES];
+    MFViewController *vc = (MFViewController*)[nav popViewControllerAnimated:YES];
     [vc destroy];
     NSLog(@"count: %d, %@", [[nav viewControllers] count], [[nav viewControllers] lastObject]);
 
@@ -181,7 +181,7 @@
     NSString *query = [self getQueryFromPluginArguments:arguments urlString:relativeUrlString];
     NSString *urlStringWithoutQuery = [[relativeUrlString componentsSeparatedByString:@"?"] objectAtIndex:0];
     
-    MonacaViewController *viewController = [[MonacaViewController alloc] initWithFileName:urlStringWithoutQuery query:query];
+    MFViewController *viewController = [[MFViewController alloc] initWithFileName:urlStringWithoutQuery query:query];
     [self setupViewController:viewController options:options];
     [[self class] changeDelegate:viewController];
 
@@ -246,7 +246,7 @@
 
     MonacaNavigationController *nav = [self monacaNavigationController];
     [nav.view.layer addAnimation:transition forKey:kCATransition];
-    MonacaViewController *vc = (MonacaViewController*)[nav popViewControllerAnimated:YES];
+    MFViewController *vc = (MFViewController*)[nav popViewControllerAnimated:YES];
     [vc destroy];
 
     BOOL res = [[self class] changeDelegate:[[nav viewControllers] lastObject]];
@@ -278,7 +278,7 @@
 {
     NSArray *viewControllers = [[self monacaNavigationController] popToRootViewControllerAnimated:isAnimated];
     
-    for (MonacaViewController *vc in viewControllers) {
+    for (MFViewController *vc in viewControllers) {
         [vc destroy];
     }
 }
@@ -355,7 +355,7 @@
 
 - (NSString*) writeJavascriptOnDelegateViewController:(NSString*)javascript
 {
-    MonacaViewController *vc = [self monacaDelegate].viewController;
+    MFViewController *vc = [self monacaDelegate].viewController;
     return [vc.cdvViewController.webView stringByEvaluatingJavaScriptFromString:javascript];
 }
 

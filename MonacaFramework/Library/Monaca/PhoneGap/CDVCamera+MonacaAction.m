@@ -7,7 +7,7 @@
 //
 
 #import "CDVCamera+MonacaAction.h"
-#import "MonacaViewController.h"
+#import "MFViewController.h"
 #import "Utility.h"
 
 
