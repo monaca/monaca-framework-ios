@@ -33,7 +33,6 @@
                                                     name:UIDeviceOrientationDidChangeNotification 
                                                     object:nil];
     
-    [super dealloc];
 }
 
 - (void)updateFrameForOrieantionAndType {

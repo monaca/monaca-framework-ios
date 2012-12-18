@@ -33,7 +33,7 @@ updateLabel(UILabel *label, NSDictionary *style) {
 }
 
 + (UILabel *)label:(NSDictionary *)style {
-    UILabel *label = [[[UILabel alloc] init] autorelease];
+    UILabel *label = [[UILabel alloc] init];
     return updateLabel(label, style);
 }
 

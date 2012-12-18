@@ -139,7 +139,7 @@
                                                                    NULL,
                                                                    (CFStringRef)@"!*'();:@&=+$,/?%#[]",
                                                                    kCFStringEncodingUTF8);
-    NSString *string = [NSString stringWithString:(NSString *)cfString];
+    NSString *string = [NSString stringWithString:(__bridge NSString *)cfString];
     CFRelease(cfString);
     return string;
 }
@@ -149,7 +149,7 @@
                                                                                    (CFStringRef)text,
                                                                                    CFSTR(""),
                                                                                    kCFStringEncodingUTF8);
-    NSString *string = [NSString stringWithString:(NSString *)cfString];
+    NSString *string = [NSString stringWithString:(__bridge NSString *)cfString];
     CFRelease(cfString);
     return string;
 }

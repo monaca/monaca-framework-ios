@@ -72,7 +72,7 @@ updateSegment(UISegmentedControl *segment, NSDictionary *dict) {
 
 + (UISegmentedControl *)segment:(NSDictionary *)dict {
     NSArray *texts = [dict objectForKey:kNCStyleTexts];
-    UISegmentedControl *segment = [[[UISegmentedControl alloc] initWithItems:texts] autorelease];
+    UISegmentedControl *segment = [[UISegmentedControl alloc] initWithItems:texts];
     return updateSegment(segment, dict);
 }
 

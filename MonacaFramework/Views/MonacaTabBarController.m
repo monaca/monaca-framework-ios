@@ -44,7 +44,7 @@
     self = [super init];
     if (nil != self) {
         self.viewDict = [NSMutableDictionary dictionary];
-        self.ncManager = [[[NCManager alloc] init] autorelease];
+        self.ncManager = [[NCManager alloc] init];
         isLocked = YES;
         isInitialized_ = NO;
 
@@ -67,8 +67,6 @@
     self.viewDict = nil;
     
     self.ncManager = nil;
-    
-    [super dealloc];
 }
 
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)orientation {
@@ -144,7 +142,7 @@
 
 - (void)restoreUserInterface
 {
-    [self applyUserInterface:[[self.ncManager.properties copy] autorelease]];
+    [self applyUserInterface:[self.ncManager.properties copy]];
 }
 
 #pragma mark - EventListener

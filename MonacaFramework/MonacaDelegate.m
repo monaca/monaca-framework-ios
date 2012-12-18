@@ -51,11 +51,11 @@
         method_exchangeImplementations(old, new);
     }
     
-    self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
-    self.viewController = [[[MonacaViewController alloc] initWithFileName:@"index.html" query:nil] autorelease];
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.viewController = [[MonacaViewController alloc] initWithFileName:@"index.html" query:nil];
     [Utility setupMonacaViewController:self.viewController];
     
-    self.monacaNavigationController = [[[MonacaNavigationController alloc] initWithRootViewController:self.viewController] autorelease];
+    self.monacaNavigationController = [[MonacaNavigationController alloc] initWithRootViewController:self.viewController];
     
     [MonacaURLProtocol registerMonacaURLProtocol];
     

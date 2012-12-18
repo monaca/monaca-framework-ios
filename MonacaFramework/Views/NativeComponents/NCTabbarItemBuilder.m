@@ -43,7 +43,7 @@ updateTabberItem(UITabBarItem *item, NSDictionary *style) {
 }
 
 + (UITabBarItem *)tabbarItem:(NSDictionary *)style {
-    UITabBarItem *item = [[[UITabBarItem alloc] initWithTitle:nil image:nil tag:0] autorelease];
+    UITabBarItem *item = [[UITabBarItem alloc] initWithTitle:nil image:nil tag:0];
     return updateTabberItem(item, style);
 }
 

@@ -27,7 +27,6 @@
     self.view = nil;
     self.component = nil;
     self.type = nil;
-    [super dealloc];
 }
 
 
@@ -38,7 +37,7 @@
 // Creates a container, wrapping a component, for the toolbar.
 + (NCContainer *)container:(NSDictionary *)params position:(NSString *)aPosition {
     NSString *type = [params objectForKey:kNCStyleComponent];
-    NCContainer *container = [[[NCContainer alloc] init] autorelease];
+    NCContainer *container = [[NCContainer alloc] init];
     
     // Set component ID.
     container.cid = [params objectForKey:kNCTypeID];
@@ -64,7 +63,7 @@
     else if ([type isEqualToString:kNCComponentBackButton]) {
         UIButton *button = [NCBackButtonBuilder backButton:style_def];
         container.view = button;
-        container.component = [[[UIBarButtonItem alloc] initWithCustomView:button] autorelease];
+        container.component = [[UIBarButtonItem alloc] initWithCustomView:button];
         container.onTapScript = [[params objectForKey:kNCTypeEvent] objectForKey:kNCEventTypeTap];
         [button addTarget:container action:@selector(didTap:forEvent:) forControlEvents:UIControlEventTouchUpInside];
         container.type = kNCComponentBackButton;
@@ -72,13 +71,13 @@
     else if ([type isEqualToString:kNCComponentLabel]) {
         UILabel *label = [NCLabelBuilder label:style_def];
         container.view = label;
-        container.component = [[[UIBarButtonItem alloc] initWithCustomView:label] autorelease];
+        container.component = [[UIBarButtonItem alloc] initWithCustomView:label];
         container.type = kNCComponentLabel;
     }
     else if ([type isEqualToString:kNCComponentSearchBox]) {
         UISearchBar *searchBox = [NCSearchBoxBuilder searchBox:style_def];
         container.view = searchBox;
-        container.component = [[[UIBarButtonItem alloc] initWithCustomView:searchBox] autorelease];
+        container.component = [[UIBarButtonItem alloc] initWithCustomView:searchBox];
         container.onSearchScript = [[params objectForKey:kNCTypeEvent] objectForKey:kNCEventTypeSearch];
         searchBox.delegate = container;
 
@@ -92,7 +91,7 @@
     else if ([type isEqualToString:kNCComponentSegment]) {
         UISegmentedControl *segment = [NCSegmentBuilder segment:style_def];
         container.view = segment;
-        container.component = [[[UIBarButtonItem alloc] initWithCustomView:segment] autorelease];
+        container.component = [[UIBarButtonItem alloc] initWithCustomView:segment];
         
         container.onTapScript = [[params objectForKey:kNCTypeEvent] objectForKey:kNCEventTypeTap];
         container.onChangeScript = [[params objectForKey:kNCTypeEvent] objectForKey:kNCEventTypeChange];
