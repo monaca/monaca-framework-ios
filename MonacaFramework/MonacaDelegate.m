@@ -13,6 +13,7 @@
 #import "MonacaTabBarController.h"
 #import "NativeComponents.h"
 #import "MonacaURLProtocol.h"
+#import "MonacaQueryParamURLProtocol.h"
 #import "CDVViewController.h"
 #import "CDVSplashScreen.h"
 #import "Utility.h"
@@ -56,6 +57,8 @@
     [Utility setupMonacaViewController:self.viewController];
     
     self.monacaNavigationController = [[MonacaNavigationController alloc] initWithRootViewController:self.viewController];
+    
+    [NSURLProtocol registerClass:[MonacaQueryParamURLProtocol class]];
     
     [MonacaURLProtocol registerMonacaURLProtocol];
     

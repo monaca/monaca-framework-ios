@@ -386,16 +386,23 @@
         }else {
             query = request.URL.query;
         }
-        html = [Utility insertMonacaQueryParams:html query:query];
+
+        NSURL *newurl;
+        if (query == NULL) {
+            newurl = url;
+        } else {
+            newurl = [NSURL URLWithString:[NSString stringWithFormat:@"%@?%@", url.path,query]];
+        }
+        NSURLRequest *newRequest = [NSURLRequest requestWithURL:newurl];
+
         //----------
         html = [self hookForLoadedHTML:html request:request];
 
         // The |loadHTMLString| method calls the |webView:shouldStartLoadWithRequest|
         // method, so infinite loop occurs. We stop it by |recall| flag.
         self.recall = YES;
-        NSString *basepath = [[NSURL fileURLWithPath:filepath] description];
-        [webView_ loadHTMLString:html baseURL:[NSURL URLWithString:basepath]];
 
+        [webView_ loadRequest:newRequest];
         return NO;
     }
     

@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0ED18B4A1683020800834099 /* MonacaNoCacheURLProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 0ED18B461683020800834099 /* MonacaNoCacheURLProtocol.h */; };
+		0ED18B4B1683020800834099 /* MonacaNoCacheURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ED18B471683020800834099 /* MonacaNoCacheURLProtocol.m */; };
+		0ED18B4C1683020800834099 /* MonacaQueryParamURLProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 0ED18B481683020800834099 /* MonacaQueryParamURLProtocol.h */; };
+		0ED18B4D1683020800834099 /* MonacaQueryParamURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ED18B491683020800834099 /* MonacaQueryParamURLProtocol.m */; };
+		0ED18B4F1683024300834099 /* MonacaQueryParamURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ED18B491683020800834099 /* MonacaQueryParamURLProtocol.m */; };
+		0ED18B501683024600834099 /* MonacaNoCacheURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ED18B471683020800834099 /* MonacaNoCacheURLProtocol.m */; };
 		3E0F090015A81D000025EFC2 /* MFPGNativeComponent.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E0F08FD15A81D000025EFC2 /* MFPGNativeComponent.h */; };
 		3E0F090215A81D000025EFC2 /* MFPGNativeComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0F08FE15A81D000025EFC2 /* MFPGNativeComponent.m */; };
 		3E0F090315A81D000025EFC2 /* MFPGNativeComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0F08FE15A81D000025EFC2 /* MFPGNativeComponent.m */; };
@@ -264,6 +270,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0ED18B461683020800834099 /* MonacaNoCacheURLProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonacaNoCacheURLProtocol.h; sourceTree = "<group>"; };
+		0ED18B471683020800834099 /* MonacaNoCacheURLProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonacaNoCacheURLProtocol.m; sourceTree = "<group>"; };
+		0ED18B481683020800834099 /* MonacaQueryParamURLProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonacaQueryParamURLProtocol.h; sourceTree = "<group>"; };
+		0ED18B491683020800834099 /* MonacaQueryParamURLProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonacaQueryParamURLProtocol.m; sourceTree = "<group>"; };
 		3E0F08FD15A81D000025EFC2 /* MFPGNativeComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFPGNativeComponent.h; sourceTree = "<group>"; };
 		3E0F08FE15A81D000025EFC2 /* MFPGNativeComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFPGNativeComponent.m; sourceTree = "<group>"; };
 		3E47C23F166F004600F97AAA /* CDV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDV.h; sourceTree = "<group>"; };
@@ -775,6 +785,10 @@
 				3E4F510315A0419E0054EB23 /* MonacaNavigationController.m */,
 				3E7FD31E159EA3ED00E85C81 /* MonacaURLProtocol.h */,
 				3E7FD31F159EA3EE00E85C81 /* MonacaURLProtocol.m */,
+				0ED18B461683020800834099 /* MonacaNoCacheURLProtocol.h */,
+				0ED18B471683020800834099 /* MonacaNoCacheURLProtocol.m */,
+				0ED18B481683020800834099 /* MonacaQueryParamURLProtocol.h */,
+				0ED18B491683020800834099 /* MonacaQueryParamURLProtocol.m */,
 				F50460DA13B3633B0050803F /* MonacaViewController.m */,
 				F50460AB13B361730050803F /* Supporting Files */,
 				F50460DF13B3633B0050803F /* Utility.h */,
@@ -936,6 +950,8 @@
 				3E47C2FE166F004600F97AAA /* NSDictionary+Extensions.h in Headers */,
 				3E47C301166F004600F97AAA /* NSMutableArray+QueueAdditions.h in Headers */,
 				3E47C304166F004600F97AAA /* UIDevice+Extensions.h in Headers */,
+				0ED18B4A1683020800834099 /* MonacaNoCacheURLProtocol.h in Headers */,
+				0ED18B4C1683020800834099 /* MonacaQueryParamURLProtocol.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1113,6 +1129,8 @@
 				3E47C2FF166F004600F97AAA /* NSDictionary+Extensions.m in Sources */,
 				3E47C302166F004600F97AAA /* NSMutableArray+QueueAdditions.m in Sources */,
 				3E47C305166F004600F97AAA /* UIDevice+Extensions.m in Sources */,
+				0ED18B4B1683020800834099 /* MonacaNoCacheURLProtocol.m in Sources */,
+				0ED18B4D1683020800834099 /* MonacaQueryParamURLProtocol.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1189,6 +1207,8 @@
 				3E47C300166F004600F97AAA /* NSDictionary+Extensions.m in Sources */,
 				3E47C303166F004600F97AAA /* NSMutableArray+QueueAdditions.m in Sources */,
 				3E47C306166F004600F97AAA /* UIDevice+Extensions.m in Sources */,
+				0ED18B4F1683024300834099 /* MonacaQueryParamURLProtocol.m in Sources */,
+				0ED18B501683024600834099 /* MonacaNoCacheURLProtocol.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
