@@ -269,7 +269,6 @@
     // ネイティブコンポーネントをMonacaへ持ち込むにあたって、path取得を切り替えたため、standarizedURLを見直しています katsuya
     //NSURL *url = [[self class] standardizedURL:[request URL]];
     NSURL *url = [[request URL] standardizedURL];
-    //NSLog(@"[URL] %@, %@", self.cdvViewController.webView, [request URL]);
     
     // avoid to open gap schema and about scheme ---
     if ([url.scheme isEqual:@"gap"] || [url.scheme isEqual:@"http"] || [url.scheme isEqual:@"https"]){

@@ -43,14 +43,14 @@
     } else if (arguments.count == 2) {
         style = [NSMutableDictionary dictionaryWithDictionary:options];
     } else {
-        NSLog(@"[Debug] Invalid arguments and options: %@, %@", arguments, options);
+        NSLog(@"[debug] Invalid arguments and options: %@, %@", arguments, options);
         return;
     }
     
     if (key) {
         id component = [[MFUtility currentTabBarController].ncManager componentForID:key];
         if (!component) {
-            NSLog(@"[Debug] No such component: %@", key);
+            NSLog(@"[debug] No such component: %@", key);
             
             return;
         }
@@ -107,7 +107,7 @@
         } else if ([container.type isEqualToString:kNCComponentSegment]) {
             [NCSegmentBuilder update:container.component with:currentStyle];
         } else {
-            NSLog(@"[Debug] Unknown container type %@", container.type);
+            NSLog(@"[debug] Unknown container type %@", container.type);
         }
         [self updateNCManagerPropertyStyle:properties style:currentStyle];
     }
@@ -121,7 +121,7 @@
     if (key) {
         id component = [[MFUtility currentTabBarController].ncManager componentForID:key];
         if (!component) {
-            NSLog(@"[Debug] No such component: %@", key);
+            NSLog(@"[debug] No such component: %@", key);
             return;
         }
 
@@ -149,7 +149,7 @@
         } else if ([property isKindOfClass:[NSArray class]]) {
             pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsArray:(NSArray *)property];
         } else {
-            NSLog(@"[Debug] Unknown property: %@", property);
+            NSLog(@"[debug] Unknown property: %@", property);
         }
         [self writeJavascript:[pluginResult toSuccessCallbackString:callbackID]];
         return;

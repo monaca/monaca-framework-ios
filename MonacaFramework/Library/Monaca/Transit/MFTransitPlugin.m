@@ -157,16 +157,13 @@
 - (void)pop:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options
 {
     MFNavigationController *nav = [self monacaNavigationController];
-    NSLog(@"count: %d, %@", [[nav viewControllers] count], [[nav viewControllers] lastObject]);
     MFViewController *vc = (MFViewController*)[nav popViewControllerAnimated:YES];
     [vc destroy];
-    NSLog(@"count: %d, %@", [[nav viewControllers] count], [[nav viewControllers] lastObject]);
 
     BOOL res = [[self class] changeDelegate:[[nav viewControllers] lastObject]];
     if (res) {
         NSString *command =[NSString stringWithFormat:@"%@ && %@();", kMonacaTransitPluginJsReactivate, kMonacaTransitPluginJsReactivate];
         [self writeJavascriptOnDelegateViewController:command];
-        NSLog(@"vc: %@", self.viewController);
     }
 }
 
@@ -337,7 +334,7 @@
 
 - (BOOL)isValidString:(NSString *)urlString {
     if (urlString.length > 512) {
-        NSLog(@"MonacaTransitException::Too long path length:%@", urlString);
+        NSLog(@"[error] MonacaTransitException::Too long path length:%@", urlString);
         return NO;
     }
     return YES;
@@ -346,7 +343,7 @@
 - (BOOL)isValidOptions:(NSDictionary *)options {
     for (NSString *key in options) {
         if (((NSString *)[options objectForKey:key]).length > 512) {
-            NSLog(@"MonacaTransitException::Too long option length:%@, %@", key, [options objectForKey:key]);
+            NSLog(@"[error] MonacaTransitException::Too long option length:%@, %@", key, [options objectForKey:key]);
             return NO;
         }
     }
