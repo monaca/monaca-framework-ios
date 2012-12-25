@@ -35,7 +35,7 @@
 + (BOOL)isExternalPage:(NSURL *)url;
 
 - (NSDictionary *)parseJSONFile:(NSString *)path;
-- (id)initWithFileName:(NSString *)fileName query:(NSString *)aQuery;
+- (id)initWithFileName:(NSString *)fileName;
 - (void)setFixedInterfaceOrientation:(UIInterfaceOrientation)orientation;
 - (UIInterfaceOrientation)getFixedInterfaceOrientation;
 - (void)setInterfaceOrientationUnspecified:(BOOL)flag;

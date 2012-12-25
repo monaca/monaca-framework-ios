@@ -53,7 +53,7 @@
     }
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.viewController = [[MonacaViewController alloc] initWithFileName:@"index.html" query:nil];
+    self.viewController = [[MonacaViewController alloc] initWithFileName:@"index.html"];
     [Utility setupMonacaViewController:self.viewController];
     
     self.monacaNavigationController = [[MonacaNavigationController alloc] initWithRootViewController:self.viewController];

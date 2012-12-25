@@ -147,7 +147,9 @@
     NSString *query = [self getQueryFromPluginArguments:arguments urlString:relativeUrlString];
     NSString *urlStringWithoutQuery = [[relativeUrlString componentsSeparatedByString:@"?"] objectAtIndex:0];
 
-    MonacaViewController *viewController = [[MonacaViewController alloc] initWithFileName:urlStringWithoutQuery query:query];
+    MonacaViewController *viewController = [[MonacaViewController alloc] initWithFileName:urlStringWithoutQuery];
+    [viewController.cdvViewController.webView loadRequest:[self createRequest:urlStringWithoutQuery withQuery:query]];
+
     [self setupViewController:viewController options:options];
     [[self class] changeDelegate:viewController];
 
@@ -181,7 +183,9 @@
     NSString *query = [self getQueryFromPluginArguments:arguments urlString:relativeUrlString];
     NSString *urlStringWithoutQuery = [[relativeUrlString componentsSeparatedByString:@"?"] objectAtIndex:0];
     
-    MonacaViewController *viewController = [[MonacaViewController alloc] initWithFileName:urlStringWithoutQuery query:query];
+    MonacaViewController *viewController = [[MonacaViewController alloc] initWithFileName:urlStringWithoutQuery];
+    [viewController.cdvViewController.webView loadRequest:[self createRequest:urlStringWithoutQuery withQuery:query]];
+
     [self setupViewController:viewController options:options];
     [[self class] changeDelegate:viewController];
 

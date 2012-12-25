@@ -121,7 +121,7 @@
     return self;
 }
 
-- (id)initWithFileName:(NSString *)fileName query:(NSString *)aQuery{
+- (id)initWithFileName:(NSString *)fileName{
     self = [self init];
     if (nil != self) {
         cdvViewController = [[CDVViewController alloc] init];
@@ -131,7 +131,6 @@
         self.recall = NO;
         self.previousPath = nil;
         isFirstRendering = YES;
-        initialQuery = aQuery;
         interfaceOrientationUnspecified = YES;
         interfaceOrientation = UIInterfaceOrientationPortrait;
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivedOrientationChange)
@@ -356,24 +355,7 @@
             cdvViewController.webView.tag = kWebViewNormal;
             [[Utility currentTabBarController] applyUserInterface:nil];
         }
-
-        // query params---
-        NSString *query;
-        if (isFirstRendering){
-            query = initialQuery;
-            isFirstRendering = NO;
-        }else {
-            query = request.URL.query;
-        }
-
-        NSURL *newUrl = ((NSURL *)[NSURL fileURLWithPath:filepath]);;
-        if (query != NULL) {
-            newUrl = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@?%@", newUrl.path,query]];
-        }
-        request = [NSURLRequest requestWithURL:newUrl];
-
     }
-    
     return [cdvViewController webView:webView_ shouldStartLoadWithRequest:request navigationType:navigationType];
 }
 
