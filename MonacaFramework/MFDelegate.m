@@ -1,5 +1,5 @@
 //
-//  MonacaFrameworkDelegate.m
+//  MFDelegate.m
 //  Template
 //
 //  Created by Hiroki Nakagawa on 11/06/07.
@@ -8,26 +8,26 @@
 
 #import <objc/runtime.h>
 
-#import "MonacaDelegate.h"
-#import "MonacaViewController.h"
-#import "MonacaTabBarController.h"
+#import "MFDelegate.h"
+#import "MFViewController.h"
+#import "MFTabBarController.h"
 #import "NativeComponents.h"
-#import "MonacaURLProtocol.h"
+#import "MFSecureFileURLProtocol.h"
 #import "CDVViewController.h"
 #import "CDVSplashScreen.h"
-#import "Utility.h"
+#import "MFUtility.h"
 
 #ifndef DISABLE_MONACA_TEMPLATE_ENGINE
 #import "MonacaTemplateEngine.h"
 #endif  // DISABLE_MONACA_TEMPLATE_ENGINE
 
-@class MonacaViewController;
+@class MFViewController;
 
 // =====================================================================
-// MonacaDelegate class.
+// MFDelegate class.
 // =====================================================================
 
-@implementation MonacaDelegate
+@implementation MFDelegate
 
 @synthesize monacaNavigationController = monacaNavigationController_;
 @synthesize window;
@@ -52,12 +52,12 @@
     }
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.viewController = [[MonacaViewController alloc] initWithFileName:@"index.html" query:nil];
-    [Utility setupMonacaViewController:self.viewController];
+    self.viewController = [[MFViewController alloc] initWithFileName:@"index.html" query:nil];
+    [MFUtility setupMonacaViewController:self.viewController];
     
-    self.monacaNavigationController = [[MonacaNavigationController alloc] initWithRootViewController:self.viewController];
+    self.monacaNavigationController = [[MFNavigationController alloc] initWithRootViewController:self.viewController];
     
-    [MonacaURLProtocol registerMonacaURLProtocol];
+    [MFSecureFileURLProtocol registerMonacaURLProtocol];
     
     self.window.rootViewController = self.monacaNavigationController;
     [self.window makeKeyAndVisible];

@@ -6,7 +6,7 @@
 //  Copyright (c) 2011 ASIAL CORPORATION. All rights reserved.
 //
 
-#import "MonacaTabBarController.h"
+#import "MFTabBarController.h"
 
 #import "NCButtonBuilder.h"
 #import "NCLabelBuilder.h"

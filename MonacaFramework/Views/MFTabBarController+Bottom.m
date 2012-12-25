@@ -1,12 +1,12 @@
 //
-//  MonacaTabBarController+Bottom.m
+//  MFTabBarController+Bottom.m
 //  MonacaFramework
 //
 //  Created by Nakagawa Hiroki on 12/02/17.
 //  Copyright (c) 2012年 ASIAL CORPORATION. All rights reserved.
 //
 
-#import "MonacaTabBarController+Bottom.h"
+#import "MFTabBarController+Bottom.h"
 
 /*
  * Supports iOS4. Cannot use setTintColor method in iOS4.
@@ -20,7 +20,7 @@ setBackgroundColor(NSArray *components, NCToolbar *toolbar) {
         // Register component's view.
         NSString *cid = [(NSDictionary *)[components objectAtIndex:i] objectForKey:kNCTypeID];
         if (cid) {
-            [[Utility currentTabBarController].viewDict setObject:view forKey:cid];
+            [[MFUtility currentTabBarController].viewDict setObject:view forKey:cid];
         }
         [NCButtonBuilder setUpdatedTag:view];
         
@@ -40,7 +40,7 @@ setBackgroundColor(NSArray *components, NCToolbar *toolbar) {
  */
 static NSString *
 stringByRelativePath(NSString *relativePath) {
-    MonacaDelegate *delegate = (MonacaDelegate *)[UIApplication sharedApplication].delegate;
+    MFDelegate *delegate = (MFDelegate *)[UIApplication sharedApplication].delegate;
     
     BOOL isDir;
     NSFileManager *fm = [NSFileManager defaultManager];
@@ -55,7 +55,7 @@ stringByRelativePath(NSString *relativePath) {
 
 
 
-@implementation MonacaTabBarController (Bottom)
+@implementation MFTabBarController (Bottom)
 
 #pragma mark - Bottom toolbar
 
@@ -69,7 +69,7 @@ stringByRelativePath(NSString *relativePath) {
 
 + (UIToolbar *)updateBottomToolbar:(UIToolbar *)toolbar with:(NSDictionary *)style {
     // Visibility.
-    UINavigationController *navController = ((MonacaDelegate *)[UIApplication sharedApplication].delegate).viewController.tabBarController.navigationController;
+    UINavigationController *navController = ((MFDelegate *)[UIApplication sharedApplication].delegate).viewController.tabBarController.navigationController;
     BOOL hidden = isFalse([style objectForKey:kNCStyleVisibility]);
     
     if (!hidden && navController.toolbarHidden) {
@@ -235,9 +235,9 @@ stringByRelativePath(NSString *relativePath) {
         
         CGRect frame = CGRectMake(0.0f, 0.0f, 0.0f, 44.0f);
         if (isCenterOnly) {
-            UIInterfaceOrientation orientation = [Utility currentInterfaceOrientation];
-            double width = [Device widthOfWindow:orientation];
-            double height = [Device heightOfNavigationBar:orientation];
+            UIInterfaceOrientation orientation = [MFUtility currentInterfaceOrientation];
+            double width = [MFDevice widthOfWindow:orientation];
+            double height = [MFDevice heightOfNavigationBar:orientation];
             frame = CGRectMake(0, 0, width + kMargin * 2, height);
         }
         
@@ -300,15 +300,15 @@ stringByRelativePath(NSString *relativePath) {
 
 - (void)showTabBar:(BOOL)visible {
     BOOL ignoreStatusbarHeight = [UIApplication sharedApplication].statusBarStyle == UIStatusBarStyleBlackTranslucent || [UIApplication sharedApplication].statusBarHidden;
-    UIInterfaceOrientation orientation = [Utility currentInterfaceOrientation];
-    double heightOfWindow = [Device heightOfWindow:orientation];
+    UIInterfaceOrientation orientation = [MFUtility currentInterfaceOrientation];
+    double heightOfWindow = [MFDevice heightOfWindow:orientation];
     
-    const float kHeightOfStatusBar     = ignoreStatusbarHeight ? 0 : [Device heightOfStatusBar];
+    const float kHeightOfStatusBar     = ignoreStatusbarHeight ? 0 : [MFDevice heightOfStatusBar];
     const float kHeightOfWindow        = heightOfWindow - kHeightOfStatusBar;
-    const float kHeightOfNavigationBar = [Device heightOfNavigationBar:orientation];
+    const float kHeightOfNavigationBar = [MFDevice heightOfNavigationBar:orientation];
     //ステータスバーが透明の時は、タブバーの高さが無い、については一旦外します。 katsuya
-    //const float kHeightOfTabBar        = ignoreStatusbarHeight ? 0 : [Device heightOfTabBar];
-    const float kHeightOfTabBar        = [Device heightOfTabBar];
+    //const float kHeightOfTabBar        = ignoreStatusbarHeight ? 0 : [MFDevice heightOfTabBar];
+    const float kHeightOfTabBar        = [MFDevice heightOfTabBar];
     const float kHeightOfToolBar       = kHeightOfNavigationBar;
     
     BOOL isToolbarHidden = self.navigationController.toolbarHidden;
@@ -384,7 +384,7 @@ stringByRelativePath(NSString *relativePath) {
     NSMutableDictionary *bottomBarStyle = [NSMutableDictionary dictionaryWithDictionary:[self dictionaryWithBottomBarStyle]];
     [bottomBarStyle addEntriesFromDictionary:uidict];
     
-    MonacaDelegate *delegate = (MonacaDelegate *)[UIApplication sharedApplication].delegate;
+    MFDelegate *delegate = (MFDelegate *)[UIApplication sharedApplication].delegate;
     [delegate.viewController.tabBarController.navigationController setToolbarHidden:YES];
     self.delegate = self;
     
@@ -442,7 +442,7 @@ stringByRelativePath(NSString *relativePath) {
 }
 
 
-+ (void)updateBottomTabbarStyle:(MonacaTabBarController *)tabbarController with:(NSDictionary *)style {
++ (void)updateBottomTabbarStyle:(MFTabBarController *)tabbarController with:(NSDictionary *)style {
     BOOL invisible = isFalse([style objectForKey:kNCStyleVisibility]);
     
     if (invisible) {
@@ -457,7 +457,7 @@ stringByRelativePath(NSString *relativePath) {
     if (isLocked == NO) {
         isLocked = YES;
 
-        MonacaDelegate *delegate = (MonacaDelegate *)[UIApplication sharedApplication].delegate;
+        MFDelegate *delegate = (MFDelegate *)[UIApplication sharedApplication].delegate;
         [delegate.viewController.cdvViewController.webView removeFromSuperview];
         [viewController.view addSubview:delegate.viewController.cdvViewController.webView];
 

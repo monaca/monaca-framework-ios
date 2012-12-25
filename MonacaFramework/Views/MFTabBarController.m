@@ -6,11 +6,11 @@
 //  Copyright (c) 2011 ASIAL CORPORATION. All rights reserved.
 //
 
-#import "MonacaTabBarController.h"
-#import "Utility.h"
-#import "MonacaEvent.h"
+#import "MFTabBarController.h"
+#import "MFUtility.h"
+#import "MFEvent.h"
 
-@implementation MonacaTabBarController
+@implementation MFTabBarController
 
 @synthesize centerContainer = centerContainer_;
 @synthesize leftContainers = leftContainers_;
@@ -32,7 +32,7 @@
 
 // iOS4 の場合、このメソッドは MonacaViewController の viewDidApper メソッドから呼ばれる
 - (void)viewDidAppear:(BOOL)animated {
-    MonacaDelegate *delegate = (MonacaDelegate *)[UIApplication sharedApplication].delegate;
+    MFDelegate *delegate = (MFDelegate *)[UIApplication sharedApplication].delegate;
     if ([self.viewControllers count] > 0) {
         [delegate.viewController.cdvViewController.webView removeFromSuperview];
         UIView *view = ((UIViewController *)[self.viewControllers objectAtIndex:self.activeIndex]).view;
@@ -70,7 +70,7 @@
 }
 
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)orientation {
-    return [Utility getAllowOrientationFromPlist:orientation];
+    return [MFUtility getAllowOrientationFromPlist:orientation];
 }
 
 - (NSMutableArray *)createContainers:(NSArray *)components position:(NSString *)aPosition {

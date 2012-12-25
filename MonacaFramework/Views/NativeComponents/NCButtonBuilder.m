@@ -7,7 +7,7 @@
 //
 
 #import "NCButtonBuilder.h"
-#import "Utility.h"
+#import "MFUtility.h"
 #import "NCButton.h"
 
 @implementation NCButtonBuilder
@@ -26,7 +26,7 @@ setTextColor(UIBarButtonItem *button, UIColor *color) {
 static UIBarButtonItem *
 updateVisibility(UIBarButtonItem *button, NSDictionary *style) {
     NSString *cid = [style objectForKey:kNCTypeID];
-    UIView *view = [[Utility currentTabBarController].viewDict objectForKey:cid];
+    UIView *view = [[MFUtility currentTabBarController].viewDict objectForKey:cid];
     [view setHidden:isFalse([style objectForKey:kNCStyleVisibility])];
     return button;
 }
@@ -42,7 +42,7 @@ updateButton(UIBarButtonItem *button, NSDictionary *style) {
     NSString *innerImagePath = [style objectForKey:kNCStyleInnerImage];
 
     if (innerImagePath) {
-        NSURL *appWWWURL = [((MonacaDelegate *)[[UIApplication sharedApplication] delegate]) getBaseURL];
+        NSURL *appWWWURL = [((MFDelegate *)[[UIApplication sharedApplication] delegate]) getBaseURL];
         NSString *imagePath = [[appWWWURL path] stringByAppendingPathComponent:innerImagePath];
         UIImage *image = [UIImage imageWithContentsOfFile:imagePath];
         if (image) {
@@ -78,7 +78,7 @@ updateButton(UIBarButtonItem *button, NSDictionary *style) {
     
     NSString *imageName = [style objectForKey:kNCStyleImage];
     if (imageName) {
-        NSURL *appWWWURL = [((MonacaDelegate *)[[UIApplication sharedApplication] delegate]) getBaseURL];
+        NSURL *appWWWURL = [((MFDelegate *)[[UIApplication sharedApplication] delegate]) getBaseURL];
         NSString *imagePath = [[appWWWURL path] stringByAppendingPathComponent:imageName];
         UIImage *image = [UIImage imageWithContentsOfFile:imagePath];
         
@@ -139,7 +139,7 @@ isButtonView(UIView *view) {
 
 static void
 updateViewDictionary(NSDictionary *style) {
-    MonacaDelegate *delegate = (MonacaDelegate *)[UIApplication sharedApplication].delegate;
+    MFDelegate *delegate = (MFDelegate *)[UIApplication sharedApplication].delegate;
     NSString *cid = [style objectForKey:kNCTypeID];
 
     // NOTE(nhiroki):　UIToolbar に UIBarButtonItem のオブジェクトを追加すると、実際には
@@ -157,7 +157,7 @@ updateViewDictionary(NSDictionary *style) {
         for (UIView *toolbar in navController.navigationBar.subviews) {
             for (UIView *view in toolbar.subviews) {
                 if (isButtonView(view) && view.tag != kUpdatedTag) {
-                    [[Utility currentTabBarController].viewDict setObject:view forKey:cid];
+                    [[MFUtility currentTabBarController].viewDict setObject:view forKey:cid];
                     view.tag = kUpdatedTag;
                 }
             }
@@ -165,7 +165,7 @@ updateViewDictionary(NSDictionary *style) {
         for (UIView *toolbar in navController.toolbar.subviews) {
             for (UIView *view in toolbar.subviews) {
                 if (isButtonView(view) && view.tag != kUpdatedTag) {
-                    [[Utility currentTabBarController].viewDict setObject:view forKey:cid];
+                    [[MFUtility currentTabBarController].viewDict setObject:view forKey:cid];
                     view.tag = kUpdatedTag;
                 }
             }
@@ -180,7 +180,7 @@ updateBackgroundColor(UIBarButtonItem *button, NSDictionary *style) {
         NSString *bgColor = [style objectForKey:kNCStyleBackgroundColor];
         if (bgColor) {
             UIColor *color = hexToUIColor(removeSharpPrefix(bgColor), 1.0f);
-            UIView *view = [[Utility currentTabBarController].viewDict objectForKey:cid];
+            UIView *view = [[MFUtility currentTabBarController].viewDict objectForKey:cid];
             [view performSelector:@selector(setTintColor:) withObject:color];
         }
     }

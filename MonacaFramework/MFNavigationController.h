@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MonacaNavigationController : UINavigationController<UINavigationControllerDelegate>{
+@interface MFNavigationController : UINavigationController<UINavigationControllerDelegate>{
 }
 
 @end

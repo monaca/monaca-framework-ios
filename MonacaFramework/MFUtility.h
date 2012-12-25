@@ -7,25 +7,25 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "MonacaDelegate.h"
-#import "MonacaViewController.h"
-#import "MonacaTabBarController.h"
+#import "MFDelegate.h"
+#import "MFViewController.h"
+#import "MFTabBarController.h"
 
 
-@interface Utility : NSObject {
+@interface MFUtility : NSObject {
 
 }
 
-+ (MonacaTabBarController *) currentTabBarController;
++ (MFTabBarController *) currentTabBarController;
 + (UIInterfaceOrientation) currentInterfaceOrientation;
 + (BOOL) getAllowOrientationFromPlist:(UIInterfaceOrientation)interfaceOrientation;
-+ (void) setupMonacaViewController:(MonacaViewController *)monacaViewController;
-+ (void) fixedLayout:(MonacaViewController *)monacaViewController interfaceOrientation:(UIInterfaceOrientation)aInterfaceOrientation;
++ (void) setupMonacaViewController:(MFViewController *)monacaViewController;
++ (void) fixedLayout:(MFViewController *)monacaViewController interfaceOrientation:(UIInterfaceOrientation)aInterfaceOrientation;
 + (void) show404PageWithWebView:(UIWebView *)webView path:(NSString *)aPath;
 + (NSString *)getWWWShortPath:(NSString *)path;
 + (NSString *)insertMonacaQueryParams:(NSString *)html query:(NSString *)aQuery;
 + (NSString *)urlEncode:(NSString *)text;
 + (NSString *)urlDecode:(NSString *)text;
-+ (MonacaDelegate *)getAppDelegate;
++ (MFDelegate *)getAppDelegate;
 
 @end

@@ -6,19 +6,19 @@
 //  Copyright (c) 2012年 ASIAL CORPORATION. All rights reserved.
 //
 
-#import "MonacaNavigationController.h"
-#import "MonacaTransitPlugin.h"
-#import "Utility.h"
+#import "MFNavigationController.h"
+#import "MFTransitPlugin.h"
+#import "MFUtility.h"
 
-@interface MonacaNavigationController ()
+@interface MFNavigationController ()
 
 @end
 
-@implementation MonacaNavigationController
+@implementation MFNavigationController
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)aInterfaceOrientation
 {
-    return [Utility getAllowOrientationFromPlist:aInterfaceOrientation];
+    return [MFUtility getAllowOrientationFromPlist:aInterfaceOrientation];
 }
 
 - (void)loadView
@@ -40,7 +40,7 @@
 
 - (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
-    [MonacaTransitPlugin changeDelegate:viewController];
+    [MFTransitPlugin changeDelegate:viewController];
 }
 
 @end

@@ -8,7 +8,7 @@
 
 #import "MFPGNativeComponent.h"
 #import "NativeComponents.h"
-#import "Utility.h"
+#import "MFUtility.h"
 
 @interface MFPGNativeComponent()
 - (void)updateNCManagerPropertyStyle:(NSMutableDictionary *)properties style:(NSMutableDictionary *)currentStyle;
@@ -43,27 +43,27 @@
     } else if (arguments.count == 2) {
         style = [NSMutableDictionary dictionaryWithDictionary:options];
     } else {
-        NSLog(@"[Debug] Invalid arguments and options: %@, %@", arguments, options);
+        NSLog(@"[debug] Invalid arguments and options: %@, %@", arguments, options);
         return;
     }
     
     if (key) {
-        id component = [[Utility currentTabBarController].ncManager componentForID:key];
+        id component = [[MFUtility currentTabBarController].ncManager componentForID:key];
         if (!component) {
-            NSLog(@"[Debug] No such component: %@", key);
+            NSLog(@"[debug] No such component: %@", key);
             
             return;
         }
         
         // Overwrite style of the native component.
-        NSMutableDictionary *properties = [[Utility currentTabBarController].ncManager propertiesForID:key];
+        NSMutableDictionary *properties = [[MFUtility currentTabBarController].ncManager propertiesForID:key];
         NSMutableDictionary *currentStyle = [NSMutableDictionary dictionaryWithDictionary:[properties objectForKey:kNCTypeStyle]];
         [currentStyle addEntriesFromDictionary:style];
         [currentStyle addEntriesFromDictionary:[properties objectForKey:kNCTypeIOSStyle]];
 
         // Update top toolbar style.
         if ([component isKindOfClass:[NSString class]] && [component isEqualToString:kNCContainerTabbar]) {
-            MonacaTabBarController *controller = [Utility currentTabBarController];
+            MFTabBarController *controller = [MFUtility currentTabBarController];
             [self updateNCManagerPropertyStyle:properties style:currentStyle];
             [controller updateTopToolbar:currentStyle];
             return;
@@ -73,7 +73,7 @@
         if ([component isKindOfClass:[UIToolbar class]]) {
             UIToolbar *toolbar = (UIToolbar *)component;
             [self updateNCManagerPropertyStyle:properties style:currentStyle];
-            [MonacaTabBarController updateBottomToolbar:toolbar with:currentStyle];
+            [MFTabBarController updateBottomToolbar:toolbar with:currentStyle];
             return;
         }
 
@@ -86,10 +86,10 @@
         }
         
         // Update bottom tabbar style.
-        if ([component isKindOfClass:[MonacaTabBarController class]]) {
-            MonacaTabBarController *tabbar = (MonacaTabBarController *)component;
+        if ([component isKindOfClass:[MFTabBarController class]]) {
+            MFTabBarController *tabbar = (MFTabBarController *)component;
             [self updateNCManagerPropertyStyle:properties style:currentStyle];
-            [MonacaTabBarController updateBottomTabbarStyle:tabbar with:currentStyle];
+            [MFTabBarController updateBottomTabbarStyle:tabbar with:currentStyle];
             return;
         }
         
@@ -107,7 +107,7 @@
         } else if ([container.type isEqualToString:kNCComponentSegment]) {
             [NCSegmentBuilder update:container.component with:currentStyle];
         } else {
-            NSLog(@"[Debug] Unknown container type %@", container.type);
+            NSLog(@"[debug] Unknown container type %@", container.type);
         }
         [self updateNCManagerPropertyStyle:properties style:currentStyle];
     }
@@ -119,15 +119,15 @@
     NSString *propertyKey = [arguments objectAtIndex:2];
 
     if (key) {
-        id component = [[Utility currentTabBarController].ncManager componentForID:key];
+        id component = [[MFUtility currentTabBarController].ncManager componentForID:key];
         if (!component) {
-            NSLog(@"[Debug] No such component: %@", key);
+            NSLog(@"[debug] No such component: %@", key);
             return;
         }
 
         NCContainer *container = (NCContainer *)component;
         if (![container isKindOfClass:[NSString class]] && [container.type isEqualToString:kNCComponentSearchBox]) {
-            NSMutableDictionary *properties = [[Utility currentTabBarController].ncManager propertiesForID:key];
+            NSMutableDictionary *properties = [[MFUtility currentTabBarController].ncManager propertiesForID:key];
             NSMutableDictionary *style = [NSMutableDictionary dictionary];
             [style addEntriesFromDictionary:[properties objectForKey:kNCTypeStyle]];
             [style addEntriesFromDictionary:[NCSearchBoxBuilder retrieve:container.component]];
@@ -137,7 +137,7 @@
         }
 
         CDVPluginResult *pluginResult = nil;
-        NSMutableDictionary *properties = [[Utility currentTabBarController].ncManager propertiesForID:key];
+        NSMutableDictionary *properties = [[MFUtility currentTabBarController].ncManager propertiesForID:key];
         NSString *property = [[properties objectForKey:kNCTypeStyle] objectForKey:propertyKey];
         
         // FIXME(nhiroki): デフォルト値を持つキーに対してはうまく取得できない。
@@ -149,7 +149,7 @@
         } else if ([property isKindOfClass:[NSArray class]]) {
             pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsArray:(NSArray *)property];
         } else {
-            NSLog(@"[Debug] Unknown property: %@", property);
+            NSLog(@"[debug] Unknown property: %@", property);
         }
         [self writeJavascript:[pluginResult toSuccessCallbackString:callbackID]];
         return;

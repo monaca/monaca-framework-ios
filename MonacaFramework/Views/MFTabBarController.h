@@ -7,16 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MonacaDelegate.h"
+#import "MFDelegate.h"
 #import "NativeComponents.h"
-#import "Device.h"
-#import "Utility.h"
+#import "MFDevice.h"
+#import "MFUtility.h"
 
 @class PhoneGapViewController;
 @class NCContainer;
 @class NCManager;
 
-@interface MonacaTabBarController : UITabBarController <UITabBarControllerDelegate> {
+@interface MFTabBarController : UITabBarController <UITabBarControllerDelegate> {
  @private
     NCContainer *centerContainer_;
 
@@ -60,5 +60,5 @@
 @end
 
 
-#import "MonacaTabBarController+Top.h"
-#import "MonacaTabBarController+Bottom.h"
+#import "MFTabBarController+Top.h"
+#import "MFTabBarController+Bottom.h"

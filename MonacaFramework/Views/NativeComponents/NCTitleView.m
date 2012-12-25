@@ -7,10 +7,10 @@
 //
 
 #import "NCTitleView.h"
-#import "MonacaDelegate.h"
+#import "MFDelegate.h"
 #import "UILabel+Resize.h"
-#import "Device.h"
-#import "Utility.h"
+#import "MFDevice.h"
+#import "MFUtility.h"
 
 
 @implementation NCTitleLabel
@@ -84,15 +84,15 @@ isEmpty(NCTitleLabel *label) {
 
 // Override.
 - (void)setFrame:(CGRect)frame {
-    MonacaDelegate *delegate = ((MonacaDelegate *)[UIApplication sharedApplication].delegate);
-    CGFloat height = [Device heightOfNavigationBar:[Utility currentInterfaceOrientation]];
+    MFDelegate *delegate = ((MFDelegate *)[UIApplication sharedApplication].delegate);
+    CGFloat height = [MFDevice heightOfNavigationBar:[MFUtility currentInterfaceOrientation]];
     [super setFrame:CGRectMake(0, 0, 0, height)];
 
     CGPoint center = self.center;
     CGPoint naviCenter = delegate.viewController.tabBarController.navigationController.navigationBar.center;
     self.center = CGPointMake(naviCenter.x, center.y);
 
-    if (UIInterfaceOrientationIsLandscape([Utility currentInterfaceOrientation])) {
+    if (UIInterfaceOrientationIsLandscape([MFUtility currentInterfaceOrientation])) {
         self.titleLabel.font = [UIFont boldSystemFontOfSize:kSizeOfLandscapeTitleFont * self.titleLabel.fontScale];
         self.titleLabel.frame = [self.titleLabel resizedFrameWithPoint:CGPointMake(0, 0)];
         self.titleLabel.center = CGPointMake(self.frame.size.width/2.0f, height/2.0f);

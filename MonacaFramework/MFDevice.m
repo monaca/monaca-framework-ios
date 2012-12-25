@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Device.h"
+#import "MFDevice.h"
 
 
 
-@implementation Device
+@implementation MFDevice
 
 
 
@@ -63,24 +63,24 @@ static const float kHeightOfTabBar                 = 49;
 }
 
 + (float)heightOfNavigationBar:(UIInterfaceOrientation)orientation {
-    if ([Device isiPhone] || [Device isiPodTouch]) {
+    if ([MFDevice isiPhone] || [MFDevice isiPodTouch]) {
         if (UIInterfaceOrientationIsPortrait(orientation)) {
             return kHeightOfPortraitNavigationBar;
         }
         return kHeightOfLandscapeNavigationBar;
-    } else if ([Device isiPad]) {
+    } else if ([MFDevice isiPad]) {
         return kHeightOfNavigationBar_iPad;
     }
     return 0;
 }
 
 + (float)heightOfToolBar:(UIInterfaceOrientation)orientation {
-    if ([Device isiPhone] || [Device isiPodTouch]) {
+    if ([MFDevice isiPhone] || [MFDevice isiPodTouch]) {
         if (UIInterfaceOrientationIsPortrait(orientation)) {
             return kHeightOfPortraitToolBar;
         }
         return kHeightOfLandscapeToolBar;
-    } else if ([Device isiPad]) {
+    } else if ([MFDevice isiPad]) {
         return kHeightOfToolBar_iPad;
     }
     return 0;

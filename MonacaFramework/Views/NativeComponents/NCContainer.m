@@ -124,7 +124,7 @@
 
 // Handle an onSearch event.
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-    UIWebView *webView = ((MonacaDelegate *)[UIApplication sharedApplication].delegate).viewController.cdvViewController.webView;
+    UIWebView *webView = ((MFDelegate *)[UIApplication sharedApplication].delegate).viewController.cdvViewController.webView;
     NSString *js = [NSString stringWithFormat:@"__search_text='%@';%@", searchBar.text, onSearchScript_];
     [webView stringByEvaluatingJavaScriptFromString:js];
     [searchBar resignFirstResponder];
@@ -142,13 +142,13 @@
     }
 
     NSString *js = [NSString stringWithFormat:@"%@%@", index, onChangeScript_];
-    UIWebView *webView = ((MonacaDelegate *)[UIApplication sharedApplication].delegate).viewController.cdvViewController.webView;
+    UIWebView *webView = ((MFDelegate *)[UIApplication sharedApplication].delegate).viewController.cdvViewController.webView;
     [webView stringByEvaluatingJavaScriptFromString:js];
 }
 
 // Handle an onTap event.
 - (void)didTap:(id)sender forEvent:(UIEvent *)event {
-    UIWebView *webView = ((MonacaDelegate *)[UIApplication sharedApplication].delegate).viewController.cdvViewController.webView;
+    UIWebView *webView = ((MFDelegate *)[UIApplication sharedApplication].delegate).viewController.cdvViewController.webView;
     [webView stringByEvaluatingJavaScriptFromString:onTapScript_];
 }
 

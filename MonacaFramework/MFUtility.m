@@ -6,16 +6,16 @@
 //  Copyright 2011 ASIAL CORPORATION. All rights reserved.
 //
 
-#import "Utility.h"
+#import "MFUtility.h"
 
-@implementation Utility
+@implementation MFUtility
 
-+ (MonacaTabBarController *)currentTabBarController {
-    return (MonacaTabBarController *)((MonacaDelegate *)[UIApplication sharedApplication].delegate).viewController.tabBarController;
++ (MFTabBarController *)currentTabBarController {
+    return (MFTabBarController *)((MFDelegate *)[UIApplication sharedApplication].delegate).viewController.tabBarController;
 }
 
 + (UIInterfaceOrientation)currentInterfaceOrientation {
-    MonacaDelegate *delegate = ((MonacaDelegate *)[UIApplication sharedApplication].delegate);
+    MFDelegate *delegate = ((MFDelegate *)[UIApplication sharedApplication].delegate);
     return [delegate currentInterfaceOrientation];
 }
 
@@ -39,8 +39,8 @@
 /*
  * 4.3と5.1の互換性を保ちつつ、MonacaViewControllerをセットアップする
  */
-+ (void) setupMonacaViewController:(MonacaViewController *)monacaViewController{
-    if ([Device iOSVersionMajor] < 5) {
++ (void) setupMonacaViewController:(MFViewController *)monacaViewController{
+    if ([MFDevice iOSVersionMajor] < 5) {
     }else{
         BOOL forceStartupRotation = YES;
         UIDeviceOrientation curDevOrientation = [[UIDevice currentDevice] orientation];
@@ -65,7 +65,7 @@
 /*
  * 表示される時のレイアウトを修正する
  */
-+ (void) fixedLayout:(MonacaViewController *)monacaViewController interfaceOrientation:(UIInterfaceOrientation)aInterfaceOrientation{
++ (void) fixedLayout:(MFViewController *)monacaViewController interfaceOrientation:(UIInterfaceOrientation)aInterfaceOrientation{
     if (aInterfaceOrientation == UIInterfaceOrientationPortrait || aInterfaceOrientation == UIInterfaceOrientationPortraitUpsideDown){
         monacaViewController.view.frame = [[UIScreen mainScreen] bounds];
         UIViewController *vc = [monacaViewController.tabBarController.viewControllers objectAtIndex:0];
@@ -80,9 +80,9 @@
     NSString *pathFor404 = [[NSBundle mainBundle] pathForResource:@"404/index" ofType:@"html"];
     NSString *html = [NSString stringWithContentsOfFile:pathFor404 encoding:NSUTF8StringEncoding error:nil];
 
-    html = [html stringByReplacingOccurrencesOfString:@"%%%urlPlaceHolder%%%" withString:[Utility getWWWShortPath:aPath]];
+    html = [html stringByReplacingOccurrencesOfString:@"%%%urlPlaceHolder%%%" withString:[MFUtility getWWWShortPath:aPath]];
     [webView loadHTMLString:html baseURL:[NSURL fileURLWithPath:pathFor404]];
-    [[Utility currentTabBarController] applyUserInterface:nil];
+    [[MFUtility currentTabBarController] applyUserInterface:nil];
 }
 
 /*
@@ -154,9 +154,9 @@
     return string;
 }
 
-+ (MonacaDelegate *)getAppDelegate
++ (MFDelegate *)getAppDelegate
 {
-    return ((MonacaDelegate *)[[UIApplication sharedApplication] delegate]);
+    return ((MFDelegate *)[[UIApplication sharedApplication] delegate]);
 }
 
 @end

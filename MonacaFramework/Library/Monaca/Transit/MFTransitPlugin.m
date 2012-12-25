@@ -7,26 +7,26 @@
 //
 #import <QuartzCore/QuartzCore.h>
 
-#import "MonacaTransitPlugin.h"
-#import "MonacaDelegate.h"
-#import "MonacaViewController.h"
-#import "MonacaTabBarController.h"
-#import "Utility.h"
+#import "MFTransitPlugin.h"
+#import "MFDelegate.h"
+#import "MFViewController.h"
+#import "MFTabBarController.h"
+#import "MFUtility.h"
 
 #define kMonacaTransitPluginJsReactivate @"window.onReactivate"
 #define kMonacaTransitPluginOptionUrl @"url"
 #define kMonacaTransitPluginOptionBg  @"bg"
 
-@implementation MonacaTransitPlugin
+@implementation MFTransitPlugin
 
 #pragma mark - private methods
 
-- (MonacaDelegate *)monacaDelegate
+- (MFDelegate *)monacaDelegate
 {
-    return (MonacaDelegate *)[self appDelegate];
+    return (MFDelegate *)[self appDelegate];
 }
 
-- (MonacaNavigationController *)monacaNavigationController
+- (MFNavigationController *)monacaNavigationController
 {
     return [[self monacaDelegate] monacaNavigationController];
 }
@@ -46,13 +46,13 @@
 }
 
 // @see [MonacaDelegate application: didFinishLaunchingWithOptions:]
-- (void)setupViewController:(MonacaViewController *)viewController options:(NSDictionary *)options
+- (void)setupViewController:(MFViewController *)viewController options:(NSDictionary *)options
 {
     viewController.monacaPluginOptions = options;
-    [Utility setupMonacaViewController:viewController];
+    [MFUtility setupMonacaViewController:viewController];
 }
 
-+ (void)setBgColor:(MonacaViewController *)viewController color:(UIColor *)color
++ (void)setBgColor:(MFViewController *)viewController color:(UIColor *)color
 {
     viewController.cdvViewController.webView.backgroundColor = [UIColor clearColor];
     viewController.cdvViewController.webView.opaque = NO;
@@ -87,29 +87,29 @@
 
 + (BOOL)changeDelegate:(UIViewController *)viewController
 {
-    if(![viewController isKindOfClass:[MonacaViewController class]]){
+    if(![viewController isKindOfClass:[MFViewController class]]){
         return NO;
     }
 
-    MonacaDelegate *monacaDelegate = (MonacaDelegate *)[[UIApplication sharedApplication] delegate];
-    monacaDelegate.viewController = (MonacaViewController *)viewController;
+    MFDelegate *monacaDelegate = (MFDelegate *)[[UIApplication sharedApplication] delegate];
+    monacaDelegate.viewController = (MFViewController *)viewController;
 
     return YES;
 }
 
 #pragma mark - MonacaViewController actions
 
-+ (void)viewDidLoad:(MonacaViewController *)viewController
++ (void)viewDidLoad:(MFViewController *)viewController
 {
     // @todo MonacaViewController内部にて実行すべき事柄
-    if(![viewController isKindOfClass:[MonacaViewController class]]) {
+    if(![viewController isKindOfClass:[MFViewController class]]) {
         return;
     }
 
     if (viewController.monacaPluginOptions) {
         NSString *bgName = [viewController.monacaPluginOptions objectForKey:kMonacaTransitPluginOptionBg];
         if (bgName) {
-            NSURL *appWWWURL = [[Utility getAppDelegate] getBaseURL];
+            NSURL *appWWWURL = [[MFUtility getAppDelegate] getBaseURL];
             NSString *bgPath = [appWWWURL.path stringByAppendingFormat:@"/%@", bgName];
             UIImage *bgImage = [UIImage imageWithContentsOfFile:bgPath];
             if (bgImage) {
@@ -119,7 +119,7 @@
     }
 }
 
-+ (void)webViewDidFinishLoad:(UIWebView*)theWebView viewController:(MonacaViewController *)viewController
++ (void)webViewDidFinishLoad:(UIWebView*)theWebView viewController:(MFViewController *)viewController
 {
     if (!viewController.monacaPluginOptions || ![viewController.monacaPluginOptions objectForKey:kMonacaTransitPluginOptionBg]) {
         theWebView.backgroundColor = [UIColor blackColor];
@@ -147,7 +147,7 @@
     NSString *query = [self getQueryFromPluginArguments:arguments urlString:relativeUrlString];
     NSString *urlStringWithoutQuery = [[relativeUrlString componentsSeparatedByString:@"?"] objectAtIndex:0];
 
-    MonacaViewController *viewController = [[MonacaViewController alloc] initWithFileName:urlStringWithoutQuery query:query];
+    MFViewController *viewController = [[MFViewController alloc] initWithFileName:urlStringWithoutQuery query:query];
     [self setupViewController:viewController options:options];
     [[self class] changeDelegate:viewController];
 
@@ -156,17 +156,14 @@
 
 - (void)pop:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options
 {
-    MonacaNavigationController *nav = [self monacaNavigationController];
-    NSLog(@"count: %d, %@", [[nav viewControllers] count], [[nav viewControllers] lastObject]);
-    MonacaViewController *vc = (MonacaViewController*)[nav popViewControllerAnimated:YES];
+    MFNavigationController *nav = [self monacaNavigationController];
+    MFViewController *vc = (MFViewController*)[nav popViewControllerAnimated:YES];
     [vc destroy];
-    NSLog(@"count: %d, %@", [[nav viewControllers] count], [[nav viewControllers] lastObject]);
 
     BOOL res = [[self class] changeDelegate:[[nav viewControllers] lastObject]];
     if (res) {
         NSString *command =[NSString stringWithFormat:@"%@ && %@();", kMonacaTransitPluginJsReactivate, kMonacaTransitPluginJsReactivate];
         [self writeJavascriptOnDelegateViewController:command];
-        NSLog(@"vc: %@", self.viewController);
     }
 }
 
@@ -181,7 +178,7 @@
     NSString *query = [self getQueryFromPluginArguments:arguments urlString:relativeUrlString];
     NSString *urlStringWithoutQuery = [[relativeUrlString componentsSeparatedByString:@"?"] objectAtIndex:0];
     
-    MonacaViewController *viewController = [[MonacaViewController alloc] initWithFileName:urlStringWithoutQuery query:query];
+    MFViewController *viewController = [[MFViewController alloc] initWithFileName:urlStringWithoutQuery query:query];
     [self setupViewController:viewController options:options];
     [[self class] changeDelegate:viewController];
 
@@ -211,7 +208,7 @@
     transition.subtype = transitionSubtype;
     [transition setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionDefault]];
 
-    MonacaNavigationController *nav = [self monacaNavigationController];
+    MFNavigationController *nav = [self monacaNavigationController];
     [nav.view.layer addAnimation:transition forKey:kCATransition];
     [nav pushViewController:viewController animated:NO];
 }
@@ -244,9 +241,9 @@
     transition.subtype = transitionSubtype;
     [transition setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionDefault]];
 
-    MonacaNavigationController *nav = [self monacaNavigationController];
+    MFNavigationController *nav = [self monacaNavigationController];
     [nav.view.layer addAnimation:transition forKey:kCATransition];
-    MonacaViewController *vc = (MonacaViewController*)[nav popViewControllerAnimated:YES];
+    MFViewController *vc = (MFViewController*)[nav popViewControllerAnimated:YES];
     [vc destroy];
 
     BOOL res = [[self class] changeDelegate:[[nav viewControllers] lastObject]];
@@ -278,7 +275,7 @@
 {
     NSArray *viewControllers = [[self monacaNavigationController] popToRootViewControllerAnimated:isAnimated];
     
-    for (MonacaViewController *vc in viewControllers) {
+    for (MFViewController *vc in viewControllers) {
         [vc destroy];
     }
 }
@@ -309,12 +306,12 @@
     if (jsonQueryParams.count > 0) {
         NSMutableArray *queryParams = [NSMutableArray array];
         for (NSString *key in jsonQueryParams) {
-            NSString *encodedKey = [Utility urlEncode:key];
+            NSString *encodedKey = [MFUtility urlEncode:key];
             NSString *encodedValue = nil;
             if ([[jsonQueryParams objectForKey:key] isEqual:[NSNull null]]){
                 [queryParams addObject:[NSString stringWithFormat:@"%@", encodedKey]];
             }else {
-                encodedValue = [Utility urlEncode:[jsonQueryParams objectForKey:key]];
+                encodedValue = [MFUtility urlEncode:[jsonQueryParams objectForKey:key]];
                 [queryParams addObject:[NSString stringWithFormat:@"%@=%@", encodedKey, encodedValue]];
             }
         }
@@ -337,7 +334,7 @@
 
 - (BOOL)isValidString:(NSString *)urlString {
     if (urlString.length > 512) {
-        NSLog(@"MonacaTransitException::Too long path length:%@", urlString);
+        NSLog(@"[error] MonacaTransitException::Too long path length:%@", urlString);
         return NO;
     }
     return YES;
@@ -346,7 +343,7 @@
 - (BOOL)isValidOptions:(NSDictionary *)options {
     for (NSString *key in options) {
         if (((NSString *)[options objectForKey:key]).length > 512) {
-            NSLog(@"MonacaTransitException::Too long option length:%@, %@", key, [options objectForKey:key]);
+            NSLog(@"[error] MonacaTransitException::Too long option length:%@, %@", key, [options objectForKey:key]);
             return NO;
         }
     }
@@ -355,7 +352,7 @@
 
 - (NSString*) writeJavascriptOnDelegateViewController:(NSString*)javascript
 {
-    MonacaViewController *vc = [self monacaDelegate].viewController;
+    MFViewController *vc = [self monacaDelegate].viewController;
     return [vc.cdvViewController.webView stringByEvaluatingJavaScriptFromString:javascript];
 }
 

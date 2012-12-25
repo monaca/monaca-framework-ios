@@ -41,7 +41,7 @@
 		<key>mobi.monaca.nativecomponent</key>
 		<string>MFPGNativeComponent</string>
 		<key>Transit</key>
-		<string>MonacaTransitPlugin</string>
+		<string>MFTransitPlugin</string>
 		<key>Device</key>
 		<string>CDVDevice</string>
 		<key>Logger</key>

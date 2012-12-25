@@ -1,12 +1,12 @@
 //
-//  MonacaTabBarController+Top.m
+//  MFTabBarController+Top.m
 //  MonacaFramework
 //
 //  Created by Nakagawa Hiroki on 12/02/17.
 //  Copyright (c) 2012年 ASIAL CORPORATION. All rights reserved.
 //
 
-#import "MonacaTabBarController+Top.h"
+#import "MFTabBarController+Top.h"
 
 
 // Supports iOS4. Cannot use setTintColor method in iOS4.
@@ -19,7 +19,7 @@ setBackgroundColor(NSArray *components, NCToolbar *toolbar) {
         // Register component's view.
         NSString *cid = [(NSDictionary *)[components objectAtIndex:i] objectForKey:kNCTypeID];
         if (cid) {
-            [[Utility currentTabBarController].viewDict setObject:view forKey:cid];
+            [[MFUtility currentTabBarController].viewDict setObject:view forKey:cid];
         }
         [NCButtonBuilder setUpdatedTag:view];
         
@@ -36,7 +36,7 @@ setBackgroundColor(NSArray *components, NCToolbar *toolbar) {
 
 
 
-@implementation MonacaTabBarController (Top)
+@implementation MFTabBarController (Top)
 
 - (NSMutableDictionary *)dictionaryWithTopBarStyle {
     NSMutableDictionary *style = [[self.ncManager.properties objectForKey:kNCPositionTop] objectForKey:kNCTypeStyle];
@@ -54,9 +54,9 @@ setBackgroundColor(NSArray *components, NCToolbar *toolbar) {
         [items addObject:container.component];
     }
     
-    UIInterfaceOrientation orientation = [Utility currentInterfaceOrientation];
-    double width = [Device widthOfWindow:orientation];
-    double height = [Device heightOfNavigationBar:orientation];
+    UIInterfaceOrientation orientation = [MFUtility currentInterfaceOrientation];
+    double width = [MFDevice widthOfWindow:orientation];
+    double height = [MFDevice heightOfNavigationBar:orientation];
     NCToolbar *toolbar = [[NCToolbar alloc] initWithFrame:CGRectMake(0.0f, 0.0f, width, height)];
     [toolbar setBackgroundColor:[UIColor clearColor]];
     toolbar.autoresizingMask = UIViewAutoresizingFlexibleHeight;
@@ -96,9 +96,9 @@ setBackgroundColor(NSArray *components, NCToolbar *toolbar) {
         [items addObject:container.component];
     }
     
-    UIInterfaceOrientation orientation = [Utility currentInterfaceOrientation];
-    double width = [Device widthOfWindow:orientation];
-    double height = [Device heightOfNavigationBar:orientation];
+    UIInterfaceOrientation orientation = [MFUtility currentInterfaceOrientation];
+    double width = [MFDevice widthOfWindow:orientation];
+    double height = [MFDevice heightOfNavigationBar:orientation];
     NCToolbar *toolbar = [[NCToolbar alloc] initWithFrame:CGRectMake(0.0f, 0.0f, width, height)];
     [toolbar setBackgroundColor:[UIColor clearColor]];
     toolbar.autoresizingMask = UIViewAutoresizingFlexibleHeight;
@@ -194,7 +194,7 @@ setBackgroundColor(NSArray *components, NCToolbar *toolbar) {
     }
 }
 
-- (MonacaTabBarController *)applyTopToolbar:(NSDictionary *)style {
+- (MFTabBarController *)applyTopToolbar:(NSDictionary *)style {
     // Visibility.
     BOOL hidden = isFalse([style objectForKey:kNCStyleVisibility]);
     if (hidden != self.navigationController.navigationBar.hidden) {
@@ -297,14 +297,14 @@ setBackgroundColor(NSArray *components, NCToolbar *toolbar) {
     return self;
 }
 
-- (MonacaTabBarController *)updateTopToolbar:(NSDictionary *)style {
+- (MFTabBarController *)updateTopToolbar:(NSDictionary *)style {
     NSMutableDictionary *topBarStyle = [NSMutableDictionary dictionaryWithDictionary:[self dictionaryWithTopBarStyle]];
     [topBarStyle addEntriesFromDictionary:style];
     [self applyTopToolbar:topBarStyle];
     return self;
 }
 
-- (MonacaTabBarController *)setTopToolbar:(NSDictionary *)style {
+- (MFTabBarController *)setTopToolbar:(NSDictionary *)style {
     NSMutableDictionary *topBarStyle = [NSMutableDictionary dictionaryWithDictionary:[self dictionaryWithTopBarStyle]];
     [topBarStyle addEntriesFromDictionary:style];
     [self applyTopToolbar:topBarStyle];

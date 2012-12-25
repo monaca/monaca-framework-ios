@@ -7,8 +7,8 @@
 //
 
 #import "CDVCamera+MonacaAction.h"
-#import "MonacaViewController.h"
-#import "Utility.h"
+#import "MFViewController.h"
+#import "MFUtility.h"
 
 
 
@@ -16,7 +16,7 @@
 
 - (UIViewController *)viewController
 {
-    return [Utility getAppDelegate].viewController;
+    return [MFUtility getAppDelegate].viewController;
 }
 
 @end
