@@ -13,6 +13,7 @@
 #import "MFTabBarController.h"
 #import "NativeComponents.h"
 #import "MFSecureFileURLProtocol.h"
+#import "MonacaQueryParamURLProtocol.h"
 #import "CDVViewController.h"
 #import "CDVSplashScreen.h"
 #import "MFUtility.h"
@@ -52,11 +53,12 @@
     }
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.viewController = [[MFViewController alloc] initWithFileName:@"index.html" query:nil];
+    self.viewController = [[MFViewController alloc] initWithFileName:@"index.html"];
     [MFUtility setupMonacaViewController:self.viewController];
     
     self.monacaNavigationController = [[MFNavigationController alloc] initWithRootViewController:self.viewController];
     
+    [NSURLProtocol registerClass:[MonacaQueryParamURLProtocol class]];
     [MFSecureFileURLProtocol registerMonacaURLProtocol];
     
     self.window.rootViewController = self.monacaNavigationController;

@@ -147,7 +147,9 @@
     NSString *query = [self getQueryFromPluginArguments:arguments urlString:relativeUrlString];
     NSString *urlStringWithoutQuery = [[relativeUrlString componentsSeparatedByString:@"?"] objectAtIndex:0];
 
-    MFViewController *viewController = [[MFViewController alloc] initWithFileName:urlStringWithoutQuery query:query];
+    MFViewController *viewController = [[MFViewController alloc] initWithFileName:urlStringWithoutQuery];
+    [viewController.cdvViewController.webView loadRequest:[self createRequest:urlStringWithoutQuery withQuery:query]];
+
     [self setupViewController:viewController options:options];
     [[self class] changeDelegate:viewController];
 
@@ -178,7 +180,9 @@
     NSString *query = [self getQueryFromPluginArguments:arguments urlString:relativeUrlString];
     NSString *urlStringWithoutQuery = [[relativeUrlString componentsSeparatedByString:@"?"] objectAtIndex:0];
     
-    MFViewController *viewController = [[MFViewController alloc] initWithFileName:urlStringWithoutQuery query:query];
+    MFViewController *viewController = [[MFViewController alloc] initWithFileName:urlStringWithoutQuery];
+    [viewController.cdvViewController.webView loadRequest:[self createRequest:urlStringWithoutQuery withQuery:query]];
+
     [self setupViewController:viewController options:options];
     [[self class] changeDelegate:viewController];
 

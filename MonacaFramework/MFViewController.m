@@ -121,7 +121,7 @@
     return self;
 }
 
-- (id)initWithFileName:(NSString *)fileName query:(NSString *)aQuery{
+- (id)initWithFileName:(NSString *)fileName{
     self = [self init];
     if (nil != self) {
         cdvViewController = [[CDVViewController alloc] init];
@@ -131,7 +131,6 @@
         self.recall = NO;
         self.previousPath = nil;
         isFirstRendering = YES;
-        initialQuery = aQuery;
         interfaceOrientationUnspecified = YES;
         interfaceOrientation = UIInterfaceOrientationPortrait;
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivedOrientationChange)
@@ -304,7 +303,7 @@
     }
     // ---
 
-    if (self.recall == NO && [url isFileURL]) {
+    if ([url isFileURL]) {
         NSMutableDictionary *info = [NSMutableDictionary dictionary];
         [info setObject:[url path] forKey:@"path"];
         [MFEvent dispatchEvent:monacaEventOpenPage withInfo:info];
@@ -335,6 +334,7 @@
 
         @try {
             if (cdvViewController.webView.tag != kWebViewIgnoreStyle) {
+                cdvViewController.webView.tag = kWebViewNormal;
                 // Apply user interface definitions.
                 NSDictionary *uiDict = [self parseJSONFile:uipath];
 
@@ -346,59 +346,15 @@
                 // when use splash screen, dosen't show native component. @see monacaSplashScreen.
                 uiSetting = [NSMutableDictionary dictionaryWithDictionary:uiDict];
 
-                // タブバーが存在し、かつ activeIndex が指定されている場合はその html ファイルを読む
-                NSMutableDictionary *bottomDict = [uiDict objectForKey:kNCPositionBottom];
-                NSString *containerType = [bottomDict objectForKey:kNCTypeContainer];
-                if ([containerType isEqualToString:kNCContainerTabbar]) {
-                    NSMutableDictionary *style = [bottomDict objectForKey:kNCTypeStyle];
-                    NSArray *items = [bottomDict objectForKey:kNCTypeItems];
-                    int activeIndex = [[style objectForKey:kNCStyleActiveIndex] intValue];
-                    if (activeIndex != 0) {
-                        NSString *dirpath = [filepath stringByDeletingLastPathComponent];
-                        filepath = [NSString stringWithFormat:@"%@/%@", dirpath, [[items objectAtIndex:activeIndex] objectForKey:kNCTypeLink]];
-                        // 初回表示時activeIndexが0以外の場合には、ここで指定してpreviousPathをactiveIndexの示すパスに対応させる。
-                        self.previousPath = filepath;
-                    }
-                }
+            } else {
+                cdvViewController.webView.tag = kWebViewNormal;
             }
-            cdvViewController.webView.tag = kWebViewNormal;
         }
         @catch (NSException *exception) {
             cdvViewController.webView.tag = kWebViewNormal;
             [[MFUtility currentTabBarController] applyUserInterface:nil];
         }
-
-        NSString *html = [NSString stringWithContentsOfFile:filepath encoding:NSUTF8StringEncoding error:nil];
-#ifndef DISABLE_MONACA_TEMPLATE_ENGINE
-        NSURL *url = ((NSURL *)[NSURL fileURLWithPath:filepath]);
-        html = [MonacaTemplateEngine compileFromString:html path:url.path];
-#else
-        if (nil == html) {
-            [NSException raise:@"RuntimeException" format:@"File Not Found"];
-        }
-#endif  // DISABLE_MONACA_TEMPLATE_ENGINE
-        // query params---
-        NSString *query;
-        if (isFirstRendering){
-            query = initialQuery;
-            isFirstRendering = NO;
-        }else {
-            query = request.URL.query;
-        }
-        html = [MFUtility insertMonacaQueryParams:html query:query];
-        //----------
-        html = [self hookForLoadedHTML:html request:request];
-
-        // The |loadHTMLString| method calls the |webView:shouldStartLoadWithRequest|
-        // method, so infinite loop occurs. We stop it by |recall| flag.
-        self.recall = YES;
-        NSString *basepath = [[NSURL fileURLWithPath:filepath] description];
-        [webView_ loadHTMLString:html baseURL:[NSURL URLWithString:basepath]];
-
-        return NO;
     }
-    
-    self.recall = NO;
     return [cdvViewController webView:webView_ shouldStartLoadWithRequest:request navigationType:navigationType];
 }
 

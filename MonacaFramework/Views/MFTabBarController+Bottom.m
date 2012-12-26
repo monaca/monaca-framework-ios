@@ -432,6 +432,22 @@ stringByRelativePath(NSString *relativePath) {
         [self setSelectedIndex:self.activeIndex];
         [delegate.viewController.cdvViewController.webView removeFromSuperview];
         [((UIViewController *)[controllers objectAtIndex:self.activeIndex]).view addSubview:delegate.viewController.cdvViewController.webView];
+            // タブバーが存在し、かつ activeIndex が指定されている場合はその html ファイルを読む
+        NSString *containerType = [bottomBarStyle objectForKey:kNCTypeContainer];
+        if ([containerType isEqualToString:kNCContainerTabbar]) {
+            NSMutableDictionary *style = [bottomBarStyle objectForKey:kNCTypeStyle];
+            NSArray *items = [bottomBarStyle objectForKey:kNCTypeItems];
+            int activeIndex = [[style objectForKey:kNCStyleActiveIndex] intValue];
+            NSString *dirpath = [delegate.viewController.previousPath stringByDeletingLastPathComponent];
+            NSString *linkpath = [[items objectAtIndex:activeIndex] objectForKey:kNCTypeLink];
+            if ([delegate.viewController.previousPath lastPathComponent] != [linkpath lastPathComponent]) {
+                // 初回表示時activeIndexが0以外の場合には、ここで指定してpreviousPathをactiveIndexの示すパスに対応させる。
+                NSString *filepath = [NSString stringWithFormat:@"%@/%@", dirpath, [[items objectAtIndex:activeIndex] objectForKey:kNCTypeLink]];
+                delegate.viewController.previousPath = filepath;
+                delegate.viewController.cdvViewController.webView.tag = kWebViewIgnoreStyle;
+                [delegate.viewController.cdvViewController.webView loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:filepath]]];
+            }
+        }
         isInitialized_ = YES;
     }
     
