@@ -184,7 +184,6 @@
 		3E4F518515A05BF10054EB23 /* NCTitleView.h in Headers */ = {isa = PBXBuildFile; fileRef = F5E0F7D91506116900DC7988 /* NCTitleView.h */; };
 		3E4F518615A05BF10054EB23 /* NCToolbar.h in Headers */ = {isa = PBXBuildFile; fileRef = F5E0F7DB1506116900DC7988 /* NCToolbar.h */; };
 		3E4F518715A05BF10054EB23 /* UILabel+Resize.h in Headers */ = {isa = PBXBuildFile; fileRef = F5E0F7DD1506116900DC7988 /* UILabel+Resize.h */; };
-		3E4F518815A05BF10054EB23 /* MonacaTemplateEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = F5E0F7F81506117E00DC7988 /* MonacaTemplateEngine.h */; };
 		3E4F51B315A05BF10054EB23 /* NCButton.h in Headers */ = {isa = PBXBuildFile; fileRef = D44C9E291592ED86006372F3 /* NCButton.h */; };
 		3E4F51B415A05BF10054EB23 /* NCSearchBar.h in Headers */ = {isa = PBXBuildFile; fileRef = D44C9E2B1592ED86006372F3 /* NCSearchBar.h */; };
 		3E4F51B515A05BF10054EB23 /* MFSecureFileURLProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E7FD31E159EA3ED00E85C81 /* MFSecureFileURLProtocol.h */; };
@@ -265,8 +264,6 @@
 		3EE0E80A1664B78000F1E677 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EE0E8091664B78000F1E677 /* AssetsLibrary.framework */; };
 		3EE0E80B1664BA8200F1E677 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EE0E8091664B78000F1E677 /* AssetsLibrary.framework */; };
 		3EE0E80C1664BA9200F1E677 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EE0E8071664B69300F1E677 /* CoreVideo.framework */; };
-		3EFE995F16170B6F004D0482 /* libCrossPlatformTemplater.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EFE995E16170B6F004D0482 /* libCrossPlatformTemplater.a */; };
-		3EFE996116170B8A004D0482 /* libCrossPlatformTemplater.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EFE995E16170B6F004D0482 /* libCrossPlatformTemplater.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -394,7 +391,6 @@
 		3EDD681316155D0F0018698B /* ChildBrowserViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChildBrowserViewController.xib; sourceTree = "<group>"; };
 		3EE0E8071664B69300F1E677 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		3EE0E8091664B78000F1E677 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
-		3EFE995E16170B6F004D0482 /* libCrossPlatformTemplater.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libCrossPlatformTemplater.a; sourceTree = "<group>"; };
 		D44C9E291592ED86006372F3 /* NCButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCButton.h; sourceTree = "<group>"; };
 		D44C9E2A1592ED86006372F3 /* NCButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCButton.m; sourceTree = "<group>"; };
 		D44C9E2B1592ED86006372F3 /* NCSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCSearchBar.h; sourceTree = "<group>"; };
@@ -448,7 +444,6 @@
 		F5E0F7DC1506116900DC7988 /* NCToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCToolbar.m; sourceTree = "<group>"; };
 		F5E0F7DD1506116900DC7988 /* UILabel+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+Resize.h"; sourceTree = "<group>"; };
 		F5E0F7DE1506116900DC7988 /* UILabel+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Resize.m"; sourceTree = "<group>"; };
-		F5E0F7F81506117E00DC7988 /* MonacaTemplateEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonacaTemplateEngine.h; sourceTree = "<group>"; };
 		F5EF734214EE84A8003B7BA5 /* MFTabBarController+Bottom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MFTabBarController+Bottom.h"; sourceTree = "<group>"; };
 		F5EF734314EE84A8003B7BA5 /* MFTabBarController+Bottom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MFTabBarController+Bottom.m"; sourceTree = "<group>"; };
 		F5EF734B14EE8AA1003B7BA5 /* MFTabBarController+Top.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MFTabBarController+Top.h"; sourceTree = "<group>"; };
@@ -475,7 +470,6 @@
 				3E4F516E15A05BF10054EB23 /* QuartzCore.framework in Frameworks */,
 				3E4F516F15A05BF10054EB23 /* SystemConfiguration.framework in Frameworks */,
 				3E4F517015A05BF10054EB23 /* AudioToolbox.framework in Frameworks */,
-				3EFE995F16170B6F004D0482 /* libCrossPlatformTemplater.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -499,7 +493,6 @@
 				3E7FD2B7159D8F2300E85C81 /* CoreGraphics.framework in Frameworks */,
 				3E7FD2B5159D8F2300E85C81 /* UIKit.framework in Frameworks */,
 				3E7FD2B6159D8F2300E85C81 /* Foundation.framework in Frameworks */,
-				3EFE996116170B8A004D0482 /* libCrossPlatformTemplater.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -823,18 +816,8 @@
 				3E8F180A16187F60005B09FC /* PhoneGap */,
 				3E0F08FC15A81D000025EFC2 /* PGPlugins */,
 				3E4F50FC15A040DE0054EB23 /* Transit */,
-				F54CEB551500D1A000516444 /* TemplateEngine */,
 			);
 			path = Monaca;
-			sourceTree = "<group>";
-		};
-		F54CEB551500D1A000516444 /* TemplateEngine */ = {
-			isa = PBXGroup;
-			children = (
-				3EFE995E16170B6F004D0482 /* libCrossPlatformTemplater.a */,
-				F5E0F7F81506117E00DC7988 /* MonacaTemplateEngine.h */,
-			);
-			path = TemplateEngine;
 			sourceTree = "<group>";
 		};
 		F54CEB581500D1A000516444 /* Vendor */ = {
@@ -896,7 +879,6 @@
 				3E4F518515A05BF10054EB23 /* NCTitleView.h in Headers */,
 				3E4F518615A05BF10054EB23 /* NCToolbar.h in Headers */,
 				3E4F518715A05BF10054EB23 /* UILabel+Resize.h in Headers */,
-				3E4F518815A05BF10054EB23 /* MonacaTemplateEngine.h in Headers */,
 				3E4F51B315A05BF10054EB23 /* NCButton.h in Headers */,
 				3E4F51B415A05BF10054EB23 /* NCSearchBar.h in Headers */,
 				3E4F51B515A05BF10054EB23 /* MFSecureFileURLProtocol.h in Headers */,

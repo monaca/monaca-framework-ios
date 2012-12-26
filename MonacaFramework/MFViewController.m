@@ -9,7 +9,6 @@
 #import "MFViewController.h"
 #import "MFTabBarController.h"
 #import "JSONKit.h"
-#import "MonacaTemplateEngine.h"
 #import "MFTransitPlugin.h"
 #import "MFUtility.h"
 #import "MFEvent.h"

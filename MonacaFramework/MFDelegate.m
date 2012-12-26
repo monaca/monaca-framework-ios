@@ -18,10 +18,6 @@
 #import "CDVSplashScreen.h"
 #import "MFUtility.h"
 
-#ifndef DISABLE_MONACA_TEMPLATE_ENGINE
-#import "MonacaTemplateEngine.h"
-#endif  // DISABLE_MONACA_TEMPLATE_ENGINE
-
 @class MFViewController;
 
 // =====================================================================
