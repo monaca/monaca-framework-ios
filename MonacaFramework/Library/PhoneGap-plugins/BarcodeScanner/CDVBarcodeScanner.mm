@@ -588,8 +588,11 @@ parentViewController:(UIViewController*)parentViewController
      writeImageToSavedPhotosAlbum:image.CGImage
      orientation:ALAssetOrientationUp
      completionBlock:^(NSURL* assetURL, NSError* error){
-         if (error) NSLog(@"   error writing image to library");
-         else       NSLog(@"   wrote image to library %@", assetURL);
+         if (error) {
+             NSLog(@"   error writing image to library");
+         }else {
+             NSLog(@"   wrote image to library %@", assetURL);
+         }
      }
      ];
 }
