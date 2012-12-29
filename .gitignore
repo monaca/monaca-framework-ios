@@ -16,9 +16,6 @@ build/*
 MonacaFramework.xcodeproj/project.xcworkspace/xcuserdata/*.xcuserdatad/
 MonacaFramework.xcodeproj/xcuserdata/*.xcuserdatad/
 
-ForteTemplateEngine.xcodeproj/project.xcworkspace
-ForteTemplateEngine.xcodeproj/xcuserdata
-
 MonacaSandbox/www/*
 !MonacaSandbox/www/.gitignore
 MonacaSandbox/www[a-zA-Z0-9]*
