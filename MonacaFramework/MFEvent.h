@@ -17,6 +17,8 @@
 #define monacaEventWillLoadUIFile @"monacaEventWillLoadUIFile"
 #define monacaEventDidLoadUIFile @"monacaEventDidLoadUIFile"
 #define monacaEventReloadPage @"monacaEventReloadPage"
+#define monacaEventWillCheckSynchingFileList @"monacaEventWillCheckSynchingFileList"
+#define monacaEventDidCheckSynchingFileList @"monacaEventDidCheckSynchingFileList"
 
 @interface MFEvent : NSObject
 + (void)dispatchEvent:(NSString *)eventName withInfo:(NSMutableDictionary *)info;
