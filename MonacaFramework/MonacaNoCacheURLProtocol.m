@@ -11,18 +11,6 @@
 
 @implementation MonacaNoCacheURLProtocol
 
-static BOOL isWork;
-
-+ (void)offURLProtocol
-{
-    isWork = NO;
-}
-
-+ (void)onURLProtocol
-{
-    isWork = YES;
-}
-
 + (BOOL) requestIsCacheEquivalent: (NSURLRequest*)requestA toRequest: (NSURLRequest*)requestB
 {
     return NO;

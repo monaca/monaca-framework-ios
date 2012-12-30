@@ -9,9 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @interface MonacaNoCacheURLProtocol : NSURLProtocol
-+ (void)offURLProtocol;
-+ (void)onURLProtocol;
-
 - (NSHTTPURLResponse *)responseWithNonCacheHeader:(NSURLRequest *)request Data:(NSData *)data;
 
 @end
