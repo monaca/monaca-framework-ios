@@ -89,9 +89,9 @@
  *  convert path (ex 1234/xxxx/www/yyy.html -> www/yyy.html)
  */
 + (NSString *)getWWWShortPath:(NSString *)path{
-    if([path rangeOfString:@"www/"].location == NSNotFound){
+    if (path == nil || [path rangeOfString:@"www/"].location == NSNotFound) {
         return @"";
-    }else{
+    } else {
         NSMutableArray *array = [NSMutableArray arrayWithArray:[path componentsSeparatedByString:@"www/"]];
         if(array.count > 0) [array removeObjectAtIndex:0];
         return [@"www" stringByAppendingPathComponent:[array objectAtIndex:0]];
