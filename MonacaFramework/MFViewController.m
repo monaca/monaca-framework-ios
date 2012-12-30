@@ -285,6 +285,9 @@
         // for link
         errorPath = url.path;
     }
+    if ([request.URL.scheme isEqualToString:@"file"] && [request.URL.absoluteString hasSuffix:@"/"]) {
+        errorPath = request.URL.absoluteString;
+    }
     if (errorPath != nil) {
         NSMutableDictionary *info = [NSMutableDictionary dictionary];
         [info setObject:errorPath forKey:@"path"];
