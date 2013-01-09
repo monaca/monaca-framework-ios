@@ -130,7 +130,9 @@
     NSString *currentDirectory = [[self monacaDelegate].viewController.cdvViewController.webView.request.URL URLByDeletingLastPathComponent].filePathURL.path;
     NSString *urlString = [currentDirectory stringByAppendingPathComponent:filePath];
     NSMutableArray *array = [NSMutableArray arrayWithArray:[urlString componentsSeparatedByString:@"www/"]];
-    [array removeObjectAtIndex:0];
+    if (array.count > 0) {
+        [array removeObjectAtIndex:0];
+    }
     return [[array valueForKey:@"description"] componentsJoinedByString:@""];
 }
 
