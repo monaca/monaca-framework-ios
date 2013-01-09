@@ -135,6 +135,10 @@
 }
 
 + (NSString *)urlEncode:(NSString *)text{
+    if ([text isKindOfClass:[NSString class]] == NO) {
+        NSLog(@"[error] parameter should be string type:%@", text);
+        return @"";
+    }
     CFStringRef cfString = CFURLCreateStringByAddingPercentEscapes(NULL,
                                                                    (CFStringRef)text,
                                                                    NULL,
