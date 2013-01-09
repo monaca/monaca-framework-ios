@@ -269,7 +269,7 @@
     NSURL *url = [[request URL] standardizedURL];
     
     // avoid to open gap schema and about scheme ---
-    if ([url.scheme isEqual:@"gap"] || [url.scheme isEqual:@"http"] || [url.scheme isEqual:@"https"]){
+    if ([url.scheme isEqual:@"gap"] || [url.scheme isEqual:@"http"] || [url.scheme isEqual:@"https"] || [url.scheme isEqual:@"about"]){
         return [cdvViewController webView:webView_ shouldStartLoadWithRequest:request navigationType:navigationType];
     }
     
@@ -297,11 +297,6 @@
         [MFUtility show404PageWithWebView:webView_ path:errorPath];
         
         return NO;
-    }
-    
-    // care about scheme after FW checked 404
-    if ([url.scheme isEqual:@"about"]){
-        return [cdvViewController webView:webView_ shouldStartLoadWithRequest:request navigationType:navigationType];
     }
     // ---
 
