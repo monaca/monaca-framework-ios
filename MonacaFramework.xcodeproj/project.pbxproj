@@ -112,6 +112,7 @@
 		3E0B193D169D8E24001A35BB /* GHUnitIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E0B1935169D8E24001A35BB /* GHUnitIOS.framework */; };
 		3E0B193E169D8E24001A35BB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0B1936169D8E24001A35BB /* main.m */; };
 		3E0B1941169D8FD7001A35BB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E7FD2BE159D8F2400E85C81 /* main.m */; };
+		3E0B1944169D904A001A35BB /* MFUtilityTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0B1943169D904A001A35BB /* MFUtilityTest.m */; };
 		3E0F090015A81D000025EFC2 /* MFPGNativeComponent.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E0F08FD15A81D000025EFC2 /* MFPGNativeComponent.h */; };
 		3E0F090215A81D000025EFC2 /* MFPGNativeComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0F08FE15A81D000025EFC2 /* MFPGNativeComponent.m */; };
 		3E0F090315A81D000025EFC2 /* MFPGNativeComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0F08FE15A81D000025EFC2 /* MFPGNativeComponent.m */; };
@@ -375,6 +376,8 @@
 		3E0B1936169D8E24001A35BB /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3E0B1937169D8E24001A35BB /* MFUnitTest-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MFUnitTest-Info.plist"; sourceTree = "<group>"; };
 		3E0B1938169D8E24001A35BB /* MFUnitTest-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MFUnitTest-Prefix.pch"; sourceTree = "<group>"; };
+		3E0B1942169D904A001A35BB /* MFUtilityTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFUtilityTest.h; sourceTree = "<group>"; };
+		3E0B1943169D904A001A35BB /* MFUtilityTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFUtilityTest.m; sourceTree = "<group>"; };
 		3E0F08FD15A81D000025EFC2 /* MFPGNativeComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFPGNativeComponent.h; sourceTree = "<group>"; };
 		3E0F08FE15A81D000025EFC2 /* MFPGNativeComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFPGNativeComponent.m; sourceTree = "<group>"; };
 		3E47C23F166F004600F97AAA /* CDV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDV.h; sourceTree = "<group>"; };
@@ -630,6 +633,8 @@
 		3E0B1931169D8E24001A35BB /* MFUnitTest */ = {
 			isa = PBXGroup;
 			children = (
+				3E0B1942169D904A001A35BB /* MFUtilityTest.h */,
+				3E0B1943169D904A001A35BB /* MFUtilityTest.m */,
 				3E0B1935169D8E24001A35BB /* GHUnitIOS.framework */,
 				3E0B1936169D8E24001A35BB /* main.m */,
 				3E0B1937169D8E24001A35BB /* MFUnitTest-Info.plist */,
@@ -1289,6 +1294,7 @@
 				3E0B190C169D8CD7001A35BB /* MonacaQueryParamURLProtocol.m in Sources */,
 				3E0B190D169D8CD7001A35BB /* MonacaNoCacheURLProtocol.m in Sources */,
 				3E0B193E169D8E24001A35BB /* main.m in Sources */,
+				3E0B1944169D904A001A35BB /* MFUtilityTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
