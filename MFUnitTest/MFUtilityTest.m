@@ -26,4 +26,21 @@
     GHAssertEqualStrings([MFUtility insertMonacaQueryParams:@"<html></html>" query:@"key=hoge"], @"<script>window.monaca = window.monaca || {};window.monaca.queryParams = {\"key\":\"hoge\"};</script><html></html>", nil);
 }
 
+- (void)testIsFileAccess
+{
+    // Supporting Filesにファイルが置いてある事が前提
+    NSString *bundlePath = [[NSBundle mainBundle] bundlePath] ;
+    NSURLRequest *request;
+    request = [NSURLRequest requestWithURL:[NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/exist.html", bundlePath]]];
+    GHAssertEquals([MonacaQueryParamURLProtocol isFileAccess:request], YES, nil);
+    request = [NSURLRequest requestWithURL:[NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/notexist.html", bundlePath]]];
+    GHAssertEquals([MonacaQueryParamURLProtocol isFileAccess:request], NO, nil);
+    request = [NSURLRequest requestWithURL:[NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/exist.css", bundlePath]]];
+    GHAssertEquals([MonacaQueryParamURLProtocol isFileAccess:request], NO, nil);
+    request = [NSURLRequest requestWithURL:[NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/notexist.css", bundlePath]]];
+    GHAssertEquals([MonacaQueryParamURLProtocol isFileAccess:request], NO, nil);
+    request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://notexist.html"]]];
+    GHAssertEquals([MonacaQueryParamURLProtocol isFileAccess:request], NO, nil);
+    
+}
 @end

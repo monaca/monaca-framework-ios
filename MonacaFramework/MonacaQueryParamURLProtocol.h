@@ -11,6 +11,9 @@
 #import "MonacaNoCacheURLProtocol.h"
 
 @interface MonacaQueryParamURLProtocol : MonacaNoCacheURLProtocol
+
++ (BOOL)isFileAccess:(NSURLRequest *)request;
+
 - (NSString *)InsertMonacaQueryParams:(NSURLRequest *)request;
 
 @end
