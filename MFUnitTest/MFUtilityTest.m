@@ -21,4 +21,9 @@
     GHAssertEqualStrings([MFUtility urlEncode:[NSArray array]], @"", nil);
 }
 
+- (void)testInsertMonacaQueryParams
+{
+    GHAssertEqualStrings([MFUtility insertMonacaQueryParams:@"<html></html>" query:@"key=hoge"], @"<script>window.monaca = window.monaca || {};window.monaca.queryParams = {\"key\":\"hoge\"};</script><html></html>", nil);
+}
+
 @end

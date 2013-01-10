@@ -19,7 +19,10 @@ static BOOL isWork = YES;
     // targets are html file with file protocol.
     if (isWork && request.URL.port==nil && [request.URL.scheme isEqualToString:@"file"] &&
         [request.URL.pathExtension isEqualToString:@"html"]) {
-        return YES;
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        if ([fileManager fileExistsAtPath:request.URL.path]) {
+            return YES;
+        }
     }
     return NO;
 }
