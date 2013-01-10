@@ -399,7 +399,11 @@
 }
 
 - (void)webView:(UIWebView *)_webView didFailLoadWithError:(NSError *)error {
-    [self.cdvViewController webView:_webView didFailLoadWithError:error];
+    if (error.code == -999) {
+        NSLog(@"Failed to load webpage with debug: %@", [error localizedDescription]);
+    } else {
+        [self.cdvViewController webView:_webView didFailLoadWithError:error];
+    }
 }
 
 #pragma mark - splash screen
