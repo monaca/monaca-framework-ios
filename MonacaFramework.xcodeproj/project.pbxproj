@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E885C9A169E8DFB001DB4B1 /* exist.html in Resources */ = {isa = PBXBuildFile; fileRef = 0E885C99169E8DFB001DB4B1 /* exist.html */; };
+		0E885C9C169E9583001DB4B1 /* exist.css in Resources */ = {isa = PBXBuildFile; fileRef = 0E885C9B169E9583001DB4B1 /* exist.css */; };
 		0ED18B4A1683020800834099 /* MonacaNoCacheURLProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 0ED18B461683020800834099 /* MonacaNoCacheURLProtocol.h */; };
 		0ED18B4B1683020800834099 /* MonacaNoCacheURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ED18B471683020800834099 /* MonacaNoCacheURLProtocol.m */; };
 		0ED18B4C1683020800834099 /* MonacaQueryParamURLProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 0ED18B481683020800834099 /* MonacaQueryParamURLProtocol.h */; };
@@ -367,6 +369,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0E885C99169E8DFB001DB4B1 /* exist.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = exist.html; sourceTree = "<group>"; };
+		0E885C9B169E9583001DB4B1 /* exist.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = exist.css; sourceTree = "<group>"; };
 		0ED18B461683020800834099 /* MonacaNoCacheURLProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonacaNoCacheURLProtocol.h; sourceTree = "<group>"; };
 		0ED18B471683020800834099 /* MonacaNoCacheURLProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonacaNoCacheURLProtocol.m; sourceTree = "<group>"; };
 		0ED18B481683020800834099 /* MonacaQueryParamURLProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonacaQueryParamURLProtocol.h; sourceTree = "<group>"; };
@@ -630,6 +634,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0E885C97169E8CD0001DB4B1 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				0E885C99169E8DFB001DB4B1 /* exist.html */,
+				0E885C9B169E9583001DB4B1 /* exist.css */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		3E0B1931169D8E24001A35BB /* MFUnitTest */ = {
 			isa = PBXGroup;
 			children = (
@@ -639,6 +652,7 @@
 				3E0B1936169D8E24001A35BB /* main.m */,
 				3E0B1937169D8E24001A35BB /* MFUnitTest-Info.plist */,
 				3E0B1938169D8E24001A35BB /* MFUnitTest-Prefix.pch */,
+				0E885C97169E8CD0001DB4B1 /* Supporting Files */,
 			);
 			path = MFUnitTest;
 			sourceTree = "<group>";
@@ -1180,6 +1194,8 @@
 				3E0B1927169D8CD7001A35BB /* ChildBrowser.bundle in Resources */,
 				3E0B1928169D8CD7001A35BB /* ChildBrowserViewController.xib in Resources */,
 				3E0B1929169D8CD7001A35BB /* Default-568h@2x.png in Resources */,
+				0E885C9A169E8DFB001DB4B1 /* exist.html in Resources */,
+				0E885C9C169E9583001DB4B1 /* exist.css in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

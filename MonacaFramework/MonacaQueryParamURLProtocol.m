@@ -17,11 +17,18 @@ static BOOL isWork = YES;
 + (BOOL)canInitWithRequest:(NSURLRequest *)request
 {
     // targets are html file with file protocol.
-    if (isWork && request.URL.port==nil && [request.URL.scheme isEqualToString:@"file"] &&
-        [request.URL.pathExtension isEqualToString:@"html"]) {
+    if (isWork && [[self class] isFileAccess:request]) {
         return YES;
     }
     return NO;
+}
+
++ (BOOL)isFileAccess:(NSURLRequest *)request
+{
+    return (request.URL.port==nil &&
+            [request.URL.scheme isEqualToString:@"file"] &&
+            [request.URL.pathExtension isEqualToString:@"html"] &&
+            [[NSFileManager defaultManager] fileExistsAtPath:request.URL.path]);
 }
 
 - (void)startLoading
