@@ -42,8 +42,9 @@ updateButton(UIBarButtonItem *button, NSDictionary *style) {
     NSString *innerImagePath = [style objectForKey:kNCStyleInnerImage];
 
     if (innerImagePath) {
-        NSURL *appWWWURL = [((MFDelegate *)[[UIApplication sharedApplication] delegate]) getBaseURL];
-        NSString *imagePath = [[appWWWURL path] stringByAppendingPathComponent:innerImagePath];
+        MFDelegate *mfDelegate = (MFDelegate *)[UIApplication sharedApplication].delegate;
+        NSString *currentDirectory = [mfDelegate.viewController.previousPath stringByDeletingLastPathComponent];
+        NSString *imagePath = [currentDirectory stringByAppendingPathComponent:innerImagePath];
         UIImage *image = [UIImage imageWithContentsOfFile:imagePath];
         if (image) {
             [button setImage:image];
@@ -78,8 +79,9 @@ updateButton(UIBarButtonItem *button, NSDictionary *style) {
     
     NSString *imageName = [style objectForKey:kNCStyleImage];
     if (imageName) {
-        NSURL *appWWWURL = [((MFDelegate *)[[UIApplication sharedApplication] delegate]) getBaseURL];
-        NSString *imagePath = [[appWWWURL path] stringByAppendingPathComponent:imageName];
+        MFDelegate *mfDelegate = (MFDelegate *)[UIApplication sharedApplication].delegate;
+        NSString *currentDirectory = [mfDelegate.viewController.previousPath stringByDeletingLastPathComponent];
+        NSString *imagePath = [currentDirectory stringByAppendingPathComponent:imageName];
         UIImage *image = [UIImage imageWithContentsOfFile:imagePath];
         
         UIButton *imageButtonView = (UIButton*)((NCButton*)button).imageButtonView;

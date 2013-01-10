@@ -21,8 +21,9 @@ updateTabberItem(UITabBarItem *item, NSDictionary *style) {
     NSString *imageName = [style objectForKey:kNCStyleImage];
     UIImage *image = nil;
     if (imageName) {
-        NSURL *appWWWURL = [((MFDelegate *)[[UIApplication sharedApplication] delegate]) getBaseURL];
-        NSString *imagePath = [[appWWWURL path] stringByAppendingPathComponent:imageName];
+        MFDelegate *mfDelegate = (MFDelegate *)[UIApplication sharedApplication].delegate;
+        NSString *currentDirectory = [mfDelegate.viewController.previousPath stringByDeletingLastPathComponent];
+        NSString *imagePath = [currentDirectory stringByAppendingPathComponent:imageName];
         image = [UIImage imageWithContentsOfFile:imagePath];
         if (image) {
             item.image = image;
