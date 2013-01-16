@@ -23,7 +23,14 @@
 
 - (void)testInsertMonacaQueryParams
 {
+    GHAssertEqualStrings([MFUtility insertMonacaQueryParams:@"" query:@"key=hoge"], @"<script>window.monaca = window.monaca || {};window.monaca.queryParams = {\"key\":\"hoge\"};</script>", nil);
     GHAssertEqualStrings([MFUtility insertMonacaQueryParams:@"<html></html>" query:@"key=hoge"], @"<script>window.monaca = window.monaca || {};window.monaca.queryParams = {\"key\":\"hoge\"};</script><html></html>", nil);
+    GHAssertEqualStrings([MFUtility insertMonacaQueryParams:@"<html><head></head></html>" query:@"key=hoge"], @"<html><head><script>window.monaca = window.monaca || {};window.monaca.queryParams = {\"key\":\"hoge\"};</script></head></html>", nil);
+
+    GHAssertEqualStrings([MFUtility insertMonacaQueryParams:@"" query:@"key=1"], @"<script>window.monaca = window.monaca || {};window.monaca.queryParams = {\"key\":\"1\"};</script>", nil);
+    GHAssertEqualStrings([MFUtility insertMonacaQueryParams:@"" query:@"key="], @"<script>window.monaca = window.monaca || {};window.monaca.queryParams = {\"key\":\"\"};</script>", nil);
+    GHAssertEqualStrings([MFUtility insertMonacaQueryParams:@"" query:@"key=hoge&foo=bar"], @"<script>window.monaca = window.monaca || {};window.monaca.queryParams = {\"key\":\"hoge\",\"foo\":\"bar\"};</script>", nil);
+    GHAssertEqualStrings([MFUtility insertMonacaQueryParams:@"" query:@"key=&foo=bar"], @"<script>window.monaca = window.monaca || {};window.monaca.queryParams = {\"key\":\"\",\"foo\":\"bar\"};</script>", nil);
 }
 
 - (void)testIsFileAccess
