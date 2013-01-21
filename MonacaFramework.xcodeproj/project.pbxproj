@@ -235,9 +235,6 @@
 		3E4E8B0616AD14A500653A9F /* MFJSInterfaceProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4E8B0416AD14A500653A9F /* MFJSInterfaceProtocol.m */; };
 		3E4E8B0716AD14A500653A9F /* MFJSInterfaceProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4E8B0416AD14A500653A9F /* MFJSInterfaceProtocol.m */; };
 		3E4E8B0816AD14A500653A9F /* MFJSInterfaceProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4E8B0416AD14A500653A9F /* MFJSInterfaceProtocol.m */; };
-		3E4E8B0B16AD14F500653A9F /* MFJSInterfaceProtocolTest.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E4E8B0916AD14F500653A9F /* MFJSInterfaceProtocolTest.h */; };
-		3E4E8B0C16AD14F500653A9F /* MFJSInterfaceProtocolTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4E8B0A16AD14F500653A9F /* MFJSInterfaceProtocolTest.m */; };
-		3E4E8B0D16AD14F500653A9F /* MFJSInterfaceProtocolTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4E8B0A16AD14F500653A9F /* MFJSInterfaceProtocolTest.m */; };
 		3E4E8B0E16AD14F500653A9F /* MFJSInterfaceProtocolTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4E8B0A16AD14F500653A9F /* MFJSInterfaceProtocolTest.m */; };
 		3E4F510715A042E10054EB23 /* MFTransitPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4F50FE15A040DE0054EB23 /* MFTransitPlugin.m */; };
 		3E4F510815A042E50054EB23 /* MFNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4F510315A0419E0054EB23 /* MFNavigationController.m */; };
@@ -1118,7 +1115,6 @@
 				3E4E8AEB16AD122200653A9F /* MonacaNoCacheURLProtocol.h in Headers */,
 				3E4E8AEF16AD122200653A9F /* MonacaQueryParamURLProtocol.h in Headers */,
 				3E4E8B0516AD14A500653A9F /* MFJSInterfaceProtocol.h in Headers */,
-				3E4E8B0B16AD14F500653A9F /* MFJSInterfaceProtocolTest.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1417,7 +1413,6 @@
 				3E4E8AEC16AD122200653A9F /* MonacaNoCacheURLProtocol.m in Sources */,
 				3E4E8AF016AD122200653A9F /* MonacaQueryParamURLProtocol.m in Sources */,
 				3E4E8B0616AD14A500653A9F /* MFJSInterfaceProtocol.m in Sources */,
-				3E4E8B0C16AD14F500653A9F /* MFJSInterfaceProtocolTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1497,7 +1492,6 @@
 				3E4E8AED16AD122200653A9F /* MonacaNoCacheURLProtocol.m in Sources */,
 				3E4E8AF116AD122200653A9F /* MonacaQueryParamURLProtocol.m in Sources */,
 				3E4E8B0716AD14A500653A9F /* MFJSInterfaceProtocol.m in Sources */,
-				3E4E8B0D16AD14F500653A9F /* MFJSInterfaceProtocolTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
