@@ -649,6 +649,9 @@
 		0E885C97169E8CD0001DB4B1 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				3E0B1937169D8E24001A35BB /* MFUnitTest-Info.plist */,
+				3E0B1936169D8E24001A35BB /* main.m */,
+				3E0B1935169D8E24001A35BB /* GHUnitIOS.framework */,
 				0E885C99169E8DFB001DB4B1 /* exist.html */,
 				0E885C9B169E9583001DB4B1 /* exist.css */,
 			);
@@ -660,12 +663,9 @@
 			children = (
 				3E0B1942169D904A001A35BB /* MFUtilityTest.h */,
 				3E0B1943169D904A001A35BB /* MFUtilityTest.m */,
-				3E0B1937169D8E24001A35BB /* MFUnitTest-Info.plist */,
 				3E0B1938169D8E24001A35BB /* MFUnitTest-Prefix.pch */,
 				3E4E8B0916AD14F500653A9F /* MFJSInterfaceProtocolTest.h */,
 				3E4E8B0A16AD14F500653A9F /* MFJSInterfaceProtocolTest.m */,
-				3E0B1936169D8E24001A35BB /* main.m */,
-				3E0B1935169D8E24001A35BB /* GHUnitIOS.framework */,
 				0E885C97169E8CD0001DB4B1 /* Supporting Files */,
 			);
 			path = MFUnitTest;
