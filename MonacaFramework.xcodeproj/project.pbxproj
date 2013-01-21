@@ -231,6 +231,14 @@
 		3E4E8AF016AD122200653A9F /* MonacaQueryParamURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4E8AE616AD122200653A9F /* MonacaQueryParamURLProtocol.m */; };
 		3E4E8AF116AD122200653A9F /* MonacaQueryParamURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4E8AE616AD122200653A9F /* MonacaQueryParamURLProtocol.m */; };
 		3E4E8AF216AD122200653A9F /* MonacaQueryParamURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4E8AE616AD122200653A9F /* MonacaQueryParamURLProtocol.m */; };
+		3E4E8B0516AD14A500653A9F /* MFJSInterfaceProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E4E8B0316AD14A500653A9F /* MFJSInterfaceProtocol.h */; };
+		3E4E8B0616AD14A500653A9F /* MFJSInterfaceProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4E8B0416AD14A500653A9F /* MFJSInterfaceProtocol.m */; };
+		3E4E8B0716AD14A500653A9F /* MFJSInterfaceProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4E8B0416AD14A500653A9F /* MFJSInterfaceProtocol.m */; };
+		3E4E8B0816AD14A500653A9F /* MFJSInterfaceProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4E8B0416AD14A500653A9F /* MFJSInterfaceProtocol.m */; };
+		3E4E8B0B16AD14F500653A9F /* MFJSInterfaceProtocolTest.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E4E8B0916AD14F500653A9F /* MFJSInterfaceProtocolTest.h */; };
+		3E4E8B0C16AD14F500653A9F /* MFJSInterfaceProtocolTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4E8B0A16AD14F500653A9F /* MFJSInterfaceProtocolTest.m */; };
+		3E4E8B0D16AD14F500653A9F /* MFJSInterfaceProtocolTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4E8B0A16AD14F500653A9F /* MFJSInterfaceProtocolTest.m */; };
+		3E4E8B0E16AD14F500653A9F /* MFJSInterfaceProtocolTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4E8B0A16AD14F500653A9F /* MFJSInterfaceProtocolTest.m */; };
 		3E4F510715A042E10054EB23 /* MFTransitPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4F50FE15A040DE0054EB23 /* MFTransitPlugin.m */; };
 		3E4F510815A042E50054EB23 /* MFNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4F510315A0419E0054EB23 /* MFNavigationController.m */; };
 		3E4F513F15A05BF10054EB23 /* MFDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F50460D813B3633B0050803F /* MFDelegate.m */; };
@@ -460,6 +468,10 @@
 		3E4E8AE416AD122200653A9F /* MonacaNoCacheURLProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonacaNoCacheURLProtocol.m; sourceTree = "<group>"; };
 		3E4E8AE516AD122200653A9F /* MonacaQueryParamURLProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonacaQueryParamURLProtocol.h; sourceTree = "<group>"; };
 		3E4E8AE616AD122200653A9F /* MonacaQueryParamURLProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonacaQueryParamURLProtocol.m; sourceTree = "<group>"; };
+		3E4E8B0316AD14A500653A9F /* MFJSInterfaceProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFJSInterfaceProtocol.h; sourceTree = "<group>"; };
+		3E4E8B0416AD14A500653A9F /* MFJSInterfaceProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFJSInterfaceProtocol.m; sourceTree = "<group>"; };
+		3E4E8B0916AD14F500653A9F /* MFJSInterfaceProtocolTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFJSInterfaceProtocolTest.h; sourceTree = "<group>"; };
+		3E4E8B0A16AD14F500653A9F /* MFJSInterfaceProtocolTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFJSInterfaceProtocolTest.m; sourceTree = "<group>"; };
 		3E4F50FD15A040DE0054EB23 /* MFTransitPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFTransitPlugin.h; sourceTree = "<group>"; };
 		3E4F50FE15A040DE0054EB23 /* MFTransitPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFTransitPlugin.m; sourceTree = "<group>"; };
 		3E4F510215A0419E0054EB23 /* MFNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFNavigationController.h; sourceTree = "<group>"; };
@@ -648,10 +660,12 @@
 			children = (
 				3E0B1942169D904A001A35BB /* MFUtilityTest.h */,
 				3E0B1943169D904A001A35BB /* MFUtilityTest.m */,
-				3E0B1935169D8E24001A35BB /* GHUnitIOS.framework */,
-				3E0B1936169D8E24001A35BB /* main.m */,
 				3E0B1937169D8E24001A35BB /* MFUnitTest-Info.plist */,
 				3E0B1938169D8E24001A35BB /* MFUnitTest-Prefix.pch */,
+				3E4E8B0916AD14F500653A9F /* MFJSInterfaceProtocolTest.h */,
+				3E4E8B0A16AD14F500653A9F /* MFJSInterfaceProtocolTest.m */,
+				3E0B1936169D8E24001A35BB /* main.m */,
+				3E0B1935169D8E24001A35BB /* GHUnitIOS.framework */,
 				0E885C97169E8CD0001DB4B1 /* Supporting Files */,
 			);
 			path = MFUnitTest;
@@ -764,6 +778,8 @@
 				3E4E8AE416AD122200653A9F /* MonacaNoCacheURLProtocol.m */,
 				3E4E8AE516AD122200653A9F /* MonacaQueryParamURLProtocol.h */,
 				3E4E8AE616AD122200653A9F /* MonacaQueryParamURLProtocol.m */,
+				3E4E8B0316AD14A500653A9F /* MFJSInterfaceProtocol.h */,
+				3E4E8B0416AD14A500653A9F /* MFJSInterfaceProtocol.m */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -1101,6 +1117,8 @@
 				3E4E8AE716AD122200653A9F /* MFSecureFileURLProtocol.h in Headers */,
 				3E4E8AEB16AD122200653A9F /* MonacaNoCacheURLProtocol.h in Headers */,
 				3E4E8AEF16AD122200653A9F /* MonacaQueryParamURLProtocol.h in Headers */,
+				3E4E8B0516AD14A500653A9F /* MFJSInterfaceProtocol.h in Headers */,
+				3E4E8B0B16AD14F500653A9F /* MFJSInterfaceProtocolTest.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1319,6 +1337,8 @@
 				3E4E8AEA16AD122200653A9F /* MFSecureFileURLProtocol.m in Sources */,
 				3E4E8AEE16AD122200653A9F /* MonacaNoCacheURLProtocol.m in Sources */,
 				3E4E8AF216AD122200653A9F /* MonacaQueryParamURLProtocol.m in Sources */,
+				3E4E8B0816AD14A500653A9F /* MFJSInterfaceProtocol.m in Sources */,
+				3E4E8B0E16AD14F500653A9F /* MFJSInterfaceProtocolTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1396,6 +1416,8 @@
 				3E4E8AE816AD122200653A9F /* MFSecureFileURLProtocol.m in Sources */,
 				3E4E8AEC16AD122200653A9F /* MonacaNoCacheURLProtocol.m in Sources */,
 				3E4E8AF016AD122200653A9F /* MonacaQueryParamURLProtocol.m in Sources */,
+				3E4E8B0616AD14A500653A9F /* MFJSInterfaceProtocol.m in Sources */,
+				3E4E8B0C16AD14F500653A9F /* MFJSInterfaceProtocolTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1474,6 +1496,8 @@
 				3E4E8AE916AD122200653A9F /* MFSecureFileURLProtocol.m in Sources */,
 				3E4E8AED16AD122200653A9F /* MonacaNoCacheURLProtocol.m in Sources */,
 				3E4E8AF116AD122200653A9F /* MonacaQueryParamURLProtocol.m in Sources */,
+				3E4E8B0716AD14A500653A9F /* MFJSInterfaceProtocol.m in Sources */,
+				3E4E8B0D16AD14F500653A9F /* MFJSInterfaceProtocolTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
