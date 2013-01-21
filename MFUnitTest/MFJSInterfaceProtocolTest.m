@@ -10,4 +10,9 @@
 
 @implementation MFJSInterfaceProtocolTest
 
+- (void)testCanInitWithRequest
+{
+    GHAssertEquals([MFJSInterfaceProtocol canInitWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"monaca://action?type=console.log&message=I'm log"]]], YES, @"monca scheme");
+}
+
 @end
