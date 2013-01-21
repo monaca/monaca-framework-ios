@@ -54,6 +54,11 @@ setBackgroundColor(NSArray *components, NCToolbar *toolbar) {
         [items addObject:container.component];
     }
     
+    if ([items count] == 1){
+        self.navigationItem.leftBarButtonItem = [items objectAtIndex:0];
+        return;
+    }
+
     UIInterfaceOrientation orientation = [MFUtility currentInterfaceOrientation];
     double width = [MFDevice widthOfWindow:orientation];
     double height = [MFDevice heightOfNavigationBar:orientation];
