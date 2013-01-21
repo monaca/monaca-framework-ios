@@ -1128,6 +1128,7 @@
 				3E0B18C6169D8CD7001A35BB /* Sources */,
 				3E0B190E169D8CD7001A35BB /* Frameworks */,
 				3E0B191F169D8CD7001A35BB /* Resources */,
+				3E4E8B1416AD2EAC00653A9F /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1241,6 +1242,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		3E4E8B1416AD2EAC00653A9F /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "sh Scripts/RunTests.sh";
+		};
 		3E4F51B815A05BF10054EB23 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
