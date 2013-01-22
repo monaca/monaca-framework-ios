@@ -954,21 +954,21 @@
 		F50460AA13B361730050803F /* MonacaFramework */ = {
 			isa = PBXGroup;
 			children = (
-				3E4E8AE016AD122100653A9F /* Protocols */,
+				F50460D813B3633B0050803F /* MFDelegate.m */,
 				F54FBB3D14BBE04000F702D9 /* MFDevice.h */,
 				F54FBB3E14BBE04100F702D9 /* MFDevice.m */,
-				F50460CE13B361BE0050803F /* Headers */,
-				F5F31BDD14820C7800C40C0B /* Library */,
-				F50460D813B3633B0050803F /* MFDelegate.m */,
-				3E4F510215A0419E0054EB23 /* MFNavigationController.h */,
-				3E4F510315A0419E0054EB23 /* MFNavigationController.m */,
-				F50460DA13B3633B0050803F /* MFViewController.m */,
-				F50460AB13B361730050803F /* Supporting Files */,
-				F50460DF13B3633B0050803F /* MFUtility.h */,
-				F50460E013B3633B0050803F /* MFUtility.m */,
-				F5921FB3146B80690025DED5 /* Views */,
 				3EC494C4163A8E410085D937 /* MFEvent.h */,
 				3EC494C5163A8E410085D937 /* MFEvent.m */,
+				3E4F510215A0419E0054EB23 /* MFNavigationController.h */,
+				3E4F510315A0419E0054EB23 /* MFNavigationController.m */,
+				F50460DF13B3633B0050803F /* MFUtility.h */,
+				F50460E013B3633B0050803F /* MFUtility.m */,
+				F50460DA13B3633B0050803F /* MFViewController.m */,
+				F50460CE13B361BE0050803F /* Headers */,
+				F5F31BDD14820C7800C40C0B /* Library */,
+				3E4E8AE016AD122100653A9F /* Protocols */,
+				F50460AB13B361730050803F /* Supporting Files */,
+				F5921FB3146B80690025DED5 /* Views */,
 			);
 			path = MonacaFramework;
 			sourceTree = "<group>";
