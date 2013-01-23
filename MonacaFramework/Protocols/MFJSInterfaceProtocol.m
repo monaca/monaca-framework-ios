@@ -38,8 +38,10 @@
     NSString *type = [keyValues objectForKey:@"type"];
     if ([type isEqualToString:@"console.log"]) {
         return [@"[log] " stringByAppendingString:[keyValues objectForKey:@"message"]];
+    } else if ([type isEqualToString:@"console.info"]) {
+        return [@"[info] " stringByAppendingString:[keyValues objectForKey:@"message"]];
     }
-    
+
     return @"";
 }
 
