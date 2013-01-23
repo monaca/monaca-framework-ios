@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "MFUtility.h"
 
 @interface MFJSInterfaceProtocol : NSURLProtocol
 
