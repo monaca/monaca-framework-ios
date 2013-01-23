@@ -53,12 +53,26 @@
 
 - (void)testParseQuery
 {
-    NSString *path = [NSString stringWithFormat:@"file://www/index.html?hoge=%@&key=%@",
-                      [MFUtility urlEncode:@"piyo"],
-                      [MFUtility urlEncode:@"value"]];
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:path]];
-    NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithObjects:[NSArray arrayWithObjects:@"foo", "value", nil]
-                                                                          forKeys:[NSArray arrayWithObjects:@"hoge", @"piyo", nil]];
-    GHAssertEqualObjects([MFUtility parseQuery:request], dictionary, @"has query");
+    ^(){
+        NSString *path = [NSString stringWithFormat:@"file://www/index.html"];
+        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:path]];
+        NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
+        GHAssertEqualObjects([MFUtility parseQuery:request], dictionary, @"no query");
+    }();
+    ^(){
+        NSString *path = [NSString stringWithFormat:@"file://www/index.html?"];
+        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:path]];
+        NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
+        GHAssertEqualObjects([MFUtility parseQuery:request], dictionary, @"no query, but has '?'");
+    }();
+    ^(){
+        NSString *path = [NSString stringWithFormat:@"file://www/index.html?hoge=%@&key=%@",
+                          [MFUtility urlEncode:@"piyo"],
+                          [MFUtility urlEncode:@"value"]];
+        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:path]];
+        NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithObjects:[NSArray arrayWithObjects:@"piyo", @"value", nil]
+                                                                             forKeys:[NSArray arrayWithObjects:@"hoge", @"key", nil]];
+        GHAssertEqualObjects([MFUtility parseQuery:request], dictionary, @"has query");
+    }();
 }
 @end

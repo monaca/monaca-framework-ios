@@ -173,6 +173,9 @@
     for (NSString *pair in pairs) {
         NSArray *elements = [pair componentsSeparatedByString:@"="];
         NSString *key = [[elements objectAtIndex:0] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        if ([key isEqualToString:@""] == YES) {
+            continue;
+        }
         NSString *value;
         if (elements.count>1) {
             value = [[elements objectAtIndex:1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
