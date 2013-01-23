@@ -10,4 +10,6 @@
 
 @interface MFJSInterfaceProtocol : NSURLProtocol
 
++ (NSString *)buildLog:(NSURLRequest *)request;
+
 @end

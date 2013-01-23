@@ -10,6 +10,8 @@
 
 @implementation MFJSInterfaceProtocol
 
+# pragma mark - protocol life cycle
+
 + (BOOL)canInitWithRequest:(NSURLRequest *)request
 {
     if ([request.URL.scheme isEqualToString:@"monaca"]) {
@@ -26,6 +28,13 @@
 + (NSURLRequest *)canonicalRequestForRequest:(NSURLRequest *)request
 {
     return request;
+}
+
+#pragma mark - original method
+
++ (NSString *)buildLog:(NSURLRequest *)request
+{
+    return @"";
 }
 
 @end

@@ -52,4 +52,9 @@
     }();
 }
 
+- (void)testBuildLog
+{
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"monaca://action"]];
+    GHAssertEqualStrings([MFJSInterfaceProtocol buildLog:request], @"", @"No query, no log");
+}
 @end
