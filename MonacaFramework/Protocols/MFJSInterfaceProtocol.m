@@ -34,8 +34,8 @@
 
 + (NSString *)buildLog:(NSURLRequest *)request
 {
-    NSString *query = request.URL.query;
     // parse query
+    NSString *query = request.URL.query;
     NSArray *pairs = [query componentsSeparatedByString:@"&"];
     NSMutableDictionary *keyValues = [NSMutableDictionary dictionary];
     

@@ -164,4 +164,26 @@
     return ((MFDelegate *)[[UIApplication sharedApplication] delegate]);
 }
 
++ (NSMutableDictionary *)parseQuery:(NSURLRequest *)request
+{
+    NSString *query = request.URL.query;
+    NSArray *pairs = [query componentsSeparatedByString:@"&"];
+    NSMutableDictionary *keyValues = [NSMutableDictionary dictionary];
+
+    for (NSString *pair in pairs) {
+        NSArray *elements = [pair componentsSeparatedByString:@"="];
+        NSString *key = [[elements objectAtIndex:0] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        NSString *value;
+        if (elements.count>1) {
+            value = [[elements objectAtIndex:1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            NSDictionary *dictionary = [NSDictionary dictionaryWithObject:value forKey:key];
+            [keyValues addEntriesFromDictionary:dictionary];
+        }else {
+            NSDictionary *dictionary = [NSDictionary dictionaryWithObject:nil forKey:key];
+            [keyValues addEntriesFromDictionary:dictionary];
+        }
+    }
+    return keyValues;
+}
+
 @end
