@@ -52,9 +52,20 @@
     }();
 }
 
+# pragma mark - original methods
+
 - (void)testBuildLog
 {
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"monaca://action"]];
-    GHAssertEqualStrings([MFJSInterfaceProtocol buildLog:request], @"", @"No query, no log");
+    ^(){
+        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"monaca://action"]];
+        GHAssertEqualStrings([MFJSInterfaceProtocol buildLog:request], @"", @"No query, no log");
+    }();
+    ^(){
+        NSString *path = [NSString stringWithFormat:@"monaca://action?type=%@&message=%@",
+                          [MFUtility urlEncode:@"console.log"],
+                          [MFUtility urlEncode:@"I'm log"]];
+        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:path]];
+        GHAssertEqualStrings([MFJSInterfaceProtocol buildLog:request], @"[log] I'm log", @"monaca.console.log");
+    }();
 }
 @end
