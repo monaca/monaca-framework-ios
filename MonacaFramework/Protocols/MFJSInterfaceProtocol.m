@@ -12,6 +12,9 @@
 
 + (BOOL)canInitWithRequest:(NSURLRequest *)request
 {
-    return YES;
+    if ([request.URL.scheme isEqualToString:@"monaca"]) {
+        return YES;
+    }
+    return NO;
 }
 @end

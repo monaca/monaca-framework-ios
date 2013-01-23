@@ -12,7 +12,17 @@
 
 - (void)testCanInitWithRequest
 {
-    GHAssertTrue([MFJSInterfaceProtocol canInitWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"monaca://action?type=console.log&message=I'm log"]]], @"monca scheme");
-    GHAssertFalse([MFJSInterfaceProtocol canInitWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://monaca.mobi"]]], @"http scheme");
+    ^(){
+        NSString *path = [NSString stringWithFormat:@"monaca://action?type=%@&message=%@",
+                                                    [MFUtility urlEncode:@"console.log"],
+                                                    [MFUtility urlEncode:@"I'm log"]];
+        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:path]];
+        GHAssertTrue([MFJSInterfaceProtocol canInitWithRequest:request], @"Pass only monca scheme");
+    }();
+    ^(){
+        NSString *path = @"http://monaca.mobi";
+        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:path]];
+        GHAssertFalse([MFJSInterfaceProtocol canInitWithRequest:request], @"Doesn't pass http scheme");
+    }();
 }
 @end

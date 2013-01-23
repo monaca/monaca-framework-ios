@@ -9,6 +9,7 @@
 #import <GHUnitIOS/GHUnit.h>
 #import <UIKit/UIKit.h>
 #import "MFJSInterfaceProtocol.h"
+#import "MFUtility.h"
 
 @interface MFJSInterfaceProtocolTest : GHTestCase
 
