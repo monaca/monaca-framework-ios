@@ -182,7 +182,7 @@
             NSDictionary *dictionary = [NSDictionary dictionaryWithObject:value forKey:key];
             [keyValues addEntriesFromDictionary:dictionary];
         }else {
-            NSDictionary *dictionary = [NSDictionary dictionaryWithObject:nil forKey:key];
+            NSDictionary *dictionary = [NSDictionary dictionaryWithObject:[NSNull null] forKey:key];
             [keyValues addEntriesFromDictionary:dictionary];
         }
     }

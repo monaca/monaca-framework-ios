@@ -66,6 +66,20 @@
         GHAssertEqualObjects([MFUtility parseQuery:request], dictionary, @"no query, but has '?'");
     }();
     ^(){
+        NSString *path = [NSString stringWithFormat:@"file://www/index.html?monaca"];
+        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:path]];
+        NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithObjects:[NSArray arrayWithObjects:[NSNull null], nil]
+                                                                             forKeys:[NSArray arrayWithObjects:@"monaca", nil]];
+        GHAssertEqualObjects([MFUtility parseQuery:request], dictionary, @"only key");
+    }();
+    ^(){
+        NSString *path = [NSString stringWithFormat:@"file://www/index.html?monaca&"];
+        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:path]];
+        NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithObjects:[NSArray arrayWithObjects:[NSNull null], nil]
+                                                                             forKeys:[NSArray arrayWithObjects:@"monaca", nil]];
+        GHAssertEqualObjects([MFUtility parseQuery:request], dictionary, @"only key");
+    }();
+    ^(){
         NSString *path = [NSString stringWithFormat:@"file://www/index.html?hoge=%@&key=%@",
                           [MFUtility urlEncode:@"piyo"],
                           [MFUtility urlEncode:@"value"]];
