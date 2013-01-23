@@ -39,4 +39,17 @@
     }();
 }
 
+- (void)testCanonicalRequestForRequest
+{
+    ^(){
+        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://monaca.mobi"]];
+        GHAssertEqualObjects(request, [MFJSInterfaceProtocol canonicalRequestForRequest:request], @"should be return same request.");
+    }();
+    ^(){
+        NSURLRequest *aRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://monaca.mobi"]];
+        NSURLRequest *bRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://google.com"]];
+        GHAssertNotEqualObjects(aRequest, [MFJSInterfaceProtocol canonicalRequestForRequest:bRequest], @"should be return same request.");
+    }();
+}
+
 @end
