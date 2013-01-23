@@ -10,4 +10,8 @@
 
 @implementation MFJSInterfaceProtocol
 
++ (BOOL)canInitWithRequest:(NSURLRequest *)request
+{
+    return YES;
+}
 @end

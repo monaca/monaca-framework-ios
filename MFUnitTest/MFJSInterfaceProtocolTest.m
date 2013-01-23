@@ -12,7 +12,7 @@
 
 - (void)testCanInitWithRequest
 {
-    GHAssertEquals([MFJSInterfaceProtocol canInitWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"monaca://action?type=console.log&message=I'm log"]]], YES, @"monca scheme");
+    GHAssertTrue([MFJSInterfaceProtocol canInitWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"monaca://action?type=console.log&message=I'm log"]]], @"monca scheme");
+    GHAssertFalse([MFJSInterfaceProtocol canInitWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://monaca.mobi"]]], @"http scheme");
 }
-
 @end
