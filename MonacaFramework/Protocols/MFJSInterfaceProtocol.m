@@ -36,10 +36,11 @@
 {
     NSMutableDictionary *keyValues = [MFUtility parseQuery:request];
     NSString *type = [keyValues objectForKey:@"type"];
-    if ([type isEqualToString:@"console.log"]) {
-        return [@"[log] " stringByAppendingString:[keyValues objectForKey:@"message"]];
-    } else if ([type isEqualToString:@"console.info"]) {
-        return [@"[info] " stringByAppendingString:[keyValues objectForKey:@"message"]];
+    if ([type isEqualToString:@"console"]) {
+        NSString *method = [keyValues objectForKey:@"method"];
+        if ([method isEqual:nil] == NO) {
+            return [[NSString stringWithFormat:@"[%@] ", method] stringByAppendingString:[keyValues objectForKey:@"message"]];
+        }
     }
 
     return @"";

@@ -13,8 +13,9 @@
 - (void)testCanInitWithRequest
 {
     ^(){
-        NSString *path = [NSString stringWithFormat:@"monaca://action?type=%@&message=%@",
-                                                    [MFUtility urlEncode:@"console.log"],
+        NSString *path = [NSString stringWithFormat:@"monaca://action?type=%@&method=%@&message=%@",
+                                                    [MFUtility urlEncode:@"console"],
+                                                    [MFUtility urlEncode:@"log"],
                                                     [MFUtility urlEncode:@"I'm log"]];
         NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:path]];
         GHAssertTrue([MFJSInterfaceProtocol canInitWithRequest:request], @"Pass only monca scheme");
@@ -59,16 +60,18 @@
         GHAssertEqualStrings([MFJSInterfaceProtocol buildLog:request], @"", @"No query, no log");
     }();
     ^(){
-        NSString *path = [NSString stringWithFormat:@"monaca://action?type=%@&message=%@",
-                          [MFUtility urlEncode:@"console.info"],
-                          [MFUtility urlEncode:@"I'm info"]];
+        NSString *path = [NSString stringWithFormat:@"monaca://action?type=%@&method=%@&message=%@",
+                                                    [MFUtility urlEncode:@"console"],
+                                                    [MFUtility urlEncode:@"info"],
+                                                    [MFUtility urlEncode:@"I'm info"]];
         NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:path]];
         GHAssertEqualStrings([MFJSInterfaceProtocol buildLog:request], @"[info] I'm info", @"monaca.console.info");
     }();
     ^(){
-        NSString *path = [NSString stringWithFormat:@"monaca://action?type=%@&message=%@",
-                          [MFUtility urlEncode:@"console.log"],
-                          [MFUtility urlEncode:@"I'm log"]];
+        NSString *path = [NSString stringWithFormat:@"monaca://action?type=%@&method=%@&message=%@",
+                                                    [MFUtility urlEncode:@"console"],
+                                                    [MFUtility urlEncode:@"log"],
+                                                    [MFUtility urlEncode:@"I'm log"]];
         NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:path]];
         GHAssertEqualStrings([MFJSInterfaceProtocol buildLog:request], @"[log] I'm log", @"monaca.console.log");
     }();
