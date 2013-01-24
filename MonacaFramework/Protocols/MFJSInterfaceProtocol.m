@@ -30,17 +30,29 @@
     return request;
 }
 
-#pragma mark - original method
-
-+ (NSString *)buildLog:(NSURLRequest *)request
+- (void)startLoading
 {
-    NSMutableDictionary *keyValues = [MFUtility parseQuery:request];
+    NSMutableDictionary *keyValues = [MFUtility parseQuery:self.request];
     NSString *type = [keyValues objectForKey:@"type"];
     if ([type isEqualToString:@"console"]) {
-        NSString *method = [keyValues objectForKey:@"method"];
-        if ([method isEqual:nil] == NO) {
-            return [[NSString stringWithFormat:@"[%@] ", method] stringByAppendingString:[keyValues objectForKey:@"message"]];
-        }
+        NSString *log = [[self class] buildLog:keyValues];
+        NSLog(@"%@", log);
+    }
+    [self.client URLProtocolDidFinishLoading:self];
+}
+
+- (void)stopLoading
+{
+	// do any cleanup here
+}
+
+#pragma mark - original method
+
++ (NSString *)buildLog:(NSMutableDictionary *)keyValues
+{
+    NSString *method = [keyValues objectForKey:@"method"];
+    if ([method isEqual:nil] == NO) {
+        return [[NSString stringWithFormat:@"[%@] ", method] stringByAppendingString:[keyValues objectForKey:@"message"]];
     }
 
     return @"";
