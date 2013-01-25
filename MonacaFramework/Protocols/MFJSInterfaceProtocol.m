@@ -62,7 +62,7 @@
     NSString *message = [keyValues objectForKey:@"message"];
     NSString *level = [keyValues objectForKey:@"level"];
     if (level == nil) {
-        return @"";
+        return message;
     }
     if ([level isEqualToString:@"debug"] == YES ||
         [level isEqualToString:@"info"] == YES ||

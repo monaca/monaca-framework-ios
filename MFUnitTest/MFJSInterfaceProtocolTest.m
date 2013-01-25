@@ -90,11 +90,26 @@
 {
     ^(){
         latestLog = nil;
+        NSString *path = [NSString stringWithFormat:@"monaca://log"];
+        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:path]];
+        [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+        GHAssertEqualStrings(latestLog, nil, @"In no level and no message, does nothing.");
+    }();
+    ^(){
+        latestLog = nil;
         NSString *path = [NSString stringWithFormat:@"monaca://log?level=%@",
                           [MFUtility urlEncode:@"log"]];
         NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:path]];
         [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
         GHAssertEqualStrings(latestLog, nil, @"Only 'level' query, no message");
+    }();
+    ^(){
+        latestLog = nil;
+        NSString *path = [NSString stringWithFormat:@"monaca://log?message=%@",
+                          [MFUtility urlEncode:@"This is just message."]];
+        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:path]];
+        [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+        GHAssertEqualStrings(latestLog, @"This is just message.", @"Only 'message' query, just shows message");
     }();
     ^(){
         latestLog = nil;
@@ -111,7 +126,7 @@
                           [MFUtility urlEncode:@"This is message."]];
         NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:path]];
         [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
-        GHAssertEqualStrings(latestLog, @"This is message.", @"No support level");
+        GHAssertEqualStrings(latestLog, @"This is message.", @"In no support level, shows only message");
     }();
     ^(){
         latestLog = nil;
