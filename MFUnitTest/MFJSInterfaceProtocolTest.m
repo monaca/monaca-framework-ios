@@ -95,6 +95,15 @@
     }();
     ^(){
         latestLog = nil;
+        NSString *path = [NSString stringWithFormat:@"monaca://action?type=%@&method=%@&message=",
+                          [MFUtility urlEncode:@"console"],
+                          [MFUtility urlEncode:@"foo"]];
+        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:path]];
+        [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+        GHAssertEqualStrings(latestLog, nil, @"No support method");
+    }();
+    ^(){
+        latestLog = nil;
         NSString *path = [NSString stringWithFormat:@"monaca://action?type=%@&method=%@&message=%@",
                           [MFUtility urlEncode:@"console"],
                           [MFUtility urlEncode:@"debug"],
