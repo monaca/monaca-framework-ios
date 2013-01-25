@@ -33,25 +33,17 @@
 - (void)startLoading
 {
     NSMutableDictionary *keyValues = [MFUtility parseQuery:self.request];
-    NSString *type = [keyValues objectForKey:@"type"];
+    NSString *type = self.request.URL.host;
     
     // If type is console, simulate console api.
-    if ([type isEqualToString:@"console"] == YES) {
-        NSString *method = [keyValues objectForKey:@"method"];
-        if ([method isEqualToString:@"debug"] == YES ||
-            [method isEqualToString:@"info"] == YES ||
-            [method isEqualToString:@"log"] == YES ||
-            [method isEqualToString:@"warn"] == YES ||
-            [method isEqualToString:@"error"] == YES
-            ) {
-            // No message api does nothing.
-            if ([keyValues objectForKey:@"message"] == nil) {
-                [self.client URLProtocolDidFinishLoading:self];
-                return;
-            }
-            NSString *log = [[self class] buildLog:keyValues];
-            NSLog(@"%@", log);
+    if ([type isEqualToString:@"log"] == YES) {
+        // No message api does nothing.
+        if ([keyValues objectForKey:@"message"] == nil) {
+            [self.client URLProtocolDidFinishLoading:self];
+            return;
         }
+        NSString *log = [[self class] buildLog:keyValues];
+        NSLog(@"%@", log);
     }
     // In the future, another types are supported.
     
@@ -67,15 +59,20 @@
 
 + (NSString *)buildLog:(NSMutableDictionary *)keyValues
 {
-    NSString *method = [keyValues objectForKey:@"method"];
-    if (method == nil) {
-        return @"";
-    }
     NSString *message = [keyValues objectForKey:@"message"];
-    if (message == nil) {
+    NSString *level = [keyValues objectForKey:@"level"];
+    if (level == nil) {
         return @"";
     }
-    return [[NSString stringWithFormat:@"[%@] ", method] stringByAppendingString:message];
+    if ([level isEqualToString:@"debug"] == YES ||
+        [level isEqualToString:@"info"] == YES ||
+        [level isEqualToString:@"log"] == YES ||
+        [level isEqualToString:@"warn"] == YES ||
+        [level isEqualToString:@"error"] == YES
+        ) {
+        return [[NSString stringWithFormat:@"[%@] ", level] stringByAppendingString:message];
+    }
+    return message;
 }
 
 @end
