@@ -41,7 +41,7 @@
         if ([method isEqualToString:@"debug"] == YES ||
             [method isEqualToString:@"info"] == YES ||
             [method isEqualToString:@"log"] == YES ||
-            [method isEqualToString:@"debug"] == YES ||
+            [method isEqualToString:@"warn"] == YES ||
             [method isEqualToString:@"error"] == YES
             ) {
             // No message api does nothing.
@@ -68,10 +68,14 @@
 + (NSString *)buildLog:(NSMutableDictionary *)keyValues
 {
     NSString *method = [keyValues objectForKey:@"method"];
-    if (method != nil) {
-        return [[NSString stringWithFormat:@"[%@] ", method] stringByAppendingString:[keyValues objectForKey:@"message"]];
+    if (method == nil) {
+        return @"";
     }
-    return @"";
+    NSString *message = [keyValues objectForKey:@"message"];
+    if (message == nil) {
+        return @"";
+    }
+    return [[NSString stringWithFormat:@"[%@] ", method] stringByAppendingString:message];
 }
 
 @end

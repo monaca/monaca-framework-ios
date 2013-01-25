@@ -18,6 +18,7 @@
 
 - (void)tearDown
 {
+    latestLog = nil;
     [NSURLProtocol unregisterClass:[MFJSInterfaceProtocol class]];
 }
 
@@ -85,6 +86,35 @@
     }();
     ^(){
         latestLog = nil;
+        NSString *path = [NSString stringWithFormat:@"monaca://action?type=%@&method=%@&message=",
+                          [MFUtility urlEncode:@"console"],
+                          [MFUtility urlEncode:@"log"]];
+        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:path]];
+        [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+        GHAssertEqualStrings(latestLog, @"[log] ", @"Blank message");
+    }();
+    ^(){
+        latestLog = nil;
+        NSString *path = [NSString stringWithFormat:@"monaca://action?type=%@&method=%@&message=%@",
+                          [MFUtility urlEncode:@"console"],
+                          [MFUtility urlEncode:@"debug"],
+                          [MFUtility urlEncode:@"I'm debug"]];
+        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:path]];
+        [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+        GHAssertEqualStrings(@"[debug] I'm debug", latestLog, @"check console debug");
+    }();
+    ^(){
+        latestLog = nil;
+        NSString *path = [NSString stringWithFormat:@"monaca://action?type=%@&method=%@&message=%@",
+                          [MFUtility urlEncode:@"console"],
+                          [MFUtility urlEncode:@"info"],
+                          [MFUtility urlEncode:@"I'm info"]];
+        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:path]];
+        [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+        GHAssertEqualStrings(@"[info] I'm info", latestLog, @"check console info");
+    }();
+    ^(){
+        latestLog = nil;
         NSString *path = [NSString stringWithFormat:@"monaca://action?type=%@&method=%@&message=%@",
                           [MFUtility urlEncode:@"console"],
                           [MFUtility urlEncode:@"log"],
@@ -92,6 +122,26 @@
         NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:path]];
         [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
         GHAssertEqualStrings(@"[log] I'm log", latestLog, @"check console log");
+    }();
+    ^(){
+        latestLog = nil;
+        NSString *path = [NSString stringWithFormat:@"monaca://action?type=%@&method=%@&message=%@",
+                          [MFUtility urlEncode:@"console"],
+                          [MFUtility urlEncode:@"warn"],
+                          [MFUtility urlEncode:@"I'm warn"]];
+        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:path]];
+        [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+        GHAssertEqualStrings(latestLog, @"[warn] I'm warn", @"check console warn");
+    }();
+    ^(){
+        latestLog = nil;
+        NSString *path = [NSString stringWithFormat:@"monaca://action?type=%@&method=%@&message=%@",
+                          [MFUtility urlEncode:@"console"],
+                          [MFUtility urlEncode:@"error"],
+                          [MFUtility urlEncode:@"I'm error"]];
+        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:path]];
+        [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+        GHAssertEqualStrings(@"[error] I'm error", latestLog, @"check console error");
     }();
 }
 
