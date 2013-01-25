@@ -14,7 +14,7 @@
     NSString *latestLog;
 #endif
 
-// Store latest log for check the method that uses NSLog
+
 #define NSLog(fmt, ...) \
     latestLog = [@"" stringByAppendingFormat:(fmt), ##__VA_ARGS__]; \
     NSLog(@"%@", latestLog); \

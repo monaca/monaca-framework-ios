@@ -14,6 +14,7 @@
 - (void)setUp
 {
     [NSURLProtocol registerClass:[MFJSInterfaceProtocol class]];
+    latestLog = nil;
 }
 
 - (void)tearDown
@@ -66,21 +67,26 @@
 
 - (void)testStartLoading
 {
-    NSString *path = [NSString stringWithFormat:@"monaca://action?type=%@&method=%@&message=%@",
-                      [MFUtility urlEncode:@"console"],
-                      [MFUtility urlEncode:@"log"],
-                      [MFUtility urlEncode:@"I'm log"]];
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:path]];
-    [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
-    GHAssertEqualStrings(@"[log] I'm log", latestLog, @"check console log");
+    ^(){
+        NSString *path = [NSString stringWithFormat:@"monaca://action?type=%@",
+                          [MFUtility urlEncode:@"console"]];
+        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:path]];
+        [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+        GHAssertEqualStrings(nil, latestLog, @"only 'type' query");
+    }();
+    ^(){
+        NSString *path = [NSString stringWithFormat:@"monaca://action?type=%@&method=%@&message=%@",
+                          [MFUtility urlEncode:@"console"],
+                          [MFUtility urlEncode:@"log"],
+                          [MFUtility urlEncode:@"I'm log"]];
+        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:path]];
+        [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+        GHAssertEqualStrings(@"[log] I'm log", latestLog, @"check console log");
+    }();
 }
 
 - (void)testBuildLog
 {
-    ^(){
-        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"monaca://action"]];
-        GHAssertEqualStrings([MFJSInterfaceProtocol buildLog:[MFUtility parseQuery:request]], @"", @"No query, no log");
-    }();
     ^(){
         NSString *path = [NSString stringWithFormat:@"monaca://action?type=%@&method=%@&message=%@",
                                                     [MFUtility urlEncode:@"console"],

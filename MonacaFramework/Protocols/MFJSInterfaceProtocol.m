@@ -34,10 +34,22 @@
 {
     NSMutableDictionary *keyValues = [MFUtility parseQuery:self.request];
     NSString *type = [keyValues objectForKey:@"type"];
+    
+    // If type is console, simulate console api.
     if ([type isEqualToString:@"console"]) {
-        NSString *log = [[self class] buildLog:keyValues];
-        NSLog(@"%@", log);
+        NSString *method = [keyValues objectForKey:@"method"];
+        if ([method isEqualToString:@"debug"] == YES ||
+            [method isEqualToString:@"info"] == YES ||
+            [method isEqualToString:@"log"] == YES ||
+            [method isEqualToString:@"debug"] == YES ||
+            [method isEqualToString:@"error"] == YES
+            ) {
+            NSString *log = [[self class] buildLog:keyValues];
+            NSLog(@"%@", log);
+        }
     }
+    // TODO: another type
+    
     [self.client URLProtocolDidFinishLoading:self];
 }
 
@@ -51,10 +63,9 @@
 + (NSString *)buildLog:(NSMutableDictionary *)keyValues
 {
     NSString *method = [keyValues objectForKey:@"method"];
-    if ([method isEqual:nil] == NO) {
+    if (method != nil) {
         return [[NSString stringWithFormat:@"[%@] ", method] stringByAppendingString:[keyValues objectForKey:@"message"]];
     }
-
     return @"";
 }
 
