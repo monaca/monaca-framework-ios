@@ -54,7 +54,9 @@
     
     self.monacaNavigationController = [[MFNavigationController alloc] initWithRootViewController:self.viewController];
     
+    // register protocols.
     [NSURLProtocol registerClass:[MonacaQueryParamURLProtocol class]];
+    [NSURLProtocol registerClass:[MFJSInterfaceProtocol class]];
     [MFSecureFileURLProtocol registerMonacaURLProtocol];
     
     self.window.rootViewController = self.monacaNavigationController;

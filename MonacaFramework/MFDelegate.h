@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "MFViewController.h"
 #import "MFNavigationController.h"
+#import "MFJSInterfaceProtocol.h"
 
 @interface MFDelegate : NSObject <UIApplicationDelegate, UIWebViewDelegate> {
  @private

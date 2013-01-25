@@ -47,6 +47,7 @@
     }
     // In the future, another types are supported.
     
+    [self.client URLProtocol:self didLoadData:nil];
     [self.client URLProtocolDidFinishLoading:self];
 }
 
