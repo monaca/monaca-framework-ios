@@ -47,7 +47,8 @@
     }
     // In the future, another types are supported.
     
-    [self.client URLProtocol:self didLoadData:nil];
+    [self.client URLProtocol:self didReceiveResponse:[[NSURLResponse alloc] init] cacheStoragePolicy:NSURLCacheStorageNotAllowed];
+    [self.client URLProtocol:self didLoadData:[NSData data]];
     [self.client URLProtocolDidFinishLoading:self];
 }
 
