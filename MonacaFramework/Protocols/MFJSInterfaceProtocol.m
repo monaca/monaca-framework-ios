@@ -36,7 +36,7 @@
     NSString *type = [keyValues objectForKey:@"type"];
     
     // If type is console, simulate console api.
-    if ([type isEqualToString:@"console"]) {
+    if ([type isEqualToString:@"console"] == YES) {
         NSString *method = [keyValues objectForKey:@"method"];
         if ([method isEqualToString:@"debug"] == YES ||
             [method isEqualToString:@"info"] == YES ||
@@ -44,11 +44,16 @@
             [method isEqualToString:@"debug"] == YES ||
             [method isEqualToString:@"error"] == YES
             ) {
+            // No message api does nothing.
+            if ([keyValues objectForKey:@"message"] == nil) {
+                [self.client URLProtocolDidFinishLoading:self];
+                return;
+            }
             NSString *log = [[self class] buildLog:keyValues];
             NSLog(@"%@", log);
         }
     }
-    // TODO: another type
+    // In the future, another types are supported.
     
     [self.client URLProtocolDidFinishLoading:self];
 }
