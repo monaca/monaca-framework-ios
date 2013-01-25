@@ -19,4 +19,5 @@ int main(int argc, char *argv[])
             retVal = UIApplicationMain(argc, argv, nil, @"GHUnitIOSAppDelegate");
         }
     }
+    return retVal;
 }
