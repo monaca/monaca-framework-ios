@@ -63,4 +63,5 @@ if [ -n "$WRITE_JUNIT_XML" ]; then
   fi
 fi
 
+set +o errexit
 exit $RETVAL
