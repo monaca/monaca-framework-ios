@@ -7,6 +7,7 @@
 //
 
 #import "MFTabBarController+Top.h"
+#import "MFDevice.h"
 
 
 // Supports iOS4. Cannot use setTintColor method in iOS4.
@@ -82,7 +83,10 @@ setBackgroundColor(NSArray *components, NCToolbar *toolbar) {
     negativeSpacer.width = kMargin;
     
     // iOS4 cannot use leftBarButtonItems.
-    self.navigationItem.leftBarButtonItem = toolbarBarButtonItem;
+    if ([MFDevice iOSVersionMajor] < 5)
+        self.navigationItem.leftBarButtonItem = toolbarBarButtonItem;
+    else
+        self.navigationItem.leftBarButtonItems = items;
     //self.navigationItem.leftBarButtonItems = [NSArray arrayWithObjects:negativeSpacer, toolbarBarButtonItem, nil];
 }
 
