@@ -136,7 +136,7 @@
 
 + (NSString *)urlEncode:(NSString *)text{
     if ([text isKindOfClass:[NSString class]] == NO) {
-        NSLog(@"[error] parameter should be string type:%@", text);
+        NSLog(@"[error] parameter should be string type, but parameter is:%@", text);
         return @"";
     }
     CFStringRef cfString = CFURLCreateStringByAddingPercentEscapes(NULL,
@@ -162,6 +162,31 @@
 + (MFDelegate *)getAppDelegate
 {
     return ((MFDelegate *)[[UIApplication sharedApplication] delegate]);
+}
+
++ (NSMutableDictionary *)parseQuery:(NSURLRequest *)request
+{
+    NSString *query = request.URL.query;
+    NSArray *pairs = [query componentsSeparatedByString:@"&"];
+    NSMutableDictionary *keyValues = [NSMutableDictionary dictionary];
+
+    for (NSString *pair in pairs) {
+        NSArray *elements = [pair componentsSeparatedByString:@"="];
+        NSString *key = [[elements objectAtIndex:0] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        if ([key isEqualToString:@""] == YES) {
+            continue;
+        }
+        NSString *value;
+        if (elements.count>1) {
+            value = [[elements objectAtIndex:1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            NSDictionary *dictionary = [NSDictionary dictionaryWithObject:value forKey:key];
+            [keyValues addEntriesFromDictionary:dictionary];
+        }else {
+            NSDictionary *dictionary = [NSDictionary dictionaryWithObject:[NSNull null] forKey:key];
+            [keyValues addEntriesFromDictionary:dictionary];
+        }
+    }
+    return keyValues;
 }
 
 @end

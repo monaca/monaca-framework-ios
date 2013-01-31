@@ -27,5 +27,6 @@
 + (NSString *)urlEncode:(NSString *)text;
 + (NSString *)urlDecode:(NSString *)text;
 + (MFDelegate *)getAppDelegate;
++ (NSMutableDictionary *)parseQuery:(NSURLRequest *)request;
 
 @end

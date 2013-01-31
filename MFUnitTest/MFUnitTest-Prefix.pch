@@ -11,4 +11,10 @@
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
+    NSString *latestLog;
 #endif
+
+
+#define NSLog(fmt, ...) \
+    latestLog = [@"" stringByAppendingFormat:(fmt), ##__VA_ARGS__]; \
+    NSLog(@"%@", latestLog); \

@@ -50,4 +50,62 @@
     GHAssertEquals([MonacaQueryParamURLProtocol isFileAccess:request], NO, nil);
     
 }
+
+- (void)testParseQuery
+{
+    ^(){
+        NSString *path = [NSString stringWithFormat:@"file://www/index.html"];
+        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:path]];
+        NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
+        GHAssertEqualObjects([MFUtility parseQuery:request], dictionary, @"no query");
+    }();
+    ^(){
+        NSString *path = [NSString stringWithFormat:@"file://www/index.html?"];
+        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:path]];
+        NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
+        GHAssertEqualObjects([MFUtility parseQuery:request], dictionary, @"no query, but has '?'");
+    }();
+    ^(){
+        NSString *path = [NSString stringWithFormat:@"file://www/index.html?monaca"];
+        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:path]];
+        NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithObjects:[NSArray arrayWithObjects:[NSNull null], nil]
+                                                                             forKeys:[NSArray arrayWithObjects:@"monaca", nil]];
+        GHAssertEqualObjects([MFUtility parseQuery:request], dictionary, @"only key");
+    }();
+    ^(){
+        NSString *path = [NSString stringWithFormat:@"file://www/index.html?monaca&"];
+        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:path]];
+        NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithObjects:[NSArray arrayWithObjects:[NSNull null], nil]
+                                                                             forKeys:[NSArray arrayWithObjects:@"monaca", nil]];
+        GHAssertEqualObjects([MFUtility parseQuery:request], dictionary, @"only key and has '&'");
+    }();
+    ^(){
+        NSString *path = [NSString stringWithFormat:@"file://www/index.html?monaca="];
+        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:path]];
+        NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithObjects:[NSArray arrayWithObjects:@"", nil]
+                                                                             forKeys:[NSArray arrayWithObjects:@"monaca", nil]];
+        GHAssertEqualObjects([MFUtility parseQuery:request], dictionary, @"only key and has '='");
+    }();
+    ^(){
+        NSString *path = [NSString stringWithFormat:@"file://www/index.html&"];
+        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:path]];
+        NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
+        GHAssertEqualObjects([MFUtility parseQuery:request], dictionary, @"only '&'");
+    }();
+    ^(){
+        NSString *path = [NSString stringWithFormat:@"file://www/index.html?&"];
+        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:path]];
+        NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
+        GHAssertEqualObjects([MFUtility parseQuery:request], dictionary, @"has '?' and '&'");
+    }();
+    ^(){
+        NSString *path = [NSString stringWithFormat:@"file://www/index.html?hoge=%@&key=%@",
+                          [MFUtility urlEncode:@"piyo"],
+                          [MFUtility urlEncode:@"value"]];
+        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:path]];
+        NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithObjects:[NSArray arrayWithObjects:@"piyo", @"value", nil]
+                                                                             forKeys:[NSArray arrayWithObjects:@"hoge", @"key", nil]];
+        GHAssertEqualObjects([MFUtility parseQuery:request], dictionary, @"has query");
+    }();
+}
 @end
