@@ -11,6 +11,4 @@
 
 @interface MFJSInterfaceProtocol : NSURLProtocol
 
-+ (NSString *)buildLog:(NSMutableDictionary *)keyValues;
-
 @end

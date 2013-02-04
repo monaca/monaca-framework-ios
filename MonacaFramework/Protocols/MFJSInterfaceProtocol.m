@@ -43,7 +43,7 @@
             return;
         }
         NSString *log = [keyValues objectForKey:@"message"];
-        [MDScriptDebugDelegate message:log withLogLevel:type withSource:@"javascript"];
+        NSLog(@"%@", log);
     }
     // In the future, another types are supported.
     
