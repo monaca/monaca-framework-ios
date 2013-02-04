@@ -42,8 +42,8 @@
             [self.client URLProtocolDidFinishLoading:self];
             return;
         }
-        NSString *log = [[self class] buildLog:keyValues];
-        NSLog(@"%@", log);
+        NSString *log = [keyValues objectForKey:@"message"];
+        [MDScriptDebugDelegate message:log withLogLevel:type withSource:@"javascript"];
     }
     // In the future, another types are supported.
     
@@ -53,26 +53,6 @@
 - (void)stopLoading
 {
 	// do any cleanup here
-}
-
-#pragma mark - original method
-
-+ (NSString *)buildLog:(NSMutableDictionary *)keyValues
-{
-    NSString *message = [keyValues objectForKey:@"message"];
-    NSString *level = [keyValues objectForKey:@"level"];
-    if (level == nil) {
-        return message;
-    }
-    if ([level isEqualToString:@"debug"] == YES ||
-        [level isEqualToString:@"info"] == YES ||
-        [level isEqualToString:@"log"] == YES ||
-        [level isEqualToString:@"warn"] == YES ||
-        [level isEqualToString:@"error"] == YES
-        ) {
-        return [[NSString stringWithFormat:@"[%@] ", level] stringByAppendingString:message];
-    }
-    return message;
 }
 
 @end
