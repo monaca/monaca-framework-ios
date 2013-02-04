@@ -43,7 +43,7 @@
             return;
         }
         NSString *log = [keyValues objectForKey:@"message"];
-        NSLog(@"%@", log);
+        [self logging:log withType:type];
     }
     // In the future, another types are supported.
     
@@ -53,6 +53,11 @@
 - (void)stopLoading
 {
 	// do any cleanup here
+}
+
+- (void)logging:(NSString *)log withType:(NSString *)type
+{
+    NSLog(@"%@", log);
 }
 
 @end
