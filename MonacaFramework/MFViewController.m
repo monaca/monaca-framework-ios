@@ -477,6 +477,7 @@
 }
 
 - (void)destroy {
+    [self.cdvViewController.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"about:blank"]]];
     [self resetPlugins];
     [self releaseWebView];
 }
