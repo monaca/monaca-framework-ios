@@ -77,7 +77,7 @@
  * 404 page
  */
 + (void) show404PageWithWebView:(UIWebView *)webView path:(NSString *)aPath {
-    NSLog(@"Page not found (as warning):%@", aPath);
+    NSLog(@"Page not found (as warning):%@", [MFUtility getWWWShortPath:aPath]);
     NSString *pathFor404 = [[NSBundle mainBundle] pathForResource:@"404/index" ofType:@"html"];
     NSString *html = [NSString stringWithContentsOfFile:pathFor404 encoding:NSUTF8StringEncoding error:nil];
 
