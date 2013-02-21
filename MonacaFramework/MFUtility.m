@@ -93,9 +93,7 @@
     if (path == nil || [path rangeOfString:@"www/"].location == NSNotFound) {
         return @"";
     } else {
-        NSMutableArray *array = [NSMutableArray arrayWithArray:[path componentsSeparatedByString:@"www/"]];
-        if(array.count > 0) [array removeObjectAtIndex:0];
-        return [@"www" stringByAppendingPathComponent:[array objectAtIndex:0]];
+        return [path substringFromIndex:[path rangeOfString:@"www/"].location];
     }
 }
 

@@ -108,4 +108,11 @@
         GHAssertEqualObjects([MFUtility parseQuery:request], dictionary, @"has query");
     }();
 }
+
+- (void)testGetWWWShortPath
+{
+    GHAssertEqualStrings([MFUtility getWWWShortPath:@"/User/hoge/assert/www/hoge.html"], @"www/hoge.html", nil);
+    GHAssertEqualStrings([MFUtility getWWWShortPath:@"/User/hoge/assert/www/www/hoge.html"], @"www/www/hoge.html", nil);
+    GHAssertEqualStrings([MFUtility getWWWShortPath:@"/User/hoge/assert/www/fuga/www/hoge.html"], @"www/fuga/www/hoge.html", nil);
+}
 @end
