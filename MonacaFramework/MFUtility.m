@@ -56,6 +56,44 @@
     }
 }
 
+
++ (BOOL)isPhoneGapScheme:(NSURL *)url {
+    return ([[url scheme] isEqualToString:@"gap"]);
+}
+
++ (BOOL)isExternalPage:(NSURL *)url {
+    return ([[url scheme] isEqualToString:@"http"] ||
+            [[url scheme] isEqualToString:@"https"]);
+}
+
+// Returns YES if |url| has anchor parameter (http://example.com/index.html#aaa).
+// TODO(nhiroki): Should use fragment method in NSURL class.
++ (BOOL)hasAnchor:(NSURL *)url {
+    NSRange searchResult = [[url absoluteString] rangeOfString:@"#"];
+    return searchResult.location != NSNotFound;
+}
+
++ (NSURL *)standardizedURL:(NSURL *)url {
+    // Standardize relative path ("." and "..").
+    url = [url standardizedURL];
+    NSString *last = [url lastPathComponent];
+    
+    // Replace double thrash to single thrash ("//" => "/").
+    NSString *tmp = [url absoluteString];
+    NSString *str = [tmp stringByReplacingOccurrencesOfString:@"//" withString:@"/"];
+    while (![str isEqualToString:tmp]) {
+        tmp = str;
+        str = [tmp stringByReplacingOccurrencesOfString:@"//" withString:@"/"];
+    }
+    
+    // Remove |index.html| ("/www/item/index.html" => "/www/item").
+    if ([last isEqualToString:@"index.html"]) {
+        str = [str substringToIndex:[str length] - [@"/index.html" length]];
+    }
+    
+    return [NSURL URLWithString:str];
+}
+
 + (NSURL *)getBaseURL
 {
     NSString *basePath = [NSString stringWithFormat:@"%@/www", [[NSBundle mainBundle] bundlePath]];
@@ -65,6 +103,20 @@
 + (NSDictionary *)getApplicationPlist
 {
     return [[NSBundle mainBundle] infoDictionary];
+}
+
+
++ (void) fixedLayout:(MFViewController *)monacaViewController interfaceOrientation:(UIInterfaceOrientation)aInterfaceOrientation{
+    if (aInterfaceOrientation == UIInterfaceOrientationPortrait || aInterfaceOrientation == UIInterfaceOrientationPortraitUpsideDown){
+        monacaViewController.view.frame = [[UIScreen mainScreen] bounds];
+        UIViewController *vc = [monacaViewController.tabBarController.viewControllers objectAtIndex:0];
+        [vc setWantsFullScreenLayout:YES];
+    }
+}
+
++ (MFDelegate *)getAppDelegate
+{
+    return ((MFDelegate *)[[UIApplication sharedApplication] delegate]);
 }
 
 @end

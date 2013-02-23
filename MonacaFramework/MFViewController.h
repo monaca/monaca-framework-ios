@@ -8,6 +8,12 @@
 
 #import "CDVViewController.h"
 
-@interface MFViewController : CDVViewController
+@interface MFViewController : CDVViewController <UIScrollViewDelegate, UIWebViewDelegate>
+{
+ @private
+    NSString *previousPath_;
+}
+
+@property (nonatomic, copy) NSString *previousPath;
 
 @end
