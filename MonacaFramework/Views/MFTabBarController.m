@@ -127,7 +127,10 @@
 {
     NSMutableArray *viewControllers = [NSMutableArray array];
     NSDictionary *top = [uidict objectForKey:kNCPositionTop];
+    NSArray *topRight = [top objectForKey:kNCTypeRight];
+    NSDictionary *topRightStyle = [topRight objectAtIndex:0];
     NSDictionary *bottom = [uidict objectForKey:kNCPositionBottom];
+    
     NSArray *items = [bottom objectForKey:kNCTypeItems];
     if (nil != top) {
         if ([[top objectForKey:kNCTypeContainer] isEqualToString:kNCContainerToolbar]) {
@@ -149,8 +152,9 @@
         viewController.tabBarItem.tag = i;
         
         UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:viewController];
-        viewController.navigationItem.title = [item objectForKey:@"link"];
-        viewController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"button" style:UIBarButtonItemStyleBordered target:nil action:nil];
+        viewController.navigationItem.title = [[item objectForKey:kNCTypeStyle] objectForKey:@"text"];
+        viewController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:[[topRightStyle objectForKey:kNCTypeStyle] objectForKey:@"text"] style:UIBarButtonItemStyleBordered target:self action:@selector(hoge)];
+        viewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:[[topRightStyle objectForKey:kNCTypeStyle] objectForKey:@"text"] style:UIBarButtonItemStyleBordered target:self action:@selector(fuga)];
 //        viewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"button" style:UIBarButtonItemStyleBordered target:nil action:nil];
         if (nil != top) {
             if ([[top objectForKey:kNCTypeContainer] isEqualToString:kNCContainerToolbar]) {
@@ -169,6 +173,17 @@
         i++;
     }
     self.viewControllers  = viewControllers;
+}
+
+- (void)hoge
+{
+    MFNavigationController *navi = [[MFNavigationController alloc] initWithWwwDir:[MFUtility getBaseURL].path];
+    [[[MFUtility getAppDelegate] monacaNavigationController] pushViewController:navi.topViewController animated:YES];
+}
+
+- (void)fuga
+{
+    [[[MFUtility getAppDelegate] monacaNavigationController] popViewControllerAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

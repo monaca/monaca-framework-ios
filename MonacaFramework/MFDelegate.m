@@ -20,6 +20,7 @@
 @implementation MFDelegate
 
 @synthesize viewController = viewController_;
+@synthesize monacaNavigationController = monacaNavigationController_;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
