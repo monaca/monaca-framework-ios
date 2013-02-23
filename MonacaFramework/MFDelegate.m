@@ -9,6 +9,7 @@
 #import <objc/runtime.h>
 
 #import "MFDelegate.h"
+#import "MFUtility.h"
 
 @class MFViewController;
 
@@ -27,12 +28,16 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.viewController = [[MFViewController alloc] init];
     
-    self.monacaNavigationController = [[MFNavigationController alloc] initWithRootViewController:self.viewController];
+    self.monacaNavigationController = [[MFNavigationController alloc] initWithWwwDir:[MFUtility getBaseURL].path];
     
     self.window.rootViewController = self.monacaNavigationController;
     [self.window makeKeyAndVisible];
     
     return YES;
+}
+
+- (UIInterfaceOrientation)currentInterfaceOrientation{
+    return self.monacaNavigationController.interfaceOrientation;
 }
 
 @end

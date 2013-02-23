@@ -56,6 +56,28 @@
     }
 }
 
++ (UIInterfaceOrientation)currentInterfaceOrientation {
+    MFDelegate *delegate = [[self class] getAppDelegate];
+    return [delegate currentInterfaceOrientation];
+}
+
++ (BOOL)getAllowOrientationFromPlist:(UIInterfaceOrientation)interfaceOrientation
+{
+    NSDictionary *orientationkv = [NSDictionary dictionaryWithObjectsAndKeys:
+                                   [NSNumber numberWithInt:UIInterfaceOrientationPortrait],@"UIInterfaceOrientationPortrait",
+                                   [NSNumber numberWithInt:UIInterfaceOrientationPortraitUpsideDown],@"UIInterfaceOrientationPortraitUpsideDown",
+                                   [NSNumber numberWithInt:UIInterfaceOrientationLandscapeRight],@"UIInterfaceOrientationLandscapeRight",
+                                   [NSNumber numberWithInt:UIInterfaceOrientationLandscapeLeft],@"UIInterfaceOrientationLandscapeLeft",nil];
+    NSString *key = @"UISupportedInterfaceOrientations";
+    NSArray *values = [[[NSBundle mainBundle] infoDictionary] objectForKey:key];
+    for (NSString *value in values){
+        NSNumber *num = (NSNumber *)[orientationkv objectForKey:value];
+        if(interfaceOrientation == (UIInterfaceOrientation)[num intValue]){
+            return YES;
+        }
+    }
+    return NO;
+}
 
 + (BOOL)isPhoneGapScheme:(NSURL *)url {
     return ([[url scheme] isEqualToString:@"gap"]);
@@ -117,6 +139,11 @@
 + (MFDelegate *)getAppDelegate
 {
     return ((MFDelegate *)[[UIApplication sharedApplication] delegate]);
+}
+
++ (MFTabBarController *)currentTabBarController
+{
+    return (MFTabBarController *)[[self class] getAppDelegate].viewController.tabBarController;
 }
 
 @end

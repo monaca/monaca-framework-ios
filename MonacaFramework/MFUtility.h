@@ -7,14 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "MFViewController.h"
-#import "MFDelegate.h"
+#import "NativeComponents.h"
 
 @interface MFUtility : NSObject
 {
     
 }
-
++ (MFTabBarController *)currentTabBarController;
++ (UIInterfaceOrientation) currentInterfaceOrientation;
++ (BOOL) getAllowOrientationFromPlist:(UIInterfaceOrientation)interfaceOrientation;
 + (NSDictionary *)parseJSONFile:(NSString *)path;
 + (BOOL)isPhoneGapScheme:(NSURL *)url;
 + (BOOL)isExternalPage:(NSURL *)url;
@@ -25,5 +26,6 @@
 + (void)fixedLayout:(MFViewController *)monacaViewController interfaceOrientation:
     (UIInterfaceOrientation)aInterfaceOrientation;
 + (MFDelegate *)getAppDelegate;
+
 
 @end

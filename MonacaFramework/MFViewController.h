@@ -13,6 +13,9 @@
  @private
     NSString *previousPath_;
 }
++ (void)setWantsFullScreenLayout:(BOOL)layout;
+
+- (id)initWithFileName:(NSString *)fileName;
 
 @property (nonatomic, copy) NSString *previousPath;
 

@@ -12,19 +12,28 @@
 #import "MFEvent.h"
 
 @interface MFViewController ()
-- (void)processDataTypes;
+
 @end
 
 @implementation MFViewController
 
 @synthesize previousPath = previousPath_;
+static BOOL wantsFullScreenLayout = NO;
 
-- (id)init
++ (void)setWantsFullScreenLayout:(BOOL)layout
+{
+    wantsFullScreenLayout = layout;
+}
+
+- (id)initWithFileName:(NSString *)fileName
 {
     self = [super init];
     
     if (self) {
+        self.wwwFolderName = @"www";
+        self.startPage = fileName;
         
+        [self setWantsFullScreenLayout:wantsFullScreenLayout];
     }
     return self;
 }

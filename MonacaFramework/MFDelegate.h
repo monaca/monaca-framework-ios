@@ -17,6 +17,8 @@
     
 }
 
+- (UIInterfaceOrientation)currentInterfaceOrientation;
+
 @property (nonatomic, readwrite, retain) MFViewController *viewController;
 
 @property (nonatomic, retain) UIWindow *window;

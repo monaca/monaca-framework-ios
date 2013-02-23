@@ -12,5 +12,5 @@
 {
     
 }
-
+- (id)initWithWwwDir:(NSString *)wwwDir;
 @end
