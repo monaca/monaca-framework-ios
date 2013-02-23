@@ -255,6 +255,18 @@
 		5A83D2F016D9087100D25E98 /* MFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A83D2EE16D9087100D25E98 /* MFViewController.m */; };
 		5A83D2F116D9087100D25E98 /* MFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A83D2EE16D9087100D25E98 /* MFViewController.m */; };
 		5A83D2F216D9087100D25E98 /* MFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A83D2EE16D9087100D25E98 /* MFViewController.m */; };
+		5A83D2FA16D90BD700D25E98 /* MFNavigationController.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A83D2F816D90BD700D25E98 /* MFNavigationController.h */; };
+		5A83D2FB16D90BD700D25E98 /* MFNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A83D2F916D90BD700D25E98 /* MFNavigationController.m */; };
+		5A83D2FD16D90D8800D25E98 /* MFNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A83D2F916D90BD700D25E98 /* MFNavigationController.m */; };
+		5A83D2FE16D90D8900D25E98 /* MFNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A83D2F916D90BD700D25E98 /* MFNavigationController.m */; };
+		5A83D30116D90E5C00D25E98 /* MFUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A83D2FF16D90E5B00D25E98 /* MFUtility.h */; };
+		5A83D30216D90E5C00D25E98 /* MFUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A83D30016D90E5C00D25E98 /* MFUtility.m */; };
+		5A83D30316D90E5C00D25E98 /* MFUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A83D30016D90E5C00D25E98 /* MFUtility.m */; };
+		5A83D30416D90E5C00D25E98 /* MFUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A83D30016D90E5C00D25E98 /* MFUtility.m */; };
+		5A83D30716D9102E00D25E98 /* MFEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A83D30516D9102E00D25E98 /* MFEvent.h */; };
+		5A83D30816D9102E00D25E98 /* MFEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A83D30616D9102E00D25E98 /* MFEvent.m */; };
+		5A83D30916D9102E00D25E98 /* MFEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A83D30616D9102E00D25E98 /* MFEvent.m */; };
+		5A83D30A16D9102E00D25E98 /* MFEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A83D30616D9102E00D25E98 /* MFEvent.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -371,6 +383,12 @@
 		3EE0E8091664B78000F1E677 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		5A83D2ED16D9087100D25E98 /* MFViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFViewController.h; sourceTree = "<group>"; };
 		5A83D2EE16D9087100D25E98 /* MFViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFViewController.m; sourceTree = "<group>"; };
+		5A83D2F816D90BD700D25E98 /* MFNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFNavigationController.h; sourceTree = "<group>"; };
+		5A83D2F916D90BD700D25E98 /* MFNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFNavigationController.m; sourceTree = "<group>"; };
+		5A83D2FF16D90E5B00D25E98 /* MFUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFUtility.h; sourceTree = "<group>"; };
+		5A83D30016D90E5C00D25E98 /* MFUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFUtility.m; sourceTree = "<group>"; };
+		5A83D30516D9102E00D25E98 /* MFEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFEvent.h; sourceTree = "<group>"; };
+		5A83D30616D9102E00D25E98 /* MFEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFEvent.m; sourceTree = "<group>"; };
 		F50460D813B3633B0050803F /* MFDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFDelegate.m; sourceTree = "<group>"; };
 		F504611413B364C60050803F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F504611513B364C60050803F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -726,8 +744,14 @@
 			isa = PBXGroup;
 			children = (
 				F50460D813B3633B0050803F /* MFDelegate.m */,
+				5A83D2F816D90BD700D25E98 /* MFNavigationController.h */,
+				5A83D30516D9102E00D25E98 /* MFEvent.h */,
+				5A83D30616D9102E00D25E98 /* MFEvent.m */,
+				5A83D2F916D90BD700D25E98 /* MFNavigationController.m */,
 				5A83D2ED16D9087100D25E98 /* MFViewController.h */,
 				5A83D2EE16D9087100D25E98 /* MFViewController.m */,
+				5A83D2FF16D90E5B00D25E98 /* MFUtility.h */,
+				5A83D30016D90E5C00D25E98 /* MFUtility.m */,
 				F54FBB3D14BBE04000F702D9 /* MFDevice.h */,
 				F54FBB3E14BBE04100F702D9 /* MFDevice.m */,
 				F50460CE13B361BE0050803F /* Headers */,
@@ -843,6 +867,9 @@
 				3E47C301166F004600F97AAA /* NSMutableArray+QueueAdditions.h in Headers */,
 				3E47C304166F004600F97AAA /* UIDevice+Extensions.h in Headers */,
 				5A83D2EF16D9087100D25E98 /* MFViewController.h in Headers */,
+				5A83D2FA16D90BD700D25E98 /* MFNavigationController.h in Headers */,
+				5A83D30116D90E5C00D25E98 /* MFUtility.h in Headers */,
+				5A83D30716D9102E00D25E98 /* MFEvent.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1047,6 +1074,9 @@
 				3E0B190B169D8CD7001A35BB /* UIDevice+Extensions.m in Sources */,
 				3E0B193E169D8E24001A35BB /* main.m in Sources */,
 				5A83D2F216D9087100D25E98 /* MFViewController.m in Sources */,
+				5A83D2FE16D90D8900D25E98 /* MFNavigationController.m in Sources */,
+				5A83D30416D90E5C00D25E98 /* MFUtility.m in Sources */,
+				5A83D30A16D9102E00D25E98 /* MFEvent.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1097,6 +1127,9 @@
 				3E47C302166F004600F97AAA /* NSMutableArray+QueueAdditions.m in Sources */,
 				3E47C305166F004600F97AAA /* UIDevice+Extensions.m in Sources */,
 				5A83D2F016D9087100D25E98 /* MFViewController.m in Sources */,
+				5A83D2FB16D90BD700D25E98 /* MFNavigationController.m in Sources */,
+				5A83D30216D90E5C00D25E98 /* MFUtility.m in Sources */,
+				5A83D30816D9102E00D25E98 /* MFEvent.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1148,6 +1181,9 @@
 				3E47C306166F004600F97AAA /* UIDevice+Extensions.m in Sources */,
 				3E0B1941169D8FD7001A35BB /* main.m in Sources */,
 				5A83D2F116D9087100D25E98 /* MFViewController.m in Sources */,
+				5A83D2FD16D90D8800D25E98 /* MFNavigationController.m in Sources */,
+				5A83D30316D90E5C00D25E98 /* MFUtility.m in Sources */,
+				5A83D30916D9102E00D25E98 /* MFEvent.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

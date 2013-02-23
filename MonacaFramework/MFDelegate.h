@@ -8,14 +8,18 @@
 
 #import <UIKit/UIKit.h>
 #import "MFViewController.h"
+#import "MFNavigationController.h"
 
 @interface MFDelegate : NSObject <UIApplicationDelegate, UIWebViewDelegate> {
  @private
     MFViewController *viewController_;
+    MFNavigationController *monacaNavigationController_;
+    
 }
 
 @property (nonatomic, readwrite, retain) MFViewController *viewController;
 
-@property (nonatomic, retain) IBOutlet UIWindow *window;
+@property (nonatomic, retain) UIWindow *window;
+@property (nonatomic, retain) MFNavigationController *monacaNavigationController;
 
 @end

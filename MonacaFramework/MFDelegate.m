@@ -27,21 +27,12 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.viewController = [[MFViewController alloc] init];
     
-    self.window.rootViewController = self.viewController;
+    self.monacaNavigationController = [[MFNavigationController alloc] initWithRootViewController:self.viewController];
+    
+    self.window.rootViewController = self.monacaNavigationController;
     [self.window makeKeyAndVisible];
     
     return YES;
-}
-
-- (NSURL *)getBaseURL {
-    NSString *base_path = [NSString stringWithFormat:@"%@/www", [[NSBundle mainBundle] bundlePath]];
-    return [NSURL fileURLWithPath:base_path];
-}
-
-
-- (NSDictionary *)getApplicationPlist
-{
-    return [[NSBundle mainBundle] infoDictionary];
 }
 
 @end
