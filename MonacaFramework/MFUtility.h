@@ -26,6 +26,7 @@
 + (void)fixedLayout:(MFViewController *)monacaViewController interfaceOrientation:
     (UIInterfaceOrientation)aInterfaceOrientation;
 + (MFDelegate *)getAppDelegate;
-
++ (MFViewController *)currentViewController;
++ (void)setCurrentViewController:(MFViewController *)viewController;
 
 @end

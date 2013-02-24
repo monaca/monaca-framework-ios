@@ -54,7 +54,7 @@ static BOOL wantsFullScreenLayout = NO;
     // TODO
     [super viewDidLoad];
     [MFUtility fixedLayout:self interfaceOrientation:self.interfaceOrientation];
-
+    [MFUtility setCurrentViewController:self];
     if ([self.navigationController viewControllers].count == 1) {
 
     }

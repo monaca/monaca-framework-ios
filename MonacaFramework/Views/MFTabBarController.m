@@ -137,6 +137,7 @@
             [self apply:top];
         }
     }
+    self.rightContainers = [NSArray arrayWithObject:[NCContainer container:topRightStyle position:@"top"]];
     int i = 0;
     for (NSDictionary *item in items) {
         NSMutableDictionary *style = [NSMutableDictionary dictionary];
@@ -153,8 +154,9 @@
         
         UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:viewController];
         viewController.navigationItem.title = [[item objectForKey:kNCTypeStyle] objectForKey:@"text"];
-        viewController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:[[topRightStyle objectForKey:kNCTypeStyle] objectForKey:@"text"] style:UIBarButtonItemStyleBordered target:self action:@selector(hoge)];
-        viewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:[[topRightStyle objectForKey:kNCTypeStyle] objectForKey:@"text"] style:UIBarButtonItemStyleBordered target:self action:@selector(fuga)];
+
+        viewController.navigationItem.rightBarButtonItem = [(NCContainer *)[self.rightContainers objectAtIndex:0] component];
+//        viewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:[[topRightStyle objectForKey:kNCTypeStyle] objectForKey:@"text"] style:UIBarButtonItemStyleBordered target:self action:nil];
 //        viewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"button" style:UIBarButtonItemStyleBordered target:nil action:nil];
         if (nil != top) {
             if ([[top objectForKey:kNCTypeContainer] isEqualToString:kNCContainerToolbar]) {
@@ -169,7 +171,8 @@
         
         // Store a reference to the object representing the native component.
         //        NSString *cid = [item objectForKey:kNCTypeID];
-        //        [self.ncManager setComponent:viewController.tabBarItem forID:cid];
+//        [self.ncManager setComponent:rightContainers_ forID:@"tapme-button"];
+
         i++;
     }
     self.viewControllers  = viewControllers;

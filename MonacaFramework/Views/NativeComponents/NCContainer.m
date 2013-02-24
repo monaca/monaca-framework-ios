@@ -8,6 +8,7 @@
 
 #import "NCContainer.h"
 #import "NCButton.h"
+#import "MFUtility.h"
 
 @implementation NCContainer
 
@@ -121,7 +122,7 @@
 // =================================================
 // Event handlers.
 // =================================================
-
+             
 // Handle an onSearch event.
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     UIWebView *webView = ((MFDelegate *)[UIApplication sharedApplication].delegate).viewController.webView;
@@ -148,7 +149,7 @@
 
 // Handle an onTap event.
 - (void)didTap:(id)sender forEvent:(UIEvent *)event {
-    UIWebView *webView = ((MFDelegate *)[UIApplication sharedApplication].delegate).viewController.webView;
+    UIWebView *webView = [MFUtility currentViewController].webView;
     [webView stringByEvaluatingJavaScriptFromString:onTapScript_];
 }
 

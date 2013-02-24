@@ -10,6 +10,8 @@
 #import "JSONKit.h"
 #import "MFEvent.h"
 
+static MFViewController *currentViewController;
+
 @implementation MFUtility
 
 + (NSDictionary *)parseJSONFile:(NSString *)path {
@@ -144,6 +146,16 @@
 + (MFTabBarController *)currentTabBarController
 {
     return (MFTabBarController *)[[self class] getAppDelegate].viewController.tabBarController;
+}
+
++ (void)setCurrentViewController:(MFViewController *)viewController
+{
+    currentViewController = viewController;
+}
+
++ (MFViewController *)currentViewController
+{
+    return currentViewController;
 }
 
 @end
