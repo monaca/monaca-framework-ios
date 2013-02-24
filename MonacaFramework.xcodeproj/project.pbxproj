@@ -337,6 +337,10 @@
 		5A83D37F16D91E6D00D25E98 /* UILabel+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A83D33B16D91E6D00D25E98 /* UILabel+Resize.m */; };
 		5A83D38016D91E6D00D25E98 /* UILabel+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A83D33B16D91E6D00D25E98 /* UILabel+Resize.m */; };
 		5A83D38116D91E6D00D25E98 /* UILabel+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A83D33B16D91E6D00D25E98 /* UILabel+Resize.m */; };
+		5AA6954E16D9FF27003C5D90 /* MFPGNativeComponent.h in Headers */ = {isa = PBXBuildFile; fileRef = 5AA6954C16D9FF27003C5D90 /* MFPGNativeComponent.h */; };
+		5AA6954F16D9FF27003C5D90 /* MFPGNativeComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA6954D16D9FF27003C5D90 /* MFPGNativeComponent.m */; };
+		5AA6955016D9FF27003C5D90 /* MFPGNativeComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA6954D16D9FF27003C5D90 /* MFPGNativeComponent.m */; };
+		5AA6955116D9FF27003C5D90 /* MFPGNativeComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA6954D16D9FF27003C5D90 /* MFPGNativeComponent.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -495,6 +499,8 @@
 		5A83D33916D91E6D00D25E98 /* NCToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCToolbar.m; sourceTree = "<group>"; };
 		5A83D33A16D91E6D00D25E98 /* UILabel+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+Resize.h"; sourceTree = "<group>"; };
 		5A83D33B16D91E6D00D25E98 /* UILabel+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Resize.m"; sourceTree = "<group>"; };
+		5AA6954C16D9FF27003C5D90 /* MFPGNativeComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFPGNativeComponent.h; sourceTree = "<group>"; };
+		5AA6954D16D9FF27003C5D90 /* MFPGNativeComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFPGNativeComponent.m; sourceTree = "<group>"; };
 		F50460D813B3633B0050803F /* MFDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFDelegate.m; sourceTree = "<group>"; };
 		F504611413B364C60050803F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F504611513B364C60050803F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -612,6 +618,8 @@
 		3E0F08FC15A81D000025EFC2 /* PGPlugins */ = {
 			isa = PBXGroup;
 			children = (
+				5AA6954C16D9FF27003C5D90 /* MFPGNativeComponent.h */,
+				5AA6954D16D9FF27003C5D90 /* MFPGNativeComponent.m */,
 			);
 			path = PGPlugins;
 			sourceTree = "<group>";
@@ -1047,6 +1055,7 @@
 				5A83D37616D91E6D00D25E98 /* NCTitleView.h in Headers */,
 				5A83D37A16D91E6D00D25E98 /* NCToolbar.h in Headers */,
 				5A83D37E16D91E6D00D25E98 /* UILabel+Resize.h in Headers */,
+				5AA6954E16D9FF27003C5D90 /* MFPGNativeComponent.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1112,6 +1121,7 @@
 		F504609C13B361720050803F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = "ASIAL CORPORATION";
 			};
 			buildConfigurationList = F504609F13B361720050803F /* Build configuration list for PBXProject "MonacaFramework" */;
@@ -1271,6 +1281,7 @@
 				5A83D37916D91E6D00D25E98 /* NCTitleView.m in Sources */,
 				5A83D37D16D91E6D00D25E98 /* NCToolbar.m in Sources */,
 				5A83D38116D91E6D00D25E98 /* UILabel+Resize.m in Sources */,
+				5AA6955116D9FF27003C5D90 /* MFPGNativeComponent.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1341,6 +1352,7 @@
 				5A83D37716D91E6D00D25E98 /* NCTitleView.m in Sources */,
 				5A83D37B16D91E6D00D25E98 /* NCToolbar.m in Sources */,
 				5A83D37F16D91E6D00D25E98 /* UILabel+Resize.m in Sources */,
+				5AA6954F16D9FF27003C5D90 /* MFPGNativeComponent.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1412,6 +1424,7 @@
 				5A83D37816D91E6D00D25E98 /* NCTitleView.m in Sources */,
 				5A83D37C16D91E6D00D25E98 /* NCToolbar.m in Sources */,
 				5A83D38016D91E6D00D25E98 /* UILabel+Resize.m in Sources */,
+				5AA6955016D9FF27003C5D90 /* MFPGNativeComponent.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1464,6 +1477,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
+				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = "";
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				INFOPLIST_FILE = "MFUnitTest/MFUnitTest-Info.plist";
@@ -1496,6 +1510,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MFUnitTest/MFUnitTest-Prefix.pch";
+				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = "";
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				INFOPLIST_FILE = "MFUnitTest/MFUnitTest-Info.plist";
@@ -1535,6 +1550,7 @@
 					MONACA_PRIVATE_API,
 					DEBUG,
 				);
+				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = "";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
@@ -1565,6 +1581,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MonacaFramework/MonacaFramework-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = MONACA_PRIVATE_API;
+				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = "";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
@@ -1597,6 +1614,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
+				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = "";
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				INFOPLIST_FILE = "MonacaSandbox/MonacaSandbox-Info.plist";
@@ -1628,6 +1646,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MonacaSandbox/MonacaSandbox-Prefix.pch";
+				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = "";
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				INFOPLIST_FILE = "MonacaSandbox/MonacaSandbox-Info.plist";
