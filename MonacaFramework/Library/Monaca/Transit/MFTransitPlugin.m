@@ -249,7 +249,7 @@
 
     MFNavigationController *nav = [self monacaNavigationController];
     [nav.view.layer addAnimation:transition forKey:kCATransition];
-    MFViewController *vc = (MFViewController*)[nav popViewControllerAnimated:YES];
+    MFViewController *vc = (MFViewController*)[nav popViewControllerAnimated:NO];
     [vc destroy];
 
     BOOL res = [[self class] changeDelegate:[[nav viewControllers] lastObject]];
