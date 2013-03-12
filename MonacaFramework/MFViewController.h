@@ -42,6 +42,7 @@
 - (BOOL)isInterfaceOrientationUnspecified;
 
 - (NSString *)hookForLoadedHTML:(NSString *)html request:(NSURLRequest *)aRequest;
+- (void)sendPush;
 - (void)initPlugins;
 - (void)resetPlugins;
 - (void)releaseWebView;

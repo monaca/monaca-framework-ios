@@ -362,11 +362,22 @@
     return html;
 }
 
+- (void)sendPush
+{
+    NSString *js = [NSString stringWithFormat:@"monaca.sendPush('%@');", [[NSUserDefaults standardUserDefaults] objectForKey:@"extraJSON"]];
+    [self.cdvViewController.webView stringByEvaluatingJavaScriptFromString:js];
+    [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"extraJSON"];
+}
+
 - (void) webViewDidFinishLoad:(UIWebView*) theWebView 
 {
     // Black base color for background matches the native apps
     //theWebView.backgroundColor = [UIColor blackColor];
     
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"extraJSON"] != nil) {
+        [self sendPush];
+    }
+
     [MFEvent dispatchEvent:monacaEventDidLoadUIFile withInfo:nil];
     [MFTransitPlugin webViewDidFinishLoad:theWebView viewController:self];
     
