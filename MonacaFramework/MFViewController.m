@@ -364,7 +364,7 @@
 
 - (void)sendPush
 {
-    NSString *js = [NSString stringWithFormat:@"monaca.sendPush('%@');", [[NSUserDefaults standardUserDefaults] objectForKey:@"extraJSON"]];
+    NSString *js = [NSString stringWithFormat:@"monaca.cloud.Push.send(%@);", [[NSUserDefaults standardUserDefaults] objectForKey:@"extraJSON"]];
     [self.cdvViewController.webView stringByEvaluatingJavaScriptFromString:js];
     [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"extraJSON"];
 }
