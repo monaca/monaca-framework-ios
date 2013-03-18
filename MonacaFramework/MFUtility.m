@@ -229,22 +229,27 @@ static NSString *base_url = @"https://api.monaca.mobi";
     NSString *json = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     NSDictionary *dic = [[self class] parseJSON:json];
     NSString *push_projectId = [[dic objectForKey:@"pushNotification"] objectForKey:@"pushProjectId"];
-#ifdef DEBUG
-    base_url = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"DebugURL"];
-#endif
+
+    if ([[NSBundle mainBundle] objectForInfoDictionaryKey:@"MonacaDomain"] != nil) {
+        base_url = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"MonacaDomain"];
+    }
+
     NSString *url = [NSString stringWithFormat:@"%@/v1/push/register/%@", base_url, [MFUtility urlEncode:push_projectId]];
     NSString *os = @"ios";
     NSString *deviceId = [[NSUserDefaults standardUserDefaults] objectForKey:@"UUID"];
     NSString *env = @"prod";
     NSString *buildType;
+
+    if ([[NSBundle mainBundle] objectForInfoDictionaryKey:@"MonacaEnv"] != nil) {
+        env = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"MonacaEnv"];
+    }
+
 #ifdef DEBUG
-    env = @"stg";
     buildType = @"debug";
-#elif ifdef RELEASE
-    buildType = @"release";
 #else
-    buildType = @"adhoc";
+    buildType = @"release";
 #endif
+
     NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString*)kCFBundleVersionKey];
 
     NSString *parameter = [NSString stringWithFormat:@"platform=%@&deviceId=%@&env=%@&buildType=%@&version=%@&deviceToken=%@",
