@@ -188,30 +188,10 @@
     [self setupViewController:viewController options:options];
     [[self class] changeDelegate:viewController];
 
-    NSString *transitionSubtype;
-    UIInterfaceOrientation orientation = viewController.interfaceOrientation;
-    switch (orientation) {
-        case UIInterfaceOrientationPortrait: // Device oriented vertically, home button on the bottom
-            transitionSubtype = kCATransitionFromTop;
-            break;
-        case UIInterfaceOrientationPortraitUpsideDown: // Device oriented vertically, home button on the top
-            transitionSubtype = kCATransitionFromBottom;
-            break;
-        case UIInterfaceOrientationLandscapeLeft: // Device oriented horizontally, home button on the right
-            transitionSubtype = kCATransitionFromRight;
-            break;
-        case UIInterfaceOrientationLandscapeRight: // Device oriented horizontally, home button on the left
-            transitionSubtype = kCATransitionFromLeft;
-            break;
-        default:
-            transitionSubtype = kCATransitionFromTop;
-            break;
-    }
-
     CATransition *transition = [CATransition animation];
     transition.duration = 0.4f;
     transition.type = kCATransitionMoveIn;
-    transition.subtype = transitionSubtype;
+    transition.subtype = kCATransitionFromTop;
     [transition setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionDefault]];
 
     MFNavigationController *nav = [self monacaNavigationController];
@@ -221,35 +201,16 @@
 
 - (void)dismiss:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options
 {
-    NSString *transitionSubtype;
-    UIInterfaceOrientation orientation = self.viewController.interfaceOrientation;
-    switch (orientation) {
-        case UIInterfaceOrientationPortrait: // Device oriented vertically, home button on the bottom
-            transitionSubtype = kCATransitionFromBottom;
-            break;
-        case UIInterfaceOrientationPortraitUpsideDown: // Device oriented vertically, home button on the top
-            transitionSubtype = kCATransitionFromTop;
-            break;
-        case UIInterfaceOrientationLandscapeLeft: // Device oriented horizontally, home button on the right
-            transitionSubtype = kCATransitionFromLeft;
-            break;
-        case UIInterfaceOrientationLandscapeRight: // Device oriented horizontally, home button on the left
-            transitionSubtype = kCATransitionFromRight;
-            break;
-        default:
-            transitionSubtype = kCATransitionFromBottom;
-            break;
-    }
 
     CATransition *transition = [CATransition animation];
     transition.duration = 0.4f;
     transition.type = kCATransitionReveal;
-    transition.subtype = transitionSubtype;
+    transition.subtype = kCATransitionFromBottom;
     [transition setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionDefault]];
 
     MFNavigationController *nav = [self monacaNavigationController];
     [nav.view.layer addAnimation:transition forKey:kCATransition];
-    MFViewController *vc = (MFViewController*)[nav popViewControllerAnimated:YES];
+    MFViewController *vc = (MFViewController*)[nav popViewControllerAnimated:NO];
     [vc destroy];
 
     BOOL res = [[self class] changeDelegate:[[nav viewControllers] lastObject]];
