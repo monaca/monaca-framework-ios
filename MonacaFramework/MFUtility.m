@@ -10,6 +10,37 @@
 
 @implementation MFUtility
 
+static NSString *base_url = @"https://api.monaca.mobi";
+
++ (NSURLResponse *)fetchFrom:(NSString *)url method:(NSString *)method parameter:(NSString *)parameter {
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
+    [request setHTTPMethod:method];
+    [request setCachePolicy:NSURLRequestReloadIgnoringCacheData];
+
+    NSData *requestBody = [parameter dataUsingEncoding:NSUTF8StringEncoding];
+    [request setHTTPBody:requestBody];
+    [request setHTTPShouldHandleCookies:YES];
+    [request setValue:[[self class] getUserAgent]  forHTTPHeaderField:@"User-Agent"];
+
+    // Fetch from the given URL.
+    NSURLResponse *response = nil;
+    NSError *error = nil;
+    [NSURLConnection sendSynchronousRequest:request
+                                         returningResponse:&response error:&error];
+    if (error != nil) {
+        return nil;
+        //        @throw error;
+    }
+
+    return response;
+}
+
++ (NSString *)getUserAgent
+{
+    return [NSString stringWithFormat:@"%@/%@" ,[[NSBundle mainBundle] objectForInfoDictionaryKey: @"CFBundleDisplayName"],
+            [[NSBundle mainBundle] objectForInfoDictionaryKey: @"CFBundleVersion"]];
+}
+
 + (MFTabBarController *)currentTabBarController {
     return (MFTabBarController *)((MFDelegate *)[UIApplication sharedApplication].delegate).viewController.tabBarController;
 }
@@ -185,6 +216,55 @@
         }
     }
     return keyValues;
+}
+
++ (NSURLResponse *)register_push:(NSString *)deviceToken
+{
+    NSURL *json_url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",[[MFUtility getAppDelegate] getBaseURL], @"app.json"]];
+    NSURLRequest *request = [[NSURLRequest alloc] initWithURL:json_url];
+    NSURLResponse *response = nil;
+    NSError *error = nil;
+    NSData *data = [NSURLConnection sendSynchronousRequest:request
+                                         returningResponse:&response error:&error];
+    NSString *json = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    NSDictionary *dic = [[self class] parseJSON:json];
+    NSString *push_projectId = [[dic objectForKey:@"pushNotification"] objectForKey:@"pushProjectId"];
+
+    if ([[NSBundle mainBundle] objectForInfoDictionaryKey:@"MonacaDomain"] != nil) {
+        base_url = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"MonacaDomain"];
+    }
+
+    NSString *url = [NSString stringWithFormat:@"%@/v1/push/register/%@", base_url, [MFUtility urlEncode:push_projectId]];
+    NSString *os = @"ios";
+    NSString *deviceId = [[NSUserDefaults standardUserDefaults] objectForKey:@"UUID"];
+    NSString *env = @"prod";
+    NSString *buildType;
+
+    if ([[NSBundle mainBundle] objectForInfoDictionaryKey:@"MonacaEnv"] != nil) {
+        env = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"MonacaEnv"];
+    }
+
+#ifdef DEBUG
+    buildType = @"debug";
+#else
+    buildType = @"release";
+#endif
+
+    NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString*)kCFBundleVersionKey];
+
+    NSString *parameter = [NSString stringWithFormat:@"platform=%@&deviceId=%@&env=%@&buildType=%@&version=%@&deviceToken=%@",
+                           [MFUtility urlEncode:os],
+                           [MFUtility urlEncode:deviceId],
+                           [MFUtility urlEncode:env],
+                           [MFUtility urlEncode:buildType],
+                           [MFUtility urlEncode:version],
+                           [MFUtility urlEncode:deviceToken]];
+
+    return [[self class] fetchFrom:url method:@"POST" parameter:parameter];
+}
+
++ (NSDictionary *)parseJSON:(NSString *)json {
+    return [json cdvjk_objectFromJSONString];
 }
 
 @end
