@@ -330,7 +330,7 @@
         }
 
         @try {
-            if (cdvViewController.webView.tag != kWebViewIgnoreStyle) {
+            if (cdvViewController.webView.tag != kWebViewIgnoreStyle && withinSinglePage == NO) {
                 cdvViewController.webView.tag = kWebViewNormal;
                 // Apply user interface definitions.
                 NSDictionary *uiDict = [self parseJSONFile:uipath];
@@ -381,6 +381,8 @@
     [MFEvent dispatchEvent:monacaEventDidLoadUIFile withInfo:nil];
     [MFTransitPlugin webViewDidFinishLoad:theWebView viewController:self];
     
+    withinSinglePage = NO;
+
     return [cdvViewController webViewDidFinishLoad:theWebView];
 }
 
@@ -407,6 +409,7 @@
 
 - (void)webViewDidStartLoad:(UIWebView *)_webView {
     [self.cdvViewController webViewDidStartLoad:_webView];
+    withinSinglePage = YES;
 }
 
 - (void)webView:(UIWebView *)_webView didFailLoadWithError:(NSError *)error {

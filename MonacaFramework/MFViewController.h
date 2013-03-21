@@ -24,6 +24,7 @@
     NSString *previousPath_;
     BOOL recall_;
     BOOL interfaceOrientationUnspecified;
+    BOOL withinSinglePage;
     NSMutableDictionary *uiSetting;
     NSMutableArray *monacaTabViewControllers;
  @protected
