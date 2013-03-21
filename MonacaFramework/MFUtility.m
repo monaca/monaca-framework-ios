@@ -139,10 +139,10 @@ static NSString *base_url = @"https://api.monaca.mobi";
  *  convert path (ex 1234/xxxx/www/yyy.html -> www/yyy.html)
  */
 + (NSString *)getWWWShortPath:(NSString *)path{
-    if (path == nil || [path rangeOfString:@"www/"].location == NSNotFound) {
+    if (path == nil || [path rangeOfString:@"assets/"].location == NSNotFound) {
         return @"";
     } else {
-        return [path substringFromIndex:[path rangeOfString:@"www/"].location];
+        return [path substringFromIndex:[path rangeOfString:@"assets/"].location + [@"assets/" length]];
     }
 }
 
