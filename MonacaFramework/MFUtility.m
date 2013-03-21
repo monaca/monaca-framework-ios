@@ -41,6 +41,24 @@ static NSString *base_url = @"https://api.monaca.mobi";
             [[NSBundle mainBundle] objectForInfoDictionaryKey: @"CFBundleVersion"]];
 }
 
+
++ (NSDictionary *)parseJSON:(NSString *)json {
+    return [json cdvjk_objectFromJSONString];
+}
+
++ (NSDictionary *)getAppJSON
+{
+    NSString *base_path = [[[[MFUtility getAppDelegate] getBaseURL] path] stringByReplacingOccurrencesOfString:@"www" withString:@""];
+    NSURL *json_url = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@app.json", base_path]];
+    NSURLRequest *request = [[NSURLRequest alloc] initWithURL:json_url];
+    NSURLResponse *response = nil;
+    NSError *error = nil;
+    NSData *data = [NSURLConnection sendSynchronousRequest:request
+                                         returningResponse:&response error:&error];
+    NSString *json = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    return [[self class] parseJSON:json];
+}
+
 + (MFTabBarController *)currentTabBarController {
     return (MFTabBarController *)((MFDelegate *)[UIApplication sharedApplication].delegate).viewController.tabBarController;
 }
@@ -220,15 +238,7 @@ static NSString *base_url = @"https://api.monaca.mobi";
 
 + (NSURLResponse *)register_push:(NSString *)deviceToken
 {
-    NSURL *json_url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",[[MFUtility getAppDelegate] getBaseURL], @"app.json"]];
-    NSURLRequest *request = [[NSURLRequest alloc] initWithURL:json_url];
-    NSURLResponse *response = nil;
-    NSError *error = nil;
-    NSData *data = [NSURLConnection sendSynchronousRequest:request
-                                         returningResponse:&response error:&error];
-    NSString *json = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    NSDictionary *dic = [[self class] parseJSON:json];
-    NSString *push_projectId = [[dic objectForKey:@"pushNotification"] objectForKey:@"pushProjectId"];
+    NSString *push_projectId = [[[[self class] getAppJSON] objectForKey:@"pushNotification"] objectForKey:@"pushProjectId"];
 
     if ([[NSBundle mainBundle] objectForInfoDictionaryKey:@"MonacaDomain"] != nil) {
         base_url = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"MonacaDomain"];
@@ -263,8 +273,40 @@ static NSString *base_url = @"https://api.monaca.mobi";
     return [[self class] fetchFrom:url method:@"POST" parameter:parameter];
 }
 
-+ (NSDictionary *)parseJSON:(NSString *)json {
-    return [json cdvjk_objectFromJSONString];
++ (void)setMonacaCloudCookie
+{
+    NSDictionary *appJSON = [MFUtility getAppJSON];
+    NSURL *endPoint = [NSURL URLWithString:[[appJSON objectForKey:@"monacaCloud"] objectForKey:@"endPoint"]];
+    NSString *domain = [endPoint host];
+    NSString *path = [endPoint path];
+    NSString *name = @"MONACA_CLOUD_DEVICE_ID";
+    NSString *device_id = [[NSUserDefaults standardUserDefaults] objectForKey:@"UUID"];
+
+    NSDictionary *properties = [[NSMutableDictionary alloc] init];
+    [properties setValue:domain forKey:NSHTTPCookieDomain];
+    [properties setValue:path forKey:NSHTTPCookiePath];
+    [properties setValue:name forKey:NSHTTPCookieName];
+    [properties setValue:device_id forKey:NSHTTPCookieValue];
+    [properties setValue:@"TURE" forKey:NSHTTPCookieSecure];
+    [properties setValue:nil forKey:NSHTTPCookieExpires];
+    NSHTTPCookie *cookie = [NSHTTPCookie cookieWithProperties:properties];
+    NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+    [storage setCookie:cookie];
+}
+
++ (void)clearMonacaCloudCookie
+{
+    NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+    for (NSHTTPCookie *cookie in [storage cookies]) {
+        NSDictionary *properties = [cookie properties];
+        NSString *name = [properties objectForKey:NSHTTPCookieName];
+        if ([name isEqualToString:@"MONACA_CLOUD_DEVICE_ID"]) {
+            [properties setValue:[NSDate dateWithTimeIntervalSinceNow:-3600] forKey:NSHTTPCookieExpires];
+            NSHTTPCookie *newCookie = [NSHTTPCookie cookieWithProperties:properties];
+            [storage deleteCookie:cookie];
+            [storage setCookie:newCookie];
+        }
+    }
 }
 
 @end

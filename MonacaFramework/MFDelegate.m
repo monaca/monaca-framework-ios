@@ -76,6 +76,8 @@
         [[NSUserDefaults standardUserDefaults] setObject:extraJson forKey:@"extraJSON"];
     }
 
+    [MFUtility setMonacaCloudCookie];
+
     return YES;
 }
 
@@ -106,6 +108,8 @@
     } else {
         [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge                                                                           | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
     }
+
+    [MFUtility setMonacaCloudCookie];
 }
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
