@@ -1,0 +1,3 @@
+[submodule "MonacaSandbox/www"]
+	path = MonacaSandbox/www
+	url = git@github.com:monaca/cordova-mobile-spec.git
