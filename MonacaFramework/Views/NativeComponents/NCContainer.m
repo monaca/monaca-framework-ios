@@ -97,10 +97,10 @@
         container.onTapScript = [[params objectForKey:kNCTypeEvent] objectForKey:kNCEventTypeTap];
         container.onChangeScript = [[params objectForKey:kNCTypeEvent] objectForKey:kNCEventTypeChange];
         
-        [segment addTarget:container action:@selector(didChange:forEvent:) forControlEvents:UIControlEventValueChanged];
+/*        [segment addTarget:container action:@selector(didChange:forEvent:) forControlEvents:UIControlEventValueChanged];
         // TODO(nhiroki): Do not work.
         [segment addTarget:container action:@selector(didTap:forEvent:) forControlEvents:UIControlEventTouchUpInside];
-        
+*/        
         container.type = kNCComponentSegment;
     }
     

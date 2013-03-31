@@ -10,12 +10,14 @@
 
 @interface MFViewController : CDVViewController <UIScrollViewDelegate, UIWebViewDelegate>
 {
- @private
+@private
     NSString *previousPath_;
 }
 + (void)setWantsFullScreenLayout:(BOOL)layout;
 
+- (void)applyUserInterface:(NSDictionary *)uidict;
 - (id)initWithFileName:(NSString *)fileName;
+- (void)destroy;
 
 @property (nonatomic, copy) NSString *previousPath;
 

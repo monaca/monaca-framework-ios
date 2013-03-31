@@ -21,17 +21,7 @@
     NSString *uipath = [wwwDir stringByAppendingPathComponent:@"index.ui"];
     NSDictionary *uiDict = [MFUtility parseJSONFile:uipath];
     
-    id item = [uiDict objectForKey:kNCPositionTop];
-    if (item != nil) {
-        if ([[item objectForKey:kNCTypeContainer] isEqualToString:kNCContainerToolbar]) {
-            
-        }
-        [self setNavigationBarHidden:YES animated:NO];
-    } else {
-        [self setNavigationBarHidden:YES animated:NO];
-        [MFViewController setWantsFullScreenLayout:NO];
-    }
-    
+    id item;
     item = [uiDict objectForKey:kNCPositionBottom];
     if (item != nil) {
         NSString *containerType = [item objectForKey:kNCTypeContainer];
@@ -40,11 +30,24 @@
         } else if ([containerType isEqualToString:kNCContainerTabbar]) {
             MFTabBarController *tabBarController = [[MFTabBarController alloc] init];
             [tabBarController applyBottomTabbar:uiDict WwwDir:@"www"];
+            [MFUtility setCurrentTabBarController:tabBarController];
             self = [self initWithRootViewController:tabBarController];
             [self setNavigationBarHidden:YES];
             [tabBarController.moreNavigationController setNavigationBarHidden:NO];
         }
     } else {
+        item = [uiDict objectForKey:kNCPositionTop];
+        if (item != nil) {
+            if ([[item objectForKey:kNCTypeContainer] isEqualToString:kNCContainerToolbar]) {
+                MFViewController *viewController = [[MFViewController alloc] initWithFileName:@"index.html"];
+                viewController.wwwFolderName = @"www";
+                self = [self initWithRootViewController:viewController];
+            }
+            [self setNavigationBarHidden:NO animated:NO];
+        } else {
+            [self setNavigationBarHidden:YES animated:NO];
+            [MFViewController setWantsFullScreenLayout:NO];
+        }
         [self setToolbarHidden:YES animated:NO];
         [self setToolbarItems:nil];
     }
@@ -73,10 +76,20 @@
 
 #pragma mark - UINavigationControllerDelegate
 
+- (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
+{
+    [super pushViewController:viewController animated:animated];
+}
+
+- (UIViewController *)popViewControllerAnimated:(BOOL)animated
+{
+    return [super popViewControllerAnimated:animated];
+}
+
 - (void)navigationController:(UINavigationController *)navigationController
        didShowViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
-    
+
 }
 
 @end

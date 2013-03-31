@@ -18,6 +18,7 @@
 @implementation MFViewController
 
 @synthesize previousPath = previousPath_;
+
 static BOOL wantsFullScreenLayout = NO;
 
 + (void)setWantsFullScreenLayout:(BOOL)layout
@@ -39,6 +40,11 @@ static BOOL wantsFullScreenLayout = NO;
 }
 
 #pragma mark - View lifecycle
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [MFUtility setCurrentViewController:self];
+}
 
 - (void)viewDidAppear:(BOOL)animated
 {
@@ -78,25 +84,60 @@ static BOOL wantsFullScreenLayout = NO;
     // Dispose of any resources that can be recreated.
 }
 
+- (void)applyUserInterface:(NSDictionary *)uidict
+{
+    if (uidict == nil) {
+        return;
+    }
+    NSDictionary *top = [uidict objectForKey:kNCPositionTop];
+    if (top != nil) {
+        [self.navigationController setNavigationBarHidden:NO];
+    }
+    NSDictionary *topStyle = [top objectForKey:kNCTypeStyle];
+    NSArray *topRight = [top objectForKey:kNCTypeRight];
+    NSArray *topLeft = [top objectForKey:kNCTypeLeft];
+    NSArray *topCenter = [top objectForKey:kNCTypeCenter];
+    NSDictionary *topRightStyle = [topRight objectAtIndex:0];
+    NSDictionary *topLeftStyle = [topLeft objectAtIndex:0];
+    NSDictionary *topCenterStyle = [topCenter objectAtIndex:0];
+    
+    NSMutableDictionary *style = [NSMutableDictionary dictionary];
+    [style addEntriesFromDictionary:[top objectForKey:kNCTypeStyle]];
+    [style addEntriesFromDictionary:[top objectForKey:kNCTypeIOSStyle]];
+    
+    if ([style objectForKey:kNCStyleText] == nil) {
+        [style setObject:[topStyle objectForKey:kNCStyleTitle] forKey:kNCStyleText];
+    }
+    
+    self.navigationItem.title = [[top objectForKey:kNCTypeStyle] objectForKey:kNCStyleTitle];
+    NSArray *rightContainers = [NSArray arrayWithObject:[NCContainer container:topRightStyle position:@"top"]];
+    NSArray *leftContainers = [NSArray arrayWithObject:[NCContainer container:topLeftStyle position:@"top"]];
+    NSArray *centerContainers = [NSArray arrayWithObject:[NCContainer container:topCenterStyle position:@"top"]];
+    
+    self.navigationItem.rightBarButtonItem = [(NCContainer *)[rightContainers objectAtIndex:0] component];
+    self.navigationItem.leftBarButtonItem = [(NCContainer *)[leftContainers objectAtIndex:0] component];
+    self.navigationItem.titleView = [(NCContainer *)[centerContainers objectAtIndex:0] view];
+
+}
+
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
     BOOL hasAnchor = [MFUtility hasAnchor:[request URL]];
     
     NSURL *url = [[request URL] standardizedURL];
-    
-    if ([url.scheme isEqual:@"gap"] || [url.scheme isEqual:@"http"] || [url.scheme isEqual:@"https"] ||
-        [url.scheme isEqual:@"about"]) {
+
+    if ([url.scheme isEqual:@"gap"] || [url.scheme isEqual:@"http"] || [url.scheme isEqual:@"https"]) {
         return [super webView:webView shouldStartLoadWithRequest:request navigationType:navigationType];
     }
     
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSString *startPagePath = [[MFUtility getBaseURL].path stringByAppendingFormat:@"/%@", self.startPage];
+    NSString *startPagePath = [[[NSBundle mainBundle] bundlePath] stringByAppendingFormat:@"/%@/%@", self.wwwFolderName ,self.startPage];
     NSString *errorPath = nil;
     
-    if (![fileManager fileExistsAtPath:startPagePath]) {
+    if (![fileManager fileExistsAtPath:startPagePath] && !previousPath_) {
         errorPath = [self.wwwFolderName stringByAppendingFormat:@"/%@", self.startPage];
     } else if (![fileManager fileExistsAtPath:[url path]]) {
-        errorPath = url.path;
+       errorPath = url.path;
     }
     if ([request.URL.scheme isEqualToString:@"file"] && [request.URL.absoluteString hasSuffix:@"/"]) {
         errorPath = request.URL.absoluteString;
@@ -105,10 +146,16 @@ static BOOL wantsFullScreenLayout = NO;
         NSMutableDictionary *info = [NSMutableDictionary dictionary];
         [info setObject:errorPath forKey:@"path"];
         [MFEvent dispatchEvent:monacaEvent404Error withInfo:info];
-     
+
+        [MFUtility show404PageWithWebView:webView path:errorPath];
+        previousPath_ = errorPath;
         return NO;
     }
     
+    if ([url.scheme isEqual:@"about"]) {
+        return [super webView:webView shouldStartLoadWithRequest:request navigationType:navigationType];
+    }
+   
     if ([url isFileURL]) {
         NSMutableDictionary *info = [NSMutableDictionary dictionary];
         [info setObject:[url path] forKey:@"path"];
@@ -122,7 +169,6 @@ static BOOL wantsFullScreenLayout = NO;
         }
         
         [MFEvent dispatchEvent:monacaEventWillLoadUIFile withInfo:info];
-        self.previousPath = [url path];
         
         BOOL isDir;
         [fileManager fileExistsAtPath:[url path] isDirectory:&isDir];
@@ -134,24 +180,40 @@ static BOOL wantsFullScreenLayout = NO;
             uipath = [filepath stringByAppendingPathComponent:@"index.ui"];
             filepath = [filepath stringByAppendingPathComponent:@"index.html"];
         } else {
-            uipath = [[filepath stringByDeletingPathExtension] stringByAppendingPathExtension:@"ui"];
+            uipath = [MFUtility getUIFileName:filepath];
         }
         
         @try {
             //TODO
             NSDictionary *uiDict = [MFUtility parseJSONFile:uipath];
-            
+
             if (![fileManager fileExistsAtPath:uipath]) {
                 uiDict = nil;
             }
-        
+            if (previousPath_) {
+/*                NSString *path = [MFUtility getWWWShortPath:filepath];
+                MFViewController *next = [[MFViewController alloc] initWithFileName:[path lastPathComponent]];
+                next.wwwFolderName = [path stringByDeletingLastPathComponent];
+                [self.navigationController pushViewController:next animated:YES];
+                [next applyUserInterface:uiDict];
+                return NO;
+ */
+            }
+                [self applyUserInterface:uiDict];
+
+
         }
         @catch (NSException *exception) {
 
         }
+        self.previousPath = [url path];
     }
 
     return [super webView:webView shouldStartLoadWithRequest:request navigationType:navigationType];
+}
+
+- (void)destroy {
+    [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"about:blank"]]];
 }
 
 @end

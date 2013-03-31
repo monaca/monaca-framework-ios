@@ -47,8 +47,7 @@
         return;
     }
     
-    if (key) {
-        id te = [MFUtility currentTabBarController];
+/*    if (key) {
         id component = [[MFUtility currentTabBarController].ncManager componentForID:key];
         if (!component) {
             NSLog(@"[debug] No such component: %@", key);
@@ -81,11 +80,11 @@
         // Update bottom tabbar item style.
         if ([component isKindOfClass:[UITabBarItem class]]) {
             UITabBarItem *item = (UITabBarItem *)component;
-            [self updateNCManagerPropertyStyle:properties style:currentStyle];
-            [NCTabbarItemBuilder update:item with:currentStyle];
+//            [self updateNCManagerPropertyStyle:properties style:currentStyle];
+//            [NCTabbarItemBuilder update:item with:currentStyle];
             return;
         }
-        
+
         // Update bottom tabbar style.
         if ([component isKindOfClass:[MFTabBarController class]]) {
             MFTabBarController *tabbar = (MFTabBarController *)component;
@@ -112,6 +111,7 @@
         }
         [self updateNCManagerPropertyStyle:properties style:currentStyle];
     }
+ */
 }
 
 - (void)retrieve:(NSMutableArray *)arguments withDict:(NSDictionary *)options {

@@ -14,17 +14,22 @@
     
 }
 + (MFTabBarController *)currentTabBarController;
++ (void)setCurrentTabBarController:(MFTabBarController *)tabBarController;
 + (UIInterfaceOrientation) currentInterfaceOrientation;
 + (BOOL) getAllowOrientationFromPlist:(UIInterfaceOrientation)interfaceOrientation;
 + (NSDictionary *)parseJSONFile:(NSString *)path;
++ (NSString *)urlEncode:(NSString *)text;
 + (BOOL)isPhoneGapScheme:(NSURL *)url;
 + (BOOL)isExternalPage:(NSURL *)url;
 + (BOOL)hasAnchor:(NSURL *)url;
 + (NSURL *)standardizedURL:(NSURL *)url;
 + (NSURL *)getBaseURL;
++ (NSString *)getWWWShortPath:(NSString *)path;
++ (NSString *)getUIFileName:(NSString *)filename;
 + (NSDictionary *)getApplicationPlist;
 + (void)fixedLayout:(MFViewController *)monacaViewController interfaceOrientation:
     (UIInterfaceOrientation)aInterfaceOrientation;
++ (void) show404PageWithWebView:(UIWebView *)webView path:(NSString *)aPath;
 + (MFDelegate *)getAppDelegate;
 + (MFViewController *)currentViewController;
 + (void)setCurrentViewController:(MFViewController *)viewController;

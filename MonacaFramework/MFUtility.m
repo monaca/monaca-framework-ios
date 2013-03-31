@@ -11,6 +11,7 @@
 #import "MFEvent.h"
 
 static MFViewController *currentViewController;
+static MFTabBarController *currentTabBarController;
 
 @implementation MFUtility
 
@@ -56,6 +57,22 @@ static MFViewController *currentViewController;
         CFRelease(cfUiDict);
         return uidict;
     }
+}
+
++ (NSString *)urlEncode:(NSString *)text
+{
+    if ([text isKindOfClass:[NSString class]] == NO) {
+        NSLog(@"[error] parameter should be string type, but parameter is:%@", text);
+        return @"";
+    }
+    CFStringRef cfString = CFURLCreateStringByAddingPercentEscapes(NULL,
+                                                                   (CFStringRef)text,
+                                                                   NULL,
+                                                                   (CFStringRef)@"!*'();:@&=+$,/?%#[]",
+                                                                   kCFStringEncodingUTF8);
+    NSString *string = [NSString stringWithString:(__bridge NSString *)cfString];
+    CFRelease(cfString);
+    return string;
 }
 
 + (UIInterfaceOrientation)currentInterfaceOrientation {
@@ -129,6 +146,21 @@ static MFViewController *currentViewController;
     return [[NSBundle mainBundle] infoDictionary];
 }
 
++ (NSString *)getWWWShortPath:(NSString *)path{
+    if ([path rangeOfString:@".app/"].location != NSNotFound) {
+        return [path substringFromIndex:[path rangeOfString:@".app/"].location + [@".app/" length]];
+    }
+    if ([path rangeOfString:@"assets/"].location != NSNotFound) {
+        return [path substringFromIndex:[path rangeOfString:@"assets/"].location + [@"assets/" length]];
+    }
+    return path;
+}
+
+
++ (NSString *)getUIFileName:(NSString *)filename
+{
+    return [[filename stringByDeletingPathExtension] stringByAppendingFormat:@".ui"];
+}
 
 + (void) fixedLayout:(MFViewController *)monacaViewController interfaceOrientation:(UIInterfaceOrientation)aInterfaceOrientation{
     if (aInterfaceOrientation == UIInterfaceOrientationPortrait || aInterfaceOrientation == UIInterfaceOrientationPortraitUpsideDown){
@@ -138,14 +170,28 @@ static MFViewController *currentViewController;
     }
 }
 
++ (void) show404PageWithWebView:(UIWebView *)webView path:(NSString *)aPath {
+    NSLog(@"Page not found (as warning):%@", [MFUtility getWWWShortPath:aPath]);
+    NSString *pathFor404 = [[NSBundle mainBundle] pathForResource:@"404/index" ofType:@"html"];
+    NSString *html = [NSString stringWithContentsOfFile:pathFor404 encoding:NSUTF8StringEncoding error:nil];
+    
+    html = [html stringByReplacingOccurrencesOfString:@"%%%urlPlaceHolder%%%" withString:[MFUtility getWWWShortPath:aPath]];
+    [webView loadHTMLString:html baseURL:[NSURL fileURLWithPath:pathFor404]];
+}
+
 + (MFDelegate *)getAppDelegate
 {
     return ((MFDelegate *)[[UIApplication sharedApplication] delegate]);
 }
 
++ (void)setCurrentTabBarController:(MFTabBarController *)tabBarController
+{
+    currentTabBarController = tabBarController;
+}
+
 + (MFTabBarController *)currentTabBarController
 {
-    return (MFTabBarController *)[[self class] getAppDelegate].viewController.tabBarController;
+    return currentTabBarController;
 }
 
 + (void)setCurrentViewController:(MFViewController *)viewController

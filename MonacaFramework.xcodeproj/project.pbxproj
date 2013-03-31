@@ -251,6 +251,10 @@
 		3EE0E80B1664BA8200F1E677 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EE0E8091664B78000F1E677 /* AssetsLibrary.framework */; };
 		3EE0E80C1664BA9200F1E677 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EE0E8071664B69300F1E677 /* CoreVideo.framework */; };
 		3EF566AF168ECCD800DE569B /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EBC68C41664D23000244FE1 /* libiconv.dylib */; };
+		5A40CBDF170836F2002DD96C /* MFTransitPlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A40CBDD170836F2002DD96C /* MFTransitPlugin.h */; };
+		5A40CBE0170836F2002DD96C /* MFTransitPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A40CBDE170836F2002DD96C /* MFTransitPlugin.m */; };
+		5A40CBE1170836F2002DD96C /* MFTransitPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A40CBDE170836F2002DD96C /* MFTransitPlugin.m */; };
+		5A40CBE2170836F2002DD96C /* MFTransitPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A40CBDE170836F2002DD96C /* MFTransitPlugin.m */; };
 		5A83D2EF16D9087100D25E98 /* MFViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A83D2ED16D9087100D25E98 /* MFViewController.h */; };
 		5A83D2F016D9087100D25E98 /* MFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A83D2EE16D9087100D25E98 /* MFViewController.m */; };
 		5A83D2F116D9087100D25E98 /* MFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A83D2EE16D9087100D25E98 /* MFViewController.m */; };
@@ -455,6 +459,8 @@
 		3EDD681316155D0F0018698B /* ChildBrowserViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChildBrowserViewController.xib; sourceTree = "<group>"; };
 		3EE0E8071664B69300F1E677 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		3EE0E8091664B78000F1E677 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		5A40CBDD170836F2002DD96C /* MFTransitPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFTransitPlugin.h; sourceTree = "<group>"; };
+		5A40CBDE170836F2002DD96C /* MFTransitPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFTransitPlugin.m; sourceTree = "<group>"; };
 		5A83D2ED16D9087100D25E98 /* MFViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFViewController.h; sourceTree = "<group>"; };
 		5A83D2EE16D9087100D25E98 /* MFViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFViewController.m; sourceTree = "<group>"; };
 		5A83D2F816D90BD700D25E98 /* MFNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFNavigationController.h; sourceTree = "<group>"; };
@@ -723,6 +729,8 @@
 		3E4F50FC15A040DE0054EB23 /* Transit */ = {
 			isa = PBXGroup;
 			children = (
+				5A40CBDD170836F2002DD96C /* MFTransitPlugin.h */,
+				5A40CBDE170836F2002DD96C /* MFTransitPlugin.m */,
 			);
 			path = Transit;
 			sourceTree = "<group>";
@@ -1056,6 +1064,7 @@
 				5A83D37A16D91E6D00D25E98 /* NCToolbar.h in Headers */,
 				5A83D37E16D91E6D00D25E98 /* UILabel+Resize.h in Headers */,
 				5AA6954E16D9FF27003C5D90 /* MFPGNativeComponent.h in Headers */,
+				5A40CBDF170836F2002DD96C /* MFTransitPlugin.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1282,6 +1291,7 @@
 				5A83D37D16D91E6D00D25E98 /* NCToolbar.m in Sources */,
 				5A83D38116D91E6D00D25E98 /* UILabel+Resize.m in Sources */,
 				5AA6955116D9FF27003C5D90 /* MFPGNativeComponent.m in Sources */,
+				5A40CBE2170836F2002DD96C /* MFTransitPlugin.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1353,6 +1363,7 @@
 				5A83D37B16D91E6D00D25E98 /* NCToolbar.m in Sources */,
 				5A83D37F16D91E6D00D25E98 /* UILabel+Resize.m in Sources */,
 				5AA6954F16D9FF27003C5D90 /* MFPGNativeComponent.m in Sources */,
+				5A40CBE0170836F2002DD96C /* MFTransitPlugin.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1425,6 +1436,7 @@
 				5A83D37C16D91E6D00D25E98 /* NCToolbar.m in Sources */,
 				5A83D38016D91E6D00D25E98 /* UILabel+Resize.m in Sources */,
 				5AA6955016D9FF27003C5D90 /* MFPGNativeComponent.m in Sources */,
+				5A40CBE1170836F2002DD96C /* MFTransitPlugin.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
