@@ -283,10 +283,6 @@
 		5A83D34516D91E6D00D25E98 /* MFTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A83D31C16D91E6D00D25E98 /* MFTabBarController.m */; };
 		5A83D34616D91E6D00D25E98 /* MFTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A83D31C16D91E6D00D25E98 /* MFTabBarController.m */; };
 		5A83D34716D91E6D00D25E98 /* MFTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A83D31C16D91E6D00D25E98 /* MFTabBarController.m */; };
-		5A83D34816D91E6D00D25E98 /* MyTabBarController.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A83D31D16D91E6D00D25E98 /* MyTabBarController.h */; };
-		5A83D34916D91E6D00D25E98 /* MyTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A83D31E16D91E6D00D25E98 /* MyTabBarController.m */; };
-		5A83D34A16D91E6D00D25E98 /* MyTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A83D31E16D91E6D00D25E98 /* MyTabBarController.m */; };
-		5A83D34B16D91E6D00D25E98 /* MyTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A83D31E16D91E6D00D25E98 /* MyTabBarController.m */; };
 		5A83D34C16D91E6D00D25E98 /* NativeComponents.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A83D32016D91E6D00D25E98 /* NativeComponents.h */; };
 		5A83D34D16D91E6D00D25E98 /* NativeComponentsInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A83D32116D91E6D00D25E98 /* NativeComponentsInternal.h */; };
 		5A83D34E16D91E6D00D25E98 /* NCBackButtonBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A83D32216D91E6D00D25E98 /* NCBackButtonBuilder.h */; };
@@ -475,8 +471,6 @@
 		5A83D31A16D91E6D00D25E98 /* MFTabBarController+Top.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MFTabBarController+Top.m"; sourceTree = "<group>"; };
 		5A83D31B16D91E6D00D25E98 /* MFTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFTabBarController.h; sourceTree = "<group>"; };
 		5A83D31C16D91E6D00D25E98 /* MFTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFTabBarController.m; sourceTree = "<group>"; };
-		5A83D31D16D91E6D00D25E98 /* MyTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTabBarController.h; sourceTree = "<group>"; };
-		5A83D31E16D91E6D00D25E98 /* MyTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTabBarController.m; sourceTree = "<group>"; };
 		5A83D32016D91E6D00D25E98 /* NativeComponents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeComponents.h; sourceTree = "<group>"; };
 		5A83D32116D91E6D00D25E98 /* NativeComponentsInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeComponentsInternal.h; sourceTree = "<group>"; };
 		5A83D32216D91E6D00D25E98 /* NCBackButtonBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCBackButtonBuilder.h; sourceTree = "<group>"; };
@@ -820,8 +814,6 @@
 				5A83D31A16D91E6D00D25E98 /* MFTabBarController+Top.m */,
 				5A83D31B16D91E6D00D25E98 /* MFTabBarController.h */,
 				5A83D31C16D91E6D00D25E98 /* MFTabBarController.m */,
-				5A83D31D16D91E6D00D25E98 /* MyTabBarController.h */,
-				5A83D31E16D91E6D00D25E98 /* MyTabBarController.m */,
 				5A83D31F16D91E6D00D25E98 /* NativeComponents */,
 			);
 			path = Views;
@@ -1047,7 +1039,6 @@
 				5A83D33C16D91E6D00D25E98 /* MFTabBarController+Bottom.h in Headers */,
 				5A83D34016D91E6D00D25E98 /* MFTabBarController+Top.h in Headers */,
 				5A83D34416D91E6D00D25E98 /* MFTabBarController.h in Headers */,
-				5A83D34816D91E6D00D25E98 /* MyTabBarController.h in Headers */,
 				5A83D34C16D91E6D00D25E98 /* NativeComponents.h in Headers */,
 				5A83D34D16D91E6D00D25E98 /* NativeComponentsInternal.h in Headers */,
 				5A83D34E16D91E6D00D25E98 /* NCBackButtonBuilder.h in Headers */,
@@ -1276,7 +1267,6 @@
 				5A83D33F16D91E6D00D25E98 /* MFTabBarController+Bottom.m in Sources */,
 				5A83D34316D91E6D00D25E98 /* MFTabBarController+Top.m in Sources */,
 				5A83D34716D91E6D00D25E98 /* MFTabBarController.m in Sources */,
-				5A83D34B16D91E6D00D25E98 /* MyTabBarController.m in Sources */,
 				5A83D35116D91E6D00D25E98 /* NCBackButtonBuilder.m in Sources */,
 				5A83D35516D91E6D00D25E98 /* NCButton.m in Sources */,
 				5A83D35916D91E6D00D25E98 /* NCButtonBuilder.m in Sources */,
@@ -1348,7 +1338,6 @@
 				5A83D33D16D91E6D00D25E98 /* MFTabBarController+Bottom.m in Sources */,
 				5A83D34116D91E6D00D25E98 /* MFTabBarController+Top.m in Sources */,
 				5A83D34516D91E6D00D25E98 /* MFTabBarController.m in Sources */,
-				5A83D34916D91E6D00D25E98 /* MyTabBarController.m in Sources */,
 				5A83D34F16D91E6D00D25E98 /* NCBackButtonBuilder.m in Sources */,
 				5A83D35316D91E6D00D25E98 /* NCButton.m in Sources */,
 				5A83D35716D91E6D00D25E98 /* NCButtonBuilder.m in Sources */,
@@ -1421,7 +1410,6 @@
 				5A83D33E16D91E6D00D25E98 /* MFTabBarController+Bottom.m in Sources */,
 				5A83D34216D91E6D00D25E98 /* MFTabBarController+Top.m in Sources */,
 				5A83D34616D91E6D00D25E98 /* MFTabBarController.m in Sources */,
-				5A83D34A16D91E6D00D25E98 /* MyTabBarController.m in Sources */,
 				5A83D35016D91E6D00D25E98 /* NCBackButtonBuilder.m in Sources */,
 				5A83D35416D91E6D00D25E98 /* NCButton.m in Sources */,
 				5A83D35816D91E6D00D25E98 /* NCButtonBuilder.m in Sources */,
