@@ -148,7 +148,7 @@
         [style addEntriesFromDictionary:[item objectForKey:kNCTypeIOSStyle]];
         
         NSString *link = [item objectForKey:kNCTypeLink];
-        NSString *uipath = [[MFUtility getBaseURL].path stringByAppendingPathComponent:[MFUtility getUIFileName:link]];
+        NSString *uipath = [[[MFUtility getBaseURL].path stringByAppendingPathComponent:wwwDir] stringByAppendingPathComponent:[MFUtility getUIFileName:link]];
         NSDictionary *uiDict = [MFUtility parseJSONFile:uipath];
         
         // Setup a view controller in the tab contoller.

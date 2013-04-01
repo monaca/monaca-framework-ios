@@ -168,6 +168,7 @@ static BOOL wantsFullScreenLayout = NO;
     }
    
     if ([url isFileURL]) {
+        self.wwwFolderName = [[MFUtility getWWWShortPath:url.path] stringByDeletingLastPathComponent];
         NSMutableDictionary *info = [NSMutableDictionary dictionary];
         [info setObject:[url path] forKey:@"path"];
         [MFEvent dispatchEvent:monacaEventOpenPage withInfo:info];

@@ -105,7 +105,7 @@
     NSString *urlStringWithoutQuery = [[relativeUrlString componentsSeparatedByString:@"?"] objectAtIndex:0];
     
 //    [viewController.cdvViewController.webView loadRequest:[self createRequest:urlStringWithoutQuery withQuery:query]];
-    MFTabBarController *viewController = [[MFTabBarController alloc] initWithWwwDir:[MFUtility currentViewController].wwwFolderName path:urlStringWithoutQuery];
+    MFTabBarController *viewController = [[MFTabBarController alloc] initWithWwwDir:@"www" path:urlStringWithoutQuery];
 
     MFNavigationController *nav;
     if ([[options objectForKey:@"target"] isEqualToString:@"tab"] || [MFUtility currentTabBarController] == nil) {
@@ -192,7 +192,7 @@
         }
     }
     
-    MFTabBarController *viewController = [[MFTabBarController alloc] initWithWwwDir:[MFUtility currentViewController].wwwFolderName path:urlStringWithoutQuery];
+    MFTabBarController *viewController = [[MFTabBarController alloc] initWithWwwDir:@"www" path:urlStringWithoutQuery];
 
     CATransition *transition = [CATransition animation];
     transition.duration = 0.4f;
