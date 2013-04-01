@@ -53,6 +53,10 @@ updateSearchBox(UISearchBar *searchBox, NSDictionary *style) {
         [searchBox resignFirstResponder];
     }
 
+    NSString *bgColor = [style objectForKey:kNCStyleBackgroundColor];
+    if (bgColor) {
+        [searchBox setBackgroundColor:hexToUIColor(removeSharpPrefix(bgColor), 1)];
+     }
     // TODO(nhiroki): Ignore text color.
     
     return searchBox;
@@ -90,6 +94,12 @@ updateSearchBox(UISearchBar *searchBox, NSDictionary *style) {
         [style setObject:view.text forKey:kNCStyleValue];
     } else {
         [style setObject:@"" forKey:kNCStyleValue];
+    }
+
+    if (view.backgroundColor) {
+        [style setObject:UIColorToHex(view.backgroundColor) forKey:kNCStyleBackgroundColor];
+    } else {
+        [style setObject:kNCValueBLACK forKey:kNCStyleBackgroundColor];
     }
 
     [style setObject:[NSNumber numberWithBool:view.isFirstResponder] forKey:kNCStyleFocus];

@@ -62,11 +62,21 @@
 #define kNCStyleActiveIndex        @"activeIndex"
 #define kNCStyleBadgeText          @"badgeText"
 #define kNCStyleFocus              @"focus"
-
+#define kNCStyleActiveTextColor    @"activeTextColor"
 
 #define kNCStyleIOSBarStyle     @"iosBarStyle"
 #define kNCStyleIOSButtonStyle  @"iosButtonStyle"
 #define kNCStyleIOSFrame        @"ios-frame"
+
+#define kNCValueTRUE            @"true"
+#define kNCValueFALSE           @"false"
+#define kNCValueUNDEFINED       @"undefined"
+#define kNCValueBLACK           @"#000000"
+#define kNCValueWHITE           @"#FFFFFF"
+#define kNCValueBLUE            @"#0000FF"
+#define kNCValueArray           [NSArray array]
+#define kNCValueInt0            [NSNumber numberWithInteger:0]
+#define kNCValueFloat1          [NSNumber numberWithFloat:1.0]
 
 
 static BOOL
@@ -117,6 +127,16 @@ hexToUIColor(NSString *hex, CGFloat a) {
 	CGFloat g = ((color & 0x00FF00) >> 8) /255.0f;
 	CGFloat b =  (color & 0x0000FF) /255.0f;
 	return [UIColor colorWithRed:r green:g blue:b alpha:a];
+}
+
+static inline NSString*
+UIColorToHex(UIColor *color) {
+    CGFloat red, green, blue, alpha;
+    [color getRed:&red green:&green blue:&blue alpha:&alpha];
+    red = red * 255.0f;
+    green = green * 255.0f;
+    blue = blue * 255.0f;
+    return [NSString stringWithFormat:@"#%02X%02X%02X", (int)red, (int)green, (int)blue];
 }
 
 
