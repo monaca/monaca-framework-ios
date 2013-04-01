@@ -62,7 +62,7 @@
 #define kNCStyleActiveIndex        @"activeIndex"
 #define kNCStyleBadgeText          @"badgeText"
 #define kNCStyleFocus              @"focus"
-
+#define kNCStyleWideBox            @"wideBox"
 
 #define kNCStyleIOSBarStyle     @"iosBarStyle"
 #define kNCStyleIOSButtonStyle  @"iosButtonStyle"

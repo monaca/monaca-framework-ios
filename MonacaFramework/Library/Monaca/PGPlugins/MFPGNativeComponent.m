@@ -15,7 +15,6 @@
 @end
 
 @implementation MFPGNativeComponent
-
 /*
 - (void)badge:(NSMutableArray *)arguments withDict:(NSDictionary *)options
 {

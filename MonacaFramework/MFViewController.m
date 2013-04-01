@@ -110,12 +110,23 @@ static BOOL wantsFullScreenLayout = NO;
     }
     
     self.navigationItem.title = [[top objectForKey:kNCTypeStyle] objectForKey:kNCStyleTitle];
-    NSArray *rightContainers = [NSArray arrayWithObject:[NCContainer container:topRightStyle position:@"top"]];
-    NSArray *leftContainers = [NSArray arrayWithObject:[NCContainer container:topLeftStyle position:@"top"]];
-    NSArray *centerContainers = [NSArray arrayWithObject:[NCContainer container:topCenterStyle position:@"top"]];
+
     
-    self.navigationItem.rightBarButtonItem = [(NCContainer *)[rightContainers objectAtIndex:0] component];
-    self.navigationItem.leftBarButtonItem = [(NCContainer *)[leftContainers objectAtIndex:0] component];
+    NSMutableArray *containers = [NSMutableArray array];
+    for (id component in topRight) {
+        NCContainer *container = [NCContainer container:component position:kNCPositionTop];
+        [containers addObject:container.component];
+    }
+    
+    self.navigationItem.rightBarButtonItems = containers;
+    containers = [NSMutableArray array];
+    for (id component in topLeft) {
+        NCContainer *container = [NCContainer container:component position:kNCPositionTop];
+        [containers addObject:container.component];
+    }
+    self.navigationItem.leftBarButtonItems = containers;
+    
+    NSArray *centerContainers = [NSArray arrayWithObject:[NCContainer container:topCenterStyle position:@"top"]];
     self.navigationItem.titleView = [(NCContainer *)[centerContainers objectAtIndex:0] view];
 
 }
@@ -191,17 +202,9 @@ static BOOL wantsFullScreenLayout = NO;
                 uiDict = nil;
             }
             if (previousPath_) {
-/*                NSString *path = [MFUtility getWWWShortPath:filepath];
-                MFViewController *next = [[MFViewController alloc] initWithFileName:[path lastPathComponent]];
-                next.wwwFolderName = [path stringByDeletingLastPathComponent];
-                [self.navigationController pushViewController:next animated:YES];
-                [next applyUserInterface:uiDict];
-                return NO;
- */
+
             }
-                [self applyUserInterface:uiDict];
-
-
+            [self applyUserInterface:uiDict];
         }
         @catch (NSException *exception) {
 

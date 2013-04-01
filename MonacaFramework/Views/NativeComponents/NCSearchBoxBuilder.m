@@ -35,6 +35,11 @@ updateSearchBox(UISearchBar *searchBox, NSDictionary *style) {
         }
     }
 
+    if ([style objectForKey:kNCStyleWideBox]) {
+        CGRect bounds = [[UIScreen mainScreen] applicationFrame];
+         searchBox.frame = CGRectMake(0.0, 0.0, bounds.size.width, 48.0);
+    }
+    
     // TODO(nhiroki): Ignore background color.
     removeBackgroundView(searchBox);
     

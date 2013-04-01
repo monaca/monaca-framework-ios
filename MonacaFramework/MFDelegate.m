@@ -29,7 +29,7 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 //    self.viewController = [[MFViewController alloc] init];
     
-    self.monacaNavigationController = [[MFNavigationController alloc] initWithWwwDir:[MFUtility getBaseURL].path];
+    self.monacaNavigationController = [[MFNavigationController alloc] initWithRootViewController:[[MFTabBarController alloc] initWithWwwDir:[MFUtility getBaseURL].path path:@"www/index.html"]];
 
     self.window.rootViewController = self.monacaNavigationController;
     [self.window makeKeyAndVisible];

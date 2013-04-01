@@ -104,14 +104,18 @@
     NSString *query = [self getQueryFromPluginArguments:arguments urlString:relativeUrlString];
     NSString *urlStringWithoutQuery = [[relativeUrlString componentsSeparatedByString:@"?"] objectAtIndex:0];
     
-    MFViewController *viewController = [[MFViewController alloc] initWithFileName:urlStringWithoutQuery];
 //    [viewController.cdvViewController.webView loadRequest:[self createRequest:urlStringWithoutQuery withQuery:query]];
+    MFTabBarController *viewController = [[MFTabBarController alloc] initWithWwwDir:[MFUtility currentViewController].wwwFolderName path:urlStringWithoutQuery];
 
     MFNavigationController *nav;
     if ([[options objectForKey:@"target"] isEqualToString:@"tab"] || [MFUtility currentTabBarController] == nil) {
         nav = (MFNavigationController *)[MFUtility currentViewController].navigationController;
     } else {
         nav = (MFNavigationController *)[MFUtility currentTabBarController].navigationController;
+    }
+    
+    if ([[options objectForKey:@"tabbarHidden"] isEqualToString:@"YES"]) {
+        viewController.hidesBottomBarWhenPushed = YES;
     }
     
     BOOL animated;
@@ -123,6 +127,7 @@
     
     [nav pushViewController:viewController animated:animated];
 }
+
 - (void)pop:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options
 {
     if (![self isValidOptions:options]) {
@@ -149,9 +154,10 @@
     } else {
         animated = YES;
     }
-    
+
+    [MFUtility setCurrentTabBarController:nil];
     MFViewController *vc = (MFViewController*)[nav popViewControllerAnimated:animated];
-    [vc destroy];
+//    [vc destroy];
     
 /*    BOOL res = [[self class] changeDelegate:[[nav viewControllers] lastObject]];
     if (res) {
@@ -186,8 +192,7 @@
         }
     }
     
-    MFViewController *viewController = [[MFViewController alloc] initWithFileName:urlStringWithoutQuery];
-    viewController.wwwFolderName = [MFUtility currentViewController].wwwFolderName;
+    MFTabBarController *viewController = [[MFTabBarController alloc] initWithWwwDir:[MFUtility currentViewController].wwwFolderName path:urlStringWithoutQuery];
 
     CATransition *transition = [CATransition animation];
     transition.duration = 0.4f;
@@ -195,6 +200,9 @@
     transition.subtype = kCATransitionFromTop;
     [transition setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionDefault]];
 
+    if ([[options objectForKey:@"tabbarHidden"] isEqualToString:@"YES"]) {
+        viewController.hidesBottomBarWhenPushed = YES;
+    }
     
     BOOL animated;
     if ([[options objectForKey:@"animated"] isEqualToString:@"NO"]) {

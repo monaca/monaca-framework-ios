@@ -26,6 +26,7 @@
 
 // iOS4 の場合、このメソッドは MonacaViewController の viewDidApper メソッドから呼ばれる
 - (void)viewWillAppear:(BOOL)animated {
+    [MFUtility setCurrentTabBarController:self];
     [self.navigationController setNavigationBarHidden:YES];
     [super viewWillAppear:animated];
 }
@@ -55,6 +56,49 @@
     }
     return self;
 }
+
+- (id)initWithWwwDir:(NSString *)wwwDir path:(NSString *)path
+{
+    wwwDir = [[MFUtility getBaseURL].path stringByAppendingPathComponent:[MFUtility getWWWShortPath:wwwDir]];
+    NSString *uipath = [wwwDir stringByAppendingPathComponent:[MFUtility getUIFileName:path]];
+    NSDictionary *uiDict = [MFUtility parseJSONFile:uipath];
+    MFNavigationController *navigationController = [MFUtility getAppDelegate].monacaNavigationController;
+    
+    id item;
+    item = [uiDict objectForKey:kNCPositionBottom];
+    if (item != nil) {
+        NSString *containerType = [item objectForKey:kNCTypeContainer];
+        if ([containerType isEqualToString:kNCContainerToolbar]) {
+            self = [[MFTabBarController alloc] init];
+            [self applyBottomToolbar:uiDict];
+        } else if ([containerType isEqualToString:kNCContainerTabbar]) {
+            self = [[MFTabBarController alloc] init];
+            [self applyBottomTabbar:uiDict WwwDir:[[MFUtility getWWWShortPath:uipath] stringByDeletingLastPathComponent]];
+            [navigationController setNavigationBarHidden:YES];
+            [self.moreNavigationController setNavigationBarHidden:NO];
+        }
+    } else {
+        item = [uiDict objectForKey:kNCPositionTop];
+        if (item != nil) {
+            if ([[item objectForKey:kNCTypeContainer] isEqualToString:kNCContainerToolbar]) {
+                MFViewController *viewController = [[MFViewController alloc] initWithFileName:[path lastPathComponent]];
+                viewController.wwwFolderName = [[MFUtility getWWWShortPath:uipath] stringByDeletingLastPathComponent];
+                self = (id)viewController;
+            }
+            [navigationController setNavigationBarHidden:NO animated:NO];
+        } else {
+            MFViewController *viewController = [[MFViewController alloc] initWithFileName:[path lastPathComponent]];
+            viewController.wwwFolderName = [[MFUtility getWWWShortPath:uipath] stringByDeletingLastPathComponent];
+            [navigationController setNavigationBarHidden:YES animated:NO];
+            [MFViewController setWantsFullScreenLayout:NO];
+            self = (id)viewController;
+        }
+        [navigationController setToolbarHidden:YES animated:NO];
+        [navigationController setToolbarItems:nil];
+    }
+    return self;
+}
+
 
 - (void)dealloc {
     self.centerContainer = nil;
@@ -111,7 +155,6 @@
         MFViewController *viewController = [[MFViewController alloc] initWithFileName:[item objectForKey:kNCTypeLink]];
         viewController.wwwFolderName = wwwDir;
 
-
         NSDictionary *top = [uiDict objectForKey:kNCPositionTop];
         NSDictionary *topStyle = [top objectForKey:kNCTypeStyle];
 
@@ -149,8 +192,7 @@
 
 - (void)hoge
 {
-    MFNavigationController *navi = [[MFNavigationController alloc] initWithWwwDir:[MFUtility getBaseURL].path];
-    [[[MFUtility getAppDelegate] monacaNavigationController] pushViewController:navi.topViewController animated:YES];
+
 }
 
 - (void)fuga
