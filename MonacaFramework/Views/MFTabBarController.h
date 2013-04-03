@@ -35,6 +35,8 @@
     BOOL isInitialized_;
     BOOL isLocked;
 }
+
++ (void)setIgnoreBottom:(BOOL)ignore;
 - (id)initWithWwwDir:(NSString *)wwwDir path:(NSString *)path;
 - (void)applyBottomTabbar:(NSDictionary *)uidict WwwDir:(NSString *)wwwDir;
 

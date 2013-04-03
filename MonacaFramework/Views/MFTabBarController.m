@@ -24,6 +24,13 @@
 @synthesize activeIndex = activeIndex_;
 @synthesize isInitialized = isInitialized_;
 
+static BOOL ignoreBottom = NO;
+
++ (void)setIgnoreBottom:(BOOL)ignore
+{
+    ignoreBottom = ignore;
+}
+
 // iOS4 の場合、このメソッドは MonacaViewController の viewDidApper メソッドから呼ばれる
 - (void)viewWillAppear:(BOOL)animated {
     [MFUtility setCurrentTabBarController:self];
@@ -66,7 +73,7 @@
     
     id item;
     item = [uiDict objectForKey:kNCPositionBottom];
-    if (item != nil) {
+    if (item != nil && !ignoreBottom ) {
         NSString *containerType = [item objectForKey:kNCTypeContainer];
         if ([containerType isEqualToString:kNCContainerToolbar]) {
             self = [[MFTabBarController alloc] init];
@@ -79,7 +86,7 @@
         }
     } else {
         item = [uiDict objectForKey:kNCPositionTop];
-        if (item != nil) {
+        if (item != nil && !ignoreBottom) {
             if ([[item objectForKey:kNCTypeContainer] isEqualToString:kNCContainerToolbar]) {
                 MFViewController *viewController = [[MFViewController alloc] initWithFileName:[path lastPathComponent]];
                 viewController.wwwFolderName = [[MFUtility getWWWShortPath:uipath] stringByDeletingLastPathComponent];
@@ -96,6 +103,7 @@
         [navigationController setToolbarHidden:YES animated:NO];
         [navigationController setToolbarItems:nil];
     }
+    ignoreBottom = NO;
     return self;
 }
 
