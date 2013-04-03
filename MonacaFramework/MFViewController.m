@@ -49,6 +49,9 @@ static BOOL wantsFullScreenLayout = NO;
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    if (!self.tabBarController) {
+        [self.navigationController setNavigationBarHidden:NO];
+    }
     if ([MFDevice iOSVersionMajor] < 5) {
         [self.tabBarController viewWillAppear:animated];
     }
@@ -202,10 +205,10 @@ static BOOL wantsFullScreenLayout = NO;
             if (![fileManager fileExistsAtPath:uipath]) {
                 uiDict = nil;
             }
-            if (previousPath_) {
-
+            if (!previousPath_) {
+                [self applyUserInterface:uiDict];
             }
-            [self applyUserInterface:uiDict];
+
         }
         @catch (NSException *exception) {
 

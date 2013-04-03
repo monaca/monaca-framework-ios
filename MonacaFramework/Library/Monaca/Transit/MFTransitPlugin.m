@@ -109,8 +109,10 @@
 
     MFNavigationController *nav;
     if ([[options objectForKey:@"target"] isEqualToString:@"tab"] || [MFUtility currentTabBarController] == nil) {
+        [[MFUtility getAppDelegate].monacaNavigationController setNavigationBarHidden:YES];
         nav = (MFNavigationController *)[MFUtility currentViewController].navigationController;
     } else {
+        [[MFUtility getAppDelegate].monacaNavigationController setNavigationBarHidden:YES];
         nav = (MFNavigationController *)[MFUtility currentTabBarController].navigationController;
     }
     
@@ -155,7 +157,6 @@
         animated = YES;
     }
 
-    [MFUtility setCurrentTabBarController:nil];
     MFViewController *vc = (MFViewController*)[nav popViewControllerAnimated:animated];
 //    [vc destroy];
     
@@ -177,9 +178,12 @@
     NSString *query = [self getQueryFromPluginArguments:arguments urlString:relativeUrlString];
     NSString *urlStringWithoutQuery = [[relativeUrlString componentsSeparatedByString:@"?"] objectAtIndex:0];
 
+    MFTabBarController *viewController = [[MFTabBarController alloc] initWithWwwDir:@"www" path:urlStringWithoutQuery];
+
     MFNavigationController *nav;
     if([MFUtility currentViewController].tabBarController != nil) {
         if ([[options objectForKey:@"target"] isEqualToString:@"tab"]) {
+            [[MFUtility getAppDelegate].monacaNavigationController setNavigationBarHidden:YES];
             nav = (MFNavigationController *)[MFUtility currentViewController].navigationController;
         } else {
             nav = (MFNavigationController *)[MFUtility currentTabBarController].navigationController;
@@ -192,7 +196,6 @@
         }
     }
     
-    MFTabBarController *viewController = [[MFTabBarController alloc] initWithWwwDir:@"www" path:urlStringWithoutQuery];
 
     CATransition *transition = [CATransition animation];
     transition.duration = 0.4f;
