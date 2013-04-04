@@ -63,6 +63,7 @@ static NSDictionary *defaultList_;
         NSMutableDictionary *currentStyle = [NSMutableDictionary dictionaryWithDictionary:[properties objectForKey:kNCTypeStyle]];
         [currentStyle addEntriesFromDictionary:style];
         [currentStyle addEntriesFromDictionary:[properties objectForKey:kNCTypeIOSStyle]];
+        [[self class] checkStyleValue:currentStyle];
 
         // Update top toolbar style.
         if ([component isKindOfClass:[NSString class]] && [component isEqualToString:kNCContainerTabbar]) {
@@ -196,6 +197,23 @@ static NSDictionary *defaultList_;
         [[self class] initDefaultList];
     }
     return [defaultList_ objectForKey:key];
+}
+
++ (void)checkStyleValue:(NSMutableDictionary *)style
+{
+    NSArray *keys = [style allKeys];
+    id key;
+    for (key in keys) {
+        if ([[style objectForKey:key] isKindOfClass:[NSNumber class]] &&
+            ![[style objectForKey:key] isKindOfClass:[[defaultList_ objectForKey:key] class]]) {
+            NSString *value = [NSString stringWithFormat:@"%@", [style objectForKey:key]];
+            if ([value isEqual:@"0"]) {
+                [style setObject:kNCFalse forKey:key];
+            } else {
+                [style setObject:kNCTrue forKey:key];
+            }
+        }
+    }
 }
 
 @end
