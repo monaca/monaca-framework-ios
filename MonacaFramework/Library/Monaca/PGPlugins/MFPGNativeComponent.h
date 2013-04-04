@@ -15,6 +15,9 @@
 //
 @interface MFPGNativeComponent : CDVPlugin
 
++ (void)initDefaultList;
++ (NSString *)searchDefaultValue:(NSString *)key;
+
 //- (void)badge:(NSMutableArray *)arguments withDict:(NSDictionary *)options;
 - (void)update:(NSMutableArray *)arguments withDict:(NSDictionary *)options;
 - (void)retrieve:(NSMutableArray *)arguments withDict:(NSDictionary *)options;

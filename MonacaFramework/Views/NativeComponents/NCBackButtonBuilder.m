@@ -7,6 +7,7 @@
 //
 
 #import "NCBackButtonBuilder.h"
+#import "MFEvent.h"
 
 @implementation NCBackButtonBuilder
 
@@ -27,7 +28,7 @@ updateBackButton(UIButton *button, NSDictionary *style) {
     NSString *text = [style objectForKey:kNCStyleText];
 
     
-    if (innerImagePath) {
+    if (innerImagePath && ![innerImagePath isEqual:[NSNull null]]) {
         NSString *imagePath = [@"www" stringByAppendingPathComponent:innerImagePath];
         UIImage *image = [UIImage imageNamed:imagePath];
         if (image) {
@@ -51,6 +52,11 @@ updateBackButton(UIButton *button, NSDictionary *style) {
 
 + (UIButton *)backButton:(NSDictionary *)style {
     UIButton *button = [UIButton buttonWithType:101];
+    if ([style objectForKey:kNCStyleBackgroundColor] != nil) {
+        NSMutableDictionary *info = [NSMutableDictionary dictionary];
+        [info setObject:kNCComponentBackButton forKey:@"component"];
+        [info setObject:kNCStyleBackgroundColor forKey:@"property"];
+    }
     return updateBackButton(button, style);
 }
 

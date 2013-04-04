@@ -14,6 +14,8 @@
 - (void)updateNCManagerPropertyStyle:(NSMutableDictionary *)properties style:(NSMutableDictionary *)currentStyle;
 @end
 
+static NSDictionary *defaultList_;
+
 @implementation MFPGNativeComponent
 
 /*
@@ -28,6 +30,7 @@
 
 - (void)update:(NSMutableArray *)arguments withDict:(NSDictionary *)options
 {
+
     NSString *key = [arguments objectAtIndex:1];
 
     // TODO(nhiroki): Validate arguments.
@@ -60,6 +63,7 @@
         NSMutableDictionary *currentStyle = [NSMutableDictionary dictionaryWithDictionary:[properties objectForKey:kNCTypeStyle]];
         [currentStyle addEntriesFromDictionary:style];
         [currentStyle addEntriesFromDictionary:[properties objectForKey:kNCTypeIOSStyle]];
+        [[self class] checkStyleValue:currentStyle];
 
         // Update top toolbar style.
         if ([component isKindOfClass:[NSString class]] && [component isEqualToString:kNCContainerTabbar]) {
@@ -124,28 +128,39 @@
             NSLog(@"[debug] No such component: %@", key);
             return;
         }
+        CDVPluginResult *pluginResult = nil;
+
+        NSMutableDictionary *properties = [[MFUtility currentTabBarController].ncManager propertiesForID:key];
+        id property = [[properties objectForKey:kNCTypeStyle] objectForKey:propertyKey];
 
         NCContainer *container = (NCContainer *)component;
-        if (![container isKindOfClass:[NSString class]] && [container.type isEqualToString:kNCComponentSearchBox]) {
+        if ([container isKindOfClass:[NCContainer class]] && [container.type isEqualToString:kNCComponentSearchBox]) {
             NSMutableDictionary *properties = [[MFUtility currentTabBarController].ncManager propertiesForID:key];
             NSMutableDictionary *style = [NSMutableDictionary dictionary];
             [style addEntriesFromDictionary:[properties objectForKey:kNCTypeStyle]];
             [style addEntriesFromDictionary:[NCSearchBoxBuilder retrieve:container.component]];
-            CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:[style objectForKey:propertyKey]];
-            [self writeJavascript:[pluginResult toSuccessCallbackString:callbackID]];
-            return;
+            property = [style objectForKey:propertyKey];
         }
-
-        CDVPluginResult *pluginResult = nil;
-        NSMutableDictionary *properties = [[MFUtility currentTabBarController].ncManager propertiesForID:key];
-        NSString *property = [[properties objectForKey:kNCTypeStyle] objectForKey:propertyKey];
-        
         // FIXME(nhiroki): デフォルト値を持つキーに対してはうまく取得できない。
         // また、ネイティブコンポーネント機構を介さずに UIKit で変更されるパラメータについても適切に取得できない (activeIndex など)。
+
+        if (!property || [property isEqual:[NSNull null]]) {
+            property = [[self class] searchDefaultValue:propertyKey];
+        }
+
         if ([property isKindOfClass:[NSNumber class]]) {
-            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsInt:[property intValue]];
+            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDouble:[property doubleValue]];
         } else if ([property isKindOfClass:[NSString class]]) {
-            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:property];
+            if ([property isEqualToString:kNCTrue] || [property isEqualToString:kNCFalse]
+                    || [property isEqualToString:kNCUndefined]) {
+                pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"%%BOOL%%"];
+                NSString *script = [pluginResult toSuccessCallbackString:callbackID];
+                script = [script stringByReplacingOccurrencesOfString:@"\"%%BOOL%%\"" withString:property];
+                [self writeJavascript:script];
+                return;
+            } else {
+                pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:property];
+            }
         } else if ([property isKindOfClass:[NSArray class]]) {
             pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsArray:(NSArray *)property];
         } else {
@@ -158,6 +173,47 @@
 
 - (void)updateNCManagerPropertyStyle:(NSMutableDictionary *)properties style:(NSMutableDictionary *)currentStyle {
     [[properties objectForKey:kNCTypeStyle] addEntriesFromDictionary:currentStyle];
+}
+
++ (void)initDefaultList
+{
+    defaultList_ = [NSDictionary dictionaryWithObjectsAndKeys:
+                    kNCTrue ,kNCStyleVisibility, kNCFalse, kNCStyleDisable,
+                    kNCFloat1, kNCStyleOpacity, kNCBlack, kNCStyleBackgroundColor,
+                    kNCUndefined, kNCStyleTitle, kNCUndefined, kNCStyleSubtitle,
+                    kNCWhite, kNCStyleTitleColor, kNCWhite, kNCStyleSubtitleColor,
+                    kNCFloat1, kNCStyleTitleFontScale, kNCFloat1, kNCStyleSubtitleFontScale,
+                    kNCInt0, kNCStyleActiveIndex, kNCUndefined, kNCStyleImage,
+                    kNCUndefined, kNCStyleInnerImage, kNCWhite, kNCStyleTextColor,
+                    kNCArray, kNCStyleTexts, kNCUndefined, kNCStylePlaceholder,
+                    kNCFalse, kNCStyleFocus, kNCBlue, kNCStyleActiveTextColor,
+                    kNCUndefined, kNCStyleValue,
+                    nil];
+}
+
++ (NSString *)searchDefaultValue:(NSString *)key
+{
+    if (defaultList_ == nil) {
+        [[self class] initDefaultList];
+    }
+    return [defaultList_ objectForKey:key];
+}
+
++ (void)checkStyleValue:(NSMutableDictionary *)style
+{
+    NSArray *keys = [style allKeys];
+    id key;
+    for (key in keys) {
+        if ([[style objectForKey:key] isKindOfClass:[NSNumber class]] &&
+            ![[style objectForKey:key] isKindOfClass:[[defaultList_ objectForKey:key] class]]) {
+            NSString *value = [NSString stringWithFormat:@"%@", [style objectForKey:key]];
+            if ([value isEqual:@"0"]) {
+                [style setObject:kNCFalse forKey:key];
+            } else {
+                [style setObject:kNCTrue forKey:key];
+            }
+        }
+    }
 }
 
 @end

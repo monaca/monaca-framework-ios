@@ -41,7 +41,7 @@ updateButton(UIBarButtonItem *button, NSDictionary *style) {
     NSString *text = [style objectForKey:kNCStyleText];
     NSString *innerImagePath = [style objectForKey:kNCStyleInnerImage];
 
-    if (innerImagePath) {
+    if (innerImagePath && ![innerImagePath isEqual:[NSNull null]]) {
         MFDelegate *mfDelegate = (MFDelegate *)[UIApplication sharedApplication].delegate;
         NSString *currentDirectory = [mfDelegate.viewController.previousPath stringByDeletingLastPathComponent];
         NSString *imagePath = [currentDirectory stringByAppendingPathComponent:innerImagePath];
@@ -78,7 +78,7 @@ updateButton(UIBarButtonItem *button, NSDictionary *style) {
     // Shape.
     
     NSString *imageName = [style objectForKey:kNCStyleImage];
-    if (imageName) {
+    if (imageName && ![imageName isEqual:[NSNull null]]) {
         MFDelegate *mfDelegate = (MFDelegate *)[UIApplication sharedApplication].delegate;
         NSString *currentDirectory = [mfDelegate.viewController.previousPath stringByDeletingLastPathComponent];
         NSString *imagePath = [currentDirectory stringByAppendingPathComponent:imageName];

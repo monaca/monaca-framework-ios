@@ -9,8 +9,16 @@
 #import "MFViewController.h"
 #import "MFTabBarController.h"
 
-#define kNCTrue  @"true"
-#define kNCFalse @"false"
+#define kNCTrue         @"true"
+#define kNCFalse        @"false"
+#define kNCUndefined    @"undefined"
+#define kNCBlack        @"#000000"
+#define kNCWhite        @"#FFFFFF"
+#define kNCBlue         @"#0000FF"
+#define kNCArray        [NSArray array]
+#define kNCInt0         [NSNumber numberWithInteger:0]
+#define kNCFloat1       [NSNumber numberWithFloat:1.0]
+
 
 #define kNCPositionTop    @"top"
 #define kNCPositionMiddle @"middle"
@@ -62,7 +70,7 @@
 #define kNCStyleActiveIndex        @"activeIndex"
 #define kNCStyleBadgeText          @"badgeText"
 #define kNCStyleFocus              @"focus"
-
+#define kNCStyleActiveTextColor    @"activeTextColor"
 
 #define kNCStyleIOSBarStyle     @"iosBarStyle"
 #define kNCStyleIOSButtonStyle  @"iosButtonStyle"
@@ -119,6 +127,16 @@ hexToUIColor(NSString *hex, CGFloat a) {
 	return [UIColor colorWithRed:r green:g blue:b alpha:a];
 }
 
+static inline NSString*
+UIColorToHex(UIColor *color) {
+    CGFloat red, green, blue, alpha;
+    NSNumber *redValue, *greenValue, *blueValue;
+    [color getRed:&red green:&green blue:&blue alpha:&alpha];
+    redValue = [[NSNumber alloc] initWithFloat:red * 255.0f];
+    greenValue = [[NSNumber alloc] initWithFloat:green * 255.0f];
+    blueValue = [[NSNumber alloc ] initWithFloat:blue * 255.0f];
+    return [NSString stringWithFormat:@"#%02X%02X%02X", [redValue intValue], [greenValue intValue], [blueValue intValue]];
+}
 
 // =================================================
 // iOS version.
