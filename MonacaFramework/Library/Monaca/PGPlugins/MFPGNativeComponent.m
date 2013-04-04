@@ -143,7 +143,7 @@ static NSDictionary *defaultList_;
         // FIXME(nhiroki): デフォルト値を持つキーに対してはうまく取得できない。
         // また、ネイティブコンポーネント機構を介さずに UIKit で変更されるパラメータについても適切に取得できない (activeIndex など)。
 
-        if (property == nil) {
+        if (!property || [property isEqual:[NSNull null]]) {
             property = [[self class] searchDefaultValue:propertyKey];
         }
 
