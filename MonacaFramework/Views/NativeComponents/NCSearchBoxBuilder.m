@@ -8,6 +8,7 @@
 
 #import "NCSearchBoxBuilder.h"
 #import "NCSearchBar.h"
+#import "MFPGNativeComponent.h"
 
 @implementation NCSearchBoxBuilder
 
@@ -82,27 +83,51 @@ updateSearchBox(UISearchBar *searchBox, NSDictionary *style) {
     UISearchBar *view = (UISearchBar *)searchBox.customView;
     NSMutableDictionary *style = [NSMutableDictionary dictionary];
 
-    [style setObject:[NSNumber numberWithBool:!view.hidden] forKey:kNCStyleVisibility];
-
     if (view.placeholder) {
         [style setObject:view.placeholder forKey:kNCStylePlaceholder];
-    } else {
-        [style setObject:@"" forKey:kNCStylePlaceholder];
     }
 
     if (view.text) {
         [style setObject:view.text forKey:kNCStyleValue];
-    } else {
-        [style setObject:@"" forKey:kNCStyleValue];
+    }
+
+    UITextField *searchField;
+    NSUInteger numViews = [view.subviews count];
+    for(int i = 0; i < numViews; i++) {
+        if([[view.subviews objectAtIndex:i] isKindOfClass:[UITextField class]]) {
+            searchField = [view.subviews objectAtIndex:i];
+        }
+    }
+
+    if(searchField) {
+        [style setObject:UIColorToHex(searchField.textColor) forKey:kNCStyleTextColor];
     }
 
     if (view.backgroundColor) {
         [style setObject:UIColorToHex(view.backgroundColor) forKey:kNCStyleBackgroundColor];
-    } else {
-        [style setObject:kNCValueBLACK forKey:kNCStyleBackgroundColor];
     }
 
-    [style setObject:[NSNumber numberWithBool:view.isFirstResponder] forKey:kNCStyleFocus];
+    if (view.userInteractionEnabled) {
+        [style setObject:kNCFalse forKey:kNCStyleDisable];
+    } else {
+        [style setObject:kNCTrue forKey:kNCStyleDisable];
+    }
+
+    if (view.hidden) {
+        [style setObject:kNCFalse forKey:kNCStyleVisibility];
+    } else {
+        [style setObject:kNCTrue forKey:kNCStyleVisibility];
+    }
+
+    if (view.selectedScopeButtonIndex){
+        [view resignFirstResponder];
+    }
+
+    if (view.isFirstResponder) {
+        [style setObject:kNCTrue forKey:kNCStyleFocus];
+    } else {
+        [style setObject:kNCFalse forKey:kNCStyleFocus];
+    }
 
     return style;
 }

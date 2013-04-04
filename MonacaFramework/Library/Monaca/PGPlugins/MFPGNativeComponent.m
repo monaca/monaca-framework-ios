@@ -14,6 +14,8 @@
 - (void)updateNCManagerPropertyStyle:(NSMutableDictionary *)properties style:(NSMutableDictionary *)currentStyle;
 @end
 
+static NSDictionary *defaultList_;
+
 @implementation MFPGNativeComponent
 
 /*
@@ -125,6 +127,10 @@
             NSLog(@"[debug] No such component: %@", key);
             return;
         }
+        CDVPluginResult *pluginResult = nil;
+
+        NSMutableDictionary *properties = [[MFUtility currentTabBarController].ncManager propertiesForID:key];
+        id property = [[properties objectForKey:kNCTypeStyle] objectForKey:propertyKey];
 
         NCContainer *container = (NCContainer *)component;
         if ([container isKindOfClass:[NCContainer class]] && [container.type isEqualToString:kNCComponentSearchBox]) {
@@ -132,27 +138,20 @@
             NSMutableDictionary *style = [NSMutableDictionary dictionary];
             [style addEntriesFromDictionary:[properties objectForKey:kNCTypeStyle]];
             [style addEntriesFromDictionary:[NCSearchBoxBuilder retrieve:container.component]];
-            CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:[style objectForKey:propertyKey]];
-            [self writeJavascript:[pluginResult toSuccessCallbackString:callbackID]];
-            return;
+            property = [style objectForKey:propertyKey];
         }
-
-        CDVPluginResult *pluginResult = nil;
-        NSMutableDictionary *properties = [[MFUtility currentTabBarController].ncManager propertiesForID:key];
-        id property = [[properties objectForKey:kNCTypeStyle] objectForKey:propertyKey];
-
         // FIXME(nhiroki): デフォルト値を持つキーに対してはうまく取得できない。
         // また、ネイティブコンポーネント機構を介さずに UIKit で変更されるパラメータについても適切に取得できない (activeIndex など)。
 
         if (property == nil) {
-            property = [self searchDefaultValue:propertyKey];
+            property = [[self class] searchDefaultValue:propertyKey];
         }
 
         if ([property isKindOfClass:[NSNumber class]]) {
             pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsInt:[property intValue]];
         } else if ([property isKindOfClass:[NSString class]]) {
-            if ([property isEqualToString:kNCValueTRUE] || [property isEqualToString:kNCValueFALSE]
-                    || [property isEqualToString:kNCValueUNDEFINED]) {
+            if ([property isEqualToString:kNCTrue] || [property isEqualToString:kNCFalse]
+                    || [property isEqualToString:kNCUndefined]) {
                 pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"%%BOOL%%"];
                 NSString *script = [pluginResult toSuccessCallbackString:callbackID];
                 script = [script stringByReplacingOccurrencesOfString:@"\"%%BOOL%%\"" withString:property];
@@ -175,21 +174,28 @@
     [[properties objectForKey:kNCTypeStyle] addEntriesFromDictionary:currentStyle];
 }
 
-- (NSString *)searchDefaultValue:(NSString *)key
++ (void)initDefaultList
 {
-    NSDictionary *defaultList = [NSDictionary dictionaryWithObjectsAndKeys:
-         kNCValueTRUE ,kNCStyleVisibility, kNCValueFALSE, kNCStyleDisable,
-         kNCValueFloat1, kNCStyleOpacity, kNCValueBLACK, kNCStyleBackgroundColor,
-         kNCValueUNDEFINED, kNCStyleTitle, kNCValueUNDEFINED, kNCStyleSubtitle,
-         kNCValueWHITE, kNCStyleTitleColor, kNCValueWHITE, kNCStyleSubtitleColor,
-         kNCValueFloat1, kNCStyleTitleFontScale, kNCValueFloat1, kNCStyleSubtitleFontScale,
-         kNCValueInt0, kNCStyleActiveIndex, kNCValueUNDEFINED, kNCStyleImage,
-         kNCValueUNDEFINED, kNCStyleInnerImage, kNCValueWHITE, kNCStyleTextColor,
-         kNCValueArray, kNCStyleTexts, kNCValueUNDEFINED, kNCStylePlaceholder,
-         kNCValueFALSE, kNCStyleFocus, kNCValueBLUE, kNCStyleActiveTextColor,
-         nil];
+    defaultList_ = [NSDictionary dictionaryWithObjectsAndKeys:
+                    kNCTrue ,kNCStyleVisibility, kNCFalse, kNCStyleDisable,
+                    kNCFloat1, kNCStyleOpacity, kNCBlack, kNCStyleBackgroundColor,
+                    kNCUndefined, kNCStyleTitle, kNCUndefined, kNCStyleSubtitle,
+                    kNCWhite, kNCStyleTitleColor, kNCWhite, kNCStyleSubtitleColor,
+                    kNCFloat1, kNCStyleTitleFontScale, kNCFloat1, kNCStyleSubtitleFontScale,
+                    kNCInt0, kNCStyleActiveIndex, kNCUndefined, kNCStyleImage,
+                    kNCUndefined, kNCStyleInnerImage, kNCWhite, kNCStyleTextColor,
+                    kNCArray, kNCStyleTexts, kNCUndefined, kNCStylePlaceholder,
+                    kNCFalse, kNCStyleFocus, kNCBlue, kNCStyleActiveTextColor,
+                    kNCUndefined, kNCStyleValue,
+                    nil];
+}
 
-    return [defaultList objectForKey:key];
++ (NSString *)searchDefaultValue:(NSString *)key
+{
+    if (defaultList_ == nil) {
+        [[self class] initDefaultList];
+    }
+    return [defaultList_ objectForKey:key];
 }
 
 @end

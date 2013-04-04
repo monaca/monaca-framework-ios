@@ -15,6 +15,13 @@ search(NSString *cid, NSMutableDictionary *barStyle) {
         return barStyle;
     }
     
+    NSArray *items = [barStyle objectForKey:kNCTypeItems];
+    for (NSMutableDictionary *dict in items) {
+        if ([[dict objectForKey:kNCTypeID] isEqualToString:cid]) {
+            return dict;
+        }
+    }
+
     NSArray *leftComponents = [barStyle objectForKey:kNCTypeLeft];
     for (NSMutableDictionary *dict in leftComponents) {
         if ([[dict objectForKey:kNCTypeID] isEqualToString:cid]) {

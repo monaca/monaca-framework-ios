@@ -9,8 +9,16 @@
 #import "MFViewController.h"
 #import "MFTabBarController.h"
 
-#define kNCTrue  @"true"
-#define kNCFalse @"false"
+#define kNCTrue         @"true"
+#define kNCFalse        @"false"
+#define kNCUndefined    @"undefined"
+#define kNCBlack        @"#000000"
+#define kNCWhite        @"#FFFFFF"
+#define kNCBlue         @"#0000FF"
+#define kNCArray        [NSArray array]
+#define kNCInt0         [NSNumber numberWithInteger:0]
+#define kNCFloat1       [NSNumber numberWithFloat:1.0]
+
 
 #define kNCPositionTop    @"top"
 #define kNCPositionMiddle @"middle"
@@ -67,16 +75,6 @@
 #define kNCStyleIOSBarStyle     @"iosBarStyle"
 #define kNCStyleIOSButtonStyle  @"iosButtonStyle"
 #define kNCStyleIOSFrame        @"ios-frame"
-
-#define kNCValueTRUE            @"true"
-#define kNCValueFALSE           @"false"
-#define kNCValueUNDEFINED       @"undefined"
-#define kNCValueBLACK           @"#000000"
-#define kNCValueWHITE           @"#FFFFFF"
-#define kNCValueBLUE            @"#0000FF"
-#define kNCValueArray           [NSArray array]
-#define kNCValueInt0            [NSNumber numberWithInteger:0]
-#define kNCValueFloat1          [NSNumber numberWithFloat:1.0]
 
 
 static BOOL
