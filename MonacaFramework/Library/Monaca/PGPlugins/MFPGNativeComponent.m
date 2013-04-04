@@ -149,7 +149,7 @@ static NSDictionary *defaultList_;
         }
 
         if ([property isKindOfClass:[NSNumber class]]) {
-            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsInt:[property intValue]];
+            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDouble:[property doubleValue]];
         } else if ([property isKindOfClass:[NSString class]]) {
             if ([property isEqualToString:kNCTrue] || [property isEqualToString:kNCFalse]
                     || [property isEqualToString:kNCUndefined]) {

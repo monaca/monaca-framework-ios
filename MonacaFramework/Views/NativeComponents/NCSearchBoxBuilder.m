@@ -36,6 +36,15 @@ updateSearchBox(UISearchBar *searchBox, NSDictionary *style) {
         }
     }
 
+    NSString *textColor = [style objectForKey:kNCStyleTextColor];
+    if (textColor) {
+        for (id view in searchBox.subviews) {
+            if([view isKindOfClass:[UITextField class]]) {
+                [(UITextField *)view setTextColor:hexToUIColor(removeSharpPrefix(textColor), 1)];
+            }
+        }
+    }
+
     // TODO(nhiroki): Ignore background color.
     removeBackgroundView(searchBox);
     
@@ -50,7 +59,7 @@ updateSearchBox(UISearchBar *searchBox, NSDictionary *style) {
     }
     
     NSString *focus = [style objectForKey:kNCStyleFocus];
-    if (isFalse(focus)) {
+    if (isTrue(focus)) {
         [searchBox resignFirstResponder];
     }
 
@@ -60,6 +69,13 @@ updateSearchBox(UISearchBar *searchBox, NSDictionary *style) {
      }
     // TODO(nhiroki): Ignore text color.
     
+    NSString *disable = [style objectForKey:kNCStyleDisable];
+    if (isFalse(disable)) {
+        [searchBox setUserInteractionEnabled:YES];
+    } else {
+        [searchBox setUserInteractionEnabled:NO];
+    }
+
     return searchBox;
 }
 
@@ -117,16 +133,6 @@ updateSearchBox(UISearchBar *searchBox, NSDictionary *style) {
         [style setObject:kNCFalse forKey:kNCStyleVisibility];
     } else {
         [style setObject:kNCTrue forKey:kNCStyleVisibility];
-    }
-
-    if (view.selectedScopeButtonIndex){
-        [view resignFirstResponder];
-    }
-
-    if (view.isFirstResponder) {
-        [style setObject:kNCTrue forKey:kNCStyleFocus];
-    } else {
-        [style setObject:kNCFalse forKey:kNCStyleFocus];
     }
 
     return style;

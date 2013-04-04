@@ -130,13 +130,13 @@ hexToUIColor(NSString *hex, CGFloat a) {
 static inline NSString*
 UIColorToHex(UIColor *color) {
     CGFloat red, green, blue, alpha;
+    NSNumber *redValue, *greenValue, *blueValue;
     [color getRed:&red green:&green blue:&blue alpha:&alpha];
-    red = red * 255.0f;
-    green = green * 255.0f;
-    blue = blue * 255.0f;
-    return [NSString stringWithFormat:@"#%02X%02X%02X", (int)red, (int)green, (int)blue];
+    redValue = [[NSNumber alloc] initWithFloat:red * 255.0f];
+    greenValue = [[NSNumber alloc] initWithFloat:green * 255.0f];
+    blueValue = [[NSNumber alloc ] initWithFloat:blue * 255.0f];
+    return [NSString stringWithFormat:@"#%02X%02X%02X", [redValue intValue], [greenValue intValue], [blueValue intValue]];
 }
-
 
 // =================================================
 // iOS version.
