@@ -70,10 +70,10 @@ updateSearchBox(UISearchBar *searchBox, NSDictionary *style) {
     // TODO(nhiroki): Ignore text color.
     
     NSString *disable = [style objectForKey:kNCStyleDisable];
-    if (isFalse(disable)) {
-        [searchBox setUserInteractionEnabled:YES];
-    } else {
+    if (isTrue(disable)) {
         [searchBox setUserInteractionEnabled:NO];
+    } else {
+        [searchBox setUserInteractionEnabled:YES];
     }
 
     return searchBox;
