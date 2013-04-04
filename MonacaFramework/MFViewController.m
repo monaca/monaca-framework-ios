@@ -47,10 +47,6 @@
                                                withString:@"$1\"$2\":"
                                                   options:NSRegularExpressionSearch
                                                     range:NSMakeRange(0, [data length])];
-        data = [data stringByReplacingOccurrencesOfString:@":\\s*(true|false|undefined)([^\\w])"
-                                               withString:@": \"$1\"$2"
-                                                  options:NSRegularExpressionSearch
-                                                    range:NSMakeRange(0, [data length])];
     }
     id jsonString = [data cdvjk_objectFromJSONStringWithParseOptions:CDVJKParseOptionStrict error:&error];
     

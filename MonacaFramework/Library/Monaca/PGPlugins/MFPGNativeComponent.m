@@ -139,6 +139,7 @@ static NSDictionary *defaultList_;
             NSMutableDictionary *style = [NSMutableDictionary dictionary];
             [style addEntriesFromDictionary:[properties objectForKey:kNCTypeStyle]];
             [style addEntriesFromDictionary:[NCSearchBoxBuilder retrieve:container.component]];
+            [[self class] checkStyleValue:style];
             property = [style objectForKey:propertyKey];
         }
 
@@ -220,8 +221,6 @@ static NSDictionary *defaultList_;
             } else {
                 [style setObject:kNCTrue forKey:key];
             }
-        } else if ([style objectForKey:key] == [NSNull null]) {
-            [style setObject:nil forKey:key];
         }
     }
 }
