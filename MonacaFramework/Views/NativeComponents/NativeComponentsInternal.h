@@ -16,7 +16,7 @@
 #define kNCWhite        @"#FFFFFF"
 #define kNCBlue         @"#0000FF"
 #define kNCArray        [NSArray array]
-#define kNCInt0         [NSNumber numberWithInteger:0]
+#define kNCInt0         [NSNumber numberWithInt:0]
 #define kNCFloat1       [NSNumber numberWithFloat:1.0]
 
 
