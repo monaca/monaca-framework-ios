@@ -467,7 +467,13 @@ stringByRelativePath(NSString *relativePath) {
         [tabbarController showTabBar:YES];
     }
     
+    if ([style objectForKey:kNCStyleActiveIndex]) {
+        [tabbarController setSelectedIndex:[[style objectForKey:kNCStyleActiveIndex] intValue]];
+        MFDelegate *delegate = (MFDelegate *)[UIApplication sharedApplication].delegate;
+        [tabbarController tabBarController:tabbarController didSelectViewController:delegate.viewController];
+    }
 }
+
 
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
     if (isLocked == NO) {

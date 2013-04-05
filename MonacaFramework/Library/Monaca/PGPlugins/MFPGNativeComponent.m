@@ -141,6 +141,11 @@ static NSDictionary *defaultList_;
             [style addEntriesFromDictionary:[NCSearchBoxBuilder retrieve:container.component]];
             property = [style objectForKey:propertyKey];
         }
+
+        if ([container isKindOfClass:[MFTabBarController class]]) {
+            property = [NSNumber numberWithInt:[(MFTabBarController *)container selectedIndex]];
+        }
+
         // FIXME(nhiroki): デフォルト値を持つキーに対してはうまく取得できない。
         // また、ネイティブコンポーネント機構を介さずに UIKit で変更されるパラメータについても適切に取得できない (activeIndex など)。
 
@@ -201,6 +206,9 @@ static NSDictionary *defaultList_;
 
 + (void)checkStyleValue:(NSMutableDictionary *)style
 {
+    if (defaultList_ == nil) {
+        [[self class] initDefaultList];
+    }
     NSArray *keys = [style allKeys];
     id key;
     for (key in keys) {
@@ -212,6 +220,8 @@ static NSDictionary *defaultList_;
             } else {
                 [style setObject:kNCTrue forKey:key];
             }
+        } else if ([style objectForKey:key] == [NSNull null]) {
+            [style setObject:nil forKey:key];
         }
     }
 }
