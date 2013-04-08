@@ -71,6 +71,7 @@
 #define kNCStyleBadgeText          @"badgeText"
 #define kNCStyleFocus              @"focus"
 #define kNCStyleActiveTextColor    @"activeTextColor"
+#define kNCStyleForceVisibility    @"forceVisibility"
 
 #define kNCStyleIOSBarStyle     @"iosBarStyle"
 #define kNCStyleIOSButtonStyle  @"iosButtonStyle"
