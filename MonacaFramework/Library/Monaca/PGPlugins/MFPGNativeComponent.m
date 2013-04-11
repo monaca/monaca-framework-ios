@@ -131,6 +131,7 @@ static NSDictionary *defaultList_;
         CDVPluginResult *pluginResult = nil;
 
         NSMutableDictionary *properties = [[MFUtility currentTabBarController].ncManager propertiesForID:key];
+        [[self class] checkStyleValue:[properties objectForKey:kNCTypeStyle]];
         id property = [[properties objectForKey:kNCTypeStyle] objectForKey:propertyKey];
 
         NCContainer *container = (NCContainer *)component;
@@ -139,10 +140,11 @@ static NSDictionary *defaultList_;
             NSMutableDictionary *style = [NSMutableDictionary dictionary];
             [style addEntriesFromDictionary:[properties objectForKey:kNCTypeStyle]];
             [style addEntriesFromDictionary:[NCSearchBoxBuilder retrieve:container.component]];
+            [[self class] checkStyleValue:style];
             property = [style objectForKey:propertyKey];
         }
 
-        if ([container isKindOfClass:[MFTabBarController class]]) {
+        if ([container isKindOfClass:[MFTabBarController class]] && [propertyKey isEqualToString:kNCStyleActiveIndex]) {
             property = [NSNumber numberWithInt:[(MFTabBarController *)container selectedIndex]];
         }
 
@@ -192,7 +194,7 @@ static NSDictionary *defaultList_;
                     kNCUndefined, kNCStyleInnerImage, kNCWhite, kNCStyleTextColor,
                     kNCArray, kNCStyleTexts, kNCUndefined, kNCStylePlaceholder,
                     kNCFalse, kNCStyleFocus, kNCBlue, kNCStyleActiveTextColor,
-                    kNCUndefined, kNCStyleValue,
+                    kNCUndefined, kNCStyleValue, kNCTrue, kNCStyleForceVisibility,
                     nil];
 }
 
@@ -220,8 +222,6 @@ static NSDictionary *defaultList_;
             } else {
                 [style setObject:kNCTrue forKey:key];
             }
-        } else if ([style objectForKey:key] == [NSNull null]) {
-            [style setObject:nil forKey:key];
         }
     }
 }
