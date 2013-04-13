@@ -12,6 +12,8 @@
 {
 @private
     NSString *previousPath_;
+    UIView *centerView_;
+    BOOL isAppeared_;
 }
 + (void)setWantsFullScreenLayout:(BOOL)layout;
 

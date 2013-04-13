@@ -41,6 +41,7 @@ static BOOL ignoreBottom = NO;
 // iOS4 の場合、このメソッドは MonacaViewController の viewDidApper メソッドから呼ばれる
 - (void)viewDidAppear:(BOOL)animated {
     MFDelegate *delegate = (MFDelegate *)[UIApplication sharedApplication].delegate;
+    [self.selectedViewController viewDidAppear:animated];
     if ([self.viewControllers count] > 0) {
         [delegate.viewController.webView removeFromSuperview];
         UIView *view = ((UIViewController *)[self.viewControllers objectAtIndex:self.activeIndex]).view;

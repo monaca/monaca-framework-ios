@@ -48,6 +48,8 @@ static BOOL wantsFullScreenLayout = NO;
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    isAppeared_ = YES;
+    self.navigationItem.titleView = centerView_;
     [super viewDidAppear:animated];
     if (!self.tabBarController) {
         [self.navigationController setNavigationBarHidden:NO];
@@ -130,8 +132,10 @@ static BOOL wantsFullScreenLayout = NO;
     self.navigationItem.leftBarButtonItems = containers;
     
     NSArray *centerContainers = [NSArray arrayWithObject:[NCContainer container:topCenterStyle position:@"top"]];
-    self.navigationItem.titleView = [(NCContainer *)[centerContainers objectAtIndex:0] view];
-
+    centerView_ = [(NCContainer *)[centerContainers objectAtIndex:0] view];
+    if (isAppeared_) {
+        self.navigationItem.titleView = centerView_;
+    }
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
