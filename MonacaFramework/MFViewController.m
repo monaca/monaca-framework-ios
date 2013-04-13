@@ -18,6 +18,7 @@
 @implementation MFViewController
 
 @synthesize previousPath = previousPath_;
+@synthesize existTop = existTop_;
 
 static BOOL wantsFullScreenLayout = NO;
 
@@ -33,6 +34,7 @@ static BOOL wantsFullScreenLayout = NO;
     if (self) {
         self.wwwFolderName = @"www";
         self.startPage = fileName;
+        self.existTop = NO;
         
         [self setWantsFullScreenLayout:wantsFullScreenLayout];
     }
@@ -44,6 +46,9 @@ static BOOL wantsFullScreenLayout = NO;
 - (void)viewWillAppear:(BOOL)animated
 {
     [MFUtility setCurrentViewController:self];
+    if (self.existTop) {
+        [self.navigationController setNavigationBarHidden:NO animated:NO];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -51,9 +56,6 @@ static BOOL wantsFullScreenLayout = NO;
     isAppeared_ = YES;
     self.navigationItem.titleView = centerView_;
     [super viewDidAppear:animated];
-    if (!self.tabBarController) {
-        [self.navigationController setNavigationBarHidden:NO];
-    }
     if ([MFDevice iOSVersionMajor] < 5) {
         [self.tabBarController viewWillAppear:animated];
     }

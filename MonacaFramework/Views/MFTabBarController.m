@@ -92,8 +92,8 @@ static BOOL ignoreBottom = NO;
                 MFViewController *viewController = [[MFViewController alloc] initWithFileName:[path lastPathComponent]];
                 viewController.wwwFolderName = [[MFUtility getWWWShortPath:uipath] stringByDeletingLastPathComponent];
                 self = (id)viewController;
+                viewController.existTop = YES;
             }
-            [navigationController setNavigationBarHidden:NO animated:NO];
         } else {
             MFViewController *viewController = [[MFViewController alloc] initWithFileName:[path lastPathComponent]];
             viewController.wwwFolderName = [[MFUtility getWWWShortPath:uipath] stringByDeletingLastPathComponent];

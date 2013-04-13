@@ -14,6 +14,7 @@
     NSString *previousPath_;
     UIView *centerView_;
     BOOL isAppeared_;
+    BOOL existTop_;
 }
 + (void)setWantsFullScreenLayout:(BOOL)layout;
 
@@ -22,5 +23,6 @@
 - (void)destroy;
 
 @property (nonatomic, copy) NSString *previousPath;
+@property (nonatomic) BOOL existTop;
 
 @end
