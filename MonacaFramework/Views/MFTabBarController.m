@@ -236,6 +236,28 @@ static BOOL ignoreBottom = NO;
     [MFUtility setCurrentViewController:(MFViewController *)viewController];
 }
 
+#pragma mark - UITabBarDeledate
+
+- (void)tabBar:(UITabBar *)tabBar didEndCustomizingItems:(NSArray *)items changed:(BOOL)changed
+{
+    if (!changed) {
+        return;
+    }
+    // moreViewControllerで呼び出されるviewControllerは全てRootViewControllerに戻す.
+    for (MFNavigationController *viewController in self.viewControllers) {
+        BOOL exist = NO;
+        for (UITabBarItem *item in items) {
+            if (viewController.tabBarItem == item) {
+                exist = YES;
+                break;
+            }
+        }
+        if (!exist) {
+            [viewController popToRootViewControllerAnimated:NO];
+        }
+    }
+}
+
 #pragma mark - EventListener
 
 - (void)onWillLoadUIFile:(NSNotificationCenter *)center {

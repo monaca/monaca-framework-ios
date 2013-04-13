@@ -15,7 +15,7 @@
 @class NCContainer;
 @class NCManager;
 
-@interface MFTabBarController : UITabBarController <UITabBarControllerDelegate> {
+@interface MFTabBarController : UITabBarController <UITabBarControllerDelegate,UITabBarDelegate> {
  @private
     NCContainer *centerContainer_;
 
