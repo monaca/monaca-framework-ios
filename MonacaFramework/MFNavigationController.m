@@ -32,7 +32,7 @@
     [super viewDidLoad];
     
     self.navigationBarHidden = YES;
-    CGRect viewBounds = [[UIScreen mainScreen] applicationFrame];
+    CGRect viewBounds = [[UIScreen mainScreen] bounds];
     self.view.frame = viewBounds;
 }
 
