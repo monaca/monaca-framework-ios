@@ -16,6 +16,7 @@
 #import "NCTitleView.h"
 #import "NCTabbarItemBuilder.h"
 #import "NCBackButtonBuilder.h"
+#import "NCButton.h"
 
 #import "NCToolbar.h"
 #import "NCManager.h"

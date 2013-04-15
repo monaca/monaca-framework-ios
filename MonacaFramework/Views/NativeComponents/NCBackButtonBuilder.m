@@ -60,9 +60,11 @@ updateBackButton(UIButton *button, NSDictionary *style) {
     return updateBackButton(button, style);
 }
 
-+ (UIBarButtonItem *)update:(UIBarButtonItem *)button with:(NSDictionary *)style {
++ (NCButton *)update:(NCButton *)button with:(NSDictionary *)style {
     button.customView = updateBackButton((UIButton *)button.customView, style);
     [button setWidth:0];
+    BOOL invisible = isFalse([style objectForKey:kNCStyleVisibility]);
+    [button setHidden:invisible];
     return button;
 }
 

@@ -114,6 +114,9 @@ static NSDictionary *defaultList_;
             NSLog(@"[debug] Unknown container type %@", container.type);
         }
         [self updateNCManagerPropertyStyle:properties style:currentStyle];
+
+        [[MFUtility currentTabBarController] showLeftComponent];
+        [[MFUtility currentTabBarController] showRightComponent];
     }
 }
 

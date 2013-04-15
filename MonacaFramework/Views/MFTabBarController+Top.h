@@ -13,6 +13,8 @@
 - (void)apply:(NSDictionary *)uidict;
 - (MFTabBarController *)updateTopToolbar:(NSDictionary *)style;
 - (MFTabBarController *)setTopToolbar:(NSDictionary *)style;
+- (void)showRightComponent;
+- (void)showLeftComponent;
 
 - (BOOL)hasTitleView;
 - (void)changeTitleView;

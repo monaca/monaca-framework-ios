@@ -12,12 +12,14 @@
 
 @synthesize imageButtonView;
 @synthesize position = _position;
+@synthesize hidden = _hidden;
 
 - (id)init {
     self = [super init];
     
     if (self) {
         self.imageButtonView = [[UIButton alloc] init];
+        self.hidden = NO;
     }
     
     return self;
@@ -27,6 +29,7 @@
     self = [super initWithTitle:title style:style target:target action:action];
     if(self){
         _position = aPosition;
+        self.hidden = NO;
     }
     return self;
 }
