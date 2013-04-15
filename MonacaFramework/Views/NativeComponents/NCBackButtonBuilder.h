@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "NativeComponentsInternal.h"
+#import "NCButton.h"
 
 @interface NCBackButtonBuilder : NSObject
 
 + (UIButton *)backButton:(NSDictionary *)style;
-+ (UIBarButtonItem *)update:(UIBarButtonItem *)button with:(NSDictionary *)style;
++ (NCButton *)update:(NCButton *)button with:(NSDictionary *)style;
 
 @end

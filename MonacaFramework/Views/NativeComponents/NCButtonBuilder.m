@@ -25,9 +25,11 @@ setTextColor(UIBarButtonItem *button, UIColor *color) {
 
 static UIBarButtonItem *
 updateVisibility(UIBarButtonItem *button, NSDictionary *style) {
-    NSString *cid = [style objectForKey:kNCTypeID];
-    UIView *view = [[MFUtility currentTabBarController].viewDict objectForKey:cid];
-    [view setHidden:isFalse([style objectForKey:kNCStyleVisibility])];
+    if ([style objectForKey:kNCStyleVisibility] != nil) {
+        [(NCButton *)button setHidden:isFalse([style objectForKey:kNCStyleVisibility])];
+    } else {
+        [(NCButton *)button setHidden:NO];
+    }
     return button;
 }
 
