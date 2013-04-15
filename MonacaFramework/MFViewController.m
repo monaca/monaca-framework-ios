@@ -20,13 +20,6 @@
 @synthesize previousPath = previousPath_;
 @synthesize existTop = existTop_;
 
-static BOOL wantsFullScreenLayout = NO;
-
-+ (void)setWantsFullScreenLayout:(BOOL)layout
-{
-    wantsFullScreenLayout = layout;
-}
-
 - (id)initWithFileName:(NSString *)fileName
 {
     self = [super init];
@@ -36,7 +29,7 @@ static BOOL wantsFullScreenLayout = NO;
         self.startPage = fileName;
         self.existTop = NO;
         
-        [self setWantsFullScreenLayout:wantsFullScreenLayout];
+        self.wantsFullScreenLayout = NO;
     }
     return self;
 }
@@ -104,8 +97,6 @@ static BOOL wantsFullScreenLayout = NO;
     NSArray *topRight = [top objectForKey:kNCTypeRight];
     NSArray *topLeft = [top objectForKey:kNCTypeLeft];
     NSArray *topCenter = [top objectForKey:kNCTypeCenter];
-    NSDictionary *topRightStyle = [topRight objectAtIndex:0];
-    NSDictionary *topLeftStyle = [topLeft objectAtIndex:0];
     NSDictionary *topCenterStyle = [topCenter objectAtIndex:0];
     
     NSMutableDictionary *style = [NSMutableDictionary dictionary];
@@ -205,7 +196,6 @@ static BOOL wantsFullScreenLayout = NO;
         }
         
         @try {
-            //TODO
             NSDictionary *uiDict = [MFUtility parseJSONFile:uipath];
 
             if (![fileManager fileExistsAtPath:uipath]) {

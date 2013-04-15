@@ -10,16 +10,13 @@
 #import "MFViewController.h"
 #import "MFNavigationController.h"
 
-@interface MFDelegate : NSObject <UIApplicationDelegate, UIWebViewDelegate> {
+@interface MFDelegate : NSObject <UIApplicationDelegate, UIWebViewDelegate>
+{
  @private
-    MFViewController *viewController_;
     MFNavigationController *monacaNavigationController_;
-    
 }
 
 - (UIInterfaceOrientation)currentInterfaceOrientation;
-
-@property (nonatomic, readwrite, retain) MFViewController *viewController;
 
 @property (nonatomic, retain) UIWindow *window;
 @property (nonatomic, retain) MFNavigationController *monacaNavigationController;

@@ -125,7 +125,7 @@
              
 // Handle an onSearch event.
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-    UIWebView *webView = ((MFDelegate *)[UIApplication sharedApplication].delegate).viewController.webView;
+    UIWebView *webView = [MFUtility currentViewController].webView;
     NSString *js = [NSString stringWithFormat:@"__search_text='%@';%@", searchBar.text, onSearchScript_];
     [webView stringByEvaluatingJavaScriptFromString:js];
     [searchBar resignFirstResponder];
@@ -143,7 +143,7 @@
     }
 
     NSString *js = [NSString stringWithFormat:@"%@%@", index, onChangeScript_];
-    UIWebView *webView = ((MFDelegate *)[UIApplication sharedApplication].delegate).viewController.webView;
+    UIWebView *webView = [MFUtility currentViewController].webView;
     [webView stringByEvaluatingJavaScriptFromString:js];
 }
 

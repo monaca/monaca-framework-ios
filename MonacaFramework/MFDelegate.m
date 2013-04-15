@@ -10,6 +10,7 @@
 
 #import "MFDelegate.h"
 #import "MFUtility.h"
+#import "MFViewBuilder.h"
 
 @class MFViewController;
 
@@ -19,17 +20,13 @@
 
 @implementation MFDelegate
 
-@synthesize viewController = viewController_;
 @synthesize monacaNavigationController = monacaNavigationController_;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // for use getMonacaBundlePlist
-    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-//    self.viewController = [[MFViewController alloc] init];
-    
-    self.monacaNavigationController = [[MFNavigationController alloc] initWithRootViewController:[[MFTabBarController alloc] initWithWwwDir:[MFUtility getBaseURL].path path:@"www/index.html"]];
+    self.monacaNavigationController = [[MFNavigationController alloc] initWithRootViewController:[MFViewBuilder createViewControllerWithPath:@"index.html"]];
 
     self.window.rootViewController = self.monacaNavigationController;
     [self.window makeKeyAndVisible];

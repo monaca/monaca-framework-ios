@@ -10,6 +10,7 @@
 #import "MFTransitPlugin.h"
 #import "MFViewController.h"
 #import "MFUtility.h"
+#import "MFViewBuilder.h"
 
 @implementation MFTransitPlugin
 
@@ -77,6 +78,8 @@
 - (NSString *)getRelativePathTo:(NSString *)filePath{
     NSString *currentDirectory = [[MFUtility currentViewController].webView.request.URL URLByDeletingLastPathComponent].filePathURL.path;
     NSString *urlString = [currentDirectory stringByAppendingPathComponent:filePath];
+    NSURL *url = [NSURL fileURLWithPath:urlString];
+    urlString = [url standardizedURL].path;
     NSMutableArray *array = [NSMutableArray arrayWithArray:[urlString componentsSeparatedByString:@"www/"]];
     if (array.count > 0) {
         [array removeObjectAtIndex:0];
@@ -109,7 +112,7 @@
     MFNavigationController *nav;
     if([MFUtility currentViewController].tabBarController != nil) {
         if ([[options objectForKey:@"target"] isEqualToString:@"tab"]) {
-            [MFTabBarController setIgnoreBottom:YES];
+            [MFViewBuilder setIgnoreBottom:YES];
             [[MFUtility getAppDelegate].monacaNavigationController setNavigationBarHidden:YES];
             nav = (MFNavigationController *)[MFUtility currentViewController].navigationController;
         } else {
@@ -123,10 +126,10 @@
         }
     }
 
-    MFTabBarController *viewController = [[MFTabBarController alloc] initWithWwwDir:@"www" path:urlStringWithoutQuery];
-    
-    if ([[options objectForKey:@"tabbarHidden"] isEqualToString:@"YES"]) {
-        viewController.hidesBottomBarWhenPushed = YES;
+    id viewController = [MFViewBuilder createViewControllerWithPath:urlStringWithoutQuery];
+
+    if ([viewController isKindOfClass:[MFViewController class]] && [[options objectForKey:@"tabbarHidden"] isEqualToString:@"YES"]) {
+       ((MFViewController *)viewController).hidesBottomBarWhenPushed = YES;
     }
     
     BOOL animated;
@@ -192,7 +195,7 @@
     MFNavigationController *nav;
     if([MFUtility currentViewController].tabBarController != nil) {
         if ([[options objectForKey:@"target"] isEqualToString:@"tab"]) {
-            [MFTabBarController setIgnoreBottom:YES];
+            [MFViewBuilder setIgnoreBottom:YES];
             [[MFUtility getAppDelegate].monacaNavigationController setNavigationBarHidden:YES];
             nav = (MFNavigationController *)[MFUtility currentViewController].navigationController;
         } else {
@@ -206,16 +209,16 @@
         }
     }
     
-    MFTabBarController *viewController = [[MFTabBarController alloc] initWithWwwDir:@"www" path:urlStringWithoutQuery];
-
     CATransition *transition = [CATransition animation];
     transition.duration = 0.4f;
     transition.type = kCATransitionMoveIn;
     transition.subtype = kCATransitionFromTop;
     [transition setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionDefault]];
 
-    if ([[options objectForKey:@"tabbarHidden"] isEqualToString:@"YES"]) {
-        viewController.hidesBottomBarWhenPushed = YES;
+    id viewController = [MFViewBuilder createViewControllerWithPath:urlStringWithoutQuery];
+
+    if ([viewController isKindOfClass:[MFViewController class]] && [[options objectForKey:@"tabbarHidden"] isEqualToString:@"YES"]) {
+       ((MFViewController *)viewController).hidesBottomBarWhenPushed = YES;
     }
     
     BOOL animated;

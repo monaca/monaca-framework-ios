@@ -42,11 +42,6 @@ static BOOL ignoreBottom = NO;
 - (void)viewDidAppear:(BOOL)animated {
     MFDelegate *delegate = (MFDelegate *)[UIApplication sharedApplication].delegate;
     [self.selectedViewController viewDidAppear:animated];
-    if ([self.viewControllers count] > 0) {
-        [delegate.viewController.webView removeFromSuperview];
-        UIView *view = ((UIViewController *)[self.viewControllers objectAtIndex:self.activeIndex]).view;
-        [view addSubview:delegate.viewController.webView];
-    }
 }
 
 - (id)init {
@@ -98,7 +93,6 @@ static BOOL ignoreBottom = NO;
             MFViewController *viewController = [[MFViewController alloc] initWithFileName:[path lastPathComponent]];
             viewController.wwwFolderName = [[MFUtility getWWWShortPath:uipath] stringByDeletingLastPathComponent];
             [navigationController setNavigationBarHidden:YES animated:NO];
-            [MFViewController setWantsFullScreenLayout:NO];
             self = (id)viewController;
         }
         [navigationController setToolbarHidden:YES animated:NO];

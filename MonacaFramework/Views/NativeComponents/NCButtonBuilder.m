@@ -153,7 +153,7 @@ updateViewDictionary(NSDictionary *style) {
     // 色などを設定する。置き換わったかどうかの判定には tag を用いる。ツールバーへの追加時にtag に
     // 値 (kUpdatedTag) をセットしておき、tag にその値がセットされていない view がいたらそれが置き換わった view である。
     if (cid != nil) {
-        UINavigationController *navController = delegate.viewController.tabBarController.navigationController;
+        UINavigationController *navController = [MFUtility currentTabBarController].navigationController;
         for (UIView *toolbar in navController.navigationBar.subviews) {
             for (UIView *view in toolbar.subviews) {
                 if (isButtonView(view) && view.tag != kUpdatedTag) {

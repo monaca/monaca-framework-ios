@@ -16,8 +16,6 @@
     BOOL isAppeared_;
     BOOL existTop_;
 }
-+ (void)setWantsFullScreenLayout:(BOOL)layout;
-
 - (void)applyUserInterface:(NSDictionary *)uidict;
 - (id)initWithFileName:(NSString *)fileName;
 - (void)destroy;
