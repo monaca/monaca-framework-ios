@@ -38,34 +38,32 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [MFUtility setCurrentViewController:self];
     if (self.existTop) {
         [self.navigationController setNavigationBarHidden:NO animated:NO];
     }
+    
+    [super viewWillAppear:animated];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    isAppeared_ = YES;
+    [MFUtility setCurrentViewController:self];
     self.navigationItem.titleView = centerView_;
-    [super viewDidAppear:animated];
-    if ([MFDevice iOSVersionMajor] < 5) {
-        [self.tabBarController viewWillAppear:animated];
-    }
     self.webView.delegate = self;
+
+    [super viewDidAppear:animated];
 }
 
 - (void)viewDidLoad
 {
-    // TODO
-    [super viewDidLoad];
-    [MFUtility fixedLayout:self interfaceOrientation:self.interfaceOrientation];
+    // TODO: 
     [MFUtility setCurrentViewController:self];
     if ([self.navigationController viewControllers].count == 1) {
 
     }
-    
     [self processDataTypes];
+    
+    [super viewDidLoad];
 }
 
 - (void)processDataTypes
@@ -90,9 +88,7 @@
         return;
     }
     NSDictionary *top = [uidict objectForKey:kNCPositionTop];
-    if (top != nil) {
-        [self.navigationController setNavigationBarHidden:NO];
-    }
+
     NSDictionary *topStyle = [top objectForKey:kNCTypeStyle];
     NSArray *topRight = [top objectForKey:kNCTypeRight];
     NSArray *topLeft = [top objectForKey:kNCTypeLeft];
@@ -126,9 +122,6 @@
     
     NSArray *centerContainers = [NSArray arrayWithObject:[NCContainer container:topCenterStyle position:@"top"]];
     centerView_ = [(NCContainer *)[centerContainers objectAtIndex:0] view];
-    if (isAppeared_) {
-        self.navigationItem.titleView = centerView_;
-    }
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
@@ -200,9 +193,6 @@
 
             if (![fileManager fileExistsAtPath:uipath]) {
                 uiDict = nil;
-            }
-            if (!previousPath_) {
-                [self applyUserInterface:uiDict];
             }
 
         }

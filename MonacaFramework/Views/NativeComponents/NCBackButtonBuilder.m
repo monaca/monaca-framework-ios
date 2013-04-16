@@ -38,7 +38,7 @@ updateBackButton(UIButton *button, NSDictionary *style) {
         [button setTitle:text forState:UIControlStateNormal];
     }
 
-    // FIXME(nhiroki): A shape of the button changes into a rectangle when the color of it is modified.
+    // FIXME: (nhiroki)A shape of the button changes into a rectangle when the color of it is modified.
     /*
     NSString *bgColor = [style objectForKey:kNCStyleBackgroundColor];
     if (bgColor) {

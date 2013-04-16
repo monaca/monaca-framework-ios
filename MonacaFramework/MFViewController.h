@@ -13,7 +13,6 @@
 @private
     NSString *previousPath_;
     UIView *centerView_;
-    BOOL isAppeared_;
     BOOL existTop_;
 }
 - (void)applyUserInterface:(NSDictionary *)uidict;

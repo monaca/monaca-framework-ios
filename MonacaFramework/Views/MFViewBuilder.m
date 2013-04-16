@@ -27,26 +27,24 @@ static BOOL ignoreBottom_ = NO;
     id view;
     id item = [uidict objectForKey:kNCPositionBottom];
     if (item != nil && !ignoreBottom_) {
+        ignoreBottom_ = YES; // タブバーは再起的に生成させない。
         NSString *containerType = [item objectForKey:kNCTypeContainer];
         if ([containerType isEqualToString:kNCContainerToolbar]) {
-            view = [[MFTabBarController alloc] init];
-            [view applyBottomToolbar:uidict];
+            view = [[MFViewController alloc] initWithFileName:[path lastPathComponent]];
+            // TODO: Implement applyBottomToolbar on MFViewController
+            // [view applyBottomToolbar:uidict];
         } else if ([containerType isEqualToString:kNCContainerTabbar]) {
             view = [[MFTabBarController alloc] init];
             [view applyBottomTabbar:uidict WwwDir:[[MFUtility getWWWShortPath:uipath] stringByDeletingLastPathComponent]];
-            [((MFTabBarController *)view).moreNavigationController setNavigationBarHidden:NO];
+            [[view moreNavigationController] setNavigationBarHidden:NO];
         }
     } else {
+        view = [[MFViewController alloc] initWithFileName:[path lastPathComponent]];
+        [view setWwwFolderName:[[MFUtility getWWWShortPath:uipath] stringByDeletingLastPathComponent]];
+        [view applyUserInterface:uidict];
         item = [uidict objectForKey:kNCPositionTop];
-        if (item != nil) {
-            if ([[item objectForKey:kNCTypeContainer] isEqualToString:kNCContainerToolbar]) {
-                view = [[MFViewController alloc] initWithFileName:[path lastPathComponent]];
-                ((MFViewController *)view).wwwFolderName = [[MFUtility getWWWShortPath:uipath] stringByDeletingLastPathComponent];
-                ((MFViewController *)view).existTop = YES;
-            }
-        } else {
-            view = [[MFViewController alloc] initWithFileName:[path lastPathComponent]];
-            ((MFViewController *)view).wwwFolderName = [[MFUtility getWWWShortPath:uipath] stringByDeletingLastPathComponent];
+        if (item != nil || [[item objectForKey:kNCTypeContainer] isEqualToString:kNCContainerToolbar]) {
+            [view setExistTop:YES];
         }
     }
     ignoreBottom_ = NO;

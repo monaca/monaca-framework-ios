@@ -140,7 +140,7 @@
         NSMutableDictionary *properties = [[MFUtility currentTabBarController].ncManager propertiesForID:key];
         NSString *property = [[properties objectForKey:kNCTypeStyle] objectForKey:propertyKey];
         
-        // FIXME(nhiroki): デフォルト値を持つキーに対してはうまく取得できない。
+        // FIXME: (nhiroki)デフォルト値を持つキーに対してはうまく取得できない。
         // また、ネイティブコンポーネント機構を介さずに UIKit で変更されるパラメータについても適切に取得できない (activeIndex など)。
         if ([property isKindOfClass:[NSNumber class]]) {
             pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsInt:[property intValue]];

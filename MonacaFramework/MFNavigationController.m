@@ -29,11 +29,11 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-    
     self.navigationBarHidden = YES;
     CGRect viewBounds = [[UIScreen mainScreen] bounds];
     self.view.frame = viewBounds;
+    
+    [super viewDidLoad];  
 }
 
 #pragma mark - UINavigationControllerDelegate

@@ -9,6 +9,7 @@
 #import "MFTabBarController.h"
 #import "MFUtility.h"
 #import "MFEvent.h"
+#import "MFViewBuilder.h"
 
 @implementation MFTabBarController
 
@@ -21,8 +22,6 @@
 
 @synthesize viewDict = viewDict_;
 @synthesize ncManager = ncManager_;
-@synthesize activeIndex = activeIndex_;
-@synthesize isInitialized = isInitialized_;
 
 static BOOL ignoreBottom = NO;
 
@@ -33,15 +32,23 @@ static BOOL ignoreBottom = NO;
 
 // iOS4 の場合、このメソッドは MonacaViewController の viewDidApper メソッドから呼ばれる
 - (void)viewWillAppear:(BOOL)animated {
-    [MFUtility setCurrentTabBarController:self];
     [self.navigationController setNavigationBarHidden:YES];
     [super viewWillAppear:animated];
 }
 
 // iOS4 の場合、このメソッドは MonacaViewController の viewDidApper メソッドから呼ばれる
 - (void)viewDidAppear:(BOOL)animated {
-    MFDelegate *delegate = (MFDelegate *)[UIApplication sharedApplication].delegate;
-    [self.selectedViewController viewDidAppear:animated];
+    [MFUtility setCurrentTabBarController:self];
+    
+    [super viewDidAppear:animated];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    // タブバーが無いviewに遷移した際にはnilにする。
+    [MFUtility setCurrentTabBarController:nil];
+    
+    [super viewDidDisappear:animated];
 }
 
 - (id)init {
@@ -49,8 +56,6 @@ static BOOL ignoreBottom = NO;
     if (nil != self) {
         self.viewDict = [NSMutableDictionary dictionary];
         self.ncManager = [[NCManager alloc] init];
-        isLocked = YES;
-        isInitialized_ = NO;
 
         NSNotificationCenter* center = [NSNotificationCenter defaultCenter];
         [center addObserver:self selector:@selector(onWillLoadUIFile:) name:monacaEventWillLoadUIFile object:nil];
@@ -59,49 +64,6 @@ static BOOL ignoreBottom = NO;
     }
     return self;
 }
-
-- (id)initWithWwwDir:(NSString *)wwwDir path:(NSString *)path
-{
-    wwwDir = [[MFUtility getBaseURL].path stringByAppendingPathComponent:[MFUtility getWWWShortPath:wwwDir]];
-    NSString *uipath = [wwwDir stringByAppendingPathComponent:[MFUtility getUIFileName:path]];
-    NSDictionary *uiDict = [MFUtility parseJSONFile:uipath];
-    MFNavigationController *navigationController = [MFUtility getAppDelegate].monacaNavigationController;
-    
-    id item;
-    item = [uiDict objectForKey:kNCPositionBottom];
-    if (item != nil && !ignoreBottom ) {
-        NSString *containerType = [item objectForKey:kNCTypeContainer];
-        if ([containerType isEqualToString:kNCContainerToolbar]) {
-            self = [[MFTabBarController alloc] init];
-            [self applyBottomToolbar:uiDict];
-        } else if ([containerType isEqualToString:kNCContainerTabbar]) {
-            self = [[MFTabBarController alloc] init];
-            [self applyBottomTabbar:uiDict WwwDir:[[MFUtility getWWWShortPath:uipath] stringByDeletingLastPathComponent]];
-            [navigationController setNavigationBarHidden:YES];
-            [self.moreNavigationController setNavigationBarHidden:NO];
-        }
-    } else {
-        item = [uiDict objectForKey:kNCPositionTop];
-        if (item != nil && !ignoreBottom) {
-            if ([[item objectForKey:kNCTypeContainer] isEqualToString:kNCContainerToolbar]) {
-                MFViewController *viewController = [[MFViewController alloc] initWithFileName:[path lastPathComponent]];
-                viewController.wwwFolderName = [[MFUtility getWWWShortPath:uipath] stringByDeletingLastPathComponent];
-                self = (id)viewController;
-                viewController.existTop = YES;
-            }
-        } else {
-            MFViewController *viewController = [[MFViewController alloc] initWithFileName:[path lastPathComponent]];
-            viewController.wwwFolderName = [[MFUtility getWWWShortPath:uipath] stringByDeletingLastPathComponent];
-            [navigationController setNavigationBarHidden:YES animated:NO];
-            self = (id)viewController;
-        }
-        [navigationController setToolbarHidden:YES animated:NO];
-        [navigationController setToolbarItems:nil];
-    }
-    ignoreBottom = NO;
-    return self;
-}
-
 
 - (void)dealloc {
     self.centerContainer = nil;
@@ -138,12 +100,7 @@ static BOOL ignoreBottom = NO;
     NSDictionary *bottom = [uidict objectForKey:kNCPositionBottom];
     NSDictionary *bottomStyle = [bottom objectForKey:kNCTypeStyle];
     NSArray *items = [bottom objectForKey:kNCTypeItems];
-/*    if (nil != top) {
-        if ([[top objectForKey:kNCTypeContainer] isEqualToString:kNCContainerToolbar]) {
-//            [self apply:top];
-        }
-    }
- */
+    
     int i = 0;
     for (NSDictionary *item in items) {
         NSMutableDictionary *style = [NSMutableDictionary dictionary];
@@ -155,8 +112,9 @@ static BOOL ignoreBottom = NO;
         NSDictionary *uiDict = [MFUtility parseJSONFile:uipath];
         
         // Setup a view controller in the tab contoller.
-        MFViewController *viewController = [[MFViewController alloc] initWithFileName:[item objectForKey:kNCTypeLink]];
-        viewController.wwwFolderName = wwwDir;
+        // TODO: make viewControllerProtocol
+        id viewController;
+        viewController = [MFViewBuilder createViewControllerWithPath:[item objectForKey:kNCTypeLink]];
 
         NSDictionary *top = [uiDict objectForKey:kNCPositionTop];
         NSDictionary *topStyle = [top objectForKey:kNCTypeStyle];
@@ -166,9 +124,9 @@ static BOOL ignoreBottom = NO;
         if ([style objectForKey:kNCStyleText] == nil && [topStyle objectForKey:kNCStyleTitle]) {
             [style setObject:[topStyle objectForKey:kNCStyleTitle] forKey:kNCStyleText];
         }
-        
-        viewController.tabBarItem = [NCTabbarItemBuilder tabbarItem:style];
-        viewController.tabBarItem.tag = i;
+
+        [viewController setTabBarItem:[NCTabbarItemBuilder tabbarItem:style]];
+        [[viewController tabBarItem] setTag:i];
         
         MFNavigationController *navi = [[MFNavigationController alloc] initWithRootViewController:viewController];
         [viewControllers addObject:navi];
@@ -178,29 +136,15 @@ static BOOL ignoreBottom = NO;
         } else {
             [navi setNavigationBarHidden:YES];
         }
-        
-        // Store a reference to the object representing the native component.
-        //        NSString *cid = [item objectForKey:kNCTypeID];
-        
-        [self.ncManager setComponent:viewController.tabBarItem forID:@"tapme-button"];
         i++;
     }
+    
     self.viewControllers  = viewControllers;
-    self.activeIndex = [[bottomStyle objectForKey:kNCStyleActiveIndex] intValue];
-    if (self.activeIndex < 0 || self.activeIndex >= [items count]) {
-        self.activeIndex = 0;
+    NSInteger index = [[bottomStyle objectForKey:kNCStyleActiveIndex] intValue];
+    if (index < 0 || index >= [items count]) {
+        index = 0;
     }
-    [self setSelectedIndex:self.activeIndex];
-}
-
-- (void)hoge
-{
-
-}
-
-- (void)fuga
-{
-    [[[MFUtility getAppDelegate] monacaNavigationController] popViewControllerAnimated:YES];
+    [self setSelectedIndex:index];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -223,11 +167,6 @@ static BOOL ignoreBottom = NO;
 - (void)restoreUserInterface
 {
 //    [self applyUserInterface:[self.ncManager.properties copy]];
-}
-
-- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController
-{
-    [MFUtility setCurrentViewController:(MFViewController *)viewController];
 }
 
 #pragma mark - UITabBarDeledate
@@ -255,13 +194,13 @@ static BOOL ignoreBottom = NO;
 #pragma mark - EventListener
 
 - (void)onWillLoadUIFile:(NSNotificationCenter *)center {
-    isLocked = YES;
+
 }
 
 - (void)onDidLoadUIFile:(NSNotificationCenter *)center {
-    isLocked = NO;
+
 }
 - (void)onReloadPage:(NSNotificationCenter *)center {
-    isInitialized_ = NO;
+
 }
 @end
