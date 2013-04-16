@@ -39,7 +39,9 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     if (self.existTop) {
-        [self.navigationController setNavigationBarHidden:NO animated:NO];
+        [self.navigationController setNavigationBarHidden:NO animated:YES];
+    } else {
+        [self.navigationController setNavigationBarHidden:YES animated:YES];
     }
     
     [super viewWillAppear:animated];
@@ -99,7 +101,7 @@
     [style addEntriesFromDictionary:[top objectForKey:kNCTypeStyle]];
     [style addEntriesFromDictionary:[top objectForKey:kNCTypeIOSStyle]];
     
-    if ([style objectForKey:kNCStyleText] == nil) {
+    if ([style objectForKey:kNCStyleText] == nil && [topStyle objectForKey:kNCStyleTitle] != nil) {
         [style setObject:[topStyle objectForKey:kNCStyleTitle] forKey:kNCStyleText];
     }
     
