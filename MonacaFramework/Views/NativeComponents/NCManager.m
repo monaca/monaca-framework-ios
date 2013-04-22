@@ -94,7 +94,7 @@ search(NSString *cid, NSMutableDictionary *barStyle) {
         return;
     }
 
-    if (cid == nil) {
+    if (cid == nil || [self.components valueForKey:cid] != nil) {
         [noIDComponents addObject:component];
         return;
     }
