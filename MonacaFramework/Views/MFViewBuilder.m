@@ -42,7 +42,7 @@ static BOOL ignoreBottom_ = NO;
     } else {
         view = [[MFViewController alloc] initWithFileName:[path lastPathComponent]];
         [view setWwwFolderName:[[MFUtility getWWWShortPath:uipath] stringByDeletingLastPathComponent]];
-        [view applyUserInterface:uidict];
+        [view setUiDict:uidict];
         item = [uidict objectForKey:kNCPositionTop];
         if (item != nil || [[item objectForKey:kNCTypeContainer] isEqualToString:kNCContainerToolbar]) {
             [view setExistTop:YES];

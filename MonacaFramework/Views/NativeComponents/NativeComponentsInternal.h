@@ -6,9 +6,6 @@
 //  Copyright (c) 2011 ASIAL CORPORATION. All rights reserved.
 //
 
-#import "MFViewController.h"
-#import "MFTabBarController.h"
-
 #define kNCTrue  @"true"
 #define kNCFalse @"false"
 

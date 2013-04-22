@@ -19,6 +19,8 @@
 
 @synthesize previousPath = previousPath_;
 @synthesize existTop = existTop_;
+@synthesize ncManager = ncManager_;
+@synthesize uiDict = uiDict_;
 
 - (id)initWithFileName:(NSString *)fileName
 {
@@ -28,6 +30,7 @@
         self.wwwFolderName = @"www";
         self.startPage = fileName;
         self.existTop = NO;
+        self.ncManager = [[NCManager alloc] init];
         
         self.wantsFullScreenLayout = NO;
     }
@@ -58,11 +61,11 @@
 
 - (void)viewDidLoad
 {
-    // TODO: 
     [MFUtility setCurrentViewController:self];
-    if ([self.navigationController viewControllers].count == 1) {
 
-    }
+    // NavigationBarの背景色などを適応させるため、self.navigationControllerがnilでなくなった後に行う。
+    [self applyUserInterface:self.uiDict];
+
     [self processDataTypes];
     
     [super viewDidLoad];
@@ -90,12 +93,10 @@
         return;
     }
     NSDictionary *top = [uidict objectForKey:kNCPositionTop];
-
     NSDictionary *topStyle = [top objectForKey:kNCTypeStyle];
     NSArray *topRight = [top objectForKey:kNCTypeRight];
     NSArray *topLeft = [top objectForKey:kNCTypeLeft];
     NSArray *topCenter = [top objectForKey:kNCTypeCenter];
-    NSDictionary *topCenterStyle = [topCenter objectAtIndex:0];
     
     NSMutableDictionary *style = [NSMutableDictionary dictionary];
     [style addEntriesFromDictionary:[top objectForKey:kNCTypeStyle]];
@@ -105,25 +106,40 @@
         [style setObject:[topStyle objectForKey:kNCStyleTitle] forKey:kNCStyleText];
     }
     
+    NSString *bgColor = [topStyle objectForKey:kNCStyleBackgroundColor];
+    if (bgColor) {
+        [self.navigationController.navigationBar setTintColor:hexToUIColor(removeSharpPrefix(bgColor), 1.0f)];
+    }
+    // apply title
+    // TODO: implement apply for subtitle
     self.navigationItem.title = [[top objectForKey:kNCTypeStyle] objectForKey:kNCStyleTitle];
 
-    
     NSMutableArray *containers = [NSMutableArray array];
-    for (id component in topRight) {
-        NCContainer *container = [NCContainer container:component position:kNCPositionTop];
-        [containers addObject:container.component];
-    }
-    
-    self.navigationItem.rightBarButtonItems = containers;
-    containers = [NSMutableArray array];
     for (id component in topLeft) {
         NCContainer *container = [NCContainer container:component position:kNCPositionTop];
         [containers addObject:container.component];
+        [self.ncManager setComponent:container forID:container.cid];
     }
     self.navigationItem.leftBarButtonItems = containers;
-    
-    NSArray *centerContainers = [NSArray arrayWithObject:[NCContainer container:topCenterStyle position:@"top"]];
-    centerView_ = [(NCContainer *)[centerContainers objectAtIndex:0] view];
+
+    containers = [NSMutableArray array];
+    for (id component in topRight) {
+        NCContainer *container = [NCContainer container:component position:kNCPositionTop];
+        [containers addObject:container.component];
+        [self.ncManager setComponent:container forID:container.cid];
+    }
+    self.navigationItem.rightBarButtonItems = containers;
+
+    containers = [NSMutableArray array];
+    for (id component in topCenter) {
+        NCContainer *container = [NCContainer container:component position:kNCPositionTop];
+        [containers addObject:container.component];
+        [self.ncManager setComponent:container forID:container.cid];
+    }
+    // TODO: Fix to allow few component for centerView
+    if ([containers count] != 0) {
+        centerView_ = [[containers objectAtIndex:0] view];
+    }
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
