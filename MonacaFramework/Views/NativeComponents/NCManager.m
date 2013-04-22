@@ -50,6 +50,7 @@ search(NSString *cid, NSMutableDictionary *barStyle) {
     if (nil != self) {
         self.properties = [[NSMutableDictionary alloc] init];
         self.components = [[NSMutableDictionary alloc] init];
+        noIDComponents = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -89,9 +90,15 @@ search(NSString *cid, NSMutableDictionary *barStyle) {
 
 - (void)setComponent:(id)component forID:(NSString *)cid
 {
-    if (component == nil || cid == nil) {
+    if (component == nil) {
         return;
     }
+
+    if (cid == nil) {
+        [noIDComponents addObject:component];
+        return;
+    }
+
     [self.components setValue:component forKey:cid];
 }
 

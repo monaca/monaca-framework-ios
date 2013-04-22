@@ -13,6 +13,7 @@
  @private
     NSMutableDictionary *properties_;
     NSMutableDictionary *components_;
+    NSMutableArray *noIDComponents;
 }
 
 - (NSMutableDictionary *)propertiesForID:(NSString *)cid;
