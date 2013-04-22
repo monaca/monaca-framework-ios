@@ -128,7 +128,13 @@
         [containers addObject:container.component];
         [self.ncManager setComponent:container forID:container.cid];
     }
-    self.navigationItem.rightBarButtonItems = containers;
+    // 表示順序を入れ替える
+    NSMutableArray *reverseContainers = [NSMutableArray array];
+    while ([containers count] != 0){
+        [reverseContainers addObject:[containers lastObject]];
+        [containers removeLastObject];
+    }
+    self.navigationItem.rightBarButtonItems = reverseContainers;
 
     containers = [NSMutableArray array];
     for (id component in topCenter) {
