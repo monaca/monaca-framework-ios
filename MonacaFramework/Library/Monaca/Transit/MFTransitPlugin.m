@@ -127,7 +127,8 @@
     }
 
     id viewController = [MFViewBuilder createViewControllerWithPath:urlStringWithoutQuery];
-
+    [MFViewBuilder setIgnoreBottom:NO];
+    
     if ([viewController isKindOfClass:[MFViewController class]] && [[options objectForKey:@"tabbarHidden"] isEqualToString:@"YES"]) {
        ((MFViewController *)viewController).hidesBottomBarWhenPushed = YES;
     }
@@ -216,7 +217,8 @@
     [transition setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionDefault]];
 
     id viewController = [MFViewBuilder createViewControllerWithPath:urlStringWithoutQuery];
-
+    [MFViewBuilder setIgnoreBottom:NO];
+    
     if ([viewController isKindOfClass:[MFViewController class]] && [[options objectForKey:@"tabbarHidden"] isEqualToString:@"YES"]) {
        ((MFViewController *)viewController).hidesBottomBarWhenPushed = YES;
     }

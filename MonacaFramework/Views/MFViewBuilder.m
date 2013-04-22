@@ -38,6 +38,7 @@ static BOOL ignoreBottom_ = NO;
             [view applyBottomTabbar:uidict WwwDir:[[MFUtility getWWWShortPath:uipath] stringByDeletingLastPathComponent]];
             [[view moreNavigationController] setNavigationBarHidden:NO];
         }
+        ignoreBottom_ = NO;
     } else {
         view = [[MFViewController alloc] initWithFileName:[path lastPathComponent]];
         [view setWwwFolderName:[[MFUtility getWWWShortPath:uipath] stringByDeletingLastPathComponent]];
@@ -47,7 +48,6 @@ static BOOL ignoreBottom_ = NO;
             [view setExistTop:YES];
         }
     }
-    ignoreBottom_ = NO;
 
     return view;
 }
