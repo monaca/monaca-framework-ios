@@ -15,7 +15,7 @@
 @class NCContainer;
 @class NCManager;
 
-@interface MFTabBarController : UITabBarController <UITabBarControllerDelegate,UITabBarDelegate> {
+@interface MFTabBarController : UITabBarController <UITabBarControllerDelegate,UITabBarDelegate,UIStyleProtocol> {
  @private
     NCContainer *centerContainer_;
 
@@ -31,6 +31,7 @@
     NSMutableDictionary *viewDict_;
 
     NCManager *ncManager_;
+    NSMutableDictionary *ncStyle;
 }
 
 + (void)setIgnoreBottom:(BOOL)ignore;

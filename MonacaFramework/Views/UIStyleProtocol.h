@@ -9,5 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @protocol UIStyleProtocol <NSObject>
+- (void)updateUIStyle:(id)value forKey:(NSString *)key;
+- (id)retrieveUIStyle:(NSString *)key;
 
 @end

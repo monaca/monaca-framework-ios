@@ -7,7 +7,7 @@
 //
 
 #import "NCManager.h"
-
+#import "MFUtility.h"
 
 static NSMutableDictionary *
 search(NSString *cid, NSMutableDictionary *barStyle) {
@@ -61,6 +61,15 @@ search(NSString *cid, NSMutableDictionary *barStyle) {
     self.properties = nil;
 }
 
++ (id<UIStyleProtocol>)searchComponentForID:(NSString *)cid
+{
+    id properties = [[MFUtility currentViewController].ncManager componentForID:cid];
+    if (!properties) {
+        properties = [[MFUtility currentTabBarController].ncManager componentForID:cid];
+    }
+    return properties;
+}
+
 /*
  * Returns dictionary which represents properties of a native component corresponding to the given ID.
  */
@@ -83,12 +92,12 @@ search(NSString *cid, NSMutableDictionary *barStyle) {
     return nil;
 }
 
-- (id)componentForID:(NSString *)cid
+- (id<UIStyleProtocol>)componentForID:(NSString *)cid
 {
     return [self.components objectForKey:cid];
 }
 
-- (void)setComponent:(id)component forID:(NSString *)cid
+- (void)setComponent:(id<UIStyleProtocol>)component forID:(NSString *)cid
 {
     if (component == nil) {
         return;

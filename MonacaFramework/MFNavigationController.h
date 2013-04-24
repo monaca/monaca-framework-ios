@@ -7,9 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UIStyleProtocol.h"
 
-@interface MFNavigationController : UINavigationController <UINavigationControllerDelegate>
+@interface MFNavigationController : UINavigationController <UINavigationControllerDelegate,UIStyleProtocol>
 {
-    
+    NSMutableDictionary *ncStyle;
 }
+
+- (void)applyUserInterface:(NSDictionary *)uidict;
+
 @end

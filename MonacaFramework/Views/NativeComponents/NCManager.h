@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "NativeComponentsInternal.h"
+#import "UIStyleProtocol.h"
 
 @interface NCManager : NSObject {
  @private
@@ -16,8 +17,8 @@
     NSMutableArray *noIDComponents;
 }
 
++ (id<UIStyleProtocol>)searchComponentForID:(NSString *)cid;
 - (NSMutableDictionary *)propertiesForID:(NSString *)cid;
-- (id)componentForID:(NSString *)cid;
 - (void)setComponent:(id)component forID:(NSString *)cid;
 
 @property(nonatomic, retain) NSMutableDictionary *properties;

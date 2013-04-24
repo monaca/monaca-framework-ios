@@ -12,7 +12,7 @@
 //
 // NCContainer class wraps UIBarButtonItem and has additional information.
 //
-@interface NCContainer : NSObject <UISearchBarDelegate> {
+@interface NCContainer : NSObject <UISearchBarDelegate,UIStyleProtocol> {
  @private
     NSString *cid_;               // Component ID.
     

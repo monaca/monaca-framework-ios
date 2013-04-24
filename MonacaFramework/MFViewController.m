@@ -93,7 +93,6 @@
         return;
     }
     NSDictionary *top = [uidict objectForKey:kNCPositionTop];
-    NSDictionary *topStyle = [top objectForKey:kNCTypeStyle];
     NSArray *topRight = [top objectForKey:kNCTypeRight];
     NSArray *topLeft = [top objectForKey:kNCTypeLeft];
     NSArray *topCenter = [top objectForKey:kNCTypeCenter];
@@ -102,17 +101,10 @@
     [style addEntriesFromDictionary:[top objectForKey:kNCTypeStyle]];
     [style addEntriesFromDictionary:[top objectForKey:kNCTypeIOSStyle]];
     
-    if ([style objectForKey:kNCStyleText] == nil && [topStyle objectForKey:kNCStyleTitle] != nil) {
-        [style setObject:[topStyle objectForKey:kNCStyleTitle] forKey:kNCStyleText];
-    }
-    
-    NSString *bgColor = [topStyle objectForKey:kNCStyleBackgroundColor];
-    if (bgColor) {
-        [self.navigationController.navigationBar setTintColor:hexToUIColor(removeSharpPrefix(bgColor), 1.0f)];
-    }
-    // apply title
-    // TODO: implement apply for subtitle
-    self.navigationItem.title = [[top objectForKey:kNCTypeStyle] objectForKey:kNCStyleTitle];
+    NSString *cid = [top objectForKey:kNCTypeID];
+    [self.ncManager setComponent:self.navigationController forID:cid];
+
+    [(MFNavigationController *)self.navigationController applyUserInterface:style];
 
     NSMutableArray *containers = [NSMutableArray array];
     for (id component in topLeft) {

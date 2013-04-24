@@ -56,6 +56,10 @@ static BOOL ignoreBottom = NO;
     if (nil != self) {
         self.viewDict = [NSMutableDictionary dictionary];
         self.ncManager = [[NCManager alloc] init];
+        ncStyle = [[NSMutableDictionary alloc] init];
+        [ncStyle setValue:@"true" forKey:kNCStyleVisibility];
+        [ncStyle setValue:@"#000000" forKey:kNCStyleBackgroundColor];
+        [ncStyle setValue:[NSNumber numberWithInt:0] forKey:kNCStyleActiveIndex];
 
         NSNotificationCenter* center = [NSNotificationCenter defaultCenter];
         [center addObserver:self selector:@selector(onWillLoadUIFile:) name:monacaEventWillLoadUIFile object:nil];
@@ -138,13 +142,11 @@ static BOOL ignoreBottom = NO;
         }
         i++;
     }
-    
     self.viewControllers  = viewControllers;
-    NSInteger index = [[bottomStyle objectForKey:kNCStyleActiveIndex] intValue];
-    if (index < 0 || index >= [items count]) {
-        index = 0;
-    }
-    [self setSelectedIndex:index];
+
+    [self applyUserInterface:bottomStyle];
+    NSString *cid = [bottom objectForKey:kNCTypeID];
+    [self.ncManager setComponent:self forID:cid];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -189,6 +191,47 @@ static BOOL ignoreBottom = NO;
             [viewController popToRootViewControllerAnimated:NO];
         }
     }
+}
+
+- (void)applyUserInterface:(NSDictionary *)uidict
+{
+    for (id key in uidict) {
+        [self updateUIStyle:[uidict objectForKey:key] forKey:key];
+    }
+}
+
+#pragma mark - UIStyleProtocol
+
+- (void)updateUIStyle:(id)value forKey:(NSString *)key
+{
+    if ([ncStyle objectForKey:key] == nil) {
+        // 例外処理
+        return;
+    }
+
+    // TODO: Implement hideTabbar
+    if ([key isEqualToString:kNCStyleBackgroundColor]) {
+        [self.tabBar setTintColor:hexToUIColor(removeSharpPrefix(value), 1)];
+    }
+    if ([key isEqualToString:kNCStyleActiveIndex]) {
+        NSInteger index = [value intValue];
+        if (index < 0 || index >= [self.viewControllers count]) {
+            index = 0;
+        }
+        [self setSelectedIndex:index];
+    }
+
+    [ncStyle setValue:value forKey:key];
+}
+
+- (id)retrieveUIStyle:(NSString *)key
+{
+    if ([ncStyle objectForKey:key] == nil) {
+        // 例外処理
+        return nil;
+    }
+
+    return [ncStyle objectForKey:key];
 }
 
 #pragma mark - EventListener

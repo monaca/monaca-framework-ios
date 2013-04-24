@@ -31,10 +31,14 @@
 
     // TODO(nhiroki): Validate arguments.
     NSMutableDictionary *style = nil;
+
+    NSString *propertyKey;
+    NSString *propertyValue;
+
     if (arguments.count == 4) {
         // Monaca.updateUIStyle("id", {...}).
-        NSString *propertyKey = [arguments objectAtIndex:3];
-        NSString *propertyValue = [arguments objectAtIndex:2];
+        propertyKey = [arguments objectAtIndex:2];
+        propertyValue = [arguments objectAtIndex:3];
         style = [NSMutableDictionary dictionaryWithObjects:[NSArray arrayWithObjects:key, propertyKey, nil] forKeys:[NSArray arrayWithObjects:kNCTypeID, propertyValue, nil]];
     } else if (arguments.count == 3) {
         NSString *propertyKey = [arguments objectAtIndex:2];
@@ -46,14 +50,15 @@
         return;
     }
     
-/*    if (key) {
-        id component = [[MFUtility currentTabBarController].ncManager componentForID:key];
+    if (key) {
+        id<UIStyleProtocol> component = [NCManager searchComponentForID:key];
         if (!component) {
             NSLog(@"[debug] No such component: %@", key);
-            
             return;
         }
         
+        [component updateUIStyle:propertyValue forKey:propertyKey];
+
         // Overwrite style of the native component.
         NSMutableDictionary *properties = [[MFUtility currentTabBarController].ncManager propertiesForID:key];
         NSMutableDictionary *currentStyle = [NSMutableDictionary dictionaryWithDictionary:[properties objectForKey:kNCTypeStyle]];
@@ -61,12 +66,21 @@
         [currentStyle addEntriesFromDictionary:[properties objectForKey:kNCTypeIOSStyle]];
 
         // Update top toolbar style.
-        if ([component isKindOfClass:[NSString class]] && [component isEqualToString:kNCContainerTabbar]) {
-            MFTabBarController *controller = [MFUtility currentTabBarController];
+        if ([component isKindOfClass:[MFNavigationController class]]) {
             [self updateNCManagerPropertyStyle:properties style:currentStyle];
-            [controller updateTopToolbar:currentStyle];
+//            [component updateUIStyle:currentStyle];
             return;
         }
+
+        if ([component isKindOfClass:[MFTabBarController class]]) {
+            [self updateNCManagerPropertyStyle:properties style:currentStyle];
+//            [component updateUIStyle:currentStyle];
+            return;
+        }
+
+        [self updateNCManagerPropertyStyle:properties style:currentStyle];
+//        [component updateUIStyle:currentStyle];
+        return;
         
         // Update bottom toolbar style.
         if ([component isKindOfClass:[UIToolbar class]]) {
@@ -110,7 +124,6 @@
         }
         [self updateNCManagerPropertyStyle:properties style:currentStyle];
     }
- */
 }
 
 - (void)retrieve:(NSMutableArray *)arguments withDict:(NSDictionary *)options {
@@ -119,13 +132,13 @@
     NSString *propertyKey = [arguments objectAtIndex:2];
 
     if (key) {
-        id component = [[MFUtility currentTabBarController].ncManager componentForID:key];
+        id component = [NCManager searchComponentForID:key];
         if (!component) {
             NSLog(@"[debug] No such component: %@", key);
             return;
         }
-
-        NCContainer *container = (NCContainer *)component;
+         NSString *property = [component retrieveUIStyle:propertyKey];
+/*        NCContainer *container = (NCContainer *)component;
         if (![container isKindOfClass:[NSString class]] && [container.type isEqualToString:kNCComponentSearchBox]) {
             NSMutableDictionary *properties = [[MFUtility currentTabBarController].ncManager propertiesForID:key];
             NSMutableDictionary *style = [NSMutableDictionary dictionary];
@@ -136,9 +149,11 @@
             return;
         }
 
-        CDVPluginResult *pluginResult = nil;
+
         NSMutableDictionary *properties = [[MFUtility currentTabBarController].ncManager propertiesForID:key];
         NSString *property = [[properties objectForKey:kNCTypeStyle] objectForKey:propertyKey];
+*/
+        CDVPluginResult *pluginResult = nil;
         
         // FIXME: (nhiroki)デフォルト値を持つキーに対してはうまく取得できない。
         // また、ネイティブコンポーネント機構を介さずに UIKit で変更されるパラメータについても適切に取得できない (activeIndex など)。

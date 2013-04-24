@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UIStyleProtocol.h"
 
-@interface NCButton : UIBarButtonItem {
+@interface NCButton : UIBarButtonItem <UIStyleProtocol> {
     UIView* _imageButtonView;
     NSString* _position;
+    NSMutableDictionary *ncStyle;
 }
 
 - (id)initWithTitle:(NSString *)title style:(UIBarButtonItemStyle)style target:(id)target action:(SEL)action postion:(NSString *)aPosition;

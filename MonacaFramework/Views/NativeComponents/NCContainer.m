@@ -118,6 +118,16 @@
     return container;
 }
 
+- (void)updateUIStyle:(id)value forKey:(NSString *)key
+{
+    [(id<UIStyleProtocol>)self.component updateUIStyle:value forKey:key];
+}
+
+- (id)retrieveUIStyle:(NSString *)key
+{
+    return [(id<UIStyleProtocol>)self.component retrieveUIStyle:key];
+}
+
 
 // =================================================
 // Event handlers.
