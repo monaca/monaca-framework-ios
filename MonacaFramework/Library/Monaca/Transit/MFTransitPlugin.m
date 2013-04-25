@@ -309,7 +309,9 @@
 
 - (BOOL)isValidOptions:(NSDictionary *)options {
     for (NSString *key in options) {
-        if (((NSString *)[options objectForKey:key]).length > 512) {
+        NSObject *option = [options objectForKey:key];
+        
+        if ([option isKindOfClass:NSString.class] && ((NSString *)option).length > 512) {
             NSLog(@"[error] MonacaTransitException::Too long option length:%@, %@", key, [options objectForKey:key]);
             return NO;
         }
