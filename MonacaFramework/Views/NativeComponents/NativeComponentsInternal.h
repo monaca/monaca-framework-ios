@@ -46,6 +46,7 @@
 #define kNCStyleOpacity            @"opacity"
 #define kNCStyleBackgroundColor    @"backgroundColor"
 #define kNCStyleTextColor          @"textColor"
+#define kNCStyleActiveTextColor    @"activeTextColor"
 #define kNCStylePlaceholder        @"placeholder"
 #define kNCStyleValue              @"value"
 #define kNCStyleTitle              @"title"

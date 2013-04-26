@@ -338,6 +338,10 @@
 		5AAB3F37171C3D230044FB77 /* MFViewBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB3F35171C3D220044FB77 /* MFViewBuilder.m */; };
 		5AAB3F38171C44190044FB77 /* MFViewBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB3F35171C3D220044FB77 /* MFViewBuilder.m */; };
 		5AAB3F39171C44190044FB77 /* MFViewBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB3F35171C3D220044FB77 /* MFViewBuilder.m */; };
+		5ADB0BA1172AAEAA009AFD18 /* NCSegment.h in Headers */ = {isa = PBXBuildFile; fileRef = 5ADB0B9F172AAEAA009AFD18 /* NCSegment.h */; };
+		5ADB0BA2172AAEAA009AFD18 /* NCSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ADB0BA0172AAEAA009AFD18 /* NCSegment.m */; };
+		5ADB0BA3172AB08C009AFD18 /* NCSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ADB0BA0172AAEAA009AFD18 /* NCSegment.m */; };
+		5ADB0BA4172AB08C009AFD18 /* NCSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ADB0BA0172AAEAA009AFD18 /* NCSegment.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -497,6 +501,8 @@
 		5AA6954D16D9FF27003C5D90 /* MFPGNativeComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFPGNativeComponent.m; sourceTree = "<group>"; };
 		5AAB3F34171C3D220044FB77 /* MFViewBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFViewBuilder.h; sourceTree = "<group>"; };
 		5AAB3F35171C3D220044FB77 /* MFViewBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFViewBuilder.m; sourceTree = "<group>"; };
+		5ADB0B9F172AAEAA009AFD18 /* NCSegment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCSegment.h; sourceTree = "<group>"; };
+		5ADB0BA0172AAEAA009AFD18 /* NCSegment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCSegment.m; sourceTree = "<group>"; };
 		F50460D813B3633B0050803F /* MFDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFDelegate.m; sourceTree = "<group>"; };
 		F504611413B364C60050803F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F504611513B364C60050803F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -827,6 +833,8 @@
 				5A83D32316D91E6D00D25E98 /* NCBackButtonBuilder.m */,
 				5A83D32416D91E6D00D25E98 /* NCButton.h */,
 				5A83D32516D91E6D00D25E98 /* NCButton.m */,
+				5ADB0B9F172AAEAA009AFD18 /* NCSegment.h */,
+				5ADB0BA0172AAEAA009AFD18 /* NCSegment.m */,
 				5A83D32616D91E6D00D25E98 /* NCButtonBuilder.h */,
 				5A83D32716D91E6D00D25E98 /* NCButtonBuilder.m */,
 				5A83D32816D91E6D00D25E98 /* NCContainer.h */,
@@ -1027,6 +1035,7 @@
 				5A40CBDF170836F2002DD96C /* MFTransitPlugin.h in Headers */,
 				5AAB3F36171C3D230044FB77 /* MFViewBuilder.h in Headers */,
 				5A3202DE172573CD0055A59F /* UIStyleProtocol.h in Headers */,
+				5ADB0BA1172AAEAA009AFD18 /* NCSegment.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1252,6 +1261,7 @@
 				5AA6955116D9FF27003C5D90 /* MFPGNativeComponent.m in Sources */,
 				5A40CBE2170836F2002DD96C /* MFTransitPlugin.m in Sources */,
 				5AAB3F39171C44190044FB77 /* MFViewBuilder.m in Sources */,
+				5ADB0BA4172AB08C009AFD18 /* NCSegment.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1322,6 +1332,7 @@
 				5AA6954F16D9FF27003C5D90 /* MFPGNativeComponent.m in Sources */,
 				5A40CBE0170836F2002DD96C /* MFTransitPlugin.m in Sources */,
 				5AAB3F37171C3D230044FB77 /* MFViewBuilder.m in Sources */,
+				5ADB0BA2172AAEAA009AFD18 /* NCSegment.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1393,6 +1404,7 @@
 				5AA6955016D9FF27003C5D90 /* MFPGNativeComponent.m in Sources */,
 				5A40CBE1170836F2002DD96C /* MFTransitPlugin.m in Sources */,
 				5AAB3F38171C44190044FB77 /* MFViewBuilder.m in Sources */,
+				5ADB0BA3172AB08C009AFD18 /* NCSegment.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

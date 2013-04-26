@@ -90,10 +90,9 @@
         container.type = kNCComponentSearchBox;
     }
     else if ([type isEqualToString:kNCComponentSegment]) {
-        UISegmentedControl *segment = [NCSegmentBuilder segment:style_def];
-        container.view = segment;
-        container.component = [[UIBarButtonItem alloc] initWithCustomView:segment];
-        
+        NCSegment *segment = [[NCSegment alloc] init];
+        container.component = segment;
+        [segment applyUserInterface:style_def];
 //        container.onTapScript = [[params objectForKey:kNCTypeEvent] objectForKey:kNCEventTypeTap];
         container.onChangeScript = [[params objectForKey:kNCTypeEvent] objectForKey:kNCEventTypeChange];
         
