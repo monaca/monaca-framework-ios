@@ -70,9 +70,9 @@
         container.type = kNCComponentBackButton;
     }
     else if ([type isEqualToString:kNCComponentLabel]) {
-        UILabel *label = [NCLabelBuilder label:style_def];
-        container.view = label;
-        container.component = [[UIBarButtonItem alloc] initWithCustomView:label];
+        NCLabel *label = [[NCLabel alloc] init];
+        [label applyUserInterface:style_def];
+        container.component = label;
         container.type = kNCComponentLabel;
     }
     else if ([type isEqualToString:kNCComponentSearchBox]) {
