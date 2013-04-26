@@ -48,17 +48,12 @@
     [style_def addEntriesFromDictionary:[params objectForKey:kNCTypeIOSStyle]];
 
     if ([type isEqualToString:kNCComponentButton]) {
-        container.component = [NCButtonBuilder button:style_def position:aPosition];
+        NCButton *button = [[NCButton alloc] init];
+        [button applyUserInterface:style_def];
+        container.component = button;
         container.onTapScript = [[params objectForKey:kNCTypeEvent] objectForKey:kNCEventTypeTap];
-        
-        // for image button case
-        NCButton* button = (NCButton*)container.component;
-        [(UIButton *)button.imageButtonView addTarget:container action:@selector(didTap:forEvent:) forControlEvents:UIControlEventTouchUpInside];
-        
-        // for UIBarButtonItem case
-        [container.component setAction:@selector(didTap:forEvent:)];
         [container.component setTarget:container];
-        
+        [container.component setAction:@selector(didTap:forEvent:)];
         container.type = kNCComponentButton;
     }
     else if ([type isEqualToString:kNCComponentBackButton]) {

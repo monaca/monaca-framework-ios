@@ -10,14 +10,10 @@
 #import "UIStyleProtocol.h"
 
 @interface NCButton : UIBarButtonItem <UIStyleProtocol> {
-    UIView* _imageButtonView;
     NSString* _position;
-    NSMutableDictionary *ncStyle;
+    NSMutableDictionary *_ncStyle;
 }
 
-- (id)initWithTitle:(NSString *)title style:(UIBarButtonItemStyle)style target:(id)target action:(SEL)action postion:(NSString *)aPosition;
-
-@property (retain) UIView* imageButtonView;
-@property (retain, readonly) NSString* position;
+- (void)applyUserInterface:(NSDictionary *)uidict;
 
 @end

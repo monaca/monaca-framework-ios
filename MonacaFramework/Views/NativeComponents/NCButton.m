@@ -8,65 +8,93 @@
 
 #import "NCButton.h"
 #import "NativeComponentsInternal.h"
+#import "MFUtility.h"
 
 @implementation NCButton 
-
-@synthesize imageButtonView;
-@synthesize position = _position;
 
 - (id)init {
     self = [super init];
     
     if (self) {
-        self.imageButtonView = [[UIButton alloc] init];
-        ncStyle = [[NSMutableDictionary alloc] init];
-        [ncStyle setValue:@"true" forKey:kNCStyleVisibility];
-        [ncStyle setValue:@"false" forKey:kNCStyleDisable];
-        [ncStyle setValue:@"#000000" forKey:kNCStyleBackgroundColor];
-        [ncStyle setValue:@"#FFFFFF" forKey:kNCStyleTextColor];
-        [ncStyle setValue:@"" forKey:kNCStyleImage];
-        [ncStyle setValue:@"" forKey:kNCStyleInnerImage];
-        [ncStyle setValue:@"" forKey:kNCStyleText];
+        [self setTitle:@""];
+        _ncStyle = [[NSMutableDictionary alloc] init];
+        [_ncStyle setValue:@"true" forKey:kNCStyleVisibility];
+        [_ncStyle setValue:@"false" forKey:kNCStyleDisable];
+        [_ncStyle setValue:@"#000000" forKey:kNCStyleBackgroundColor];
+        [_ncStyle setValue:@"#FFFFFF" forKey:kNCStyleTextColor];
+        [_ncStyle setValue:@"" forKey:kNCStyleImage];
+        [_ncStyle setValue:@"" forKey:kNCStyleInnerImage];
+        [_ncStyle setValue:@"" forKey:kNCStyleText];
     }
     
     return self;
 }
 
-- (id)initWithTitle:(NSString *)title style:(UIBarButtonItemStyle)style target:(id)target action:(SEL)action postion:(NSString *)aPosition {
-    self = [super initWithTitle:title style:style target:target action:action];
-    if(self){
-        _position = aPosition;
+- (void)applyUserInterface:(NSDictionary *)uidict
+{
+    for (id key in uidict) {
+        [self updateUIStyle:[uidict objectForKey:key] forKey:key];
     }
-    return self;
 }
 
 #pragma mark - UIStyleProtocol
 
+
 - (void)updateUIStyle:(id)value forKey:(NSString *)key
 {
-    if ([ncStyle objectForKey:key] == nil) {
+    if ([_ncStyle objectForKey:key] == nil) {
         // 例外処理
         return;
     }
 
+    if ([key isEqualToString:kNCStyleVisibility]) {
+        // TODO: Implement
+    }
+    if ([key isEqualToString:kNCStyleDisable]) {
+        if (isFalse(value)) {
+            [self setEnabled:YES];
+        } else {
+            [self setEnabled:NO];
+        }
+    }
     if ([key isEqualToString:kNCStyleBackgroundColor]) {
-        [self setTintColor:hexToUIColor(removeSharpPrefix(value), 1)];
+        float alpha = [[self retrieveUIStyle:kNCStyleOpacity] floatValue];
+        [self setTintColor:hexToUIColor(removeSharpPrefix(value), alpha)];
+    }
+    if ([key isEqualToString:kNCStyleActiveTextColor]) {
+        UIColor *color = hexToUIColor(removeSharpPrefix(value), 1);
+        NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:color, UITextAttributeTextColor, nil];
+        [self setTitleTextAttributes:attributes forState:UIControlStateSelected];
+    }
+    if ([key isEqualToString:kNCStyleTextColor]) {
+        UIColor *color = hexToUIColor(removeSharpPrefix(value), 1);
+        NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:color, UITextAttributeTextColor, nil];
+        [self setTitleTextAttributes:attributes forState:UIControlStateNormal];
+    }
+    if ([key isEqualToString:kNCStyleImage]) {
+        // TODO: check
+    }
+    if ([key isEqualToString:kNCStyleInnerImage]) {
+        NSString *imagePath = [[MFUtility currentViewController].wwwFolderName stringByAppendingPathComponent:value];
+        UIImage *image = [UIImage imageNamed:imagePath];
+        [self setImage:image];
     }
     if ([key isEqualToString:kNCStyleText]) {
         [self setTitle:value];
     }
 
-    [ncStyle setValue:value forKey:key];
+    [_ncStyle setValue:value forKey:key];
 }
+
 
 - (id)retrieveUIStyle:(NSString *)key
 {
-    if ([ncStyle objectForKey:key] == nil) {
+    if ([_ncStyle objectForKey:key] == nil) {
         // 例外処理
         return nil;
     }
 
-    return [ncStyle objectForKey:key];
+    return [_ncStyle objectForKey:key];
 }
 
 @end
