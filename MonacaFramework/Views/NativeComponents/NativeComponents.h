@@ -22,6 +22,7 @@
 #import "NCButton.h"
 #import "NCLabel.h"
 #import "NCSegment.h"
+#import "NCTabbarItem.h"
 
 // WebView status tags.
 static const NSUInteger kWebViewNormal = 0;

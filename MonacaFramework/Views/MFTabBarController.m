@@ -129,11 +129,17 @@ static BOOL ignoreBottom = NO;
             [style setObject:[topStyle objectForKey:kNCStyleTitle] forKey:kNCStyleText];
         }
 
-        [viewController setTabBarItem:[NCTabbarItemBuilder tabbarItem:style]];
-        [[viewController tabBarItem] setTag:i];
-        
+
         MFNavigationController *navi = [[MFNavigationController alloc] initWithRootViewController:viewController];
         [viewControllers addObject:navi];
+
+        [MFUtility setCurrentViewController:viewController]; // for tabbarItem image
+        NCTabbarItem *tabbarItem = [[NCTabbarItem alloc] init];
+        [tabbarItem applyUserInterface:style];
+        NSString *cid = [item objectForKey:kNCTypeID];
+        [self.ncManager setComponent:tabbarItem forID:cid];
+
+        [navi setTabBarItem:tabbarItem];
 
         if (top != nil) {
             [navi setNavigationBarHidden:NO];

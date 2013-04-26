@@ -344,6 +344,10 @@
 		5ADB0BAE172ABEA0009AFD18 /* NCLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ADB0BAA172ABE51009AFD18 /* NCLabel.m */; };
 		5ADB0BC9172ADFE7009AFD18 /* NCButtonBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = 5ADB0BC7172ADFE6009AFD18 /* NCButtonBuilder.h */; };
 		5ADB0BCA172ADFE7009AFD18 /* NCButtonBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ADB0BC8172ADFE6009AFD18 /* NCButtonBuilder.m */; };
+		5ADB0BCD172AE2FE009AFD18 /* NCTabbarItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 5ADB0BCB172AE2FD009AFD18 /* NCTabbarItem.h */; };
+		5ADB0BCE172AE2FE009AFD18 /* NCTabbarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ADB0BCC172AE2FD009AFD18 /* NCTabbarItem.m */; };
+		5ADB0BCF172AE303009AFD18 /* NCTabbarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ADB0BCC172AE2FD009AFD18 /* NCTabbarItem.m */; };
+		5ADB0BD0172AE303009AFD18 /* NCTabbarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ADB0BCC172AE2FD009AFD18 /* NCTabbarItem.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -507,6 +511,8 @@
 		5ADB0BAA172ABE51009AFD18 /* NCLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCLabel.m; sourceTree = "<group>"; };
 		5ADB0BC7172ADFE6009AFD18 /* NCButtonBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCButtonBuilder.h; sourceTree = "<group>"; };
 		5ADB0BC8172ADFE6009AFD18 /* NCButtonBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCButtonBuilder.m; sourceTree = "<group>"; };
+		5ADB0BCB172AE2FD009AFD18 /* NCTabbarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCTabbarItem.h; sourceTree = "<group>"; };
+		5ADB0BCC172AE2FD009AFD18 /* NCTabbarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCTabbarItem.m; sourceTree = "<group>"; };
 		F50460D813B3633B0050803F /* MFDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFDelegate.m; sourceTree = "<group>"; };
 		F504611413B364C60050803F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F504611513B364C60050803F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -843,6 +849,8 @@
 				5ADB0BAA172ABE51009AFD18 /* NCLabel.m */,
 				5ADB0B9F172AAEAA009AFD18 /* NCSegment.h */,
 				5ADB0BA0172AAEAA009AFD18 /* NCSegment.m */,
+				5ADB0BCB172AE2FD009AFD18 /* NCTabbarItem.h */,
+				5ADB0BCC172AE2FD009AFD18 /* NCTabbarItem.m */,
 				5A83D32816D91E6D00D25E98 /* NCContainer.h */,
 				5A83D32916D91E6D00D25E98 /* NCContainer.m */,
 				5A83D32A16D91E6D00D25E98 /* NCLabelBuilder.h */,
@@ -1043,6 +1051,7 @@
 				5ADB0BA1172AAEAA009AFD18 /* NCSegment.h in Headers */,
 				5ADB0BAB172ABE51009AFD18 /* NCLabel.h in Headers */,
 				5ADB0BC9172ADFE7009AFD18 /* NCButtonBuilder.h in Headers */,
+				5ADB0BCD172AE2FE009AFD18 /* NCTabbarItem.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1269,6 +1278,7 @@
 				5AAB3F39171C44190044FB77 /* MFViewBuilder.m in Sources */,
 				5ADB0BA4172AB08C009AFD18 /* NCSegment.m in Sources */,
 				5ADB0BAE172ABEA0009AFD18 /* NCLabel.m in Sources */,
+				5ADB0BD0172AE303009AFD18 /* NCTabbarItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1341,6 +1351,7 @@
 				5ADB0BA2172AAEAA009AFD18 /* NCSegment.m in Sources */,
 				5ADB0BAC172ABE51009AFD18 /* NCLabel.m in Sources */,
 				5ADB0BCA172ADFE7009AFD18 /* NCButtonBuilder.m in Sources */,
+				5ADB0BCE172AE2FE009AFD18 /* NCTabbarItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1413,6 +1424,7 @@
 				5AAB3F38171C44190044FB77 /* MFViewBuilder.m in Sources */,
 				5ADB0BA3172AB08C009AFD18 /* NCSegment.m in Sources */,
 				5ADB0BAD172ABEA0009AFD18 /* NCLabel.m in Sources */,
+				5ADB0BCF172AE303009AFD18 /* NCTabbarItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
