@@ -22,7 +22,7 @@ updateTabberItem(UITabBarItem *item, NSDictionary *style) {
     UIImage *image = nil;
     if (imageName) {
         MFDelegate *mfDelegate = (MFDelegate *)[UIApplication sharedApplication].delegate;
-        NSString *currentDirectory = [mfDelegate.viewController.previousPath stringByDeletingLastPathComponent];
+        NSString *currentDirectory = [mfDelegate.lastMonacaViewController.previousPath stringByDeletingLastPathComponent];
         NSString *imagePath = [currentDirectory stringByAppendingPathComponent:imageName];
         image = [UIImage imageWithContentsOfFile:imagePath];
         if (image) {

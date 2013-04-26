@@ -34,9 +34,9 @@
 - (void)viewDidAppear:(BOOL)animated {
     MFDelegate *delegate = (MFDelegate *)[UIApplication sharedApplication].delegate;
     if ([self.viewControllers count] > 0) {
-        [delegate.viewController.cdvViewController.webView removeFromSuperview];
+        [delegate.lastMonacaViewController.cdvViewController.webView removeFromSuperview];
         UIView *view = ((UIViewController *)[self.viewControllers objectAtIndex:self.activeIndex]).view;
-        [view addSubview:delegate.viewController.cdvViewController.webView];
+        [view addSubview:delegate.lastMonacaViewController.cdvViewController.webView];
     }
 }
 

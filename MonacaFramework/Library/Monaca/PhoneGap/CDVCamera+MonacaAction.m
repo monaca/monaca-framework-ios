@@ -16,7 +16,7 @@
 
 - (UIViewController *)viewController
 {
-    return [MFUtility getAppDelegate].viewController;
+    return [MFUtility getAppDelegate].monacaNavigationController.lastMonacaViewController;
 }
 
 @end
