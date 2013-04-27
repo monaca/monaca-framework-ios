@@ -80,7 +80,7 @@
     NSString *urlString = [currentDirectory stringByAppendingPathComponent:filePath];
     NSURL *url = [NSURL fileURLWithPath:urlString];
     urlString = [url standardizedURL].path;
-    NSMutableArray *array = [NSMutableArray arrayWithArray:[urlString componentsSeparatedByString:@"www/"]];
+    NSMutableArray *array = [NSMutableArray arrayWithArray:[urlString componentsSeparatedByString:[MFUtility getBaseURL].path]];
     if (array.count > 0) {
         [array removeObjectAtIndex:0];
     }

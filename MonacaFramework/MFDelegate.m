@@ -26,7 +26,7 @@
 {
     // for use getMonacaBundlePlist
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.monacaNavigationController = [[MFNavigationController alloc] initWithRootViewController:[MFViewBuilder createViewControllerWithPath:@"index.html"]];
+    self.monacaNavigationController = [[MFNavigationController alloc] initWithRootViewController:[MFViewBuilder createViewControllerWithPath:@"www/index.html"]];
 
     self.window.rootViewController = self.monacaNavigationController;
     [self.window makeKeyAndVisible];
