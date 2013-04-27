@@ -352,6 +352,10 @@
 		5ADB0BD4172BA723009AFD18 /* NCSearchBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ADB0BD2172BA721009AFD18 /* NCSearchBox.m */; };
 		5ADB0BD5172BA723009AFD18 /* NCSearchBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ADB0BD2172BA721009AFD18 /* NCSearchBox.m */; };
 		5ADB0BD6172BA723009AFD18 /* NCSearchBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ADB0BD2172BA721009AFD18 /* NCSearchBox.m */; };
+		5AEABB74172BF7B500AFAE56 /* NCBackButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 5AEABB72172BF7B500AFAE56 /* NCBackButton.h */; };
+		5AEABB75172BF7B500AFAE56 /* NCBackButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AEABB73172BF7B500AFAE56 /* NCBackButton.m */; };
+		5AEABB76172BF7B500AFAE56 /* NCBackButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AEABB73172BF7B500AFAE56 /* NCBackButton.m */; };
+		5AEABB77172BF7B500AFAE56 /* NCBackButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AEABB73172BF7B500AFAE56 /* NCBackButton.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -519,6 +523,8 @@
 		5ADB0BCC172AE2FD009AFD18 /* NCTabbarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCTabbarItem.m; sourceTree = "<group>"; };
 		5ADB0BD1172BA71F009AFD18 /* NCSearchBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCSearchBox.h; sourceTree = "<group>"; };
 		5ADB0BD2172BA721009AFD18 /* NCSearchBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCSearchBox.m; sourceTree = "<group>"; };
+		5AEABB72172BF7B500AFAE56 /* NCBackButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCBackButton.h; sourceTree = "<group>"; };
+		5AEABB73172BF7B500AFAE56 /* NCBackButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCBackButton.m; sourceTree = "<group>"; };
 		F50460D813B3633B0050803F /* MFDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFDelegate.m; sourceTree = "<group>"; };
 		F504611413B364C60050803F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F504611513B364C60050803F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -851,6 +857,8 @@
 				5ADB0BC8172ADFE6009AFD18 /* NCButtonBuilder.m */,
 				5A83D32416D91E6D00D25E98 /* NCButton.h */,
 				5A83D32516D91E6D00D25E98 /* NCButton.m */,
+				5AEABB72172BF7B500AFAE56 /* NCBackButton.h */,
+				5AEABB73172BF7B500AFAE56 /* NCBackButton.m */,
 				5ADB0BA9172ABE51009AFD18 /* NCLabel.h */,
 				5ADB0BAA172ABE51009AFD18 /* NCLabel.m */,
 				5ADB0B9F172AAEAA009AFD18 /* NCSegment.h */,
@@ -1061,6 +1069,7 @@
 				5ADB0BC9172ADFE7009AFD18 /* NCButtonBuilder.h in Headers */,
 				5ADB0BCD172AE2FE009AFD18 /* NCTabbarItem.h in Headers */,
 				5ADB0BD3172BA723009AFD18 /* NCSearchBox.h in Headers */,
+				5AEABB74172BF7B500AFAE56 /* NCBackButton.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1289,6 +1298,7 @@
 				5ADB0BAE172ABEA0009AFD18 /* NCLabel.m in Sources */,
 				5ADB0BD0172AE303009AFD18 /* NCTabbarItem.m in Sources */,
 				5ADB0BD6172BA723009AFD18 /* NCSearchBox.m in Sources */,
+				5AEABB77172BF7B500AFAE56 /* NCBackButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1363,6 +1373,7 @@
 				5ADB0BCA172ADFE7009AFD18 /* NCButtonBuilder.m in Sources */,
 				5ADB0BCE172AE2FE009AFD18 /* NCTabbarItem.m in Sources */,
 				5ADB0BD4172BA723009AFD18 /* NCSearchBox.m in Sources */,
+				5AEABB75172BF7B500AFAE56 /* NCBackButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1437,6 +1448,7 @@
 				5ADB0BAD172ABEA0009AFD18 /* NCLabel.m in Sources */,
 				5ADB0BCF172AE303009AFD18 /* NCTabbarItem.m in Sources */,
 				5ADB0BD5172BA723009AFD18 /* NCSearchBox.m in Sources */,
+				5AEABB76172BF7B500AFAE56 /* NCBackButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

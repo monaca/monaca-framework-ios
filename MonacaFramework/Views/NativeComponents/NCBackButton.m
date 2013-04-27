@@ -1,33 +1,32 @@
 //
-//  NCButton.m
-//  8Card
+//  NCBackButton.m
+//  MonacaFramework
 //
-//  Created by KUBOTA Mitsunori on 12/05/30.
-//  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
+//  Created by Yasuhiro Mitsuno on 2013/04/27.
+//  Copyright (c) 2013年 ASIAL CORPORATION. All rights reserved.
 //
 
-#import "NCButton.h"
+#import "NCBackButton.h"
 #import "NativeComponentsInternal.h"
 #import "MFUtility.h"
 
-@implementation NCButton 
+@implementation NCBackButton
 
 - (id)init {
     self = [super init];
-    
+
     if (self) {
-        [self setTitle:@""];
+        _backButton = [UIButton buttonWithType:101];
+        self.customView = _backButton;
         _ncStyle = [[NSMutableDictionary alloc] init];
         [_ncStyle setValue:kNCTrue forKey:kNCStyleVisibility];
         [_ncStyle setValue:kNCFalse forKey:kNCStyleDisable];
-        [_ncStyle setValue:kNCBlack forKey:kNCStyleBackgroundColor];
         [_ncStyle setValue:kNCBlue forKey:kNCStyleActiveTextColor];
         [_ncStyle setValue:kNCWhite forKey:kNCStyleTextColor];
-        [_ncStyle setValue:kNCUndefined forKey:kNCStyleImage];
-        [_ncStyle setValue:kNCUndefined forKey:kNCStyleInnerImage];
         [_ncStyle setValue:kNCUndefined forKey:kNCStyleText];
+        [_ncStyle setValue:kNCUndefined forKey:kNCStyleInnerImage];
     }
-    
+
     return self;
 }
 
@@ -36,6 +35,11 @@
     for (id key in uidict) {
         [self updateUIStyle:[uidict objectForKey:key] forKey:key];
     }
+}
+
+- (void)addTarget:(id)target action:(SEL)action forControlEvents:(UIControlEvents)controlEvents
+{
+    [_backButton addTarget:target action:action forControlEvents:controlEvents];
 }
 
 #pragma mark - UIStyleProtocol
@@ -63,35 +67,26 @@
     }
     if ([key isEqualToString:kNCStyleDisable]) {
         if (isFalse(value)) {
-            [self setEnabled:YES];
+            [_backButton setEnabled:YES];
         } else {
-            [self setEnabled:NO];
+            [_backButton setEnabled:NO];
         }
-    }
-    if ([key isEqualToString:kNCStyleBackgroundColor]) {
-        float alpha = [[self retrieveUIStyle:kNCStyleOpacity] floatValue];
-        [self setTintColor:hexToUIColor(removeSharpPrefix(value), alpha)];
     }
     if ([key isEqualToString:kNCStyleActiveTextColor]) {
         UIColor *color = hexToUIColor(removeSharpPrefix(value), 1);
-        NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:color, UITextAttributeTextColor, nil];
-        [self setTitleTextAttributes:attributes forState:UIControlStateSelected];
+        [_backButton setTitleColor:color forState:UIControlStateSelected];
     }
     if ([key isEqualToString:kNCStyleTextColor]) {
         UIColor *color = hexToUIColor(removeSharpPrefix(value), 1);
-        NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:color, UITextAttributeTextColor, nil];
-        [self setTitleTextAttributes:attributes forState:UIControlStateNormal];
+        [_backButton setTitleColor:color forState:UIControlStateNormal];
     }
-    if ([key isEqualToString:kNCStyleImage]) {
-        // TODO: check
+    if ([key isEqualToString:kNCStyleText]) {
+        [_backButton setTitle:value forState:UIControlStateNormal];
     }
     if ([key isEqualToString:kNCStyleInnerImage]) {
         NSString *imagePath = [[MFUtility currentViewController].wwwFolderName stringByAppendingPathComponent:value];
         UIImage *image = [UIImage imageNamed:imagePath];
-        [self setImage:image];
-    }
-    if ([key isEqualToString:kNCStyleText]) {
-        [self setTitle:value];
+        [_backButton setImage:image forState:UIControlStateNormal];
     }
 
     if (value == nil) {
