@@ -20,7 +20,12 @@ static BOOL ignoreBottom_ = NO;
 
 + (id)createViewControllerWithPath:(NSString *)path
 {
-    NSString *www = [[MFUtility getBaseURL].path stringByAppendingPathComponent:@"www"];
+    NSString *www;
+    if (!ignoreBottom_) {
+        www = [[MFUtility getBaseURL].path stringByAppendingPathComponent:@"www"];
+    } else {
+        www = [MFUtility getBaseURL].path;
+    }
     NSString *uipath = [www stringByAppendingPathComponent:[MFUtility getUIFileName:path]];
     NSDictionary *uidict = [MFUtility parseJSONFile:uipath];
 

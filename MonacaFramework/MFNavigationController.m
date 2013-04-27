@@ -90,6 +90,9 @@
         // 例外処理
         return;
     }
+    if (value == [NSNull null]) {
+        value = nil;
+    }
 
     // TODO: implement apply for subtitle
     if ([key isEqualToString:kNCStyleBackgroundColor]) {

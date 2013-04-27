@@ -118,7 +118,7 @@ static BOOL ignoreBottom = NO;
         // Setup a view controller in the tab contoller.
         // TODO: make viewControllerProtocol
         id viewController;
-        viewController = [MFViewBuilder createViewControllerWithPath:[item objectForKey:kNCTypeLink]];
+        viewController = [MFViewBuilder createViewControllerWithPath:[wwwDir stringByAppendingPathComponent:[item objectForKey:kNCTypeLink]]];
 
         NSDictionary *top = [uiDict objectForKey:kNCPositionTop];
         NSDictionary *topStyle = [top objectForKey:kNCTypeStyle];
@@ -213,6 +213,9 @@ static BOOL ignoreBottom = NO;
     if ([ncStyle objectForKey:key] == nil) {
         // 例外処理
         return;
+    }
+    if (value == [NSNull null]) {
+        value = nil;
     }
 
     // TODO: Implement hideTabbar

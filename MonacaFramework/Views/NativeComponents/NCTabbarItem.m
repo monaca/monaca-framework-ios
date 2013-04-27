@@ -42,6 +42,9 @@
         // 例外処理
         return;
     }
+    if (value == [NSNull null]) {
+        value = nil;
+    }
 
     if ([key isEqualToString:kNCStyleText]) {
         [self setTitle:value];
