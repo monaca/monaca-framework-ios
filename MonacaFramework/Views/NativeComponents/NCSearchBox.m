@@ -29,12 +29,12 @@
         _searchBar.delegate = self;
 
         _ncStyle = [[NSMutableDictionary alloc] init];
-        [_ncStyle setValue:@"true" forKey:kNCStyleVisibility];
-        [_ncStyle setValue:@"false" forKey:kNCStyleDisable];
+        [_ncStyle setValue:kNCTrue forKey:kNCStyleVisibility];
+        [_ncStyle setValue:kNCFalse forKey:kNCStyleDisable];
         [_ncStyle setValue:[NSNumber numberWithFloat:1.0] forKey:kNCStyleOpacity];
-        [_ncStyle setValue:@"#FFFFFF" forKey:kNCStyleTextColor];
-        [_ncStyle setValue:@"" forKey:kNCStylePlaceholder];
-        [_ncStyle setValue:@"false" forKey:kNCStyleFocus];
+        [_ncStyle setValue:kNCWhite forKey:kNCStyleTextColor];
+        [_ncStyle setValue:kNCUndefined forKey:kNCStylePlaceholder];
+        [_ncStyle setValue:kNCFalse forKey:kNCStyleFocus];
     }
 
     return self;
@@ -63,6 +63,13 @@
     if (value == [NSNull null]) {
         value = nil;
     }
+    if ([NSStringFromClass([value class]) isEqualToString:@"__NSCFBoolean"]) {
+        if (isFalse(value)) {
+            value = kNCFalse;
+        } else {
+            value = kNCTrue;
+        }
+    }
 
     if ([key isEqualToString:kNCStyleVisibility]) {
         // TODO:
@@ -74,6 +81,7 @@
             [_searchBar setUserInteractionEnabled:NO];
         }
     }
+
     if ([key isEqualToString:kNCStyleOpacity]) {
         UITextField *searchField = [_searchBar valueForKey:@"_searchField"];
         [searchField setAlpha:[value floatValue]];
@@ -93,6 +101,9 @@
         }
     }
 
+    if (value == [NSNull null]) {
+        value = nil;
+    }
     [_ncStyle setValue:value forKey:key];
 }
 

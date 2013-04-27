@@ -158,9 +158,18 @@
         // FIXME: (nhiroki)デフォルト値を持つキーに対してはうまく取得できない。
         // また、ネイティブコンポーネント機構を介さずに UIKit で変更されるパラメータについても適切に取得できない (activeIndex など)。
         if ([property isKindOfClass:[NSNumber class]]) {
-            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsInt:[property intValue]];
+            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDouble:[property doubleValue]];
         } else if ([property isKindOfClass:[NSString class]]) {
-            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:property];
+            if ([property isEqualToString:kNCTrue] || [property isEqualToString:kNCFalse]
+                || [property isEqualToString:kNCUndefined]) {
+                pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"%%BOOL%%"];
+                NSString *script = [pluginResult toSuccessCallbackString:callbackID];
+                script = [script stringByReplacingOccurrencesOfString:@"\"%%BOOL%%\"" withString:property];
+                [self writeJavascript:script];
+                return;
+            } else {
+                pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:property];
+            }
         } else if ([property isKindOfClass:[NSArray class]]) {
             pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsArray:(NSArray *)property];
         } else {

@@ -19,12 +19,12 @@
         [_segment setSegmentedControlStyle:UISegmentedControlStyleBar];
         self.customView = _segment;
         _ncStyle = [[NSMutableDictionary alloc] init];
-        [_ncStyle setValue:@"true" forKey:kNCStyleVisibility];
-        [_ncStyle setValue:@"false" forKey:kNCStyleDisable];
+        [_ncStyle setValue:kNCTrue forKey:kNCStyleVisibility];
+        [_ncStyle setValue:kNCFalse forKey:kNCStyleDisable];
         [_ncStyle setValue:[NSNumber numberWithFloat:1.0] forKey:kNCStyleOpacity];
-        [_ncStyle setValue:@"#000000" forKey:kNCStyleBackgroundColor];
-        [_ncStyle setValue:@"#0000FF" forKey:kNCStyleActiveTextColor];
-        [_ncStyle setValue:@"#FFFFFF" forKey:kNCStyleTextColor];
+        [_ncStyle setValue:kNCBlack forKey:kNCStyleBackgroundColor];
+        [_ncStyle setValue:kNCBlue forKey:kNCStyleActiveTextColor];
+        [_ncStyle setValue:kNCWhite forKey:kNCStyleTextColor];
         [_ncStyle setValue:[NSArray array] forKey:kNCStyleTexts];
         [_ncStyle setValue:[NSNumber numberWithInt:0] forKey:kNCStyleActiveIndex];
     }
@@ -54,6 +54,13 @@
     }
     if (value == [NSNull null]) {
         value = nil;
+    }
+    if ([NSStringFromClass([value class]) isEqualToString:@"__NSCFBoolean"]) {
+        if (isFalse(value)) {
+            value = kNCFalse;
+        } else {
+            value = kNCTrue;
+        }
     }
 
     if ([key isEqualToString:kNCStyleVisibility]) {
@@ -95,6 +102,9 @@
         [_segment setSelectedSegmentIndex:[value intValue]];
     }
 
+    if (value == [NSNull null]) {
+        value = nil;
+    }
     [_ncStyle setValue:value forKey:key];
 }
 

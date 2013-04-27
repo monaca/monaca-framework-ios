@@ -57,8 +57,8 @@ static BOOL ignoreBottom = NO;
         self.viewDict = [NSMutableDictionary dictionary];
         self.ncManager = [[NCManager alloc] init];
         ncStyle = [[NSMutableDictionary alloc] init];
-        [ncStyle setValue:@"true" forKey:kNCStyleVisibility];
-        [ncStyle setValue:@"#000000" forKey:kNCStyleBackgroundColor];
+        [ncStyle setValue:kNCTrue forKey:kNCStyleVisibility];
+        [ncStyle setValue:kNCBlack forKey:kNCStyleBackgroundColor];
         [ncStyle setValue:[NSNumber numberWithInt:0] forKey:kNCStyleActiveIndex];
 
         NSNotificationCenter* center = [NSNotificationCenter defaultCenter];
@@ -217,6 +217,13 @@ static BOOL ignoreBottom = NO;
     if (value == [NSNull null]) {
         value = nil;
     }
+    if ([NSStringFromClass([value class]) isEqualToString:@"__NSCFBoolean"]) {
+        if (isFalse(value)) {
+            value = kNCFalse;
+        } else {
+            value = kNCTrue;
+        }
+    }
 
     // TODO: Implement hideTabbar
     if ([key isEqualToString:kNCStyleBackgroundColor]) {
@@ -230,6 +237,9 @@ static BOOL ignoreBottom = NO;
         [self setSelectedIndex:index];
     }
 
+    if (value == [NSNull null]) {
+        value = nil;
+    }
     [ncStyle setValue:value forKey:key];
 }
 

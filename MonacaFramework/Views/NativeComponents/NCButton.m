@@ -18,13 +18,13 @@
     if (self) {
         [self setTitle:@""];
         _ncStyle = [[NSMutableDictionary alloc] init];
-        [_ncStyle setValue:@"true" forKey:kNCStyleVisibility];
-        [_ncStyle setValue:@"false" forKey:kNCStyleDisable];
-        [_ncStyle setValue:@"#000000" forKey:kNCStyleBackgroundColor];
-        [_ncStyle setValue:@"#FFFFFF" forKey:kNCStyleTextColor];
-        [_ncStyle setValue:@"" forKey:kNCStyleImage];
-        [_ncStyle setValue:@"" forKey:kNCStyleInnerImage];
-        [_ncStyle setValue:@"" forKey:kNCStyleText];
+        [_ncStyle setValue:kNCTrue forKey:kNCStyleVisibility];
+        [_ncStyle setValue:kNCFalse forKey:kNCStyleDisable];
+        [_ncStyle setValue:kNCBlack forKey:kNCStyleBackgroundColor];
+        [_ncStyle setValue:kNCWhite forKey:kNCStyleTextColor];
+        [_ncStyle setValue:kNCUndefined forKey:kNCStyleImage];
+        [_ncStyle setValue:kNCUndefined forKey:kNCStyleInnerImage];
+        [_ncStyle setValue:kNCUndefined forKey:kNCStyleText];
     }
     
     return self;
@@ -48,6 +48,13 @@
     }
     if (value == [NSNull null]) {
         value = nil;
+    }
+    if ([NSStringFromClass([value class]) isEqualToString:@"__NSCFBoolean"]) {
+        if (isFalse(value)) {
+            value = kNCFalse;
+        } else {
+            value = kNCTrue;
+        }
     }
 
     if ([key isEqualToString:kNCStyleVisibility]) {
@@ -86,6 +93,9 @@
         [self setTitle:value];
     }
 
+    if (value == nil) {
+        value = kNCUndefined;
+    }
     [_ncStyle setValue:value forKey:key];
 }
 

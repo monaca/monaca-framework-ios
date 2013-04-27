@@ -18,9 +18,9 @@
 
     if (self) {
         _ncStyle = [[NSMutableDictionary alloc] init];
-        [_ncStyle setValue:@"" forKey:kNCStyleText];
-        [_ncStyle setValue:@"" forKey:kNCStyleImage];
-        [_ncStyle setValue:@"" forKey:kNCStyleBadgeText];
+        [_ncStyle setValue:kNCUndefined forKey:kNCStyleText];
+        [_ncStyle setValue:kNCUndefined forKey:kNCStyleImage];
+        [_ncStyle setValue:kNCUndefined forKey:kNCStyleBadgeText];
     }
 
     return self;
@@ -45,6 +45,13 @@
     if (value == [NSNull null]) {
         value = nil;
     }
+    if ([NSStringFromClass([value class]) isEqualToString:@"__NSCFBoolean"]) {
+        if (isFalse(value)) {
+            value = kNCFalse;
+        } else {
+            value = kNCTrue;
+        }
+    }
 
     if ([key isEqualToString:kNCStyleText]) {
         [self setTitle:value];
@@ -58,6 +65,9 @@
         [self setBadgeValue:value];
     }
 
+    if (value == [NSNull null]) {
+        value = nil;
+    }
     [_ncStyle setValue:value forKey:key];
 }
 

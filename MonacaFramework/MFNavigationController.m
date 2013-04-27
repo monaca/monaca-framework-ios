@@ -22,16 +22,16 @@
 
     if (self) {
         ncStyle = [[NSMutableDictionary alloc] init];
-        [ncStyle setValue:@"true" forKey:kNCStyleVisibility];
-        [ncStyle setValue:@"false" forKey:kNCStyleDisable];
-        [ncStyle setValue:@"#000000" forKey:kNCStyleBackgroundColor];
-        [ncStyle setValue:@"" forKey:kNCStyleTitle];
-        [ncStyle setValue:@"" forKey:kNCStyleSubtitle];
-        [ncStyle setValue:@"#FFFFFF" forKey:kNCStyleTitleColor];
-        [ncStyle setValue:@"#FFFFFF" forKey:kNCStyleSubtitleColor];
+        [ncStyle setValue:kNCTrue forKey:kNCStyleVisibility];
+        [ncStyle setValue:kNCFalse forKey:kNCStyleDisable];
+        [ncStyle setValue:kNCBlack forKey:kNCStyleBackgroundColor];
+        [ncStyle setValue:kNCUndefined forKey:kNCStyleTitle];
+        [ncStyle setValue:kNCUndefined forKey:kNCStyleSubtitle];
+        [ncStyle setValue:kNCWhite forKey:kNCStyleTitleColor];
+        [ncStyle setValue:kNCWhite forKey:kNCStyleSubtitleColor];
         [ncStyle setValue:[NSNumber numberWithFloat:1.0]  forKey:kNCStyleTitleFontScale];
         [ncStyle setValue:[NSNumber numberWithFloat:1.0]  forKey:kNCStyleSubtitleFontScale];
-        [ncStyle setValue:@"" forKey:kNCStyleIOSBarStyle];
+        [ncStyle setValue:kNCUndefined forKey:kNCStyleIOSBarStyle];
     }
 
     return self;
@@ -93,6 +93,13 @@
     if (value == [NSNull null]) {
         value = nil;
     }
+    if ([NSStringFromClass([value class]) isEqualToString:@"__NSCFBoolean"]) {
+        if (isFalse(value)) {
+            value = kNCFalse;
+        } else {
+            value = kNCTrue;
+        }
+    }
 
     // TODO: implement apply for subtitle
     if ([key isEqualToString:kNCStyleBackgroundColor]) {
@@ -102,6 +109,9 @@
         [self.topViewController setTitle:value];
     }
 
+    if (value == [NSNull null]) {
+        value = nil;
+    }
     [ncStyle setValue:value forKey:key];
 }
 

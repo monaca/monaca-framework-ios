@@ -19,9 +19,9 @@
         [_label setBackgroundColor:[UIColor clearColor]];
         self.customView = _label;
         _ncStyle = [[NSMutableDictionary alloc] init];
-        [_ncStyle setValue:@"true" forKey:kNCStyleVisibility];
+        [_ncStyle setValue:kNCTrue forKey:kNCStyleVisibility];
         [_ncStyle setValue:[NSNumber numberWithFloat:1.0] forKey:kNCStyleOpacity];
-        [_ncStyle setValue:@"#FFFFFF" forKey:kNCStyleTextColor];
+        [_ncStyle setValue:kNCWhite forKey:kNCStyleTextColor];
         [_ncStyle setValue:[NSArray array] forKey:kNCStyleText];
     }
     
@@ -46,6 +46,13 @@
     if (value == [NSNull null]) {
         value = nil;
     }
+    if ([NSStringFromClass([value class]) isEqualToString:@"__NSCFBoolean"]) {
+        if (isFalse(value)) {
+            value = kNCFalse;
+        } else {
+            value = kNCTrue;
+        }
+    }
     
     if ([key isEqualToString:kNCStyleVisibility]) {
         // TODO:
@@ -62,6 +69,9 @@
         [_label sizeToFit];
     }
     
+    if (value == [NSNull null]) {
+        value = nil;
+    }
     [_ncStyle setValue:value forKey:key];
 }
 
