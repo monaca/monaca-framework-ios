@@ -22,6 +22,7 @@
 #import "NCButton.h"
 #import "NCLabel.h"
 #import "NCSegment.h"
+#import "NCSearchBox.h"
 #import "NCTabbarItem.h"
 
 // WebView status tags.

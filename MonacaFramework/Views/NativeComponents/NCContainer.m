@@ -71,18 +71,12 @@
         container.type = kNCComponentLabel;
     }
     else if ([type isEqualToString:kNCComponentSearchBox]) {
-        UISearchBar *searchBox = [NCSearchBoxBuilder searchBox:style_def];
-        container.view = searchBox;
-        container.component = [[UIBarButtonItem alloc] initWithCustomView:searchBox];
+        NCSearchBox *searchBox = [[NCSearchBox alloc] init];
+        [searchBox applyUserInterface:style_def];
+        container.component = searchBox;
         container.onSearchScript = [[params objectForKey:kNCTypeEvent] objectForKey:kNCEventTypeSearch];
-        searchBox.delegate = container;
-
-        for (UIView *subview in searchBox.subviews) {
-            if ([subview isKindOfClass:NSClassFromString(@"UITextField")]) {
-                ((UITextField *)subview).enablesReturnKeyAutomatically = NO;
-            }
-        }
         container.type = kNCComponentSearchBox;
+        searchBox.deleagte = container;
     }
     else if ([type isEqualToString:kNCComponentSegment]) {
         NCSegment *segment = [[NCSegment alloc] init];
