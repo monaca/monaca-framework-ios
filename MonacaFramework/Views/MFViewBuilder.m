@@ -20,21 +20,18 @@ static BOOL ignoreBottom_ = NO;
 
 + (id)createViewControllerWithPath:(NSString *)path
 {
-    NSString *www = [MFUtility getBaseURL].path;
-
-    NSString *uipath = [www stringByAppendingPathComponent:[MFUtility getUIFileName:path]];
-    NSDictionary *uidict = [MFUtility parseJSONFile:uipath];
+    NSString *uipath = [[MFUtility getBaseURL].path stringByAppendingPathComponent:[MFUtility getUIFileName:path]];
+    NSMutableDictionary *uidict = [NSMutableDictionary dictionaryWithDictionary:[MFUtility parseJSONFile:uipath]];
 
     id view;
+    if (ignoreBottom_) {
+        [uidict removeObjectForKey:kNCPositionBottom];
+    }
     id item = [uidict objectForKey:kNCPositionBottom];
-    if (item != nil && !ignoreBottom_) {
+    NSString *containerType = [item objectForKey:kNCTypeContainer];
+    if ([containerType isEqualToString:kNCContainerTabbar]) {
         ignoreBottom_ = YES; // タブバーは再起的に生成させない。
-        NSString *containerType = [item objectForKey:kNCTypeContainer];
-        if ([containerType isEqualToString:kNCContainerToolbar]) {
-            view = [[MFViewController alloc] initWithFileName:[path lastPathComponent]];
-            // TODO: Implement applyBottomToolbar on MFViewController
-            // [view applyBottomToolbar:uidict];
-        } else if ([containerType isEqualToString:kNCContainerTabbar]) {
+        if ([containerType isEqualToString:kNCContainerTabbar]) {
             view = [[MFTabBarController alloc] init];
             [view applyBottomTabbar:uidict WwwDir:[[MFUtility getWWWShortPath:uipath] stringByDeletingLastPathComponent]];
             [[view moreNavigationController] setNavigationBarHidden:NO];

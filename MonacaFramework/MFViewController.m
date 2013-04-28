@@ -97,15 +97,20 @@
     NSArray *topLeft = [top objectForKey:kNCTypeLeft];
     NSArray *topCenter = [top objectForKey:kNCTypeCenter];
     
-    NSMutableDictionary *style = [NSMutableDictionary dictionary];
-    [style addEntriesFromDictionary:[top objectForKey:kNCTypeStyle]];
-    [style addEntriesFromDictionary:[top objectForKey:kNCTypeIOSStyle]];
+    NSMutableDictionary *topStyle = [NSMutableDictionary dictionary];
+    [topStyle addEntriesFromDictionary:[top objectForKey:kNCTypeStyle]];
+    [topStyle addEntriesFromDictionary:[top objectForKey:kNCTypeIOSStyle]];
     
-    NSString *cid = [top objectForKey:kNCTypeID];
-    [self.ncManager setComponent:self.navigationController forID:cid];
+    NSDictionary *bottom = [uidict objectForKey:kNCPositionBottom];
+    
+    [self.ncManager setComponent:self.navigationController forID:[top objectForKey:kNCTypeID]];
+    [(MFNavigationController *)self.navigationController applyUserInterface:topStyle];
 
-    [(MFNavigationController *)self.navigationController applyUserInterface:style];
+    NCToolbar *toolbar =  [[NCToolbar alloc] initWithViewController:self];
+    [self.ncManager setComponent:toolbar forID:[bottom objectForKey:kNCTypeID]];
+    [toolbar createToolbar:bottom];
 
+    /***** create leftContainers *****/
     NSMutableArray *containers = [NSMutableArray array];
     for (id component in topLeft) {
         NCContainer *container = [NCContainer container:component position:kNCPositionTop];
@@ -114,6 +119,7 @@
     }
     self.navigationItem.leftBarButtonItems = containers;
 
+    /***** create rightContainers *****/
     containers = [NSMutableArray array];
     for (id component in topRight) {
         NCContainer *container = [NCContainer container:component position:kNCPositionTop];
@@ -128,6 +134,7 @@
     }
     self.navigationItem.rightBarButtonItems = reverseContainers;
 
+    /***** create centerContainers *****/
     containers = [NSMutableArray array];
     for (id component in topCenter) {
         NCContainer *container = [NCContainer container:component position:kNCPositionTop];

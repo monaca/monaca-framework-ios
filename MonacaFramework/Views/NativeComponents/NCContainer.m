@@ -48,12 +48,10 @@
     [style_def addEntriesFromDictionary:[params objectForKey:kNCTypeIOSStyle]];
 
     if ([type isEqualToString:kNCComponentButton]) {
-        NCButton *button = [[NCButton alloc] init];
+        NCButton *button = [[NCButton alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:container action:@selector(didTap:forEvent:)];
         [button applyUserInterface:style_def];
         container.component = button;
         container.onTapScript = [[params objectForKey:kNCTypeEvent] objectForKey:kNCEventTypeTap];
-        [container.component setTarget:container];
-        [container.component setAction:@selector(didTap:forEvent:)];
         container.type = kNCComponentButton;
     }
     else if ([type isEqualToString:kNCComponentBackButton]) {

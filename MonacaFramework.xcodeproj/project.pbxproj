@@ -278,10 +278,6 @@
 		5A83D34716D91E6D00D25E98 /* MFTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A83D31C16D91E6D00D25E98 /* MFTabBarController.m */; };
 		5A83D34C16D91E6D00D25E98 /* NativeComponents.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A83D32016D91E6D00D25E98 /* NativeComponents.h */; };
 		5A83D34D16D91E6D00D25E98 /* NativeComponentsInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A83D32116D91E6D00D25E98 /* NativeComponentsInternal.h */; };
-		5A83D34E16D91E6D00D25E98 /* NCBackButtonBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A83D32216D91E6D00D25E98 /* NCBackButtonBuilder.h */; };
-		5A83D34F16D91E6D00D25E98 /* NCBackButtonBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A83D32316D91E6D00D25E98 /* NCBackButtonBuilder.m */; };
-		5A83D35016D91E6D00D25E98 /* NCBackButtonBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A83D32316D91E6D00D25E98 /* NCBackButtonBuilder.m */; };
-		5A83D35116D91E6D00D25E98 /* NCBackButtonBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A83D32316D91E6D00D25E98 /* NCBackButtonBuilder.m */; };
 		5A83D35216D91E6D00D25E98 /* NCButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A83D32416D91E6D00D25E98 /* NCButton.h */; };
 		5A83D35316D91E6D00D25E98 /* NCButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A83D32516D91E6D00D25E98 /* NCButton.m */; };
 		5A83D35416D91E6D00D25E98 /* NCButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A83D32516D91E6D00D25E98 /* NCButton.m */; };
@@ -290,30 +286,10 @@
 		5A83D35B16D91E6D00D25E98 /* NCContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A83D32916D91E6D00D25E98 /* NCContainer.m */; };
 		5A83D35C16D91E6D00D25E98 /* NCContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A83D32916D91E6D00D25E98 /* NCContainer.m */; };
 		5A83D35D16D91E6D00D25E98 /* NCContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A83D32916D91E6D00D25E98 /* NCContainer.m */; };
-		5A83D35E16D91E6D00D25E98 /* NCLabelBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A83D32A16D91E6D00D25E98 /* NCLabelBuilder.h */; };
-		5A83D35F16D91E6D00D25E98 /* NCLabelBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A83D32B16D91E6D00D25E98 /* NCLabelBuilder.m */; };
-		5A83D36016D91E6D00D25E98 /* NCLabelBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A83D32B16D91E6D00D25E98 /* NCLabelBuilder.m */; };
-		5A83D36116D91E6D00D25E98 /* NCLabelBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A83D32B16D91E6D00D25E98 /* NCLabelBuilder.m */; };
 		5A83D36216D91E6D00D25E98 /* NCManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A83D32C16D91E6D00D25E98 /* NCManager.h */; };
 		5A83D36316D91E6D00D25E98 /* NCManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A83D32D16D91E6D00D25E98 /* NCManager.m */; };
 		5A83D36416D91E6D00D25E98 /* NCManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A83D32D16D91E6D00D25E98 /* NCManager.m */; };
 		5A83D36516D91E6D00D25E98 /* NCManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A83D32D16D91E6D00D25E98 /* NCManager.m */; };
-		5A83D36616D91E6D00D25E98 /* NCSearchBar.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A83D32E16D91E6D00D25E98 /* NCSearchBar.h */; };
-		5A83D36716D91E6D00D25E98 /* NCSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A83D32F16D91E6D00D25E98 /* NCSearchBar.m */; };
-		5A83D36816D91E6D00D25E98 /* NCSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A83D32F16D91E6D00D25E98 /* NCSearchBar.m */; };
-		5A83D36916D91E6D00D25E98 /* NCSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A83D32F16D91E6D00D25E98 /* NCSearchBar.m */; };
-		5A83D36A16D91E6D00D25E98 /* NCSearchBoxBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A83D33016D91E6D00D25E98 /* NCSearchBoxBuilder.h */; };
-		5A83D36B16D91E6D00D25E98 /* NCSearchBoxBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A83D33116D91E6D00D25E98 /* NCSearchBoxBuilder.m */; };
-		5A83D36C16D91E6D00D25E98 /* NCSearchBoxBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A83D33116D91E6D00D25E98 /* NCSearchBoxBuilder.m */; };
-		5A83D36D16D91E6D00D25E98 /* NCSearchBoxBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A83D33116D91E6D00D25E98 /* NCSearchBoxBuilder.m */; };
-		5A83D36E16D91E6D00D25E98 /* NCSegmentBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A83D33216D91E6D00D25E98 /* NCSegmentBuilder.h */; };
-		5A83D36F16D91E6D00D25E98 /* NCSegmentBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A83D33316D91E6D00D25E98 /* NCSegmentBuilder.m */; };
-		5A83D37016D91E6D00D25E98 /* NCSegmentBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A83D33316D91E6D00D25E98 /* NCSegmentBuilder.m */; };
-		5A83D37116D91E6D00D25E98 /* NCSegmentBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A83D33316D91E6D00D25E98 /* NCSegmentBuilder.m */; };
-		5A83D37216D91E6D00D25E98 /* NCTabbarItemBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A83D33416D91E6D00D25E98 /* NCTabbarItemBuilder.h */; };
-		5A83D37316D91E6D00D25E98 /* NCTabbarItemBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A83D33516D91E6D00D25E98 /* NCTabbarItemBuilder.m */; };
-		5A83D37416D91E6D00D25E98 /* NCTabbarItemBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A83D33516D91E6D00D25E98 /* NCTabbarItemBuilder.m */; };
-		5A83D37516D91E6D00D25E98 /* NCTabbarItemBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A83D33516D91E6D00D25E98 /* NCTabbarItemBuilder.m */; };
 		5A83D37616D91E6D00D25E98 /* NCTitleView.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A83D33616D91E6D00D25E98 /* NCTitleView.h */; };
 		5A83D37716D91E6D00D25E98 /* NCTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A83D33716D91E6D00D25E98 /* NCTitleView.m */; };
 		5A83D37816D91E6D00D25E98 /* NCTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A83D33716D91E6D00D25E98 /* NCTitleView.m */; };
@@ -322,10 +298,6 @@
 		5A83D37B16D91E6D00D25E98 /* NCToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A83D33916D91E6D00D25E98 /* NCToolbar.m */; };
 		5A83D37C16D91E6D00D25E98 /* NCToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A83D33916D91E6D00D25E98 /* NCToolbar.m */; };
 		5A83D37D16D91E6D00D25E98 /* NCToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A83D33916D91E6D00D25E98 /* NCToolbar.m */; };
-		5A83D37E16D91E6D00D25E98 /* UILabel+Resize.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A83D33A16D91E6D00D25E98 /* UILabel+Resize.h */; };
-		5A83D37F16D91E6D00D25E98 /* UILabel+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A83D33B16D91E6D00D25E98 /* UILabel+Resize.m */; };
-		5A83D38016D91E6D00D25E98 /* UILabel+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A83D33B16D91E6D00D25E98 /* UILabel+Resize.m */; };
-		5A83D38116D91E6D00D25E98 /* UILabel+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A83D33B16D91E6D00D25E98 /* UILabel+Resize.m */; };
 		5AA6954E16D9FF27003C5D90 /* MFPGNativeComponent.h in Headers */ = {isa = PBXBuildFile; fileRef = 5AA6954C16D9FF27003C5D90 /* MFPGNativeComponent.h */; };
 		5AA6954F16D9FF27003C5D90 /* MFPGNativeComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA6954D16D9FF27003C5D90 /* MFPGNativeComponent.m */; };
 		5AA6955016D9FF27003C5D90 /* MFPGNativeComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA6954D16D9FF27003C5D90 /* MFPGNativeComponent.m */; };
@@ -342,8 +314,6 @@
 		5ADB0BAC172ABE51009AFD18 /* NCLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ADB0BAA172ABE51009AFD18 /* NCLabel.m */; };
 		5ADB0BAD172ABEA0009AFD18 /* NCLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ADB0BAA172ABE51009AFD18 /* NCLabel.m */; };
 		5ADB0BAE172ABEA0009AFD18 /* NCLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ADB0BAA172ABE51009AFD18 /* NCLabel.m */; };
-		5ADB0BC9172ADFE7009AFD18 /* NCButtonBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = 5ADB0BC7172ADFE6009AFD18 /* NCButtonBuilder.h */; };
-		5ADB0BCA172ADFE7009AFD18 /* NCButtonBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ADB0BC8172ADFE6009AFD18 /* NCButtonBuilder.m */; };
 		5ADB0BCD172AE2FE009AFD18 /* NCTabbarItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 5ADB0BCB172AE2FD009AFD18 /* NCTabbarItem.h */; };
 		5ADB0BCE172AE2FE009AFD18 /* NCTabbarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ADB0BCC172AE2FD009AFD18 /* NCTabbarItem.m */; };
 		5ADB0BCF172AE303009AFD18 /* NCTabbarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ADB0BCC172AE2FD009AFD18 /* NCTabbarItem.m */; };
@@ -485,30 +455,16 @@
 		5A83D31C16D91E6D00D25E98 /* MFTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFTabBarController.m; sourceTree = "<group>"; };
 		5A83D32016D91E6D00D25E98 /* NativeComponents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeComponents.h; sourceTree = "<group>"; };
 		5A83D32116D91E6D00D25E98 /* NativeComponentsInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeComponentsInternal.h; sourceTree = "<group>"; };
-		5A83D32216D91E6D00D25E98 /* NCBackButtonBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCBackButtonBuilder.h; sourceTree = "<group>"; };
-		5A83D32316D91E6D00D25E98 /* NCBackButtonBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCBackButtonBuilder.m; sourceTree = "<group>"; };
 		5A83D32416D91E6D00D25E98 /* NCButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCButton.h; sourceTree = "<group>"; };
 		5A83D32516D91E6D00D25E98 /* NCButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCButton.m; sourceTree = "<group>"; };
 		5A83D32816D91E6D00D25E98 /* NCContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCContainer.h; sourceTree = "<group>"; };
 		5A83D32916D91E6D00D25E98 /* NCContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCContainer.m; sourceTree = "<group>"; };
-		5A83D32A16D91E6D00D25E98 /* NCLabelBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCLabelBuilder.h; sourceTree = "<group>"; };
-		5A83D32B16D91E6D00D25E98 /* NCLabelBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCLabelBuilder.m; sourceTree = "<group>"; };
 		5A83D32C16D91E6D00D25E98 /* NCManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCManager.h; sourceTree = "<group>"; };
 		5A83D32D16D91E6D00D25E98 /* NCManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCManager.m; sourceTree = "<group>"; };
-		5A83D32E16D91E6D00D25E98 /* NCSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCSearchBar.h; sourceTree = "<group>"; };
-		5A83D32F16D91E6D00D25E98 /* NCSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCSearchBar.m; sourceTree = "<group>"; };
-		5A83D33016D91E6D00D25E98 /* NCSearchBoxBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCSearchBoxBuilder.h; sourceTree = "<group>"; };
-		5A83D33116D91E6D00D25E98 /* NCSearchBoxBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCSearchBoxBuilder.m; sourceTree = "<group>"; };
-		5A83D33216D91E6D00D25E98 /* NCSegmentBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCSegmentBuilder.h; sourceTree = "<group>"; };
-		5A83D33316D91E6D00D25E98 /* NCSegmentBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCSegmentBuilder.m; sourceTree = "<group>"; };
-		5A83D33416D91E6D00D25E98 /* NCTabbarItemBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCTabbarItemBuilder.h; sourceTree = "<group>"; };
-		5A83D33516D91E6D00D25E98 /* NCTabbarItemBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCTabbarItemBuilder.m; sourceTree = "<group>"; };
 		5A83D33616D91E6D00D25E98 /* NCTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCTitleView.h; sourceTree = "<group>"; };
 		5A83D33716D91E6D00D25E98 /* NCTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCTitleView.m; sourceTree = "<group>"; };
 		5A83D33816D91E6D00D25E98 /* NCToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCToolbar.h; sourceTree = "<group>"; };
 		5A83D33916D91E6D00D25E98 /* NCToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCToolbar.m; sourceTree = "<group>"; };
-		5A83D33A16D91E6D00D25E98 /* UILabel+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+Resize.h"; sourceTree = "<group>"; };
-		5A83D33B16D91E6D00D25E98 /* UILabel+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Resize.m"; sourceTree = "<group>"; };
 		5AA6954C16D9FF27003C5D90 /* MFPGNativeComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFPGNativeComponent.h; sourceTree = "<group>"; };
 		5AA6954D16D9FF27003C5D90 /* MFPGNativeComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFPGNativeComponent.m; sourceTree = "<group>"; };
 		5AAB3F34171C3D220044FB77 /* MFViewBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFViewBuilder.h; sourceTree = "<group>"; };
@@ -517,8 +473,6 @@
 		5ADB0BA0172AAEAA009AFD18 /* NCSegment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCSegment.m; sourceTree = "<group>"; };
 		5ADB0BA9172ABE51009AFD18 /* NCLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCLabel.h; sourceTree = "<group>"; };
 		5ADB0BAA172ABE51009AFD18 /* NCLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCLabel.m; sourceTree = "<group>"; };
-		5ADB0BC7172ADFE6009AFD18 /* NCButtonBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCButtonBuilder.h; sourceTree = "<group>"; };
-		5ADB0BC8172ADFE6009AFD18 /* NCButtonBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCButtonBuilder.m; sourceTree = "<group>"; };
 		5ADB0BCB172AE2FD009AFD18 /* NCTabbarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCTabbarItem.h; sourceTree = "<group>"; };
 		5ADB0BCC172AE2FD009AFD18 /* NCTabbarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCTabbarItem.m; sourceTree = "<group>"; };
 		5ADB0BD1172BA71F009AFD18 /* NCSearchBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCSearchBox.h; sourceTree = "<group>"; };
@@ -851,10 +805,6 @@
 			children = (
 				5A83D32016D91E6D00D25E98 /* NativeComponents.h */,
 				5A83D32116D91E6D00D25E98 /* NativeComponentsInternal.h */,
-				5A83D32216D91E6D00D25E98 /* NCBackButtonBuilder.h */,
-				5A83D32316D91E6D00D25E98 /* NCBackButtonBuilder.m */,
-				5ADB0BC7172ADFE6009AFD18 /* NCButtonBuilder.h */,
-				5ADB0BC8172ADFE6009AFD18 /* NCButtonBuilder.m */,
 				5A83D32416D91E6D00D25E98 /* NCButton.h */,
 				5A83D32516D91E6D00D25E98 /* NCButton.m */,
 				5AEABB72172BF7B500AFAE56 /* NCBackButton.h */,
@@ -869,24 +819,12 @@
 				5ADB0BCC172AE2FD009AFD18 /* NCTabbarItem.m */,
 				5A83D32816D91E6D00D25E98 /* NCContainer.h */,
 				5A83D32916D91E6D00D25E98 /* NCContainer.m */,
-				5A83D32A16D91E6D00D25E98 /* NCLabelBuilder.h */,
-				5A83D32B16D91E6D00D25E98 /* NCLabelBuilder.m */,
 				5A83D32C16D91E6D00D25E98 /* NCManager.h */,
 				5A83D32D16D91E6D00D25E98 /* NCManager.m */,
-				5A83D32E16D91E6D00D25E98 /* NCSearchBar.h */,
-				5A83D32F16D91E6D00D25E98 /* NCSearchBar.m */,
-				5A83D33016D91E6D00D25E98 /* NCSearchBoxBuilder.h */,
-				5A83D33116D91E6D00D25E98 /* NCSearchBoxBuilder.m */,
-				5A83D33216D91E6D00D25E98 /* NCSegmentBuilder.h */,
-				5A83D33316D91E6D00D25E98 /* NCSegmentBuilder.m */,
-				5A83D33416D91E6D00D25E98 /* NCTabbarItemBuilder.h */,
-				5A83D33516D91E6D00D25E98 /* NCTabbarItemBuilder.m */,
 				5A83D33616D91E6D00D25E98 /* NCTitleView.h */,
 				5A83D33716D91E6D00D25E98 /* NCTitleView.m */,
 				5A83D33816D91E6D00D25E98 /* NCToolbar.h */,
 				5A83D33916D91E6D00D25E98 /* NCToolbar.m */,
-				5A83D33A16D91E6D00D25E98 /* UILabel+Resize.h */,
-				5A83D33B16D91E6D00D25E98 /* UILabel+Resize.m */,
 			);
 			path = NativeComponents;
 			sourceTree = "<group>";
@@ -1048,25 +986,17 @@
 				5A83D34416D91E6D00D25E98 /* MFTabBarController.h in Headers */,
 				5A83D34C16D91E6D00D25E98 /* NativeComponents.h in Headers */,
 				5A83D34D16D91E6D00D25E98 /* NativeComponentsInternal.h in Headers */,
-				5A83D34E16D91E6D00D25E98 /* NCBackButtonBuilder.h in Headers */,
 				5A83D35216D91E6D00D25E98 /* NCButton.h in Headers */,
 				5A83D35A16D91E6D00D25E98 /* NCContainer.h in Headers */,
-				5A83D35E16D91E6D00D25E98 /* NCLabelBuilder.h in Headers */,
 				5A83D36216D91E6D00D25E98 /* NCManager.h in Headers */,
-				5A83D36616D91E6D00D25E98 /* NCSearchBar.h in Headers */,
-				5A83D36A16D91E6D00D25E98 /* NCSearchBoxBuilder.h in Headers */,
-				5A83D36E16D91E6D00D25E98 /* NCSegmentBuilder.h in Headers */,
-				5A83D37216D91E6D00D25E98 /* NCTabbarItemBuilder.h in Headers */,
 				5A83D37616D91E6D00D25E98 /* NCTitleView.h in Headers */,
 				5A83D37A16D91E6D00D25E98 /* NCToolbar.h in Headers */,
-				5A83D37E16D91E6D00D25E98 /* UILabel+Resize.h in Headers */,
 				5AA6954E16D9FF27003C5D90 /* MFPGNativeComponent.h in Headers */,
 				5A40CBDF170836F2002DD96C /* MFTransitPlugin.h in Headers */,
 				5AAB3F36171C3D230044FB77 /* MFViewBuilder.h in Headers */,
 				5A3202DE172573CD0055A59F /* UIStyleProtocol.h in Headers */,
 				5ADB0BA1172AAEAA009AFD18 /* NCSegment.h in Headers */,
 				5ADB0BAB172ABE51009AFD18 /* NCLabel.h in Headers */,
-				5ADB0BC9172ADFE7009AFD18 /* NCButtonBuilder.h in Headers */,
 				5ADB0BCD172AE2FE009AFD18 /* NCTabbarItem.h in Headers */,
 				5ADB0BD3172BA723009AFD18 /* NCSearchBox.h in Headers */,
 				5AEABB74172BF7B500AFAE56 /* NCBackButton.h in Headers */,
@@ -1279,18 +1209,11 @@
 				5A83D30416D90E5C00D25E98 /* MFUtility.m in Sources */,
 				5A83D30A16D9102E00D25E98 /* MFEvent.m in Sources */,
 				5A83D34716D91E6D00D25E98 /* MFTabBarController.m in Sources */,
-				5A83D35116D91E6D00D25E98 /* NCBackButtonBuilder.m in Sources */,
 				5A83D35516D91E6D00D25E98 /* NCButton.m in Sources */,
 				5A83D35D16D91E6D00D25E98 /* NCContainer.m in Sources */,
-				5A83D36116D91E6D00D25E98 /* NCLabelBuilder.m in Sources */,
 				5A83D36516D91E6D00D25E98 /* NCManager.m in Sources */,
-				5A83D36916D91E6D00D25E98 /* NCSearchBar.m in Sources */,
-				5A83D36D16D91E6D00D25E98 /* NCSearchBoxBuilder.m in Sources */,
-				5A83D37116D91E6D00D25E98 /* NCSegmentBuilder.m in Sources */,
-				5A83D37516D91E6D00D25E98 /* NCTabbarItemBuilder.m in Sources */,
 				5A83D37916D91E6D00D25E98 /* NCTitleView.m in Sources */,
 				5A83D37D16D91E6D00D25E98 /* NCToolbar.m in Sources */,
-				5A83D38116D91E6D00D25E98 /* UILabel+Resize.m in Sources */,
 				5AA6955116D9FF27003C5D90 /* MFPGNativeComponent.m in Sources */,
 				5A40CBE2170836F2002DD96C /* MFTransitPlugin.m in Sources */,
 				5AAB3F39171C44190044FB77 /* MFViewBuilder.m in Sources */,
@@ -1353,24 +1276,16 @@
 				5A83D30216D90E5C00D25E98 /* MFUtility.m in Sources */,
 				5A83D30816D9102E00D25E98 /* MFEvent.m in Sources */,
 				5A83D34516D91E6D00D25E98 /* MFTabBarController.m in Sources */,
-				5A83D34F16D91E6D00D25E98 /* NCBackButtonBuilder.m in Sources */,
 				5A83D35316D91E6D00D25E98 /* NCButton.m in Sources */,
 				5A83D35B16D91E6D00D25E98 /* NCContainer.m in Sources */,
-				5A83D35F16D91E6D00D25E98 /* NCLabelBuilder.m in Sources */,
 				5A83D36316D91E6D00D25E98 /* NCManager.m in Sources */,
-				5A83D36716D91E6D00D25E98 /* NCSearchBar.m in Sources */,
-				5A83D36B16D91E6D00D25E98 /* NCSearchBoxBuilder.m in Sources */,
-				5A83D36F16D91E6D00D25E98 /* NCSegmentBuilder.m in Sources */,
-				5A83D37316D91E6D00D25E98 /* NCTabbarItemBuilder.m in Sources */,
 				5A83D37716D91E6D00D25E98 /* NCTitleView.m in Sources */,
 				5A83D37B16D91E6D00D25E98 /* NCToolbar.m in Sources */,
-				5A83D37F16D91E6D00D25E98 /* UILabel+Resize.m in Sources */,
 				5AA6954F16D9FF27003C5D90 /* MFPGNativeComponent.m in Sources */,
 				5A40CBE0170836F2002DD96C /* MFTransitPlugin.m in Sources */,
 				5AAB3F37171C3D230044FB77 /* MFViewBuilder.m in Sources */,
 				5ADB0BA2172AAEAA009AFD18 /* NCSegment.m in Sources */,
 				5ADB0BAC172ABE51009AFD18 /* NCLabel.m in Sources */,
-				5ADB0BCA172ADFE7009AFD18 /* NCButtonBuilder.m in Sources */,
 				5ADB0BCE172AE2FE009AFD18 /* NCTabbarItem.m in Sources */,
 				5ADB0BD4172BA723009AFD18 /* NCSearchBox.m in Sources */,
 				5AEABB75172BF7B500AFAE56 /* NCBackButton.m in Sources */,
@@ -1429,18 +1344,11 @@
 				5A83D30316D90E5C00D25E98 /* MFUtility.m in Sources */,
 				5A83D30916D9102E00D25E98 /* MFEvent.m in Sources */,
 				5A83D34616D91E6D00D25E98 /* MFTabBarController.m in Sources */,
-				5A83D35016D91E6D00D25E98 /* NCBackButtonBuilder.m in Sources */,
 				5A83D35416D91E6D00D25E98 /* NCButton.m in Sources */,
 				5A83D35C16D91E6D00D25E98 /* NCContainer.m in Sources */,
-				5A83D36016D91E6D00D25E98 /* NCLabelBuilder.m in Sources */,
 				5A83D36416D91E6D00D25E98 /* NCManager.m in Sources */,
-				5A83D36816D91E6D00D25E98 /* NCSearchBar.m in Sources */,
-				5A83D36C16D91E6D00D25E98 /* NCSearchBoxBuilder.m in Sources */,
-				5A83D37016D91E6D00D25E98 /* NCSegmentBuilder.m in Sources */,
-				5A83D37416D91E6D00D25E98 /* NCTabbarItemBuilder.m in Sources */,
 				5A83D37816D91E6D00D25E98 /* NCTitleView.m in Sources */,
 				5A83D37C16D91E6D00D25E98 /* NCToolbar.m in Sources */,
-				5A83D38016D91E6D00D25E98 /* UILabel+Resize.m in Sources */,
 				5AA6955016D9FF27003C5D90 /* MFPGNativeComponent.m in Sources */,
 				5A40CBE1170836F2002DD96C /* MFTransitPlugin.m in Sources */,
 				5AAB3F38171C44190044FB77 /* MFViewBuilder.m in Sources */,

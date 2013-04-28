@@ -8,7 +8,6 @@
 
 #import "NCTitleView.h"
 #import "MFDelegate.h"
-#import "UILabel+Resize.h"
 #import "MFDevice.h"
 #import "MFUtility.h"
 
@@ -91,7 +90,7 @@ isEmpty(NCTitleLabel *label) {
     CGPoint center = self.center;
     CGPoint naviCenter = [MFUtility currentTabBarController].navigationController.navigationBar.center;
     self.center = CGPointMake(naviCenter.x, center.y);
-
+/*
     if (UIInterfaceOrientationIsLandscape([MFUtility currentInterfaceOrientation])) {
         self.titleLabel.font = [UIFont boldSystemFontOfSize:kSizeOfLandscapeTitleFont * self.titleLabel.fontScale];
         self.titleLabel.frame = [self.titleLabel resizedFrameWithPoint:CGPointMake(0, 0)];
@@ -110,7 +109,7 @@ isEmpty(NCTitleLabel *label) {
             self.titleLabel.center = CGPointMake(self.frame.size.width/2.0f, height/2.0f);
         }
     }
-
+*/
     self.titleLabel.frame = CGRectIntegral(self.titleLabel.frame);
     self.subtitleLabel.frame = CGRectIntegral(self.subtitleLabel.frame);
 }

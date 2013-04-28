@@ -7,44 +7,142 @@
 //
 
 #import "NCToolbar.h"
+#import "MFUtility.h"
 
 @implementation NCToolbar
-- (void)drawRect:(CGRect)rect {
-    // Nothing to do.
+
+@synthesize viewController = _viewController;
+
+- (id)initWithViewController:(MFViewController *)viewController
+{
+    self = [super init];
+    
+    if (self) {
+        _viewController = viewController;
+        _toolbar = viewController.navigationController.toolbar;
+        _ncStyle = [[NSMutableDictionary alloc] init];
+        [_ncStyle setValue:kNCTrue forKey:kNCStyleVisibility];
+        [_ncStyle setValue:kNCFalse forKey:kNCStyleDisable];
+        [_ncStyle setValue:kNCBlack forKey:kNCStyleBackgroundColor];
+        [_ncStyle setValue:kNCUndefined forKey:kNCStyleTitle];
+        [_ncStyle setValue:kNCUndefined forKey:kNCStyleSubtitle];
+        [_ncStyle setValue:kNCWhite forKey:kNCStyleTitleColor];
+        [_ncStyle setValue:kNCWhite forKey:kNCStyleSubtitleColor];
+        [_ncStyle setValue:[NSNumber numberWithFloat:1.0]  forKey:kNCStyleTitleFontScale];
+        [_ncStyle setValue:[NSNumber numberWithFloat:1.0]  forKey:kNCStyleSubtitleFontScale];
+        [_ncStyle setValue:kNCUndefined forKey:kNCStyleIOSBarStyle];
+    }
+    
+    return self;
 }
 
-// TODO: 怪しい
-- (void)sizeToFit {
-    static const double kRightPadding = 6.0f;
-    double width = 0.0;
-    for(int i = 0; i < [self.subviews count]; i++){
-        UIView *view = (UIView *)[self.subviews objectAtIndex:i];
-        double wx = view.bounds.size.width + view.frame.origin.x;
-        if (width < wx) {
-            width = wx;
+- (void)createToolbar:(NSDictionary *)uidict
+{
+    NSArray *topRight = [uidict objectForKey:kNCTypeRight];
+    NSArray *topLeft = [uidict objectForKey:kNCTypeLeft];
+    NSArray *topCenter = [uidict objectForKey:kNCTypeCenter];
+
+    if (uidict != nil) {
+        [_viewController.navigationController setToolbarHidden:NO];
+    }
+
+    [self applyUserInterface:[uidict objectForKey:kNCTypeStyle]];
+    
+    UIBarButtonItem *spacer =
+    [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    
+    /***** create leftContainers *****/
+    NSMutableArray *containers = [NSMutableArray array];
+    if (topLeft) {
+        for (id component in topLeft) {
+            NCContainer *container = [NCContainer container:component position:kNCPositionTop];
+            [containers addObject:container.component];
+            [_viewController.ncManager setComponent:container forID:container.cid];
         }
     }
-    CGSize size = self.frame.size;
-    size.width = width + kRightPadding;
-    [self setFrame:CGRectMake(0.0f, 0.0f, size.width, size.height)];
+
+    /***** create centerContainers *****/
+    [containers addObject:spacer];
+    if (topCenter) {
+        for (id component in topCenter) {
+            NCContainer *container = [NCContainer container:component position:kNCPositionTop];
+            [containers addObject:container.component];
+            [_viewController.ncManager setComponent:container forID:container.cid];
+        }
+    }
+    [containers addObject:spacer];
+    
+    /***** create rightContainers *****/
+    if (topRight) {
+        for (id component in topRight) {
+            NCContainer *container = [NCContainer container:component position:kNCPositionTop];
+            [containers addObject:container.component];
+            [_viewController.ncManager setComponent:container forID:container.cid];
+        }
+        // 右のスペースをnavigationBarのそれと合わせる
+        UIBarButtonItem *negativeSpacer =[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+        negativeSpacer.width = -5.0f;
+        [containers addObject:negativeSpacer];
+    }
+    
+    [_viewController setToolbarItems:containers];
 }
 
-- (void)sizeToFitCenter {
-    [self sizeToFit];
-    double offsetX = 0.0;
+- (void)applyUserInterface:(NSDictionary *)uidict
+{
+    for (id key in uidict) {
+        [self updateUIStyle:[uidict objectForKey:key] forKey:key];
+    }
+}
 
-    NSArray *subviews = [self subviews];
-    if ([subviews count] == 0) {
-        // TODO: ok?
+#pragma mark - UIStyleProtocol
+
+- (void)updateUIStyle:(id)value forKey:(NSString *)key
+{
+    if ([_ncStyle objectForKey:key] == nil) {
+        // 例外処理
         return;
     }
 
-    UIView *view = [subviews objectAtIndex:0];
-    if (view) {
-        offsetX = view.frame.origin.x;
+    if (value == [NSNull null]) {
+        value = nil;
     }
-    CGRect frame = self.frame;
-    [self setFrame:CGRectMake(frame.origin.x, frame.origin.y, frame.size.width + offsetX, frame.size.height)];
+    if ([NSStringFromClass([value class]) isEqualToString:@"__NSCFBoolean"]) {
+        if (isFalse(value)) {
+            value = kNCFalse;
+        } else {
+            value = kNCTrue;
+        }
+    }
+    
+    if ([key isEqualToString:kNCStyleVisibility]) {
+        BOOL hidden = NO;
+        if (isFalse(value)) {
+            hidden = YES;
+        }
+        [_viewController.navigationController setToolbarHidden:hidden];
+    }
+    if ([key isEqualToString:kNCStyleBackgroundColor]) {
+        [_toolbar setTintColor:hexToUIColor(removeSharpPrefix(value), 1)];
+    }
+    if ([key isEqualToString:kNCStyleIOSBarStyle]) {
+        [_toolbar setBarStyle:value];
+    }
+
+    if (value == [NSNull null]) {
+        value = nil;
+    }
+    [_ncStyle setValue:value forKey:key];
+}
+
+- (id)retrieveUIStyle:(NSString *)key
+{
+    if ([_ncStyle objectForKey:key] == nil) {
+        // 例外処理
+        return nil;
+    }
+    
+    return [_ncStyle objectForKey:key];
 }
 
 @end
