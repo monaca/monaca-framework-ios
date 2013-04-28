@@ -18,7 +18,30 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
+    return [MFUtility getAllowOrientationFromPlist:toInterfaceOrientation];
+}
+
+- (BOOL)shouldAutorotate
+{
     return YES;
+}
+
+- (NSUInteger)supportedInterfaceOrientations
+{
+    UIInterfaceOrientationMask mask = nil;
+    if ([MFUtility getAllowOrientationFromPlist:UIInterfaceOrientationPortrait]) {
+        mask |= UIInterfaceOrientationMaskPortrait;
+    }
+    if ([MFUtility getAllowOrientationFromPlist:UIInterfaceOrientationPortraitUpsideDown]){
+        mask |= UIInterfaceOrientationMaskPortraitUpsideDown;
+    }
+    if ([MFUtility getAllowOrientationFromPlist:UIInterfaceOrientationLandscapeRight]){
+        mask |= UIInterfaceOrientationMaskLandscapeRight;
+    }
+    if ([MFUtility getAllowOrientationFromPlist:UIInterfaceOrientationLandscapeLeft]){
+        mask |= UIInterfaceOrientationMaskLandscapeLeft;
+    }
+    return mask;
 }
 
 @end
