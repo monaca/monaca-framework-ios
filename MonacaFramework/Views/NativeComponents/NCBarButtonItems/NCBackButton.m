@@ -66,7 +66,7 @@
     }
     if ([key isEqualToString:kNCStyleActiveTextColor]) {
         UIColor *color = hexToUIColor(removeSharpPrefix(value), 1);
-        [_backButton setTitleColor:color forState:UIControlStateSelected];
+        [_backButton setTitleColor:color forState:UIControlStateHighlighted];
     }
     if ([key isEqualToString:kNCStyleTextColor]) {
         UIColor *color = hexToUIColor(removeSharpPrefix(value), 1);

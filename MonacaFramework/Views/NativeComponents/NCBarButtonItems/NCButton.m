@@ -67,7 +67,7 @@
     if ([key isEqualToString:kNCStyleActiveTextColor]) {
         UIColor *color = hexToUIColor(removeSharpPrefix(value), 1);
         NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:color, UITextAttributeTextColor, nil];
-        [self setTitleTextAttributes:attributes forState:UIControlStateSelected];
+        [self setTitleTextAttributes:attributes forState:UIControlStateHighlighted];
     }
     if ([key isEqualToString:kNCStyleTextColor]) {
         UIColor *color = hexToUIColor(removeSharpPrefix(value), 1);
