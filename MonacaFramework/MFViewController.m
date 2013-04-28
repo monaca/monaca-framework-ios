@@ -17,10 +17,9 @@
 
 @implementation MFViewController
 
-@synthesize previousPath = previousPath_;
-@synthesize existTop = existTop_;
-@synthesize ncManager = ncManager_;
-@synthesize uiDict = uiDict_;
+@synthesize previousPath = _previousPath;
+@synthesize ncManager = _ncManager;
+@synthesize uiDict = _uiDict;
 
 - (id)initWithFileName:(NSString *)fileName
 {
@@ -29,7 +28,6 @@
     if (self) {
         self.wwwFolderName = @"www";
         self.startPage = fileName;
-        self.existTop = NO;
         self.ncManager = [[NCManager alloc] init];
         
         self.wantsFullScreenLayout = NO;
@@ -41,20 +39,12 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    if (self.existTop) {
-        [self.navigationController setNavigationBarHidden:NO animated:YES];
-    } else {
-        [self.navigationController setNavigationBarHidden:YES animated:YES];
-    }
-    
     [super viewWillAppear:animated];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [MFUtility setCurrentViewController:self];
-    self.navigationItem.titleView = centerView_;
-    self.webView.delegate = self;
 
     [super viewDidAppear:animated];
 }
@@ -93,63 +83,24 @@
         return;
     }
     NSDictionary *top = [uidict objectForKey:kNCPositionTop];
-    NSArray *topRight = [top objectForKey:kNCTypeRight];
-    NSArray *topLeft = [top objectForKey:kNCTypeLeft];
-    NSArray *topCenter = [top objectForKey:kNCTypeCenter];
-    
-    NSMutableDictionary *topStyle = [NSMutableDictionary dictionary];
-    [topStyle addEntriesFromDictionary:[top objectForKey:kNCTypeStyle]];
-    [topStyle addEntriesFromDictionary:[top objectForKey:kNCTypeIOSStyle]];
-    
     NSDictionary *bottom = [uidict objectForKey:kNCPositionBottom];
     
-    [self.ncManager setComponent:self.navigationController forID:[top objectForKey:kNCTypeID]];
-    [(MFNavigationController *)self.navigationController applyUserInterface:topStyle];
-
-    NCToolbar *toolbar =  [[NCToolbar alloc] initWithViewController:self];
-    [self.ncManager setComponent:toolbar forID:[bottom objectForKey:kNCTypeID]];
-    [toolbar createToolbar:bottom];
-
-    /***** create leftContainers *****/
-    NSMutableArray *containers = [NSMutableArray array];
-    for (id component in topLeft) {
-        NCContainer *container = [NCContainer container:component position:kNCPositionTop];
-        [containers addObject:container.component];
-        [self.ncManager setComponent:container forID:container.cid];
+    if (top != nil) {
+        NCNavigationBar *navigationBar = [[NCNavigationBar alloc] initWithViewController:self];
+        [self.ncManager setComponent:navigationBar forID:[top objectForKey:kNCTypeID]];
+        [navigationBar createNavigationBar:top];
     }
-    self.navigationItem.leftBarButtonItems = containers;
 
-    /***** create rightContainers *****/
-    containers = [NSMutableArray array];
-    for (id component in topRight) {
-        NCContainer *container = [NCContainer container:component position:kNCPositionTop];
-        [containers addObject:container.component];
-        [self.ncManager setComponent:container forID:container.cid];
-    }
-    // 表示順序を入れ替える
-    NSMutableArray *reverseContainers = [NSMutableArray array];
-    while ([containers count] != 0){
-        [reverseContainers addObject:[containers lastObject]];
-        [containers removeLastObject];
-    }
-    self.navigationItem.rightBarButtonItems = reverseContainers;
-
-    /***** create centerContainers *****/
-    containers = [NSMutableArray array];
-    for (id component in topCenter) {
-        NCContainer *container = [NCContainer container:component position:kNCPositionTop];
-        [containers addObject:container.component];
-        [self.ncManager setComponent:container forID:container.cid];
-    }
-    // TODO: Fix to allow few component for centerView
-    if ([containers count] != 0) {
-        centerView_ = [[containers objectAtIndex:0] view];
+    if (bottom != nil) {
+        NCToolbar *toolbar =  [[NCToolbar alloc] initWithViewController:self];
+        [self.ncManager setComponent:toolbar forID:[bottom objectForKey:kNCTypeID]];
+        [toolbar createToolbar:bottom];
     }
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
-    BOOL hasAnchor = [MFUtility hasAnchor:[request URL]];
+//    BOOL hasAnchor = [MFUtility hasAnchor:[request URL]];
     
     NSURL *url = [[request URL] standardizedURL];
 
@@ -161,7 +112,7 @@
     NSString *startPagePath = [[[NSBundle mainBundle] bundlePath] stringByAppendingFormat:@"/%@/%@", self.wwwFolderName ,self.startPage];
     NSString *errorPath = nil;
     
-    if (![fileManager fileExistsAtPath:startPagePath] && !previousPath_) {
+    if (![fileManager fileExistsAtPath:startPagePath] && !_previousPath) {
         errorPath = [self.wwwFolderName stringByAppendingFormat:@"/%@", self.startPage];
     } else if (![fileManager fileExistsAtPath:[url path]]) {
        errorPath = url.path;
@@ -175,7 +126,7 @@
         [MFEvent dispatchEvent:monacaEvent404Error withInfo:info];
 
         [MFUtility show404PageWithWebView:webView path:errorPath];
-        previousPath_ = errorPath;
+        _previousPath = errorPath;
         return NO;
     }
     
@@ -185,44 +136,9 @@
    
     if ([url isFileURL]) {
         self.wwwFolderName = [[MFUtility getWWWShortPath:url.path] stringByDeletingLastPathComponent];
-        NSMutableDictionary *info = [NSMutableDictionary dictionary];
-        [info setObject:[url path] forKey:@"path"];
-        [MFEvent dispatchEvent:monacaEventOpenPage withInfo:info];
-        
-        // Treat anchor parameters.
-        if (hasAnchor) {
-            if (self.previousPath && [[url path] isEqualToString:self.previousPath]) {
-                return YES;
-            }
-        }
-        
-        [MFEvent dispatchEvent:monacaEventWillLoadUIFile withInfo:info];
-        
-        BOOL isDir;
-        [fileManager fileExistsAtPath:[url path] isDirectory:&isDir];
-        
-        NSString *filepath = [url path];
-        NSString *uipath;
-        
-        if (isDir == YES) {
-            uipath = [filepath stringByAppendingPathComponent:@"index.ui"];
-            filepath = [filepath stringByAppendingPathComponent:@"index.html"];
-        } else {
-            uipath = [MFUtility getUIFileName:filepath];
-        }
-        
-        @try {
-            NSDictionary *uiDict = [MFUtility parseJSONFile:uipath];
-
-            if (![fileManager fileExistsAtPath:uipath]) {
-                uiDict = nil;
-            }
-
-        }
-        @catch (NSException *exception) {
-
-        }
         self.previousPath = [url path];
+
+        [MFEvent dispatchEvent:monacaEventOpenPage withInfo:nil];
     }
 
     return [super webView:webView shouldStartLoadWithRequest:request navigationType:navigationType];

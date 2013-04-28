@@ -322,6 +322,10 @@
 		5ADB0BD4172BA723009AFD18 /* NCSearchBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ADB0BD2172BA721009AFD18 /* NCSearchBox.m */; };
 		5ADB0BD5172BA723009AFD18 /* NCSearchBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ADB0BD2172BA721009AFD18 /* NCSearchBox.m */; };
 		5ADB0BD6172BA723009AFD18 /* NCSearchBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ADB0BD2172BA721009AFD18 /* NCSearchBox.m */; };
+		5AEA5947172D1A1100FF15E2 /* NCNavigationBar.h in Headers */ = {isa = PBXBuildFile; fileRef = 5AEA5945172D1A1100FF15E2 /* NCNavigationBar.h */; };
+		5AEA5948172D1A1100FF15E2 /* NCNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AEA5946172D1A1100FF15E2 /* NCNavigationBar.m */; };
+		5AEA5949172D1A1100FF15E2 /* NCNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AEA5946172D1A1100FF15E2 /* NCNavigationBar.m */; };
+		5AEA594A172D1A1100FF15E2 /* NCNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AEA5946172D1A1100FF15E2 /* NCNavigationBar.m */; };
 		5AEABB74172BF7B500AFAE56 /* NCBackButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 5AEABB72172BF7B500AFAE56 /* NCBackButton.h */; };
 		5AEABB75172BF7B500AFAE56 /* NCBackButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AEABB73172BF7B500AFAE56 /* NCBackButton.m */; };
 		5AEABB76172BF7B500AFAE56 /* NCBackButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AEABB73172BF7B500AFAE56 /* NCBackButton.m */; };
@@ -477,6 +481,8 @@
 		5ADB0BCC172AE2FD009AFD18 /* NCTabbarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCTabbarItem.m; sourceTree = "<group>"; };
 		5ADB0BD1172BA71F009AFD18 /* NCSearchBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCSearchBox.h; sourceTree = "<group>"; };
 		5ADB0BD2172BA721009AFD18 /* NCSearchBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCSearchBox.m; sourceTree = "<group>"; };
+		5AEA5945172D1A1100FF15E2 /* NCNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCNavigationBar.h; sourceTree = "<group>"; };
+		5AEA5946172D1A1100FF15E2 /* NCNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCNavigationBar.m; sourceTree = "<group>"; };
 		5AEABB72172BF7B500AFAE56 /* NCBackButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCBackButton.h; sourceTree = "<group>"; };
 		5AEABB73172BF7B500AFAE56 /* NCBackButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCBackButton.m; sourceTree = "<group>"; };
 		F50460D813B3633B0050803F /* MFDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFDelegate.m; sourceTree = "<group>"; };
@@ -805,6 +811,10 @@
 			children = (
 				5A83D32016D91E6D00D25E98 /* NativeComponents.h */,
 				5A83D32116D91E6D00D25E98 /* NativeComponentsInternal.h */,
+				5AEA5945172D1A1100FF15E2 /* NCNavigationBar.h */,
+				5AEA5946172D1A1100FF15E2 /* NCNavigationBar.m */,
+				5A83D33816D91E6D00D25E98 /* NCToolbar.h */,
+				5A83D33916D91E6D00D25E98 /* NCToolbar.m */,
 				5A83D32416D91E6D00D25E98 /* NCButton.h */,
 				5A83D32516D91E6D00D25E98 /* NCButton.m */,
 				5AEABB72172BF7B500AFAE56 /* NCBackButton.h */,
@@ -823,8 +833,6 @@
 				5A83D32D16D91E6D00D25E98 /* NCManager.m */,
 				5A83D33616D91E6D00D25E98 /* NCTitleView.h */,
 				5A83D33716D91E6D00D25E98 /* NCTitleView.m */,
-				5A83D33816D91E6D00D25E98 /* NCToolbar.h */,
-				5A83D33916D91E6D00D25E98 /* NCToolbar.m */,
 			);
 			path = NativeComponents;
 			sourceTree = "<group>";
@@ -1000,6 +1008,7 @@
 				5ADB0BCD172AE2FE009AFD18 /* NCTabbarItem.h in Headers */,
 				5ADB0BD3172BA723009AFD18 /* NCSearchBox.h in Headers */,
 				5AEABB74172BF7B500AFAE56 /* NCBackButton.h in Headers */,
+				5AEA5947172D1A1100FF15E2 /* NCNavigationBar.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1222,6 +1231,7 @@
 				5ADB0BD0172AE303009AFD18 /* NCTabbarItem.m in Sources */,
 				5ADB0BD6172BA723009AFD18 /* NCSearchBox.m in Sources */,
 				5AEABB77172BF7B500AFAE56 /* NCBackButton.m in Sources */,
+				5AEA594A172D1A1100FF15E2 /* NCNavigationBar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1289,6 +1299,7 @@
 				5ADB0BCE172AE2FE009AFD18 /* NCTabbarItem.m in Sources */,
 				5ADB0BD4172BA723009AFD18 /* NCSearchBox.m in Sources */,
 				5AEABB75172BF7B500AFAE56 /* NCBackButton.m in Sources */,
+				5AEA5948172D1A1100FF15E2 /* NCNavigationBar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1357,6 +1368,7 @@
 				5ADB0BCF172AE303009AFD18 /* NCTabbarItem.m in Sources */,
 				5ADB0BD5172BA723009AFD18 /* NCSearchBox.m in Sources */,
 				5AEABB76172BF7B500AFAE56 /* NCBackButton.m in Sources */,
+				5AEA5949172D1A1100FF15E2 /* NCNavigationBar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

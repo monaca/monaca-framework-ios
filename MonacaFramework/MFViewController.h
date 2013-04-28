@@ -12,18 +12,15 @@
 @interface MFViewController : CDVViewController <UIScrollViewDelegate, UIWebViewDelegate>
 {
 @private
-    NSString *previousPath_;
-    UIView *centerView_;
-    BOOL existTop_;
-    NCManager *ncManager_;
-    NSDictionary *uiDict_;
+    NSString *_previousPath;
+    NCManager *_ncManager_;
+    NSDictionary *_uiDict;
 }
 - (void)applyUserInterface:(NSDictionary *)uidict;
 - (id)initWithFileName:(NSString *)fileName;
 - (void)destroy;
 
 @property (nonatomic, copy) NSString *previousPath;
-@property (nonatomic) BOOL existTop;
 @property (nonatomic) NCManager *ncManager;
 @property (nonatomic, retain) NSDictionary *uiDict;
 

@@ -10,6 +10,7 @@
 
 #import "NCContainer.h"
 
+#import "NCNavigationBar.h"
 #import "NCToolbar.h"
 #import "NCManager.h"
 #import "NCButton.h"

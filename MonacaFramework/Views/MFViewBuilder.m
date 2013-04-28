@@ -34,17 +34,12 @@ static BOOL ignoreBottom_ = NO;
         if ([containerType isEqualToString:kNCContainerTabbar]) {
             view = [[MFTabBarController alloc] init];
             [view applyBottomTabbar:uidict WwwDir:[[MFUtility getWWWShortPath:uipath] stringByDeletingLastPathComponent]];
-            [[view moreNavigationController] setNavigationBarHidden:NO];
         }
         ignoreBottom_ = NO;
     } else {
         view = [[MFViewController alloc] initWithFileName:[path lastPathComponent]];
         [view setWwwFolderName:[[MFUtility getWWWShortPath:uipath] stringByDeletingLastPathComponent]];
         [view setUiDict:uidict];
-        item = [uidict objectForKey:kNCPositionTop];
-        if (item != nil || [[item objectForKey:kNCTypeContainer] isEqualToString:kNCContainerToolbar]) {
-            [view setExistTop:YES];
-        }
     }
 
     return view;
