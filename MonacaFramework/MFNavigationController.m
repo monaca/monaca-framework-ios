@@ -110,7 +110,7 @@
     }
 
     if (value == [NSNull null]) {
-        value = nil;
+        value = kNCUndefined;
     }
     [ncStyle setValue:value forKey:key];
 }
