@@ -52,6 +52,7 @@
     NSMutableArray *containers = [NSMutableArray array];
     for (id component in topLeft) {
         NCContainer *container = [NCContainer container:component position:kNCPositionTop];
+        if (container.component == nil) continue;
         [containers addObject:container.component];
         [_viewController.ncManager setComponent:container forID:container.cid];
     }
@@ -61,6 +62,7 @@
     containers = [NSMutableArray array];
     for (id component in topRight) {
         NCContainer *container = [NCContainer container:component position:kNCPositionTop];
+        if (container.component == nil) continue;
         [containers addObject:container.component];
         [_viewController.ncManager setComponent:container forID:container.cid];
     }
@@ -76,6 +78,7 @@
     containers = [NSMutableArray array];
     for (id component in topCenter) {
         NCContainer *container = [NCContainer container:component position:kNCPositionTop];
+        if (container.component == nil) continue;
         [containers addObject:container.component];
         [_viewController.ncManager setComponent:container forID:container.cid];
     }

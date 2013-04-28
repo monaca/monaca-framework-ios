@@ -56,6 +56,7 @@
     if (topLeft) {
         for (id component in topLeft) {
             NCContainer *container = [NCContainer container:component position:kNCPositionTop];
+            if (container.component == nil) continue;
             [containers addObject:container.component];
             [_viewController.ncManager setComponent:container forID:container.cid];
         }
@@ -66,6 +67,7 @@
     if (topCenter) {
         for (id component in topCenter) {
             NCContainer *container = [NCContainer container:component position:kNCPositionTop];
+            if (container.component == nil) continue;
             [containers addObject:container.component];
             [_viewController.ncManager setComponent:container forID:container.cid];
         }
@@ -76,6 +78,7 @@
     if (topRight) {
         for (id component in topRight) {
             NCContainer *container = [NCContainer container:component position:kNCPositionTop];
+            if (container.component == nil) continue;
             [containers addObject:container.component];
             [_viewController.ncManager setComponent:container forID:container.cid];
         }
