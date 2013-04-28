@@ -30,20 +30,12 @@
     return self;
 }
 
-- (void)applyUserInterface:(NSDictionary *)uidict
-{
-    for (id key in uidict) {
-        [self updateUIStyle:[uidict objectForKey:key] forKey:key];
-    }
-}
-
 - (void)addTarget:(id)target action:(SEL)action forControlEvents:(UIControlEvents)controlEvents
 {
     [_backButton addTarget:target action:action forControlEvents:controlEvents];
 }
 
 #pragma mark - UIStyleProtocol
-
 
 - (void)updateUIStyle:(id)value forKey:(NSString *)key
 {
@@ -93,17 +85,6 @@
         value = kNCUndefined;
     }
     [_ncStyle setValue:value forKey:key];
-}
-
-
-- (id)retrieveUIStyle:(NSString *)key
-{
-    if ([_ncStyle objectForKey:key] == nil) {
-        // 例外処理
-        return nil;
-    }
-
-    return [_ncStyle objectForKey:key];
 }
 
 @end

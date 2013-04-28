@@ -18,7 +18,6 @@
 }
 
 - (id)initWithViewController:(MFViewController *)viewController;
-- (void)applyUserInterface:(NSDictionary *)uidict;
 - (void)createToolbar:(NSDictionary *)uidict;
 
 @property (nonatomic, retain) MFViewController *viewController;

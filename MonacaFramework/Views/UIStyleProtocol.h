@@ -9,6 +9,10 @@
 #import <Foundation/Foundation.h>
 
 @protocol UIStyleProtocol <NSObject>
+
+@optional
+- (void)applyUserInterface:(NSDictionary *)uidict;
+@required
 - (void)updateUIStyle:(id)value forKey:(NSString *)key;
 - (id)retrieveUIStyle:(NSString *)key;
 

@@ -26,15 +26,14 @@
     return self;
 }
 
+#pragma mark - UIStyleProtocol
+
 - (void)applyUserInterface:(NSDictionary *)uidict
 {
     for (id key in uidict) {
         [self updateUIStyle:[uidict objectForKey:key] forKey:key];
     }
 }
-
-#pragma mark - UIStyleProtocol
-
 
 - (void)updateUIStyle:(id)value forKey:(NSString *)key
 {

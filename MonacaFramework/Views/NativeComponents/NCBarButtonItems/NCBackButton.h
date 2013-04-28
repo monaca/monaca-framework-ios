@@ -7,15 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "UIStyleProtocol.h"
+#import "NCBarButtonItem.h"
 
-@interface NCBackButton : UIBarButtonItem <UIStyleProtocol> {
+@interface NCBackButton : NCBarButtonItem
+{
     UIButton *_backButton;
     NSString* _position;
-    NSMutableDictionary *_ncStyle;
 }
 
-- (void)applyUserInterface:(NSDictionary *)uidict;
 - (void)addTarget:(id)target action:(SEL)action forControlEvents:(UIControlEvents)controlEvents;
 
 @end

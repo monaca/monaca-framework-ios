@@ -7,15 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "UIStyleProtocol.h"
+#import "NCBarButtonItem.h"
 
-@interface NCLabel : UIBarButtonItem <UIStyleProtocol>
+@interface NCLabel : NCBarButtonItem
 {
     UILabel *_label;
     NSString* _position;
-    NSMutableDictionary *_ncStyle;
-}
-
-- (void)applyUserInterface:(NSDictionary *)uidict;
+ }
 
 @end

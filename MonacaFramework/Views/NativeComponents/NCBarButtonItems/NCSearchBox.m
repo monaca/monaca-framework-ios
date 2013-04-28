@@ -40,13 +40,6 @@
     return self;
 }
 
-- (void)applyUserInterface:(NSDictionary *)uidict
-{
-    for (id key in uidict) {
-        [self updateUIStyle:[uidict objectForKey:key] forKey:key];
-    }
-}
-
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
     [_delegate searchBarSearchButtonClicked:searchBar];
@@ -105,16 +98,6 @@
         value = kNCUndefined;
     }
     [_ncStyle setValue:value forKey:key];
-}
-
-- (id)retrieveUIStyle:(NSString *)key
-{
-    if ([_ncStyle objectForKey:key] == nil) {
-        // 例外処理
-        return nil;
-    }
-
-    return [_ncStyle objectForKey:key];
 }
 
 @end

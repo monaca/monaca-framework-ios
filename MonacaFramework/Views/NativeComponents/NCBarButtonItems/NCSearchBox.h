@@ -7,17 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "UIStyleProtocol.h"
+#import "NCBarButtonItem.h"
 
-@interface NCSearchBox : UIBarButtonItem <UIStyleProtocol,UISearchBarDelegate>
+@interface NCSearchBox : NCBarButtonItem <UISearchBarDelegate>
 {
     UISearchBar *_searchBar;
     NSString* _position;
-    NSMutableDictionary *_ncStyle;
     id<UISearchBarDelegate> _delegate;
 }
-
-- (void)applyUserInterface:(NSDictionary *)uidict;
 
 @property (retain,nonatomic) id<UISearchBarDelegate> deleagte;
 
