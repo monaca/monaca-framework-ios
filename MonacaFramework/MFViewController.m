@@ -79,9 +79,6 @@
 
 - (void)applyUserInterface:(NSDictionary *)uidict
 {
-    if (uidict == nil) {
-        return;
-    }
     NSDictionary *top = [uidict objectForKey:kNCPositionTop];
     NSDictionary *bottom = [uidict objectForKey:kNCPositionBottom];
     
@@ -89,13 +86,18 @@
         NCNavigationBar *navigationBar = [[NCNavigationBar alloc] initWithViewController:self];
         [self.ncManager setComponent:navigationBar forID:[top objectForKey:kNCTypeID]];
         [navigationBar createNavigationBar:top];
+    } else {
+        [self.navigationController setNavigationBarHidden:YES];
     }
 
     if (bottom != nil) {
         NCToolbar *toolbar =  [[NCToolbar alloc] initWithViewController:self];
         [self.ncManager setComponent:toolbar forID:[bottom objectForKey:kNCTypeID]];
         [toolbar createToolbar:bottom];
+    } else {
+        [self.navigationController setToolbarHidden:YES];
     }
+
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
