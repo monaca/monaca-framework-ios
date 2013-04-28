@@ -132,7 +132,17 @@
     }
     // TODO: Implement Subtitle
     if ([key isEqualToString:kNCStyleIOSBarStyle]) {
-        [_navigationBar setBarStyle:value];
+        UIBarStyle style = UIBarStyleDefault;
+        if ([value isEqualToString:@"UIBarStyleBlack"]) {
+            style = UIBarStyleBlack;
+        } else if ([value isEqualToString:@"UIBarStyleBlackOpaque"]) {
+            style = UIBarStyleBlackOpaque;
+        } else if ([value isEqualToString:@"UIBarStyleBlackTranslucent"]) {
+            style = UIBarStyleBlackTranslucent;
+        } else if ([value isEqualToString:@"UIBarStyleDefault"]) {
+            style = UIBarStyleDefault;
+        }
+        [_navigationBar setBarStyle:style];
     }
 
     if (value == [NSNull null]) {

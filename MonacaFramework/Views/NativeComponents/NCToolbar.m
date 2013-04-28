@@ -126,7 +126,17 @@
         [_toolbar setTintColor:hexToUIColor(removeSharpPrefix(value), 1)];
     }
     if ([key isEqualToString:kNCStyleIOSBarStyle]) {
-        [_toolbar setBarStyle:value];
+        UIBarStyle style = UIBarStyleDefault;
+        if ([value isEqualToString:@"UIBarStyleBlack"]) {
+            style = UIBarStyleBlack;
+        } else if ([value isEqualToString:@"UIBarStyleBlackOpaque"]) {
+            style = UIBarStyleBlackOpaque;
+        } else if ([value isEqualToString:@"UIBarStyleBlackTranslucent"]) {
+            style = UIBarStyleBlackTranslucent;
+        } else if ([value isEqualToString:@"UIBarStyleDefault"]) {
+            style = UIBarStyleDefault;
+        }
+        [_toolbar setBarStyle:style];
     }
 
     if (value == [NSNull null]) {
