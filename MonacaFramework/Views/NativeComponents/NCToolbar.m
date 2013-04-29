@@ -8,6 +8,7 @@
 
 #import "NCToolbar.h"
 #import "MFUtility.h"
+#import "NCBarButtonItem.h"
 
 @implementation NCToolbar
 
@@ -55,7 +56,7 @@
     NSMutableArray *containers = [NSMutableArray array];
     if (topLeft) {
         for (id component in topLeft) {
-            NCContainer *container = [NCContainer container:component position:kNCPositionTop];
+            NCContainer *container = [NCContainer container:component forToolbar:self];
             if (container.component == nil) continue;
             [containers addObject:container.component];
             [_viewController.ncManager setComponent:container forID:container.cid];
@@ -66,18 +67,17 @@
     [containers addObject:spacer];
     if (topCenter) {
         for (id component in topCenter) {
-            NCContainer *container = [NCContainer container:component position:kNCPositionTop];
+            NCContainer *container = [NCContainer container:component forToolbar:self];
             if (container.component == nil) continue;
             [containers addObject:container.component];
             [_viewController.ncManager setComponent:container forID:container.cid];
         }
     }
     [containers addObject:spacer];
-    
     /***** create rightContainers *****/
     if (topRight) {
         for (id component in topRight) {
-            NCContainer *container = [NCContainer container:component position:kNCPositionTop];
+            NCContainer *container = [NCContainer container:component forToolbar:self];
             if (container.component == nil) continue;
             [containers addObject:container.component];
             [_viewController.ncManager setComponent:container forID:container.cid];
@@ -88,7 +88,23 @@
         [containers addObject:negativeSpacer];
     }
     
-    [_viewController setToolbarItems:containers];
+    _containers = containers;
+    [self applyVisibility];
+}
+
+- (void)applyVisibility
+{
+    NSMutableArray *visiableContainers = [NSMutableArray array];
+    for (id container in _containers) {
+        if ([container isKindOfClass:[NCBarButtonItem class]]) {
+            if (![container hidden]) {
+                [visiableContainers addObject:container];
+            }
+        } else {
+            [visiableContainers addObject:container];
+        }
+    }
+    [_viewController setToolbarItems:visiableContainers];
 }
 
 #pragma mark - UIStyleProtocol

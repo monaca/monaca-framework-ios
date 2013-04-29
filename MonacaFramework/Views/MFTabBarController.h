@@ -37,7 +37,6 @@
 + (void)setIgnoreBottom:(BOOL)ignore;
 - (void)applyBottomTabbar:(NSDictionary *)uidict WwwDir:(NSString *)wwwDir;
 
-- (NSMutableArray *)createContainers:(NSArray *)components position:(NSString *)aPosition;
 - (void)restoreUserInterface;
 
 @property(nonatomic, retain) NCContainer *centerContainer;

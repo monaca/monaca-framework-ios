@@ -12,6 +12,7 @@
 
 @optional
 - (void)applyUserInterface:(NSDictionary *)uidict;
+- (void)applyVisibility;
 @required
 - (void)updateUIStyle:(id)value forKey:(NSString *)key;
 - (id)retrieveUIStyle:(NSString *)key;

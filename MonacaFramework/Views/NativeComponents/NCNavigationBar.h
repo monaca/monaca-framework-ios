@@ -15,6 +15,10 @@
     MFViewController *_viewController;
     UINavigationBar *_navigationBar;
     NSMutableDictionary *_ncStyle;
+    NSArray *_leftContainers;
+    NSArray *_rightContainers;
+    NSArray *_centerContainers;
+    UIToolbar *_centerViewToolbar;
 }
 
 - (id)initWithViewController:(MFViewController *)viewController;

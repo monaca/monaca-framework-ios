@@ -20,6 +20,7 @@
     if (self) {
         _viewController = viewController;
         _navigationBar = viewController.navigationController.navigationBar;
+        _centerViewToolbar = [[UIToolbar alloc] init];
         _ncStyle = [[NSMutableDictionary alloc] init];
         [_ncStyle setValue:kNCTrue forKey:kNCStyleVisibility];
         [_ncStyle setValue:kNCFalse forKey:kNCStyleDisable];
@@ -51,17 +52,17 @@
     /***** create leftContainers *****/
     NSMutableArray *containers = [NSMutableArray array];
     for (id component in topLeft) {
-        NCContainer *container = [NCContainer container:component position:kNCPositionTop];
+        NCContainer *container = [NCContainer container:component forToolbar:self];
         if (container.component == nil) continue;
         [containers addObject:container.component];
         [_viewController.ncManager setComponent:container forID:container.cid];
     }
-    _viewController.navigationItem.leftBarButtonItems = containers;
+    _leftContainers = containers;
 
     /***** create rightContainers *****/
     containers = [NSMutableArray array];
     for (id component in topRight) {
-        NCContainer *container = [NCContainer container:component position:kNCPositionTop];
+        NCContainer *container = [NCContainer container:component forToolbar:self];
         if (container.component == nil) continue;
         [containers addObject:container.component];
         [_viewController.ncManager setComponent:container forID:container.cid];
@@ -72,21 +73,66 @@
         [reverseContainers addObject:[containers lastObject]];
         [containers removeLastObject];
     }
-    _viewController.navigationItem.rightBarButtonItems = reverseContainers;
+    _rightContainers = reverseContainers;
 
     /***** create centerContainers *****/
     containers = [NSMutableArray array];
     for (id component in topCenter) {
-        NCContainer *container = [NCContainer container:component position:kNCPositionTop];
+        NCContainer *container = [NCContainer container:component forToolbar:self];
         if (container.component == nil) continue;
         [containers addObject:container.component];
         [_viewController.ncManager setComponent:container forID:container.cid];
     }
-    // TODO: Fix to allow few component for centerView
-    if ([containers count] != 0) {
-        _viewController.navigationItem.titleView = [[containers objectAtIndex:0] view];
+    _centerContainers = containers;
+
+    [self applyVisibility];
+}
+
+- (void)applyVisibility
+{
+    UIBarButtonItem *spacer =
+    [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+
+    /***** apply leftContainers *****/
+    NSMutableArray *visiableContainers = [NSMutableArray array];
+    for (NCBarButtonItem *container in _leftContainers) {
+        if (![container hidden]) {
+            [visiableContainers addObject:container];
+        }
+    }
+    _viewController.navigationItem.leftBarButtonItems = visiableContainers;
+
+    /***** apply rightContainers *****/
+    visiableContainers = [NSMutableArray array];
+    for (NCBarButtonItem *container in _rightContainers) {
+        if (![container hidden]) {
+            [visiableContainers addObject:container];
+        }
+    }
+    _viewController.navigationItem.rightBarButtonItems = visiableContainers;
+
+    /***** apply centerContainers *****/
+    visiableContainers = [NSMutableArray array];
+
+    [visiableContainers addObject:spacer];
+    for (NCBarButtonItem *container in _centerContainers) {
+        if (![container hidden]) {
+            [visiableContainers addObject:container];
+        }
+    }
+    [visiableContainers addObject:spacer];
+
+    if ([visiableContainers count] > 2) {
+        [_centerViewToolbar setItems:visiableContainers];
+        // TODO: allow few containers
+        _viewController.navigationItem.titleView = nil;
+        _viewController.navigationItem.titleView = [[visiableContainers objectAtIndex:1] view];
+    } else {
+        _viewController.navigationItem.titleView = nil;
     }
 }
+
+#pragma mark - UIStyleProtocol
 
 - (void)applyUserInterface:(NSDictionary *)uidict
 {
@@ -94,8 +140,6 @@
         [self updateUIStyle:[uidict objectForKey:key] forKey:key];
     }
 }
-
-#pragma mark - UIStyleProtocol
 
 - (void)updateUIStyle:(id)value forKey:(NSString *)key
 {
@@ -124,6 +168,7 @@
     }
     if ([key isEqualToString:kNCStyleBackgroundColor]) {
         [_navigationBar setTintColor:hexToUIColor(removeSharpPrefix(value), 1)];
+        [_centerViewToolbar setTintColor:hexToUIColor(removeSharpPrefix(value), 1)];
     }
     if ([key isEqualToString:kNCStyleTitle]) {
         [_viewController setTitle:value];

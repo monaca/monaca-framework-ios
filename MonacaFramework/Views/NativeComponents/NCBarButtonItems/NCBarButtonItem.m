@@ -10,6 +10,20 @@
 
 @implementation NCBarButtonItem
 
+@synthesize hidden = _hidden;
+@synthesize toolbar = _toolbar;
+
+- (id)init
+{
+    self = [super init];
+
+    if (self) {
+        _hidden = NO;
+    }
+
+    return self;
+}
+
 #pragma mark - UIStyleProtocol
 
 - (void)applyUserInterface:(NSDictionary *)uidict

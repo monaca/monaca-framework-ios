@@ -12,7 +12,6 @@
 @interface NCSegment : NCBarButtonItem
 {
     UISegmentedControl *_segment;
-    NSString* _position;
 }
 
 - (void)addTarget:(id)target action:(SEL)action forControlEvents:(UIControlEvents)controlEvents;

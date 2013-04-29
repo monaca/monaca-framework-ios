@@ -25,7 +25,7 @@
     NSString *onSearchScript_;
 }
 
-+ (NCContainer *)container:(NSDictionary *)params position:(NSString *)aPosition;
++ (NCContainer *)container:(NSDictionary *)params forToolbar:(id<UIStyleProtocol>)toolbar;
 
 @property(nonatomic, copy) NSString *cid;
 @property(nonatomic, retain) id view;

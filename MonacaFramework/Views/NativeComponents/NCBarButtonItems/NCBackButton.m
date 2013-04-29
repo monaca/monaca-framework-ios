@@ -55,7 +55,8 @@
     }
 
     if ([key isEqualToString:kNCStyleVisibility]) {
-        // TODO: Implement
+        _hidden = isFalse(value);
+        [_toolbar applyVisibility];
     }
     if ([key isEqualToString:kNCStyleDisable]) {
         if (isFalse(value)) {

@@ -12,7 +12,6 @@
 @interface NCSearchBox : NCBarButtonItem <UISearchBarDelegate>
 {
     UISearchBar *_searchBar;
-    NSString* _position;
     id<UISearchBarDelegate> _delegate;
 }
 

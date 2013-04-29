@@ -11,7 +11,6 @@
 
 @interface NCButton : NCBarButtonItem
 {
-    NSString* _position;
 }
 
 @end

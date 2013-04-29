@@ -36,7 +36,8 @@
 // =================================================
 
 // Creates a container, wrapping a component, for the toolbar.
-+ (NCContainer *)container:(NSDictionary *)params position:(NSString *)aPosition {
++ (NCContainer *)container:(NSDictionary *)params forToolbar:(id<UIStyleProtocol>)toolbar
+{
     NSString *type = [params objectForKey:kNCStyleComponent];
     NCContainer *container = [[NCContainer alloc] init];
     
@@ -50,6 +51,7 @@
     if ([type isEqualToString:kNCComponentButton]) {
         NCButton *button = [[NCButton alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:container action:@selector(didTap:forEvent:)];
         [button applyUserInterface:style_def];
+        button.toolbar = toolbar;
         container.component = button;
         container.onTapScript = [[params objectForKey:kNCTypeEvent] objectForKey:kNCEventTypeTap];
         container.type = kNCComponentButton;
@@ -57,6 +59,7 @@
     else if ([type isEqualToString:kNCComponentBackButton]) {
         NCBackButton *backButton = [[NCBackButton alloc] init];
         [backButton applyUserInterface:style_def];
+        backButton.toolbar = toolbar;
         container.component = backButton;
         container.onTapScript = [[params objectForKey:kNCTypeEvent] objectForKey:kNCEventTypeTap];
         [backButton addTarget:container action:@selector(didTap:forEvent:) forControlEvents:UIControlEventTouchUpInside];
@@ -64,12 +67,14 @@
     }
     else if ([type isEqualToString:kNCComponentLabel]) {
         NCLabel *label = [[NCLabel alloc] init];
+        label.toolbar = toolbar;
         [label applyUserInterface:style_def];
         container.component = label;
         container.type = kNCComponentLabel;
     }
     else if ([type isEqualToString:kNCComponentSearchBox]) {
         NCSearchBox *searchBox = [[NCSearchBox alloc] init];
+        searchBox.toolbar = toolbar;
         [searchBox applyUserInterface:style_def];
         container.component = searchBox;
         container.onSearchScript = [[params objectForKey:kNCTypeEvent] objectForKey:kNCEventTypeSearch];
@@ -78,6 +83,7 @@
     }
     else if ([type isEqualToString:kNCComponentSegment]) {
         NCSegment *segment = [[NCSegment alloc] init];
+        segment.toolbar = toolbar;
         container.component = segment;
         [segment applyUserInterface:style_def];
 //        container.onTapScript = [[params objectForKey:kNCTypeEvent] objectForKey:kNCEventTypeTap];

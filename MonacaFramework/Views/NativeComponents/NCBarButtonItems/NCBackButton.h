@@ -12,7 +12,6 @@
 @interface NCBackButton : NCBarButtonItem
 {
     UIButton *_backButton;
-    NSString* _position;
 }
 
 - (void)addTarget:(id)target action:(SEL)action forControlEvents:(UIControlEvents)controlEvents;

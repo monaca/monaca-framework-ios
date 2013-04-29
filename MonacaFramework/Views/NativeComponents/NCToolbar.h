@@ -15,6 +15,7 @@
     MFViewController *_viewController;
     UIToolbar *_toolbar;
     NSMutableDictionary *_ncStyle;
+    NSArray *_containers;
 }
 
 - (id)initWithViewController:(MFViewController *)viewController;

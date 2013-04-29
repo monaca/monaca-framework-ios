@@ -86,18 +86,6 @@ static BOOL ignoreBottom = NO;
     return [MFUtility getAllowOrientationFromPlist:orientation];
 }
 
-- (NSMutableArray *)createContainers:(NSArray *)components position:(NSString *)aPosition {
-    NSMutableArray *containers = [NSMutableArray array];
-    for (id component in components) {
-        NCContainer *container = [NCContainer container:component position:aPosition];
-        [containers addObject:container];
-        
-        // Store a reference to the object representing the native component.
-        [self.ncManager setComponent:container forID:container.cid];
-    }
-    return containers;
-}
-
 - (void)applyBottomTabbar:(NSDictionary *)uidict WwwDir:(NSString *)wwwDir
 {
     NSMutableArray *viewControllers = [NSMutableArray array];

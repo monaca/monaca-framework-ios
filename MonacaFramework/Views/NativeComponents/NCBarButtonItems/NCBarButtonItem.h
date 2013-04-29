@@ -12,6 +12,11 @@
 @interface NCBarButtonItem : UIBarButtonItem <UIStyleProtocol>
 {
     NSMutableDictionary *_ncStyle;
+    id<UIStyleProtocol> _toolbar;
+    BOOL _hidden;
 }
+
+@property (nonatomic, assign) BOOL hidden;
+@property (nonatomic, retain) id<UIStyleProtocol> toolbar;
 
 @end

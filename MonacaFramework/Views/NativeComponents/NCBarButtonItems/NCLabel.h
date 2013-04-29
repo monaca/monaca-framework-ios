@@ -12,7 +12,6 @@
 @interface NCLabel : NCBarButtonItem
 {
     UILabel *_label;
-    NSString* _position;
  }
 
 @end
