@@ -154,7 +154,7 @@
     
     if ([animationParam isKindOfClass:NSNumber.class]) {
         NSNumber *animationNumber = (NSNumber*)animationNumber;
-        // case for animation : false
+        // case for {animation : false}
         if (!animationNumber) {
             isAnimated = NO;
         }
@@ -192,7 +192,17 @@
 
 - (void)pop:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options
 {
-    [(MFViewController*)[self.monacaNavigationController popViewControllerAnimated:YES] destroy];
+    BOOL isAnimated = YES;
+    id animationParam = [options objectForKey:@"animation"];
+    if ([animationParam isKindOfClass:NSNumber.class]) {
+        NSNumber *animationNumber = (NSNumber*)animationNumber;
+        // case for {animation : false}
+        if (!animationNumber) {
+            isAnimated = NO;
+        }
+    }
+    
+    [(MFViewController*)[self.monacaNavigationController popViewControllerAnimated:isAnimated] destroy];
     
     NSString *command =[NSString stringWithFormat:@"%@ && %@();",
                         kMonacaTransitPluginJsReactivate,
