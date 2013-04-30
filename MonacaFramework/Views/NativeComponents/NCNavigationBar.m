@@ -177,6 +177,9 @@
         UIColor *color = hexToUIColor(removeSharpPrefix(value), 1);
         NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:color, UITextAttributeTextColor, nil];
         [_navigationBar setTitleTextAttributes:attributes];
+        // 一度タイトルを変更しないと文字色は反映されない
+        [_viewController setTitle:@""];
+        [_viewController setTitle:[self retrieveUIStyle:kNCStyleTitle]];
     }
     // TODO: Implement Subtitle
     if ([key isEqualToString:kNCStyleIOSBarStyle]) {
