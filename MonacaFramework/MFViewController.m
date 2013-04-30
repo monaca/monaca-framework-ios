@@ -163,7 +163,7 @@
 #pragma mark - UIScrollViewDelegate
 
 - (BOOL)scrollViewShouldScrollToTop:(UIScrollView *)scrollView {
-    UIWebView *webView = ((MFDelegate *)[UIApplication sharedApplication].delegate).viewController.cdvViewController.webView;
+    UIWebView *webView = ((MFDelegate *)[UIApplication sharedApplication].delegate).monacaNavigationController.lastMonacaViewController.cdvViewController.webView;
     NSString *js = [NSString stringWithFormat:@"window.onTapStatusBar && window.onTapStatusBar();"];
     [webView stringByEvaluatingJavaScriptFromString:js];
     return YES;
