@@ -43,7 +43,7 @@
         return nil;
     }
     if (YES){
-        data = [data stringByReplacingOccurrencesOfString:@"((?:\".*?\"[^\"]*?)*)[\"]*(\\w+)[\"]*\\s*:"
+        data = [data stringByReplacingOccurrencesOfString:@"((?:\".*?\"[^\"]*?)*)[^\"'\\w](\\w*)[^\"'\\w]\\s*:"
                                                withString:@"$1\"$2\":"
                                                   options:NSRegularExpressionSearch
                                                     range:NSMakeRange(0, [data length])];
