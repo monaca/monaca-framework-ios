@@ -31,17 +31,36 @@
     return [[self monacaDelegate] monacaNavigationController];
 }
 
-- (NSURLRequest *)createRequest:(NSString *)urlString withQuery:(NSString *)query
+- (NSURL *)createUrl:(NSString*)urlString withQuery:(NSString *)query
 {
+    // separate to path and hash
+    NSArray *array = [urlString componentsSeparatedByString:@"#"];
+    NSString *path = [array objectAtIndex:0];
+    NSString *fragment = nil;
+    if (array.count > 1) {
+        fragment = [array objectAtIndex:1];
+    }
+    
     NSURL *url;
-    if ([self.commandDelegate pathForResource:urlString]){
-        url = [NSURL fileURLWithPath:[self.commandDelegate pathForResource:urlString]];
-        if ([[query class] isSubclassOfClass:[NSString class]]) {
+    
+    if ([NSURL fileURLWithPath:[self.commandDelegate pathForResource:path]]) {
+        url = [NSURL fileURLWithPath:[self.commandDelegate pathForResource:path]];
+        if ([query.class isSubclassOfClass:[NSString class]]) {
             url = [NSURL URLWithString:[url.absoluteString stringByAppendingFormat:@"?%@", query]];
         }
-    }else {
+        if ([fragment.class isSubclassOfClass:[NSString class]]) {
+            url = [NSURL URLWithString:[url.absoluteString stringByAppendingFormat:@"#%@", fragment]];
+        }
+    } else {
         url = [NSURL URLWithString:[@"monaca404:///www/" stringByAppendingPathComponent:urlString]];
     }
+    
+    return url;
+}
+
+- (NSURLRequest *)createRequest:(NSString *)urlString withQuery:(NSString *)query
+{
+    NSURL *url = [self createUrl:urlString withQuery:query];
     return [NSURLRequest requestWithURL:url];
 }
 
