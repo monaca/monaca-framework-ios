@@ -7,12 +7,8 @@
 //
 
 #import "MFNavigationController.h"
-#import "MFViewController.h"
 #import "MFTransitPlugin.h"
 #import "MFUtility.h"
-
-#import <QuartzCore/QuartzCore.h>
-
 
 @interface MFNavigationController ()
 
@@ -25,40 +21,16 @@
     return [MFUtility getAllowOrientationFromPlist:aInterfaceOrientation];
 }
 
-- (MFViewController *)currentMonacaViewControllerOrNil {
-    UIViewController *controller = self.viewControllers.lastObject;
-    
-    if ([controller isKindOfClass:[MFViewController class]]) {
-        return (MFViewController *)controller;
-    }
-    
-    return nil;
-}
-
-- (MFViewController *)lastMonacaViewController {
-    for (UIViewController *controller in self.viewControllers.reverseObjectEnumerator) {
-        if ([controller isKindOfClass:MFViewController.class]) {
-            return (MFViewController*)controller;
-        }
-    }
-    
-    [NSException raise:@"MFViewControllerNotFound" format:@"MFViewController is not found."];
-    return nil;
-}
-
-- (MFTabBarController *)lastMonacaTabBarController
+- (void)loadView
 {
-    return self.lastMonacaViewController.tabBarController;
-}
-
-- (void)loadView {
     [super loadView];
     self.delegate = self;
 }
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-    
+
     self.navigationBarHidden = YES;
     CGRect viewBounds = [[UIScreen mainScreen] applicationFrame];
     self.view.frame = viewBounds;
@@ -68,8 +40,7 @@
 
 - (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
-
+    [MFTransitPlugin changeDelegate:viewController];
 }
-
 
 @end

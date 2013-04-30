@@ -41,6 +41,7 @@ static NSString *base_url = @"https://api.monaca.mobi";
             [[NSBundle mainBundle] objectForInfoDictionaryKey: @"CFBundleVersion"]];
 }
 
+
 + (NSDictionary *)parseJSON:(NSString *)json {
     return [json cdvjk_objectFromJSONString];
 }
@@ -59,7 +60,7 @@ static NSString *base_url = @"https://api.monaca.mobi";
 }
 
 + (MFTabBarController *)currentTabBarController {
-    return (MFTabBarController *)((MFDelegate *)[UIApplication sharedApplication].delegate).monacaNavigationController.lastMonacaTabBarController;
+    return (MFTabBarController *)((MFDelegate *)[UIApplication sharedApplication].delegate).viewController.tabBarController;
 }
 
 + (UIInterfaceOrientation)currentInterfaceOrientation {

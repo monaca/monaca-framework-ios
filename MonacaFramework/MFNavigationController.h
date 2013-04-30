@@ -7,14 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MFViewController.h"
 
 @interface MFNavigationController : UINavigationController<UINavigationControllerDelegate>{
-
 }
-
-- (MFViewController *)currentMonacaViewControllerOrNil;
-- (MFViewController *)lastMonacaViewController;
-- (MFTabBarController *)lastMonacaTabBarController;
 
 @end

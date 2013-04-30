@@ -44,7 +44,7 @@ stringByRelativePath(NSString *relativePath) {
     
     BOOL isDir;
     NSFileManager *fm = [NSFileManager defaultManager];
-    NSURL *currentURL = delegate.lastMonacaViewController.cdvViewController.webView.request.URL;
+    NSURL *currentURL = delegate.viewController.cdvViewController.webView.request.URL;
     
     [fm fileExistsAtPath:[currentURL path] isDirectory:&isDir];
     if (isDir) {
@@ -69,7 +69,7 @@ stringByRelativePath(NSString *relativePath) {
 
 + (UIToolbar *)updateBottomToolbar:(UIToolbar *)toolbar with:(NSDictionary *)style {
     // Visibility.
-    UINavigationController *navController = ((MFDelegate *)[UIApplication sharedApplication].delegate).lastMonacaViewController.tabBarController.navigationController;
+    UINavigationController *navController = ((MFDelegate *)[UIApplication sharedApplication].delegate).viewController.tabBarController.navigationController;
     BOOL hidden = isFalse([style objectForKey:kNCStyleVisibility]);
     
     if (!hidden && navController.toolbarHidden) {
@@ -385,10 +385,10 @@ stringByRelativePath(NSString *relativePath) {
     [bottomBarStyle addEntriesFromDictionary:uidict];
     
     MFDelegate *delegate = (MFDelegate *)[UIApplication sharedApplication].delegate;
-    [delegate.lastMonacaViewController.tabBarController.navigationController setToolbarHidden:YES];
+    [delegate.viewController.tabBarController.navigationController setToolbarHidden:YES];
     self.delegate = self;
     
-    CGRect frame = delegate.lastMonacaViewController.cdvViewController.webView.frame;
+    CGRect frame = delegate.viewController.cdvViewController.webView.frame;
     
     NSMutableArray *controllers = [NSMutableArray array];
     NSArray *items = [bottomBarStyle objectForKey:kNCTypeItems];
@@ -399,7 +399,7 @@ stringByRelativePath(NSString *relativePath) {
         [style addEntriesFromDictionary:[item objectForKey:kNCTypeStyle]];
         [style addEntriesFromDictionary:[item objectForKey:kNCTypeIOSStyle]];
         
-        // Setup a view controller in the tab controller.
+        // Setup a view controller in the tab contoller.
         UIViewController *controller = [[UIViewController alloc] init];
         [controller.view setAutoresizesSubviews:YES];
         controller.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
@@ -415,7 +415,7 @@ stringByRelativePath(NSString *relativePath) {
         [self.ncManager setComponent:controller.tabBarItem forID:cid];
         i++;
     }
-    [((UIViewController *)[controllers objectAtIndex:0]).view addSubview:delegate.lastMonacaViewController.cdvViewController.webView];
+    [((UIViewController *)[controllers objectAtIndex:0]).view addSubview:delegate.viewController.cdvViewController.webView];
     
     NSString *tabbarId = [bottomBarStyle objectForKey:kNCTypeID];
     if (tabbarId != nil) {
@@ -430,29 +430,29 @@ stringByRelativePath(NSString *relativePath) {
     self.activeIndex = [[style objectForKey:kNCStyleActiveIndex] intValue];
     if (!isInitialized_) {
         [self setSelectedIndex:self.activeIndex];
-        [delegate.lastMonacaViewController.cdvViewController.webView removeFromSuperview];
-        [((UIViewController *)[controllers objectAtIndex:self.activeIndex]).view addSubview:delegate.lastMonacaViewController.cdvViewController.webView];
+        [delegate.viewController.cdvViewController.webView removeFromSuperview];
+        [((UIViewController *)[controllers objectAtIndex:self.activeIndex]).view addSubview:delegate.viewController.cdvViewController.webView];
             // タブバーが存在し、かつ activeIndex が指定されている場合はその html ファイルを読む
         NSString *containerType = [bottomBarStyle objectForKey:kNCTypeContainer];
         if ([containerType isEqualToString:kNCContainerTabbar]) {
             NSMutableDictionary *style = [bottomBarStyle objectForKey:kNCTypeStyle];
             NSArray *items = [bottomBarStyle objectForKey:kNCTypeItems];
             int activeIndex = [[style objectForKey:kNCStyleActiveIndex] intValue];
-            NSString *dirpath = [delegate.lastMonacaViewController.previousPath stringByDeletingLastPathComponent];
+            NSString *dirpath = [delegate.viewController.previousPath stringByDeletingLastPathComponent];
             NSString *linkpath = [[items objectAtIndex:activeIndex] objectForKey:kNCTypeLink];
-            if ([delegate.lastMonacaViewController.previousPath lastPathComponent] != [linkpath lastPathComponent]) {
+            if ([delegate.viewController.previousPath lastPathComponent] != [linkpath lastPathComponent]) {
                 // 初回表示時activeIndexが0以外の場合には、ここで指定してpreviousPathをactiveIndexの示すパスに対応させる。
                 NSString *filepath = [NSString stringWithFormat:@"%@/%@", dirpath, [[items objectAtIndex:activeIndex] objectForKey:kNCTypeLink]];
-                delegate.lastMonacaViewController.previousPath = filepath;
-                delegate.lastMonacaViewController.cdvViewController.webView.tag = kWebViewIgnoreStyle;
-                [delegate.lastMonacaViewController.cdvViewController.webView loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:filepath]]];
+                delegate.viewController.previousPath = filepath;
+                delegate.viewController.cdvViewController.webView.tag = kWebViewIgnoreStyle;
+                [delegate.viewController.cdvViewController.webView loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:filepath]]];
             }
         }
         isInitialized_ = YES;
     }
     
     // Resize the webview because |setViewController| method modified the size.
-    delegate.lastMonacaViewController.cdvViewController.webView.frame = frame;
+    delegate.viewController.cdvViewController.webView.frame = frame;
     
     [self showTabBar:!isFalse([style objectForKey:kNCStyleVisibility])];
 }
@@ -470,7 +470,7 @@ stringByRelativePath(NSString *relativePath) {
     if ([style objectForKey:kNCStyleActiveIndex]) {
         [tabbarController setSelectedIndex:[[style objectForKey:kNCStyleActiveIndex] intValue]];
         MFDelegate *delegate = (MFDelegate *)[UIApplication sharedApplication].delegate;
-        [tabbarController tabBarController:tabbarController didSelectViewController:delegate.lastMonacaViewController];
+        [tabbarController tabBarController:tabbarController didSelectViewController:delegate.viewController];
     }
 }
 
@@ -480,8 +480,8 @@ stringByRelativePath(NSString *relativePath) {
         isLocked = YES;
 
         MFDelegate *delegate = (MFDelegate *)[UIApplication sharedApplication].delegate;
-        [delegate.lastMonacaViewController.cdvViewController.webView removeFromSuperview];
-        [viewController.view addSubview:delegate.lastMonacaViewController.cdvViewController.webView];
+        [delegate.viewController.cdvViewController.webView removeFromSuperview];
+        [viewController.view addSubview:delegate.viewController.cdvViewController.webView];
 
         self.activeIndex = self.selectedIndex;
         NSArray *items = [[self dictionaryWithBottomBar] objectForKey:kNCTypeItems];
@@ -490,8 +490,8 @@ stringByRelativePath(NSString *relativePath) {
 
         // Load link url page.
         NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:linkpath]];
-        delegate.lastMonacaViewController.cdvViewController.webView.tag = kWebViewIgnoreStyle;
-        [delegate.lastMonacaViewController.cdvViewController.webView loadRequest:request];
+        delegate.viewController.cdvViewController.webView.tag = kWebViewIgnoreStyle;
+        [delegate.viewController.cdvViewController.webView loadRequest:request];
     }
     self.selectedIndex = self.activeIndex;
 }

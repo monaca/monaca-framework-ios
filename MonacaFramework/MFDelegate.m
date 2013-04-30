@@ -28,6 +28,7 @@
 
 @synthesize monacaNavigationController = monacaNavigationController_;
 @synthesize window;
+@synthesize viewController = viewController_;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -55,10 +56,10 @@
     }
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    MFViewController *viewController = [[MFViewController alloc] initWithFileName:@"index.html"];
-    [MFUtility setupMonacaViewController:viewController];
+    self.viewController = [[MFViewController alloc] initWithFileName:@"index.html"];
+    [MFUtility setupMonacaViewController:self.viewController];
     
-    self.monacaNavigationController = [[MFNavigationController alloc] initWithRootViewController:viewController];
+    self.monacaNavigationController = [[MFNavigationController alloc] initWithRootViewController:self.viewController];
     
     // register protocols.
     [NSURLProtocol registerClass:[MonacaQueryParamURLProtocol class]];
@@ -78,14 +79,6 @@
     [MFUtility setMonacaCloudCookie];
 
     return YES;
-}
-
-- (MFViewController *)lastMonacaViewController {
-    return self.monacaNavigationController.lastMonacaViewController;
-}
-
-- (MFViewController *)currentMonacaViewControllerOrNil {
-    return self.monacaNavigationController.currentMonacaViewControllerOrNil;
 }
 
 - (NSURL *)getBaseURL {
@@ -156,7 +149,7 @@
     [[NSUserDefaults standardUserDefaults] setObject:extraJson forKey:@"extraJSON"];
     application.applicationIconBadgeNumber = 0;
 
-    [self.monacaNavigationController.lastMonacaViewController sendPush];
+    [self.viewController sendPush];
 }
 
 @end

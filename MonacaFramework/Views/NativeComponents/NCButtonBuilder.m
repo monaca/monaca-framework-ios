@@ -45,7 +45,7 @@ updateButton(UIBarButtonItem *button, NSDictionary *style) {
 
     if (innerImagePath && ![innerImagePath isEqual:[NSNull null]]) {
         MFDelegate *mfDelegate = (MFDelegate *)[UIApplication sharedApplication].delegate;
-        NSString *currentDirectory = [mfDelegate.lastMonacaViewController.previousPath stringByDeletingLastPathComponent];
+        NSString *currentDirectory = [mfDelegate.viewController.previousPath stringByDeletingLastPathComponent];
         NSString *imagePath = [currentDirectory stringByAppendingPathComponent:innerImagePath];
         UIImage *image = [UIImage imageWithContentsOfFile:imagePath];
         if (image) {
@@ -82,7 +82,7 @@ updateButton(UIBarButtonItem *button, NSDictionary *style) {
     NSString *imageName = [style objectForKey:kNCStyleImage];
     if (imageName && ![imageName isEqual:[NSNull null]]) {
         MFDelegate *mfDelegate = (MFDelegate *)[UIApplication sharedApplication].delegate;
-        NSString *currentDirectory = [mfDelegate.lastMonacaViewController.previousPath stringByDeletingLastPathComponent];
+        NSString *currentDirectory = [mfDelegate.viewController.previousPath stringByDeletingLastPathComponent];
         NSString *imagePath = [currentDirectory stringByAppendingPathComponent:imageName];
         UIImage *image = [UIImage imageWithContentsOfFile:imagePath];
         
@@ -157,7 +157,7 @@ updateViewDictionary(NSDictionary *style) {
     // 色などを設定する。置き換わったかどうかの判定には tag を用いる。ツールバーへの追加時にtag に
     // 値 (kUpdatedTag) をセットしておき、tag にその値がセットされていない view がいたらそれが置き換わった view である。
     if (cid != nil) {
-        UINavigationController *navController = delegate.lastMonacaViewController.tabBarController.navigationController;
+        UINavigationController *navController = delegate.viewController.tabBarController.navigationController;
         for (UIView *toolbar in navController.navigationBar.subviews) {
             for (UIView *view in toolbar.subviews) {
                 if (isButtonView(view) && view.tag != kUpdatedTag) {

@@ -89,7 +89,7 @@ isEmpty(NCTitleLabel *label) {
     [super setFrame:CGRectMake(0, 0, 0, height)];
 
     CGPoint center = self.center;
-    CGPoint naviCenter = delegate.lastMonacaViewController.tabBarController.navigationController.navigationBar.center;
+    CGPoint naviCenter = delegate.viewController.tabBarController.navigationController.navigationBar.center;
     self.center = CGPointMake(naviCenter.x, center.y);
 
     if (UIInterfaceOrientationIsLandscape([MFUtility currentInterfaceOrientation])) {

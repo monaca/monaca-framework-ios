@@ -20,8 +20,9 @@
 - (NSURL *)getBaseURL;
 - (UIInterfaceOrientation)currentInterfaceOrientation;
 - (NSDictionary *)getApplicationPlist;
-- (MFViewController *)lastMonacaViewController;
-- (MFViewController *)currentMonacaViewControllerOrNil;
+
+// Actually, |viewController| has MonavaViewController object.
+@property (nonatomic, readwrite, retain) IBOutlet MFViewController *viewController;
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property(nonatomic, retain) MFNavigationController *monacaNavigationController;
