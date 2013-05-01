@@ -261,7 +261,7 @@
     NSMutableArray *controllers;
     
     if ([clearAll isKindOfClass:NSNumber.class] && [clearAll isEqualToNumber:[NSNumber numberWithBool:YES]]) {
-        controllers = [NSMutableArray arrayWithObject:self.viewController];
+        controllers = [NSMutableArray arrayWithObject:self.monacaNavigationController.viewControllers.lastObject];
     } else {
         controllers = [NSMutableArray arrayWithArray:self.monacaNavigationController.viewControllers];
         if (controllers.count > 1) {
