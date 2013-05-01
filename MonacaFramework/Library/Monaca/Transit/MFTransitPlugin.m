@@ -13,6 +13,7 @@
 #import "MFTabBarController.h"
 #import "MFUtility.h"
 #import "MFTransitPushParameter.h"
+#import "MFTransitPopParameter.h"
 
 #define kMonacaTransitPluginJsReactivate @"window.onReactivate"
 #define kMonacaTransitPluginOptionUrl @"url"
@@ -196,6 +197,25 @@
     }
 }
 
+// pop処理を一手に担う
+- (void)popGenerically:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options
+{
+    MFTransitPopParameter* parameter = [MFTransitPopParameter parseOptionsDict:options];
+
+    MFNavigationController *nav = [self monacaNavigationController];
+    if (parameter.transition != nil) {
+        [nav.view.layer addAnimation:parameter.transition forKey:kCATransition];
+    }
+    MFViewController *vc = (MFViewController*)[nav popViewControllerAnimated:parameter.hasDefaultPopAnimation];
+    [vc destroy];
+
+    BOOL res = [[self class] changeDelegate:[[nav viewControllers] lastObject]];
+    if (res) {
+        NSString *command =[NSString stringWithFormat:@"%@ && %@();", kMonacaTransitPluginJsReactivate, kMonacaTransitPluginJsReactivate];
+        [self writeJavascriptOnDelegateViewController:command];
+    }
+}
+
 #pragma mark - plugins methods
 
 
@@ -217,46 +237,12 @@
 
 - (void)pop:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options
 {
-    BOOL isAnimated = YES;
-    id animationParam = [options objectForKey:@"animation"];
-    if ([animationParam isKindOfClass:NSNumber.class]) {
-        NSNumber *animationNumber = (NSNumber*)animationNumber;
-        // case for {animation : false}
-        if (!animationNumber) {
-            isAnimated = NO;
-        }
-    }
-    
-    MFNavigationController *nav = [self monacaNavigationController];
-    MFViewController *vc = (MFViewController*)[nav popViewControllerAnimated:isAnimated];
-    [vc destroy];
-
-    BOOL res = [[self class] changeDelegate:[[nav viewControllers] lastObject]];
-    if (res) {
-        NSString *command =[NSString stringWithFormat:@"%@ && %@();", kMonacaTransitPluginJsReactivate, kMonacaTransitPluginJsReactivate];
-        [self writeJavascriptOnDelegateViewController:command];
-    }
+    [self popGenerically:arguments withDict:options];
 }
 
 - (void)dismiss:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options
 {
-
-    CATransition *transition = [CATransition animation];
-    transition.duration = 0.4f;
-    transition.type = kCATransitionReveal;
-    transition.subtype = kCATransitionFromBottom;
-    [transition setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionDefault]];
-
-    MFNavigationController *nav = [self monacaNavigationController];
-    [nav.view.layer addAnimation:transition forKey:kCATransition];
-    MFViewController *vc = (MFViewController*)[nav popViewControllerAnimated:NO];
-    [vc destroy];
-
-    BOOL res = [[self class] changeDelegate:[[nav viewControllers] lastObject]];
-    if (res) {
-        NSString *command =[NSString stringWithFormat:@"%@ && %@();", kMonacaTransitPluginJsReactivate, kMonacaTransitPluginJsReactivate];
-        [self writeJavascriptOnDelegateViewController:command];
-    }
+    [self popGenerically:arguments withDict:options];
 }
 
 - (void)home:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options
@@ -301,7 +287,7 @@
     [[self monacaDelegate].viewController.cdvViewController.webView loadRequest:[self createRequest:urlStringWithoutQuery withQuery:query]];
 }
 
-- (NSString *) buildQuery:(NSDictionary *)jsonQueryParams urlString:(NSString *)urlString
+- (NSString*) buildQuery:(NSDictionary *)jsonQueryParams urlString:(NSString *)urlString
 {
     NSString *query = @"";
     NSArray *array = [urlString componentsSeparatedByString:@"?"];
@@ -330,7 +316,7 @@
     return [query isEqualToString:@""]?nil:query;
 }
 
-- (NSString *) getQueryFromPluginArguments:(NSMutableArray *)arguments urlString:(NSString *)aUrlString{
+- (NSString*) getQueryFromPluginArguments:(NSMutableArray *)arguments urlString:(NSString *)aUrlString{
     NSString *query = nil;
     if (arguments.count > 2 && ![[arguments objectAtIndex:2] isEqual:[NSNull null]]){
         query = [self buildQuery:[arguments objectAtIndex:2] urlString:aUrlString];

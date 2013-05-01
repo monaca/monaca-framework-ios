@@ -43,28 +43,6 @@
     return hasDefaultPushAnimation_;
 }
 
-+ (CATransition*)parseTransition:(NSDictionary*)options
-{
-    id animationParam = [options objectForKey:@"animation"];
-    
-    if (animationParam == nil) {
-        return nil;
-    }
-    
-    if ([animationParam isKindOfClass:NSString.class]) {
-        NSString *animationName = (NSString*)animationParam;
-        if ([animationName isEqualToString:@"slide"]) {
-            return nil;
-        }
-    }
-    
-    if ([animationParam isKindOfClass:NSNumber.class]) {
-        
-    }
-    
-    return nil;
-}
-
 + (MFTransitPushParameter*)parseOptionsDict:(NSDictionary*)options
 {
     CATransition* transition = nil;
