@@ -29,4 +29,6 @@
 - (NSString *) getQueryFromPluginArguments:(NSMutableArray *)arguments urlString:(NSString *)aUrlString;
 - (void)setupViewController:(MFViewController *)viewController options:(NSDictionary *)options;
 - (NSURLRequest *)createRequest:(NSString *)urlString withQuery:(NSString *)query;
+- (BOOL)isValidString:(NSString*)urlString;
+- (BOOL)isValidOptions:(NSDictionary*)options;
 @end
