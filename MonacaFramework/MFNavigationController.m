@@ -26,6 +26,13 @@
     return YES;
 }
 
+- (UIViewController *)popViewControllerAnimated:(BOOL)animated
+{
+    id viewController = [super popViewControllerAnimated:animated];
+    [viewController destroy];
+    return viewController;
+}
+
 - (NSUInteger)supportedInterfaceOrientations
 {
     UIInterfaceOrientationMask mask = nil;

@@ -29,6 +29,7 @@
         self.wwwFolderName = @"www";
         self.startPage = fileName;
         self.ncManager = [[NCManager alloc] init];
+        _deallocFlag = NO;
         
         self.wantsFullScreenLayout = NO;
     }
@@ -47,6 +48,13 @@
     [MFUtility setCurrentViewController:self];
 
     [super viewDidAppear:animated];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    if (_deallocFlag) {
+        [self releaseWebView];
+    }
 }
 
 - (void)viewDidLoad
@@ -146,8 +154,17 @@
     return [super webView:webView shouldStartLoadWithRequest:request navigationType:navigationType];
 }
 
+- (void)releaseWebView {
+    if (self && self.webView) {
+        [self.webView loadHTMLString:@"" baseURL:nil];
+        self.webView.delegate = nil; // 解放しておかないとTransitを繰り返すとアプリが固まる
+        self.webView = nil; // 解放しておかないとWebViewが増え続ける
+        [self.webView removeFromSuperview];
+    }
+}
+
 - (void)destroy {
-    [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"about:blank"]]];
+    _deallocFlag = YES;
 }
 
 @end

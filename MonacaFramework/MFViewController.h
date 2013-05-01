@@ -15,6 +15,7 @@
     NSString *_previousPath;
     NCManager *_ncManager_;
     NSDictionary *_uiDict;
+    BOOL _deallocFlag;
 }
 - (void)applyUserInterface:(NSDictionary *)uidict;
 - (id)initWithFileName:(NSString *)fileName;
