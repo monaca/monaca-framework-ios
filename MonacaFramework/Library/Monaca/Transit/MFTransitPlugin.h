@@ -18,6 +18,7 @@
 + (void)webViewDidFinishLoad:(UIWebView*)theWebView viewController:(MFViewController *)viewController;
 
 - (NSString *)getRelativePathTo:(NSString *)filePath;
+
 - (void)push:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options;
 - (void)pop:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options;
 - (void)modal:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options;
@@ -25,6 +26,8 @@
 - (void)home:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options;
 - (void)browse:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options;
 - (void)link:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options;
+- (void)clearPageStack:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options;
+
 - (NSString *) buildQuery:(NSDictionary *)jsonQueryParams urlString:(NSString *)urlString;
 - (NSString *) getQueryFromPluginArguments:(NSMutableArray *)arguments urlString:(NSString *)aUrlString;
 - (void)setupViewController:(MFViewController *)viewController options:(NSDictionary *)options;

@@ -25,15 +25,15 @@
 
 - (MFDelegate *)monacaDelegate
 {
-    return (MFDelegate *)[self appDelegate];
+    return (MFDelegate *)self.appDelegate;
 }
 
 - (MFNavigationController *)monacaNavigationController
 {
-    return [[self monacaDelegate] monacaNavigationController];
+    return self.monacaDelegate.monacaNavigationController;
 }
 
-- (NSURL *)createUrl:(NSString*)urlString withQuery:(NSString *)query
+- (NSURLRequest *)createRequest:(NSString *)urlString withQuery:(NSString *)query
 {
     NSString *path, *fragment = nil;
     // separate to path and fragment
@@ -59,12 +59,6 @@
         url = [NSURL URLWithString:[@"monaca404:///www/" stringByAppendingPathComponent:urlString]];
     }
     
-    return url;
-}
-
-- (NSURLRequest *)createRequest:(NSString *)urlString withQuery:(NSString *)query
-{
-    NSURL *url = [self createUrl:urlString withQuery:query];
     return [NSURLRequest requestWithURL:url];
 }
 
@@ -159,7 +153,6 @@
     return [[array valueForKey:@"description"] componentsJoinedByString:@""];
 }
 
-// push処理を一手に担う
 - (void)pushGenerically:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options
 {
     NSString *urlString = [arguments objectAtIndex:1];
@@ -197,7 +190,6 @@
     }
 }
 
-// pop処理を一手に担う
 - (void)popGenerically:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options
 {
     MFTransitPopParameter* parameter = [MFTransitPopParameter parseOptionsDict:options];
@@ -261,6 +253,23 @@
         NSString *command =[NSString stringWithFormat:@"%@ && %@();", kMonacaTransitPluginJsReactivate, kMonacaTransitPluginJsReactivate];
         [self writeJavascript:command];
     }
+}
+
+- (void)clearPageStack:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options
+{
+    id clearAll = [arguments objectAtIndex:1];
+    NSMutableArray *controllers;
+    
+    if ([clearAll isKindOfClass:NSNumber.class] && [clearAll isEqualToNumber:[NSNumber numberWithBool:YES]]) {
+        controllers = [NSMutableArray arrayWithObject:self.viewController];
+    } else {
+        controllers = [NSMutableArray arrayWithArray:self.monacaNavigationController.viewControllers];
+        if (controllers.count > 1) {
+            [controllers removeObjectAtIndex:controllers.count - 2];
+        }
+    }
+    
+    [self.monacaNavigationController setViewControllers:controllers animated:NO];
 }
 
 - (void)popToHomeViewController:(BOOL)isAnimated
