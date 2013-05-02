@@ -42,12 +42,11 @@
         [MFEvent dispatchEvent:monacaEventNoUIFile withInfo:info];
         return nil;
     }
-    if (YES){
-        data = [data stringByReplacingOccurrencesOfString:@"((?:\".*?\"[^\"]*?)*)[\"]*(\\w+)[\"]*\\s*:"
-                                               withString:@"$1\"$2\":"
-                                                  options:NSRegularExpressionSearch
-                                                    range:NSMakeRange(0, [data length])];
-    }
+    data = [data stringByReplacingOccurrencesOfString:@"((?:\".*?\"[^\"]*?)*)[\"]*(\\w+)[\"]*\\s*:"
+                                           withString:@"$1\"$2\":"
+                                              options:NSRegularExpressionSearch
+                                                range:NSMakeRange(0, [data length])];
+    
     id jsonString = [data cdvjk_objectFromJSONStringWithParseOptions:CDVJKParseOptionStrict error:&error];
     
     // send log error

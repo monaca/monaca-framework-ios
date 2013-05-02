@@ -40,15 +40,14 @@
     }
 
     // for use getMonacaBundlePlist
-    if (YES) {
+    {
         Class klass = [CDVViewController class];
         Method old = class_getClassMethod(klass, @selector(getBundlePlist:));
         Method new = class_getClassMethod(klass, @selector(getMonacaBundlePlist:));
         method_exchangeImplementations(old, new);
     }
 
-    // local scope with if block
-    if (YES) {
+    {
         Class klass = [CDVSplashScreen class];
         Method old = class_getInstanceMethod(klass, @selector(__show:));
         Method new = class_getInstanceMethod(klass, @selector(__showMonacaSplashScreen:));
