@@ -35,7 +35,7 @@
 + (BOOL)isPhoneGapScheme:(NSURL *)url;
 + (BOOL)isExternalPage:(NSURL *)url;
 
-- (NSDictionary *)parseJSONFile:(NSString *)path;
+- (NSDictionary *)loadUIFile:(NSString *)path;
 - (id)initWithFileName:(NSString *)fileName;
 - (NSString*)removeFragment:(NSString *)fileName;
 - (void)setFixedInterfaceOrientation:(UIInterfaceOrientation)orientation;
