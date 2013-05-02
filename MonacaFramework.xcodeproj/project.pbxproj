@@ -371,6 +371,28 @@
 		3EE0E80B1664BA8200F1E677 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EE0E8091664B78000F1E677 /* AssetsLibrary.framework */; };
 		3EE0E80C1664BA9200F1E677 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EE0E8071664B69300F1E677 /* CoreVideo.framework */; };
 		3EF566AF168ECCD800DE569B /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EBC68C41664D23000244FE1 /* libiconv.dylib */; };
+		F1413239173200FE00B10D0D /* CDVInnovationPlusPlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = F1413226173200FE00B10D0D /* CDVInnovationPlusPlugin.h */; };
+		F141323A173200FE00B10D0D /* CDVInnovationPlusPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = F1413227173200FE00B10D0D /* CDVInnovationPlusPlugin.m */; };
+		F141323B173200FE00B10D0D /* CDVInnovationPlusPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = F1413227173200FE00B10D0D /* CDVInnovationPlusPlugin.m */; };
+		F141323C173200FE00B10D0D /* CDVInnovationPlusPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = F1413227173200FE00B10D0D /* CDVInnovationPlusPlugin.m */; };
+		F141323D173200FE00B10D0D /* DebugLog.h in Headers */ = {isa = PBXBuildFile; fileRef = F1413229173200FE00B10D0D /* DebugLog.h */; };
+		F141323E173200FE00B10D0D /* IPPAppConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = F141322A173200FE00B10D0D /* IPPAppConfiguration.h */; };
+		F141323F173200FE00B10D0D /* IPPApplicationResourceClient.h in Headers */ = {isa = PBXBuildFile; fileRef = F141322B173200FE00B10D0D /* IPPApplicationResourceClient.h */; };
+		F1413240173200FE00B10D0D /* IPPDefaultClient.h in Headers */ = {isa = PBXBuildFile; fileRef = F141322C173200FE00B10D0D /* IPPDefaultClient.h */; };
+		F1413241173200FE00B10D0D /* IPPGeoLocationClient.h in Headers */ = {isa = PBXBuildFile; fileRef = F141322D173200FE00B10D0D /* IPPGeoLocationClient.h */; };
+		F1413242173200FE00B10D0D /* IPPJSONSerialization.h in Headers */ = {isa = PBXBuildFile; fileRef = F141322E173200FE00B10D0D /* IPPJSONSerialization.h */; };
+		F1413243173200FE00B10D0D /* IPPLoginClient.h in Headers */ = {isa = PBXBuildFile; fileRef = F141322F173200FE00B10D0D /* IPPLoginClient.h */; };
+		F1413244173200FE00B10D0D /* IPPProfileClient.h in Headers */ = {isa = PBXBuildFile; fileRef = F1413230173200FE00B10D0D /* IPPProfileClient.h */; };
+		F1413245173200FE00B10D0D /* IPPQueryResult.h in Headers */ = {isa = PBXBuildFile; fileRef = F1413231173200FE00B10D0D /* IPPQueryResult.h */; };
+		F1413246173200FE00B10D0D /* IPPRESTCore.h in Headers */ = {isa = PBXBuildFile; fileRef = F1413232173200FE00B10D0D /* IPPRESTCore.h */; };
+		F1413247173200FE00B10D0D /* IPPRESTKit.h in Headers */ = {isa = PBXBuildFile; fileRef = F1413233173200FE00B10D0D /* IPPRESTKit.h */; };
+		F1413248173200FE00B10D0D /* IPPSharedData.h in Headers */ = {isa = PBXBuildFile; fileRef = F1413234173200FE00B10D0D /* IPPSharedData.h */; };
+		F1413249173200FE00B10D0D /* NSDictionary+IPP.h in Headers */ = {isa = PBXBuildFile; fileRef = F1413235173200FE00B10D0D /* NSDictionary+IPP.h */; };
+		F141324A173200FE00B10D0D /* NSError+IPP.h in Headers */ = {isa = PBXBuildFile; fileRef = F1413236173200FE00B10D0D /* NSError+IPP.h */; };
+		F141324B173200FE00B10D0D /* UserLoginDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = F1413237173200FE00B10D0D /* UserLoginDelegate.h */; };
+		F141324C173200FE00B10D0D /* UserLoginDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F1413238173200FE00B10D0D /* UserLoginDelegate.m */; };
+		F141324D173200FE00B10D0D /* UserLoginDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F1413238173200FE00B10D0D /* UserLoginDelegate.m */; };
+		F141324E173200FE00B10D0D /* UserLoginDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F1413238173200FE00B10D0D /* UserLoginDelegate.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -515,6 +537,24 @@
 		D44C9E2A1592ED86006372F3 /* NCButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCButton.m; sourceTree = "<group>"; };
 		D44C9E2B1592ED86006372F3 /* NCSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCSearchBar.h; sourceTree = "<group>"; };
 		D44C9E2C1592ED86006372F3 /* NCSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCSearchBar.m; sourceTree = "<group>"; };
+		F1413226173200FE00B10D0D /* CDVInnovationPlusPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDVInnovationPlusPlugin.h; sourceTree = "<group>"; };
+		F1413227173200FE00B10D0D /* CDVInnovationPlusPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDVInnovationPlusPlugin.m; sourceTree = "<group>"; };
+		F1413229173200FE00B10D0D /* DebugLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugLog.h; sourceTree = "<group>"; };
+		F141322A173200FE00B10D0D /* IPPAppConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IPPAppConfiguration.h; sourceTree = "<group>"; };
+		F141322B173200FE00B10D0D /* IPPApplicationResourceClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IPPApplicationResourceClient.h; sourceTree = "<group>"; };
+		F141322C173200FE00B10D0D /* IPPDefaultClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IPPDefaultClient.h; sourceTree = "<group>"; };
+		F141322D173200FE00B10D0D /* IPPGeoLocationClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IPPGeoLocationClient.h; sourceTree = "<group>"; };
+		F141322E173200FE00B10D0D /* IPPJSONSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IPPJSONSerialization.h; sourceTree = "<group>"; };
+		F141322F173200FE00B10D0D /* IPPLoginClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IPPLoginClient.h; sourceTree = "<group>"; };
+		F1413230173200FE00B10D0D /* IPPProfileClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IPPProfileClient.h; sourceTree = "<group>"; };
+		F1413231173200FE00B10D0D /* IPPQueryResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IPPQueryResult.h; sourceTree = "<group>"; };
+		F1413232173200FE00B10D0D /* IPPRESTCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IPPRESTCore.h; sourceTree = "<group>"; };
+		F1413233173200FE00B10D0D /* IPPRESTKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IPPRESTKit.h; sourceTree = "<group>"; };
+		F1413234173200FE00B10D0D /* IPPSharedData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IPPSharedData.h; sourceTree = "<group>"; };
+		F1413235173200FE00B10D0D /* NSDictionary+IPP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+IPP.h"; sourceTree = "<group>"; };
+		F1413236173200FE00B10D0D /* NSError+IPP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+IPP.h"; sourceTree = "<group>"; };
+		F1413237173200FE00B10D0D /* UserLoginDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserLoginDelegate.h; sourceTree = "<group>"; };
+		F1413238173200FE00B10D0D /* UserLoginDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserLoginDelegate.m; sourceTree = "<group>"; };
 		F50460AC13B361730050803F /* MonacaFramework-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MonacaFramework-Prefix.pch"; sourceTree = "<group>"; };
 		F50460D813B3633B0050803F /* MFDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFDelegate.m; sourceTree = "<group>"; };
 		F50460DA13B3633B0050803F /* MFViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFViewController.m; sourceTree = "<group>"; };
@@ -872,6 +912,39 @@
 			path = ChildBrowser;
 			sourceTree = "<group>";
 		};
+		F1413225173200FE00B10D0D /* InnovationPlusPlugin */ = {
+			isa = PBXGroup;
+			children = (
+				F1413226173200FE00B10D0D /* CDVInnovationPlusPlugin.h */,
+				F1413227173200FE00B10D0D /* CDVInnovationPlusPlugin.m */,
+				F1413228173200FE00B10D0D /* Headers */,
+				F1413237173200FE00B10D0D /* UserLoginDelegate.h */,
+				F1413238173200FE00B10D0D /* UserLoginDelegate.m */,
+			);
+			path = InnovationPlusPlugin;
+			sourceTree = "<group>";
+		};
+		F1413228173200FE00B10D0D /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				F1413229173200FE00B10D0D /* DebugLog.h */,
+				F141322A173200FE00B10D0D /* IPPAppConfiguration.h */,
+				F141322B173200FE00B10D0D /* IPPApplicationResourceClient.h */,
+				F141322C173200FE00B10D0D /* IPPDefaultClient.h */,
+				F141322D173200FE00B10D0D /* IPPGeoLocationClient.h */,
+				F141322E173200FE00B10D0D /* IPPJSONSerialization.h */,
+				F141322F173200FE00B10D0D /* IPPLoginClient.h */,
+				F1413230173200FE00B10D0D /* IPPProfileClient.h */,
+				F1413231173200FE00B10D0D /* IPPQueryResult.h */,
+				F1413232173200FE00B10D0D /* IPPRESTCore.h */,
+				F1413233173200FE00B10D0D /* IPPRESTKit.h */,
+				F1413234173200FE00B10D0D /* IPPSharedData.h */,
+				F1413235173200FE00B10D0D /* NSDictionary+IPP.h */,
+				F1413236173200FE00B10D0D /* NSError+IPP.h */,
+			);
+			path = Headers;
+			sourceTree = "<group>";
+		};
 		F503A593146BE13800764D05 /* NativeComponents */ = {
 			isa = PBXGroup;
 			children = (
@@ -1025,6 +1098,7 @@
 		F5F31BDD14820C7800C40C0B /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				F1413225173200FE00B10D0D /* InnovationPlusPlugin */,
 				3EB9B3F9161455B600E5F32C /* PhoneGap-plugins */,
 				F54CEB541500D1A000516444 /* Monaca */,
 				F54CEB581500D1A000516444 /* Vendor */,
@@ -1115,6 +1189,22 @@
 				3E4E8AEB16AD122200653A9F /* MonacaNoCacheURLProtocol.h in Headers */,
 				3E4E8AEF16AD122200653A9F /* MonacaQueryParamURLProtocol.h in Headers */,
 				3E4E8B0516AD14A500653A9F /* MFJSInterfaceProtocol.h in Headers */,
+				F1413239173200FE00B10D0D /* CDVInnovationPlusPlugin.h in Headers */,
+				F141323D173200FE00B10D0D /* DebugLog.h in Headers */,
+				F141323E173200FE00B10D0D /* IPPAppConfiguration.h in Headers */,
+				F141323F173200FE00B10D0D /* IPPApplicationResourceClient.h in Headers */,
+				F1413240173200FE00B10D0D /* IPPDefaultClient.h in Headers */,
+				F1413241173200FE00B10D0D /* IPPGeoLocationClient.h in Headers */,
+				F1413242173200FE00B10D0D /* IPPJSONSerialization.h in Headers */,
+				F1413243173200FE00B10D0D /* IPPLoginClient.h in Headers */,
+				F1413244173200FE00B10D0D /* IPPProfileClient.h in Headers */,
+				F1413245173200FE00B10D0D /* IPPQueryResult.h in Headers */,
+				F1413246173200FE00B10D0D /* IPPRESTCore.h in Headers */,
+				F1413247173200FE00B10D0D /* IPPRESTKit.h in Headers */,
+				F1413248173200FE00B10D0D /* IPPSharedData.h in Headers */,
+				F1413249173200FE00B10D0D /* NSDictionary+IPP.h in Headers */,
+				F141324A173200FE00B10D0D /* NSError+IPP.h in Headers */,
+				F141324B173200FE00B10D0D /* UserLoginDelegate.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1349,6 +1439,8 @@
 				3E4E8AF216AD122200653A9F /* MonacaQueryParamURLProtocol.m in Sources */,
 				3E4E8B0816AD14A500653A9F /* MFJSInterfaceProtocol.m in Sources */,
 				3E4E8B0E16AD14F500653A9F /* MFJSInterfaceProtocolTest.m in Sources */,
+				F141323C173200FE00B10D0D /* CDVInnovationPlusPlugin.m in Sources */,
+				F141324E173200FE00B10D0D /* UserLoginDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1427,6 +1519,8 @@
 				3E4E8AEC16AD122200653A9F /* MonacaNoCacheURLProtocol.m in Sources */,
 				3E4E8AF016AD122200653A9F /* MonacaQueryParamURLProtocol.m in Sources */,
 				3E4E8B0616AD14A500653A9F /* MFJSInterfaceProtocol.m in Sources */,
+				F141323A173200FE00B10D0D /* CDVInnovationPlusPlugin.m in Sources */,
+				F141324C173200FE00B10D0D /* UserLoginDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1506,6 +1600,8 @@
 				3E4E8AED16AD122200653A9F /* MonacaNoCacheURLProtocol.m in Sources */,
 				3E4E8AF116AD122200653A9F /* MonacaQueryParamURLProtocol.m in Sources */,
 				3E4E8B0716AD14A500653A9F /* MFJSInterfaceProtocol.m in Sources */,
+				F141323B173200FE00B10D0D /* CDVInnovationPlusPlugin.m in Sources */,
+				F141324D173200FE00B10D0D /* UserLoginDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
