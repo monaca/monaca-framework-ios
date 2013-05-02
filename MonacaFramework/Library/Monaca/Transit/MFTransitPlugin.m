@@ -153,15 +153,65 @@
     [viewController.cdvViewController.webView loadRequest:[self createRequest:urlStringWithoutQuery withQuery:query]];
 
     [self setupViewController:viewController options:options];
-    [[self class] changeDelegate:viewController];
+    [self.class changeDelegate:viewController];
+    
+    BOOL isAnimated = YES;
+    id animationParam = [options objectForKey:@"animation"];
+    
+    if ([animationParam isKindOfClass:NSNumber.class]) {
+        NSNumber *animationNumber = (NSNumber*)animationNumber;
+        // case for animation : false
+        if (!animationNumber) {
+            isAnimated = NO;
+        }
+    }
 
-    [[self monacaNavigationController] pushViewController:viewController animated:YES];
+    [[self monacaNavigationController] pushViewController:viewController animated:isAnimated];
+}
+
+
+- (void)slideRight:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options
+{
+    NSString *urlString = [arguments objectAtIndex:1];
+    if (![self isValidOptions:options] || ![self isValidString:urlString]) {
+        return;
+    }
+    
+    NSString *relativeUrlString = [self getRelativePathTo:urlString];
+    NSString *query = [self getQueryFromPluginArguments:arguments urlString:relativeUrlString];
+    NSString *urlStringWithoutQuery = [[relativeUrlString componentsSeparatedByString:@"?"] objectAtIndex:0];
+    
+    MFViewController *viewController = [[MFViewController alloc] initWithFileName:urlStringWithoutQuery];
+    MFNavigationController *nav = [self monacaNavigationController];
+    
+    [viewController.cdvViewController.webView loadRequest:[self createRequest:urlStringWithoutQuery withQuery:query]];
+    [self setupViewController:viewController options:options];
+    [self.class changeDelegate:viewController];
+    
+    CATransition *transition = [CATransition animation];
+    transition.duration = 0.4f;
+    transition.type = kCATransitionPush;
+    transition.subtype = kCATransitionFromLeft;
+    [transition setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionDefault]];
+    
+    [nav.view.layer addAnimation:transition forKey:kCATransition];
+    [nav pushViewController:viewController animated:NO];
 }
 
 - (void)pop:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options
 {
+    BOOL isAnimated = YES;
+    id animationParam = [options objectForKey:@"animation"];
+    if ([animationParam isKindOfClass:NSNumber.class]) {
+        NSNumber *animationNumber = (NSNumber*)animationNumber;
+        // case for {animation : false}
+        if (!animationNumber) {
+            isAnimated = NO;
+        }
+    }
+    
     MFNavigationController *nav = [self monacaNavigationController];
-    MFViewController *vc = (MFViewController*)[nav popViewControllerAnimated:YES];
+    MFViewController *vc = (MFViewController*)[nav popViewControllerAnimated:isAnimated];
     [vc destroy];
 
     BOOL res = [[self class] changeDelegate:[[nav viewControllers] lastObject]];
@@ -309,7 +359,9 @@
 
 - (BOOL)isValidOptions:(NSDictionary *)options {
     for (NSString *key in options) {
-        if (((NSString *)[options objectForKey:key]).length > 512) {
+        NSObject *option = [options objectForKey:key];
+        
+        if ([option isKindOfClass:NSString.class] && ((NSString *)option).length > 512) {
             NSLog(@"[error] MonacaTransitException::Too long option length:%@, %@", key, [options objectForKey:key]);
             return NO;
         }
