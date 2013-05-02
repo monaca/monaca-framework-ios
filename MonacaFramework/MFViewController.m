@@ -236,7 +236,6 @@
     [tabBarController applyUserInterface:uiSetting];
     
     [self initPlugins]; // 画面を消す手前でdestroyを実行すること
-
 }
 
 - (void)viewDidUnload {
@@ -361,6 +360,15 @@
                 
                 // when use splash screen, dosen't show native component. @see monacaSplashScreen.
                 uiSetting = [NSMutableDictionary dictionaryWithDictionary:uiDict];
+                
+                // setting for page style.
+                id dict = [uiDict objectForKey:@"style"];
+                if ([dict isKindOfClass:NSDictionary.class]) {
+                    styleDict_ = [NSMutableDictionary dictionaryWithDictionary:(NSDictionary *)dict];
+                } else {
+                    styleDict_ = nil;
+                }
+                [self applyStyleDict];
 
             } else {
                 cdvViewController.webView.tag = kWebViewNormal;
@@ -387,6 +395,20 @@
     NSString *js = [NSString stringWithFormat:@"monaca.cloud.Push.send(%@);", [[NSUserDefaults standardUserDefaults] objectForKey:@"extraJSON"]];
     [self.cdvViewController.webView stringByEvaluatingJavaScriptFromString:js];
     [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"extraJSON"];
+}
+
+- (void)applyStyleDict
+{
+    // "backgroundColor" setting
+    {
+        id colorString = [styleDict_ objectForKey:kNCStyleBackgroundColor];
+        if ([colorString isKindOfClass:NSString.class]) {
+            UIColor *color = hexToUIColor(removeSharpPrefix(colorString), 1);
+            [self setupBackgroundColor:color];
+        } else {
+            [self setupBackgroundColor:UIColor.whiteColor];
+        }
+    }
 }
 
 - (void) webViewDidFinishLoad:(UIWebView*) theWebView 
@@ -514,5 +536,40 @@
     [self resetPlugins];
     [self releaseWebView];
 }
+
+#pragma mark - Other methods
+
+// Setup page's background color
+-(void)setupBackgroundColor:(UIColor *)color
+{
+    self.cdvViewController.webView.backgroundColor = [UIColor clearColor];
+    self.cdvViewController.webView.opaque = NO;
+    
+    UIScrollView *scrollView = nil;
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] < 5.0f) {
+        for (UIView *subview in [self.cdvViewController.webView subviews]) {
+            if ([[subview.class description] isEqualToString:@"UIScrollView"]) {
+                scrollView = (UIScrollView *)subview;
+            }
+        }
+    } else {
+        scrollView = (UIScrollView *)[self.cdvViewController.webView scrollView];
+    }
+    
+    if (scrollView) {
+        scrollView.opaque = NO;
+        scrollView.backgroundColor = [UIColor clearColor];
+        // Remove shadow
+        for (UIView *subview in [scrollView subviews]) {
+            if([subview isKindOfClass:[UIImageView class]]){
+                subview.hidden = YES;
+            }
+        }
+    }
+    
+    self.view.opaque = YES;
+    self.view.backgroundColor = color;
+}
+
 
 @end
