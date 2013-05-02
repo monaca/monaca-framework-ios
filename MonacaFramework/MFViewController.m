@@ -237,8 +237,6 @@
     
     [self initPlugins]; // 画面を消す手前でdestroyを実行すること
 
-    // transit
-    [MFTransitPlugin viewDidLoad:self];
 }
 
 - (void)viewDidUnload {
@@ -401,7 +399,6 @@
     }
 
     [MFEvent dispatchEvent:monacaEventDidLoadUIFile withInfo:nil];
-    [MFTransitPlugin webViewDidFinishLoad:theWebView viewController:self];
     
     withinSinglePage = NO;
 

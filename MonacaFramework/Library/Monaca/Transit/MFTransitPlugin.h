@@ -14,8 +14,6 @@
 @interface MFTransitPlugin : CDVPlugin
 
 + (BOOL)changeDelegate:(UIViewController *)viewController;
-+ (void)viewDidLoad:(MFViewController *)viewController;
-+ (void)webViewDidFinishLoad:(UIWebView*)theWebView viewController:(MFViewController *)viewController;
 
 - (NSString *)getRelativePathTo:(NSString *)filePath;
 
