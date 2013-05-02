@@ -37,6 +37,7 @@
 
 - (NSDictionary *)parseJSONFile:(NSString *)path;
 - (id)initWithFileName:(NSString *)fileName;
+- (NSString*)removeFragment:(NSString *)fileName;
 - (void)setFixedInterfaceOrientation:(UIInterfaceOrientation)orientation;
 - (UIInterfaceOrientation)getFixedInterfaceOrientation;
 - (void)setInterfaceOrientationUnspecified:(BOOL)flag;
