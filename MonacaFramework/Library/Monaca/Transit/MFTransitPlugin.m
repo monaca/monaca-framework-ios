@@ -12,6 +12,8 @@
 #import "MFViewController.h"
 #import "MFTabBarController.h"
 #import "MFUtility.h"
+#import "MFTransitPushParameter.h"
+#import "MFTransitPopParameter.h"
 
 #define kMonacaTransitPluginJsReactivate @"window.onReactivate"
 #define kMonacaTransitPluginOptionUrl @"url"
@@ -23,25 +25,40 @@
 
 - (MFDelegate *)monacaDelegate
 {
-    return (MFDelegate *)[self appDelegate];
+    return (MFDelegate *)self.appDelegate;
 }
 
 - (MFNavigationController *)monacaNavigationController
 {
-    return [[self monacaDelegate] monacaNavigationController];
+    return self.monacaDelegate.monacaNavigationController;
 }
 
 - (NSURLRequest *)createRequest:(NSString *)urlString withQuery:(NSString *)query
 {
+    NSString *path, *fragment = nil;
+    // separate to path and fragment
+    {
+        NSArray *array = [urlString componentsSeparatedByString:@"#"];
+        path = [array objectAtIndex:0];
+        fragment = nil;
+        if (array.count > 1) {
+            fragment = [array objectAtIndex:1];
+        }
+    }
+    
     NSURL *url;
-    if ([self.commandDelegate pathForResource:urlString]){
-        url = [NSURL fileURLWithPath:[self.commandDelegate pathForResource:urlString]];
-        if ([[query class] isSubclassOfClass:[NSString class]]) {
+    if ([NSURL fileURLWithPath:[self.commandDelegate pathForResource:path]]) {
+        url = [NSURL fileURLWithPath:[self.commandDelegate pathForResource:path]];
+        if ([query.class isSubclassOfClass:[NSString class]]) {
             url = [NSURL URLWithString:[url.absoluteString stringByAppendingFormat:@"?%@", query]];
         }
-    }else {
+        if ([fragment.class isSubclassOfClass:[NSString class]]) {
+            url = [NSURL URLWithString:[url.absoluteString stringByAppendingFormat:@"#%@", fragment]];
+        }
+    } else {
         url = [NSURL URLWithString:[@"monaca404:///www/" stringByAppendingPathComponent:urlString]];
     }
+    
     return [NSURLRequest requestWithURL:url];
 }
 
@@ -136,138 +153,88 @@
     return [[array valueForKey:@"description"] componentsJoinedByString:@""];
 }
 
-#pragma mark - plugins methods
-
-- (void)push:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options
+- (void)pushGenerically:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options
 {
     NSString *urlString = [arguments objectAtIndex:1];
     if (![self isValidOptions:options] || ![self isValidString:urlString]) {
         return;
     }
-
+    
+    MFTransitPushParameter* parameter = [MFTransitPushParameter parseOptionsDict:options];
+    
     NSString *relativeUrlString = [self getRelativePathTo:urlString];
     NSString *query = [self getQueryFromPluginArguments:arguments urlString:relativeUrlString];
     NSString *urlStringWithoutQuery = [[relativeUrlString componentsSeparatedByString:@"?"] objectAtIndex:0];
 
     MFViewController *viewController = [[MFViewController alloc] initWithFileName:urlStringWithoutQuery];
     [viewController.cdvViewController.webView loadRequest:[self createRequest:urlStringWithoutQuery withQuery:query]];
-
+    
     [self setupViewController:viewController options:options];
     [self.class changeDelegate:viewController];
     
-    BOOL isAnimated = YES;
-    id animationParam = [options objectForKey:@"animation"];
+    UIViewController *previousController;
+    if (parameter.clearStack) {
+        previousController = [self.monacaNavigationController popViewControllerAnimated:NO];
+    }
     
-    if ([animationParam isKindOfClass:NSNumber.class]) {
-        NSNumber *animationNumber = (NSNumber*)animationNumber;
-        // case for animation : false
-        if (!animationNumber) {
-            isAnimated = NO;
+    if (parameter.transition != nil) {
+        [self.monacaNavigationController.view.layer addAnimation:parameter.transition forKey:kCATransition];
+    }
+    
+    [self.monacaNavigationController pushViewController:viewController animated:parameter.hasDefaultPushAnimation];
+    
+    if (parameter.clearStack) {
+        if (previousController == nil) {
+            [self.monacaNavigationController setViewControllers:[NSArray arrayWithObject:viewController] animated:NO];
         }
     }
+}
 
-    [[self monacaNavigationController] pushViewController:viewController animated:isAnimated];
+- (void)popGenerically:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options
+{
+    MFTransitPopParameter* parameter = [MFTransitPopParameter parseOptionsDict:options];
+
+    MFNavigationController *nav = [self monacaNavigationController];
+    if (parameter.transition != nil) {
+        [nav.view.layer addAnimation:parameter.transition forKey:kCATransition];
+    }
+    MFViewController *vc = (MFViewController*)[nav popViewControllerAnimated:parameter.hasDefaultPopAnimation];
+    [vc destroy];
+
+    BOOL res = [[self class] changeDelegate:[[nav viewControllers] lastObject]];
+    if (res) {
+        NSString *command =[NSString stringWithFormat:@"%@ && %@();", kMonacaTransitPluginJsReactivate, kMonacaTransitPluginJsReactivate];
+        [self writeJavascriptOnDelegateViewController:command];
+    }
+}
+
+#pragma mark - plugins methods
+
+
+- (void)push:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options
+{
+    [self pushGenerically:arguments withDict:options];
 }
 
 
 - (void)slideRight:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options
 {
-    NSString *urlString = [arguments objectAtIndex:1];
-    if (![self isValidOptions:options] || ![self isValidString:urlString]) {
-        return;
-    }
-    
-    NSString *relativeUrlString = [self getRelativePathTo:urlString];
-    NSString *query = [self getQueryFromPluginArguments:arguments urlString:relativeUrlString];
-    NSString *urlStringWithoutQuery = [[relativeUrlString componentsSeparatedByString:@"?"] objectAtIndex:0];
-    
-    MFViewController *viewController = [[MFViewController alloc] initWithFileName:urlStringWithoutQuery];
-    MFNavigationController *nav = [self monacaNavigationController];
-    
-    [viewController.cdvViewController.webView loadRequest:[self createRequest:urlStringWithoutQuery withQuery:query]];
-    [self setupViewController:viewController options:options];
-    [self.class changeDelegate:viewController];
-    
-    CATransition *transition = [CATransition animation];
-    transition.duration = 0.4f;
-    transition.type = kCATransitionPush;
-    transition.subtype = kCATransitionFromLeft;
-    [transition setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionDefault]];
-    
-    [nav.view.layer addAnimation:transition forKey:kCATransition];
-    [nav pushViewController:viewController animated:NO];
-}
-
-- (void)pop:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options
-{
-    BOOL isAnimated = YES;
-    id animationParam = [options objectForKey:@"animation"];
-    if ([animationParam isKindOfClass:NSNumber.class]) {
-        NSNumber *animationNumber = (NSNumber*)animationNumber;
-        // case for {animation : false}
-        if (!animationNumber) {
-            isAnimated = NO;
-        }
-    }
-    
-    MFNavigationController *nav = [self monacaNavigationController];
-    MFViewController *vc = (MFViewController*)[nav popViewControllerAnimated:isAnimated];
-    [vc destroy];
-
-    BOOL res = [[self class] changeDelegate:[[nav viewControllers] lastObject]];
-    if (res) {
-        NSString *command =[NSString stringWithFormat:@"%@ && %@();", kMonacaTransitPluginJsReactivate, kMonacaTransitPluginJsReactivate];
-        [self writeJavascriptOnDelegateViewController:command];
-    }
+    [self pushGenerically:arguments withDict:options];
 }
 
 - (void)modal:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options
 {
-    NSString *urlString = [arguments objectAtIndex:1];
-    if (![self isValidOptions:options] || ![self isValidString:urlString]) {
-        return;
-    }
+    [self pushGenerically:arguments withDict:options];
+}
 
-    NSString *relativeUrlString = [self getRelativePathTo:urlString];
-    NSString *query = [self getQueryFromPluginArguments:arguments urlString:relativeUrlString];
-    NSString *urlStringWithoutQuery = [[relativeUrlString componentsSeparatedByString:@"?"] objectAtIndex:0];
-    
-    MFViewController *viewController = [[MFViewController alloc] initWithFileName:urlStringWithoutQuery];
-    [viewController.cdvViewController.webView loadRequest:[self createRequest:urlStringWithoutQuery withQuery:query]];
-
-    [self setupViewController:viewController options:options];
-    [[self class] changeDelegate:viewController];
-
-    CATransition *transition = [CATransition animation];
-    transition.duration = 0.4f;
-    transition.type = kCATransitionMoveIn;
-    transition.subtype = kCATransitionFromTop;
-    [transition setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionDefault]];
-
-    MFNavigationController *nav = [self monacaNavigationController];
-    [nav.view.layer addAnimation:transition forKey:kCATransition];
-    [nav pushViewController:viewController animated:NO];
+- (void)pop:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options
+{
+    [self popGenerically:arguments withDict:options];
 }
 
 - (void)dismiss:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options
 {
-
-    CATransition *transition = [CATransition animation];
-    transition.duration = 0.4f;
-    transition.type = kCATransitionReveal;
-    transition.subtype = kCATransitionFromBottom;
-    [transition setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionDefault]];
-
-    MFNavigationController *nav = [self monacaNavigationController];
-    [nav.view.layer addAnimation:transition forKey:kCATransition];
-    MFViewController *vc = (MFViewController*)[nav popViewControllerAnimated:NO];
-    [vc destroy];
-
-    BOOL res = [[self class] changeDelegate:[[nav viewControllers] lastObject]];
-    if (res) {
-        NSString *command =[NSString stringWithFormat:@"%@ && %@();", kMonacaTransitPluginJsReactivate, kMonacaTransitPluginJsReactivate];
-        [self writeJavascriptOnDelegateViewController:command];
-    }
+    [self popGenerically:arguments withDict:options];
 }
 
 - (void)home:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options
@@ -286,6 +253,23 @@
         NSString *command =[NSString stringWithFormat:@"%@ && %@();", kMonacaTransitPluginJsReactivate, kMonacaTransitPluginJsReactivate];
         [self writeJavascript:command];
     }
+}
+
+- (void)clearPageStack:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options
+{
+    id clearAll = [arguments objectAtIndex:1];
+    NSMutableArray *controllers;
+    
+    if ([clearAll isKindOfClass:NSNumber.class] && [clearAll isEqualToNumber:[NSNumber numberWithBool:YES]]) {
+        controllers = [NSMutableArray arrayWithObject:self.monacaNavigationController.viewControllers.lastObject];
+    } else {
+        controllers = [NSMutableArray arrayWithArray:self.monacaNavigationController.viewControllers];
+        if (controllers.count > 1) {
+            [controllers removeObjectAtIndex:controllers.count - 2];
+        }
+    }
+    
+    [self.monacaNavigationController setViewControllers:controllers animated:NO];
 }
 
 - (void)popToHomeViewController:(BOOL)isAnimated
@@ -312,7 +296,7 @@
     [[self monacaDelegate].viewController.cdvViewController.webView loadRequest:[self createRequest:urlStringWithoutQuery withQuery:query]];
 }
 
-- (NSString *) buildQuery:(NSDictionary *)jsonQueryParams urlString:(NSString *)urlString
+- (NSString*) buildQuery:(NSDictionary *)jsonQueryParams urlString:(NSString *)urlString
 {
     NSString *query = @"";
     NSArray *array = [urlString componentsSeparatedByString:@"?"];
@@ -341,7 +325,7 @@
     return [query isEqualToString:@""]?nil:query;
 }
 
-- (NSString *) getQueryFromPluginArguments:(NSMutableArray *)arguments urlString:(NSString *)aUrlString{
+- (NSString*) getQueryFromPluginArguments:(NSMutableArray *)arguments urlString:(NSString *)aUrlString{
     NSString *query = nil;
     if (arguments.count > 2 && ![[arguments objectAtIndex:2] isEqual:[NSNull null]]){
         query = [self buildQuery:[arguments objectAtIndex:2] urlString:aUrlString];
@@ -371,7 +355,7 @@
 
 - (NSString*) writeJavascriptOnDelegateViewController:(NSString*)javascript
 {
-    MFViewController *vc = [self monacaDelegate].viewController;
+    MFViewController *vc = self.monacaDelegate.viewController;
     return [vc.cdvViewController.webView stringByEvaluatingJavaScriptFromString:javascript];
 }
 

@@ -111,7 +111,7 @@
     return [NSURL URLWithString:str];
 }
 
-- (id)init{
+- (id)init {
     self = [super init];
     if (self){
         uiSetting = nil;
@@ -119,15 +119,16 @@
     return self;
 }
 
-- (id)initWithFileName:(NSString *)fileName{
+- (id)initWithFileName:(NSString *)fileName {
     self = [self init];
     if (nil != self) {
         cdvViewController = [[CDVViewController alloc] init];
         cdvViewController.wwwFolderName = @"www";
-        cdvViewController.startPage = fileName;
+        cdvViewController.startPage = [self removeFragment:fileName];
         
         self.recall = NO;
         self.previousPath = nil;
+        
         isFirstRendering = YES;
         interfaceOrientationUnspecified = YES;
         interfaceOrientation = UIInterfaceOrientationPortrait;
@@ -144,6 +145,10 @@
     }
     
     return self;
+}
+
+- (NSString *)removeFragment:(NSString*)fileName {
+    return [[fileName componentsSeparatedByString:@"#"] objectAtIndex:0];
 }
 
 - (void)dealloc {
@@ -351,6 +356,7 @@
             [[MFUtility currentTabBarController] applyUserInterface:nil];
         }
     }
+    
     return [cdvViewController webView:webView_ shouldStartLoadWithRequest:request navigationType:navigationType];
 }
 
