@@ -42,11 +42,25 @@
         [MFEvent dispatchEvent:monacaEventNoUIFile withInfo:info];
         return nil;
     }
-    data = [data stringByReplacingOccurrencesOfString:@"((?:\".*?\"[^\"]*?)*)[\"]*(\\w+)[\"]*\\s*:"
-                                           withString:@"$1\"$2\":"
-                                              options:NSRegularExpressionSearch
-                                                range:NSMakeRange(0, [data length])];
     
+    if (YES){
+        NSRegularExpression *reg = [[NSRegularExpression alloc] initWithPattern:@"(^[^\"]*?(\"[^\"]*?\"[^\"]*?)*?[^\"\\w]+)\\s*(\\w+)\\s*:"
+                                                                        options:0
+                                                                          error:nil];
+        NSArray *results;
+        do {
+            results  = [reg matchesInString:data options:0 range:NSMakeRange(0, data.length)];
+            for (NSTextCheckingResult *result in results) {
+                NSRange range = [result rangeAtIndex:3];
+                NSString *str = [data substringWithRange:range];
+                data = [data stringByReplacingOccurrencesOfString:[data substringWithRange:range]
+                                                       withString:[NSString stringWithFormat:@"\"%@\"", str]
+                                                          options:0
+                                                            range:range];
+            }
+        } while ([results count] != 0);
+    }
+
     id jsonString = [data cdvjk_objectFromJSONStringWithParseOptions:CDVJKParseOptionStrict error:&error];
     
     // send log error
