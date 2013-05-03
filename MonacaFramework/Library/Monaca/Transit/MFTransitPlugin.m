@@ -78,6 +78,8 @@
 - (NSString *)getRelativePathTo:(NSString *)filePath{
     NSString *currentDirectory = [[MFUtility currentViewController].webView.request.URL URLByDeletingLastPathComponent].filePathURL.path;
     NSString *urlString = [currentDirectory stringByAppendingPathComponent:filePath];
+    if (urlString == nil)
+        return nil;
     NSURL *url = [NSURL fileURLWithPath:urlString];
     urlString = [url standardizedURL].path;
     NSMutableArray *array = [NSMutableArray arrayWithArray:[urlString componentsSeparatedByString:[MFUtility getBaseURL].path]];
@@ -104,7 +106,7 @@
     }
     
     NSString *relativeUrlString = [self getRelativePathTo:urlString];
-    NSString *query = [self getQueryFromPluginArguments:arguments urlString:relativeUrlString];
+//    NSString *query = [self getQueryFromPluginArguments:arguments urlString:relativeUrlString];
     NSString *urlStringWithoutQuery = [[relativeUrlString componentsSeparatedByString:@"?"] objectAtIndex:0];
     
 //    [viewController.cdvViewController.webView loadRequest:[self createRequest:urlStringWithoutQuery withQuery:query]];
@@ -170,8 +172,7 @@
         animated = YES;
     }
 
-    MFViewController *vc = (MFViewController*)[nav popViewControllerAnimated:animated];
-//    [vc destroy];
+    [nav popViewControllerAnimated:animated];
     
 /*    BOOL res = [[self class] changeDelegate:[[nav viewControllers] lastObject]];
     if (res) {

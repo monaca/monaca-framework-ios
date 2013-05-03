@@ -20,6 +20,7 @@
 @synthesize previousPath = _previousPath;
 @synthesize ncManager = _ncManager;
 @synthesize uiDict = _uiDict;
+@synthesize backButton = _backButton;
 
 - (id)initWithFileName:(NSString *)fileName
 {

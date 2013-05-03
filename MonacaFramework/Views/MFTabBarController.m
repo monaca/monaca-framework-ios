@@ -69,6 +69,13 @@ static BOOL ignoreBottom = NO;
     return self;
 }
 
+- (void)destroy
+{
+    for (MFViewController *view in self.viewControllers) {
+        [view destroy];
+    }
+}
+
 - (void)dealloc {
     self.centerContainer = nil;
     self.leftContainers = nil;
@@ -167,6 +174,10 @@ static BOOL ignoreBottom = NO;
 
 #pragma mark - UITabBarDeledate
 
+/*
+    現時点ではmoreNavigationControllerの編集は不可としているため呼び出されないが、
+    編集を許可した場合にはbackButtonの表示問題を解決しなければならない。
+*/
 - (void)tabBar:(UITabBar *)tabBar didEndCustomizingItems:(NSArray *)items changed:(BOOL)changed
 {
     if (!changed) {

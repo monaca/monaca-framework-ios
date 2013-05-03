@@ -258,6 +258,10 @@
 		5A40CBE2170836F2002DD96C /* MFTransitPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A40CBDE170836F2002DD96C /* MFTransitPlugin.m */; };
 		5A45C5A3172D54450003B3BF /* NCTitleView.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A45C5A1172D54450003B3BF /* NCTitleView.h */; };
 		5A45C5A4172D54450003B3BF /* NCTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A45C5A2172D54450003B3BF /* NCTitleView.m */; };
+		5A6ACE161732CAFA00118E28 /* MFDammyViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A6ACE141732CAF900118E28 /* MFDammyViewController.h */; };
+		5A6ACE171732CAFA00118E28 /* MFDammyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A6ACE151732CAF900118E28 /* MFDammyViewController.m */; };
+		5A6ACE181732CAFA00118E28 /* MFDammyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A6ACE151732CAF900118E28 /* MFDammyViewController.m */; };
+		5A6ACE191732CAFA00118E28 /* MFDammyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A6ACE151732CAF900118E28 /* MFDammyViewController.m */; };
 		5A83D2EF16D9087100D25E98 /* MFViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A83D2ED16D9087100D25E98 /* MFViewController.h */; };
 		5A83D2F016D9087100D25E98 /* MFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A83D2EE16D9087100D25E98 /* MFViewController.m */; };
 		5A83D2F116D9087100D25E98 /* MFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A83D2EE16D9087100D25E98 /* MFViewController.m */; };
@@ -451,6 +455,8 @@
 		5A40CBDE170836F2002DD96C /* MFTransitPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFTransitPlugin.m; sourceTree = "<group>"; };
 		5A45C5A1172D54450003B3BF /* NCTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCTitleView.h; sourceTree = "<group>"; };
 		5A45C5A2172D54450003B3BF /* NCTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCTitleView.m; sourceTree = "<group>"; };
+		5A6ACE141732CAF900118E28 /* MFDammyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFDammyViewController.h; sourceTree = "<group>"; };
+		5A6ACE151732CAF900118E28 /* MFDammyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFDammyViewController.m; sourceTree = "<group>"; };
 		5A83D2ED16D9087100D25E98 /* MFViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MFViewController.h; path = ../MFViewController.h; sourceTree = "<group>"; };
 		5A83D2EE16D9087100D25E98 /* MFViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MFViewController.m; path = ../MFViewController.m; sourceTree = "<group>"; };
 		5A83D2F816D90BD700D25E98 /* MFNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MFNavigationController.h; path = ../MFNavigationController.h; sourceTree = "<group>"; };
@@ -800,6 +806,8 @@
 				5AAB3F35171C3D220044FB77 /* MFViewBuilder.m */,
 				5A83D2F816D90BD700D25E98 /* MFNavigationController.h */,
 				5A83D2F916D90BD700D25E98 /* MFNavigationController.m */,
+				5A6ACE141732CAF900118E28 /* MFDammyViewController.h */,
+				5A6ACE151732CAF900118E28 /* MFDammyViewController.m */,
 				5A83D2ED16D9087100D25E98 /* MFViewController.h */,
 				5A83D2EE16D9087100D25E98 /* MFViewController.m */,
 				5A83D31B16D91E6D00D25E98 /* MFTabBarController.h */,
@@ -1024,6 +1032,7 @@
 				5AEA5970172D506700FF15E2 /* NCSegment.h in Headers */,
 				5AEA5976172D50ED00FF15E2 /* NCBarButtonItem.h in Headers */,
 				5A45C5A3172D54450003B3BF /* NCTitleView.h in Headers */,
+				5A6ACE161732CAFA00118E28 /* MFDammyViewController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1247,6 +1256,7 @@
 				5AEA596F172D506700FF15E2 /* NCSearchBox.m in Sources */,
 				5AEA5973172D506700FF15E2 /* NCSegment.m in Sources */,
 				5AEA5979172D50ED00FF15E2 /* NCBarButtonItem.m in Sources */,
+				5A6ACE191732CAFA00118E28 /* MFDammyViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1316,6 +1326,7 @@
 				5AEA5971172D506700FF15E2 /* NCSegment.m in Sources */,
 				5AEA5977172D50ED00FF15E2 /* NCBarButtonItem.m in Sources */,
 				5A45C5A4172D54450003B3BF /* NCTitleView.m in Sources */,
+				5A6ACE171732CAFA00118E28 /* MFDammyViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1385,6 +1396,7 @@
 				5AEA596E172D506700FF15E2 /* NCSearchBox.m in Sources */,
 				5AEA5972172D506700FF15E2 /* NCSegment.m in Sources */,
 				5AEA5978172D50ED00FF15E2 /* NCBarButtonItem.m in Sources */,
+				5A6ACE181732CAFA00118E28 /* MFDammyViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

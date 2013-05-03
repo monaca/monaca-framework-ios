@@ -34,6 +34,8 @@ static BOOL ignoreBottom_ = NO;
         if ([containerType isEqualToString:kNCContainerTabbar]) {
             view = [[MFTabBarController alloc] init];
             [view applyBottomTabbar:uidict WwwDir:[[MFUtility getWWWShortPath:uipath] stringByDeletingLastPathComponent]];
+            // moreViewControllerの編集ボタン非表示
+            [view setCustomizableViewControllers:nil];
         }
         ignoreBottom_ = NO;
     } else {

@@ -57,12 +57,11 @@
         container.type = kNCComponentButton;
     }
     else if ([type isEqualToString:kNCComponentBackButton]) {
-        NCBackButton *backButton = [[NCBackButton alloc] init];
+        NCBackButton *backButton = [[NCBackButton alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:nil action:nil];
         [backButton applyUserInterface:style_def];
         backButton.toolbar = toolbar;
         container.component = backButton;
         container.onTapScript = [[params objectForKey:kNCTypeEvent] objectForKey:kNCEventTypeTap];
-        [backButton addTarget:container action:@selector(didTap:forEvent:) forControlEvents:UIControlEventTouchUpInside];
         container.type = kNCComponentBackButton;
     }
     else if ([type isEqualToString:kNCComponentLabel]) {

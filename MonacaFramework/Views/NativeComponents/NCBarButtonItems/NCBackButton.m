@@ -16,76 +16,24 @@
     self = [super init];
 
     if (self) {
-        _backButton = [UIButton buttonWithType:101];
-        self.customView = _backButton;
         _ncStyle = [[NSMutableDictionary alloc] init];
         [_ncStyle setValue:kNCTrue forKey:kNCStyleVisibility];
-        [_ncStyle setValue:kNCFalse forKey:kNCStyleDisable];
+        [_ncStyle setValue:kNCBlack forKey:kNCStyleBackgroundColor];
         [_ncStyle setValue:kNCBlue forKey:kNCStyleActiveTextColor];
         [_ncStyle setValue:kNCWhite forKey:kNCStyleTextColor];
-        [_ncStyle setValue:kNCUndefined forKey:kNCStyleText];
         [_ncStyle setValue:kNCUndefined forKey:kNCStyleInnerImage];
+        [_ncStyle setValue:kNCUndefined forKey:kNCStyleText];
     }
 
     return self;
 }
 
-- (void)addTarget:(id)target action:(SEL)action forControlEvents:(UIControlEvents)controlEvents
-{
-    [_backButton addTarget:target action:action forControlEvents:controlEvents];
-}
-
-#pragma mark - UIStyleProtocol
-
 - (void)updateUIStyle:(id)value forKey:(NSString *)key
 {
-    if ([_ncStyle objectForKey:key] == nil) {
-        // 例外処理
-        return;
+    [super updateUIStyle:value forKey:key];
+    if (![key isEqualToString:kNCStyleVisibility]) {
+        [_toolbar applyBackButton];
     }
-    if (value == [NSNull null]) {
-        value = nil;
-    }
-    if ([NSStringFromClass([value class]) isEqualToString:@"__NSCFBoolean"]) {
-        if (isFalse(value)) {
-            value = kNCFalse;
-        } else {
-            value = kNCTrue;
-        }
-    }
-
-    if ([key isEqualToString:kNCStyleVisibility]) {
-        _hidden = isFalse(value);
-        [_toolbar applyVisibility];
-    }
-    if ([key isEqualToString:kNCStyleDisable]) {
-        if (isFalse(value)) {
-            [_backButton setEnabled:YES];
-        } else {
-            [_backButton setEnabled:NO];
-        }
-    }
-    if ([key isEqualToString:kNCStyleActiveTextColor]) {
-        UIColor *color = hexToUIColor(removeSharpPrefix(value), 1);
-        [_backButton setTitleColor:color forState:UIControlStateHighlighted];
-    }
-    if ([key isEqualToString:kNCStyleTextColor]) {
-        UIColor *color = hexToUIColor(removeSharpPrefix(value), 1);
-        [_backButton setTitleColor:color forState:UIControlStateNormal];
-    }
-    if ([key isEqualToString:kNCStyleText]) {
-        [_backButton setTitle:value forState:UIControlStateNormal];
-    }
-    if ([key isEqualToString:kNCStyleInnerImage]) {
-        NSString *imagePath = [[MFUtility currentViewController].wwwFolderName stringByAppendingPathComponent:value];
-        UIImage *image = [UIImage imageNamed:imagePath];
-        [_backButton setImage:image forState:UIControlStateNormal];
-    }
-
-    if (value == nil) {
-        value = kNCUndefined;
-    }
-    [_ncStyle setValue:value forKey:key];
 }
 
 @end

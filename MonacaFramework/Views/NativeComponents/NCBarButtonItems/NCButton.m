@@ -62,8 +62,7 @@
         }
     }
     if ([key isEqualToString:kNCStyleBackgroundColor]) {
-        float alpha = [[self retrieveUIStyle:kNCStyleOpacity] floatValue];
-        [self setTintColor:hexToUIColor(removeSharpPrefix(value), alpha)];
+        [self setTintColor:hexToUIColor(removeSharpPrefix(value), 1)];
     }
     if ([key isEqualToString:kNCStyleActiveTextColor]) {
         UIColor *color = hexToUIColor(removeSharpPrefix(value), 1);

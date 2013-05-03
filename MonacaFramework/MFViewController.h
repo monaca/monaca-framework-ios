@@ -8,6 +8,7 @@
 
 #import "CDVViewController.h"
 #import "NCManager.h"
+#import "NCContainer.h"
 
 @interface MFViewController : CDVViewController <UIScrollViewDelegate, UIWebViewDelegate>
 {
@@ -16,6 +17,7 @@
     NCManager *_ncManager_;
     NSDictionary *_uiDict;
     BOOL _deallocFlag;
+    NCContainer *_backButton;
 }
 - (void)applyUserInterface:(NSDictionary *)uidict;
 - (id)initWithFileName:(NSString *)fileName;
@@ -24,5 +26,6 @@
 @property (nonatomic, copy) NSString *previousPath;
 @property (nonatomic) NCManager *ncManager;
 @property (nonatomic, retain) NSDictionary *uiDict;
+@property (nonatomic, retain) NCContainer *backButton;
 
 @end

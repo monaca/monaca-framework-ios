@@ -7,8 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "NativeComponents.h"
-
+#import "NCBarButtonItem.h"
 //
 // NCContainer class wraps UIBarButtonItem and has additional information.
 //
@@ -17,7 +16,7 @@
     NSString *cid_;               // Component ID.
     
     id view_;                     // Center component on top toolbar.
-    UIBarButtonItem *component_;  // Other components.
+    NCBarButtonItem *component_;  // Other components.
     NSString *type_;              // Component type (kNCComponentButton, ...).
 
     NSString *onTapScript_;
@@ -26,10 +25,11 @@
 }
 
 + (NCContainer *)container:(NSDictionary *)params forToolbar:(id<UIStyleProtocol>)toolbar;
+- (void)didTap:(id)sender forEvent:(UIEvent *)event;
 
 @property(nonatomic, copy) NSString *cid;
 @property(nonatomic, retain) id view;
-@property(nonatomic, retain) UIBarButtonItem *component;
+@property(nonatomic, retain) NCBarButtonItem *component;
 @property(nonatomic, copy) NSString *type;
 @property(nonatomic, copy) NSString *onTapScript;
 @property(nonatomic, copy) NSString *onChangeScript;

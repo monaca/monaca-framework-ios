@@ -86,6 +86,7 @@
         } else if ([property isKindOfClass:[NSArray class]]) {
             pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsArray:(NSArray *)property];
         } else {
+            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"N/A"];
             NSLog(@"[debug] Unknown property: %@", property);
         }
         [self writeJavascript:[pluginResult toSuccessCallbackString:callbackID]];

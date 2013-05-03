@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "MFViewController.h"
 #import "UIStyleProtocol.h"
+#import "NCBackButton.h"
 
 @interface NCNavigationBar : NSObject <UIStyleProtocol>
 {
@@ -19,6 +20,7 @@
     NSArray *_rightContainers;
     NSArray *_centerContainers;
     UIToolbar *_centerViewToolbar;
+    NCContainer *_backButton;
 }
 
 - (id)initWithViewController:(MFViewController *)viewController;

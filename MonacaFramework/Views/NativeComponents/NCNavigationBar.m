@@ -54,10 +54,21 @@
     for (id component in topLeft) {
         NCContainer *container = [NCContainer container:component forToolbar:self];
         if (container.component == nil) continue;
+        if ([container.type isEqualToString:kNCComponentBackButton]) {
+            if (_backButton == nil) {
+                _backButton = container;
+            } else {
+                continue;
+            }
+        }
         [containers addObject:container.component];
         [_viewController.ncManager setComponent:container forID:container.cid];
     }
     _leftContainers = containers;
+    [_viewController setBackButton:_backButton];
+    if (!_backButton) {
+        [_viewController.navigationItem setHidesBackButton:YES];
+    }
 
     /***** create rightContainers *****/
     containers = [NSMutableArray array];
@@ -88,19 +99,34 @@
     [self applyVisibility];
 }
 
+- (void)applyBackButton
+{
+    if (_backButton) {
+        NSArray *viewControllers = [_viewController.navigationController viewControllers];
+        if ([viewControllers count]> 1) {
+            [[[viewControllers objectAtIndex:[viewControllers count]-2] navigationItem] setBackBarButtonItem:nil];
+            [[[viewControllers objectAtIndex:[viewControllers count]-2] navigationItem] setBackBarButtonItem:_backButton.component];
+            [_viewController.navigationItem setHidesBackButton:[_backButton.component hidden] animated:YES];
+            [_viewController.navigationItem setLeftItemsSupplementBackButton:YES];
+        }
+    } else {
+        [_viewController.navigationItem setHidesBackButton:YES];
+    }
+}
+
 - (void)applyVisibility
 {
-    UIBarButtonItem *spacer =
-    [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-
     /***** apply leftContainers *****/
     NSMutableArray *visiableContainers = [NSMutableArray array];
     for (NCBarButtonItem *container in _leftContainers) {
-        if (![container hidden]) {
+        if (![container hidden] && ![container isKindOfClass:[NCBackButton class]]) {
             [visiableContainers addObject:container];
         }
     }
     _viewController.navigationItem.leftBarButtonItems = visiableContainers;
+
+    /***** apply backButton Container *****/
+    [self applyBackButton];
 
     /***** apply rightContainers *****/
     visiableContainers = [NSMutableArray array];
@@ -112,6 +138,8 @@
     _viewController.navigationItem.rightBarButtonItems = visiableContainers;
 
     /***** apply centerContainers *****/
+    UIBarButtonItem *spacer =
+    [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     visiableContainers = [NSMutableArray array];
 
     [visiableContainers addObject:spacer];
