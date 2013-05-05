@@ -187,11 +187,8 @@ static MFTabBarController *currentTabBarController;
  */
 + (NSString *)getWWWShortPath:(NSString *)path
 {
-    if ([path rangeOfString:@"/sandbox.app"].location != NSNotFound) {
-        return [path substringFromIndex:[path rangeOfString:@"/sandbox.app"].location + [@"/sandbox.app" length]];
-    }
-    if ([path rangeOfString:@"/assets"].location != NSNotFound) {
-        return [path substringFromIndex:[path rangeOfString:@"/assets"].location + [@"/assets" length]];
+    if ([path rangeOfString:@"www"].location != NSNotFound) {
+        return [path substringFromIndex:[path rangeOfString:@"www"].location];
     }
     return path;
 }
