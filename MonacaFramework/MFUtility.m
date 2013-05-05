@@ -70,6 +70,31 @@ static MFTabBarController *currentTabBarController;
     }
 }
 
++ (NSMutableDictionary *)parseQuery:(NSURLRequest *)request
+{
+    NSString *query = request.URL.query;
+    NSArray *pairs = [query componentsSeparatedByString:@"&"];
+    NSMutableDictionary *keyValues = [NSMutableDictionary dictionary];
+    
+    for (NSString *pair in pairs) {
+        NSArray *elements = [pair componentsSeparatedByString:@"="];
+        NSString *key = [[elements objectAtIndex:0] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        if ([key isEqualToString:@""] == YES) {
+            continue;
+        }
+        NSString *value;
+        if (elements.count>1) {
+            value = [[elements objectAtIndex:1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            NSDictionary *dictionary = [NSDictionary dictionaryWithObject:value forKey:key];
+            [keyValues addEntriesFromDictionary:dictionary];
+        }else {
+            NSDictionary *dictionary = [NSDictionary dictionaryWithObject:[NSNull null] forKey:key];
+            [keyValues addEntriesFromDictionary:dictionary];
+        }
+    }
+    return keyValues;
+}
+
 + (NSString *)urlEncode:(NSString *)text
 {
     if ([text isKindOfClass:[NSString class]] == NO) {
@@ -157,7 +182,11 @@ static MFTabBarController *currentTabBarController;
     return [[NSBundle mainBundle] infoDictionary];
 }
 
-+ (NSString *)getWWWShortPath:(NSString *)path{
+/*
+ *  convert path (ex 1234/xxxx/www/yyy.html -> www/yyy.html)
+ */
++ (NSString *)getWWWShortPath:(NSString *)path
+{
     if ([path rangeOfString:@"/sandbox.app"].location != NSNotFound) {
         return [path substringFromIndex:[path rangeOfString:@"/sandbox.app"].location + [@"/sandbox.app" length]];
     }
@@ -172,6 +201,43 @@ static MFTabBarController *currentTabBarController;
 {
     return [[filename stringByDeletingPathExtension] stringByAppendingFormat:@".ui"];
 }
+
+/*
+ * build url Moaca query params
+ */
++ (NSString *)insertMonacaQueryParams:(NSString *)html query:(NSString *)aQuery
+{
+    if (aQuery){
+        NSArray *pairs = [aQuery componentsSeparatedByString:@"&"];
+        NSMutableArray *keyValues = [NSMutableArray array];
+
+        for (NSString *pair in pairs) {
+            NSArray *elements = [pair componentsSeparatedByString:@"="];
+            NSString *key = [[elements objectAtIndex:0] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            key = [key stringByReplacingOccurrencesOfString:@"\\" withString:@"\\\\"];
+            key = [key stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
+            NSString *value;
+            if (elements.count>1){
+                value = [[elements objectAtIndex:1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+                value = [value stringByReplacingOccurrencesOfString:@"\\" withString:@"\\\\"];
+                value = [value stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
+                [keyValues addObject:[NSString stringWithFormat:@"\"%@\":\"%@\"", key, value]];
+            }else {
+                [keyValues addObject:[NSString stringWithFormat:@"\"%@\":null", key]];
+            }
+        }
+        NSString *keyValuesString = [keyValues componentsJoinedByString:@","];
+        NSString *queryScriptTag = [NSString stringWithFormat:@"<script>window.monaca = window.monaca || {};window.monaca.queryParams = {%@};</script>", keyValuesString];
+        NSRange replaceRange = [html rangeOfString:@"<head>"];
+        if(replaceRange.location == NSNotFound){
+            html = [queryScriptTag stringByAppendingString:html];
+        }else {
+            html = [html stringByReplacingCharactersInRange:replaceRange withString:[NSString stringWithFormat:@"<head>%@", queryScriptTag]];
+        }
+    }
+    return html;
+}
+
 
 + (void) fixedLayout:(MFViewController *)monacaViewController interfaceOrientation:(UIInterfaceOrientation)aInterfaceOrientation{
     if (aInterfaceOrientation == UIInterfaceOrientationPortrait || aInterfaceOrientation == UIInterfaceOrientationPortraitUpsideDown){

@@ -18,6 +18,7 @@
 + (UIInterfaceOrientation) currentInterfaceOrientation;
 + (BOOL) getAllowOrientationFromPlist:(UIInterfaceOrientation)interfaceOrientation;
 + (NSDictionary *)parseJSONFile:(NSString *)path;
++ (NSMutableDictionary *)parseQuery:(NSURLRequest *)request;
 + (NSString *)urlEncode:(NSString *)text;
 + (BOOL)isPhoneGapScheme:(NSURL *)url;
 + (BOOL)isExternalPage:(NSURL *)url;
@@ -25,6 +26,7 @@
 + (NSURL *)standardizedURL:(NSURL *)url;
 + (NSURL *)getBaseURL;
 + (NSString *)getWWWShortPath:(NSString *)path;
++ (NSString *)insertMonacaQueryParams:(NSString *)html query:(NSString *)aQuery;
 + (NSString *)getUIFileName:(NSString *)filename;
 + (NSDictionary *)getApplicationPlist;
 + (void)fixedLayout:(MFViewController *)monacaViewController interfaceOrientation:
