@@ -316,6 +316,7 @@
 		5AA2B4CF17369C5D00E785EA /* MonacaQueryParamURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA2B4C117369C5D00E785EA /* MonacaQueryParamURLProtocol.m */; };
 		5AA2B4D017369C5D00E785EA /* MonacaQueryParamURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA2B4C117369C5D00E785EA /* MonacaQueryParamURLProtocol.m */; };
 		5AA2B4D117369C5D00E785EA /* MonacaQueryParamURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA2B4C117369C5D00E785EA /* MonacaQueryParamURLProtocol.m */; };
+		5AA2B4D31736A0A000E785EA /* MonacaFramework-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 5AA2B4D21736A0A000E785EA /* MonacaFramework-Prefix.pch */; };
 		5AA6954E16D9FF27003C5D90 /* MFPGNativeComponent.h in Headers */ = {isa = PBXBuildFile; fileRef = 5AA6954C16D9FF27003C5D90 /* MFPGNativeComponent.h */; };
 		5AA6954F16D9FF27003C5D90 /* MFPGNativeComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA6954D16D9FF27003C5D90 /* MFPGNativeComponent.m */; };
 		5AA6955016D9FF27003C5D90 /* MFPGNativeComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA6954D16D9FF27003C5D90 /* MFPGNativeComponent.m */; };
@@ -507,6 +508,7 @@
 		5AA2B4BF17369C5D00E785EA /* MonacaNoCacheURLProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonacaNoCacheURLProtocol.m; sourceTree = "<group>"; };
 		5AA2B4C017369C5D00E785EA /* MonacaQueryParamURLProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonacaQueryParamURLProtocol.h; sourceTree = "<group>"; };
 		5AA2B4C117369C5D00E785EA /* MonacaQueryParamURLProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonacaQueryParamURLProtocol.m; sourceTree = "<group>"; };
+		5AA2B4D21736A0A000E785EA /* MonacaFramework-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MonacaFramework-Prefix.pch"; sourceTree = "<group>"; };
 		5AA6954C16D9FF27003C5D90 /* MFPGNativeComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFPGNativeComponent.h; sourceTree = "<group>"; };
 		5AA6954D16D9FF27003C5D90 /* MFPGNativeComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFPGNativeComponent.m; sourceTree = "<group>"; };
 		5AAB3F34171C3D220044FB77 /* MFViewBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFViewBuilder.h; sourceTree = "<group>"; };
@@ -969,6 +971,7 @@
 		F50460AB13B361730050803F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				5AA2B4D21736A0A000E785EA /* MonacaFramework-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -1083,6 +1086,7 @@
 				5AA2B4C617369C5D00E785EA /* MFSecureFileURLProtocol.h in Headers */,
 				5AA2B4CA17369C5D00E785EA /* MonacaNoCacheURLProtocol.h in Headers */,
 				5AA2B4CE17369C5D00E785EA /* MonacaQueryParamURLProtocol.h in Headers */,
+				5AA2B4D31736A0A000E785EA /* MonacaFramework-Prefix.pch in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
