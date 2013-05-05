@@ -21,6 +21,7 @@
 - (void)applyUserInterface:(NSDictionary *)uidict;
 - (id)initWithFileName:(NSString *)fileName;
 - (void)destroy;
+- (void)showSplash:(BOOL)show;
 
 @property (nonatomic, copy) NSString *previousPath;
 @property (nonatomic) NCManager *ncManager;

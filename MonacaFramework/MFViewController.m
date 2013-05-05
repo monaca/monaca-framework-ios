@@ -10,6 +10,7 @@
 #import "MFDevice.h"
 #import "MFUtility.h"
 #import "MFEvent.h"
+#import "CDVPlugin.h"
 
 @interface MFViewController ()
 
@@ -149,6 +150,71 @@
     }
 
     return [super webView:webView shouldStartLoadWithRequest:request navigationType:navigationType];
+}
+
+#pragma mark - splash screen
+
+- (void)showSplash:(BOOL)show
+{
+    self.imageView.hidden = !show;
+    if (show) {
+        [self.activityView startAnimating];
+    } else {
+        [self.activityView stopAnimating];
+    }
+}
+
+/*
+- (void)receivedOrientationChange
+{
+    // fix cdvcViewController splash screen frame
+    // @see showSplashScreen
+    UIImageView *imageView = self.imageView;
+    imageView.frame = CGRectMake(0, -20, imageView.frame.size.width, imageView.frame.size.height);
+    [imageView removeFromSuperview];
+    [self.view addSubview:imageView];
+    
+    UIView *activityView = self.activityView;
+    id showSplashScreenSpinnerValue = [self.settings objectForKey:@"ShowSplashScreenSpinner"];
+    if ((showSplashScreenSpinnerValue == nil) || [showSplashScreenSpinnerValue boolValue]) {
+        [activityView removeFromSuperview];
+        [imageView addSubview:activityView];
+    }
+}
+*/
+
+#pragma mark - Cordova Plugin
+
+- (void)initPlugins {
+    for (CDVPlugin *plugin in [self.pluginObjects allValues]) {
+        if ([plugin respondsToSelector:@selector(setViewController:)]) {
+            [plugin setViewController:self];
+        }
+        
+        if ([plugin respondsToSelector:@selector(setCommandDelegate:)]) {
+            [plugin setCommandDelegate:self.commandDelegate];
+        }
+        
+        if ([plugin respondsToSelector:@selector(setWebView:)]) {
+            [plugin setWebView:self.webView];
+        }
+    }
+}
+
+- (void)resetPlugins {
+    for (CDVPlugin *plugin in [self.pluginObjects allValues]) {
+        if ([plugin respondsToSelector:@selector(setViewController:)]) {
+            [plugin setViewController:nil];
+        }
+        
+        if ([plugin respondsToSelector:@selector(setCommandDelegate:)]) {
+            [plugin setCommandDelegate:nil];
+        }
+        
+        if ([plugin respondsToSelector:@selector(setWebView:)]) {
+            [plugin setWebView:nil];
+        }
+    }
 }
 
 - (void)releaseWebView {
