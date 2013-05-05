@@ -16,7 +16,6 @@
     NSString *_previousPath;
     NCManager *_ncManager_;
     NSDictionary *_uiDict;
-    BOOL _deallocFlag;
     NCContainer *_backButton;
 }
 - (void)applyUserInterface:(NSDictionary *)uidict;

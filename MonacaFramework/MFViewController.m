@@ -30,8 +30,7 @@
         self.wwwFolderName = @"www";
         self.startPage = fileName;
         self.ncManager = [[NCManager alloc] init];
-        _deallocFlag = NO;
-        
+
         self.wantsFullScreenLayout = NO;
     }
     return self;
@@ -53,9 +52,6 @@
 
 - (void)viewDidDisappear:(BOOL)animated
 {
-    if (_deallocFlag) {
-        [self releaseWebView];
-    }
 }
 
 - (void)viewDidLoad
@@ -165,7 +161,7 @@
 }
 
 - (void)destroy {
-    _deallocFlag = YES;
+    [NSTimer scheduledTimerWithTimeInterval:0.5f target:self selector:@selector(releaseWebView) userInfo:nil repeats:NO];
 }
 
 @end

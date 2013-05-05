@@ -54,7 +54,7 @@
     if (![[viewControllers objectAtIndex:[viewControllers count]-2] isKindOfClass:[MFDammyViewController class]]) {
         popFlag = YES;
         viewController = [super popViewControllerAnimated:animated];
-        [viewController destroy];
+        popFlag = NO;
         return viewController;
     }
     return nil;
@@ -75,7 +75,6 @@
     if (!popFlag) {
         [[(MFViewController *)self.topViewController backButton] didTap:self forEvent:nil];
     } else {
-        popFlag = NO;
         return YES;
     }
     return NO;

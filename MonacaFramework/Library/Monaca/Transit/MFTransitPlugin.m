@@ -172,7 +172,7 @@
         animated = YES;
     }
 
-    [nav popViewControllerAnimated:animated];
+    [(MFViewController *)[nav popViewControllerAnimated:animated] destroy];
     
 /*    BOOL res = [[self class] changeDelegate:[[nav viewControllers] lastObject]];
     if (res) {
