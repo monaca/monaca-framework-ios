@@ -13,22 +13,7 @@
 
 @implementation MFTabBarController
 
-@synthesize centerContainer = centerContainer_;
-@synthesize leftContainers = leftContainers_;
-@synthesize rightContainers = rightContainers_;
-@synthesize leftBottomToolbarContainers = leftBottomToolbarContainers_;
-@synthesize centerBottomToolbarContainers = centerBottomToolbarContainers_;
-@synthesize rightBottomToolbarContainers = rightBottomToolbarContainers_;
-
-@synthesize viewDict = viewDict_;
 @synthesize ncManager = ncManager_;
-
-static BOOL ignoreBottom = NO;
-
-+ (void)setIgnoreBottom:(BOOL)ignore
-{
-    ignoreBottom = ignore;
-}
 
 // iOS4 の場合、このメソッドは MonacaViewController の viewDidApper メソッドから呼ばれる
 - (void)viewWillAppear:(BOOL)animated {
@@ -54,7 +39,6 @@ static BOOL ignoreBottom = NO;
 - (id)init {
     self = [super init];
     if (nil != self) {
-        self.viewDict = [NSMutableDictionary dictionary];
         self.ncManager = [[NCManager alloc] init];
         ncStyle = [[NSMutableDictionary alloc] init];
         [ncStyle setValue:kNCTrue forKey:kNCStyleVisibility];
@@ -77,77 +61,11 @@ static BOOL ignoreBottom = NO;
 }
 
 - (void)dealloc {
-    self.centerContainer = nil;
-    self.leftContainers = nil;
-    self.rightContainers = nil;
-    self.leftBottomToolbarContainers = nil;
-    self.centerBottomToolbarContainers = nil;
-    self.rightBottomToolbarContainers = nil;
-    
-    self.viewDict = nil;
-    
     self.ncManager = nil;
 }
 
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)orientation {
     return [MFUtility getAllowOrientationFromPlist:orientation];
-}
-
-- (void)applyBottomTabbar:(NSDictionary *)uidict WwwDir:(NSString *)wwwDir
-{
-    NSMutableArray *viewControllers = [NSMutableArray array];
-    NSDictionary *bottom = [uidict objectForKey:kNCPositionBottom];
-    NSDictionary *bottomStyle = [bottom objectForKey:kNCTypeStyle];
-    NSArray *items = [bottom objectForKey:kNCTypeItems];
-    
-    int i = 0;
-    for (NSDictionary *item in items) {
-        NSMutableDictionary *style = [NSMutableDictionary dictionary];
-        [style addEntriesFromDictionary:[item objectForKey:kNCTypeStyle]];
-        [style addEntriesFromDictionary:[item objectForKey:kNCTypeIOSStyle]];
-        
-        NSString *link = [item objectForKey:kNCTypeLink];
-        NSString *uipath = [[[MFUtility getBaseURL].path stringByAppendingPathComponent:wwwDir] stringByAppendingPathComponent:[MFUtility getUIFileName:link]];
-        NSDictionary *uiDict = [MFUtility parseJSONFile:uipath];
-        
-        // Setup a view controller in the tab contoller.
-        // TODO: make viewControllerProtocol
-        id viewController;
-        viewController = [MFViewBuilder createViewControllerWithPath:[wwwDir stringByAppendingPathComponent:[item objectForKey:kNCTypeLink]]];
-
-        NSDictionary *top = [uiDict objectForKey:kNCPositionTop];
-        NSDictionary *topStyle = [top objectForKey:kNCTypeStyle];
-
-        
-        // Setup tabbar item.
-        if ([style objectForKey:kNCStyleText] == nil && [topStyle objectForKey:kNCStyleTitle]) {
-            [style setObject:[topStyle objectForKey:kNCStyleTitle] forKey:kNCStyleText];
-        }
-
-
-        MFNavigationController *navi = [[MFNavigationController alloc] initWithRootViewController:viewController];
-        [viewControllers addObject:navi];
-
-        [MFUtility setCurrentViewController:viewController]; // for tabbarItem image
-        NCTabbarItem *tabbarItem = [[NCTabbarItem alloc] init];
-        [tabbarItem applyUserInterface:style];
-        NSString *cid = [item objectForKey:kNCTypeID];
-        [self.ncManager setComponent:tabbarItem forID:cid];
-
-        [navi setTabBarItem:tabbarItem];
-
-        if (top != nil) {
-            [navi setNavigationBarHidden:NO];
-        } else {
-            [navi setNavigationBarHidden:YES];
-        }
-        i++;
-    }
-    self.viewControllers  = viewControllers;
-
-    [self applyUserInterface:bottomStyle];
-    NSString *cid = [bottom objectForKey:kNCTypeID];
-    [self.ncManager setComponent:self forID:cid];
 }
 
 - (void)didReceiveMemoryWarning {

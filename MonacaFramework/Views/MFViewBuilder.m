@@ -31,12 +31,9 @@ static BOOL ignoreBottom_ = NO;
     NSString *containerType = [item objectForKey:kNCTypeContainer];
     if ([containerType isEqualToString:kNCContainerTabbar]) {
         ignoreBottom_ = YES; // タブバーは再起的に生成させない。
-        if ([containerType isEqualToString:kNCContainerTabbar]) {
-            view = [[MFTabBarController alloc] init];
-            [view applyBottomTabbar:uidict WwwDir:[[MFUtility getWWWShortPath:uipath] stringByDeletingLastPathComponent]];
-            // moreViewControllerの編集ボタン非表示
-            [view setCustomizableViewControllers:nil];
-        }
+        view = [self createTabbarControllerWithPath:path];
+        // moreViewControllerの編集ボタン非表示
+        [view setCustomizableViewControllers:nil];
         ignoreBottom_ = NO;
     } else {
         view = [[MFViewController alloc] initWithFileName:[path lastPathComponent]];
@@ -45,6 +42,68 @@ static BOOL ignoreBottom_ = NO;
     }
 
     return view;
+}
+
++ (MFTabBarController *)createTabbarControllerWithPath:(NSString *)path
+{
+    NSString *uiPath = [[MFUtility getBaseURL].path stringByAppendingPathComponent:[MFUtility getUIFileName:path]];
+    NSDictionary *uidict = [NSDictionary dictionaryWithDictionary:[MFUtility parseJSONFile:uiPath]];
+    
+    MFTabBarController *tabbarController = [[MFTabBarController alloc] init];
+    
+    NSMutableArray *viewControllers = [NSMutableArray array];
+    NSDictionary *bottom = [uidict objectForKey:kNCPositionBottom];
+    NSDictionary *bottomStyle = [bottom objectForKey:kNCTypeStyle];
+    NSArray *items = [bottom objectForKey:kNCTypeItems];
+    
+    int i = 0;
+    for (NSDictionary *item in items) {
+        NSMutableDictionary *style = [NSMutableDictionary dictionary];
+        [style addEntriesFromDictionary:[item objectForKey:kNCTypeStyle]];
+        [style addEntriesFromDictionary:[item objectForKey:kNCTypeIOSStyle]];
+        
+        NSString *link = [item objectForKey:kNCTypeLink];
+        NSString *uipath = [[uiPath stringByDeletingLastPathComponent] stringByAppendingPathComponent:[MFUtility getUIFileName:link]];
+        NSDictionary *uiDict = [MFUtility parseJSONFile:uipath];
+        
+        // Setup a view controller in the tab contoller.
+        // TODO: make viewControllerProtocol
+        id viewController;
+        viewController = [MFViewBuilder createViewControllerWithPath:[[path stringByDeletingLastPathComponent] stringByAppendingPathComponent:[item objectForKey:kNCTypeLink]]];
+        
+        NSDictionary *top = [uiDict objectForKey:kNCPositionTop];
+        NSDictionary *topStyle = [top objectForKey:kNCTypeStyle];
+        
+        // Setup tabbar item.
+        if ([style objectForKey:kNCStyleText] == nil && [topStyle objectForKey:kNCStyleTitle]) {
+            [style setObject:[topStyle objectForKey:kNCStyleTitle] forKey:kNCStyleText];
+        }
+        
+        MFNavigationController *navi = [[MFNavigationController alloc] initWithRootViewController:viewController];
+        [viewControllers addObject:navi];
+        
+        [MFUtility setCurrentViewController:viewController]; // for tabbarItem image
+        NCTabbarItem *tabbarItem = [[NCTabbarItem alloc] init];
+        [tabbarItem applyUserInterface:style];
+        NSString *cid = [item objectForKey:kNCTypeID];
+        [tabbarController.ncManager setComponent:tabbarItem forID:cid];
+        
+        [navi setTabBarItem:tabbarItem];
+        
+        if (top != nil) {
+            [navi setNavigationBarHidden:NO];
+        } else {
+            [navi setNavigationBarHidden:YES];
+        }
+        i++;
+    }
+    tabbarController.viewControllers  = viewControllers;
+    
+    [tabbarController applyUserInterface:bottomStyle];
+    NSString *cid = [bottom objectForKey:kNCTypeID];
+    [tabbarController.ncManager setComponent:tabbarController forID:cid];
+
+    return tabbarController;
 }
 
 @end

@@ -173,7 +173,7 @@ static MFTabBarController *currentTabBarController;
 
 + (NSURL *)getBaseURL
 {
-    NSString *basePath = [NSString stringWithFormat:@"%@", [[NSBundle mainBundle] bundlePath]];
+    NSString *basePath = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"www"];
     return [NSURL fileURLWithPath:basePath];
 }
 
