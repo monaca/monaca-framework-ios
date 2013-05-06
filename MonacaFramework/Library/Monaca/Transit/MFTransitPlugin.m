@@ -79,10 +79,10 @@
     NSString *currentDirectory = [[MFUtility currentViewController].webView.request.URL URLByDeletingLastPathComponent].filePathURL.path;
     NSString *urlString = [currentDirectory stringByAppendingPathComponent:filePath];
     if (urlString == nil)
-        return nil;
+        return filePath;
     NSURL *url = [NSURL fileURLWithPath:urlString];
     urlString = [url standardizedURL].path;
-    NSMutableArray *array = [NSMutableArray arrayWithArray:[urlString componentsSeparatedByString:[MFUtility getBaseURL].path]];
+    NSMutableArray *array = [NSMutableArray arrayWithArray:[urlString componentsSeparatedByString:[MFViewBuilder getWwwDir]]];
     if (array.count > 0) {
         [array removeObjectAtIndex:0];
     }

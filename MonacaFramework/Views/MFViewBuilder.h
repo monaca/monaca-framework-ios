@@ -10,6 +10,8 @@
 
 @interface MFViewBuilder : NSObject
 + (void)setIgnoreBottom:(BOOL)ignore;
++ (void)setWwwDir:(NSString *)wwwDir;
++ (NSString *)getWwwDir;
 + (id)createViewControllerWithPath:(NSString *)path;
 
 @end

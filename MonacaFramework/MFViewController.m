@@ -47,7 +47,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [MFUtility setCurrentViewController:self];
-
+    [self applyUserInterface:self.uiDict];
     [super viewDidAppear:animated];
 }
 
@@ -60,7 +60,7 @@
     [MFUtility setCurrentViewController:self];
 
     // NavigationBarの背景色などを適応させるため、self.navigationControllerがnilでなくなった後に行う。
-    [self applyUserInterface:self.uiDict];
+
 
     [self processDataTypes];
     
@@ -89,6 +89,7 @@
     NSDictionary *bottom = [uidict objectForKey:kNCPositionBottom];
     
     if (top != nil) {
+        [self.navigationController setNavigationBarHidden:NO];
         NCNavigationBar *navigationBar = [[NCNavigationBar alloc] initWithViewController:self];
         [self.ncManager setComponent:navigationBar forID:[top objectForKey:kNCTypeID]];
         [navigationBar createNavigationBar:top];
@@ -97,6 +98,7 @@
     }
 
     if (bottom != nil) {
+        [self.navigationController setToolbarHidden:NO];
         NCToolbar *toolbar =  [[NCToolbar alloc] initWithViewController:self];
         [self.ncManager setComponent:toolbar forID:[bottom objectForKey:kNCTypeID]];
         [toolbar createToolbar:bottom];
@@ -117,7 +119,7 @@
     }
     
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSString *startPagePath = [[[NSBundle mainBundle] bundlePath] stringByAppendingFormat:@"/%@/%@", self.wwwFolderName ,self.startPage];
+    NSString *startPagePath = [self.wwwFolderName stringByAppendingPathComponent:self.startPage];
     NSString *errorPath = nil;
     
     if (![fileManager fileExistsAtPath:startPagePath] && !_previousPath) {

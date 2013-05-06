@@ -12,15 +12,26 @@
 @implementation MFViewBuilder
 
 static BOOL ignoreBottom_ = NO;
+static NSString *_wwwDir;
 
 + (void)setIgnoreBottom:(BOOL)ignore
 {
     ignoreBottom_ = ignore;
 }
 
++ (void)setWwwDir:(NSString *)wwwDir
+{
+    _wwwDir = wwwDir;
+}
+
++ (NSString *)getWwwDir;
+{
+    return _wwwDir;
+}
+
 + (id)createViewControllerWithPath:(NSString *)path
 {
-    NSString *uipath = [[MFUtility getBaseURL].path stringByAppendingPathComponent:[MFUtility getUIFileName:path]];
+    NSString *uipath = [_wwwDir stringByAppendingPathComponent:[MFUtility getUIFileName:path]];
     NSMutableDictionary *uidict = [NSMutableDictionary dictionaryWithDictionary:[MFUtility parseJSONFile:uipath]];
 
     id view;
@@ -37,7 +48,7 @@ static BOOL ignoreBottom_ = NO;
         ignoreBottom_ = NO;
     } else {
         view = [[MFViewController alloc] initWithFileName:[path lastPathComponent]];
-        [view setWwwFolderName:[[MFUtility getWWWShortPath:uipath] stringByDeletingLastPathComponent]];
+        [view setWwwFolderName:[uipath stringByDeletingLastPathComponent]];
         [view setUiDict:uidict];
     }
 
@@ -46,7 +57,7 @@ static BOOL ignoreBottom_ = NO;
 
 + (MFTabBarController *)createTabbarControllerWithPath:(NSString *)path
 {
-    NSString *uiPath = [[MFUtility getBaseURL].path stringByAppendingPathComponent:[MFUtility getUIFileName:path]];
+    NSString *uiPath = [_wwwDir stringByAppendingPathComponent:[MFUtility getUIFileName:path]];
     NSDictionary *uidict = [NSDictionary dictionaryWithDictionary:[MFUtility parseJSONFile:uiPath]];
     
     MFTabBarController *tabbarController = [[MFTabBarController alloc] init];
