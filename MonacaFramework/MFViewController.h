@@ -22,6 +22,7 @@
     UIInterfaceOrientation interfaceOrientation;
     
     NSString *previousPath_;
+    NSMutableDictionary *styleDict_;
     BOOL recall_;
     BOOL interfaceOrientationUnspecified;
     BOOL withinSinglePage;
@@ -35,7 +36,7 @@
 + (BOOL)isPhoneGapScheme:(NSURL *)url;
 + (BOOL)isExternalPage:(NSURL *)url;
 
-- (NSDictionary *)parseJSONFile:(NSString *)path;
+- (NSDictionary *)loadUIFile:(NSString *)path;
 - (id)initWithFileName:(NSString *)fileName;
 - (NSString*)removeFragment:(NSString *)fileName;
 - (void)setFixedInterfaceOrientation:(UIInterfaceOrientation)orientation;
@@ -50,10 +51,11 @@
 - (void)releaseWebView;
 - (void)destroy;
 - (void)showSplash:(BOOL)show;
+- (void)applyStyleDict;
 
 @property (nonatomic, assign) BOOL recall;
 @property (nonatomic, copy) NSString *previousPath;
-@property(nonatomic, retain) UIScrollView *scrollView;
+@property (nonatomic, retain) UIScrollView *scrollView;
 @property (nonatomic, retain) NSDictionary *monacaPluginOptions;
 
 @property (nonatomic, retain) UINavigationController *appNavigationController;

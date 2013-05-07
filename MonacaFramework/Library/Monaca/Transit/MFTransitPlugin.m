@@ -17,7 +17,6 @@
 
 #define kMonacaTransitPluginJsReactivate @"window.onReactivate"
 #define kMonacaTransitPluginOptionUrl @"url"
-#define kMonacaTransitPluginOptionBg  @"bg"
 
 @implementation MFTransitPlugin
 
@@ -69,37 +68,6 @@
     [MFUtility setupMonacaViewController:viewController];
 }
 
-+ (void)setBgColor:(MFViewController *)viewController color:(UIColor *)color
-{
-    viewController.cdvViewController.webView.backgroundColor = [UIColor clearColor];
-    viewController.cdvViewController.webView.opaque = NO;
-
-    UIScrollView *scrollView = nil;
-    if ([[[UIDevice currentDevice] systemVersion] floatValue] < 5.0f) {
-        for (UIView *subview in [viewController.cdvViewController.webView subviews]) {
-            if ([[subview.class description] isEqualToString:@"UIScrollView"]) {
-                scrollView = (UIScrollView *)subview;
-            }
-        }
-    } else {
-        scrollView = (UIScrollView *)[viewController.cdvViewController.webView scrollView];
-    }
-
-    if (scrollView) {
-        scrollView.opaque = NO;
-        scrollView.backgroundColor = [UIColor clearColor];
-        // Remove shadow
-        for (UIView *subview in [scrollView subviews]) {
-            if([subview isKindOfClass:[UIImageView class]]){
-                subview.hidden = YES;
-            }
-        }
-    }
-
-    viewController.view.opaque = YES;
-    viewController.view.backgroundColor = color;
-}
-
 #pragma mark - public methods
 
 + (BOOL)changeDelegate:(UIViewController *)viewController
@@ -115,33 +83,6 @@
 }
 
 #pragma mark - MonacaViewController actions
-
-+ (void)viewDidLoad:(MFViewController *)viewController
-{
-    // @todo MonacaViewController内部にて実行すべき事柄
-    if(![viewController isKindOfClass:[MFViewController class]]) {
-        return;
-    }
-
-    if (viewController.monacaPluginOptions) {
-        NSString *bgName = [viewController.monacaPluginOptions objectForKey:kMonacaTransitPluginOptionBg];
-        if (bgName) {
-            NSURL *appWWWURL = [[MFUtility getAppDelegate] getBaseURL];
-            NSString *bgPath = [appWWWURL.path stringByAppendingFormat:@"/%@", bgName];
-            UIImage *bgImage = [UIImage imageWithContentsOfFile:bgPath];
-            if (bgImage) {
-                [[self class] setBgColor:viewController color:[UIColor colorWithPatternImage:bgImage]];
-            }
-        }
-    }
-}
-
-+ (void)webViewDidFinishLoad:(UIWebView*)theWebView viewController:(MFViewController *)viewController
-{
-    if (!viewController.monacaPluginOptions || ![viewController.monacaPluginOptions objectForKey:kMonacaTransitPluginOptionBg]) {
-        theWebView.backgroundColor = [UIColor blackColor];
-    }
-}
 
 - (NSString *)getRelativePathTo:(NSString *)filePath{
     NSString *currentDirectory = [[self monacaDelegate].viewController.cdvViewController.webView.request.URL URLByDeletingLastPathComponent].filePathURL.path;
