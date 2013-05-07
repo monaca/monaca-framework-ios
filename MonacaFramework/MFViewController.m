@@ -47,7 +47,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [MFUtility setCurrentViewController:self];
-    [self applyUserInterface:self.uiDict];
+
     [super viewDidAppear:animated];
 }
 
@@ -60,7 +60,7 @@
     [MFUtility setCurrentViewController:self];
 
     // NavigationBarの背景色などを適応させるため、self.navigationControllerがnilでなくなった後に行う。
-
+    [self applyUserInterface:self.uiDict];
 
     [self processDataTypes];
     

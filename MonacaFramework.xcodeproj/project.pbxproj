@@ -296,6 +296,10 @@
 		5A83D37B16D91E6D00D25E98 /* NCToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A83D33916D91E6D00D25E98 /* NCToolbar.m */; };
 		5A83D37C16D91E6D00D25E98 /* NCToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A83D33916D91E6D00D25E98 /* NCToolbar.m */; };
 		5A83D37D16D91E6D00D25E98 /* NCToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A83D33916D91E6D00D25E98 /* NCToolbar.m */; };
+		5A993D7A17394ECE009135B0 /* CDVCommandDelegateImpl+pathForResource.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A993D7817394ECE009135B0 /* CDVCommandDelegateImpl+pathForResource.h */; };
+		5A993D7B17394ECE009135B0 /* CDVCommandDelegateImpl+pathForResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A993D7917394ECE009135B0 /* CDVCommandDelegateImpl+pathForResource.m */; };
+		5A993D7C17394ED1009135B0 /* CDVCommandDelegateImpl+pathForResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A993D7917394ECE009135B0 /* CDVCommandDelegateImpl+pathForResource.m */; };
+		5A993D7D17394ED2009135B0 /* CDVCommandDelegateImpl+pathForResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A993D7917394ECE009135B0 /* CDVCommandDelegateImpl+pathForResource.m */; };
 		5AA2B4B217369C4300E785EA /* MFJSInterfaceProtocolTest.h in Headers */ = {isa = PBXBuildFile; fileRef = 5AA2B4AE17369C4300E785EA /* MFJSInterfaceProtocolTest.h */; };
 		5AA2B4B517369C4300E785EA /* MFJSInterfaceProtocolTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA2B4AF17369C4300E785EA /* MFJSInterfaceProtocolTest.m */; };
 		5AA2B4B617369C4300E785EA /* MFUtilityTest.h in Headers */ = {isa = PBXBuildFile; fileRef = 5AA2B4B017369C4300E785EA /* MFUtilityTest.h */; };
@@ -504,6 +508,8 @@
 		5A83D32D16D91E6D00D25E98 /* NCManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCManager.m; sourceTree = "<group>"; };
 		5A83D33816D91E6D00D25E98 /* NCToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCToolbar.h; sourceTree = "<group>"; };
 		5A83D33916D91E6D00D25E98 /* NCToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCToolbar.m; sourceTree = "<group>"; };
+		5A993D7817394ECE009135B0 /* CDVCommandDelegateImpl+pathForResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CDVCommandDelegateImpl+pathForResource.h"; sourceTree = "<group>"; };
+		5A993D7917394ECE009135B0 /* CDVCommandDelegateImpl+pathForResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CDVCommandDelegateImpl+pathForResource.m"; sourceTree = "<group>"; };
 		5AA2B4AE17369C4300E785EA /* MFJSInterfaceProtocolTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFJSInterfaceProtocolTest.h; sourceTree = "<group>"; };
 		5AA2B4AF17369C4300E785EA /* MFJSInterfaceProtocolTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFJSInterfaceProtocolTest.m; sourceTree = "<group>"; };
 		5AA2B4B017369C4300E785EA /* MFUtilityTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFUtilityTest.h; sourceTree = "<group>"; };
@@ -815,6 +821,8 @@
 				5AA2B4E11736AE3300E785EA /* CDVSplashScreen+monacaSplashScreen.m */,
 				5AA2B4E21736AE3300E785EA /* CDVViewController+getMonacaBundlePlist.h */,
 				5AA2B4E31736AE3300E785EA /* CDVViewController+getMonacaBundlePlist.m */,
+				5A993D7817394ECE009135B0 /* CDVCommandDelegateImpl+pathForResource.h */,
+				5A993D7917394ECE009135B0 /* CDVCommandDelegateImpl+pathForResource.m */,
 			);
 			path = PhoneGap;
 			sourceTree = "<group>";
@@ -1105,6 +1113,7 @@
 				5AA2B4D31736A0A000E785EA /* MonacaFramework-Prefix.pch in Headers */,
 				5AA2B4E41736AE3300E785EA /* CDVSplashScreen+monacaSplashScreen.h in Headers */,
 				5AA2B4E81736AE3300E785EA /* CDVViewController+getMonacaBundlePlist.h in Headers */,
+				5A993D7A17394ECE009135B0 /* CDVCommandDelegateImpl+pathForResource.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1337,6 +1346,7 @@
 				5AA2B4D117369C5D00E785EA /* MonacaQueryParamURLProtocol.m in Sources */,
 				5AA2B4E71736AE3300E785EA /* CDVSplashScreen+monacaSplashScreen.m in Sources */,
 				5AA2B4EB1736AE3300E785EA /* CDVViewController+getMonacaBundlePlist.m in Sources */,
+				5A993D7C17394ED1009135B0 /* CDVCommandDelegateImpl+pathForResource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1413,6 +1423,7 @@
 				5AA2B4CF17369C5D00E785EA /* MonacaQueryParamURLProtocol.m in Sources */,
 				5AA2B4E51736AE3300E785EA /* CDVSplashScreen+monacaSplashScreen.m in Sources */,
 				5AA2B4E91736AE3300E785EA /* CDVViewController+getMonacaBundlePlist.m in Sources */,
+				5A993D7B17394ECE009135B0 /* CDVCommandDelegateImpl+pathForResource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1489,6 +1500,7 @@
 				5AA2B4D017369C5D00E785EA /* MonacaQueryParamURLProtocol.m in Sources */,
 				5AA2B4E61736AE3300E785EA /* CDVSplashScreen+monacaSplashScreen.m in Sources */,
 				5AA2B4EA1736AE3300E785EA /* CDVViewController+getMonacaBundlePlist.m in Sources */,
+				5A993D7D17394ED2009135B0 /* CDVCommandDelegateImpl+pathForResource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

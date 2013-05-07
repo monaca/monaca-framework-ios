@@ -24,7 +24,7 @@
 - (void)showSplash:(BOOL)show;
 
 @property (nonatomic, copy) NSString *previousPath;
-@property (nonatomic) NCManager *ncManager;
+@property (nonatomic, retain) NCManager *ncManager;
 @property (nonatomic, retain) NSDictionary *uiDict;
 @property (nonatomic, retain) NCContainer *backButton;
 
