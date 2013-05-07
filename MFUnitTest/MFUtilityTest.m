@@ -116,4 +116,16 @@
     GHAssertEqualStrings([MFUtility getWWWShortPath:@"/User/hoge/assets/www/fuga/www/hoge.html"], @"www/fuga/www/hoge.html", nil);
     GHAssertEqualStrings([MFUtility getWWWShortPath:@"/test/hoge.html"], @"/test/hoge.html", nil);
 }
+
+- (void)testCorrectJSON
+{
+    GHAssertEqualStrings([MFUtility correctJSON:@"{\"test\" : \"hoge\"}"], @"{\"test\" : \"hoge\"}", nil);
+    GHAssertEqualStrings([MFUtility correctJSON:@"{test : \"hoge\"}"], @"{\"test\" : \"hoge\"}", nil);
+    GHAssertEqualStrings([MFUtility correctJSON:@"{test : true}"], @"{\"test\" : true}", nil);
+    GHAssertEqualStrings([MFUtility correctJSON:@"{test: false}"], @"{\"test\": false}", nil);
+    GHAssertEqualStrings([MFUtility correctJSON:@"{test: \"test:hoge\"}"], @"{\"test\": \"test:hoge\"}", nil);
+    GHAssertEqualStrings([MFUtility correctJSON:@"{test: \":hoge\"}"], @"{\"test\": \":hoge\"}", nil);
+    GHAssertEqualStrings([MFUtility correctJSON:@"{test: \"hoge:\"}"], @"{\"test\": \"hoge:\"}", nil);
+}
+
 @end

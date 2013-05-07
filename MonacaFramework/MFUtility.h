@@ -18,6 +18,7 @@
 + (UIInterfaceOrientation) currentInterfaceOrientation;
 + (BOOL) getAllowOrientationFromPlist:(UIInterfaceOrientation)interfaceOrientation;
 + (NSDictionary *)parseJSONFile:(NSString *)path;
++ (NSString *)correctJSON:(NSString *)data;
 + (NSMutableDictionary *)parseQuery:(NSURLRequest *)request;
 + (NSString *)urlEncode:(NSString *)text;
 + (BOOL)isPhoneGapScheme:(NSURL *)url;
