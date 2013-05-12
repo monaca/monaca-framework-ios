@@ -393,6 +393,8 @@
 		D49CA091173CF27000738DC9 /* MFSpinnerParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = D49CA076173CEEDC00738DC9 /* MFSpinnerParameter.m */; };
 		D49CA092173CF27000738DC9 /* MFSpinnerView.m in Sources */ = {isa = PBXBuildFile; fileRef = D49CA078173CEEDC00738DC9 /* MFSpinnerView.m */; };
 		D49CA093173CF28500738DC9 /* spinner.png in Resources */ = {isa = PBXBuildFile; fileRef = D49CA079173CEEDC00738DC9 /* spinner.png */; };
+		D49CA0B1174015B000738DC9 /* spinner@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D49CA0B0174015B000738DC9 /* spinner@2x.png */; };
+		D49CA0B2174015B000738DC9 /* spinner@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D49CA0B0174015B000738DC9 /* spinner@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -546,6 +548,7 @@
 		D49CA07F173CEF6000738DC9 /* MFTransitPopParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFTransitPopParameter.m; sourceTree = "<group>"; };
 		D49CA080173CEF6000738DC9 /* MFTransitPushParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFTransitPushParameter.h; sourceTree = "<group>"; };
 		D49CA081173CEF6000738DC9 /* MFTransitPushParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFTransitPushParameter.m; sourceTree = "<group>"; };
+		D49CA0B0174015B000738DC9 /* spinner@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "spinner@2x.png"; sourceTree = "<group>"; };
 		F50460AC13B361730050803F /* MonacaFramework-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MonacaFramework-Prefix.pch"; sourceTree = "<group>"; };
 		F50460D813B3633B0050803F /* MFDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFDelegate.m; sourceTree = "<group>"; };
 		F50460DA13B3633B0050803F /* MFViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFViewController.m; sourceTree = "<group>"; };
@@ -910,6 +913,7 @@
 		D49CA074173CEEDC00738DC9 /* Spinner */ = {
 			isa = PBXGroup;
 			children = (
+				D49CA0B0174015B000738DC9 /* spinner@2x.png */,
 				D49CA075173CEEDC00738DC9 /* MFSpinnerParameter.h */,
 				D49CA076173CEEDC00738DC9 /* MFSpinnerParameter.m */,
 				D49CA077173CEEDC00738DC9 /* MFSpinnerView.h */,
@@ -1272,6 +1276,7 @@
 				3E0B1929169D8CD7001A35BB /* Default-568h@2x.png in Resources */,
 				0E885C9A169E8DFB001DB4B1 /* exist.html in Resources */,
 				0E885C9C169E9583001DB4B1 /* exist.css in Resources */,
+				D49CA0B2174015B000738DC9 /* spinner@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1290,6 +1295,7 @@
 				3EDD681C16155D0F0018698B /* ChildBrowser.bundle in Resources */,
 				3EDD682516155D0F0018698B /* ChildBrowserViewController.xib in Resources */,
 				3E7708E0161169CF0041CF4D /* Default-568h@2x.png in Resources */,
+				D49CA0B1174015B000738DC9 /* spinner@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

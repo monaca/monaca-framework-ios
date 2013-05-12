@@ -48,7 +48,7 @@ withTitleFontSize:(NSUInteger)titleFontSize
     int height = sourceImage.size.height / frameCount;
     
     for (int i = 0; i < frameCount; i++) {
-        UIGraphicsBeginImageContext(CGSizeMake(width, height));
+        UIGraphicsBeginImageContextWithOptions(CGSizeMake(width, height), NO, sourceImage.scale);
         CGContextRef context = UIGraphicsGetCurrentContext();
         
         CGRect drawRect = CGRectMake(0, -height * i, width, sourceImage.size.height);
