@@ -96,7 +96,10 @@ static MFSpinnerView *spinnerView = nil;
     [spinnerView applyParameter:parameter];
     [spinnerView startSpinnerAnimating];
     
-    [UIApplication.sharedApplication.delegate.window addSubview:spinnerView];
+    UIWindow *window = UIApplication.sharedApplication.delegate.window;
+    UIView *rootView = window.rootViewController.view;
+    [rootView addSubview:spinnerView];
+    
 }
 
 + (void)updateTitle:(NSString *)title
