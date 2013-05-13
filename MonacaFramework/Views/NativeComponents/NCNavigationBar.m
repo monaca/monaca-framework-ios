@@ -21,6 +21,7 @@
         _viewController = viewController;
         _navigationBar = viewController.navigationController.navigationBar;
         _centerViewToolbar = [[UIToolbar alloc] init];
+        _titleView = [[NCTitleView alloc] init];
         _ncStyle = [[NSMutableDictionary alloc] init];
         [_ncStyle setValue:kNCTrue forKey:kNCStyleVisibility];
         [_ncStyle setValue:kNCFalse forKey:kNCStyleDisable];
@@ -150,13 +151,17 @@
     }
     [visiableContainers addObject:spacer];
 
-    if ([visiableContainers count] > 2) {
-        [_centerViewToolbar setItems:visiableContainers];
-        // TODO: allow few containers
-        _viewController.navigationItem.titleView = nil;
-        _viewController.navigationItem.titleView = [[visiableContainers objectAtIndex:1] view];
+    if (![[_titleView retrieveUIStyle:kNCStyleTitle] isEqualToString:kNCUndefined]) {
+        _viewController.navigationItem.titleView = _titleView;
     } else {
-        _viewController.navigationItem.titleView = nil;
+        if ([visiableContainers count] > 2) {
+            [_centerViewToolbar setItems:visiableContainers];
+            // TODO: allow few containers
+            _viewController.navigationItem.titleView = nil;
+            _viewController.navigationItem.titleView = [[visiableContainers objectAtIndex:1] view];
+        } else {
+            _viewController.navigationItem.titleView = nil;
+        }
     }
 }
 
@@ -198,18 +203,10 @@
         [_navigationBar setTintColor:hexToUIColor(removeSharpPrefix(value), 1)];
         [_centerViewToolbar setTintColor:hexToUIColor(removeSharpPrefix(value), 1)];
     }
-    if ([key isEqualToString:kNCStyleTitle]) {
-        [_viewController setTitle:value];
-    }
-    if ([key isEqualToString:kNCStyleTitleColor]) {
-        UIColor *color = hexToUIColor(removeSharpPrefix(value), 1);
-        NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:color, UITextAttributeTextColor, nil];
-        [_navigationBar setTitleTextAttributes:attributes];
-        // 一度タイトルを変更しないと文字色は反映されない
-        [_viewController setTitle:@""];
-        [_viewController setTitle:[self retrieveUIStyle:kNCStyleTitle]];
-    }
-    // TODO: Implement Subtitle
+
+    // title,subtitleに関してはNCTitleViewに委譲
+    [_titleView updateUIStyle:value forKey:key];
+    
     if ([key isEqualToString:kNCStyleIOSBarStyle]) {
         UIBarStyle style = UIBarStyleDefault;
         if ([value isEqualToString:@"UIBarStyleBlack"]) {

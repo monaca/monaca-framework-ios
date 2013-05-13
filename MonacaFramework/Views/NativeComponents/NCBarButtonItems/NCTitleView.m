@@ -11,16 +11,16 @@
 #import "MFDevice.h"
 #import "MFUtility.h"
 
-
+/*
 @implementation NCTitleLabel
 
 @synthesize fontScale = fontScale_;
 
 @end
-
+*/
 
 @implementation NCTitleView
-
+/*
 @synthesize titleLabel = titleLabel_;
 @synthesize subtitleLabel = subtitleLabel_;
 
@@ -29,7 +29,7 @@ static const CGFloat kSizeOfSubtitleFont          = 11.0f;
 static const CGFloat kSizeOfLandscapeTitleFont    = 18.0f;
 static const CGFloat kSizeOfPortraitTitleFont     = 19.0f;
 
-static NCTitleLabel *
+ static NCTitleLabel *
 labelForTitle(NSString *title, UIColor *color, CGFloat fontScale) {
     NCTitleLabel *label = [[NCTitleLabel alloc] init];
     label.fontScale = fontScale;
@@ -86,11 +86,11 @@ isEmpty(NCTitleLabel *label) {
     MFDelegate *delegate = ((MFDelegate *)[UIApplication sharedApplication].delegate);
     CGFloat height = [MFDevice heightOfNavigationBar:[MFUtility currentInterfaceOrientation]];
     [super setFrame:CGRectMake(0, 0, 0, height)];
-
+ 
     CGPoint center = self.center;
     CGPoint naviCenter = [MFUtility currentTabBarController].navigationController.navigationBar.center;
     self.center = CGPointMake(naviCenter.x, center.y);
-/*
+ /*
     if (UIInterfaceOrientationIsLandscape([MFUtility currentInterfaceOrientation])) {
         self.titleLabel.font = [UIFont boldSystemFontOfSize:kSizeOfLandscapeTitleFont * self.titleLabel.fontScale];
         self.titleLabel.frame = [self.titleLabel resizedFrameWithPoint:CGPointMake(0, 0)];
@@ -109,9 +109,132 @@ isEmpty(NCTitleLabel *label) {
             self.titleLabel.center = CGPointMake(self.frame.size.width/2.0f, height/2.0f);
         }
     }
-*/
     self.titleLabel.frame = CGRectIntegral(self.titleLabel.frame);
     self.subtitleLabel.frame = CGRectIntegral(self.subtitleLabel.frame);
+ }
+
+@end
+*/
+
+static const CGFloat kSizeOfTitleFont             = 14.0f;
+static const CGFloat kSizeOfSubtitleFont          = 11.0f;
+static const CGFloat kSizeOfLandscapeTitleFont    = 18.0f;
+static const CGFloat kSizeOfPortraitTitleFont     = 19.0f;
+
+- (id)init {
+    self = [super init];
+    
+    if (self) {
+
+        _title = [[UILabel alloc] init];
+        _subtitle = [[UILabel alloc] init];
+
+        [_title setBackgroundColor:[UIColor clearColor]];
+        _title.textAlignment = UITextAlignmentCenter;
+        [_title setFont:[UIFont boldSystemFontOfSize:kSizeOfTitleFont]];
+        [_title setTextColor:[UIColor whiteColor]];
+        _title.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
+
+        [_subtitle setBackgroundColor:[UIColor clearColor]];
+        _subtitle.textAlignment = UITextAlignmentCenter;
+        [_subtitle setFont:[UIFont boldSystemFontOfSize:kSizeOfTitleFont]];
+        [_subtitle setTextColor:[UIColor whiteColor]];
+        _subtitle.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
+        
+        [self addSubview:_title];
+        [self addSubview:_subtitle];
+        _ncStyle = [[NSMutableDictionary alloc] init];
+        [_ncStyle setValue:kNCUndefined forKey:kNCStyleTitle];
+        [_ncStyle setValue:kNCUndefined forKey:kNCStyleSubtitle];
+        [_ncStyle setValue:kNCWhite forKey:kNCStyleTitleColor];
+        [_ncStyle setValue:kNCWhite forKey:kNCStyleSubtitleColor];
+        [_ncStyle setValue:[NSNumber numberWithFloat:1.0] forKey:kNCStyleTitleFontScale];
+        [_ncStyle setValue:[NSNumber numberWithFloat:1.0] forKey:kNCStyleSubtitleFontScale];
+    }
+    
+    return self;
+}
+
+- (void)setFrame:(CGRect)frame
+{
+    CGFloat height = [MFDevice heightOfNavigationBar:[MFUtility currentInterfaceOrientation]];
+    [super setFrame:CGRectMake(0, 0, 0, height)];
+    
+    [self setCenter:CGPointMake(frame.origin.x, frame.size.height/2.0f)];
+    if (UIInterfaceOrientationIsLandscape([MFUtility currentInterfaceOrientation])) {
+        _title.font = [UIFont boldSystemFontOfSize:kSizeOfLandscapeTitleFont * [[self retrieveUIStyle:kNCStyleTitleFontScale] floatValue]];
+        [_title setCenter:CGPointMake(frame.size.width/2.0f, frame.size.height/2.0f)];
+    } else {
+        if (![_subtitle.text isEqual:kNCUndefined]) {
+            _title.font = [UIFont boldSystemFontOfSize:kSizeOfTitleFont * [[self retrieveUIStyle:kNCStyleTitleFontScale] floatValue]];
+            _subtitle.font = [UIFont systemFontOfSize:kSizeOfSubtitleFont * [[self retrieveUIStyle:kNCStyleSubtitleFontScale] floatValue]];
+            _title.center = CGPointMake(frame.size.width/2.0f, 30);
+            _subtitle.center = CGPointMake(frame.size.width/2.0f, 12);
+        } else {
+            _title.font = [UIFont boldSystemFontOfSize:kSizeOfPortraitTitleFont * [[self retrieveUIStyle:kNCStyleTitleFontScale] floatValue]];
+            _title.center = CGPointMake(frame.size.width/2.0f, frame.size.height/2.0f);
+        }
+    }
+    [_title sizeToFit];
+    [_subtitle sizeToFit];
+    _title.frame = CGRectIntegral(_title.frame);
+    _subtitle.frame = CGRectIntegral(_subtitle.frame);
+    
+}
+
+#pragma mark - UIStyleProtocol
+
+- (void)updateUIStyle:(id)value forKey:(NSString *)key
+{
+    if ([_ncStyle objectForKey:key] == nil) {
+        // 例外処理
+        return;
+    }
+    if (value == [NSNull null]) {
+        value = nil;
+    }
+    if ([NSStringFromClass([value class]) isEqualToString:@"__NSCFBoolean"]) {
+        if (isFalse(value)) {
+            value = kNCFalse;
+        } else {
+            value = kNCTrue;
+        }
+    }
+    
+    if ([key isEqualToString:kNCStyleTitle]) {
+        [_title setText:value];
+        [_title sizeToFit];
+    }
+    if ([key isEqualToString:kNCStyleSubtitle]) {
+        [_subtitle setText:value];
+    }
+    if ([key isEqualToString:kNCStyleTitleColor]) {
+        [_title setTextColor:hexToUIColor(removeSharpPrefix(value), 1)];
+    }
+    if ([key isEqualToString:kNCStyleSubtitleColor]) {
+        [_subtitle setTextColor:hexToUIColor(removeSharpPrefix(value), 1)];
+    }
+    if ([key isEqualToString:kNCStyleTitleFontScale]) {
+        if (UIInterfaceOrientationIsLandscape([MFUtility currentInterfaceOrientation])) {
+            [_title setFont:[UIFont boldSystemFontOfSize:kSizeOfTitleFont * [value floatValue]]];
+        }
+    }
+    if ([key isEqualToString:kNCStyleSubtitleFontScale]) {
+        [_title setFont:[UIFont boldSystemFontOfSize:kSizeOfTitleFont * [value floatValue]]];
+        [_title sizeToFit];
+    }
+
+    [_ncStyle setValue:value forKey:key];
+}
+
+- (id)retrieveUIStyle:(NSString *)key
+{
+    if ([_ncStyle objectForKey:key] == nil) {
+        // 例外処理
+        return nil;
+    }
+    
+    return [_ncStyle objectForKey:key];
 }
 
 @end

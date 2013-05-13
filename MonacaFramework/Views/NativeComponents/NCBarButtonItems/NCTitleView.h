@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UIStyleProtocol.h"
 
-
-@interface NCTitleLabel : UILabel {
+/*
+@interface NCTitleLabel : UILabel <UIStyleProtocol> {
  @private
     CGFloat fontScale_;
 }
@@ -30,5 +31,15 @@
 
 @property(nonatomic, retain) NCTitleLabel *titleLabel;
 @property(nonatomic, retain) NCTitleLabel *subtitleLabel;
+
+@end
+ 
+ */
+
+@interface NCTitleView : UIView <UIStyleProtocol> {
+    UILabel *_title;
+    UILabel *_subtitle;
+    NSMutableDictionary *_ncStyle;
+}
 
 @end

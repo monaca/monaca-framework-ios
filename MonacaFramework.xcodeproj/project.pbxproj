@@ -296,6 +296,8 @@
 		5A83D37B16D91E6D00D25E98 /* NCToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A83D33916D91E6D00D25E98 /* NCToolbar.m */; };
 		5A83D37C16D91E6D00D25E98 /* NCToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A83D33916D91E6D00D25E98 /* NCToolbar.m */; };
 		5A83D37D16D91E6D00D25E98 /* NCToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A83D33916D91E6D00D25E98 /* NCToolbar.m */; };
+		5A9838DF17413C4A00FAED14 /* NCTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A45C5A2172D54450003B3BF /* NCTitleView.m */; };
+		5A9838E017413C4A00FAED14 /* NCTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A45C5A2172D54450003B3BF /* NCTitleView.m */; };
 		5A993D7A17394ECE009135B0 /* CDVCommandDelegateImpl+pathForResource.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A993D7817394ECE009135B0 /* CDVCommandDelegateImpl+pathForResource.h */; };
 		5A993D7B17394ECE009135B0 /* CDVCommandDelegateImpl+pathForResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A993D7917394ECE009135B0 /* CDVCommandDelegateImpl+pathForResource.m */; };
 		5A993D7C17394ED1009135B0 /* CDVCommandDelegateImpl+pathForResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A993D7917394ECE009135B0 /* CDVCommandDelegateImpl+pathForResource.m */; };
@@ -1347,6 +1349,7 @@
 				5AA2B4E71736AE3300E785EA /* CDVSplashScreen+monacaSplashScreen.m in Sources */,
 				5AA2B4EB1736AE3300E785EA /* CDVViewController+getMonacaBundlePlist.m in Sources */,
 				5A993D7C17394ED1009135B0 /* CDVCommandDelegateImpl+pathForResource.m in Sources */,
+				5A9838E017413C4A00FAED14 /* NCTitleView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1501,6 +1504,7 @@
 				5AA2B4E61736AE3300E785EA /* CDVSplashScreen+monacaSplashScreen.m in Sources */,
 				5AA2B4EA1736AE3300E785EA /* CDVViewController+getMonacaBundlePlist.m in Sources */,
 				5A993D7D17394ED2009135B0 /* CDVCommandDelegateImpl+pathForResource.m in Sources */,
+				5A9838DF17413C4A00FAED14 /* NCTitleView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
