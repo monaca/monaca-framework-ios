@@ -9,6 +9,8 @@
 #import "MFPGNativeComponent.h"
 #import "NativeComponents.h"
 #import "MFUtility.h"
+#import "MFSpinnerView.h"
+#import "MFSpinnerParameter.h"
 
 @interface MFPGNativeComponent()
 - (void)updateNCManagerPropertyStyle:(NSMutableDictionary *)properties style:(NSMutableDictionary *)currentStyle;
@@ -117,6 +119,21 @@ static NSDictionary *defaultList_;
 
         [[MFUtility currentTabBarController] showLeftComponent];
         [[MFUtility currentTabBarController] showRightComponent];
+    }
+}
+
+- (void)showSpinner:(NSMutableArray *)arguments withDict:(NSDictionary *)options {
+    [MFSpinnerView show:[MFSpinnerParameter parseFromCodrovaPluginArguments:arguments]];
+}
+
+- (void)hideSpinner:(NSMutableArray *)arguments withDict:(NSDictionary *)options {
+    [MFSpinnerView hide];
+}
+
+- (void)updateSpinnerTitle:(NSMutableArray *)arguments withDict:(NSDictionary *)options {
+    if ([[arguments objectAtIndex:1] isKindOfClass:NSString.class]) {
+        NSString *title = [arguments objectAtIndex:1];
+        [MFSpinnerView updateTitle:title];
     }
 }
 
