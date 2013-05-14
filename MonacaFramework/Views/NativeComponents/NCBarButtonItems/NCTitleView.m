@@ -108,7 +108,6 @@ static const CGFloat kSizeOfPortraitTitleFont     = 19.0f;
     
     if ([key isEqualToString:kNCStyleTitle]) {
         [_title setText:value];
-        [_title sizeToFit];
     }
     if ([key isEqualToString:kNCStyleSubtitle]) {
         [_subtitle setText:value];
@@ -120,15 +119,27 @@ static const CGFloat kSizeOfPortraitTitleFont     = 19.0f;
         [_subtitle setTextColor:hexToUIColor(removeSharpPrefix(value), 1)];
     }
     if ([key isEqualToString:kNCStyleTitleFontScale]) {
-        if (UIInterfaceOrientationIsLandscape([MFUtility currentInterfaceOrientation])) {
-            [_title setFont:[UIFont boldSystemFontOfSize:kSizeOfTitleFont * [value floatValue]]];
-        }
+        [_title setFont:[UIFont boldSystemFontOfSize:kSizeOfTitleFont * [value floatValue]]];
     }
     if ([key isEqualToString:kNCStyleSubtitleFontScale]) {
         [_title setFont:[UIFont boldSystemFontOfSize:kSizeOfTitleFont * [value floatValue]]];
-        [_title sizeToFit];
     }
 
+    if (UIInterfaceOrientationIsLandscape([MFUtility currentInterfaceOrientation])) {
+        _title.frame = [_title resizedFrameWithPoint:CGPointMake(0, 0)];
+        [_title setCenter:CGPointMake(self.frame.size.width/2.0f, self.frame.size.height/2.0f)];
+    } else {
+        if (![[self retrieveUIStyle:kNCStyleSubtitle] isEqual:kNCUndefined]) {
+            _title.frame = [_title resizedFrameWithPoint:CGPointMake(0, 0)];
+            _subtitle.frame = [_subtitle resizedFrameWithPoint:CGPointMake(0, 0)];
+            _title.center = CGPointMake(0, 30);
+            _subtitle.center = CGPointMake(0, 12);
+        } else {
+            _title.frame = [_title resizedFrameWithPoint:CGPointMake(0, 0)];
+            _title.center = CGPointMake(0, self.frame.size.height/2.0f);
+        }
+    }
+    
     [_ncStyle setValue:value forKey:key];
 }
 
