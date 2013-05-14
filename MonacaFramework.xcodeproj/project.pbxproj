@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E81EF311741DD49003A4F9E /* UILabel+Resize.h in Headers */ = {isa = PBXBuildFile; fileRef = 0E81EF2F1741DD49003A4F9E /* UILabel+Resize.h */; };
+		0E81EF321741DD49003A4F9E /* UILabel+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E81EF301741DD49003A4F9E /* UILabel+Resize.m */; };
+		0E81EF331741DD51003A4F9E /* UILabel+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E81EF301741DD49003A4F9E /* UILabel+Resize.m */; };
+		0E81EF341741DD51003A4F9E /* UILabel+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E81EF301741DD49003A4F9E /* UILabel+Resize.m */; };
 		0E885C9A169E8DFB001DB4B1 /* exist.html in Resources */ = {isa = PBXBuildFile; fileRef = 0E885C99169E8DFB001DB4B1 /* exist.html */; };
 		0E885C9C169E9583001DB4B1 /* exist.css in Resources */ = {isa = PBXBuildFile; fileRef = 0E885C9B169E9583001DB4B1 /* exist.css */; };
 		3E0B18C8169D8CD7001A35BB /* MFDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = F54FBB3E14BBE04100F702D9 /* MFDevice.m */; };
@@ -374,6 +378,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0E81EF2F1741DD49003A4F9E /* UILabel+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+Resize.h"; sourceTree = "<group>"; };
+		0E81EF301741DD49003A4F9E /* UILabel+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Resize.m"; sourceTree = "<group>"; };
 		0E885C99169E8DFB001DB4B1 /* exist.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = exist.html; sourceTree = "<group>"; };
 		0E885C9B169E9583001DB4B1 /* exist.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = exist.css; sourceTree = "<group>"; };
 		3E0B192D169D8CD7001A35BB /* MFUnitTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MFUnitTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -927,6 +933,8 @@
 				5AEA595F172D506700FF15E2 /* NCSegment.m */,
 				5A45C5A1172D54450003B3BF /* NCTitleView.h */,
 				5A45C5A2172D54450003B3BF /* NCTitleView.m */,
+				0E81EF2F1741DD49003A4F9E /* UILabel+Resize.h */,
+				0E81EF301741DD49003A4F9E /* UILabel+Resize.m */,
 			);
 			path = NCBarButtonItems;
 			sourceTree = "<group>";
@@ -1116,6 +1124,7 @@
 				5AA2B4E41736AE3300E785EA /* CDVSplashScreen+monacaSplashScreen.h in Headers */,
 				5AA2B4E81736AE3300E785EA /* CDVViewController+getMonacaBundlePlist.h in Headers */,
 				5A993D7A17394ECE009135B0 /* CDVCommandDelegateImpl+pathForResource.h in Headers */,
+				0E81EF311741DD49003A4F9E /* UILabel+Resize.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1350,6 +1359,7 @@
 				5AA2B4EB1736AE3300E785EA /* CDVViewController+getMonacaBundlePlist.m in Sources */,
 				5A993D7C17394ED1009135B0 /* CDVCommandDelegateImpl+pathForResource.m in Sources */,
 				5A9838E017413C4A00FAED14 /* NCTitleView.m in Sources */,
+				0E81EF341741DD51003A4F9E /* UILabel+Resize.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1427,6 +1437,7 @@
 				5AA2B4E51736AE3300E785EA /* CDVSplashScreen+monacaSplashScreen.m in Sources */,
 				5AA2B4E91736AE3300E785EA /* CDVViewController+getMonacaBundlePlist.m in Sources */,
 				5A993D7B17394ECE009135B0 /* CDVCommandDelegateImpl+pathForResource.m in Sources */,
+				0E81EF321741DD49003A4F9E /* UILabel+Resize.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1505,6 +1516,7 @@
 				5AA2B4EA1736AE3300E785EA /* CDVViewController+getMonacaBundlePlist.m in Sources */,
 				5A993D7D17394ED2009135B0 /* CDVCommandDelegateImpl+pathForResource.m in Sources */,
 				5A9838DF17413C4A00FAED14 /* NCTitleView.m in Sources */,
+				0E81EF331741DD51003A4F9E /* UILabel+Resize.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

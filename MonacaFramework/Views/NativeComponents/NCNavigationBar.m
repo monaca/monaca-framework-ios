@@ -152,6 +152,7 @@
     [visiableContainers addObject:spacer];
 
     if (![[_titleView retrieveUIStyle:kNCStyleTitle] isEqualToString:kNCUndefined]) {
+        _viewController.navigationItem.titleView = nil;
         _viewController.navigationItem.titleView = _titleView;
     } else {
         if ([visiableContainers count] > 2) {
