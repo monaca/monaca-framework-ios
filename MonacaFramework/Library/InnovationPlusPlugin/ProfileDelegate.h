@@ -18,7 +18,7 @@
     IPPProfileClient* client;
 }
 
--(id)initWithCDVPlugin:(MIPCommunicationPlugin*)plugin;
+-(id)initWithCDVPlugin:(MIPCommunicationPlugin*)plugin :(NSString*)plistApplicationId  :(NSString*)authKey;
 -(void)retrieveResource:(NSMutableArray*)feelds;
 -(void)retrieveQueryResource:(NSMutableArray*)feelds;
 

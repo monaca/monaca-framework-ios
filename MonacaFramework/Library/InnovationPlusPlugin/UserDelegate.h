@@ -19,7 +19,7 @@
     NSMutableDictionary *resultValues;
 }
 
--(id)initWithCDVPlugin:(CDVPlugin*)plugin;
+-(id)initWithCDVPlugin:(CDVPlugin*)plugin :(NSString*)plistApplicationId;
 -(void)userLogin:(NSString*)userName :(NSString*)userPassword;
 -(void)getAuthKey;
 -(void)userLogout;

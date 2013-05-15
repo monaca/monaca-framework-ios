@@ -14,7 +14,10 @@
 
 @implementation MIPCommunicationPlugin
 
-const int internalError = -40;
+const int ERROR_notLogined = -20;
+const int ERROR_internalError = -40;
+const int ERROR_invalidParametersOrArguments = -60;
+const int ERROR_applicationIdNotDefined = -80;
 
 // == Return Value Method ===============================================================================================
 
@@ -48,155 +51,273 @@ const int internalError = -40;
 -(void)User_login:(CDVInvokedUrlCommand*)command
 {
     callbackId = command.callbackId;
-    [self checkArgumentsExists:command];
-    NSDictionary* loginData = [[NSDictionary alloc] initWithDictionary:[command.arguments objectAtIndex:0] ];
-    UserDelegate* mipUserLoginDelegate = [[UserDelegate alloc]initWithCDVPlugin:self ];
-    [mipUserLoginDelegate userLogin:[loginData objectForKey:@"username"] :[loginData objectForKey:@"password"]];
-    //NSLog(@"User_login");
+    
+    if([self checkArgumentsExists:command] && [self checkApplicationIdExists] && [self checkIosVersion])
+    {
+        NSDictionary* loginData = [[NSDictionary alloc] initWithDictionary:[command.arguments objectAtIndex:0] ];
+        UserDelegate* mipUserLoginDelegate = [[UserDelegate alloc]initWithCDVPlugin:self :[self getApplicationId]];
+        [mipUserLoginDelegate userLogin:[loginData objectForKey:@"username"] :[loginData objectForKey:@"password"]];
+    }
 }
 
 -(void)User_logout:(CDVInvokedUrlCommand*)command
 {
     callbackId = command.callbackId;
-    UserDelegate* mipUserLoginDelegate = [[UserDelegate alloc]initWithCDVPlugin:self ];
-    [mipUserLoginDelegate userLogout];
-    //NSLog(@"User_logout");
+    if([self checkApplicationIdExists] && [self checkIosVersion])
+    {
+        UserDelegate* mipUserLoginDelegate = [[UserDelegate alloc]initWithCDVPlugin:self :[self getApplicationId] ];
+        [mipUserLoginDelegate userLogout];
+    }
 }
 
 -(void)User_getAuthKey:(CDVInvokedUrlCommand*)command
 {
     callbackId = command.callbackId;
-    UserDelegate* mipUserLoginDelegate = [[UserDelegate alloc]initWithCDVPlugin:self ];
-    [mipUserLoginDelegate getAuthKey];
-    //NSLog(@"User_getAuthKey");
+    if([self checkApplicationIdExists] && [self checkIosVersion])
+    {
+        UserDelegate* mipUserLoginDelegate = [[UserDelegate alloc]initWithCDVPlugin:self :[self getApplicationId] ];
+        [mipUserLoginDelegate getAuthKey];
+    }
 }
 
 -(void)Profile_retrieveResource:(CDVInvokedUrlCommand*)command
 {
     callbackId = command.callbackId;
-    [self checkArgumentsExists:command];
-    ProfileDelegate* profileDelegate = [[ProfileDelegate alloc]initWithCDVPlugin:self];
-    [profileDelegate retrieveResource:[[NSMutableArray alloc] initWithArray:[command.arguments objectAtIndex:0]]];
-    //NSLog(@"Profile_retrieveResource");
+    NSMutableArray* feelds;
+    if(!([[command.arguments objectAtIndex:0] isEqual:[NSNull null]]))
+    {
+        feelds = [[NSMutableArray alloc] initWithArray:[command.arguments objectAtIndex:0]];
+    }
+    
+    if([self checkAuthKeyAndApplicationIdExists] && [self checkIosVersion])
+    {
+        ProfileDelegate* profileDelegate = [[ProfileDelegate alloc]initWithCDVPlugin:self :[self getApplicationId]  :[self getAuthKey] ];
+        [profileDelegate retrieveResource:feelds];
+    }
 }
 
 -(void)Profile_retrieveQueryResource:(CDVInvokedUrlCommand*)command
 {
     callbackId = command.callbackId;
-    [self checkArgumentsExists:command];
-    ProfileDelegate* profileDelegate = [[ProfileDelegate alloc]initWithCDVPlugin:self];
-    [profileDelegate retrieveQueryResource:[[NSMutableArray alloc] initWithArray:[command.arguments objectAtIndex:0]]];
-    //NSLog(@"Profile_retrieveQueryResource");
+    NSMutableArray* feelds;
+
+    if(!([[command.arguments objectAtIndex:0] isEqual:[NSNull null]]))
+    {
+        feelds = [[NSMutableArray alloc] initWithArray:[command.arguments objectAtIndex:0]];
+    }
+    
+    if([self checkAuthKeyAndApplicationIdExists] && [self checkIosVersion])
+    {
+        ProfileDelegate* profileDelegate = [[ProfileDelegate alloc]initWithCDVPlugin:self :[self getApplicationId]  :[self getAuthKey] ];
+        [profileDelegate retrieveQueryResource:feelds];
+    }
 }
 
 -(void)Geolocation_retrieveOwnResource:(CDVInvokedUrlCommand*)command
 {
     callbackId = command.callbackId;
-    GeolocationDelegate* geolocationDelegate = [[GeolocationDelegate alloc]initWithCDVPlugin:self];
-    [geolocationDelegate retrieveOwnResource];
-    //NSLog(@"Geolocation_retrieveOwnResource");
+    if([self checkAuthKeyAndApplicationIdExists] && [self checkIosVersion])
+    {
+        GeolocationDelegate* geolocationDelegate = [[GeolocationDelegate alloc]initWithCDVPlugin:self :[self getApplicationId]  :[self getAuthKey]];
+        [geolocationDelegate retrieveOwnResource];
+    }
 }
 
 -(void)Geolocation_retrieveResource:(CDVInvokedUrlCommand*)command
 {
     callbackId = command.callbackId;
-    [self checkArgumentsExists:command];
-    GeolocationDelegate* geolocationDelegate = [[GeolocationDelegate alloc]initWithCDVPlugin:self];
-    [geolocationDelegate retrieveResource:[command.arguments objectAtIndex:0]];
-    //NSLog(@"Geolocation_retrieveResource");
+    if([self checkAllParameterExists:command] && [self checkIosVersion])
+    {
+        GeolocationDelegate* geolocationDelegate = [[GeolocationDelegate alloc]initWithCDVPlugin:self :[self getApplicationId]  :[self getAuthKey]];
+        [geolocationDelegate retrieveResource:[command.arguments objectAtIndex:0]];
+    }
 }
 
 -(void)Geolocation_createResource:(CDVInvokedUrlCommand*)command
 {
     callbackId = command.callbackId;
-    [self checkArgumentsExists:command];
-    GeolocationDelegate* geolocationDelegate = [[GeolocationDelegate alloc]initWithCDVPlugin:self];
-        
-    if([[command.arguments objectAtIndex:0] isKindOfClass:[NSDictionary class]])
+    if([self checkAllParameterExists:command] && [self checkIosVersion])
     {
-        [geolocationDelegate createResourceForDictionary:[command.arguments objectAtIndex:0]];
-    }
-    else if([[command.arguments objectAtIndex:0] isKindOfClass:[NSArray class]])
-    {
-        [geolocationDelegate createResourceForArray:[command.arguments objectAtIndex:0]];
-    }
+        GeolocationDelegate* geolocationDelegate = [[GeolocationDelegate alloc]initWithCDVPlugin:self :[self getApplicationId]  :[self getAuthKey]];
         
-    //NSLog(@"Geolocation_createResource");
+        if([[command.arguments objectAtIndex:0] isKindOfClass:[NSDictionary class]])
+        {
+            [geolocationDelegate createResourceForDictionary:[command.arguments objectAtIndex:0]];
+        }
+        else if( [[command.arguments objectAtIndex:0] isKindOfClass:[NSArray class]])
+        {
+            [geolocationDelegate createResourceForArray:[command.arguments objectAtIndex:0]];
+        }
+    }
 }
 
 -(void)Geolocation_deleteResource:(CDVInvokedUrlCommand*)command
 {
     callbackId = command.callbackId;
-    [self checkArgumentsExists:command];
-    GeolocationDelegate* geolocationDelegate = [[GeolocationDelegate alloc]initWithCDVPlugin:self];
-    [geolocationDelegate deleteResource:(NSString*)[command.arguments objectAtIndex:0]];
-    //NSLog(@"Geolocation_deleteResource");
+    if([self checkAllParameterExists:command] && [self checkIosVersion])
+    {
+        GeolocationDelegate* geolocationDelegate = [[GeolocationDelegate alloc]initWithCDVPlugin:self :[self getApplicationId]  :[self getAuthKey]];
+        [geolocationDelegate deleteResource:(NSString*)[command.arguments objectAtIndex:0]];
+    }
 }
 
 -(void)Geolocation_retrieveQueryResource:(CDVInvokedUrlCommand*)command
 {
     callbackId = command.callbackId;
-    [self checkArgumentsExists:command];
-    GeolocationDelegate* geolocationDelegate = [[GeolocationDelegate alloc]initWithCDVPlugin:self];
-    [geolocationDelegate retrieveQueryResource:[command.arguments objectAtIndex:0]];
-    //NSLog(@"Geolocation_retrieveQueryResource");
+    if([self checkAllParameterExists:command] && [self checkIosVersion])
+    {
+        GeolocationDelegate* geolocationDelegate = [[GeolocationDelegate alloc]initWithCDVPlugin:self :[self getApplicationId]  :[self getAuthKey]];
+        [geolocationDelegate retrieveQueryResource:[command.arguments objectAtIndex:0]];
+    }
 }
 
 -(void)ApplicationResource_retrieveResource:(CDVInvokedUrlCommand*)command
 {
     callbackId = command.callbackId;
-    [self checkArgumentsExists:command];
-    NSDictionary* resourceData = [[NSDictionary alloc] initWithDictionary:[command.arguments objectAtIndex:0] ];
-    ApplicationResourceDelegate* applicationResourceDelegate = [[ApplicationResourceDelegate alloc]initWithCDVPlugin:self];
-    [applicationResourceDelegate retrieveResource:[resourceData objectForKey:@"resourceName"] :[resourceData objectForKey:@"resourceId"]];
-    //NSLog(@"ApplicationResource_retrieveResource");
+    if([self checkAllParameterExists:command] && [self checkArgumentsExistsOfIndex:command :1] && [self checkIosVersion])
+    {
+        ApplicationResourceDelegate* applicationResourceDelegate = [[ApplicationResourceDelegate alloc]initWithCDVPlugin:self :[self getApplicationId] :[self getAuthKey]];
+        [applicationResourceDelegate retrieveResource:[command.arguments objectAtIndex:0] :[command.arguments objectAtIndex:1]];
+    }
 }
 
 -(void)ApplicationResource_retrieveQueryResource:(CDVInvokedUrlCommand*)command
 {
     callbackId = command.callbackId;
-    [self checkArgumentsExists:command];
-    NSDictionary* resourceData = [[NSDictionary alloc] initWithDictionary:[command.arguments objectAtIndex:0] ];
-    ApplicationResourceDelegate* applicationResourceDelegate = [[ApplicationResourceDelegate alloc]initWithCDVPlugin:self];
-    [applicationResourceDelegate retrieveQueryResource:[resourceData objectForKey:@"resourceName"] :[command.arguments objectAtIndex:1]];
-    //NSLog(@"ApplicationResource_retrieveQueryResourcet");
+    if([self checkAllParameterExists:command] && [self checkArgumentsExistsOfIndex:command :1] && [self checkIosVersion])
+    {
+        ApplicationResourceDelegate* applicationResourceDelegate = [[ApplicationResourceDelegate alloc]initWithCDVPlugin:self :[self getApplicationId] :[self getAuthKey]];
+        [applicationResourceDelegate retrieveQueryResource:[command.arguments objectAtIndex:0] :[command.arguments objectAtIndex:1]];
+    }
 }
 
 -(void)ApplicationResource_createResource:(CDVInvokedUrlCommand*)command
 {
     callbackId = command.callbackId;
-    [self checkArgumentsExists:command];
-    NSDictionary* resourceData = [[NSDictionary alloc] initWithDictionary:[command.arguments objectAtIndex:0] ];
-    ApplicationResourceDelegate* applicationResourceDelegate = [[ApplicationResourceDelegate alloc]initWithCDVPlugin:self];
-    
-    if([[resourceData objectForKey:@"requestJson"] isKindOfClass:[NSDictionary class]])
+
+    if( [self checkAllParameterExists:command] && [self checkArgumentsExistsOfIndex:command :1] && [self checkIosVersion])
     {
-        [applicationResourceDelegate createResourceForDictionary:[resourceData objectForKey:@"resourceName"] :[resourceData objectForKey:@"requestJson"]];
+        ApplicationResourceDelegate* applicationResourceDelegate = [[ApplicationResourceDelegate alloc]initWithCDVPlugin:self :[self getApplicationId] :[self getAuthKey]];
+        
+        if([[command.arguments objectAtIndex:0] isKindOfClass:[NSDictionary class]])
+        {
+            [applicationResourceDelegate createResourceForDictionary:[command.arguments objectAtIndex:0] :[command.arguments objectAtIndex:1] ];
+        }
+        else if([[command.arguments objectAtIndex:0]  isKindOfClass:[NSArray class]])
+        {
+            [applicationResourceDelegate createResourceForArray:[command.arguments objectAtIndex:0] :[command.arguments objectAtIndex:0] ];
+        }
     }
-    else if([[resourceData objectForKey:@"requestJson"] isKindOfClass:[NSArray class]])
-    {
-        [applicationResourceDelegate createResourceForArray:[resourceData objectForKey:@"resourceName"] :[resourceData objectForKey:@"requestJson"]];
-    }
-    //NSLog(@"ApplicationResource_createResource");
 }
+
 -(void)ApplicationResource_deleteResource:(CDVInvokedUrlCommand*)command
 {
     callbackId = command.callbackId;
-    [self checkArgumentsExists:command];
-    NSDictionary* resourceData = [[NSDictionary alloc] initWithDictionary:[command.arguments objectAtIndex:0] ];
-    ApplicationResourceDelegate* applicationResourceDelegate = [[ApplicationResourceDelegate alloc]initWithCDVPlugin:self];
-    [applicationResourceDelegate deleteResource:[resourceData objectForKey:@"resourceName"] :[resourceData objectForKey:@"resourceId"]];
-    //NSLog(@"ApplicationResource_deleteResource");
+    if([self checkAllParameterExists:command] && [self checkArgumentsExistsOfIndex:command :1] && [self checkIosVersion])
+    {
+        ApplicationResourceDelegate* applicationResourceDelegate = [[ApplicationResourceDelegate alloc]initWithCDVPlugin:self :[self getApplicationId]  :[self getAuthKey]];
+        [applicationResourceDelegate deleteResource:[command.arguments objectAtIndex:0] :[command.arguments objectAtIndex:1]];
+    }
+}
+
+// === Plugin Info Get Method ==========================================================================
+-(NSString*)getApplicationId
+{
+    MFDelegate *mfDelegate = (MFDelegate *)[UIApplication sharedApplication].delegate;
+    return [[mfDelegate getApplicationPlist] objectForKey:@"application_id"];
+}
+
+-(NSString*)getAuthKey
+{
+    MIPUtility* mipUtility = [[MIPUtility alloc]init];
+    return [mipUtility getAuthKey];
 }
 
 // === Check Method ==========================================================================
 
--(void)checkArgumentsExists:(CDVInvokedUrlCommand*)command
+-(BOOL)checkAllParameterExists:(CDVInvokedUrlCommand*)command
+{
+    if(![self checkArgumentsExists:command])
+    {
+        return FALSE;
+    }
+    
+    if(![self checkAuthKeyAndApplicationIdExists])
+    {
+        return FALSE;
+    }
+    return TRUE;
+}
+
+-(BOOL)checkAuthKeyAndApplicationIdExists
+{
+    if(![self checkApplicationIdExists])
+    {
+        return FALSE;
+    }
+    
+    if(![self checkAuthKeyExists])
+    {
+        return FALSE;
+    }
+    return TRUE;
+}
+
+-(BOOL)checkApplicationIdExists
+{
+    if ([[self getApplicationId] isEqual:[NSNull null]])
+    {
+        [self returnErrorValue:ERROR_applicationIdNotDefined];
+        return FALSE;
+    }
+    
+    return TRUE;
+}
+
+-(BOOL)checkAuthKeyExists
+{
+    if ([[self getAuthKey] isEqual:[NSNull null]])
+    {
+        [self returnErrorValue:ERROR_notLogined];
+        return FALSE;
+    }
+    
+    return TRUE;
+}
+
+-(BOOL)checkArgumentsExists:(CDVInvokedUrlCommand*)command
 {    
      if ([[command.arguments objectAtIndex:0] isEqual:[NSNull null]])
      {
-         [self returnErrorValue:internalError];
+         [self returnErrorValue:ERROR_invalidParametersOrArguments];
+         return FALSE;
      }
+    
+    return TRUE;
+}
+
+-(BOOL)checkArgumentsExistsOfIndex:(CDVInvokedUrlCommand*)command :(int)index
+{
+    if ([[command.arguments objectAtIndex:index] isEqual:[NSNull null]])
+    {
+        [self returnErrorValue:ERROR_invalidParametersOrArguments];
+        return FALSE;
+    }
+    
+    return TRUE;
+}
+
+-(BOOL)checkIosVersion
+{
+    NSArray *aOsVersions = [[[UIDevice currentDevice]systemVersion] componentsSeparatedByString:@"."];
+    NSInteger iOsVersionMajor = [[aOsVersions objectAtIndex:0] intValue];
+    if (iOsVersionMajor < 6)
+    {
+        [self returnErrorValue:ERROR_internalError];
+        return FALSE;
+    }
+    
+    return TRUE;
 }
 
 @end

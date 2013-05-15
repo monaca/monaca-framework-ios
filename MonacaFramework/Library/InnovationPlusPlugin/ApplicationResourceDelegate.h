@@ -16,13 +16,14 @@
 {
     MIPCommunicationPlugin* cdvPlugin;
     IPPApplicationResourceClient* client;
+    BOOL multiCreateFrag;
 }
 
--(id)initWithCDVPlugin:(MIPCommunicationPlugin*)plugin;
--(void)retrieveResource:(NSString*)resourceName :(NSString*)resourceId;
--(void)retrieveQueryResource:(NSString*)resourceName :(NSMutableDictionary*)condition;
--(void)createResourceForDictionary:(NSString*)resourceName :(NSMutableDictionary*)resource;
--(void)createResourceForArray:(NSString*)resourceName :(NSMutableArray*)resources;
--(void)deleteResource:(NSString*)resourceName :(NSString*)resourceId;
+-(id)initWithCDVPlugin :(MIPCommunicationPlugin*)plugin :(NSString*)plistApplicationId  :(NSString*)authKey;
+-(void)retrieveResource :(NSString*)resourceId :(NSString*)resourceName;
+-(void)retrieveQueryResource :(NSMutableDictionary*)condition :(NSString*)resourceName;
+-(void)createResourceForDictionary :(NSMutableDictionary*)resource :(NSString*)resourceName;
+-(void)createResourceForArray :(NSMutableArray*)resources :(NSString*)resourceName;
+-(void)deleteResource :(NSString*)resourceId :(NSString*)resourceName;
 
 @end

@@ -10,14 +10,14 @@
 
 @implementation UserDelegate
 
--(id)initWithCDVPlugin:(MIPCommunicationPlugin*)plugin{
+-(id)initWithCDVPlugin:(MIPCommunicationPlugin*)plugin :(NSString*)plistApplicationId
+{
 	self = [super init];
-	if (self != nil) {
+	if (self != nil)
+    {
         cdvPlugin = plugin;
+        applicationId = plistApplicationId;
         mipUtility = [[MIPUtility alloc]init];
-        MFDelegate *mfDelegate = (MFDelegate *)[UIApplication sharedApplication].delegate;
-        applicationId = [[mfDelegate getApplicationPlist] objectForKey:@"application_id"];
-
 	}
 	return self;
 }

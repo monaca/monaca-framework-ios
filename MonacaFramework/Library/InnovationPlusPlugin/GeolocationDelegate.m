@@ -10,17 +10,16 @@
 
 @implementation GeolocationDelegate
 
--(id)initWithCDVPlugin:(MIPCommunicationPlugin*)plugin
+-(id)initWithCDVPlugin:(MIPCommunicationPlugin*)plugin :(NSString*)plistApplicationId  :(NSString*)authKey
 {
 	self = [super init];
 	if (self != nil)
     {
         cdvPlugin = plugin;
-        MIPUtility* mipUtility = [[MIPUtility alloc]init];
-        MFDelegate *mfDelegate = (MFDelegate *)[UIApplication sharedApplication].delegate;
         client = [[IPPGeoLocationClient alloc]init];
-        [client setApplicationId:[[mfDelegate getApplicationPlist] objectForKey:@"application_id"]];
-        [client setAuthKey:[mipUtility getAuthKey]];
+        [client setApplicationId:plistApplicationId];
+        [client setAuthKey:authKey];
+        multiCreateFrag =FALSE;
 	}
 	return self;
 }
@@ -37,6 +36,7 @@
 
 -(void)createResourceForArray:(NSMutableArray*)resources
 {
+    multiCreateFrag =TRUE;
     [client createAll:resources callback:self];
 }
 
@@ -52,7 +52,28 @@
 
 -(void)retrieveQueryResource:(NSMutableDictionary*)condition
 {
-    [client query:condition callback:self];
+    NSMutableDictionary* query = [[NSMutableDictionary alloc] init];
+    NSArray* bound = [condition objectForKey:@"bound"];
+    if([bound count] > 0)
+    {
+        [query geolocationQuery_boundTop:[[bound objectAtIndex:0] doubleValue]
+                                  bottom:[[bound objectAtIndex:1] doubleValue]
+                                    left:[[bound objectAtIndex:2] doubleValue]
+                                   right:[[bound objectAtIndex:3] doubleValue]];
+    }
+    NSArray* radiusSquare = [condition objectForKey:@"radiusSquare"];
+    if([radiusSquare count] > 0)
+    {
+        [query geolocationQuery_radiusSquare:[[radiusSquare objectAtIndex:0] intValue]
+                              centerLatitude:[[radiusSquare objectAtIndex:1] doubleValue]
+                             centerLongitude:[[radiusSquare objectAtIndex:2] doubleValue]];
+    }
+    [query geolocationQuery_count:[condition objectForKey:@"count"]];
+    [query geolocationQuery_self];
+    [query geolocationQuery_since:[condition objectForKey:@"since"]];
+    [query geolocationQuery_until:[condition objectForKey:@"until"]];
+
+    [client query:query callback:self];
 }
 
 - (void)ippDidFinishLoading:(id)result
@@ -65,7 +86,17 @@
     else if ([result isKindOfClass:[NSArray class]])
     {
         NSArray* resources = result;
-        [cdvPlugin returnSuccessValueForArray:resources];
+        
+        NSDictionary *resultJsonData;
+        if(multiCreateFrag)
+        {
+            resultJsonData = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt: [resources count]], @"resultCount", nil];
+        }
+        else
+        {
+            resultJsonData = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt: [resources count]], @"resultCount",resources, @"result",nil];
+        }
+        [cdvPlugin returnSuccessValueForJson:resultJsonData];
     }
     else if ([result isKindOfClass:[NSString class]])
     {

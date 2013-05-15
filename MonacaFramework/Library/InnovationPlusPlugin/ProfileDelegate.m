@@ -10,18 +10,15 @@
 
 @implementation ProfileDelegate
 
--(id)initWithCDVPlugin:(MIPCommunicationPlugin*)plugin
+-(id)initWithCDVPlugin:(MIPCommunicationPlugin*)plugin :(NSString*)plistApplicationId  :(NSString*)authKey
 {
 	self = [super init];
 	if (self != nil)
     {
         cdvPlugin = plugin;
-        MIPUtility* mipUtility = [[MIPUtility alloc]init];
-        MFDelegate* mfDelegate = (MFDelegate *)[UIApplication sharedApplication].delegate;
         client = [[IPPProfileClient alloc] init];
-        
-        [client setAuthKey:[mipUtility getAuthKey]];
-        [client setApplicationId:[[mfDelegate getApplicationPlist] objectForKey:@"application_id"]];
+        [client setAuthKey:authKey];
+        [client setApplicationId:plistApplicationId];
 
 	}
 	return self;
@@ -39,6 +36,8 @@
 -(void)retrieveQueryResource:(NSMutableArray*)feelds
 {
     if ([feelds count] > 0) {
+        
+        
         [client query:feelds callback:self];
     }else{
         [client query:self];
@@ -47,7 +46,6 @@
 
 - (void)ippDidFinishLoading:(id)result
 {
-    
     if ([result isKindOfClass:[NSDictionary class]])
     {
         NSDictionary* profile = result;
@@ -55,10 +53,10 @@
     }
     else if ([result isKindOfClass:[NSArray class]])
     {
-        NSArray* profiles = result;
-        [cdvPlugin returnSuccessValueForArray:profiles];
+        NSArray* resources = result;
+        NSDictionary *resultJsonData = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt: [resources count]], @"resultCount",resources, @"result",nil];
+        [cdvPlugin returnSuccessValueForJson:resultJsonData];
     }
-
 }
 
 - (void)ippDidError:(int)code

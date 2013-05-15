@@ -7,6 +7,8 @@
 //
 
 #import "CDVPlugin.h"
+#import "MFUtility.h"
+#import "MIPUtility.h"
 
 @interface MIPCommunicationPlugin : CDVPlugin{
     NSString* callbackId;

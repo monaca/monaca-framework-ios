@@ -10,42 +10,66 @@
 
 @implementation ApplicationResourceDelegate
 
--(id)initWithCDVPlugin:(MIPCommunicationPlugin*)plugin
+-(id)initWithCDVPlugin:(MIPCommunicationPlugin*)plugin :(NSString*)plistApplicationId  :(NSString*)authKey
 {
 	self = [super init];
 	if (self != nil)
     {
         cdvPlugin = plugin;
-        MIPUtility* mipUtility = [[MIPUtility alloc]init];
-        MFDelegate *mfDelegate = (MFDelegate *)[UIApplication sharedApplication].delegate;
         client = [[IPPApplicationResourceClient alloc]init];
-        [client setApplicationId:[[mfDelegate getApplicationPlist] objectForKey:@"application_id"]];
-        [client setAuthKey:[mipUtility getAuthKey]];
+        [client setApplicationId:plistApplicationId];
+        [client setAuthKey:authKey];
+
+        multiCreateFrag =FALSE;
 	}
 	return self;
 }
 
--(void)retrieveResource:(NSString*)resourceName :(NSString*)resourceId
+-(void)retrieveResource :(NSString*)resourceId :(NSString*)resourceName
 {
     [client get:resourceName resourceId:resourceId callback:self];
 }
 
--(void)retrieveQueryResource:(NSString*)resourceName :(NSMutableDictionary*)condition
+-(void)retrieveQueryResource :(NSMutableDictionary*)condition :(NSString*)resourceName
 {
-    [client query:resourceName condition:condition callback:self];
+    NSMutableDictionary* executeCondition = [[NSMutableDictionary alloc] init];
+    NSDictionary* query = [condition objectForKey:@"query"];
+    NSArray* keys = [query allKeys];
+    for(int i = 0; i < [keys count]; i++ ){
+        if(i>0){
+            [executeCondition applicationresourceQuery_and];
+        }
+        
+        if([[query objectForKey:[keys objectAtIndex:i]]  isKindOfClass:[NSString class]])
+        {
+            [executeCondition applicationresourceQuery_eqField:[keys objectAtIndex:i] withValue:[query objectForKey:[keys objectAtIndex:i]]];
+        }
+        else if ([[query objectForKey:[keys objectAtIndex:i]]  isKindOfClass:[NSNumber class]])
+        {
+            [executeCondition applicationresourceQuery_eqField:[keys objectAtIndex:i] withValue:[[NSNumber alloc] initWithInt:100111]];
+            
+        }
+    }
+    
+    [executeCondition applicationresourceQuery_since:[condition objectForKey:@"since"]];
+    [executeCondition applicationresourceQuery_until:[condition objectForKey:@"until"]];
+    [executeCondition applicationresourceQuery_count:[condition objectForKey:@"count"]];
+    [executeCondition applicationresourceQuery_self];
+    [client query:resourceName condition:executeCondition callback:self];
 }
 
--(void)createResourceForDictionary:(NSString*)resourceName :(NSMutableDictionary*)resource
+-(void)createResourceForDictionary :(NSMutableDictionary*)resource :(NSString*)resourceName
 {
     [client create:resourceName resource:resource callback:self];
 }
 
--(void)createResourceForArray:(NSString*)resourceName :(NSMutableArray*)resources
+-(void)createResourceForArray :(NSMutableArray*)resources :(NSString*)resourceName
 {
+    multiCreateFrag =TRUE;
     [client createAll:resourceName resources:resources callback:self];
 }
 
--(void)deleteResource:(NSString*)resourceName :(NSString*)resourceId
+-(void)deleteResource :(NSString*)resourceId :(NSString*)resourceName
 {
     [client delete:resourceName resourceId:resourceId callback:self];
 }
@@ -60,7 +84,17 @@
     else if ([result isKindOfClass:[NSArray class]])
     {
         NSArray* resources = result;
-        [cdvPlugin returnSuccessValueForArray:resources];
+        NSDictionary *resultJsonData;
+        
+        if(multiCreateFrag)
+        {
+            resultJsonData = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt: [resources count]], @"resultCount", nil];
+        }
+        else
+        {
+            resultJsonData = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt: [resources count]], @"resultCount",resources, @"result",nil];
+        }
+        [cdvPlugin returnSuccessValueForJson:resultJsonData];
     }
     else if ([result isKindOfClass:[NSString class]])
     {
