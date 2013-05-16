@@ -9,56 +9,16 @@
 #import "NCManager.h"
 #import "MFUtility.h"
 
-static NSMutableDictionary *
-search(NSString *cid, NSMutableDictionary *barStyle) {
-    if ([[barStyle objectForKey:kNCTypeID] isEqualToString:cid]) {
-        return barStyle;
-    }
-    
-    NSArray *leftComponents = [barStyle objectForKey:kNCTypeLeft];
-    for (NSMutableDictionary *dict in leftComponents) {
-        if ([[dict objectForKey:kNCTypeID] isEqualToString:cid]) {
-            return dict;
-        }
-    }
-    
-    NSArray *centerComponents = [barStyle objectForKey:kNCTypeCenter];
-    for (NSMutableDictionary *dict in centerComponents) {
-        if ([[dict objectForKey:kNCTypeID] isEqualToString:cid]) {
-            return dict;
-        }
-    }
-    
-    NSArray *rightComponents = [barStyle objectForKey:kNCTypeRight];
-    for (NSMutableDictionary *dict in rightComponents) {
-        if ([[dict objectForKey:kNCTypeID] isEqualToString:cid]) {
-            return dict;
-        }
-    }
-    return nil;
-}
-
-
 @implementation NCManager
-
-@synthesize properties = properties_;
-@synthesize components = components_;
 
 - (id)init
 {
     self = [super init];
     if (nil != self) {
-        self.properties = [[NSMutableDictionary alloc] init];
-        self.components = [[NSMutableDictionary alloc] init];
-        noIDComponents = [[NSMutableArray alloc] init];
+        _components = [[NSMutableDictionary alloc] init];
+        _noIDComponents = [[NSMutableArray alloc] init];
     }
     return self;
-}
-
-- (void)dealloc
-{
-    self.components = nil;
-    self.properties = nil;
 }
 
 + (id<UIStyleProtocol>)searchComponentForID:(NSString *)cid
@@ -70,31 +30,9 @@ search(NSString *cid, NSMutableDictionary *barStyle) {
     return properties;
 }
 
-/*
- * Returns dictionary which represents properties of a native component corresponding to the given ID.
- */
-- (NSMutableDictionary *)propertiesForID:(NSString *)cid
-{
-    NSMutableDictionary *result = nil;
-    
-    NSMutableDictionary *topBarStyle = [self.properties objectForKey:kNCPositionTop];
-    result = search(cid, topBarStyle);
-    if (result) {
-        return result;
-    }
-    
-    NSMutableDictionary *bottomBarStyle = [self.properties objectForKey:kNCPositionBottom];
-    result = search(cid, bottomBarStyle);
-    if (result) {
-        return result;
-    }
-
-    return nil;
-}
-
 - (id<UIStyleProtocol>)componentForID:(NSString *)cid
 {
-    return [self.components objectForKey:cid];
+    return [_components objectForKey:cid];
 }
 
 - (void)setComponent:(id<UIStyleProtocol>)component forID:(NSString *)cid
@@ -103,12 +41,12 @@ search(NSString *cid, NSMutableDictionary *barStyle) {
         return;
     }
 
-    if (cid == nil || [self.components valueForKey:cid] != nil) {
-        [noIDComponents addObject:component];
+    if (cid == nil || [_components valueForKey:cid] != nil) {
+        [_noIDComponents addObject:component];
         return;
     }
 
-    [self.components setValue:component forKey:cid];
+    [_components setValue:component forKey:cid];
 }
 
 @end

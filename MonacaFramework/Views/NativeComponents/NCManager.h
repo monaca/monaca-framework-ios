@@ -12,16 +12,11 @@
 
 @interface NCManager : NSObject {
  @private
-    NSMutableDictionary *properties_;
-    NSMutableDictionary *components_;
-    NSMutableArray *noIDComponents;
+    NSMutableDictionary *_components;
+    NSMutableArray *_noIDComponents;
 }
 
 + (id<UIStyleProtocol>)searchComponentForID:(NSString *)cid;
-- (NSMutableDictionary *)propertiesForID:(NSString *)cid;
 - (void)setComponent:(id)component forID:(NSString *)cid;
-
-@property(nonatomic, retain) NSMutableDictionary *properties;
-@property(nonatomic, retain) NSMutableDictionary *components;
 
 @end
