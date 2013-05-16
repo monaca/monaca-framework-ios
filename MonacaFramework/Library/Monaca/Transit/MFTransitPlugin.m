@@ -114,7 +114,10 @@
         }
     }
     
-    [(MFViewController *)[nav popViewControllerAnimated:YES] destroy];
+    id viewController = [nav popViewControllerAnimated:NO];
+    if (viewController) {
+        [viewController destroy];
+    }
     
 /*    BOOL res = [[self class] changeDelegate:[[nav viewControllers] lastObject]];
     if (res) {
@@ -213,9 +216,11 @@
     transition.subtype = kCATransitionFromBottom;
     [transition setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionDefault]];
 
-    [nav.view.layer addAnimation:transition forKey:kCATransition];
-    
-    [(MFViewController *)[nav popViewControllerAnimated:NO] destroy];
+    id viewController = [nav popViewControllerAnimated:NO];
+    if (viewController) {
+        [nav.view.layer addAnimation:transition forKey:kCATransition];
+        [viewController destroy];
+    }
 
 /*
     BOOL res = [[self class] changeDelegate:[[nav viewControllers] lastObject]];
