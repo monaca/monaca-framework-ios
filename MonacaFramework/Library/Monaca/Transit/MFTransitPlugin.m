@@ -12,6 +12,10 @@
 #import "MFUtility.h"
 #import "MFViewBuilder.h"
 
+#define kMonacaTransitPluginJsReactivate @"window.onReactivate"
+#define kMonacaTransitPluginOptionUrl @"url"
+#define kMonacaTransitPluginOptionBg  @"bg"
+
 @implementation MFTransitPlugin
 
 - (BOOL)isValidOptions:(NSDictionary *)options {
@@ -106,11 +110,9 @@
     }
     
     NSString *relativeUrlString = [self getRelativePathTo:urlString];
-//    NSString *query = [self getQueryFromPluginArguments:arguments urlString:relativeUrlString];
+    NSString *query = [self getQueryFromPluginArguments:arguments urlString:relativeUrlString];
     NSString *urlStringWithoutQuery = [[relativeUrlString componentsSeparatedByString:@"?"] objectAtIndex:0];
     
-//    [viewController.cdvViewController.webView loadRequest:[self createRequest:urlStringWithoutQuery withQuery:query]];
-
     MFNavigationController *nav;
     if([MFUtility currentViewController].tabBarController != nil) {
         if ([[options objectForKey:@"target"] isEqualToString:@"tab"]) {
@@ -131,18 +133,13 @@
     id viewController = [MFViewBuilder createViewControllerWithPath:urlStringWithoutQuery];
     [MFViewBuilder setIgnoreBottom:NO];
     
-    if ([viewController isKindOfClass:[MFViewController class]] && [[options objectForKey:@"tabbarHidden"] isEqualToString:@"YES"]) {
-       ((MFViewController *)viewController).hidesBottomBarWhenPushed = YES;
-    }
+    [nav pushViewController:viewController animated:YES];
     
-    BOOL animated;
-    if ([[options objectForKey:@"animated"] isEqualToString:@"NO"]) {
-        animated = NO;
-    } else {
-        animated = YES;
+    if (query != nil) {
+        if ([viewController isKindOfClass:[MFViewController class]]) {
+            [[(MFViewController *)viewController webView] loadRequest:[self createRequest:urlStringWithoutQuery withQuery:query]];
+        }
     }
-    
-    [nav pushViewController:viewController animated:animated];
 }
 
 - (void)pop:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options
@@ -234,6 +231,11 @@
     [nav.view.layer addAnimation:transition forKey:kCATransition];
     [nav pushViewController:viewController animated:NO];
 
+    if (query != nil) {
+        if ([viewController isKindOfClass:[MFViewController class]]) {
+            [[(MFViewController *)viewController webView] loadRequest:[self createRequest:urlStringWithoutQuery withQuery:query]];
+        }
+    }
 /*
     [viewController.webView loadRequest:[self createRequest:urlStringWithoutQuery withQuery:query]];
     

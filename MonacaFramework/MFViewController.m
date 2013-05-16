@@ -145,13 +145,21 @@
     }
    
     if ([url isFileURL]) {
-        self.wwwFolderName = [[MFUtility getWWWShortPath:url.path] stringByDeletingLastPathComponent];
+        self.wwwFolderName = [url.path stringByDeletingLastPathComponent];
         self.previousPath = [url path];
 
         [MFEvent dispatchEvent:monacaEventOpenPage withInfo:nil];
     }
 
     return [super webView:webView shouldStartLoadWithRequest:request navigationType:navigationType];
+}
+
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+{
+    //avoid "Failed to load webpage with error"
+    if([error code] != NSURLErrorCancelled){
+        [super webView:webView didFailLoadWithError:error];
+    }
 }
 
 #pragma mark - splash screen
