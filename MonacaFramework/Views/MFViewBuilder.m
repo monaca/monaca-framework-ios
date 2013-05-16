@@ -85,11 +85,6 @@ static NSString *_wwwDir;
         NSDictionary *top = [uiDict objectForKey:kNCPositionTop];
         NSDictionary *topStyle = [top objectForKey:kNCTypeStyle];
         
-        // Setup tabbar item.
-        if ([style objectForKey:kNCStyleText] == nil && [topStyle objectForKey:kNCStyleTitle]) {
-            [style setObject:[topStyle objectForKey:kNCStyleTitle] forKey:kNCStyleText];
-        }
-        
         MFNavigationController *navi = [[MFNavigationController alloc] initWithRootViewController:viewController];
         [viewControllers addObject:navi];
         
