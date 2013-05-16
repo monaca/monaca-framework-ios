@@ -54,7 +54,7 @@
     if (![[viewControllers objectAtIndex:[viewControllers count]-2] isKindOfClass:[MFDammyViewController class]]) {
         popFlag = YES;
         viewController = [super popViewControllerAnimated:animated];
-        popFlag = NO;
+
         return viewController;
     }
     return nil;
@@ -67,7 +67,10 @@
     if ([viewControllers count] > 1) {
         index = 1;
     }
-    return [self popToViewController:[viewControllers objectAtIndex:index] animated:animated];
+    popFlag = YES;
+    NSArray *_viewControllers = [self popToViewController:[viewControllers objectAtIndex:index] animated:animated];
+
+    return _viewControllers;
 }
 
 - (BOOL)navigationBar:(UINavigationBar *)navigationBar shouldPopItem:(UINavigationItem *)item
@@ -75,6 +78,7 @@
     if (!popFlag) {
         [[(MFViewController *)self.topViewController backButton] didTap:self forEvent:nil];
     } else {
+        popFlag = NO;
         return YES;
     }
     return NO;

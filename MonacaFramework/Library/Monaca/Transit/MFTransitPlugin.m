@@ -18,23 +18,6 @@
 
 @implementation MFTransitPlugin
 
-- (BOOL)isValidOptions:(NSDictionary *)options {
-    for (NSString *key in options) {
-        if (((NSString *)[options objectForKey:key]).length > 512) {
-            NSLog(@"[error] MonacaTransitException::Too long option length:%@, %@", key, [options objectForKey:key]);
-            return NO;
-        }
-    }
-    return YES;
-}
-
-- (BOOL)isValidString:(NSString *)urlString {
-    if (urlString.length > 512) {
-        NSLog(@"[error] MonacaTransitException::Too long path length:%@", urlString);
-        return NO;
-    }
-    return YES;
-}
 
 - (NSURLRequest *)createRequest:(NSString *)urlString withQuery:(NSString *)query
 {
@@ -47,36 +30,8 @@
     }else {
         url = [NSURL URLWithString:[@"monaca404:///www/" stringByAppendingPathComponent:urlString]];
     }
-    return [NSURLRequest requestWithURL:url];
-}
-
-- (NSString *) buildQuery:(NSDictionary *)jsonQueryParams urlString:(NSString *)urlString
-{
-    NSString *query = @"";
-    NSArray *array = [urlString componentsSeparatedByString:@"?"];
-    if (array.count > 1) {
-        query = [array objectAtIndex:1];
-    }
     
-    if (jsonQueryParams.count > 0) {
-        NSMutableArray *queryParams = [NSMutableArray array];
-        for (NSString *key in jsonQueryParams) {
-            NSString *encodedKey = [MFUtility urlEncode:key];
-            NSString *encodedValue = nil;
-            if ([[jsonQueryParams objectForKey:key] isEqual:[NSNull null]]){
-                [queryParams addObject:[NSString stringWithFormat:@"%@", encodedKey]];
-            }else {
-                encodedValue = [MFUtility urlEncode:[jsonQueryParams objectForKey:key]];
-                [queryParams addObject:[NSString stringWithFormat:@"%@=%@", encodedKey, encodedValue]];
-            }
-        }
-        if([query isEqualToString:@""]){
-            query = [[[queryParams reverseObjectEnumerator] allObjects] componentsJoinedByString:@"&"];
-        }else{
-            query = [NSString stringWithFormat:@"%@&%@",query,[[[queryParams reverseObjectEnumerator] allObjects] componentsJoinedByString:@"&"]];
-        }
-    }
-    return [query isEqualToString:@""]?nil:query;
+    return [NSURLRequest requestWithURL:url];
 }
 
 - (NSString *)getRelativePathTo:(NSString *)filePath{
@@ -93,13 +48,9 @@
     return [[array valueForKey:@"description"] componentsJoinedByString:@""];
 }
 
-- (NSString *) getQueryFromPluginArguments:(NSMutableArray *)arguments urlString:(NSString *)aUrlString{
-    NSString *query = nil;
-    if (arguments.count > 2 && ![[arguments objectAtIndex:2] isEqual:[NSNull null]]){
-        query = [self buildQuery:[arguments objectAtIndex:2] urlString:aUrlString];
-    }
-    return query;
-}
+
+
+
 #pragma mark - plugins methods
 
 - (void)push:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options
@@ -178,7 +129,8 @@
     }
 */
 }
-- (void)modal:(NSMutableArray *)arguments withDict:(NSMutableDictionary *)options
+
+- (void)modal:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options
 {
     NSString *urlString = [arguments objectAtIndex:1];
     if (![self isValidOptions:options] || ![self isValidString:urlString]) {
@@ -188,8 +140,6 @@
     NSString *relativeUrlString = [self getRelativePathTo:urlString];
     NSString *query = [self getQueryFromPluginArguments:arguments urlString:relativeUrlString];
     NSString *urlStringWithoutQuery = [[relativeUrlString componentsSeparatedByString:@"?"] objectAtIndex:0];
-
-
 
     MFNavigationController *nav;
     if([MFUtility currentViewController].tabBarController != nil) {
@@ -244,5 +194,149 @@
 
  */
 }
+
+- (void)dismiss:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options
+{
+    if (![self isValidOptions:options]) {
+        return;
+    }
+    
+    MFNavigationController *nav;
+    if([MFUtility currentViewController].tabBarController != nil) {
+        if ([[options objectForKey:@"target"] isEqualToString:@"tab"]) {
+            nav = (MFNavigationController *)[MFUtility currentViewController].navigationController;
+        } else {
+            nav = (MFNavigationController *)[MFUtility currentTabBarController].navigationController;
+        }
+    } else {
+        if ([[options objectForKey:@"target"] isEqualToString:@"tab"] == NO) {
+            nav = (MFNavigationController *)[MFUtility currentViewController].navigationController;
+        } else {
+            return;
+        }
+    }
+    
+    CATransition *transition = [CATransition animation];
+    transition.duration = 0.4f;
+    transition.type = kCATransitionReveal;
+    transition.subtype = kCATransitionFromBottom;
+    [transition setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionDefault]];
+
+    [nav.view.layer addAnimation:transition forKey:kCATransition];
+    
+    [(MFViewController *)[nav popViewControllerAnimated:NO] destroy];
+
+/*
+    BOOL res = [[self class] changeDelegate:[[nav viewControllers] lastObject]];
+    if (res) {
+        NSString *command =[NSString stringWithFormat:@"%@ && %@();", kMonacaTransitPluginJsReactivate, kMonacaTransitPluginJsReactivate];
+        [self writeJavascriptOnDelegateViewController:command];
+    }
+ */
+}
+
+
+- (void)home:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options
+{
+    NSString *fileName = [options objectForKey:kMonacaTransitPluginOptionUrl];
+
+    UINavigationController *nav = [MFUtility currentViewController].navigationController;
+    [self popToHomeViewController:YES];
+
+    UIViewController *viewController = [[nav viewControllers] objectAtIndex:0];
+
+//    BOOL res = [[self class] changeDelegate:viewController];
+//    if (res) {
+        if (fileName) {
+            [self.webView loadRequest:[self createRequest:fileName withQuery:nil]];
+        }
+        NSString *command =[NSString stringWithFormat:@"%@ && %@();", kMonacaTransitPluginJsReactivate, kMonacaTransitPluginJsReactivate];
+        [self writeJavascript:command];
+//    }
+}
+
+- (void)popToHomeViewController:(BOOL)isAnimated
+{
+    NSArray *viewControllers = [[MFUtility currentViewController].navigationController popToRootViewControllerAnimated:isAnimated];
+    
+    for (MFViewController *vc in viewControllers) {
+        [vc destroy];
+    }
+}
+
+- (void)browse:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options
+{
+    NSString *urlString = [arguments objectAtIndex:1];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
+}
+
+- (void)link:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options
+{
+    NSString *urlString = [self getRelativePathTo:[arguments objectAtIndex:1]];
+    NSString *query = [self getQueryFromPluginArguments:arguments urlString:urlString];
+    NSString *urlStringWithoutQuery = [[urlString componentsSeparatedByString:@"?"] objectAtIndex:0];
+    
+    [[MFUtility currentViewController].webView loadRequest:[self createRequest:urlStringWithoutQuery withQuery:query]];
+}
+
+
+- (NSString*) buildQuery:(NSDictionary *)jsonQueryParams urlString:(NSString *)urlString
+{
+    NSString *query = @"";
+    NSArray *array = [urlString componentsSeparatedByString:@"?"];
+    if (array.count > 1) {
+        query = [array objectAtIndex:1];
+    }
+    
+    if (jsonQueryParams.count > 0) {
+        NSMutableArray *queryParams = [NSMutableArray array];
+        for (NSString *key in jsonQueryParams) {
+            NSString *encodedKey = [MFUtility urlEncode:key];
+            NSString *encodedValue = nil;
+            if ([[jsonQueryParams objectForKey:key] isEqual:[NSNull null]]){
+                [queryParams addObject:[NSString stringWithFormat:@"%@", encodedKey]];
+            }else {
+                encodedValue = [MFUtility urlEncode:[jsonQueryParams objectForKey:key]];
+                [queryParams addObject:[NSString stringWithFormat:@"%@=%@", encodedKey, encodedValue]];
+            }
+        }
+        if([query isEqualToString:@""]){
+            query = [[[queryParams reverseObjectEnumerator] allObjects] componentsJoinedByString:@"&"];
+        }else{
+            query = [NSString stringWithFormat:@"%@&%@",query,[[[queryParams reverseObjectEnumerator] allObjects] componentsJoinedByString:@"&"]];
+        }
+    }
+    return [query isEqualToString:@""]?nil:query;
+}
+
+- (NSString*) getQueryFromPluginArguments:(NSMutableArray *)arguments urlString:(NSString *)aUrlString{
+    NSString *query = nil;
+    if (arguments.count > 2 && ![[arguments objectAtIndex:2] isEqual:[NSNull null]]){
+        query = [self buildQuery:[arguments objectAtIndex:2] urlString:aUrlString];
+    }
+    return query;
+}
+
+- (BOOL)isValidString:(NSString *)urlString {
+    if (urlString.length > 512) {
+        NSLog(@"[error] MonacaTransitException::Too long path length:%@", urlString);
+        return NO;
+    }
+    return YES;
+}
+
+- (BOOL)isValidOptions:(NSDictionary *)options {
+    for (NSString *key in options) {
+        NSObject *option = [options objectForKey:key];
+        
+        if ([option isKindOfClass:NSString.class] && ((NSString *)option).length > 512) {
+            NSLog(@"[error] MonacaTransitException::Too long option length:%@, %@", key, [options objectForKey:key]);
+            return NO;
+        }
+    }
+    return YES;
+}
+
+
 
 @end
