@@ -11,6 +11,7 @@
 #import "MFUtility.h"
 #import "MFEvent.h"
 #import "CDVPlugin.h"
+#import "MFTransitPlugin.h"
 
 @interface MFViewController ()
 
@@ -46,9 +47,9 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    [MFUtility setCurrentViewController:self];
-
     [super viewDidAppear:animated];
+
+    [MFUtility setCurrentViewController:self];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -57,15 +58,37 @@
 
 - (void)viewDidLoad
 {
+    [super viewDidLoad];
+    
     [MFUtility setCurrentViewController:self];
 
     // NavigationBarの背景色などを適応させるため、self.navigationControllerがnilでなくなった後に行う。
     [self applyUserInterface:self.uiDict];
 
-    [self processDataTypes];
+    [self applyMonacaPlugin];
     
-    [super viewDidLoad];
+    [self initPlugins]; // 画面を消す手前でdestroyを実行すること
 }
+
+- (void)releaseWebView {
+    if (self && self.webView) {
+        [self.webView loadHTMLString:@"" baseURL:nil];
+        self.webView.delegate = nil; // 解放しておかないとTransitを繰り返すとアプリが固まる
+        self.webView = nil; // 解放しておかないとWebViewが増え続ける
+        [self.webView removeFromSuperview];
+    }
+}
+
+- (void)destroy {
+    [NSTimer scheduledTimerWithTimeInterval:0.5f target:self selector:@selector(releaseWebView) userInfo:nil repeats:NO];
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
 
 - (void)processDataTypes
 {
@@ -75,12 +98,6 @@
         self.webView.dataDetectorTypes = res ? UIDataDetectorTypeAll :
             UIDataDetectorTypeNone;
     }
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)applyUserInterface:(NSDictionary *)uidict
@@ -227,17 +244,43 @@
     }
 }
 
-- (void)releaseWebView {
-    if (self && self.webView) {
-        [self.webView loadHTMLString:@"" baseURL:nil];
-        self.webView.delegate = nil; // 解放しておかないとTransitを繰り返すとアプリが固まる
-        self.webView = nil; // 解放しておかないとWebViewが増え続ける
-        [self.webView removeFromSuperview];
+#pragma mark - Monaca Plugin
+
+- (void)applyMonacaPlugin
+{
+    if (self.monacaPluginOptions == nil)
+        return;
+    
+    NSString *bgName = [self.monacaPluginOptions objectForKey:kMonacaTransitPluginOptionBg];
+    if (bgName) {
+        NSString *bgPath = [self.wwwFolderName stringByAppendingFormat:@"/%@", bgName];
+        UIImage *bgImage = [UIImage imageWithContentsOfFile:bgPath];
+        if (bgImage) {
+            [self setBackgroundColor:[UIColor colorWithPatternImage:bgImage]];
+        }
     }
 }
 
-- (void)destroy {
-    [NSTimer scheduledTimerWithTimeInterval:0.5f target:self selector:@selector(releaseWebView) userInfo:nil repeats:NO];
+- (void)setBackgroundColor:(UIColor *)color
+{
+    self.webView.backgroundColor = [UIColor clearColor];
+    self.webView.opaque = NO;
+    
+    UIScrollView *scrollView = (UIScrollView *)[self.webView scrollView];
+    
+    if (scrollView) {
+        scrollView.opaque = NO;
+        scrollView.backgroundColor = [UIColor clearColor];
+        // Remove shadow
+        for (UIView *subview in [scrollView subviews]) {
+            if([subview isKindOfClass:[UIImageView class]]){
+                subview.hidden = YES;
+            }
+        }
+    }
+    
+    self.view.opaque = YES;
+    self.view.backgroundColor = color;
 }
 
 @end

@@ -8,6 +8,10 @@
 
 #import "CDVPlugin.h"
 
+#define kMonacaTransitPluginJsReactivate @"window.onReactivate"
+#define kMonacaTransitPluginOptionUrl @"url"
+#define kMonacaTransitPluginOptionBg  @"bg"
+
 @interface MFTransitPlugin : CDVPlugin
 
 - (void)push:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options;

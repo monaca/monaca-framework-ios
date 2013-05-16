@@ -12,12 +12,7 @@
 #import "MFUtility.h"
 #import "MFViewBuilder.h"
 
-#define kMonacaTransitPluginJsReactivate @"window.onReactivate"
-#define kMonacaTransitPluginOptionUrl @"url"
-#define kMonacaTransitPluginOptionBg  @"bg"
-
 @implementation MFTransitPlugin
-
 
 - (NSURLRequest *)createRequest:(NSString *)urlString withQuery:(NSString *)query
 {
@@ -47,9 +42,6 @@
     }
     return [[array valueForKey:@"description"] componentsJoinedByString:@""];
 }
-
-
-
 
 #pragma mark - plugins methods
 
@@ -82,6 +74,8 @@
     }
 
     id viewController = [MFViewBuilder createViewControllerWithPath:urlStringWithoutQuery];
+    [viewController setMonacaPluginOptions:options];
+
     [MFViewBuilder setIgnoreBottom:NO];
     
     [nav pushViewController:viewController animated:YES];
@@ -165,19 +159,14 @@
     [transition setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionDefault]];
 
     id viewController = [MFViewBuilder createViewControllerWithPath:urlStringWithoutQuery];
+    [viewController setMonacaPluginOptions:options];
+    
     [MFViewBuilder setIgnoreBottom:NO];
     
     if ([viewController isKindOfClass:[MFViewController class]] && [[options objectForKey:@"tabbarHidden"] isEqualToString:@"YES"]) {
        ((MFViewController *)viewController).hidesBottomBarWhenPushed = YES;
     }
-    
-    BOOL animated;
-    if ([[options objectForKey:@"animated"] isEqualToString:@"NO"]) {
-        animated = NO;
-    } else {
-        animated = YES;
-    }
-    
+
     [nav.view.layer addAnimation:transition forKey:kCATransition];
     [nav pushViewController:viewController animated:NO];
 
