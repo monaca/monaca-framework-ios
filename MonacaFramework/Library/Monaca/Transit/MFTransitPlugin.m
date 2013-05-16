@@ -74,8 +74,14 @@
     }
 
     id viewController = [MFViewBuilder createViewControllerWithPath:urlStringWithoutQuery];
-    [viewController setMonacaPluginOptions:options];
-
+    if ([viewController isKindOfClass:[MFViewController class]]) {
+        [viewController setMonacaPluginOptions:options];
+    } else {
+        for (MFNavigationController *navi in [viewController viewControllers]) {
+            [(MFViewController *)[navi topViewController] setMonacaPluginOptions:options];
+        }
+    }
+    
     [MFViewBuilder setIgnoreBottom:NO];
     
     [nav pushViewController:viewController animated:YES];
@@ -107,14 +113,8 @@
             return;
         }
     }
-    BOOL animated;
-    if ([[options objectForKey:@"animated"] isEqualToString:@"NO"]) {
-        animated = NO;
-    } else {
-        animated = YES;
-    }
-
-    [(MFViewController *)[nav popViewControllerAnimated:animated] destroy];
+    
+    [(MFViewController *)[nav popViewControllerAnimated:YES] destroy];
     
 /*    BOOL res = [[self class] changeDelegate:[[nav viewControllers] lastObject]];
     if (res) {
@@ -159,14 +159,16 @@
     [transition setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionDefault]];
 
     id viewController = [MFViewBuilder createViewControllerWithPath:urlStringWithoutQuery];
-    [viewController setMonacaPluginOptions:options];
+        if ([viewController isKindOfClass:[MFViewController class]]) {
+        [viewController setMonacaPluginOptions:options];
+    } else {
+        for (MFNavigationController *navi in [viewController viewControllers]) {
+            [(MFViewController *)[navi topViewController] setMonacaPluginOptions:options];
+        }
+    }
     
     [MFViewBuilder setIgnoreBottom:NO];
     
-    if ([viewController isKindOfClass:[MFViewController class]] && [[options objectForKey:@"tabbarHidden"] isEqualToString:@"YES"]) {
-       ((MFViewController *)viewController).hidesBottomBarWhenPushed = YES;
-    }
-
     [nav.view.layer addAnimation:transition forKey:kCATransition];
     [nav pushViewController:viewController animated:NO];
 
