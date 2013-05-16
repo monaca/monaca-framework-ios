@@ -212,12 +212,16 @@
         UIBarStyle style = UIBarStyleDefault;
         if ([value isEqualToString:@"UIBarStyleBlack"]) {
             style = UIBarStyleBlack;
+            [_navigationBar setTranslucent:NO];
         } else if ([value isEqualToString:@"UIBarStyleBlackOpaque"]) {
             style = UIBarStyleBlackOpaque;
+            [_navigationBar setTranslucent:NO];
         } else if ([value isEqualToString:@"UIBarStyleBlackTranslucent"]) {
             style = UIBarStyleBlackTranslucent;
+            [_navigationBar setTranslucent:YES];
         } else if ([value isEqualToString:@"UIBarStyleDefault"]) {
             style = UIBarStyleDefault;
+            [_navigationBar setTranslucent:NO];
         }
         [_navigationBar setBarStyle:style];
     }

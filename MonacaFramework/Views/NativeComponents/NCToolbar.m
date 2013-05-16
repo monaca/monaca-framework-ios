@@ -148,12 +148,16 @@
         UIBarStyle style = UIBarStyleDefault;
         if ([value isEqualToString:@"UIBarStyleBlack"]) {
             style = UIBarStyleBlack;
+            [_toolbar setTranslucent:NO];
         } else if ([value isEqualToString:@"UIBarStyleBlackOpaque"]) {
             style = UIBarStyleBlackOpaque;
+            [_toolbar setTranslucent:NO];
         } else if ([value isEqualToString:@"UIBarStyleBlackTranslucent"]) {
             style = UIBarStyleBlackTranslucent;
+            [_toolbar setTranslucent:YES];
         } else if ([value isEqualToString:@"UIBarStyleDefault"]) {
             style = UIBarStyleDefault;
+            [_toolbar setTranslucent:NO];
         }
         [_toolbar setBarStyle:style];
     }
