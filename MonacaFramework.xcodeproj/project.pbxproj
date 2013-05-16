@@ -382,8 +382,6 @@
 		F13F51991741D906006D6D59 /* GeolocationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F13F51891741D906006D6D59 /* GeolocationDelegate.m */; };
 		F13F519A1741D906006D6D59 /* GeolocationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F13F51891741D906006D6D59 /* GeolocationDelegate.m */; };
 		F13F519B1741D906006D6D59 /* GeolocationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F13F51891741D906006D6D59 /* GeolocationDelegate.m */; };
-		F13F519F1741D906006D6D59 /* MICommunication-info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F13F518B1741D906006D6D59 /* MICommunication-info.plist */; };
-		F13F51A01741D906006D6D59 /* MICommunication-info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F13F518B1741D906006D6D59 /* MICommunication-info.plist */; };
 		F13F51A11741D906006D6D59 /* MIPCommunicationPlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = F13F518C1741D906006D6D59 /* MIPCommunicationPlugin.h */; };
 		F13F51A21741D906006D6D59 /* MIPCommunicationPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = F13F518D1741D906006D6D59 /* MIPCommunicationPlugin.m */; };
 		F13F51A31741D906006D6D59 /* MIPCommunicationPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = F13F518D1741D906006D6D59 /* MIPCommunicationPlugin.m */; };
@@ -400,6 +398,8 @@
 		F13F51AE1741D906006D6D59 /* UserDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F13F51931741D906006D6D59 /* UserDelegate.m */; };
 		F13F51AF1741D906006D6D59 /* UserDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F13F51931741D906006D6D59 /* UserDelegate.m */; };
 		F13F51B01741D906006D6D59 /* UserDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F13F51931741D906006D6D59 /* UserDelegate.m */; };
+		F1A2885717450DD100233B47 /* MICommunication-info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F1A2885617450DD100233B47 /* MICommunication-info.plist */; };
+		F1A2885817450DD100233B47 /* MICommunication-info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F1A2885617450DD100233B47 /* MICommunication-info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -549,7 +549,6 @@
 		F13F51871741D906006D6D59 /* ApplicationResourceDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplicationResourceDelegate.m; sourceTree = "<group>"; };
 		F13F51881741D906006D6D59 /* GeolocationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeolocationDelegate.h; sourceTree = "<group>"; };
 		F13F51891741D906006D6D59 /* GeolocationDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeolocationDelegate.m; sourceTree = "<group>"; };
-		F13F518B1741D906006D6D59 /* MICommunication-info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MICommunication-info.plist"; sourceTree = "<group>"; };
 		F13F518C1741D906006D6D59 /* MIPCommunicationPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIPCommunicationPlugin.h; sourceTree = "<group>"; };
 		F13F518D1741D906006D6D59 /* MIPCommunicationPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIPCommunicationPlugin.m; sourceTree = "<group>"; };
 		F13F518E1741D906006D6D59 /* MIPUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIPUtility.h; sourceTree = "<group>"; };
@@ -558,6 +557,7 @@
 		F13F51911741D906006D6D59 /* ProfileDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileDelegate.m; sourceTree = "<group>"; };
 		F13F51921741D906006D6D59 /* UserDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDelegate.h; sourceTree = "<group>"; };
 		F13F51931741D906006D6D59 /* UserDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDelegate.m; sourceTree = "<group>"; };
+		F1A2885617450DD100233B47 /* MICommunication-info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MICommunication-info.plist"; sourceTree = "<group>"; };
 		F50460AC13B361730050803F /* MonacaFramework-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MonacaFramework-Prefix.pch"; sourceTree = "<group>"; };
 		F50460D813B3633B0050803F /* MFDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFDelegate.m; sourceTree = "<group>"; };
 		F50460DA13B3633B0050803F /* MFViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFViewController.m; sourceTree = "<group>"; };
@@ -921,11 +921,11 @@
 		F13F51851741D906006D6D59 /* InnovationPlusPlugin */ = {
 			isa = PBXGroup;
 			children = (
+				F1A2885617450DD100233B47 /* MICommunication-info.plist */,
 				F13F51861741D906006D6D59 /* ApplicationResourceDelegate.h */,
 				F13F51871741D906006D6D59 /* ApplicationResourceDelegate.m */,
 				F13F51881741D906006D6D59 /* GeolocationDelegate.h */,
 				F13F51891741D906006D6D59 /* GeolocationDelegate.m */,
-				F13F518B1741D906006D6D59 /* MICommunication-info.plist */,
 				F13F518C1741D906006D6D59 /* MIPCommunicationPlugin.h */,
 				F13F518D1741D906006D6D59 /* MIPCommunicationPlugin.m */,
 				F13F518E1741D906006D6D59 /* MIPUtility.h */,
@@ -1293,7 +1293,7 @@
 				3E0B1929169D8CD7001A35BB /* Default-568h@2x.png in Resources */,
 				0E885C9A169E8DFB001DB4B1 /* exist.html in Resources */,
 				0E885C9C169E9583001DB4B1 /* exist.css in Resources */,
-				F13F51A01741D906006D6D59 /* MICommunication-info.plist in Resources */,
+				F1A2885817450DD100233B47 /* MICommunication-info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1311,7 +1311,7 @@
 				3EDD681C16155D0F0018698B /* ChildBrowser.bundle in Resources */,
 				3EDD682516155D0F0018698B /* ChildBrowserViewController.xib in Resources */,
 				3E7708E0161169CF0041CF4D /* Default-568h@2x.png in Resources */,
-				F13F519F1741D906006D6D59 /* MICommunication-info.plist in Resources */,
+				F1A2885717450DD100233B47 /* MICommunication-info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

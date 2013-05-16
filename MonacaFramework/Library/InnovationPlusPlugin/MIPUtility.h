@@ -9,9 +9,11 @@
 #import <Foundation/Foundation.h>
 
 @interface MIPUtility : NSObject
--(NSString*)getMIPPlistPath;
+
 -(NSMutableDictionary*)getMIPPlist;
 -(void)updateMIPPlist:(NSString*)authKey;
 -(NSString*)getAuthKey;
+-(NSString*)dataFilePath;
+
 
 @end

@@ -27,7 +27,7 @@
 /**
  * IPPRESTDelegate : see NSURLConnectionDelegate
  */
-@protocol IPPRESTDelegate <NSObject>
+@protocol IPPRESTDelegate <NSURLConnectionDataDelegate>
 
 /**
  * @see connection:didReceiveResponse:

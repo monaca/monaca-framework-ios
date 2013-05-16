@@ -3,6 +3,6 @@
 <plist version="1.0">
 <dict>
 	<key>auth_key</key>
-	<string></string>
+	<string>test</string>
 </dict>
 </plist>
