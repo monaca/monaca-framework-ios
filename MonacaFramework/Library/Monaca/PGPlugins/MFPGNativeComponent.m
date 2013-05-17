@@ -232,10 +232,13 @@ static NSDictionary *defaultList_;
         [[self class] initDefaultList];
     }
     NSArray *keys = [style allKeys];
+    NSArray *removeTargetKeys = [NSArray arrayWithObjects:kNCStyleShadowOpacity, nil];
     id key;
     for (key in keys) {
         if ([[style objectForKey:key] isKindOfClass:[NSNumber class]] &&
-            ![[style objectForKey:key] isKindOfClass:[[defaultList_ objectForKey:key] class]]) {
+            ![[style objectForKey:key] isKindOfClass:[[defaultList_ objectForKey:key] class]] &&
+            !([removeTargetKeys containsObject:key])
+            ) {
             NSString *value = [NSString stringWithFormat:@"%@", [style objectForKey:key]];
             if ([value isEqual:@"0"]) {
                 [style setObject:kNCFalse forKey:key];

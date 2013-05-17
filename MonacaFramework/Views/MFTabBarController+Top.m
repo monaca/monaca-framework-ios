@@ -9,6 +9,7 @@
 #import "MFTabBarController+Top.h"
 #import "MFDevice.h"
 
+#import <QuartzCore/QuartzCore.h>
 
 // Supports iOS4. Cannot use setTintColor method in iOS4.
 static void
@@ -112,8 +113,20 @@ setBackgroundColor(NSArray *components, NCToolbar *toolbar) {
     NSMutableDictionary *topBarStyle = [self dictionaryWithTopBarStyle];
     NSString *title = [topBarStyle objectForKey:kNCStyleTitle];
     NSString *subtitle = [topBarStyle objectForKey:kNCStyleSubtitle];
+    NSString *titleImageFilePath = [topBarStyle objectForKey:kNCStyleTitleImage];
     
-    if ((title && [title length] > 0) || (subtitle && [subtitle length] > 0)) {
+    
+    if(titleImageFilePath && [titleImageFilePath length] > 0)
+    {
+        // title image set
+        NCTitleView *titleView = [[NCTitleView alloc] init];
+        [titleView setTitleImage:titleImageFilePath];
+        self.navigationItem.titleView = titleView;
+        self.navigationItem.title = nil;
+
+    }
+    else if ((title && [title length] > 0) || (subtitle && [subtitle length] > 0))
+    {
         NSString *titleColor = [topBarStyle objectForKey:kNCStyleTitleColor];
         NSString *subtitleColor = [topBarStyle objectForKey:kNCStyleSubtitleColor];
         
@@ -145,6 +158,7 @@ setBackgroundColor(NSArray *components, NCToolbar *toolbar) {
         self.navigationItem.titleView = titleView;
         self.navigationItem.title = nil;
     }
+    
 }
 
 - (MFTabBarController *)applyTopToolbar:(NSDictionary *)style {
@@ -241,7 +255,34 @@ setBackgroundColor(NSArray *components, NCToolbar *toolbar) {
         if (toolbarColor) {
             UIColor *bgColor = hexToUIColor(removeSharpPrefix(toolbarColor), 1);
             [navBar setTintColor:bgColor];
+            
         }
+        
+        // modify:2013.05.17 navbar_shadowOpacity add by shikata
+        CALayer *navBarLayer = navBar.layer;
+        navBarLayer.masksToBounds = NO;
+        navBarLayer.shadowColor = [[UIColor blackColor] CGColor];
+        navBarLayer.shadowOffset = CGSizeMake(1.0f, 1.0f);
+        navBarLayer.shadowRadius = 3.0f;
+        navBarLayer.shadowOpacity = 0.3; //デフォルト値
+    
+        NSString *shadowOpacityString = [style objectForKey:kNCStyleShadowOpacity];
+        if(shadowOpacityString && [shadowOpacityString floatValue])
+        {
+            if([shadowOpacityString floatValue] > 1.0)
+            {
+                navBarLayer.shadowOpacity = 1.0;
+            }
+            else if ([shadowOpacityString floatValue] < 0.0)
+            {
+                navBarLayer.shadowOpacity = 0.0;
+            }
+            else
+            {
+                navBarLayer.shadowOpacity = [shadowOpacityString floatValue];
+            }
+        }
+        // modify_end
     }
     
     // Set title and subtitle.
