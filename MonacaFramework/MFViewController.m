@@ -601,7 +601,10 @@
         }
         
     }
-    
+    UIImage* test = [UIImage imageWithContentsOfFile:imagePath];
+    CALayer *backgroundLayer = [CALayer layer];
+    backgroundLayer.contents = test;
+    [self.view.layer addSublayer:backgroundLayer];
 }
 
 @end
