@@ -12,6 +12,7 @@
 #import "MFTransitPlugin.h"
 #import "MFUtility.h"
 #import "MFEvent.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface MFViewController ()
 - (NSString *)careWWWdir:(NSString *)path;
@@ -409,6 +410,13 @@
             [self setupBackgroundColor:UIColor.whiteColor];
         }
     }
+    // "backgroundImage" setting
+    
+    id imageString = [styleDict_ objectForKey:kNCStyleBackgroundImage];
+    if ([imageString isKindOfClass:NSString.class])
+    {
+       [self setBackgroundImage:imageString];
+    }
 }
 
 - (void) webViewDidFinishLoad:(UIWebView*) theWebView 
@@ -571,5 +579,29 @@
     self.view.backgroundColor = color;
 }
 
+-(void)setBackgroundImage:(NSString*)imageFilePath
+{
+    MFDelegate *mfDelegate = (MFDelegate *)[UIApplication sharedApplication].delegate;
+    NSString *currentDirectory = [mfDelegate.viewController.previousPath stringByDeletingLastPathComponent];
+    NSString *imagePath = [currentDirectory stringByAppendingPathComponent:imageFilePath];
+
+    // for Retina Display
+    if([UIScreen mainScreen].scale > 1.0)
+    {
+        NSRegularExpression* matchResult = [NSRegularExpression regularExpressionWithPattern:@"(\\.)" options:0 error:nil];
+        NSString* retinaImageFileName = [matchResult
+                         stringByReplacingMatchesInString:imageFilePath options:NSMatchingReportProgress range:NSMakeRange(0, imageFilePath.length) withTemplate:@"@2x."];
+        
+        NSString *retinaImageFilePath = [currentDirectory stringByAppendingPathComponent:retinaImageFileName];
+
+        // file exist check
+        if([[NSFileManager defaultManager] fileExistsAtPath:retinaImageFilePath])
+        {
+            imagePath = retinaImageFilePath;
+        }
+        
+    }
+    
+}
 
 @end

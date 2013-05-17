@@ -23,12 +23,15 @@
  @private
     NCTitleLabel *titleLabel_;
     NCTitleLabel *subtitleLabel_;
+    UIImageView *titleImageView_;
 }
 
 - (void)setTitle:(NSString *)title color:(UIColor *)color scale:(CGFloat)scale;
 - (void)setSubtitle:(NSString *)subtitle color:(UIColor *)color scale:(CGFloat)scale;
+- (void)setTitleImage:(NSString *)imageFilePath;
 
 @property(nonatomic, retain) NCTitleLabel *titleLabel;
 @property(nonatomic, retain) NCTitleLabel *subtitleLabel;
+@property(nonatomic, retain) UIImageView *titleImageView;
 
 @end
