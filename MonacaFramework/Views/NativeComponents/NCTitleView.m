@@ -118,7 +118,7 @@ isEmpty(NCTitleLabel *label) {
         self.titleImageView.center = CGPointMake(self.frame.size.width/2.0f, height/2.0f);
     } else {
         if (self.titleImageView) {
-            self.titleImageView.center = CGPointMake(self.frame.size.width/2.0f, self.titleImageView.image.size.height * 0.5f);
+            self.titleImageView.center = CGPointMake(self.frame.size.width/2.0f, height/2.0f);
         }
         else if (!isEmpty(self.subtitleLabel))
         {
