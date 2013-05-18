@@ -7,11 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "MFNavigationController.h"
 
 @interface MFViewBuilder : NSObject
 + (void)setIgnoreBottom:(BOOL)ignore;
-+ (void)setWwwDir:(NSString *)wwwDir;
-+ (NSString *)getWwwDir;
++ (MFNavigationController *)createMonacaNavigationControllerWithWwwDir:(NSString *)wwwDir withPath:(NSString *)path;
 + (id)createViewControllerWithPath:(NSString *)path;
 
 @end

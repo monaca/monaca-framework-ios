@@ -53,9 +53,7 @@
     
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    [MFViewBuilder setWwwDir:[MFUtility getBaseURL].path];
-    self.monacaNavigationController = [[MFNavigationController alloc] initWithRootViewController:[MFViewBuilder createViewControllerWithPath:@"index.html"]];
-
+    self.monacaNavigationController = [MFViewBuilder createMonacaNavigationControllerWithWwwDir:[MFUtility getBaseURL].path withPath:@"index.html"];
     
     // register protocols.
     [NSURLProtocol registerClass:[MonacaQueryParamURLProtocol class]];

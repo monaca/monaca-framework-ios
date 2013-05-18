@@ -38,15 +38,6 @@
     return YES;
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    NSMutableArray *viewControllers = [NSMutableArray arrayWithArray:self.viewControllers];
-    if ([[viewControllers objectAtIndex:0] isKindOfClass:[MFDammyViewController class]] == NO) {
-        [viewControllers insertObject:[MFDammyViewController alloc] atIndex:0];
-        [self setViewControllers:viewControllers];
-    }
-}
-
 - (UIViewController *)popViewControllerAnimated:(BOOL)animated
 {
     id viewController;

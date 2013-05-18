@@ -8,6 +8,7 @@
 
 #import "MFViewBuilder.h"
 #import "MFUtility.h"
+#import "MFDammyViewController.h"
 
 @implementation MFViewBuilder
 
@@ -19,14 +20,13 @@ static NSString *_wwwDir;
     ignoreBottom_ = ignore;
 }
 
-+ (void)setWwwDir:(NSString *)wwwDir
++ (MFNavigationController *)createMonacaNavigationControllerWithWwwDir:(NSString *)wwwDir withPath:(NSString *)path
 {
     _wwwDir = wwwDir;
-}
-
-+ (NSString *)getWwwDir;
-{
-    return _wwwDir;
+    MFNavigationController *navigationController = [[MFNavigationController alloc] init];
+    [navigationController setViewControllers:[NSArray arrayWithObjects:[[MFDammyViewController alloc] init], [MFViewBuilder createViewControllerWithPath:path], nil]];
+    
+    return navigationController;
 }
 
 + (id)createViewControllerWithPath:(NSString *)path
