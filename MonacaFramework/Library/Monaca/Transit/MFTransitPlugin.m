@@ -114,7 +114,7 @@
         }
     }
     
-    id viewController = [nav popViewControllerAnimated:NO];
+    id viewController = [nav popViewControllerAnimated:YES];
     if (viewController) {
         [viewController destroy];
     }
