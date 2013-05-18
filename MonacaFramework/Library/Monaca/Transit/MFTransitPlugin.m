@@ -36,11 +36,8 @@
         return filePath;
     NSURL *url = [NSURL fileURLWithPath:urlString];
     urlString = [url standardizedURL].path;
-    NSMutableArray *array = [NSMutableArray arrayWithArray:[urlString componentsSeparatedByString:[MFViewBuilder getWwwDir]]];
-    if (array.count > 0) {
-        [array removeObjectAtIndex:0];
-    }
-    return [[array valueForKey:@"description"] componentsJoinedByString:@""];
+    NSString *path = [MFUtility getWWWShortPath:urlString];
+    return [path substringFromIndex:[path rangeOfString:@"www"].location + [@"www" length]];
 }
 
 #pragma mark - plugins methods
