@@ -36,5 +36,7 @@
 + (MFDelegate *)getAppDelegate;
 + (MFViewController *)currentViewController;
 + (void)setCurrentViewController:(MFViewController *)viewController;
-
++ (NSURLResponse *)register_push:(NSString *)deviceToken;
++ (void)setMonacaCloudCookie;
++ (void)clearMonacaCloudCookie;
 @end

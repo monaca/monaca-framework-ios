@@ -195,6 +195,13 @@
     }
 }
 
+- (void)sendPush
+{
+    NSString *js = [NSString stringWithFormat:@"monaca.cloud.Push.send(%@);", [[NSUserDefaults standardUserDefaults] objectForKey:@"extraJSON"]];
+    [self.webView stringByEvaluatingJavaScriptFromString:js];
+    [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"extraJSON"];
+}
+
 #pragma mark - splash screen
 
 - (void)showSplash:(BOOL)show

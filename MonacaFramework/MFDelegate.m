@@ -63,7 +63,73 @@
     self.window.rootViewController = self.monacaNavigationController;
     [self.window makeKeyAndVisible];
     
+    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge                                                                           | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
+
+    if (launchOptions) {
+        NSDictionary *extraJson = [[launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey] objectForKey:@"j"];
+        [[NSUserDefaults standardUserDefaults] setObject:extraJson forKey:@"extraJSON"];
+    }
+
+    [MFUtility setMonacaCloudCookie];
+
     return YES;
+}
+
+- (void)applicationWillResignActive:(UIApplication *)application
+{
+
+}
+
+- (void)applicationWillEnterForeground:(UIApplication *)application
+{
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"deviceToken"]) {
+        NSString *token = [[NSUserDefaults standardUserDefaults] objectForKey:@"deviceToken"];
+        [MFUtility register_push:token];
+    } else {
+        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge                                                                           | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
+    }
+
+    [MFUtility setMonacaCloudCookie];
+}
+- (void)applicationDidEnterBackground:(UIApplication *)application
+{
+
+}
+
+- (void)applicationDidBecomeActive:(UIApplication *)application
+{
+
+}
+
+- (void)applicationWillTerminate:(UIApplication *)application
+{
+
+}
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+{
+    NSString *token = [[[[deviceToken description] stringByReplacingOccurrencesOfString:@"<"withString:@""]
+                        stringByReplacingOccurrencesOfString:@">" withString:@""]
+                       stringByReplacingOccurrencesOfString: @" " withString: @""];
+    [[NSUserDefaults standardUserDefaults] setObject:token forKey:@"deviceToken"];
+    [MFUtility register_push:token];
+}
+
+- (void)application:(UIApplication*)application didFailToRegisterForRemoteNotificationsWithError:(NSError*)err
+{
+    NSLog(@"ErrorInRegistration:%@",err);
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+{
+    NSString *pushProjectId = [userInfo objectForKey:@"i"];
+    NSDictionary *extraJson = [userInfo objectForKey:@"j"];
+
+    [[NSUserDefaults standardUserDefaults] setObject:pushProjectId forKey:@"pushProjectId"];
+    [[NSUserDefaults standardUserDefaults] setObject:extraJson forKey:@"extraJSON"];
+    application.applicationIconBadgeNumber = 0;
+
+    [[MFUtility currentViewController] sendPush];
 }
 
 - (UIInterfaceOrientation)currentInterfaceOrientation{

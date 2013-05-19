@@ -23,6 +23,7 @@
 }
 - (void)setUserInterface:(NSDictionary *)uidict;
 - (void)applyUserInterface;
+- (void)sendPush;
 - (id)initWithFileName:(NSString *)fileName;
 - (void)destroy;
 - (void)showSplash:(BOOL)show;
