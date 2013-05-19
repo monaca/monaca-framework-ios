@@ -32,7 +32,7 @@
         [_ncStyle setValue:kNCWhite forKey:kNCStyleSubtitleColor];
         [_ncStyle setValue:[NSNumber numberWithFloat:1.0]  forKey:kNCStyleTitleFontScale];
         [_ncStyle setValue:[NSNumber numberWithFloat:1.0]  forKey:kNCStyleSubtitleFontScale];
-        [_ncStyle setValue:kNCUndefined forKey:kNCStyleIOSBarStyle];
+        [_ncStyle setValue:kNCBarStyleDefault forKey:kNCStyleIOSBarStyle];
     }
 
     return self;
@@ -48,7 +48,8 @@
         [_viewController.navigationController setNavigationBarHidden:NO];
     }
 
-    [self applyUserInterface:[uidict objectForKey:kNCTypeStyle]];
+    [self setUserInterface:[uidict objectForKey:kNCTypeStyle]];
+    [self applyUserInterface];
 
     /***** create leftContainers *****/
     NSMutableArray *containers = [NSMutableArray array];
@@ -97,7 +98,7 @@
     }
     _centerContainers = containers;
 
-    [self applyVisibility];
+  [self applyVisibility];
 }
 
 - (void)applyBackButton
@@ -168,10 +169,19 @@
 
 #pragma mark - UIStyleProtocol
 
-- (void)applyUserInterface:(NSDictionary *)uidict
+- (void)setUserInterface:(NSDictionary *)uidict
 {
-    for (id key in uidict) {
-        [self updateUIStyle:[uidict objectForKey:key] forKey:key];
+    for (id key in uidict) { 
+        if ([_ncStyle objectForKey:key] == nil)
+            continue;
+        [_ncStyle setValue:[uidict valueForKey:key] forKey:key];
+    }
+}
+
+- (void)applyUserInterface
+{
+    for (id key in [_ncStyle copy]) {
+        [self updateUIStyle:[_ncStyle objectForKey:key] forKey:key];
     }
 }
 
@@ -210,16 +220,16 @@
     
     if ([key isEqualToString:kNCStyleIOSBarStyle]) {
         UIBarStyle style = UIBarStyleDefault;
-        if ([value isEqualToString:@"UIBarStyleBlack"]) {
+        if ([value isEqualToString:kNCBarStyleBlack]) {
             style = UIBarStyleBlack;
             [_navigationBar setTranslucent:NO];
-        } else if ([value isEqualToString:@"UIBarStyleBlackOpaque"]) {
+        } else if ([value isEqualToString:kNCBarStyleBlackOpaque]) {
             style = UIBarStyleBlackOpaque;
             [_navigationBar setTranslucent:NO];
-        } else if ([value isEqualToString:@"UIBarStyleBlackTranslucent"]) {
+        } else if ([value isEqualToString:kNCBarStyleBlackTranslucent]) {
             style = UIBarStyleBlackTranslucent;
             [_navigationBar setTranslucent:YES];
-        } else if ([value isEqualToString:@"UIBarStyleDefault"]) {
+        } else if ([value isEqualToString:kNCBarStyleDefault]) {
             style = UIBarStyleDefault;
             [_navigationBar setTranslucent:NO];
         }

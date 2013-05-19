@@ -17,8 +17,8 @@
 
 @interface MFTabBarController : UITabBarController <UITabBarControllerDelegate,UITabBarDelegate,UIStyleProtocol> {
  @private
-    NCManager *ncManager_;
-    NSMutableDictionary *ncStyle;
+    NCManager *_ncManager;
+    NSMutableDictionary *_ncStyle;
 }
 
 - (void)restoreUserInterface;

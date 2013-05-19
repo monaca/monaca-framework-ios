@@ -9,6 +9,7 @@
 #import "CDVViewController.h"
 #import "NCManager.h"
 #import "NCContainer.h"
+#import "UIStyleProtocol.h"
 
 @interface MFViewController : CDVViewController <UIScrollViewDelegate, UIWebViewDelegate>
 {
@@ -16,9 +17,12 @@
     NSString *_previousPath;
     NCManager *_ncManager_;
     NSDictionary *_uiDict;
+    id<UIStyleProtocol> _navigationBar;
+    id<UIStyleProtocol> _toolbar;
     NCContainer *_backButton;
 }
-- (void)applyUserInterface:(NSDictionary *)uidict;
+- (void)setUserInterface:(NSDictionary *)uidict;
+- (void)applyUserInterface;
 - (id)initWithFileName:(NSString *)fileName;
 - (void)destroy;
 - (void)showSplash:(BOOL)show;

@@ -8,12 +8,17 @@
 
 #define kNCTrue  @"true"
 #define kNCFalse @"false"
-#define kNCUndefined @"undefined"
+#define kNCUndefined @""
 
 #define kNCBlack @"#000000"
 #define kNCWhite @"#FFFFFF"
 #define kNCRed @"#FF0000"
 #define kNCBlue @"#0000FF"
+
+#define kNCBarStyleBlack @"UIBarStyleBlack"
+#define kNCBarStyleBlackOpaque @"UIBarStyleBlackOpaque"
+#define kNCBarStyleBlackTranslucent @"UIBarStyleBlackTranslucent"
+#define kNCBarStyleDefault @"UIBarStyleDefault"
 
 #define kNCPositionTop    @"top"
 #define kNCPositionMiddle @"middle"

@@ -50,7 +50,8 @@
 
     if ([type isEqualToString:kNCComponentButton]) {
         NCButton *button = [[NCButton alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:container action:@selector(didTap:forEvent:)];
-        [button applyUserInterface:style_def];
+        [button setUserInterface:style_def];
+        [button applyUserInterface];
         button.toolbar = toolbar;
         container.component = button;
         container.onTapScript = [[params objectForKey:kNCTypeEvent] objectForKey:kNCEventTypeTap];
@@ -58,7 +59,8 @@
     }
     else if ([type isEqualToString:kNCComponentBackButton]) {
         NCBackButton *backButton = [[NCBackButton alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:nil action:nil];
-        [backButton applyUserInterface:style_def];
+        [backButton setUserInterface:style_def];
+        [backButton applyUserInterface];
         backButton.toolbar = toolbar;
         container.component = backButton;
         container.onTapScript = [[params objectForKey:kNCTypeEvent] objectForKey:kNCEventTypeTap];
@@ -67,14 +69,15 @@
     else if ([type isEqualToString:kNCComponentLabel]) {
         NCLabel *label = [[NCLabel alloc] init];
         label.toolbar = toolbar;
-        [label applyUserInterface:style_def];
+        [label setUserInterface:style_def];
+        [label applyUserInterface];
         container.component = label;
         container.type = kNCComponentLabel;
     }
     else if ([type isEqualToString:kNCComponentSearchBox]) {
         NCSearchBox *searchBox = [[NCSearchBox alloc] init];
         searchBox.toolbar = toolbar;
-        [searchBox applyUserInterface:style_def];
+        [searchBox applyUserInterface];
         container.component = searchBox;
         container.onSearchScript = [[params objectForKey:kNCTypeEvent] objectForKey:kNCEventTypeSearch];
         container.type = kNCComponentSearchBox;
@@ -84,7 +87,8 @@
         NCSegment *segment = [[NCSegment alloc] init];
         segment.toolbar = toolbar;
         container.component = segment;
-        [segment applyUserInterface:style_def];
+        [segment setUserInterface:style_def];
+        [segment applyUserInterface];
 //        container.onTapScript = [[params objectForKey:kNCTypeEvent] objectForKey:kNCEventTypeTap];
         container.onChangeScript = [[params objectForKey:kNCTypeEvent] objectForKey:kNCEventTypeChange];
         

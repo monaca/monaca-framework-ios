@@ -74,38 +74,32 @@ static NSString *_wwwDir;
         [style addEntriesFromDictionary:[item objectForKey:kNCTypeIOSStyle]];
         
         NSString *link = [item objectForKey:kNCTypeLink];
-        NSString *uipath = [[uiPath stringByDeletingLastPathComponent] stringByAppendingPathComponent:[MFUtility getUIFileName:link]];
-        NSDictionary *uiDict = [MFUtility parseJSONFile:uipath];
         
         // Setup a view controller in the tab contoller.
         // TODO: make viewControllerProtocol
-        id viewController;
-        viewController = [MFViewBuilder createViewControllerWithPath:[[path stringByDeletingLastPathComponent] stringByAppendingPathComponent:[item objectForKey:kNCTypeLink]]];
+        MFViewController *viewController = [MFViewBuilder createViewControllerWithPath:[[path stringByDeletingLastPathComponent] stringByAppendingPathComponent:link]];
         
-        NSDictionary *top = [uiDict objectForKey:kNCPositionTop];
-        NSDictionary *topStyle = [top objectForKey:kNCTypeStyle];
-        
-        MFNavigationController *navi = [[MFNavigationController alloc] initWithRootViewController:viewController];
+        MFNavigationController *navi = [[MFNavigationController alloc] init];
+        [navi setViewControllers:[NSArray arrayWithObjects:[[MFDammyViewController alloc] init], viewController, nil]];
         [viewControllers addObject:navi];
         
         [MFUtility setCurrentViewController:viewController]; // for tabbarItem image
         NCTabbarItem *tabbarItem = [[NCTabbarItem alloc] init];
-        [tabbarItem applyUserInterface:style];
+
+        [tabbarItem setUserInterface:style];
+        [tabbarItem applyUserInterface];
+        
         NSString *cid = [item objectForKey:kNCTypeID];
         [tabbarController.ncManager setComponent:tabbarItem forID:cid];
         
         [navi setTabBarItem:tabbarItem];
-        
-        if (top != nil) {
-            [navi setNavigationBarHidden:NO];
-        } else {
-            [navi setNavigationBarHidden:YES];
-        }
+
         i++;
     }
     tabbarController.viewControllers  = viewControllers;
     
-    [tabbarController applyUserInterface:bottomStyle];
+    [tabbarController setUserInterface:bottomStyle];
+    [tabbarController applyUserInterface];
     NSString *cid = [bottom objectForKey:kNCTypeID];
     [tabbarController.ncManager setComponent:tabbarController forID:cid];
 

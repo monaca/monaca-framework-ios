@@ -28,10 +28,19 @@
 
 #pragma mark - UIStyleProtocol
 
-- (void)applyUserInterface:(NSDictionary *)uidict
+- (void)setUserInterface:(NSDictionary *)uidict
 {
-    for (id key in uidict) {
-        [self updateUIStyle:[uidict objectForKey:key] forKey:key];
+    for (id key in uidict) { 
+        if ([_ncStyle objectForKey:key] == nil)
+            continue;
+        [_ncStyle setValue:[uidict valueForKey:key] forKey:key];
+    }
+}
+
+- (void)applyUserInterface
+{
+    for (id key in [_ncStyle copy]) {
+        [self updateUIStyle:[_ncStyle objectForKey:key] forKey:key];
     }
 }
 
@@ -57,11 +66,15 @@
     }
     if ([key isEqualToString:kNCStyleImage]) {
         NSString *imagePath = [[MFUtility currentViewController].wwwFolderName stringByAppendingPathComponent:value];
-        UIImage *image = [UIImage imageNamed:imagePath];
+        UIImage *image = [UIImage imageWithContentsOfFile:imagePath];
         [self setImage:image];
     }
     if ([key isEqualToString:kNCStyleBadgeText]) {
-        [self setBadgeValue:value];
+        if ([value isEqualToString:kNCUndefined]) {
+            [self setBadgeValue:nil];
+        } else {
+            [self setBadgeValue:value];
+        }
     }
 
     if (value == [NSNull null]) {

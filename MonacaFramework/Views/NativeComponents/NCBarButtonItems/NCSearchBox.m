@@ -32,7 +32,7 @@
         [_ncStyle setValue:kNCTrue forKey:kNCStyleVisibility];
         [_ncStyle setValue:kNCFalse forKey:kNCStyleDisable];
         [_ncStyle setValue:[NSNumber numberWithFloat:1.0] forKey:kNCStyleOpacity];
-        [_ncStyle setValue:kNCWhite forKey:kNCStyleTextColor];
+        [_ncStyle setValue:kNCBlack forKey:kNCStyleTextColor];
         [_ncStyle setValue:kNCUndefined forKey:kNCStylePlaceholder];
         [_ncStyle setValue:kNCFalse forKey:kNCStyleFocus];
     }

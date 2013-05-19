@@ -26,7 +26,7 @@
 }
 
 - (id)initWithViewController:(MFViewController *)viewController;
-- (void)applyUserInterface:(NSDictionary *)uidict;
+- (void)applyUserInterface;
 - (void)createNavigationBar:(NSDictionary *)uidict;
 
 @property (nonatomic, retain) MFViewController *viewController;

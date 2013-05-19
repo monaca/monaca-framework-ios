@@ -13,7 +13,7 @@
 
 @implementation MFTabBarController
 
-@synthesize ncManager = ncManager_;
+@synthesize ncManager = _ncManager;
 
 // iOS4 の場合、このメソッドは MonacaViewController の viewDidApper メソッドから呼ばれる
 - (void)viewWillAppear:(BOOL)animated {
@@ -40,15 +40,10 @@
     self = [super init];
     if (nil != self) {
         self.ncManager = [[NCManager alloc] init];
-        ncStyle = [[NSMutableDictionary alloc] init];
-        [ncStyle setValue:kNCTrue forKey:kNCStyleVisibility];
-        [ncStyle setValue:kNCBlack forKey:kNCStyleBackgroundColor];
-        [ncStyle setValue:[NSNumber numberWithInt:0] forKey:kNCStyleActiveIndex];
-
-        NSNotificationCenter* center = [NSNotificationCenter defaultCenter];
-        [center addObserver:self selector:@selector(onWillLoadUIFile:) name:monacaEventWillLoadUIFile object:nil];
-        [center addObserver:self selector:@selector(onDidLoadUIFile:) name:monacaEventDidLoadUIFile object:nil];
-        [center addObserver:self selector:@selector(onReloadPage:) name:monacaEventReloadPage object:nil];
+        _ncStyle = [[NSMutableDictionary alloc] init];
+        [_ncStyle setValue:kNCTrue forKey:kNCStyleVisibility];
+        [_ncStyle setValue:kNCBlack forKey:kNCStyleBackgroundColor];
+        [_ncStyle setValue:[NSNumber numberWithInt:0] forKey:kNCStyleActiveIndex];
     }
     return self;
 }
@@ -74,7 +69,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self restoreUserInterface];
 }
 
 - (void)viewDidUnload {
@@ -83,11 +77,6 @@
 
 - (void)loadView {
     [super loadView];
-}
-
-- (void)restoreUserInterface
-{
-//    [self applyUserInterface:[self.ncManager.properties copy]];
 }
 
 #pragma mark - UITabBarDeledate
@@ -116,10 +105,19 @@
     }
 }
 
-- (void)applyUserInterface:(NSDictionary *)uidict
+- (void)setUserInterface:(NSDictionary *)uidict
 {
-    for (id key in uidict) {
-        [self updateUIStyle:[uidict objectForKey:key] forKey:key];
+    for (id key in uidict) { 
+        if ([_ncStyle objectForKey:key] == nil)
+            continue;
+        [_ncStyle setValue:[uidict valueForKey:key] forKey:key];
+    }
+}
+
+- (void)applyUserInterface
+{
+    for (id key in [_ncStyle copy]) {
+        [self updateUIStyle:[_ncStyle objectForKey:key] forKey:key];
     }
 }
 
@@ -127,7 +125,7 @@
 
 - (void)updateUIStyle:(id)value forKey:(NSString *)key
 {
-    if ([ncStyle objectForKey:key] == nil) {
+    if ([_ncStyle objectForKey:key] == nil) {
         // 例外処理
         return;
     }
@@ -155,31 +153,19 @@
     }
 
     if (value == [NSNull null]) {
-        value = kNCUndefined;
+        value = kNCUndefined; 
     }
-    [ncStyle setValue:value forKey:key];
+    [_ncStyle setValue:value forKey:key];
 }
 
 - (id)retrieveUIStyle:(NSString *)key
 {
-    if ([ncStyle objectForKey:key] == nil) {
+    if ([_ncStyle objectForKey:key] == nil) {
         // 例外処理
         return nil;
     }
 
-    return [ncStyle objectForKey:key];
+    return [_ncStyle objectForKey:key];
 }
 
-#pragma mark - EventListener
-
-- (void)onWillLoadUIFile:(NSNotificationCenter *)center {
-
-}
-
-- (void)onDidLoadUIFile:(NSNotificationCenter *)center {
-
-}
-- (void)onReloadPage:(NSNotificationCenter *)center {
-
-}
 @end

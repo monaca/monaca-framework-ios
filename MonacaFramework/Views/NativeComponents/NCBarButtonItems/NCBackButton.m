@@ -30,10 +30,15 @@
 
 - (void)updateUIStyle:(id)value forKey:(NSString *)key
 {
-    [super updateUIStyle:value forKey:key];
-    if (![key isEqualToString:kNCStyleVisibility]) {
-        [_toolbar applyBackButton];
+    if ([key isEqualToString:kNCStyleText]) {
+        if ([value isEqualToString:kNCUndefined]) {
+            [self setTitle:@" "];
+        } else {
+            [self setTitle:value];
+        }
+        return;
     }
+    [super updateUIStyle:value forKey:key];
 }
 
 @end

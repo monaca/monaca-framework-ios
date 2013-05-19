@@ -43,12 +43,14 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+
+    [self applyUserInterface];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-
+   
     [MFUtility setCurrentViewController:self];
 }
 
@@ -63,7 +65,8 @@
     [MFUtility setCurrentViewController:self];
 
     // NavigationBarの背景色などを適応させるため、self.navigationControllerがnilでなくなった後に行う。
-    [self applyUserInterface:self.uiDict];
+
+    [self setUserInterface:self.uiDict];
 
     [self applyMonacaPlugin];
     
@@ -100,25 +103,38 @@
     }
 }
 
-- (void)applyUserInterface:(NSDictionary *)uidict
+- (void)applyUserInterface
+{
+    if (_navigationBar) {
+        [_navigationBar applyUserInterface];
+    } else {
+        [self.navigationController setNavigationBarHidden:YES];
+    }
+    
+    if (_toolbar) {
+        [_toolbar applyUserInterface];
+    } else {
+        [self.navigationController setToolbarHidden:YES];
+    }
+}
+
+- (void)setUserInterface:(NSDictionary *)uidict
 {
     NSDictionary *top = [uidict objectForKey:kNCPositionTop];
     NSDictionary *bottom = [uidict objectForKey:kNCPositionBottom];
     
     if (top != nil) {
-        [self.navigationController setNavigationBarHidden:NO];
-        NCNavigationBar *navigationBar = [[NCNavigationBar alloc] initWithViewController:self];
-        [self.ncManager setComponent:navigationBar forID:[top objectForKey:kNCTypeID]];
-        [navigationBar createNavigationBar:top];
+        _navigationBar = [[NCNavigationBar alloc] initWithViewController:self];
+        [self.ncManager setComponent:_navigationBar forID:[top objectForKey:kNCTypeID]];
+        [(NCNavigationBar *)_navigationBar createNavigationBar:top];
     } else {
         [self.navigationController setNavigationBarHidden:YES];
     }
 
     if (bottom != nil) {
-        [self.navigationController setToolbarHidden:NO];
-        NCToolbar *toolbar =  [[NCToolbar alloc] initWithViewController:self];
-        [self.ncManager setComponent:toolbar forID:[bottom objectForKey:kNCTypeID]];
-        [toolbar createToolbar:bottom];
+        _toolbar =  [[NCToolbar alloc] initWithViewController:self];
+        [self.ncManager setComponent:_toolbar forID:[bottom objectForKey:kNCTypeID]];
+        [(NCToolbar *)_toolbar createToolbar:bottom];
     } else {
         [self.navigationController setToolbarHidden:YES];
     }
@@ -191,7 +207,6 @@
     }
 }
 
-/*
 - (void)receivedOrientationChange
 {
     // fix cdvcViewController splash screen frame
@@ -208,7 +223,6 @@
         [imageView addSubview:activityView];
     }
 }
-*/
 
 #pragma mark - Cordova Plugin
 

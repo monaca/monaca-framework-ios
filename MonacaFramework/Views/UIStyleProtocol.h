@@ -11,7 +11,8 @@
 @protocol UIStyleProtocol <NSObject>
 
 @optional
-- (void)applyUserInterface:(NSDictionary *)uidict;
+- (void)setUserInterface:(NSDictionary *)uidict;
+- (void)applyUserInterface;
 - (void)applyVisibility;
 - (void)applyBackButton;
 @required

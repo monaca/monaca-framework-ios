@@ -79,8 +79,12 @@
     }
     if ([key isEqualToString:kNCStyleInnerImage]) {
         NSString *imagePath = [[MFUtility currentViewController].wwwFolderName stringByAppendingPathComponent:value];
-        UIImage *image = [UIImage imageNamed:imagePath];
+        UIImage *image = [UIImage imageWithContentsOfFile:imagePath];
         [self setImage:image];
+        if (image) {
+            // innerImageを設定するさいにはtitleをnilにしないとサイズがおかしくなる．
+            [self setTitle:nil];
+        }
     }
     if ([key isEqualToString:kNCStyleText]) {
         [self setTitle:value];

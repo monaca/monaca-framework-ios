@@ -22,7 +22,7 @@
         [_ncStyle setValue:kNCTrue forKey:kNCStyleVisibility];
         [_ncStyle setValue:[NSNumber numberWithFloat:1.0] forKey:kNCStyleOpacity];
         [_ncStyle setValue:kNCWhite forKey:kNCStyleTextColor];
-        [_ncStyle setValue:[NSArray array] forKey:kNCStyleText];
+        [_ncStyle setValue:kNCUndefined forKey:kNCStyleText];
     }
     
     return self;
