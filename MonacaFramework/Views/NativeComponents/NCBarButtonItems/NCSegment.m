@@ -23,7 +23,7 @@
         [_ncStyle setValue:kNCFalse forKey:kNCStyleDisable];
         [_ncStyle setValue:[NSNumber numberWithFloat:1.0] forKey:kNCStyleOpacity];
         [_ncStyle setValue:kNCBlack forKey:kNCStyleBackgroundColor];
-        [_ncStyle setValue:kNCBlue forKey:kNCStyleActiveTextColor];
+        [_ncStyle setValue:kNCWhite forKey:kNCStyleActiveTextColor];
         [_ncStyle setValue:kNCWhite forKey:kNCStyleTextColor];
         [_ncStyle setValue:[NSArray array] forKey:kNCStyleTexts];
         [_ncStyle setValue:[NSNumber numberWithInt:0] forKey:kNCStyleActiveIndex];

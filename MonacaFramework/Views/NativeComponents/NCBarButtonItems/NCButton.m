@@ -21,7 +21,7 @@
         [_ncStyle setValue:kNCTrue forKey:kNCStyleVisibility];
         [_ncStyle setValue:kNCFalse forKey:kNCStyleDisable];
         [_ncStyle setValue:kNCBlack forKey:kNCStyleBackgroundColor];
-        [_ncStyle setValue:kNCBlue forKey:kNCStyleActiveTextColor];
+        [_ncStyle setValue:kNCWhite forKey:kNCStyleActiveTextColor];
         [_ncStyle setValue:kNCWhite forKey:kNCStyleTextColor];
         [_ncStyle setValue:kNCUndefined forKey:kNCStyleImage];
         [_ncStyle setValue:kNCUndefined forKey:kNCStyleInnerImage];

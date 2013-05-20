@@ -19,7 +19,7 @@
         _ncStyle = [[NSMutableDictionary alloc] init];
         [_ncStyle setValue:kNCTrue forKey:kNCStyleVisibility];
         [_ncStyle setValue:kNCBlack forKey:kNCStyleBackgroundColor];
-        [_ncStyle setValue:kNCBlue forKey:kNCStyleActiveTextColor];
+        [_ncStyle setValue:kNCWhite forKey:kNCStyleActiveTextColor];
         [_ncStyle setValue:kNCWhite forKey:kNCStyleTextColor];
         [_ncStyle setValue:kNCUndefined forKey:kNCStyleInnerImage];
         [_ncStyle setValue:kNCUndefined forKey:kNCStyleText];
