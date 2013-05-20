@@ -29,10 +29,10 @@
     self = [super init];
     
     if (self) {
-        self.wwwFolderName = @"www";
         self.startPage = fileName;
         self.ncManager = [[NCManager alloc] init];
 
+        [MFUtility setCurrentViewController:self];
         self.wantsFullScreenLayout = NO;
     }
     return self;

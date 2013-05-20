@@ -112,7 +112,7 @@ static NSString *base_url = @"https://api.monaca.mobi";
 
 + (NSDictionary *)getAppJSON
 {
-    NSString *base_path = [[[[self class] getBaseURL] path] stringByReplacingOccurrencesOfString:@"www" withString:@""];
+    NSString *base_path = [[[self class] currentViewController].wwwFolderName stringByReplacingOccurrencesOfString:@"www" withString:@""];
     NSURL *json_url = [NSURL fileURLWithPath:[base_path stringByAppendingPathComponent:@"app.json"]];
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:json_url];
     NSURLResponse *response = nil;
