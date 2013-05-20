@@ -10,6 +10,8 @@
 #import "MFUtility.h"
 #import "NCBarButtonItem.h"
 
+#import <QuartzCore/QuartzCore.h>
+
 @implementation NCToolbar
 
 @synthesize viewController = _viewController;
@@ -32,6 +34,7 @@
         [_ncStyle setValue:[NSNumber numberWithFloat:1.0]  forKey:kNCStyleTitleFontScale];
         [_ncStyle setValue:[NSNumber numberWithFloat:1.0]  forKey:kNCStyleSubtitleFontScale];
         [_ncStyle setValue:kNCBarStyleDefault forKey:kNCStyleIOSBarStyle];
+        [_ncStyle setValue:[NSNumber numberWithFloat:0.3] forKey:kNCStyleShadowOpacity];
     }
     
     return self;
@@ -170,6 +173,14 @@
             [_toolbar setTranslucent:NO];
         }
         [_toolbar setBarStyle:style];
+    }
+    if ([key isEqualToString:kNCStyleShadowOpacity]) {
+        CALayer *toolBarLayer = _toolbar.layer;
+        //        navBarLayer.shadowColor = [[UIColor blackColor] CGColor];
+        //        navBarLayer.shadowRadius = 3.0f;
+        toolBarLayer.shadowOffset = CGSizeMake(0.0f, -2.0f);
+
+        [toolBarLayer setShadowOpacity:[value floatValue]];
     }
 
     if (value == [NSNull null]) {

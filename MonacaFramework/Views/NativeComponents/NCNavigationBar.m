@@ -9,6 +9,8 @@
 #import "NCNavigationBar.h"
 #import "MFUtility.h"
 
+#import <QuartzCore/QuartzCore.h>
+
 @implementation NCNavigationBar
 
 @synthesize viewController = _viewController;
@@ -34,6 +36,7 @@
         [_ncStyle setValue:[NSNumber numberWithFloat:1.0]  forKey:kNCStyleSubtitleFontScale];
         [_ncStyle setValue:kNCBarStyleDefault forKey:kNCStyleIOSBarStyle];
         [_ncStyle setValue:kNCUndefined forKey:kNCStyleTitleImage];
+        [_ncStyle setValue:[NSNumber numberWithFloat:0.3] forKey:kNCStyleShadowOpacity];
     }
 
     return self;
@@ -235,6 +238,14 @@
             [_navigationBar setTranslucent:NO];
         }
         [_navigationBar setBarStyle:style];
+    }
+    if ([key isEqualToString:kNCStyleShadowOpacity]) {
+        CALayer *navBarLayer = _navigationBar.layer;
+        //        navBarLayer.shadowColor = [[UIColor blackColor] CGColor];
+        //        navBarLayer.shadowRadius = 3.0f;
+        navBarLayer.shadowOffset = CGSizeMake(0.0f, 2.0f);
+
+        [navBarLayer setShadowOpacity:[value floatValue]];
     }
 
     if (value == [NSNull null]) {

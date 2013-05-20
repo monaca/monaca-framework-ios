@@ -73,6 +73,7 @@
 #define kNCStyleBadgeText          @"badgeText"
 #define kNCStyleFocus              @"focus"
 #define kNCStyleWideBox            @"wideBox"
+#define kNCStyleShadowOpacity      @"shadowOpacity"
 
 #define kNCStyleIOSBarStyle     @"iosBarStyle"
 #define kNCStyleIOSButtonStyle  @"iosButtonStyle"
