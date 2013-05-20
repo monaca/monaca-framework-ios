@@ -35,7 +35,9 @@
             [self setTitle:@" "];
         } else {
             [self setTitle:value];
+
         }
+        [_ncStyle setValue:value forKey:key];
         return;
     }
     [super updateUIStyle:value forKey:key];

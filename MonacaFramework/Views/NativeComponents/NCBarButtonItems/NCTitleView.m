@@ -55,14 +55,16 @@ static const CGFloat kSizeOfPortraitTitleFont     = 19.0f;
 
 - (void)setFrame:(CGRect)frame
 {
-    CGFloat height = [MFDevice heightOfNavigationBar:[MFUtility currentInterfaceOrientation]];
-    [super setFrame:CGRectMake(0, 0, 0, height)];
-    
-    [self setCenter:CGPointMake(frame.origin.x, frame.size.height/2.0f)];
+    [super setFrame:frame];
+    [self sizeToFit];
+}
+
+- (void)sizeToFit
+{
     if (UIInterfaceOrientationIsLandscape([MFUtility currentInterfaceOrientation])) {
         _title.font = [UIFont boldSystemFontOfSize:kSizeOfLandscapeTitleFont * [[self retrieveUIStyle:kNCStyleTitleFontScale] floatValue]];
         _title.frame = [_title resizedFrameWithPoint:CGPointMake(0, 0)];
-        [_title setCenter:CGPointMake(frame.size.width/2.0f, frame.size.height/2.0f)];
+        [_title setCenter:CGPointMake(self.frame.size.width/2.0f, self.frame.size.height/2.0f)];
         [_subtitle setHidden:YES];
     } else {
         if (![[self retrieveUIStyle:kNCStyleSubtitle] isEqual:kNCUndefined]) {
@@ -70,13 +72,13 @@ static const CGFloat kSizeOfPortraitTitleFont     = 19.0f;
             _subtitle.font = [UIFont systemFontOfSize:kSizeOfSubtitleFont * [[self retrieveUIStyle:kNCStyleSubtitleFontScale] floatValue]];
             _title.frame = [_title resizedFrameWithPoint:CGPointMake(0, 0)];
             _subtitle.frame = [_subtitle resizedFrameWithPoint:CGPointMake(0, 0)];
-            _title.center = CGPointMake(0, 30);
-            _subtitle.center = CGPointMake(0, 12);
+            _title.center = CGPointMake(0, 8);
+            _subtitle.center = CGPointMake(0, -10);
             [_subtitle setHidden:NO];
         } else {
             _title.font = [UIFont boldSystemFontOfSize:kSizeOfPortraitTitleFont * [[self retrieveUIStyle:kNCStyleTitleFontScale] floatValue]];
             _title.frame = [_title resizedFrameWithPoint:CGPointMake(0, 0)];
-            _title.center = CGPointMake(0, frame.size.height/2.0f);
+            _title.center = CGPointMake(0, self.frame.size.height/2.0f);
             [_subtitle setHidden:YES];
         }
     }
@@ -119,28 +121,22 @@ static const CGFloat kSizeOfPortraitTitleFont     = 19.0f;
         [_subtitle setTextColor:hexToUIColor(removeSharpPrefix(value), 1)];
     }
     if ([key isEqualToString:kNCStyleTitleFontScale]) {
-        [_title setFont:[UIFont boldSystemFontOfSize:kSizeOfTitleFont * [value floatValue]]];
-    }
-    if ([key isEqualToString:kNCStyleSubtitleFontScale]) {
-        [_title setFont:[UIFont boldSystemFontOfSize:kSizeOfTitleFont * [value floatValue]]];
-    }
-
-    if (UIInterfaceOrientationIsLandscape([MFUtility currentInterfaceOrientation])) {
-        _title.frame = [_title resizedFrameWithPoint:CGPointMake(0, 0)];
-        [_title setCenter:CGPointMake(self.frame.size.width/2.0f, self.frame.size.height/2.0f)];
-    } else {
-        if (![[self retrieveUIStyle:kNCStyleSubtitle] isEqual:kNCUndefined]) {
-            _title.frame = [_title resizedFrameWithPoint:CGPointMake(0, 0)];
-            _subtitle.frame = [_subtitle resizedFrameWithPoint:CGPointMake(0, 0)];
-            _title.center = CGPointMake(0, 30);
-            _subtitle.center = CGPointMake(0, 12);
+        if (UIInterfaceOrientationIsLandscape([MFUtility currentInterfaceOrientation])) {
+            [_title setFont:[UIFont boldSystemFontOfSize:kSizeOfLandscapeTitleFont * [value floatValue]]];
         } else {
-            _title.frame = [_title resizedFrameWithPoint:CGPointMake(0, 0)];
-            _title.center = CGPointMake(0, self.frame.size.height/2.0f);
+            if (![[self retrieveUIStyle:kNCStyleSubtitle] isEqual:kNCUndefined]) {
+                [_title setFont:[UIFont boldSystemFontOfSize:kSizeOfTitleFont * [value floatValue]]];
+            } else {
+                [_title setFont:[UIFont boldSystemFontOfSize:kSizeOfPortraitTitleFont * [value floatValue]]];
+            }
         }
     }
-    
+    if ([key isEqualToString:kNCStyleSubtitleFontScale]) {
+        [_subtitle setFont:[UIFont boldSystemFontOfSize:kSizeOfSubtitleFont * [value floatValue]]];
+    }
+
     [_ncStyle setValue:value forKey:key];
+    [self sizeToFit];
 }
 
 - (id)retrieveUIStyle:(NSString *)key

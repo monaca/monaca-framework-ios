@@ -75,6 +75,8 @@
         } else if ([property isKindOfClass:[NSString class]]) {
             if ([property isEqualToString:kNCTrue] || [property isEqualToString:kNCFalse]
                 || [property isEqualToString:kNCUndefined]) {
+                if ([property isEqualToString:kNCUndefined])
+                    property = @"undefined";
                 pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"%%BOOL%%"];
                 NSString *script = [pluginResult toSuccessCallbackString:callbackID];
                 script = [script stringByReplacingOccurrencesOfString:@"\"%%BOOL%%\"" withString:property];
