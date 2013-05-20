@@ -43,14 +43,14 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-
-    [self applyUserInterface];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-   
+    
+    [self applyUserInterface];
+    
     [MFUtility setCurrentViewController:self];
 }
 

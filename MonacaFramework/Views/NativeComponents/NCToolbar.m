@@ -173,6 +173,11 @@
             [_toolbar setTranslucent:NO];
         }
         [_toolbar setBarStyle:style];
+        /// translucentを反映させる
+        [_viewController.navigationController setToolbarHidden:YES];
+        if (!isFalse([self retrieveUIStyle:kNCStyleVisibility])) {
+            [_viewController.navigationController setToolbarHidden:NO];
+         }
     }
     if ([key isEqualToString:kNCStyleShadowOpacity]) {
         CALayer *toolBarLayer = _toolbar.layer;
