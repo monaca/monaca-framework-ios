@@ -127,18 +127,12 @@
         _navigationBar = [[NCNavigationBar alloc] initWithViewController:self];
         [self.ncManager setComponent:_navigationBar forID:[top objectForKey:kNCTypeID]];
         [(NCNavigationBar *)_navigationBar createNavigationBar:top];
-    } else {
-        [self.navigationController setNavigationBarHidden:YES];
     }
-
     if (bottom != nil) {
         _toolbar =  [[NCToolbar alloc] initWithViewController:self];
         [self.ncManager setComponent:_toolbar forID:[bottom objectForKey:kNCTypeID]];
         [(NCToolbar *)_toolbar createToolbar:bottom];
-    } else {
-        [self.navigationController setToolbarHidden:YES];
     }
-
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
