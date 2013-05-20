@@ -33,6 +33,7 @@
         [_ncStyle setValue:[NSNumber numberWithFloat:1.0]  forKey:kNCStyleTitleFontScale];
         [_ncStyle setValue:[NSNumber numberWithFloat:1.0]  forKey:kNCStyleSubtitleFontScale];
         [_ncStyle setValue:kNCBarStyleDefault forKey:kNCStyleIOSBarStyle];
+        [_ncStyle setValue:kNCUndefined forKey:kNCStyleTitleImage];
     }
 
     return self;

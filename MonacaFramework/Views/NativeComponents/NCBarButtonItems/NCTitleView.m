@@ -26,6 +26,7 @@ static const CGFloat kSizeOfPortraitTitleFont     = 19.0f;
 
         _title = [[UILabel alloc] init];
         _subtitle = [[UILabel alloc] init];
+        _titleImageView = [[UIImageView alloc] init];
 
         [_title setBackgroundColor:[UIColor clearColor]];
         _title.textAlignment = UITextAlignmentCenter;
@@ -41,6 +42,7 @@ static const CGFloat kSizeOfPortraitTitleFont     = 19.0f;
         
         [self addSubview:_title];
         [self addSubview:_subtitle];
+        [self addSubview:_titleImageView];
         _ncStyle = [[NSMutableDictionary alloc] init];
         [_ncStyle setValue:kNCUndefined forKey:kNCStyleTitle];
         [_ncStyle setValue:kNCUndefined forKey:kNCStyleSubtitle];
@@ -48,6 +50,7 @@ static const CGFloat kSizeOfPortraitTitleFont     = 19.0f;
         [_ncStyle setValue:kNCWhite forKey:kNCStyleSubtitleColor];
         [_ncStyle setValue:[NSNumber numberWithFloat:1.0] forKey:kNCStyleTitleFontScale];
         [_ncStyle setValue:[NSNumber numberWithFloat:1.0] forKey:kNCStyleSubtitleFontScale];
+        [_ncStyle setValue:kNCUndefined forKey:kNCStyleTitleImage];
     }
     
     return self;
@@ -61,6 +64,16 @@ static const CGFloat kSizeOfPortraitTitleFont     = 19.0f;
 
 - (void)sizeToFit
 {
+    if (![[self retrieveUIStyle:kNCStyleTitleImage] isEqualToString:kNCUndefined]) {
+        [_titleImageView setHidden:NO];
+        [_title setHidden:YES];
+        [_subtitle setHidden:YES];
+        _titleImageView.frame = CGRectMake(-_titleImageView.image.size.width/2.0f, -_titleImageView.image.size.height/2.0f,
+                                           _titleImageView.image.size.width, _titleImageView.image.size.height);
+        [_titleImageView sizeToFit];
+    } else {
+        [_titleImageView setHidden:YES];
+    }
     if (UIInterfaceOrientationIsLandscape([MFUtility currentInterfaceOrientation])) {
         _title.font = [UIFont boldSystemFontOfSize:kSizeOfLandscapeTitleFont * [[self retrieveUIStyle:kNCStyleTitleFontScale] floatValue]];
         _title.frame = [_title resizedFrameWithPoint:CGPointMake(0, 0)];
@@ -134,7 +147,15 @@ static const CGFloat kSizeOfPortraitTitleFont     = 19.0f;
     if ([key isEqualToString:kNCStyleSubtitleFontScale]) {
         [_subtitle setFont:[UIFont boldSystemFontOfSize:kSizeOfSubtitleFont * [value floatValue]]];
     }
-
+    if ([key isEqualToString:kNCStyleTitleImage]) {
+        NSString *imagePath = [[MFUtility currentViewController].wwwFolderName stringByAppendingPathComponent:value];
+        _titleImageView.image = [UIImage imageWithContentsOfFile:imagePath];
+        _titleImageView.contentMode = UIViewContentModeCenter;
+    }
+    
+    if (value == nil) {
+        value = kNCUndefined;
+    }
     [_ncStyle setValue:value forKey:key];
     [self sizeToFit];
 }

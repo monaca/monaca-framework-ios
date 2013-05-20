@@ -62,6 +62,7 @@
 #define kNCStyleValue              @"value"
 #define kNCStyleTitle              @"title"
 #define kNCStyleSubtitle           @"subtitle"
+#define kNCStyleTitleImage         @"titleImage"
 #define kNCStyleTitleColor         @"titleColor"
 #define kNCStyleSubtitleColor      @"subtitleColor"
 #define kNCStyleTitleFontScale     @"titleFontScale"
