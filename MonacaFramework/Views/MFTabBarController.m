@@ -165,6 +165,9 @@
         return nil;
     }
 
+    // activeIndexについてはselectedIndexから取得する．
+    [_ncStyle setValue:[NSNumber numberWithInt:[self selectedIndex]] forKey:kNCStyleActiveIndex];
+
     return [_ncStyle objectForKey:key];
 }
 
