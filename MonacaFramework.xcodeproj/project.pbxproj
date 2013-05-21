@@ -7,6 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E4C72D9174B17E200883F51 /* MFTransitPopParameter.h in Headers */ = {isa = PBXBuildFile; fileRef = 0E4C72D5174B17E200883F51 /* MFTransitPopParameter.h */; };
+		0E4C72DA174B17E200883F51 /* MFTransitPopParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E4C72D6174B17E200883F51 /* MFTransitPopParameter.m */; };
+		0E4C72DB174B17E200883F51 /* MFTransitPopParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E4C72D6174B17E200883F51 /* MFTransitPopParameter.m */; };
+		0E4C72DC174B17E200883F51 /* MFTransitPopParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E4C72D6174B17E200883F51 /* MFTransitPopParameter.m */; };
+		0E4C72DD174B17E200883F51 /* MFTransitPushParameter.h in Headers */ = {isa = PBXBuildFile; fileRef = 0E4C72D7174B17E200883F51 /* MFTransitPushParameter.h */; };
+		0E4C72DE174B17E200883F51 /* MFTransitPushParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E4C72D8174B17E200883F51 /* MFTransitPushParameter.m */; };
+		0E4C72DF174B17E200883F51 /* MFTransitPushParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E4C72D8174B17E200883F51 /* MFTransitPushParameter.m */; };
+		0E4C72E0174B17E200883F51 /* MFTransitPushParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E4C72D8174B17E200883F51 /* MFTransitPushParameter.m */; };
+		0E4C72E8174B17F900883F51 /* MFSpinnerParameter.h in Headers */ = {isa = PBXBuildFile; fileRef = 0E4C72E2174B17F900883F51 /* MFSpinnerParameter.h */; };
+		0E4C72E9174B17F900883F51 /* MFSpinnerParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E4C72E3174B17F900883F51 /* MFSpinnerParameter.m */; };
+		0E4C72EA174B17F900883F51 /* MFSpinnerParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E4C72E3174B17F900883F51 /* MFSpinnerParameter.m */; };
+		0E4C72EB174B17F900883F51 /* MFSpinnerParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E4C72E3174B17F900883F51 /* MFSpinnerParameter.m */; };
+		0E4C72EC174B17F900883F51 /* MFSpinnerView.h in Headers */ = {isa = PBXBuildFile; fileRef = 0E4C72E4174B17F900883F51 /* MFSpinnerView.h */; };
+		0E4C72ED174B17F900883F51 /* MFSpinnerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E4C72E5174B17F900883F51 /* MFSpinnerView.m */; };
+		0E4C72EE174B17F900883F51 /* MFSpinnerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E4C72E5174B17F900883F51 /* MFSpinnerView.m */; };
+		0E4C72EF174B17F900883F51 /* MFSpinnerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E4C72E5174B17F900883F51 /* MFSpinnerView.m */; };
+		0E4C72F0174B17F900883F51 /* spinner.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E4C72E6174B17F900883F51 /* spinner.png */; };
+		0E4C72F1174B17F900883F51 /* spinner.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E4C72E6174B17F900883F51 /* spinner.png */; };
+		0E4C72F2174B17F900883F51 /* spinner@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E4C72E7174B17F900883F51 /* spinner@2x.png */; };
+		0E4C72F3174B17F900883F51 /* spinner@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E4C72E7174B17F900883F51 /* spinner@2x.png */; };
 		0E885C9A169E8DFB001DB4B1 /* exist.html in Resources */ = {isa = PBXBuildFile; fileRef = 0E885C99169E8DFB001DB4B1 /* exist.html */; };
 		0E885C9C169E9583001DB4B1 /* exist.css in Resources */ = {isa = PBXBuildFile; fileRef = 0E885C9B169E9583001DB4B1 /* exist.css */; };
 		3E0B18C8169D8CD7001A35BB /* MFDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = F54FBB3E14BBE04100F702D9 /* MFDevice.m */; };
@@ -371,33 +391,48 @@
 		3EE0E80B1664BA8200F1E677 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EE0E8091664B78000F1E677 /* AssetsLibrary.framework */; };
 		3EE0E80C1664BA9200F1E677 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EE0E8071664B69300F1E677 /* CoreVideo.framework */; };
 		3EF566AF168ECCD800DE569B /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EBC68C41664D23000244FE1 /* libiconv.dylib */; };
-		D49CA07A173CEEDC00738DC9 /* MFSpinnerParameter.h in Headers */ = {isa = PBXBuildFile; fileRef = D49CA075173CEEDC00738DC9 /* MFSpinnerParameter.h */; };
-		D49CA07B173CEEDC00738DC9 /* MFSpinnerParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = D49CA076173CEEDC00738DC9 /* MFSpinnerParameter.m */; };
-		D49CA07C173CEEDC00738DC9 /* MFSpinnerView.h in Headers */ = {isa = PBXBuildFile; fileRef = D49CA077173CEEDC00738DC9 /* MFSpinnerView.h */; };
-		D49CA07D173CEEDC00738DC9 /* MFSpinnerView.m in Sources */ = {isa = PBXBuildFile; fileRef = D49CA078173CEEDC00738DC9 /* MFSpinnerView.m */; };
-		D49CA082173CEF6000738DC9 /* MFTransitPopParameter.h in Headers */ = {isa = PBXBuildFile; fileRef = D49CA07E173CEF6000738DC9 /* MFTransitPopParameter.h */; };
-		D49CA083173CEF6000738DC9 /* MFTransitPopParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = D49CA07F173CEF6000738DC9 /* MFTransitPopParameter.m */; };
-		D49CA084173CEF6000738DC9 /* MFTransitPushParameter.h in Headers */ = {isa = PBXBuildFile; fileRef = D49CA080173CEF6000738DC9 /* MFTransitPushParameter.h */; };
-		D49CA085173CEF6000738DC9 /* MFTransitPushParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = D49CA081173CEF6000738DC9 /* MFTransitPushParameter.m */; };
-		D49CA086173CF20300738DC9 /* MFTransitPopParameter.h in Sources */ = {isa = PBXBuildFile; fileRef = D49CA07E173CEF6000738DC9 /* MFTransitPopParameter.h */; };
-		D49CA087173CF20300738DC9 /* MFTransitPopParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = D49CA07F173CEF6000738DC9 /* MFTransitPopParameter.m */; };
-		D49CA088173CF20300738DC9 /* MFTransitPushParameter.h in Sources */ = {isa = PBXBuildFile; fileRef = D49CA080173CEF6000738DC9 /* MFTransitPushParameter.h */; };
-		D49CA089173CF20300738DC9 /* MFTransitPushParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = D49CA081173CEF6000738DC9 /* MFTransitPushParameter.m */; };
-		D49CA08A173CF21300738DC9 /* MFSpinnerParameter.h in Sources */ = {isa = PBXBuildFile; fileRef = D49CA075173CEEDC00738DC9 /* MFSpinnerParameter.h */; };
-		D49CA08B173CF21300738DC9 /* MFSpinnerParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = D49CA076173CEEDC00738DC9 /* MFSpinnerParameter.m */; };
-		D49CA08C173CF21300738DC9 /* MFSpinnerView.h in Sources */ = {isa = PBXBuildFile; fileRef = D49CA077173CEEDC00738DC9 /* MFSpinnerView.h */; };
-		D49CA08D173CF21300738DC9 /* MFSpinnerView.m in Sources */ = {isa = PBXBuildFile; fileRef = D49CA078173CEEDC00738DC9 /* MFSpinnerView.m */; };
-		D49CA08E173CF22A00738DC9 /* spinner.png in Resources */ = {isa = PBXBuildFile; fileRef = D49CA079173CEEDC00738DC9 /* spinner.png */; };
-		D49CA08F173CF26600738DC9 /* MFTransitPopParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = D49CA07F173CEF6000738DC9 /* MFTransitPopParameter.m */; };
-		D49CA090173CF26600738DC9 /* MFTransitPushParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = D49CA081173CEF6000738DC9 /* MFTransitPushParameter.m */; };
-		D49CA091173CF27000738DC9 /* MFSpinnerParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = D49CA076173CEEDC00738DC9 /* MFSpinnerParameter.m */; };
-		D49CA092173CF27000738DC9 /* MFSpinnerView.m in Sources */ = {isa = PBXBuildFile; fileRef = D49CA078173CEEDC00738DC9 /* MFSpinnerView.m */; };
-		D49CA093173CF28500738DC9 /* spinner.png in Resources */ = {isa = PBXBuildFile; fileRef = D49CA079173CEEDC00738DC9 /* spinner.png */; };
-		D49CA0B1174015B000738DC9 /* spinner@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D49CA0B0174015B000738DC9 /* spinner@2x.png */; };
-		D49CA0B2174015B000738DC9 /* spinner@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D49CA0B0174015B000738DC9 /* spinner@2x.png */; };
+		F13F515B1741D622006D6D59 /* IPP_RESTKit4iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F13F51591741D595006D6D59 /* IPP_RESTKit4iOS.framework */; };
+		F13F51831741D739006D6D59 /* IPP_RESTKit4iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F13F51591741D595006D6D59 /* IPP_RESTKit4iOS.framework */; };
+		F13F51841741D750006D6D59 /* IPP_RESTKit4iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F13F51591741D595006D6D59 /* IPP_RESTKit4iOS.framework */; };
+		F13F51941741D906006D6D59 /* ApplicationResourceDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = F13F51861741D906006D6D59 /* ApplicationResourceDelegate.h */; };
+		F13F51951741D906006D6D59 /* ApplicationResourceDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F13F51871741D906006D6D59 /* ApplicationResourceDelegate.m */; };
+		F13F51961741D906006D6D59 /* ApplicationResourceDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F13F51871741D906006D6D59 /* ApplicationResourceDelegate.m */; };
+		F13F51971741D906006D6D59 /* ApplicationResourceDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F13F51871741D906006D6D59 /* ApplicationResourceDelegate.m */; };
+		F13F51981741D906006D6D59 /* GeolocationDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = F13F51881741D906006D6D59 /* GeolocationDelegate.h */; };
+		F13F51991741D906006D6D59 /* GeolocationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F13F51891741D906006D6D59 /* GeolocationDelegate.m */; };
+		F13F519A1741D906006D6D59 /* GeolocationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F13F51891741D906006D6D59 /* GeolocationDelegate.m */; };
+		F13F519B1741D906006D6D59 /* GeolocationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F13F51891741D906006D6D59 /* GeolocationDelegate.m */; };
+		F13F51A11741D906006D6D59 /* MIPCommunicationPlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = F13F518C1741D906006D6D59 /* MIPCommunicationPlugin.h */; };
+		F13F51A21741D906006D6D59 /* MIPCommunicationPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = F13F518D1741D906006D6D59 /* MIPCommunicationPlugin.m */; };
+		F13F51A31741D906006D6D59 /* MIPCommunicationPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = F13F518D1741D906006D6D59 /* MIPCommunicationPlugin.m */; };
+		F13F51A41741D906006D6D59 /* MIPCommunicationPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = F13F518D1741D906006D6D59 /* MIPCommunicationPlugin.m */; };
+		F13F51A51741D906006D6D59 /* MIPUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = F13F518E1741D906006D6D59 /* MIPUtility.h */; };
+		F13F51A61741D906006D6D59 /* MIPUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = F13F518F1741D906006D6D59 /* MIPUtility.m */; };
+		F13F51A71741D906006D6D59 /* MIPUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = F13F518F1741D906006D6D59 /* MIPUtility.m */; };
+		F13F51A81741D906006D6D59 /* MIPUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = F13F518F1741D906006D6D59 /* MIPUtility.m */; };
+		F13F51A91741D906006D6D59 /* ProfileDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = F13F51901741D906006D6D59 /* ProfileDelegate.h */; };
+		F13F51AA1741D906006D6D59 /* ProfileDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F13F51911741D906006D6D59 /* ProfileDelegate.m */; };
+		F13F51AB1741D906006D6D59 /* ProfileDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F13F51911741D906006D6D59 /* ProfileDelegate.m */; };
+		F13F51AC1741D906006D6D59 /* ProfileDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F13F51911741D906006D6D59 /* ProfileDelegate.m */; };
+		F13F51AD1741D906006D6D59 /* UserDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = F13F51921741D906006D6D59 /* UserDelegate.h */; };
+		F13F51AE1741D906006D6D59 /* UserDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F13F51931741D906006D6D59 /* UserDelegate.m */; };
+		F13F51AF1741D906006D6D59 /* UserDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F13F51931741D906006D6D59 /* UserDelegate.m */; };
+		F13F51B01741D906006D6D59 /* UserDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F13F51931741D906006D6D59 /* UserDelegate.m */; };
+		F1A2885717450DD100233B47 /* MICommunication-info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F1A2885617450DD100233B47 /* MICommunication-info.plist */; };
+		F1A2885817450DD100233B47 /* MICommunication-info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F1A2885617450DD100233B47 /* MICommunication-info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0E4C72D5174B17E200883F51 /* MFTransitPopParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFTransitPopParameter.h; sourceTree = "<group>"; };
+		0E4C72D6174B17E200883F51 /* MFTransitPopParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFTransitPopParameter.m; sourceTree = "<group>"; };
+		0E4C72D7174B17E200883F51 /* MFTransitPushParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFTransitPushParameter.h; sourceTree = "<group>"; };
+		0E4C72D8174B17E200883F51 /* MFTransitPushParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFTransitPushParameter.m; sourceTree = "<group>"; };
+		0E4C72E2174B17F900883F51 /* MFSpinnerParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFSpinnerParameter.h; sourceTree = "<group>"; };
+		0E4C72E3174B17F900883F51 /* MFSpinnerParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFSpinnerParameter.m; sourceTree = "<group>"; };
+		0E4C72E4174B17F900883F51 /* MFSpinnerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFSpinnerView.h; sourceTree = "<group>"; };
+		0E4C72E5174B17F900883F51 /* MFSpinnerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFSpinnerView.m; sourceTree = "<group>"; };
+		0E4C72E6174B17F900883F51 /* spinner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spinner.png; sourceTree = "<group>"; };
+		0E4C72E7174B17F900883F51 /* spinner@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "spinner@2x.png"; sourceTree = "<group>"; };
 		0E885C99169E8DFB001DB4B1 /* exist.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = exist.html; sourceTree = "<group>"; };
 		0E885C9B169E9583001DB4B1 /* exist.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = exist.css; sourceTree = "<group>"; };
 		3E0B192D169D8CD7001A35BB /* MFUnitTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MFUnitTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -539,16 +574,20 @@
 		D44C9E2A1592ED86006372F3 /* NCButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCButton.m; sourceTree = "<group>"; };
 		D44C9E2B1592ED86006372F3 /* NCSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCSearchBar.h; sourceTree = "<group>"; };
 		D44C9E2C1592ED86006372F3 /* NCSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCSearchBar.m; sourceTree = "<group>"; };
-		D49CA075173CEEDC00738DC9 /* MFSpinnerParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFSpinnerParameter.h; sourceTree = "<group>"; };
-		D49CA076173CEEDC00738DC9 /* MFSpinnerParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFSpinnerParameter.m; sourceTree = "<group>"; };
-		D49CA077173CEEDC00738DC9 /* MFSpinnerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFSpinnerView.h; sourceTree = "<group>"; };
-		D49CA078173CEEDC00738DC9 /* MFSpinnerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFSpinnerView.m; sourceTree = "<group>"; };
-		D49CA079173CEEDC00738DC9 /* spinner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spinner.png; sourceTree = "<group>"; };
-		D49CA07E173CEF6000738DC9 /* MFTransitPopParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFTransitPopParameter.h; sourceTree = "<group>"; };
-		D49CA07F173CEF6000738DC9 /* MFTransitPopParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFTransitPopParameter.m; sourceTree = "<group>"; };
-		D49CA080173CEF6000738DC9 /* MFTransitPushParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFTransitPushParameter.h; sourceTree = "<group>"; };
-		D49CA081173CEF6000738DC9 /* MFTransitPushParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFTransitPushParameter.m; sourceTree = "<group>"; };
-		D49CA0B0174015B000738DC9 /* spinner@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "spinner@2x.png"; sourceTree = "<group>"; };
+		F13F51591741D595006D6D59 /* IPP_RESTKit4iOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IPP_RESTKit4iOS.framework; path = MonacaFramework/Library/InnovationPlusPlugin/IPP_RESTKit4iOS.framework; sourceTree = "<group>"; };
+		F13F51861741D906006D6D59 /* ApplicationResourceDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplicationResourceDelegate.h; sourceTree = "<group>"; };
+		F13F51871741D906006D6D59 /* ApplicationResourceDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplicationResourceDelegate.m; sourceTree = "<group>"; };
+		F13F51881741D906006D6D59 /* GeolocationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeolocationDelegate.h; sourceTree = "<group>"; };
+		F13F51891741D906006D6D59 /* GeolocationDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeolocationDelegate.m; sourceTree = "<group>"; };
+		F13F518C1741D906006D6D59 /* MIPCommunicationPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIPCommunicationPlugin.h; sourceTree = "<group>"; };
+		F13F518D1741D906006D6D59 /* MIPCommunicationPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIPCommunicationPlugin.m; sourceTree = "<group>"; };
+		F13F518E1741D906006D6D59 /* MIPUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIPUtility.h; sourceTree = "<group>"; };
+		F13F518F1741D906006D6D59 /* MIPUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIPUtility.m; sourceTree = "<group>"; };
+		F13F51901741D906006D6D59 /* ProfileDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileDelegate.h; sourceTree = "<group>"; };
+		F13F51911741D906006D6D59 /* ProfileDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileDelegate.m; sourceTree = "<group>"; };
+		F13F51921741D906006D6D59 /* UserDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDelegate.h; sourceTree = "<group>"; };
+		F13F51931741D906006D6D59 /* UserDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDelegate.m; sourceTree = "<group>"; };
+		F1A2885617450DD100233B47 /* MICommunication-info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MICommunication-info.plist"; sourceTree = "<group>"; };
 		F50460AC13B361730050803F /* MonacaFramework-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MonacaFramework-Prefix.pch"; sourceTree = "<group>"; };
 		F50460D813B3633B0050803F /* MFDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFDelegate.m; sourceTree = "<group>"; };
 		F50460DA13B3633B0050803F /* MFViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFViewController.m; sourceTree = "<group>"; };
@@ -625,6 +664,7 @@
 				3E0B191D169D8CD7001A35BB /* UIKit.framework in Frameworks */,
 				3E0B191E169D8CD7001A35BB /* Foundation.framework in Frameworks */,
 				3E0B193D169D8E24001A35BB /* GHUnitIOS.framework in Frameworks */,
+				F13F51841741D750006D6D59 /* IPP_RESTKit4iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -632,6 +672,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F13F515B1741D622006D6D59 /* IPP_RESTKit4iOS.framework in Frameworks */,
 				3EF566AF168ECCD800DE569B /* libiconv.dylib in Frameworks */,
 				3EE0E80A1664B78000F1E677 /* AssetsLibrary.framework in Frameworks */,
 				3EE0E8081664B69300F1E677 /* CoreVideo.framework in Frameworks */,
@@ -671,12 +712,26 @@
 				3E7FD2B7159D8F2300E85C81 /* CoreGraphics.framework in Frameworks */,
 				3E7FD2B5159D8F2300E85C81 /* UIKit.framework in Frameworks */,
 				3E7FD2B6159D8F2300E85C81 /* Foundation.framework in Frameworks */,
+				F13F51831741D739006D6D59 /* IPP_RESTKit4iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0E4C72E1174B17F900883F51 /* Spinner */ = {
+			isa = PBXGroup;
+			children = (
+				0E4C72E2174B17F900883F51 /* MFSpinnerParameter.h */,
+				0E4C72E3174B17F900883F51 /* MFSpinnerParameter.m */,
+				0E4C72E4174B17F900883F51 /* MFSpinnerView.h */,
+				0E4C72E5174B17F900883F51 /* MFSpinnerView.m */,
+				0E4C72E6174B17F900883F51 /* spinner.png */,
+				0E4C72E7174B17F900883F51 /* spinner@2x.png */,
+			);
+			path = Spinner;
+			sourceTree = "<group>";
+		};
 		0E885C97169E8CD0001DB4B1 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -818,10 +873,10 @@
 		3E4F50FC15A040DE0054EB23 /* Transit */ = {
 			isa = PBXGroup;
 			children = (
-				D49CA07E173CEF6000738DC9 /* MFTransitPopParameter.h */,
-				D49CA07F173CEF6000738DC9 /* MFTransitPopParameter.m */,
-				D49CA080173CEF6000738DC9 /* MFTransitPushParameter.h */,
-				D49CA081173CEF6000738DC9 /* MFTransitPushParameter.m */,
+				0E4C72D5174B17E200883F51 /* MFTransitPopParameter.h */,
+				0E4C72D6174B17E200883F51 /* MFTransitPopParameter.m */,
+				0E4C72D7174B17E200883F51 /* MFTransitPushParameter.h */,
+				0E4C72D8174B17E200883F51 /* MFTransitPushParameter.m */,
 				3E4F50FD15A040DE0054EB23 /* MFTransitPlugin.h */,
 				3E4F50FE15A040DE0054EB23 /* MFTransitPlugin.m */,
 			);
@@ -910,17 +965,24 @@
 			path = ChildBrowser;
 			sourceTree = "<group>";
 		};
-		D49CA074173CEEDC00738DC9 /* Spinner */ = {
+		F13F51851741D906006D6D59 /* InnovationPlusPlugin */ = {
 			isa = PBXGroup;
 			children = (
-				D49CA0B0174015B000738DC9 /* spinner@2x.png */,
-				D49CA075173CEEDC00738DC9 /* MFSpinnerParameter.h */,
-				D49CA076173CEEDC00738DC9 /* MFSpinnerParameter.m */,
-				D49CA077173CEEDC00738DC9 /* MFSpinnerView.h */,
-				D49CA078173CEEDC00738DC9 /* MFSpinnerView.m */,
-				D49CA079173CEEDC00738DC9 /* spinner.png */,
+				F1A2885617450DD100233B47 /* MICommunication-info.plist */,
+				F13F51861741D906006D6D59 /* ApplicationResourceDelegate.h */,
+				F13F51871741D906006D6D59 /* ApplicationResourceDelegate.m */,
+				F13F51881741D906006D6D59 /* GeolocationDelegate.h */,
+				F13F51891741D906006D6D59 /* GeolocationDelegate.m */,
+				F13F518C1741D906006D6D59 /* MIPCommunicationPlugin.h */,
+				F13F518D1741D906006D6D59 /* MIPCommunicationPlugin.m */,
+				F13F518E1741D906006D6D59 /* MIPUtility.h */,
+				F13F518F1741D906006D6D59 /* MIPUtility.m */,
+				F13F51901741D906006D6D59 /* ProfileDelegate.h */,
+				F13F51911741D906006D6D59 /* ProfileDelegate.m */,
+				F13F51921741D906006D6D59 /* UserDelegate.h */,
+				F13F51931741D906006D6D59 /* UserDelegate.m */,
 			);
-			path = Spinner;
+			path = InnovationPlusPlugin;
 			sourceTree = "<group>";
 		};
 		F503A593146BE13800764D05 /* NativeComponents */ = {
@@ -983,6 +1045,7 @@
 			isa = PBXGroup;
 			children = (
 				3EBC68C41664D23000244FE1 /* libiconv.dylib */,
+				F13F51591741D595006D6D59 /* IPP_RESTKit4iOS.framework */,
 				3EE0E8091664B78000F1E677 /* AssetsLibrary.framework */,
 				3EE0E8071664B69300F1E677 /* CoreVideo.framework */,
 				F57E523313D2E8DE00074B18 /* CoreMedia.framework */,
@@ -1062,7 +1125,7 @@
 		F5921FB3146B80690025DED5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				D49CA074173CEEDC00738DC9 /* Spinner */,
+				0E4C72E1174B17F900883F51 /* Spinner */,
 				F503A593146BE13800764D05 /* NativeComponents */,
 				F5921FB6146B80F00025DED5 /* MFTabBarController.m */,
 				F5921FB5146B80F00025DED5 /* MFTabBarController.h */,
@@ -1077,6 +1140,7 @@
 		F5F31BDD14820C7800C40C0B /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				F13F51851741D906006D6D59 /* InnovationPlusPlugin */,
 				3EB9B3F9161455B600E5F32C /* PhoneGap-plugins */,
 				F54CEB541500D1A000516444 /* Monaca */,
 				F54CEB581500D1A000516444 /* Vendor */,
@@ -1167,10 +1231,16 @@
 				3E4E8AEB16AD122200653A9F /* MonacaNoCacheURLProtocol.h in Headers */,
 				3E4E8AEF16AD122200653A9F /* MonacaQueryParamURLProtocol.h in Headers */,
 				3E4E8B0516AD14A500653A9F /* MFJSInterfaceProtocol.h in Headers */,
-				D49CA07A173CEEDC00738DC9 /* MFSpinnerParameter.h in Headers */,
-				D49CA07C173CEEDC00738DC9 /* MFSpinnerView.h in Headers */,
-				D49CA082173CEF6000738DC9 /* MFTransitPopParameter.h in Headers */,
-				D49CA084173CEF6000738DC9 /* MFTransitPushParameter.h in Headers */,
+				F13F51941741D906006D6D59 /* ApplicationResourceDelegate.h in Headers */,
+				F13F51981741D906006D6D59 /* GeolocationDelegate.h in Headers */,
+				F13F51A11741D906006D6D59 /* MIPCommunicationPlugin.h in Headers */,
+				F13F51A51741D906006D6D59 /* MIPUtility.h in Headers */,
+				F13F51A91741D906006D6D59 /* ProfileDelegate.h in Headers */,
+				F13F51AD1741D906006D6D59 /* UserDelegate.h in Headers */,
+				0E4C72D9174B17E200883F51 /* MFTransitPopParameter.h in Headers */,
+				0E4C72DD174B17E200883F51 /* MFTransitPushParameter.h in Headers */,
+				0E4C72E8174B17F900883F51 /* MFSpinnerParameter.h in Headers */,
+				0E4C72EC174B17F900883F51 /* MFSpinnerView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1263,7 +1333,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D49CA093173CF28500738DC9 /* spinner.png in Resources */,
 				3E0B1920169D8CD7001A35BB /* Cordova.plist in Resources */,
 				3E0B1921169D8CD7001A35BB /* www in Resources */,
 				3E0B1922169D8CD7001A35BB /* 404 in Resources */,
@@ -1276,7 +1345,9 @@
 				3E0B1929169D8CD7001A35BB /* Default-568h@2x.png in Resources */,
 				0E885C9A169E8DFB001DB4B1 /* exist.html in Resources */,
 				0E885C9C169E9583001DB4B1 /* exist.css in Resources */,
-				D49CA0B2174015B000738DC9 /* spinner@2x.png in Resources */,
+				F1A2885817450DD100233B47 /* MICommunication-info.plist in Resources */,
+				0E4C72F1174B17F900883F51 /* spinner.png in Resources */,
+				0E4C72F3174B17F900883F51 /* spinner@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1284,7 +1355,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D49CA08E173CF22A00738DC9 /* spinner.png in Resources */,
 				3E7FD329159EA92F00E85C81 /* Cordova.plist in Resources */,
 				3E7FD346159ED12400E85C81 /* www in Resources */,
 				3ED315E715DFA837008B7E1C /* 404 in Resources */,
@@ -1295,7 +1365,9 @@
 				3EDD681C16155D0F0018698B /* ChildBrowser.bundle in Resources */,
 				3EDD682516155D0F0018698B /* ChildBrowserViewController.xib in Resources */,
 				3E7708E0161169CF0041CF4D /* Default-568h@2x.png in Resources */,
-				D49CA0B1174015B000738DC9 /* spinner@2x.png in Resources */,
+				F1A2885717450DD100233B47 /* MICommunication-info.plist in Resources */,
+				0E4C72F0174B17F900883F51 /* spinner.png in Resources */,
+				0E4C72F2174B17F900883F51 /* spinner@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1335,10 +1407,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D49CA091173CF27000738DC9 /* MFSpinnerParameter.m in Sources */,
-				D49CA092173CF27000738DC9 /* MFSpinnerView.m in Sources */,
-				D49CA08F173CF26600738DC9 /* MFTransitPopParameter.m in Sources */,
-				D49CA090173CF26600738DC9 /* MFTransitPushParameter.m in Sources */,
 				3E0B18C8169D8CD7001A35BB /* MFDevice.m in Sources */,
 				3E0B18C9169D8CD7001A35BB /* MFDelegate.m in Sources */,
 				3E0B18CA169D8CD7001A35BB /* MFViewController.m in Sources */,
@@ -1413,6 +1481,16 @@
 				3E4E8AF216AD122200653A9F /* MonacaQueryParamURLProtocol.m in Sources */,
 				3E4E8B0816AD14A500653A9F /* MFJSInterfaceProtocol.m in Sources */,
 				3E4E8B0E16AD14F500653A9F /* MFJSInterfaceProtocolTest.m in Sources */,
+				F13F51971741D906006D6D59 /* ApplicationResourceDelegate.m in Sources */,
+				F13F519B1741D906006D6D59 /* GeolocationDelegate.m in Sources */,
+				F13F51A41741D906006D6D59 /* MIPCommunicationPlugin.m in Sources */,
+				F13F51A81741D906006D6D59 /* MIPUtility.m in Sources */,
+				F13F51AC1741D906006D6D59 /* ProfileDelegate.m in Sources */,
+				F13F51B01741D906006D6D59 /* UserDelegate.m in Sources */,
+				0E4C72DC174B17E200883F51 /* MFTransitPopParameter.m in Sources */,
+				0E4C72E0174B17E200883F51 /* MFTransitPushParameter.m in Sources */,
+				0E4C72EB174B17F900883F51 /* MFSpinnerParameter.m in Sources */,
+				0E4C72EF174B17F900883F51 /* MFSpinnerView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1491,10 +1569,16 @@
 				3E4E8AEC16AD122200653A9F /* MonacaNoCacheURLProtocol.m in Sources */,
 				3E4E8AF016AD122200653A9F /* MonacaQueryParamURLProtocol.m in Sources */,
 				3E4E8B0616AD14A500653A9F /* MFJSInterfaceProtocol.m in Sources */,
-				D49CA07B173CEEDC00738DC9 /* MFSpinnerParameter.m in Sources */,
-				D49CA07D173CEEDC00738DC9 /* MFSpinnerView.m in Sources */,
-				D49CA083173CEF6000738DC9 /* MFTransitPopParameter.m in Sources */,
-				D49CA085173CEF6000738DC9 /* MFTransitPushParameter.m in Sources */,
+				F13F51951741D906006D6D59 /* ApplicationResourceDelegate.m in Sources */,
+				F13F51991741D906006D6D59 /* GeolocationDelegate.m in Sources */,
+				F13F51A21741D906006D6D59 /* MIPCommunicationPlugin.m in Sources */,
+				F13F51A61741D906006D6D59 /* MIPUtility.m in Sources */,
+				F13F51AA1741D906006D6D59 /* ProfileDelegate.m in Sources */,
+				F13F51AE1741D906006D6D59 /* UserDelegate.m in Sources */,
+				0E4C72DA174B17E200883F51 /* MFTransitPopParameter.m in Sources */,
+				0E4C72DE174B17E200883F51 /* MFTransitPushParameter.m in Sources */,
+				0E4C72E9174B17F900883F51 /* MFSpinnerParameter.m in Sources */,
+				0E4C72ED174B17F900883F51 /* MFSpinnerView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1502,14 +1586,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D49CA08A173CF21300738DC9 /* MFSpinnerParameter.h in Sources */,
-				D49CA08B173CF21300738DC9 /* MFSpinnerParameter.m in Sources */,
-				D49CA08C173CF21300738DC9 /* MFSpinnerView.h in Sources */,
-				D49CA08D173CF21300738DC9 /* MFSpinnerView.m in Sources */,
-				D49CA086173CF20300738DC9 /* MFTransitPopParameter.h in Sources */,
-				D49CA087173CF20300738DC9 /* MFTransitPopParameter.m in Sources */,
-				D49CA088173CF20300738DC9 /* MFTransitPushParameter.h in Sources */,
-				D49CA089173CF20300738DC9 /* MFTransitPushParameter.m in Sources */,
 				3E7FD2EB159D914100E85C81 /* MFDevice.m in Sources */,
 				3E7FD31C159EA27700E85C81 /* MFDelegate.m in Sources */,
 				3E7FD31D159EA29700E85C81 /* MFViewController.m in Sources */,
@@ -1582,6 +1658,16 @@
 				3E4E8AED16AD122200653A9F /* MonacaNoCacheURLProtocol.m in Sources */,
 				3E4E8AF116AD122200653A9F /* MonacaQueryParamURLProtocol.m in Sources */,
 				3E4E8B0716AD14A500653A9F /* MFJSInterfaceProtocol.m in Sources */,
+				F13F51961741D906006D6D59 /* ApplicationResourceDelegate.m in Sources */,
+				F13F519A1741D906006D6D59 /* GeolocationDelegate.m in Sources */,
+				F13F51A31741D906006D6D59 /* MIPCommunicationPlugin.m in Sources */,
+				F13F51A71741D906006D6D59 /* MIPUtility.m in Sources */,
+				F13F51AB1741D906006D6D59 /* ProfileDelegate.m in Sources */,
+				F13F51AF1741D906006D6D59 /* UserDelegate.m in Sources */,
+				0E4C72DB174B17E200883F51 /* MFTransitPopParameter.m in Sources */,
+				0E4C72DF174B17E200883F51 /* MFTransitPushParameter.m in Sources */,
+				0E4C72EA174B17F900883F51 /* MFSpinnerParameter.m in Sources */,
+				0E4C72EE174B17F900883F51 /* MFSpinnerView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1626,6 +1712,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/MonacaFramework/Library/Vendor\"",
 					"\"$(SRCROOT)/MFUnitTest\"",
+					"\"$(SRCROOT)/MonacaFramework/Library/InnovationPlusPlugin\"",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1663,6 +1750,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/MonacaFramework/Library/Vendor\"",
 					"\"$(SRCROOT)/MFUnitTest\"",
+					"\"$(SRCROOT)/MonacaFramework/Library/InnovationPlusPlugin\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MFUnitTest/MFUnitTest-Prefix.pch";
@@ -1698,6 +1786,8 @@
 					"\"$(SRCROOT)/MonacaFramework/Plugins\"",
 					"\"$(SRCROOT)/../../../Shared/PhoneGap/Frameworks\"",
 					"\"$(SRCROOT)/MonacaFramework/Library/Vendor\"",
+					"\"$(SRCROOT)/../../../../../../Downloads/IPP_SampleApp\"",
+					"\"$(SRCROOT)/MonacaFramework/Library/InnovationPlusPlugin\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MonacaFramework/MonacaFramework-Prefix.pch";
@@ -1731,6 +1821,8 @@
 					"\"$(SRCROOT)/MonacaFramework/Plugins\"",
 					"\"$(SRCROOT)/../../../Shared/PhoneGap/Frameworks\"",
 					"\"$(SRCROOT)/MonacaFramework/Library/Vendor\"",
+					"\"$(SRCROOT)/../../../../../../Downloads/IPP_SampleApp\"",
+					"\"$(SRCROOT)/MonacaFramework/Library/InnovationPlusPlugin\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MonacaFramework/MonacaFramework-Prefix.pch";
@@ -1759,6 +1851,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/MonacaFramework/Library/Vendor\"",
+					"\"$(SRCROOT)/MonacaFramework/Library/InnovationPlusPlugin\"",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1772,6 +1865,7 @@
 				INFOPLIST_FILE = "MonacaSandbox/MonacaSandbox-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1795,6 +1889,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/MonacaFramework/Library/Vendor\"",
+					"\"$(SRCROOT)/MonacaFramework/Library/InnovationPlusPlugin\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MonacaSandbox/MonacaSandbox-Prefix.pch";
@@ -1803,6 +1898,7 @@
 				INFOPLIST_FILE = "MonacaSandbox/MonacaSandbox-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
