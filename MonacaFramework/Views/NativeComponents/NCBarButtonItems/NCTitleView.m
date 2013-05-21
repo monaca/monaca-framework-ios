@@ -72,6 +72,8 @@ static const CGFloat kSizeOfPortraitTitleFont     = 19.0f;
                                            _titleImageView.image.size.width, _titleImageView.image.size.height);
         [_titleImageView sizeToFit];
     } else {
+        [_title setHidden:NO];
+        [_subtitle setHidden:NO];
         [_titleImageView setHidden:YES];
     }
     if (UIInterfaceOrientationIsLandscape([MFUtility currentInterfaceOrientation])) {
@@ -87,7 +89,6 @@ static const CGFloat kSizeOfPortraitTitleFont     = 19.0f;
             _subtitle.frame = [_subtitle resizedFrameWithPoint:CGPointMake(0, 0)];
             _title.center = CGPointMake(0, 8);
             _subtitle.center = CGPointMake(0, -10);
-            [_subtitle setHidden:NO];
         } else {
             _title.font = [UIFont boldSystemFontOfSize:kSizeOfPortraitTitleFont * [[self retrieveUIStyle:kNCStyleTitleFontScale] floatValue]];
             _title.frame = [_title resizedFrameWithPoint:CGPointMake(0, 0)];
