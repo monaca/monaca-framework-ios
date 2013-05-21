@@ -72,15 +72,13 @@
     }
     _leftContainers = containers;
     [_viewController setBackButton:_backButton];
-    if (!_backButton) {
-        [_viewController.navigationItem setHidesBackButton:YES];
-    }
 
     /***** create rightContainers *****/
     containers = [NSMutableArray array];
     for (id component in topRight) {
         NCContainer *container = [NCContainer container:component forToolbar:self];
         if (container.component == nil) continue;
+        if ([container.type isEqualToString:kNCComponentBackButton]) continue;
         [containers addObject:container.component];
         [_viewController.ncManager setComponent:container forID:container.cid];
     }
