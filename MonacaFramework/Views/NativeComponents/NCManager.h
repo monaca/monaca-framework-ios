@@ -16,7 +16,7 @@
     NSMutableArray *_noIDComponents;
 }
 
-+ (id<UIStyleProtocol>)searchComponentForID:(NSString *)cid;
 - (void)setComponent:(id)component forID:(NSString *)cid;
+- (id<UIStyleProtocol>)componentForID:(NSString *)cid;
 
 @end

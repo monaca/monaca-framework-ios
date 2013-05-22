@@ -21,15 +21,6 @@
     return self;
 }
 
-+ (id<UIStyleProtocol>)searchComponentForID:(NSString *)cid
-{
-    id properties = [[MFUtility currentViewController].ncManager componentForID:cid];
-    if (!properties) {
-        properties = [[MFUtility currentTabBarController].ncManager componentForID:cid];
-    }
-    return properties;
-}
-
 - (id<UIStyleProtocol>)componentForID:(NSString *)cid
 {
     return [_components objectForKey:cid];
