@@ -71,7 +71,8 @@ static NSString *base_url = @"https://api.monaca.mobi";
     } else {
         NSMutableDictionary *info = [NSMutableDictionary dictionary];
         [info setObject:path forKey:@"path"];
-        [MFEvent dispatchEvent:monacaEventNCParseSuccess withInfo:info];
+//        [MFEvent dispatchEvent:monacaEventNCParseSuccess withInfo:info];
+        NSLog(@"%@",[NSLocalizedString(@"Load UI File", nil) stringByAppendingString:[MFUtility getWWWShortPath:path]]);
     }
     
     // return ui dictionary
@@ -243,6 +244,9 @@ static NSString *base_url = @"https://api.monaca.mobi";
     if ([path rangeOfString:@"www"].location != NSNotFound) {
         return [path substringFromIndex:[path rangeOfString:@"www"].location];
     }
+    if ([path rangeOfString:@"assets"].location != NSNotFound) {
+        return [path substringFromIndex:[path rangeOfString:@"assets/"].location + [@"assets/" length]];
+    }
     return path;
 }
 
@@ -400,6 +404,44 @@ static NSString *base_url = @"https://api.monaca.mobi";
             NSHTTPCookie *newCookie = [NSHTTPCookie cookieWithProperties:properties];
             [storage deleteCookie:cookie];
             [storage setCookie:newCookie];
+        }
+    }
+}
+
++ (void)checkWithInfo:(NSDictionary *)info
+{
+    NSString *component = [info objectForKey:@"component"];
+    NSMutableDictionary *uidict = [info objectForKey:@"uidict"];
+    NSDictionary *validDict = [info objectForKey:@"validDict"];
+    NSArray *requiredKeys = [info objectForKey:@"requiredKeys"];
+    NSEnumerator* enumerator = [[uidict copy] keyEnumerator];
+    id key;
+
+    while (key = [enumerator nextObject]) {
+        if ([validDict objectForKey:key] == nil) {
+            NSEnumerator* enumerator = [validDict keyEnumerator];
+            NSString *ss = @"[";
+            id string = [enumerator nextObject];
+            while (string) {
+                ss = [ss stringByAppendingString:[NSString stringWithFormat:@"\"%@\"", string]];
+                string = [enumerator nextObject];
+                if (string)
+                    ss = [ss stringByAppendingString:@", "];
+            }
+            ss = [ss stringByAppendingString:@"]"];
+            NSLog(@"Error: %@ key \"%@\" is not one of %@", component, key, ss);
+            continue;
+        }
+        if (![[uidict objectForKey:key] isKindOfClass:[validDict valueForKey:key]]) {
+            NSLog(@"Error: %@ \"%@\" value must be of type %@. You specified \"%@\"", component ,
+                  key,[[validDict objectForKey:key] class], [uidict valueForKey:key]);
+            [uidict removeObjectForKey:key];
+            continue;
+        }
+    }
+    for (id key in requiredKeys) {
+        if ([uidict objectForKey:key] == nil) {
+            NSLog(@"Error: missing required key \"%@\" in %@", key ,component);
         }
     }
 }

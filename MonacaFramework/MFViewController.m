@@ -122,13 +122,39 @@
 {
     NSDictionary *top = [uidict objectForKey:kNCPositionTop];
     NSDictionary *bottom = [uidict objectForKey:kNCPositionBottom];
-    
+
+
+    NSDictionary *validDict = [NSDictionary dictionaryWithObjectsAndKeys:
+                               NSString.class, kNCTypeContainer,
+                               NSDictionary.class, kNCTypeStyle,
+                               NSDictionary.class, kNCTypeIOSStyle,
+                               NSDictionary.class, kNCTypeAndroidStyle,
+                               NSString.class, kNCTypeID,
+                               NSArray.class, kNCTypeLeft,
+                               NSArray.class, kNCTypeCenter,
+                               NSArray.class, kNCTypeRight,
+                               nil];
+    NSArray *requiredKeys = [NSArray arrayWithObject:kNCTypeContainer];
     if (top != nil) {
+        NSMutableDictionary *info = [NSMutableDictionary dictionary];
+        [info setObject:kNCPositionTop forKey:@"component"];
+        [info setObject:validDict forKey:@"validDict"];
+        [info setObject:top forKey:@"uidict"];
+        [info setObject:requiredKeys forKey:@"requiredKeys"];
+        
+        [MFUtility checkWithInfo:info];
         _navigationBar = [[NCNavigationBar alloc] initWithViewController:self];
         [self.ncManager setComponent:_navigationBar forID:[top objectForKey:kNCTypeID]];
         [(NCNavigationBar *)_navigationBar createNavigationBar:top];
     }
     if (bottom != nil) {
+        NSMutableDictionary *info = [NSMutableDictionary dictionary];
+        [info setObject:kNCPositionBottom forKey:@"component"];
+        [info setObject:validDict forKey:@"validDict"];
+        [info setObject:bottom forKey:@"uidict"];
+        [info setObject:requiredKeys forKey:@"requiredKeys"];
+        
+        [MFUtility checkWithInfo:info];
         _toolbar =  [[NCToolbar alloc] initWithViewController:self];
         [self.ncManager setComponent:_toolbar forID:[bottom objectForKey:kNCTypeID]];
         [(NCToolbar *)_toolbar createToolbar:bottom];
@@ -179,6 +205,12 @@
     }
 
     return [super webView:webView shouldStartLoadWithRequest:request navigationType:navigationType];
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    [super webViewDidFinishLoad:webView];
+    [webView stringByEvaluatingJavaScriptFromString:@"document.documentElement.style.webkitTouchCallout = 'none';"];
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error

@@ -1,3 +1,4 @@
+
 //
 //  NativeComponentsInternal.h
 //  MonacaFramework
@@ -29,6 +30,7 @@
 
 #define kNCTypeStyle     @"style"
 #define kNCTypeIOSStyle  @"iosStyle"
+#define kNCTypeAndroidStyle  @"androidStyle"
 #define kNCTypeCenter    @"center"
 #define kNCTypeLeft      @"left"
 #define kNCTypeRight     @"right"
