@@ -108,4 +108,17 @@
     [_ncStyle setValue:value forKey:key];
 }
 
+- (id)retrieveUIStyle:(NSString *)key
+{
+    if ([_ncStyle objectForKey:key] == nil) {
+        // 例外処理
+        return nil;
+    }
+    
+    // activeIndexについてはselectedSegmentIndexから取得する．
+    [_ncStyle setValue:[NSNumber numberWithInt:[_segment selectedSegmentIndex]] forKey:kNCStyleActiveIndex];
+    
+    return [_ncStyle objectForKey:key];
+}
+
 @end
