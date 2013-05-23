@@ -24,3 +24,4 @@
 // WebView status tags.
 static const NSUInteger kWebViewNormal = 0;
 static const NSUInteger kWebViewIgnoreStyle = 10;  // Ignore native component style.
+static const NSUInteger kWebViewBackground = 20;

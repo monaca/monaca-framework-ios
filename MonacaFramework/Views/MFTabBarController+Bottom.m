@@ -8,6 +8,8 @@
 
 #import "MFTabBarController+Bottom.h"
 
+#import <QuartzCore/QuartzCore.h>
+
 /*
  * Supports iOS4. Cannot use setTintColor method in iOS4.
  */
@@ -168,6 +170,31 @@ stringByRelativePath(NSString *relativePath) {
             UIColor *bgColor = hexToUIColor(removeSharpPrefix(toolbarColor), 1);
             toolbar.tintColor = bgColor;
         }
+        
+        // modify:2013.05.17 navbar_shadowOpacity add by shikata
+        CALayer *navBarLayer = toolbar.layer;
+        //navBarLayer.shadowColor = [[UIColor blackColor] CGColor];
+        //navBarLayer.shadowRadius = 3.0f;
+        navBarLayer.shadowOffset = CGSizeMake(0.0f, -2.0f);
+        navBarLayer.shadowOpacity = 0.3f; //デフォルト値
+        
+        NSString *shadowOpacityString = [style objectForKey:kNCStyleShadowOpacity];
+        if(shadowOpacityString && [shadowOpacityString floatValue])
+        {
+            if([shadowOpacityString floatValue] > 1.0f)
+            {
+                navBarLayer.shadowOpacity = 1.0f;
+            }
+            else if ([shadowOpacityString floatValue] < 0.0f)
+            {
+                navBarLayer.shadowOpacity = 0.0f;
+            }
+            else
+            {
+                navBarLayer.shadowOpacity = [shadowOpacityString floatValue];
+            }
+        }
+        // modify_end
     }
     
     return toolbar;

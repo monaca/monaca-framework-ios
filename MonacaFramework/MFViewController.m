@@ -12,9 +12,10 @@
 #import "MFTransitPlugin.h"
 #import "MFUtility.h"
 #import "MFEvent.h"
-#import <QuartzCore/QuartzCore.h>
+#import "MFVIewBackground.h"
 
 @interface MFViewController ()
+@property(nonatomic,retain)NSString* query;
 - (NSString *)careWWWdir:(NSString *)path;
 - (void)processDataTypes;
 @end
@@ -369,7 +370,7 @@
                 } else {
                     styleDict_ = nil;
                 }
-                [self applyStyleDict];
+                [self applyStyleDict:styleDict_];
 
             } else {
                 cdvViewController.webView.tag = kWebViewNormal;
@@ -398,25 +399,45 @@
     [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"extraJSON"];
 }
 
-- (void)applyStyleDict
+- (void)applyStyleDict:(NSMutableDictionary*)pageStyle
 {
-    // "backgroundColor" setting
-    {
-        id colorString = [styleDict_ objectForKey:kNCStyleBackgroundColor];
-        if ([colorString isKindOfClass:NSString.class]) {
-            UIColor *color = hexToUIColor(removeSharpPrefix(colorString), 1);
-            [self setupBackgroundColor:color];
-        } else {
-            [self setupBackgroundColor:UIColor.whiteColor];
-        }
-    }
-    // "backgroundImage" setting
+    // monaca.updateUIStyle対策
+    styleDict_ = pageStyle;
     
-    id imageString = [styleDict_ objectForKey:kNCStyleBackgroundImage];
-    if ([imageString isKindOfClass:NSString.class])
-    {
-       [self setBackgroundImage:imageString];
+    self.cdvViewController.webView.backgroundColor = [UIColor clearColor];
+    self.cdvViewController.webView.opaque = NO;
+    
+    UIInterfaceOrientation orientation = [MFUtility currentInterfaceOrientation];
+    float navBarHeight = 0;
+    if ( self.cdvViewController.navigationController
+        && !( self.cdvViewController.navigationController.navigationBar.hidden)) {
+        navBarHeight = [MFDevice heightOfNavigationBar:orientation];
     }
+    
+    float tabBarHeight = 0;
+    if ( self.cdvViewController.tabBarController
+        && !( self.cdvViewController.tabBarController.tabBar.hidden)) {
+        tabBarHeight = [MFDevice heightOfTabBar];
+    }
+    
+    // remove old background
+    if( [[self.view viewWithTag:kWebViewBackground] isKindOfClass:UIImageView.class] )
+    {
+        [[self.view viewWithTag:kWebViewBackground] removeFromSuperview];
+    }
+    
+    MFVIewBackground* backgroundImageView = [[MFVIewBackground alloc] initWithFrame:CGRectMake( self.view.frame.origin.x,
+                                                                                               self.view.frame.origin.y + navBarHeight,
+                                                                                               self.view.frame.size.width,
+                                                                                               self.view.frame.size.height  - navBarHeight - tabBarHeight)];
+
+    backgroundImageView.tag = kWebViewBackground;
+    [backgroundImageView setAutoresizingMask:UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth ];
+    [backgroundImageView setBackgroundStyle:styleDict_];
+    [self.view insertSubview:backgroundImageView atIndex:0];
+    [backgroundImageView sendSubviewToBack:self.view];
+    [tabBarController.ncManager setComponent:backgroundImageView forID:kNCContainerPage];
+    
 }
 
 - (void) webViewDidFinishLoad:(UIWebView*) theWebView 
@@ -577,34 +598,6 @@
     
     self.view.opaque = YES;
     self.view.backgroundColor = color;
-}
-
--(void)setBackgroundImage:(NSString*)imageFilePath
-{
-    MFDelegate *mfDelegate = (MFDelegate *)[UIApplication sharedApplication].delegate;
-    NSString *currentDirectory = [mfDelegate.viewController.previousPath stringByDeletingLastPathComponent];
-    NSString *imagePath = [currentDirectory stringByAppendingPathComponent:imageFilePath];
-
-    // for Retina Display
-    if([UIScreen mainScreen].scale > 1.0)
-    {
-        NSRegularExpression* matchResult = [NSRegularExpression regularExpressionWithPattern:@"(\\.)" options:0 error:nil];
-        NSString* retinaImageFileName = [matchResult
-                         stringByReplacingMatchesInString:imageFilePath options:NSMatchingReportProgress range:NSMakeRange(0, imageFilePath.length) withTemplate:@"@2x."];
-        
-        NSString *retinaImageFilePath = [currentDirectory stringByAppendingPathComponent:retinaImageFileName];
-
-        // file exist check
-        if([[NSFileManager defaultManager] fileExistsAtPath:retinaImageFilePath])
-        {
-            imagePath = retinaImageFilePath;
-        }
-        
-    }
-    UIImage* test = [UIImage imageWithContentsOfFile:imagePath];
-    CALayer *backgroundLayer = [CALayer layer];
-    backgroundLayer.contents = test;
-    [self.view.layer addSublayer:backgroundLayer];
 }
 
 @end
