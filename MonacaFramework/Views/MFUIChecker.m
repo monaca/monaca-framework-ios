@@ -54,6 +54,31 @@
     return [string stringByAppendingString:@"]"];
 }
 
++ (NSString *)valueType:(id)object
+{
+    if ([NSStringFromClass([object class]) isEqualToString:@"__NSCFConstantString"] ||
+        [NSStringFromClass([object class]) isEqualToString:@"__NSCFString"]) {
+        NSString *str = object;
+        NSRange range = [str rangeOfString:@"^#[0-9a-fA-F]{6}$" options:NSRegularExpressionSearch];
+        if (range.location != NSNotFound) {
+            return @"Color";
+        }
+        range = [str rangeOfString:@"^(true|false)$" options:NSRegularExpressionSearch];
+        if (range.location != NSNotFound) {
+            return @"Boolean";
+        }
+        return @"String";
+    }
+    if ([NSStringFromClass([object class]) isEqualToString:@"__NSCFArray"] ||
+        [NSStringFromClass([object class]) isEqualToString:@"__NSArrayI"]) {
+        return @"Array";
+    }
+    if ([NSStringFromClass([object class]) isEqualToString:@"__NSCFDictionary"]) {
+        return @"Object";
+    }
+    return nil;
+}
+
 @end
 
 @implementation RootNode
@@ -316,6 +341,12 @@
     while (key = [enumerator nextObject]) {
         if ([validDict objectForKey:key] == nil) {
             NSLog(NSLocalizedString(@"Key is not one of valid keys", nil), component, key, [MFUIChecker dictionaryKeysToString:validDict]);
+            continue;
+        }
+        if (![[MFUIChecker valueType:[dict objectForKey:key]] isEqualToString:[MFUIChecker valueType:[validDict valueForKey:key]]]) {
+            NSLog(NSLocalizedString(@"Invalid value type", nil), component , key,
+                  [MFUIChecker valueType:[validDict objectForKey:key]], [dict valueForKey:key]);
+            [dict removeObjectForKey:key];
             continue;
         }
     }
