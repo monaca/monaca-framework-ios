@@ -7,7 +7,6 @@
 //
 
 #import "MFUIChecker.h"
-#import "NativeComponentsInternal.h"
 #import "NativeComponents.h"
 
 @interface RootNode : NSObject
