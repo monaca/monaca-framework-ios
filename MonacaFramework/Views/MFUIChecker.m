@@ -10,32 +10,32 @@
 #import "NativeComponents.h"
 
 @interface RootNode : NSObject
-+ (void)parse:(NSDictionary *)dict;
++ (void)parse:(NSMutableDictionary *)dict;
 @end
 
 @interface ContainerNode : NSObject
-+ (void)parse:(NSDictionary *)dict withPosition:(NSString *)position;
++ (void)parse:(NSMutableDictionary *)dict withPosition:(NSString *)position;
 @end
 
 @interface ToolBarNode : NSObject
-+ (void)parse:(NSDictionary *)dict withPosition:(NSString *)position;
++ (void)parse:(NSMutableDictionary *)dict withPosition:(NSString *)position;
 @end
 
 @interface TabBarNode : NSObject
-+ (void)parse:(NSDictionary *)dict withPosition:(NSString *)position;
++ (void)parse:(NSMutableDictionary *)dict withPosition:(NSString *)position;
 @end
 
 @interface ComponentNode : NSObject
-+ (void)parse:(NSDictionary *)dict withPosition:(NSString *)position;
++ (void)parse:(NSMutableDictionary *)dict withPosition:(NSString *)position;
 @end
 
 @interface StyleNode : NSObject
-+ (void)parse:(NSDictionary *)dict withComponent:(NSString *)component;
++ (void)parse:(NSMutableDictionary *)dict withComponent:(NSString *)component;
 @end
 
 @implementation MFUIChecker
 
-+ (void)checkUI:(NSDictionary *)uidict
++ (void)checkUI:(NSMutableDictionary *)uidict
 {
     [RootNode parse:uidict];
 }
@@ -67,18 +67,18 @@
     return dict;
 }
 
-+ (void)parse:(NSDictionary *)dict
++ (void)parse:(NSMutableDictionary *)dict
 {
     NSDictionary *validDict = [self getValidDictionary];
     NSEnumerator* enumerator = [[dict copy] keyEnumerator];
     id key;
     while (key = [enumerator nextObject]) {
         if ([validDict objectForKey:key] == nil) {
-            NSLog(@"Error: %@ key \"%@\" is not one of %@", @"<root>", key, [MFUIChecker dictionaryKeysToString:validDict]);
+            NSLog(NSLocalizedString(@"Key is not one of valid keys", nil), @"<root>", key, [MFUIChecker dictionaryKeysToString:validDict]);
             continue;
         }
     }
-    NSDictionary *Dict;
+    NSMutableDictionary *Dict;
     if ((Dict = [dict objectForKey:kNCPositionTop])) {
         [ContainerNode parse:Dict withPosition:kNCPositionTop];
     }
@@ -94,11 +94,33 @@
 
 @implementation ContainerNode
 
-+ (void)parse:(NSDictionary *)dict withPosition:(NSString *)position
++ (NSDictionary *)getValidDictionary:(NSString *)position
+{
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+    [dict setValue:NSString.class forKey:kNCContainerToolbar];
+    if ([position isEqualToString:kNCPositionTop]) {
+        return dict;
+    }
+    if ([position isEqualToString:kNCPositionBottom]) {
+        [dict setValue:NSString.class forKey:kNCContainerTabbar];
+        return dict;
+    }
+    
+    return nil;
+}
++ (void)parse:(NSMutableDictionary *)dict withPosition:(NSString *)position
 {
     NSString *container = [dict objectForKey:kNCTypeContainer];
     if (container == nil) {
-        NSLog(@"Error: missing required key \"%@\" in \"%@\"", kNCTypeContainer, position);
+        NSLog(NSLocalizedString(@"Missing required key", nil), kNCTypeContainer, position);
+        [dict removeAllObjects];
+        return;
+    }
+    NSDictionary *validValue = [self getValidDictionary:position];
+    if ([validValue objectForKey:container] == nil) {
+        NSLog(NSLocalizedString(@"Value not in one of valid values", nil), position, container, [MFUIChecker dictionaryKeysToString:validValue]);
+        [dict removeAllObjects];
+        return;
     }
     
     if ([container isEqualToString:kNCContainerToolbar]) {
@@ -127,30 +149,36 @@
     return dict;
 }
 
-+ (void)parse:(NSDictionary *)dict withPosition:(NSString *)position
++ (void)parse:(NSMutableDictionary *)dict withPosition:(NSString *)position
 {
     NSDictionary *validDict = [self getValidDictionary];
     NSEnumerator* enumerator = [[dict copy] keyEnumerator];
     id key;
     while (key = [enumerator nextObject]) {
         if ([validDict objectForKey:key] == nil) {
-            NSLog(@"Error: %@ key \"%@\" is not one of %@", position, key, [MFUIChecker dictionaryKeysToString:validDict]);
+            NSLog(NSLocalizedString(@"Key is not one of valid keys", nil), position, key, [MFUIChecker dictionaryKeysToString:validDict]);
+            continue;
+        }
+        if (![[dict objectForKey:key] isKindOfClass:[validDict valueForKey:key]]) {
+            NSLog(NSLocalizedString(@"Invalid value type", nil), position , key,
+                   [[validDict objectForKey:key] class], [dict valueForKey:key]);
+            [dict removeObjectForKey:key];
             continue;
         }
     }
     NSArray *array;
     if ((array = [dict objectForKey:kNCTypeLeft])) {
-        for (NSDictionary *Dict in array) {
+        for (NSMutableDictionary *Dict in array) {
             [ComponentNode parse:Dict withPosition:kNCTypeLeft];
         }
     }
     if ((array = [dict objectForKey:kNCTypeCenter])) {
-        for (NSDictionary *Dict in array) {
+        for (NSMutableDictionary *Dict in array) {
             [ComponentNode parse:Dict withPosition:kNCTypeCenter];
         }
     }
     if ((array = [dict objectForKey:kNCTypeRight])) {
-        for (NSDictionary *Dict in array) {
+        for (NSMutableDictionary *Dict in array) {
             [ComponentNode parse:Dict withPosition:kNCTypeRight];
         }
     }
@@ -173,24 +201,24 @@
     return dict;
 }
 
-+ (void)parse:(NSDictionary *)dict withPosition:(NSString *)position
++ (void)parse:(NSMutableDictionary *)dict withPosition:(NSString *)position
 {
     NSString *container = [dict objectForKey:kNCTypeItems];
     if (container == nil) {
-        NSLog(@"Error: missing required key \"%@\" in \"%@\"", kNCTypeItems, position);
+        NSLog(NSLocalizedString(@"Missing required key", nil), kNCTypeItems, position);
     }
     NSDictionary *validDict = [self getValidDictionary];
     NSEnumerator* enumerator = [[dict copy] keyEnumerator];
     id key;
     while (key = [enumerator nextObject]) {
         if ([validDict objectForKey:key] == nil) {
-            NSLog(@"Error: %@ key \"%@\" is not one of %@", position, key, [MFUIChecker dictionaryKeysToString:validDict]);
+            NSLog(NSLocalizedString(@"Key is not one of valid keys", nil), position, key, [MFUIChecker dictionaryKeysToString:validDict]);
             continue;
         }
     }
     NSArray *array;
     if ((array = [dict objectForKey:kNCTypeRight])) {
-        for (NSDictionary *Dict in array) {
+        for (NSMutableDictionary *Dict in array) {
             [ComponentNode parse:Dict withPosition:kNCTypeItems];
         }
     }
@@ -234,11 +262,11 @@
     return  nil;
 }
 
-+ (void)parse:(NSDictionary *)dict withPosition:(NSString *)position
++ (void)parse:(NSMutableDictionary *)dict withPosition:(NSString *)position
 {
     NSString *component = [dict objectForKey:kNCStyleComponent];
     if (component == nil) {
-        NSLog(@"Error: missing required key \"%@\" in \"%@\"", kNCStyleComponent, position);
+        NSLog(NSLocalizedString(@"Missing required key", nil), kNCStyleComponent, position);
         return;
     }
     NSDictionary *validDict = [self getValidDictionary:component];
@@ -246,7 +274,7 @@
     id key;
     while (key = [enumerator nextObject]) {
         if ([validDict objectForKey:key] == nil) {
-            NSLog(@"Error: %@ key \"%@\" is not one of %@", component, key, [MFUIChecker dictionaryKeysToString:validDict]);
+            NSLog(NSLocalizedString(@"Key is not one of valid keys", nil), component, key, [MFUIChecker dictionaryKeysToString:validDict]);
             continue;
         }
     }
@@ -280,14 +308,14 @@
     return  nil;
 }
 
-+ (void)parse:(NSDictionary *)dict withComponent:(NSString *)component
++ (void)parse:(NSMutableDictionary *)dict withComponent:(NSString *)component
 {
     NSDictionary *validDict = [self getValidDictionary:component];
     NSEnumerator* enumerator = [[dict copy] keyEnumerator];
     id key;
     while (key = [enumerator nextObject]) {
         if ([validDict objectForKey:key] == nil) {
-            NSLog(@"Error: %@ key \"%@\" is not one of %@", component, key, [MFUIChecker dictionaryKeysToString:validDict]);
+            NSLog(NSLocalizedString(@"Key is not one of valid keys", nil), component, key, [MFUIChecker dictionaryKeysToString:validDict]);
             continue;
         }
     }
