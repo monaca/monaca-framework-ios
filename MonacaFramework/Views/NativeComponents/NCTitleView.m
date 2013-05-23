@@ -126,7 +126,7 @@ isEmpty(NCTitleLabel *label) {
             self.subtitleLabel.font = [UIFont systemFontOfSize:kSizeOfSubtitleFont * self.subtitleLabel.fontScale];
             self.titleLabel.frame = [self.titleLabel resizedFrameWithPoint:CGPointMake(0, 0)];
             self.subtitleLabel.frame = [self.subtitleLabel resizedFrameWithPoint:CGPointMake(0, 0)];
-            self.titleLabel.center = CGPointMake(self.frame.size.width/2.0f, 0);
+            self.titleLabel.center = CGPointMake(self.frame.size.width/2.0f, 30);
             self.subtitleLabel.center = CGPointMake(self.frame.size.width/2.0f, 12);
         } else {
             self.titleLabel.font = [UIFont boldSystemFontOfSize:kSizeOfPortraitTitleFont * self.titleLabel.fontScale];

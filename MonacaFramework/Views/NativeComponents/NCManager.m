@@ -86,6 +86,16 @@ search(NSString *cid, NSMutableDictionary *barStyle) {
         return result;
     }
 
+    if([cid isEqual:kNCContainerPage])
+    {
+        NSMutableDictionary *pageStyle = [self.properties objectForKey:kNCPageStyle];
+        if (pageStyle)
+        {
+            result = [NSDictionary dictionaryWithObject:pageStyle forKey:kNCPageStyle];
+            return result;
+        }
+    }
+    
     return nil;
 }
 

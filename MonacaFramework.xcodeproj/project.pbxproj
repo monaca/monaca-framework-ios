@@ -395,6 +395,10 @@
 		D49CA093173CF28500738DC9 /* spinner.png in Resources */ = {isa = PBXBuildFile; fileRef = D49CA079173CEEDC00738DC9 /* spinner.png */; };
 		D49CA0B1174015B000738DC9 /* spinner@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D49CA0B0174015B000738DC9 /* spinner@2x.png */; };
 		D49CA0B2174015B000738DC9 /* spinner@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D49CA0B0174015B000738DC9 /* spinner@2x.png */; };
+		F1A28869174DBB9400233B47 /* MFVIewBackground.h in Headers */ = {isa = PBXBuildFile; fileRef = F1A28867174DBB9200233B47 /* MFVIewBackground.h */; };
+		F1A2886A174DBB9400233B47 /* MFVIewBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = F1A28868174DBB9300233B47 /* MFVIewBackground.m */; };
+		F1A2886B174DBB9400233B47 /* MFVIewBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = F1A28868174DBB9300233B47 /* MFVIewBackground.m */; };
+		F1A2886C174DBB9400233B47 /* MFVIewBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = F1A28868174DBB9300233B47 /* MFVIewBackground.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -549,6 +553,8 @@
 		D49CA080173CEF6000738DC9 /* MFTransitPushParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFTransitPushParameter.h; sourceTree = "<group>"; };
 		D49CA081173CEF6000738DC9 /* MFTransitPushParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFTransitPushParameter.m; sourceTree = "<group>"; };
 		D49CA0B0174015B000738DC9 /* spinner@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "spinner@2x.png"; sourceTree = "<group>"; };
+		F1A28867174DBB9200233B47 /* MFVIewBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFVIewBackground.h; sourceTree = "<group>"; };
+		F1A28868174DBB9300233B47 /* MFVIewBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFVIewBackground.m; sourceTree = "<group>"; };
 		F50460AC13B361730050803F /* MonacaFramework-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MonacaFramework-Prefix.pch"; sourceTree = "<group>"; };
 		F50460D813B3633B0050803F /* MFDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFDelegate.m; sourceTree = "<group>"; };
 		F50460DA13B3633B0050803F /* MFViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFViewController.m; sourceTree = "<group>"; };
@@ -1062,14 +1068,16 @@
 		F5921FB3146B80690025DED5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				D49CA074173CEEDC00738DC9 /* Spinner */,
-				F503A593146BE13800764D05 /* NativeComponents */,
-				F5921FB6146B80F00025DED5 /* MFTabBarController.m */,
-				F5921FB5146B80F00025DED5 /* MFTabBarController.h */,
 				F5EF734214EE84A8003B7BA5 /* MFTabBarController+Bottom.h */,
 				F5EF734314EE84A8003B7BA5 /* MFTabBarController+Bottom.m */,
 				F5EF734B14EE8AA1003B7BA5 /* MFTabBarController+Top.h */,
 				F5EF734C14EE8AA1003B7BA5 /* MFTabBarController+Top.m */,
+				F5921FB5146B80F00025DED5 /* MFTabBarController.h */,
+				F5921FB6146B80F00025DED5 /* MFTabBarController.m */,
+				F1A28867174DBB9200233B47 /* MFVIewBackground.h */,
+				F1A28868174DBB9300233B47 /* MFVIewBackground.m */,
+				F503A593146BE13800764D05 /* NativeComponents */,
+				D49CA074173CEEDC00738DC9 /* Spinner */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1171,6 +1179,7 @@
 				D49CA07C173CEEDC00738DC9 /* MFSpinnerView.h in Headers */,
 				D49CA082173CEF6000738DC9 /* MFTransitPopParameter.h in Headers */,
 				D49CA084173CEF6000738DC9 /* MFTransitPushParameter.h in Headers */,
+				F1A28869174DBB9400233B47 /* MFVIewBackground.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1413,6 +1422,7 @@
 				3E4E8AF216AD122200653A9F /* MonacaQueryParamURLProtocol.m in Sources */,
 				3E4E8B0816AD14A500653A9F /* MFJSInterfaceProtocol.m in Sources */,
 				3E4E8B0E16AD14F500653A9F /* MFJSInterfaceProtocolTest.m in Sources */,
+				F1A2886C174DBB9400233B47 /* MFVIewBackground.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1495,6 +1505,7 @@
 				D49CA07D173CEEDC00738DC9 /* MFSpinnerView.m in Sources */,
 				D49CA083173CEF6000738DC9 /* MFTransitPopParameter.m in Sources */,
 				D49CA085173CEF6000738DC9 /* MFTransitPushParameter.m in Sources */,
+				F1A2886A174DBB9400233B47 /* MFVIewBackground.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1582,6 +1593,7 @@
 				3E4E8AED16AD122200653A9F /* MonacaNoCacheURLProtocol.m in Sources */,
 				3E4E8AF116AD122200653A9F /* MonacaQueryParamURLProtocol.m in Sources */,
 				3E4E8B0716AD14A500653A9F /* MFJSInterfaceProtocol.m in Sources */,
+				F1A2886B174DBB9400233B47 /* MFVIewBackground.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

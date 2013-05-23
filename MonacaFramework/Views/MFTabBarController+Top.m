@@ -260,22 +260,21 @@ setBackgroundColor(NSArray *components, NCToolbar *toolbar) {
         
         // modify:2013.05.17 navbar_shadowOpacity add by shikata
         CALayer *navBarLayer = navBar.layer;
-        navBarLayer.masksToBounds = NO;
-        navBarLayer.shadowColor = [[UIColor blackColor] CGColor];
-        navBarLayer.shadowOffset = CGSizeMake(1.0f, 1.0f);
-        navBarLayer.shadowRadius = 3.0f;
-        navBarLayer.shadowOpacity = 0.3; //デフォルト値
+        //navBarLayer.shadowColor = [[UIColor blackColor] CGColor];
+        //navBarLayer.shadowRadius = 3.0f;
+        navBarLayer.shadowOffset = CGSizeMake(0.0f, 1.0f);
+        navBarLayer.shadowOpacity = 0.3f; //デフォルト値
     
         NSString *shadowOpacityString = [style objectForKey:kNCStyleShadowOpacity];
         if(shadowOpacityString && [shadowOpacityString floatValue])
         {
-            if([shadowOpacityString floatValue] > 1.0)
+            if([shadowOpacityString floatValue] > 1.0f)
             {
-                navBarLayer.shadowOpacity = 1.0;
+                navBarLayer.shadowOpacity = 1.0f;
             }
-            else if ([shadowOpacityString floatValue] < 0.0)
+            else if ([shadowOpacityString floatValue] < 0.0f)
             {
-                navBarLayer.shadowOpacity = 0.0;
+                navBarLayer.shadowOpacity = 0.0f;
             }
             else
             {
