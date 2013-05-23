@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E813EBC174DEE8C0062A13C /* MFUIChecker.h in Headers */ = {isa = PBXBuildFile; fileRef = 0E813EBA174DEE8B0062A13C /* MFUIChecker.h */; };
+		0E813EBD174DEE8C0062A13C /* MFUIChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E813EBB174DEE8B0062A13C /* MFUIChecker.m */; };
+		0E813EBE174DEE8C0062A13C /* MFUIChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E813EBB174DEE8B0062A13C /* MFUIChecker.m */; };
+		0E813EBF174DEE8C0062A13C /* MFUIChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E813EBB174DEE8B0062A13C /* MFUIChecker.m */; };
 		0E81EF311741DD49003A4F9E /* UILabel+Resize.h in Headers */ = {isa = PBXBuildFile; fileRef = 0E81EF2F1741DD49003A4F9E /* UILabel+Resize.h */; };
 		0E81EF321741DD49003A4F9E /* UILabel+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E81EF301741DD49003A4F9E /* UILabel+Resize.m */; };
 		0E81EF331741DD51003A4F9E /* UILabel+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E81EF301741DD49003A4F9E /* UILabel+Resize.m */; };
@@ -378,6 +382,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0E813EBA174DEE8B0062A13C /* MFUIChecker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFUIChecker.h; sourceTree = "<group>"; };
+		0E813EBB174DEE8B0062A13C /* MFUIChecker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFUIChecker.m; sourceTree = "<group>"; };
 		0E81EF2F1741DD49003A4F9E /* UILabel+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+Resize.h"; sourceTree = "<group>"; };
 		0E81EF301741DD49003A4F9E /* UILabel+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Resize.m"; sourceTree = "<group>"; };
 		0E885C99169E8DFB001DB4B1 /* exist.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = exist.html; sourceTree = "<group>"; };
@@ -882,6 +888,8 @@
 			children = (
 				5AAB3F34171C3D220044FB77 /* MFViewBuilder.h */,
 				5AAB3F35171C3D220044FB77 /* MFViewBuilder.m */,
+				0E813EBA174DEE8B0062A13C /* MFUIChecker.h */,
+				0E813EBB174DEE8B0062A13C /* MFUIChecker.m */,
 				5A83D2F816D90BD700D25E98 /* MFNavigationController.h */,
 				5A83D2F916D90BD700D25E98 /* MFNavigationController.m */,
 				5A6ACE141732CAF900118E28 /* MFDammyViewController.h */,
@@ -1125,6 +1133,7 @@
 				5AA2B4E81736AE3300E785EA /* CDVViewController+getMonacaBundlePlist.h in Headers */,
 				5A993D7A17394ECE009135B0 /* CDVCommandDelegateImpl+pathForResource.h in Headers */,
 				0E81EF311741DD49003A4F9E /* UILabel+Resize.h in Headers */,
+				0E813EBC174DEE8C0062A13C /* MFUIChecker.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1360,6 +1369,7 @@
 				5A993D7C17394ED1009135B0 /* CDVCommandDelegateImpl+pathForResource.m in Sources */,
 				5A9838E017413C4A00FAED14 /* NCTitleView.m in Sources */,
 				0E81EF341741DD51003A4F9E /* UILabel+Resize.m in Sources */,
+				0E813EBF174DEE8C0062A13C /* MFUIChecker.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1438,6 +1448,7 @@
 				5AA2B4E91736AE3300E785EA /* CDVViewController+getMonacaBundlePlist.m in Sources */,
 				5A993D7B17394ECE009135B0 /* CDVCommandDelegateImpl+pathForResource.m in Sources */,
 				0E81EF321741DD49003A4F9E /* UILabel+Resize.m in Sources */,
+				0E813EBD174DEE8C0062A13C /* MFUIChecker.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1517,6 +1528,7 @@
 				5A993D7D17394ED2009135B0 /* CDVCommandDelegateImpl+pathForResource.m in Sources */,
 				5A9838DF17413C4A00FAED14 /* NCTitleView.m in Sources */,
 				0E81EF331741DD51003A4F9E /* UILabel+Resize.m in Sources */,
+				0E813EBE174DEE8C0062A13C /* MFUIChecker.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

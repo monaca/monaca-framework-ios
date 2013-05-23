@@ -11,6 +11,16 @@
 
 @implementation NCLabel
 
++ (NSDictionary *)defaultStyles
+{
+    NSMutableDictionary *defaultStyle = [[NSMutableDictionary alloc] init];
+    [defaultStyle setValue:kNCTrue forKey:kNCStyleVisibility];
+    [defaultStyle setValue:[NSNumber numberWithFloat:1.0] forKey:kNCStyleOpacity];
+    [defaultStyle setValue:kNCWhite forKey:kNCStyleTextColor];
+    [defaultStyle setValue:kNCUndefined forKey:kNCStyleText];
+    return defaultStyle;
+}
+
 - (id)init {
     self = [super init];
     
@@ -18,11 +28,7 @@
         _label = [[UILabel alloc] init];
         [_label setBackgroundColor:[UIColor clearColor]];
         self.customView = _label;
-        _ncStyle = [[NSMutableDictionary alloc] init];
-        [_ncStyle setValue:kNCTrue forKey:kNCStyleVisibility];
-        [_ncStyle setValue:[NSNumber numberWithFloat:1.0] forKey:kNCStyleOpacity];
-        [_ncStyle setValue:kNCWhite forKey:kNCStyleTextColor];
-        [_ncStyle setValue:kNCUndefined forKey:kNCStyleText];
+        _ncStyle = [NSMutableDictionary dictionaryWithDictionary:[self.class defaultStyles]];
     }
     
     return self;

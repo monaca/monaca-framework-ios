@@ -9,6 +9,8 @@
 #import "MFViewBuilder.h"
 #import "MFUtility.h"
 #import "MFDammyViewController.h"
+#import "MFUIChecker.h"
+
 
 @implementation MFViewBuilder
 
@@ -33,18 +35,8 @@ static NSString *_wwwDir;
 {
     NSString *uipath = [_wwwDir stringByAppendingPathComponent:[MFUtility getUIFileName:path]];
     NSMutableDictionary *uidict = [NSMutableDictionary dictionaryWithDictionary:[MFUtility parseJSONFile:uipath]];
-
-    // UIError
-    NSMutableDictionary *info = [NSMutableDictionary dictionary];
-    NSDictionary *validDict = [NSDictionary dictionaryWithObjectsAndKeys:
-                               NSDictionary.class, @"top",
-                               NSDictionary.class, @"bottom",
-                               NSDictionary.class, @"menu",
-                               nil];
-    [info setObject:@"<<root>>" forKey:@"component"];
-    [info setObject:validDict forKey:@"validDict"];
-    [info setObject:uidict forKey:@"uidict"];
-    [MFUtility checkWithInfo:info];
+    
+    [MFUIChecker checkUI:uidict];
     
     id view;
     if (ignoreBottom_) {
@@ -54,7 +46,6 @@ static NSString *_wwwDir;
     NSString *containerType = [item objectForKey:kNCTypeContainer];
     if ([containerType isEqualToString:kNCContainerTabbar]) {
         ignoreBottom_ = YES; // タブバーは再起的に生成させない。
-        NSLog(@"タブバー展開")
         view = [self createTabbarControllerWithPath:path];
         // moreViewControllerの編集ボタン非表示
         [view setCustomizableViewControllers:nil];
@@ -73,7 +64,7 @@ static NSString *_wwwDir;
 {
     NSString *uiPath = [_wwwDir stringByAppendingPathComponent:[MFUtility getUIFileName:path]];
     NSDictionary *uidict = [NSDictionary dictionaryWithDictionary:[MFUtility parseJSONFile:uiPath]];
-    
+
     MFTabBarController *tabbarController = [[MFTabBarController alloc] init];
     
     NSMutableArray *viewControllers = [NSMutableArray array];

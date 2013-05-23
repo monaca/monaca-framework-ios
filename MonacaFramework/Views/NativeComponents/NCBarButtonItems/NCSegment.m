@@ -11,6 +11,20 @@
 
 @implementation NCSegment
 
++ (NSDictionary *)defaultStyles
+{
+    NSMutableDictionary *defaultStyle = [[NSMutableDictionary alloc] init];
+    [defaultStyle setValue:kNCTrue forKey:kNCStyleVisibility];
+    [defaultStyle setValue:kNCFalse forKey:kNCStyleDisable];
+    [defaultStyle setValue:[NSNumber numberWithFloat:1.0] forKey:kNCStyleOpacity];
+    [defaultStyle setValue:kNCBlack forKey:kNCStyleBackgroundColor];
+    [defaultStyle setValue:kNCWhite forKey:kNCStyleActiveTextColor];
+    [defaultStyle setValue:kNCWhite forKey:kNCStyleTextColor];
+    [defaultStyle setValue:[NSArray array] forKey:kNCStyleTexts];
+    [defaultStyle setValue:[NSNumber numberWithInt:0] forKey:kNCStyleActiveIndex];
+    return defaultStyle;
+}
+
 - (id)init {
     self = [super init];
 
@@ -18,15 +32,7 @@
         _segment = [[UISegmentedControl alloc] initWithItems:nil];
         [_segment setSegmentedControlStyle:UISegmentedControlStyleBar];
         self.customView = _segment;
-        _ncStyle = [[NSMutableDictionary alloc] init];
-        [_ncStyle setValue:kNCTrue forKey:kNCStyleVisibility];
-        [_ncStyle setValue:kNCFalse forKey:kNCStyleDisable];
-        [_ncStyle setValue:[NSNumber numberWithFloat:1.0] forKey:kNCStyleOpacity];
-        [_ncStyle setValue:kNCBlack forKey:kNCStyleBackgroundColor];
-        [_ncStyle setValue:kNCWhite forKey:kNCStyleActiveTextColor];
-        [_ncStyle setValue:kNCWhite forKey:kNCStyleTextColor];
-        [_ncStyle setValue:[NSArray array] forKey:kNCStyleTexts];
-        [_ncStyle setValue:[NSNumber numberWithInt:0] forKey:kNCStyleActiveIndex];
+        _ncStyle = [[NSMutableDictionary alloc] initWithDictionary:[self.class defaultStyles]];
     }
 
     return self;

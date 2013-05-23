@@ -13,6 +13,18 @@
 
 @synthesize deleagte = _delegate;
 
++ (NSDictionary *)defaultStyles
+{
+    NSMutableDictionary *defaultStyle = [[NSMutableDictionary alloc] init];
+    [defaultStyle setValue:kNCTrue forKey:kNCStyleVisibility];
+    [defaultStyle setValue:kNCFalse forKey:kNCStyleDisable];
+    [defaultStyle setValue:[NSNumber numberWithFloat:1.0] forKey:kNCStyleOpacity];
+    [defaultStyle setValue:kNCBlack forKey:kNCStyleTextColor];
+    [defaultStyle setValue:kNCUndefined forKey:kNCStylePlaceholder];
+    [defaultStyle setValue:kNCFalse forKey:kNCStyleFocus];
+    return defaultStyle;
+}
+
 - (id)init {
     self = [super init];
 
@@ -27,14 +39,7 @@
         [_searchBar setFrame:CGRectMake(0, 0, 110, 44) ];
         self.customView = _searchBar;
         _searchBar.delegate = self;
-
-        _ncStyle = [[NSMutableDictionary alloc] init];
-        [_ncStyle setValue:kNCTrue forKey:kNCStyleVisibility];
-        [_ncStyle setValue:kNCFalse forKey:kNCStyleDisable];
-        [_ncStyle setValue:[NSNumber numberWithFloat:1.0] forKey:kNCStyleOpacity];
-        [_ncStyle setValue:kNCBlack forKey:kNCStyleTextColor];
-        [_ncStyle setValue:kNCUndefined forKey:kNCStylePlaceholder];
-        [_ncStyle setValue:kNCFalse forKey:kNCStyleFocus];
+        _ncStyle = [[NSMutableDictionary alloc] initWithDictionary:[self.class defaultStyles]];
     }
 
     return self;

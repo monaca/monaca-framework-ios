@@ -12,15 +12,21 @@
 
 @implementation NCTabbarItem
 
++ (NSDictionary *)defaultStyles
+{
+    NSMutableDictionary *defaultStyle = [[NSMutableDictionary alloc] init];
+    [defaultStyle setValue:kNCUndefined forKey:kNCStyleText];
+    [defaultStyle setValue:kNCUndefined forKey:kNCStyleImage];
+    [defaultStyle setValue:kNCUndefined forKey:kNCStyleBadgeText];
+    return defaultStyle;
+}
+
 - (id)init
 {
     self = [super init];
 
     if (self) {
-        _ncStyle = [[NSMutableDictionary alloc] init];
-        [_ncStyle setValue:kNCUndefined forKey:kNCStyleText];
-        [_ncStyle setValue:kNCUndefined forKey:kNCStyleImage];
-        [_ncStyle setValue:kNCUndefined forKey:kNCStyleBadgeText];
+        _ncStyle = [[NSMutableDictionary alloc] initWithDictionary:[self.class defaultStyles]];
     }
 
     return self;

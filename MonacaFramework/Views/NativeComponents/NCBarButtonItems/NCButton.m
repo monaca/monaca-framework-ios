@@ -10,22 +10,28 @@
 #import "NativeComponentsInternal.h"
 #import "MFUtility.h"
 
-@implementation NCButton 
+@implementation NCButton
+
++ (NSDictionary *)defaultStyles
+{
+    NSMutableDictionary *defaultStyle = [[NSMutableDictionary alloc] init];
+    [defaultStyle setValue:kNCTrue forKey:kNCStyleVisibility];
+    [defaultStyle setValue:kNCFalse forKey:kNCStyleDisable];
+    [defaultStyle setValue:kNCBlack forKey:kNCStyleBackgroundColor];
+    [defaultStyle setValue:kNCWhite forKey:kNCStyleActiveTextColor];
+    [defaultStyle setValue:kNCWhite forKey:kNCStyleTextColor];
+    [defaultStyle setValue:kNCUndefined forKey:kNCStyleImage];
+    [defaultStyle setValue:kNCUndefined forKey:kNCStyleInnerImage];
+    [defaultStyle setValue:kNCUndefined forKey:kNCStyleText];
+    return defaultStyle;
+}
 
 - (id)init {
     self = [super init];
     
     if (self) {
         [self setTitle:@""];
-        _ncStyle = [[NSMutableDictionary alloc] init];
-        [_ncStyle setValue:kNCTrue forKey:kNCStyleVisibility];
-        [_ncStyle setValue:kNCFalse forKey:kNCStyleDisable];
-        [_ncStyle setValue:kNCBlack forKey:kNCStyleBackgroundColor];
-        [_ncStyle setValue:kNCWhite forKey:kNCStyleActiveTextColor];
-        [_ncStyle setValue:kNCWhite forKey:kNCStyleTextColor];
-        [_ncStyle setValue:kNCUndefined forKey:kNCStyleImage];
-        [_ncStyle setValue:kNCUndefined forKey:kNCStyleInnerImage];
-        [_ncStyle setValue:kNCUndefined forKey:kNCStyleText];
+        _ncStyle = [NSMutableDictionary dictionaryWithDictionary:[self.class defaultStyles]];
     }
     
     return self;

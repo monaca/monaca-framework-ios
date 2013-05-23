@@ -24,6 +24,7 @@
 #define kNCPositionTop    @"top"
 #define kNCPositionMiddle @"middle"
 #define kNCPositionBottom @"bottom"
+#define kNCPositionMenu   @"menu"
 
 #define kNCContainerToolbar @"toolbar"
 #define kNCContainerTabbar  @"tabbar"
