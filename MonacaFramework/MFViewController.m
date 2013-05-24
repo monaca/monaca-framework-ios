@@ -408,15 +408,15 @@
     self.cdvViewController.webView.opaque = NO;
     
     UIInterfaceOrientation orientation = [MFUtility currentInterfaceOrientation];
-    float navBarHeight = 0;
-    if ( self.cdvViewController.navigationController
-        && !( self.cdvViewController.navigationController.navigationBar.hidden)) {
-        navBarHeight = [MFDevice heightOfNavigationBar:orientation];
+    float navBarHeight = [MFDevice heightOfNavigationBar:orientation];
+    if ( self.appNavigationController.navigationBar.hidden == YES) {
+        navBarHeight = 0;
     }
-    
+
     float tabBarHeight = 0;
-    if ( self.cdvViewController.tabBarController
-        && !( self.cdvViewController.tabBarController.tabBar.hidden)) {
+    
+    //tabBarは表示が定義されていない場合も画面外に保持されている
+    if ( self.tabBarController.tabBar.frame.origin.y < self.view.frame.size.height) {
         tabBarHeight = [MFDevice heightOfTabBar];
     }
     
@@ -517,6 +517,8 @@
         [activityView removeFromSuperview];
         [imageView addSubview:activityView];
     }
+
+    [self applyStyleDict:styleDict_];
 }
 
 #pragma mark - Cordova Plugin
