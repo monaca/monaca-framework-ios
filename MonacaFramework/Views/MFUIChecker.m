@@ -34,7 +34,7 @@
 @end
 
 @interface IOSBarStyleNode : NSObject
-+ (void)parse:(NSString *)style;
++ (void)parse:(NSString *)style withComponent:(NSString *)component;
 @end
 
 
@@ -380,7 +380,7 @@
             continue;
         }
         if ([key isEqualToString:kNCStyleIOSBarStyle]) {
-            [IOSBarStyleNode parse:[dict objectForKey:kNCStyleIOSBarStyle]];
+            [IOSBarStyleNode parse:[dict objectForKey:kNCStyleIOSBarStyle] withComponent:component];
         }
     }
 }
@@ -400,11 +400,11 @@
     return dict;
 }
 
-+ (void)parse:(NSString *)style
++ (void)parse:(NSString *)style withComponent:(NSString *)component
 {
     NSDictionary *validValue = [self iosBarStyles];
     if (![[validValue objectForKey:style] isEqualToString:kNCTrue]) {
-        NSLog(NSLocalizedString(@"Value not in one of valid values", nil), kNCStyleIOSBarStyle, style, [MFUIChecker dictionaryKeysToString:validValue]);
+        NSLog(NSLocalizedString(@"Value not in one of valid values", nil), component, style, [MFUIChecker dictionaryKeysToString:validValue]);
     }
 }
 
