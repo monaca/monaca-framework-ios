@@ -26,6 +26,4 @@
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property(nonatomic, retain) MFNavigationController *monacaNavigationController;
-@property(nonatomic, retain) NSString *queryParams;
-
 @end
