@@ -105,10 +105,16 @@
     
     NSString *relativeUrlString = [self getRelativePathTo:urlString];
     NSString *query = [self getQueryFromPluginArguments:arguments urlString:relativeUrlString];
+    
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSMutableDictionary *queryParams = [NSMutableDictionary dictionary];
+    [userDefaults setObject:query forKey:@"queryParams"];
+    [userDefaults registerDefaults:queryParams];
+    
     NSString *urlStringWithoutQuery = [[relativeUrlString componentsSeparatedByString:@"?"] objectAtIndex:0];
 
     MFViewController *viewController = [[MFViewController alloc] initWithFileName:urlStringWithoutQuery];
-    [viewController.cdvViewController.webView loadRequest:[self createRequest:urlStringWithoutQuery withQuery:query]];
+    [viewController.cdvViewController.webView loadRequest:[self createRequest:urlStringWithoutQuery withQuery:nil]];
     
     [self setupViewController:viewController options:options];
     [self.class changeDelegate:viewController];

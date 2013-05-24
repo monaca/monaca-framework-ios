@@ -19,11 +19,13 @@
 #define kNCInt0         [NSNumber numberWithInt:0]
 #define kNCFloat1       [NSNumber numberWithFloat:1.0]
 
+#define kNCPageStyle     @"style"
 
 #define kNCPositionTop    @"top"
 #define kNCPositionMiddle @"middle"
 #define kNCPositionBottom @"bottom"
 
+#define kNCContainerPage     @"page"
 #define kNCContainerToolbar @"toolbar"
 #define kNCContainerTabbar  @"tabbar"
 
@@ -37,6 +39,11 @@
 #define kNCTypeID        @"id"
 #define kNCTypeItems     @"items"
 #define kNCTypeLink      @"link"
+#define kNCTypeRepeat    @"repeat"
+#define kNCTypeNoRepeat  @"no-repeat"
+#define kNCTypeContain   @"contain"
+#define kNCTypeAuto      @"auto"
+#define kNCTypeCover     @"cover"
 
 #define kNCEventTypeTap     @"onTap"
 #define kNCEventTypeChange  @"onChange"
@@ -56,11 +63,17 @@
 #define kNCStyleDisable            @"disable"
 #define kNCStyleOpacity            @"opacity"
 #define kNCStyleBackgroundColor    @"backgroundColor"
+#define kNCStyleBackgroundImage    @"backgroundImage"
+#define kNCStyleBackgroundSize     @"backgroundSize"
+#define kNCStyleBackgroundRepeat   @"backgroundRepeat"
+#define kNCStyleBackgroundPosition @"backgroundPosition"
 #define kNCStyleTextColor          @"textColor"
 #define kNCStylePlaceholder        @"placeholder"
 #define kNCStyleValue              @"value"
 #define kNCStyleTitle              @"title"
 #define kNCStyleSubtitle           @"subtitle"
+#define kNCStyleTitleImage         @"titleImage"
+#define kNCStyleShadowOpacity      @"shadowOpacity"
 #define kNCStyleTitleColor         @"titleColor"
 #define kNCStyleSubtitleColor      @"subtitleColor"
 #define kNCStyleTitleFontScale     @"titleFontScale"
@@ -72,6 +85,12 @@
 #define kNCStyleFocus              @"focus"
 #define kNCStyleActiveTextColor    @"activeTextColor"
 #define kNCStyleForceVisibility    @"forceVisibility"
+
+#define kNCStyleBackgroundImageFilePath        @"backgroundImageFilePath"
+#define kNCStyleBackgroundSizeWidth        @"backgroundSizeWidth"
+#define kNCStyleBackgroundSizeHeight       @"backgroundSizeHeight"
+#define kNCStyleBackgroundPositionHorizontal  @"backgroundPositionHorizontal"
+#define kNCStyleBackgroundPositionVertical    @"backgroundPositionVertical"
 
 #define kNCStyleIOSBarStyle     @"iosBarStyle"
 #define kNCStyleIOSButtonStyle  @"iosButtonStyle"

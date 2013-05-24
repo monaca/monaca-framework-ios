@@ -26,5 +26,4 @@
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property(nonatomic, retain) MFNavigationController *monacaNavigationController;
-
 @end

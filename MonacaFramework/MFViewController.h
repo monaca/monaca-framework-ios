@@ -51,7 +51,7 @@
 - (void)releaseWebView;
 - (void)destroy;
 - (void)showSplash:(BOOL)show;
-- (void)applyStyleDict;
+- (void)applyStyleDict:(NSMutableDictionary*)pageStyle;
 
 @property (nonatomic, assign) BOOL recall;
 @property (nonatomic, copy) NSString *previousPath;

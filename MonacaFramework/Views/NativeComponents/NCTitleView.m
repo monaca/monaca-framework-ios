@@ -24,6 +24,7 @@
 
 @synthesize titleLabel = titleLabel_;
 @synthesize subtitleLabel = subtitleLabel_;
+@synthesize titleImageView = titleImageView_;
 
 static const CGFloat kSizeOfTitleFont             = 14.0f;
 static const CGFloat kSizeOfSubtitleFont          = 11.0f;
@@ -52,6 +53,18 @@ labelForSubtitle(NSString *subtitle, UIColor *color, CGFloat fontScale) {
     return label;
 }
 
+static UIImageView *
+labelForTitleImage(NSString *imageFilePath)
+{
+    UIImageView *titleImageView = [[UIImageView alloc]init];
+    MFDelegate *mfDelegate = (MFDelegate *)[UIApplication sharedApplication].delegate;
+    NSString *currentDirectory = [mfDelegate.viewController.previousPath stringByDeletingLastPathComponent];
+    NSString *imagePath = [currentDirectory stringByAppendingPathComponent:imageFilePath];
+    titleImageView.image = [UIImage imageWithContentsOfFile:imagePath];
+    titleImageView.contentMode = UIViewContentModeCenter;
+    return titleImageView;
+}
+
 - (id)init {
     self = [super init];
     if (nil != self) {
@@ -77,6 +90,12 @@ labelForSubtitle(NSString *subtitle, UIColor *color, CGFloat fontScale) {
     [self sizeToFit];
 }
 
+- (void)setTitleImage:(NSString *)imageFilePath
+{
+    self.titleImageView = labelForTitleImage(imageFilePath);
+    [self addSubview:self.titleImageView];
+}
+
 static BOOL
 isEmpty(NCTitleLabel *label) {
     return !label.text || [label.text isEqualToString:@""];
@@ -96,8 +115,13 @@ isEmpty(NCTitleLabel *label) {
         self.titleLabel.font = [UIFont boldSystemFontOfSize:kSizeOfLandscapeTitleFont * self.titleLabel.fontScale];
         self.titleLabel.frame = [self.titleLabel resizedFrameWithPoint:CGPointMake(0, 0)];
         self.titleLabel.center = CGPointMake(self.frame.size.width/2.0f, height/2.0f);
+        self.titleImageView.center = CGPointMake(self.frame.size.width/2.0f, height/2.0f);
     } else {
-        if (!isEmpty(self.subtitleLabel)) {
+        if (self.titleImageView) {
+            self.titleImageView.center = CGPointMake(self.frame.size.width/2.0f, height/2.0f);
+        }
+        else if (!isEmpty(self.subtitleLabel))
+        {
             self.titleLabel.font = [UIFont boldSystemFontOfSize:kSizeOfTitleFont * self.titleLabel.fontScale];
             self.subtitleLabel.font = [UIFont systemFontOfSize:kSizeOfSubtitleFont * self.subtitleLabel.fontScale];
             self.titleLabel.frame = [self.titleLabel resizedFrameWithPoint:CGPointMake(0, 0)];
