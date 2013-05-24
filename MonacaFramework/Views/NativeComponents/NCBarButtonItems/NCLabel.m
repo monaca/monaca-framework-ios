@@ -28,7 +28,7 @@
         _label = [[UILabel alloc] init];
         [_label setBackgroundColor:[UIColor clearColor]];
         self.customView = _label;
-        _ncStyle = [NSMutableDictionary dictionaryWithDictionary:[self.class defaultStyles]];
+        _ncStyle = [[self.class defaultStyles] mutableCopy];
     }
     
     return self;

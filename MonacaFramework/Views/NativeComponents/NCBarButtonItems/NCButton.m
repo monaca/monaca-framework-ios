@@ -31,7 +31,7 @@
     
     if (self) {
         [self setTitle:@""];
-        _ncStyle = [NSMutableDictionary dictionaryWithDictionary:[self.class defaultStyles]];
+        _ncStyle = [[self.class defaultStyles] mutableCopy];
     }
     
     return self;

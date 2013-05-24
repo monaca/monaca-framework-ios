@@ -32,7 +32,7 @@
         _segment = [[UISegmentedControl alloc] initWithItems:nil];
         [_segment setSegmentedControlStyle:UISegmentedControlStyleBar];
         self.customView = _segment;
-        _ncStyle = [[NSMutableDictionary alloc] initWithDictionary:[self.class defaultStyles]];
+        _ncStyle = [[self.class defaultStyles] mutableCopy];
     }
 
     return self;

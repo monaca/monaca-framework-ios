@@ -15,6 +15,25 @@
 
 @synthesize viewController = _viewController;
 
++ (NSDictionary *)defaultStyles
+{
+    NSMutableDictionary *defaultStyle = [[NSMutableDictionary alloc] init];
+    [defaultStyle setValue:kNCTrue forKey:kNCStyleVisibility];
+    [defaultStyle setValue:kNCFalse forKey:kNCStyleDisable];
+    [defaultStyle setValue:kNCBlack forKey:kNCStyleBackgroundColor];
+    [defaultStyle setValue:kNCUndefined forKey:kNCStyleTitle];
+    [defaultStyle setValue:kNCUndefined forKey:kNCStyleSubtitle];
+    [defaultStyle setValue:kNCWhite forKey:kNCStyleTitleColor];
+    [defaultStyle setValue:kNCWhite forKey:kNCStyleSubtitleColor];
+    [defaultStyle setValue:[NSNumber numberWithFloat:1.0]  forKey:kNCStyleTitleFontScale];
+    [defaultStyle setValue:[NSNumber numberWithFloat:1.0]  forKey:kNCStyleSubtitleFontScale];
+    [defaultStyle setValue:kNCBarStyleDefault forKey:kNCStyleIOSBarStyle];
+    [defaultStyle setValue:kNCUndefined forKey:kNCStyleTitleImage];
+    [defaultStyle setValue:[NSNumber numberWithFloat:0.3] forKey:kNCStyleShadowOpacity];
+    
+    return defaultStyle;
+}
+
 - (id)initWithViewController:(MFViewController *)viewController
 {
     self = [super init];
@@ -24,19 +43,7 @@
         _navigationBar = viewController.navigationController.navigationBar;
         _centerViewToolbar = [[UIToolbar alloc] init];
         _titleView = [[NCTitleView alloc] init];
-        _ncStyle = [[NSMutableDictionary alloc] init];
-        [_ncStyle setValue:kNCTrue forKey:kNCStyleVisibility];
-        [_ncStyle setValue:kNCFalse forKey:kNCStyleDisable];
-        [_ncStyle setValue:kNCBlack forKey:kNCStyleBackgroundColor];
-        [_ncStyle setValue:kNCUndefined forKey:kNCStyleTitle];
-        [_ncStyle setValue:kNCUndefined forKey:kNCStyleSubtitle];
-        [_ncStyle setValue:kNCWhite forKey:kNCStyleTitleColor];
-        [_ncStyle setValue:kNCWhite forKey:kNCStyleSubtitleColor];
-        [_ncStyle setValue:[NSNumber numberWithFloat:1.0]  forKey:kNCStyleTitleFontScale];
-        [_ncStyle setValue:[NSNumber numberWithFloat:1.0]  forKey:kNCStyleSubtitleFontScale];
-        [_ncStyle setValue:kNCBarStyleDefault forKey:kNCStyleIOSBarStyle];
-        [_ncStyle setValue:kNCUndefined forKey:kNCStyleTitleImage];
-        [_ncStyle setValue:[NSNumber numberWithFloat:0.3] forKey:kNCStyleShadowOpacity];
+        _ncStyle = [[self.class defaultStyles] mutableCopy];
     }
 
     return self;

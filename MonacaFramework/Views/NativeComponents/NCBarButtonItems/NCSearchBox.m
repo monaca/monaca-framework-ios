@@ -39,7 +39,7 @@
         [_searchBar setFrame:CGRectMake(0, 0, 110, 44) ];
         self.customView = _searchBar;
         _searchBar.delegate = self;
-        _ncStyle = [[NSMutableDictionary alloc] initWithDictionary:[self.class defaultStyles]];
+        _ncStyle = [[self.class defaultStyles] mutableCopy];
     }
 
     return self;

@@ -28,7 +28,7 @@
     self = [super init];
 
     if (self) {
-        _ncStyle = [[NSMutableDictionary alloc] initWithDictionary:[self.class defaultStyles]];
+        _ncStyle = [[self.class defaultStyles] mutableCopy];
     }
 
     return self;

@@ -33,6 +33,11 @@
 + (void)parse:(NSMutableDictionary *)dict withComponent:(NSString *)component;
 @end
 
+@interface IOSBarStyleNode : NSObject
++ (void)parse:(NSString *)style;
+@end
+
+
 @implementation MFUIChecker
 
 + (void)checkUI:(NSMutableDictionary *)uidict
@@ -56,6 +61,7 @@
 
 + (NSString *)valueType:(id)object
 {
+
     if ([NSStringFromClass([object class]) isEqualToString:@"__NSCFConstantString"] ||
         [NSStringFromClass([object class]) isEqualToString:@"__NSCFString"]) {
         NSString *str = object;
@@ -70,11 +76,19 @@
         return @"String";
     }
     if ([NSStringFromClass([object class]) isEqualToString:@"__NSCFArray"] ||
-        [NSStringFromClass([object class]) isEqualToString:@"__NSArrayI"]) {
+        [NSStringFromClass([object class]) isEqualToString:@"__NSArrayI"] ||
+        [NSStringFromClass([object class]) isEqualToString:@"NSArray"] ) {
         return @"Array";
     }
     if ([NSStringFromClass([object class]) isEqualToString:@"__NSCFDictionary"]) {
         return @"Object";
+    }
+    if ([NSStringFromClass([object class]) isEqualToString:@"__NSCFNumber"]) {
+        if (strcmp([object objCType], @encode(float)) == 0) {
+            return @"Float";
+        } else {
+            return @"Integer";
+        }
     }
     return nil;
 }
@@ -186,10 +200,13 @@
         }
         if (![[dict objectForKey:key] isKindOfClass:[validDict valueForKey:key]]) {
             NSLog(NSLocalizedString(@"Invalid value type", nil), position , key,
-                   [[validDict objectForKey:key] class], [dict valueForKey:key]);
+                   [MFUIChecker valueType:[validDict objectForKey:key]], [dict valueForKey:key]);
             [dict removeObjectForKey:key];
             continue;
         }
+    }
+    if ([dict objectForKey:kNCTypeStyle]) {
+        [StyleNode parse:[dict objectForKey:kNCTypeStyle] withComponent:kNCContainerToolbar];
     }
     NSArray *array;
     if ((array = [dict objectForKey:kNCTypeLeft])) {
@@ -240,6 +257,9 @@
             NSLog(NSLocalizedString(@"Key is not one of valid keys", nil), position, key, [MFUIChecker dictionaryKeysToString:validDict]);
             continue;
         }
+    }
+    if ([dict objectForKey:kNCTypeStyle]) {
+        [StyleNode parse:[dict objectForKey:kNCTypeStyle] withComponent:kNCContainerTabbar];
     }
     NSArray *array;
     if ((array = [dict objectForKey:kNCTypeRight])) {
@@ -311,6 +331,12 @@
 
 + (NSDictionary *)getValidDictionary:(NSString *)component
 {
+    if ([component isEqualToString:kNCContainerToolbar]) {
+        return [NCNavigationBar defaultStyles];
+    }
+    if ([component isEqualToString:kNCContainerTabbar]) {
+        return [MFTabBarController defaultStyles];
+    }
     if ([component isEqualToString:kNCComponentButton]) {
         return [NCButton defaultStyles];
     }
@@ -344,13 +370,42 @@
             continue;
         }
         if (![[MFUIChecker valueType:[dict objectForKey:key]] isEqualToString:[MFUIChecker valueType:[validDict valueForKey:key]]]) {
+            if ([[MFUIChecker valueType:[dict objectForKey:key]] isEqualToString:@"Integer"] &&
+                [[MFUIChecker valueType:[validDict valueForKey:key]] isEqualToString:@"Float"]) {
+                continue;
+            }
             NSLog(NSLocalizedString(@"Invalid value type", nil), component , key,
                   [MFUIChecker valueType:[validDict objectForKey:key]], [dict valueForKey:key]);
             [dict removeObjectForKey:key];
             continue;
+        }
+        if ([key isEqualToString:kNCStyleIOSBarStyle]) {
+            [IOSBarStyleNode parse:[dict objectForKey:kNCStyleIOSBarStyle]];
         }
     }
 }
 
 @end
 
+@implementation IOSBarStyleNode
+
++ (NSDictionary *)iosBarStyles
+{
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+    [dict setValue:kNCTrue forKey:kNCBarStyleBlack];
+    [dict setValue:kNCTrue forKey:kNCBarStyleBlackOpaque];
+    [dict setValue:kNCTrue forKey:kNCBarStyleBlackTranslucent];
+    [dict setValue:kNCTrue forKey:kNCBarStyleDefault];
+    
+    return dict;
+}
+
++ (void)parse:(NSString *)style
+{
+    NSDictionary *validValue = [self iosBarStyles];
+    if (![[validValue objectForKey:style] isEqualToString:kNCTrue]) {
+        NSLog(NSLocalizedString(@"Value not in one of valid values", nil), kNCStyleIOSBarStyle, style, [MFUIChecker dictionaryKeysToString:validValue]);
+    }
+}
+
+@end

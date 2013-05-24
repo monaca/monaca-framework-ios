@@ -36,14 +36,21 @@
     [super viewDidDisappear:animated];
 }
 
++ (NSDictionary *)defaultStyles
+{
+    NSMutableDictionary *defaultStyle = [[NSMutableDictionary alloc] init];
+    [defaultStyle setValue:kNCTrue forKey:kNCStyleVisibility];
+    [defaultStyle setValue:kNCBlack forKey:kNCStyleBackgroundColor];
+    [defaultStyle setValue:[NSNumber numberWithInt:0] forKey:kNCStyleActiveIndex];
+    
+    return defaultStyle;
+}
+
 - (id)init {
     self = [super init];
     if (nil != self) {
         self.ncManager = [[NCManager alloc] init];
-        _ncStyle = [[NSMutableDictionary alloc] init];
-        [_ncStyle setValue:kNCTrue forKey:kNCStyleVisibility];
-        [_ncStyle setValue:kNCBlack forKey:kNCStyleBackgroundColor];
-        [_ncStyle setValue:[NSNumber numberWithInt:0] forKey:kNCStyleActiveIndex];
+        _ncStyle = [[self.class defaultStyles] mutableCopy];
     }
     return self;
 }

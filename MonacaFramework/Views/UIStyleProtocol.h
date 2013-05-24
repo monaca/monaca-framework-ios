@@ -11,12 +11,12 @@
 @protocol UIStyleProtocol <NSObject>
 
 @optional
++ (NSDictionary *)defaultStyles;
 - (void)setUserInterface:(NSDictionary *)uidict;
 - (void)applyUserInterface;
 - (void)applyVisibility;
 - (void)applyBackButton;
 @required
-+ (NSDictionary *)defaultStyles;
 - (void)updateUIStyle:(id)value forKey:(NSString *)key;
 - (id)retrieveUIStyle:(NSString *)key;
 

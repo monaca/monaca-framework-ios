@@ -71,6 +71,7 @@
     [self applyMonacaPlugin];
     
     [self initPlugins]; // 画面を消す手前でdestroyを実行すること
+    self.webView.scrollView.decelerationRate = UIScrollViewDecelerationRateNormal;
 }
 
 - (void)releaseWebView {
