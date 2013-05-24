@@ -12,8 +12,10 @@
 #import "MFTransitPlugin.h"
 #import "MFUtility.h"
 #import "MFEvent.h"
+#import "MFVIewBackground.h"
 
 @interface MFViewController ()
+@property(nonatomic,retain)NSString* query;
 - (NSString *)careWWWdir:(NSString *)path;
 - (void)processDataTypes;
 @end
@@ -368,7 +370,7 @@
                 } else {
                     styleDict_ = nil;
                 }
-                [self applyStyleDict];
+                [self applyStyleDict:styleDict_];
 
             } else {
                 cdvViewController.webView.tag = kWebViewNormal;
@@ -397,18 +399,45 @@
     [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"extraJSON"];
 }
 
-- (void)applyStyleDict
+- (void)applyStyleDict:(NSMutableDictionary*)pageStyle
 {
-    // "backgroundColor" setting
-    {
-        id colorString = [styleDict_ objectForKey:kNCStyleBackgroundColor];
-        if ([colorString isKindOfClass:NSString.class]) {
-            UIColor *color = hexToUIColor(removeSharpPrefix(colorString), 1);
-            [self setupBackgroundColor:color];
-        } else {
-            [self setupBackgroundColor:UIColor.whiteColor];
-        }
+    // monaca.updateUIStyle対策
+    styleDict_ = pageStyle;
+    
+    self.cdvViewController.webView.backgroundColor = [UIColor clearColor];
+    self.cdvViewController.webView.opaque = NO;
+    
+    UIInterfaceOrientation orientation = [MFUtility currentInterfaceOrientation];
+    float navBarHeight = [MFDevice heightOfNavigationBar:orientation];
+    if ( self.appNavigationController.navigationBar.hidden == YES) {
+        navBarHeight = 0;
     }
+
+    float tabBarHeight = 0;
+    
+    //tabBarは表示が定義されていない場合も画面外に保持されている
+    if ( self.tabBarController.tabBar.frame.origin.y < self.view.frame.size.height) {
+        tabBarHeight = [MFDevice heightOfTabBar];
+    }
+    
+    // remove old background
+    if( [[self.view viewWithTag:kWebViewBackground] isKindOfClass:UIImageView.class] )
+    {
+        [[self.view viewWithTag:kWebViewBackground] removeFromSuperview];
+    }
+    
+    MFVIewBackground* backgroundImageView = [[MFVIewBackground alloc] initWithFrame:CGRectMake( self.view.frame.origin.x,
+                                                                                               self.view.frame.origin.y + navBarHeight,
+                                                                                               self.view.frame.size.width,
+                                                                                               self.view.frame.size.height  - navBarHeight - tabBarHeight)];
+
+    backgroundImageView.tag = kWebViewBackground;
+    [backgroundImageView setAutoresizingMask:UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth ];
+    [backgroundImageView setBackgroundStyle:styleDict_];
+    [self.view insertSubview:backgroundImageView atIndex:0];
+    [backgroundImageView sendSubviewToBack:self.view];
+    [tabBarController.ncManager setComponent:backgroundImageView forID:kNCContainerPage];
+    
 }
 
 - (void) webViewDidFinishLoad:(UIWebView*) theWebView 
@@ -488,6 +517,8 @@
         [activityView removeFromSuperview];
         [imageView addSubview:activityView];
     }
+
+    [self applyStyleDict:styleDict_];
 }
 
 #pragma mark - Cordova Plugin
@@ -570,6 +601,5 @@
     self.view.opaque = YES;
     self.view.backgroundColor = color;
 }
-
 
 @end

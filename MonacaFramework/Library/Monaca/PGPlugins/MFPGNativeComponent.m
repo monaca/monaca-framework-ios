@@ -11,6 +11,7 @@
 #import "MFUtility.h"
 #import "MFSpinnerView.h"
 #import "MFSpinnerParameter.h"
+#import "MFViewController.h"
 
 @interface MFPGNativeComponent()
 - (void)updateNCManagerPropertyStyle:(NSMutableDictionary *)properties style:(NSMutableDictionary *)currentStyle;
@@ -96,6 +97,14 @@ static NSDictionary *defaultList_;
             MFTabBarController *tabbar = (MFTabBarController *)component;
             [self updateNCManagerPropertyStyle:properties style:currentStyle];
             [MFTabBarController updateBottomTabbarStyle:tabbar with:currentStyle];
+            return;
+        }
+        
+        // Update page background style.
+        if ([component isKindOfClass:[UIImageView class]]) {
+            MFDelegate *mfDelegate = (MFDelegate *)[UIApplication sharedApplication].delegate;
+            [self updateNCManagerPropertyStyle:properties style:currentStyle];
+            [mfDelegate.viewController applyStyleDict:currentStyle];
             return;
         }
         
@@ -232,10 +241,13 @@ static NSDictionary *defaultList_;
         [[self class] initDefaultList];
     }
     NSArray *keys = [style allKeys];
+    NSArray *removeTargetKeys = [NSArray arrayWithObjects:kNCStyleShadowOpacity, nil];
     id key;
     for (key in keys) {
         if ([[style objectForKey:key] isKindOfClass:[NSNumber class]] &&
-            ![[style objectForKey:key] isKindOfClass:[[defaultList_ objectForKey:key] class]]) {
+            ![[style objectForKey:key] isKindOfClass:[[defaultList_ objectForKey:key] class]] &&
+            !([removeTargetKeys containsObject:key])
+            ) {
             NSString *value = [NSString stringWithFormat:@"%@", [style objectForKey:key]];
             if ([value isEqual:@"0"]) {
                 [style setObject:kNCFalse forKey:key];
