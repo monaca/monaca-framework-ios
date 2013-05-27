@@ -52,6 +52,7 @@ setBackgroundColor(NSArray *components, NCToolbar *toolbar) {
         if (![(NCButton *)(container.component) hidden])
             [items addObject:container.component];
     }
+    self.navigationItem.leftBarButtonItems = nil;
     self.navigationItem.leftBarButtonItems = items;
 }
 
@@ -61,6 +62,7 @@ setBackgroundColor(NSArray *components, NCToolbar *toolbar) {
         if (![(NCButton *)(container.component) hidden])
             [items addObject:container.component];
     }
+    self.navigationItem.rightBarButtonItems = nil;
     self.navigationItem.rightBarButtonItems = items;
 }
 
