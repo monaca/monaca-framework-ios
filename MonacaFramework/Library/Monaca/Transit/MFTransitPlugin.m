@@ -108,7 +108,9 @@
     
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSMutableDictionary *queryParams = [NSMutableDictionary dictionary];
-    [userDefaults setObject:query forKey:@"queryParams"];
+    if (query) {
+        [queryParams setObject:query forKey:@"queryParams"];
+    }
     [userDefaults registerDefaults:queryParams];
     
     NSString *urlStringWithoutQuery = [[relativeUrlString componentsSeparatedByString:@"?"] objectAtIndex:0];

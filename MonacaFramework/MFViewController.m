@@ -291,6 +291,21 @@
     //NSURL *url = [[self class] standardizedURL:[request URL]];
     NSURL *url = request.URL.standardizedURL;
     
+    //NSString* absoluteUrl = request.URL.absoluteString;
+    
+    NSString* query = nil;
+    query = request.URL.query;
+    
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSMutableDictionary *queryParams = [NSMutableDictionary dictionary];
+    if(query){
+        [queryParams setObject:query forKey:@"queryParams"];
+      // absoluteUrl =  [absoluteUrl stringByReplacingOccurrencesOfString: [@"?" stringByAppendingString: query] withString: @""];
+    }
+    [userDefaults registerDefaults:queryParams];
+    //aタグでの画面遷移時はurlにqueryParamsが含まれる　将来的にpushPageの仕様と合わせる
+    //NSURL* url = [[NSURL alloc]initWithString:absoluteUrl];
+
     // avoid to open gap schema and about scheme ---
     if ([url.scheme isEqual:@"gap"] || [url.scheme isEqual:@"http"] || [url.scheme isEqual:@"https"] || [url.scheme isEqual:@"about"]){
         return [cdvViewController webView:webView_ shouldStartLoadWithRequest:request navigationType:navigationType];
