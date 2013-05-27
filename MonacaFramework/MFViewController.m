@@ -41,13 +41,13 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    [self applyUserInterface];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
-    [self applyUserInterface];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -110,6 +110,7 @@
         [_toolbar applyUserInterface];
     } else {
         [self.navigationController setToolbarHidden:YES];
+        [self.tabBarController.navigationController setToolbarHidden:YES];
     }
 }
 

@@ -116,7 +116,6 @@
     
     MFNavigationController *navigationController;
     if ([parameter.target isEqualToString:@"_parent"]) {
-        [[MFUtility getAppDelegate].monacaNavigationController setNavigationBarHidden:YES];
         navigationController = [MFUtility getAppDelegate].monacaNavigationController;
     } else {
         [MFViewBuilder setIgnoreBottom:YES];

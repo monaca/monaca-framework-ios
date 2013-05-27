@@ -21,8 +21,6 @@
     NSMutableDictionary *_ncStyle;
 }
 
-- (void)restoreUserInterface;
-
 @property(nonatomic, retain) NCManager *ncManager;
 
 @end
