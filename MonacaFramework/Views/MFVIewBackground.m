@@ -26,7 +26,7 @@
     NSMutableDictionary* backgroundStyle = [self setBackgroundParameter:style];
     
     // set background color
-    if([[backgroundStyle objectForKey:kNCStyleBackgroundColor] isEqual:[NSNull null]])
+    if( !(backgroundStyle) || [[backgroundStyle objectForKey:kNCStyleBackgroundColor] isEqual:[NSNull null]])
     {
         self.backgroundColor = [UIColor whiteColor];
     }
