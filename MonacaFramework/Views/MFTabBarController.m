@@ -23,16 +23,11 @@
 
 // iOS4 の場合、このメソッドは MonacaViewController の viewDidApper メソッドから呼ばれる
 - (void)viewDidAppear:(BOOL)animated {
-    [MFUtility setCurrentTabBarController:self];
-    
     [super viewDidAppear:animated];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
 {
-    // タブバーが無いviewに遷移した際にはnilにする。
-    [MFUtility setCurrentTabBarController:nil];
-    
     [super viewDidDisappear:animated];
 }
 

@@ -31,8 +31,6 @@
     if (self) {
         self.startPage = fileName;
         self.ncManager = [[NCManager alloc] init];
-
-        [MFUtility setCurrentViewController:self];
         self.wantsFullScreenLayout = NO;
     }
     return self;
@@ -50,8 +48,6 @@
     [super viewDidAppear:animated];
     
     [self applyUserInterface];
-    
-    [MFUtility setCurrentViewController:self];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -62,8 +58,6 @@
 {
     [super viewDidLoad];
     
-    [MFUtility setCurrentViewController:self];
-
     // NavigationBarの背景色などを適応させるため、self.navigationControllerがnilでなくなった後に行う。
 
     [self setUserInterface:self.uiDict];

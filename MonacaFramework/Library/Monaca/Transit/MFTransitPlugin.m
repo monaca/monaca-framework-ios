@@ -2,8 +2,8 @@
 //  MFTransitPlugin.m
 //  MonacaFramework
 //
-//  Created by Yasuhiro Mitsuno on 2013/03/31.
-//  Copyright (c) 2013年 ASIAL CORPORATION. All rights reserved.
+//  Created by air on 12/06/28.
+//  Copyright (c) 2012年 ASIAL CORPORATION. All rights reserved.
 //
 #import <QuartzCore/QuartzCore.h>
 
@@ -11,18 +11,34 @@
 #import "MFViewController.h"
 #import "MFUtility.h"
 #import "MFViewBuilder.h"
+#import "MFTransitPushParameter.h"
+#import "MFTransitPopParameter.h"
 
 @implementation MFTransitPlugin
 
 - (NSURLRequest *)createRequest:(NSString *)urlString withQuery:(NSString *)query
 {
+    NSString *path, *fragment = nil;
+    // separate to path and fragment
+    {
+        NSArray *array = [urlString componentsSeparatedByString:@"#"];
+        path = [array objectAtIndex:0];
+        fragment = nil;
+        if (array.count > 1) {
+            fragment = [array objectAtIndex:1];
+        }
+    }
+    
     NSURL *url;
-    if ([self.commandDelegate pathForResource:urlString]){
-        url = [NSURL fileURLWithPath:[self.commandDelegate pathForResource:urlString]];
-        if ([[query class] isSubclassOfClass:[NSString class]]) {
+    if ([NSURL fileURLWithPath:[self.commandDelegate pathForResource:path]]) {
+        url = [NSURL fileURLWithPath:[self.commandDelegate pathForResource:path]];
+        if ([query.class isSubclassOfClass:[NSString class]]) {
             url = [NSURL URLWithString:[url.absoluteString stringByAppendingFormat:@"?%@", query]];
         }
-    }else {
+        if ([fragment.class isSubclassOfClass:[NSString class]]) {
+            url = [NSURL URLWithString:[url.absoluteString stringByAppendingFormat:@"#%@", fragment]];
+        }
+    } else {
         url = [NSURL URLWithString:[@"monaca404:///www/" stringByAppendingPathComponent:urlString]];
     }
     
@@ -40,194 +56,116 @@
     return [path substringFromIndex:[path rangeOfString:@"www"].location + [@"www" length]];
 }
 
-#pragma mark - plugins methods
+- (void)setupViewController:(MFViewController *)viewController options:(NSDictionary *)options
+{
+    viewController.monacaPluginOptions = options;
+//    [MFUtility setupMonacaViewController:viewController];
+}
 
-- (void)push:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options
+- (void)pushGenerically:(NSMutableArray *)arguments withDict:(NSMutableDictionary *)options
 {
     NSString *urlString = [arguments objectAtIndex:1];
     if (![self isValidOptions:options] || ![self isValidString:urlString]) {
         return;
     }
     
+    MFTransitPushParameter* parameter = [MFTransitPushParameter parseOptionsDict:options];
+    
     NSString *relativeUrlString = [self getRelativePathTo:urlString];
     NSString *query = [self getQueryFromPluginArguments:arguments urlString:relativeUrlString];
     NSString *urlStringWithoutQuery = [[relativeUrlString componentsSeparatedByString:@"?"] objectAtIndex:0];
-    
-    MFNavigationController *nav;
-    if([MFUtility currentViewController].tabBarController != nil) {
-        if ([[options objectForKey:@"target"] isEqualToString:@"tab"]) {
-            [MFViewBuilder setIgnoreBottom:YES];
-            [[MFUtility getAppDelegate].monacaNavigationController setNavigationBarHidden:YES];
-            nav = (MFNavigationController *)[MFUtility currentViewController].navigationController;
-        } else {
-            nav = (MFNavigationController *)[MFUtility currentTabBarController].navigationController;
-        }
+
+    MFNavigationController *navigationController;
+    if ([parameter.target isEqualToString:@"_parent"]) {
+        [[MFUtility getAppDelegate].monacaNavigationController setNavigationBarHidden:YES];
+        navigationController = [MFUtility getAppDelegate].monacaNavigationController;
     } else {
-        if ([[options objectForKey:@"target"] isEqualToString:@"tab"] == NO) {
-            nav = (MFNavigationController *)[MFUtility currentViewController].navigationController;
-        } else {
-            return;
-        }
+        [MFViewBuilder setIgnoreBottom:YES];
+        navigationController = (MFNavigationController *)[MFUtility currentViewController].navigationController;
+    }
+    
+    MFViewController *viewController = [MFViewBuilder createViewControllerWithPath:urlStringWithoutQuery];
+    [MFViewBuilder setIgnoreBottom:NO];
+    [self setupViewController:viewController options:options];
+//    [self.class changeDelegate:viewController];
+
+    UIViewController *previousController;
+    if (parameter.clearStack) {
+        previousController = [navigationController popViewControllerAnimated:NO];
     }
 
-    id viewController = [MFViewBuilder createViewControllerWithPath:urlStringWithoutQuery];
-    if ([viewController isKindOfClass:[MFViewController class]]) {
-        [viewController setMonacaPluginOptions:options];
-    } else {
-        for (MFNavigationController *navi in [viewController viewControllers]) {
-            [(MFViewController *)[navi topViewController] setMonacaPluginOptions:options];
-        }
+    if (parameter.transition != nil) {
+        [navigationController.view.layer addAnimation:parameter.transition forKey:kCATransition];
     }
     
-    [MFViewBuilder setIgnoreBottom:NO];
+    [navigationController pushViewController:viewController animated:parameter.hasDefaultPushAnimation];
     
-    [nav pushViewController:viewController animated:YES];
-    
+    if (parameter.clearStack) {
+        if (previousController == nil) {
+            [navigationController setViewControllers:[NSArray arrayWithObject:viewController] animated:NO];
+        }
+    }
     if (query != nil) {
-        if ([viewController isKindOfClass:[MFViewController class]]) {
-            [[(MFViewController *)viewController webView] loadRequest:[self createRequest:urlStringWithoutQuery withQuery:query]];
-        }
-    }
+        [viewController.webView loadRequest:[self createRequest:urlStringWithoutQuery withQuery:query]];
+     }
 }
 
-- (void)pop:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options
+- (void)popGenerically:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options
 {
-    if (![self isValidOptions:options]) {
-        return;
-    }
+    MFTransitPopParameter* parameter = [MFTransitPopParameter parseOptionsDict:options];
     
-    MFNavigationController *nav;
-    if([MFUtility currentViewController].tabBarController != nil) {
-        if ([[options objectForKey:@"target"] isEqualToString:@"tab"]) {
-            nav = (MFNavigationController *)[MFUtility currentViewController].navigationController;
-        } else {
-            nav = (MFNavigationController *)[MFUtility currentTabBarController].navigationController;
-        }
+    MFNavigationController *navigationController;
+    if ([parameter.target isEqualToString:@"_parent"]) {
+        [[MFUtility getAppDelegate].monacaNavigationController setNavigationBarHidden:YES];
+        navigationController = [MFUtility getAppDelegate].monacaNavigationController;
     } else {
-        if ([[options objectForKey:@"target"] isEqualToString:@"tab"] == NO) {
-            nav = (MFNavigationController *)[MFUtility currentViewController].navigationController;
-        } else {
-            return;
-        }
+        [MFViewBuilder setIgnoreBottom:YES];
+        navigationController = (MFNavigationController *)[MFUtility currentViewController].navigationController;
+    }
+
+    if (parameter.transition != nil) {
+        [navigationController.view.layer addAnimation:parameter.transition forKey:kCATransition];
     }
     
-    id viewController = [nav popViewControllerAnimated:YES];
-    if (viewController) {
-        [viewController destroy];
-    }
-    
-/*    BOOL res = [[self class] changeDelegate:[[nav viewControllers] lastObject]];
+    MFViewController *vc = (MFViewController*)[navigationController popViewControllerAnimated:parameter.hasDefaultPopAnimation];
+    [vc destroy];
+/*
+    BOOL res = [[self class] changeDelegate:[[navigationController viewControllers] lastObject]];
     if (res) {
         NSString *command =[NSString stringWithFormat:@"%@ && %@();", kMonacaTransitPluginJsReactivate, kMonacaTransitPluginJsReactivate];
         [self writeJavascriptOnDelegateViewController:command];
     }
-*/
+ */
+}
+
+#pragma mark - plugins methods
+
+
+- (void)push:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options
+{
+    [self pushGenerically:arguments withDict:options];
+}
+
+
+- (void)slideRight:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options
+{
+    [self pushGenerically:arguments withDict:options];
 }
 
 - (void)modal:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options
 {
-    NSString *urlString = [arguments objectAtIndex:1];
-    if (![self isValidOptions:options] || ![self isValidString:urlString]) {
-        return;
-    }
+    [self pushGenerically:arguments withDict:options];
+}
 
-    NSString *relativeUrlString = [self getRelativePathTo:urlString];
-    NSString *query = [self getQueryFromPluginArguments:arguments urlString:relativeUrlString];
-    NSString *urlStringWithoutQuery = [[relativeUrlString componentsSeparatedByString:@"?"] objectAtIndex:0];
-
-    MFNavigationController *nav;
-    if([MFUtility currentViewController].tabBarController != nil) {
-        if ([[options objectForKey:@"target"] isEqualToString:@"tab"]) {
-            [MFViewBuilder setIgnoreBottom:YES];
-            [[MFUtility getAppDelegate].monacaNavigationController setNavigationBarHidden:YES];
-            nav = (MFNavigationController *)[MFUtility currentViewController].navigationController;
-        } else {
-            nav = (MFNavigationController *)[MFUtility currentTabBarController].navigationController;
-        }
-    } else {
-        if ([[options objectForKey:@"target"] isEqualToString:@"tab"] == NO) {
-            nav = (MFNavigationController *)[MFUtility currentViewController].navigationController;
-        } else {
-            return;
-        }
-    }
-    
-    CATransition *transition = [CATransition animation];
-    transition.duration = 0.4f;
-    transition.type = kCATransitionMoveIn;
-    transition.subtype = kCATransitionFromTop;
-    [transition setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionDefault]];
-
-    id viewController = [MFViewBuilder createViewControllerWithPath:urlStringWithoutQuery];
-        if ([viewController isKindOfClass:[MFViewController class]]) {
-        [viewController setMonacaPluginOptions:options];
-    } else {
-        for (MFNavigationController *navi in [viewController viewControllers]) {
-            [(MFViewController *)[navi topViewController] setMonacaPluginOptions:options];
-        }
-    }
-    
-    [MFViewBuilder setIgnoreBottom:NO];
-    
-    [nav.view.layer addAnimation:transition forKey:kCATransition];
-    [nav pushViewController:viewController animated:NO];
-
-    if (query != nil) {
-        if ([viewController isKindOfClass:[MFViewController class]]) {
-            [[(MFViewController *)viewController webView] loadRequest:[self createRequest:urlStringWithoutQuery withQuery:query]];
-        }
-    }
-/*
-    [viewController.webView loadRequest:[self createRequest:urlStringWithoutQuery withQuery:query]];
-    
-//    [self setupViewController:viewController options:options];
-//    [[self class] changeDelegate:viewController];
-
- */
+- (void)pop:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options
+{
+    [self popGenerically:arguments withDict:options];
 }
 
 - (void)dismiss:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options
 {
-    if (![self isValidOptions:options]) {
-        return;
-    }
-    
-    MFNavigationController *nav;
-    if([MFUtility currentViewController].tabBarController != nil) {
-        if ([[options objectForKey:@"target"] isEqualToString:@"tab"]) {
-            nav = (MFNavigationController *)[MFUtility currentViewController].navigationController;
-        } else {
-            nav = (MFNavigationController *)[MFUtility currentTabBarController].navigationController;
-        }
-    } else {
-        if ([[options objectForKey:@"target"] isEqualToString:@"tab"] == NO) {
-            nav = (MFNavigationController *)[MFUtility currentViewController].navigationController;
-        } else {
-            return;
-        }
-    }
-    
-    CATransition *transition = [CATransition animation];
-    transition.duration = 0.4f;
-    transition.type = kCATransitionReveal;
-    transition.subtype = kCATransitionFromBottom;
-    [transition setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionDefault]];
-
-    id viewController = [nav popViewControllerAnimated:NO];
-    if (viewController) {
-        [nav.view.layer addAnimation:transition forKey:kCATransition];
-        [viewController destroy];
-    }
-
-/*
-    BOOL res = [[self class] changeDelegate:[[nav viewControllers] lastObject]];
-    if (res) {
-        NSString *command =[NSString stringWithFormat:@"%@ && %@();", kMonacaTransitPluginJsReactivate, kMonacaTransitPluginJsReactivate];
-        [self writeJavascriptOnDelegateViewController:command];
-    }
- */
+    [self popGenerically:arguments withDict:options];
 }
-
 
 - (void)home:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options
 {
@@ -247,6 +185,25 @@
         [self writeJavascript:command];
 //    }
 }
+
+/*
+- (void)clearPageStack:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options
+{
+    id clearAll = [arguments objectAtIndex:1];
+    NSMutableArray *controllers;
+    
+    if ([clearAll isKindOfClass:NSNumber.class] && [clearAll isEqualToNumber:[NSNumber numberWithBool:YES]]) {
+        controllers = [NSMutableArray arrayWithObject:self.monacaNavigationController.viewControllers.lastObject];
+    } else {
+        controllers = [NSMutableArray arrayWithArray:self.monacaNavigationController.viewControllers];
+        if (controllers.count > 1) {
+            [controllers removeObjectAtIndex:controllers.count - 2];
+        }
+    }
+    
+    [self.monacaNavigationController setViewControllers:controllers animated:NO];
+}
+*/
 
 - (void)popToHomeViewController:(BOOL)isAnimated
 {
@@ -330,6 +287,10 @@
     return YES;
 }
 
-
+- (NSString*) writeJavascriptOnDelegateViewController:(NSString*)javascript
+{
+    MFViewController *vc = [MFUtility currentViewController];
+    return [vc.webView stringByEvaluatingJavaScriptFromString:javascript];
+}
 
 @end

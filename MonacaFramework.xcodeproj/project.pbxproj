@@ -310,6 +310,14 @@
 		5A993D7B17394ECE009135B0 /* CDVCommandDelegateImpl+pathForResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A993D7917394ECE009135B0 /* CDVCommandDelegateImpl+pathForResource.m */; };
 		5A993D7C17394ED1009135B0 /* CDVCommandDelegateImpl+pathForResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A993D7917394ECE009135B0 /* CDVCommandDelegateImpl+pathForResource.m */; };
 		5A993D7D17394ED2009135B0 /* CDVCommandDelegateImpl+pathForResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A993D7917394ECE009135B0 /* CDVCommandDelegateImpl+pathForResource.m */; };
+		5A99A8F51750FB8C00D4ABD7 /* MFTransitPopParameter.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A99A8F11750FB8C00D4ABD7 /* MFTransitPopParameter.h */; };
+		5A99A8F61750FB8C00D4ABD7 /* MFTransitPopParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A99A8F21750FB8C00D4ABD7 /* MFTransitPopParameter.m */; };
+		5A99A8F71750FB8C00D4ABD7 /* MFTransitPopParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A99A8F21750FB8C00D4ABD7 /* MFTransitPopParameter.m */; };
+		5A99A8F81750FB8C00D4ABD7 /* MFTransitPopParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A99A8F21750FB8C00D4ABD7 /* MFTransitPopParameter.m */; };
+		5A99A8F91750FB8C00D4ABD7 /* MFTransitPushParameter.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A99A8F31750FB8C00D4ABD7 /* MFTransitPushParameter.h */; };
+		5A99A8FA1750FB8C00D4ABD7 /* MFTransitPushParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A99A8F41750FB8C00D4ABD7 /* MFTransitPushParameter.m */; };
+		5A99A8FB1750FB8C00D4ABD7 /* MFTransitPushParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A99A8F41750FB8C00D4ABD7 /* MFTransitPushParameter.m */; };
+		5A99A8FC1750FB8C00D4ABD7 /* MFTransitPushParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A99A8F41750FB8C00D4ABD7 /* MFTransitPushParameter.m */; };
 		5AA2B4B217369C4300E785EA /* MFJSInterfaceProtocolTest.h in Headers */ = {isa = PBXBuildFile; fileRef = 5AA2B4AE17369C4300E785EA /* MFJSInterfaceProtocolTest.h */; };
 		5AA2B4B517369C4300E785EA /* MFJSInterfaceProtocolTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA2B4AF17369C4300E785EA /* MFJSInterfaceProtocolTest.m */; };
 		5AA2B4B617369C4300E785EA /* MFUtilityTest.h in Headers */ = {isa = PBXBuildFile; fileRef = 5AA2B4B017369C4300E785EA /* MFUtilityTest.h */; };
@@ -524,6 +532,10 @@
 		5A83D33916D91E6D00D25E98 /* NCToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCToolbar.m; sourceTree = "<group>"; };
 		5A993D7817394ECE009135B0 /* CDVCommandDelegateImpl+pathForResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CDVCommandDelegateImpl+pathForResource.h"; sourceTree = "<group>"; };
 		5A993D7917394ECE009135B0 /* CDVCommandDelegateImpl+pathForResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CDVCommandDelegateImpl+pathForResource.m"; sourceTree = "<group>"; };
+		5A99A8F11750FB8C00D4ABD7 /* MFTransitPopParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFTransitPopParameter.h; sourceTree = "<group>"; };
+		5A99A8F21750FB8C00D4ABD7 /* MFTransitPopParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFTransitPopParameter.m; sourceTree = "<group>"; };
+		5A99A8F31750FB8C00D4ABD7 /* MFTransitPushParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFTransitPushParameter.h; sourceTree = "<group>"; };
+		5A99A8F41750FB8C00D4ABD7 /* MFTransitPushParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFTransitPushParameter.m; sourceTree = "<group>"; };
 		5AA2B4AE17369C4300E785EA /* MFJSInterfaceProtocolTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFJSInterfaceProtocolTest.h; sourceTree = "<group>"; };
 		5AA2B4AF17369C4300E785EA /* MFJSInterfaceProtocolTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFJSInterfaceProtocolTest.m; sourceTree = "<group>"; };
 		5AA2B4B017369C4300E785EA /* MFUtilityTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFUtilityTest.h; sourceTree = "<group>"; };
@@ -797,6 +809,10 @@
 			children = (
 				5A40CBDD170836F2002DD96C /* MFTransitPlugin.h */,
 				5A40CBDE170836F2002DD96C /* MFTransitPlugin.m */,
+				5A99A8F11750FB8C00D4ABD7 /* MFTransitPopParameter.h */,
+				5A99A8F21750FB8C00D4ABD7 /* MFTransitPopParameter.m */,
+				5A99A8F31750FB8C00D4ABD7 /* MFTransitPushParameter.h */,
+				5A99A8F41750FB8C00D4ABD7 /* MFTransitPushParameter.m */,
 			);
 			path = Transit;
 			sourceTree = "<group>";
@@ -1134,6 +1150,8 @@
 				5A993D7A17394ECE009135B0 /* CDVCommandDelegateImpl+pathForResource.h in Headers */,
 				0E81EF311741DD49003A4F9E /* UILabel+Resize.h in Headers */,
 				0E813EBC174DEE8C0062A13C /* MFUIChecker.h in Headers */,
+				5A99A8F51750FB8C00D4ABD7 /* MFTransitPopParameter.h in Headers */,
+				5A99A8F91750FB8C00D4ABD7 /* MFTransitPushParameter.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1370,6 +1388,8 @@
 				5A9838E017413C4A00FAED14 /* NCTitleView.m in Sources */,
 				0E81EF341741DD51003A4F9E /* UILabel+Resize.m in Sources */,
 				0E813EBF174DEE8C0062A13C /* MFUIChecker.m in Sources */,
+				5A99A8F81750FB8C00D4ABD7 /* MFTransitPopParameter.m in Sources */,
+				5A99A8FC1750FB8C00D4ABD7 /* MFTransitPushParameter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1449,6 +1469,8 @@
 				5A993D7B17394ECE009135B0 /* CDVCommandDelegateImpl+pathForResource.m in Sources */,
 				0E81EF321741DD49003A4F9E /* UILabel+Resize.m in Sources */,
 				0E813EBD174DEE8C0062A13C /* MFUIChecker.m in Sources */,
+				5A99A8F61750FB8C00D4ABD7 /* MFTransitPopParameter.m in Sources */,
+				5A99A8FA1750FB8C00D4ABD7 /* MFTransitPushParameter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1529,6 +1551,8 @@
 				5A9838DF17413C4A00FAED14 /* NCTitleView.m in Sources */,
 				0E81EF331741DD51003A4F9E /* UILabel+Resize.m in Sources */,
 				0E813EBE174DEE8C0062A13C /* MFUIChecker.m in Sources */,
+				5A99A8F71750FB8C00D4ABD7 /* MFTransitPopParameter.m in Sources */,
+				5A99A8FB1750FB8C00D4ABD7 /* MFTransitPushParameter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -49,7 +49,7 @@
     if (key) {
         id<UIStyleProtocol> component = [[(MFViewController *)self.viewController ncManager] componentForID:key];
         if (component == nil)
-            component = [[MFUtility currentTabBarController].ncManager componentForID:key];
+            component = [[(MFTabBarController *)self.viewController.tabBarController ncManager] componentForID:key];
         if (!component) {
             NSLog(@"[debug] No such component: %@", key);
             return;
@@ -66,7 +66,7 @@
     if (key) {
         id<UIStyleProtocol> component = [[(MFViewController *)self.viewController ncManager] componentForID:key];
         if (component == nil)
-            component = [[MFUtility currentTabBarController].ncManager componentForID:key];
+            component = [[(MFTabBarController *)self.viewController.tabBarController ncManager] componentForID:key];
         if (!component) {
             NSLog(@"[debug] No such component: %@", key);
             return;

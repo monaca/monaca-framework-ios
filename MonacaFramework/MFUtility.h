@@ -13,8 +13,7 @@
 {
     
 }
-+ (MFTabBarController *)currentTabBarController;
-+ (void)setCurrentTabBarController:(MFTabBarController *)tabBarController;
+
 + (UIInterfaceOrientation) currentInterfaceOrientation;
 + (BOOL) getAllowOrientationFromPlist:(UIInterfaceOrientation)interfaceOrientation;
 + (NSDictionary *)parseJSONFile:(NSString *)path;
@@ -35,9 +34,9 @@
 + (void) show404PageWithWebView:(UIWebView *)webView path:(NSString *)aPath;
 + (MFDelegate *)getAppDelegate;
 + (MFViewController *)currentViewController;
-+ (void)setCurrentViewController:(MFViewController *)viewController;
 + (NSURLResponse *)register_push:(NSString *)deviceToken;
 + (void)setMonacaCloudCookie;
 + (void)clearMonacaCloudCookie;
 + (void)checkWithInfo:(NSDictionary *)info;
+
 @end

@@ -315,24 +315,14 @@ static NSString *base_url = @"https://api.monaca.mobi";
     return ((MFDelegate *)[[UIApplication sharedApplication] delegate]);
 }
 
-+ (void)setCurrentTabBarController:(MFTabBarController *)tabBarController
-{
-    currentTabBarController = tabBarController;
-}
-
-+ (MFTabBarController *)currentTabBarController
-{
-    return currentTabBarController;
-}
-
-+ (void)setCurrentViewController:(MFViewController *)viewController
-{
-    currentViewController = viewController;
-}
-
 + (MFViewController *)currentViewController
 {
-    return currentViewController;
+    id viewController = [self getAppDelegate].monacaNavigationController.topViewController;
+    if ([viewController isKindOfClass:MFTabBarController.class]) {
+        return (MFViewController *)[(MFNavigationController *)[(MFTabBarController *)viewController selectedViewController] topViewController];
+    } else {
+        return viewController;
+    }
 }
 
 + (NSURLResponse *)register_push:(NSString *)deviceToken

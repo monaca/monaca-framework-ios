@@ -13,4 +13,6 @@
     BOOL popFlag;
 }
 
+- (void)destroy;
+
 @end
