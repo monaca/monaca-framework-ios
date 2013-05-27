@@ -8,6 +8,7 @@
 
 #import "NCContainer.h"
 #import "NCButton.h"
+#import "NCBarButtonItem.h"  
 
 @implementation NCContainer
 
@@ -63,7 +64,9 @@
     else if ([type isEqualToString:kNCComponentBackButton]) {
         UIButton *button = [NCBackButtonBuilder backButton:style_def];
         container.view = button;
-        container.component = [[NCButton alloc] initWithCustomView:button];
+        NCBarButtonItem* ncBarButtonItem = [[NCBarButtonItem alloc] initWithCustomView:button];
+        ncBarButtonItem.hidden =button.hidden;
+        container.component = ncBarButtonItem;
         container.onTapScript = [[params objectForKey:kNCTypeEvent] objectForKey:kNCEventTypeTap];
         [button addTarget:container action:@selector(didTap:forEvent:) forControlEvents:UIControlEventTouchUpInside];
         container.type = kNCComponentBackButton;
@@ -71,13 +74,17 @@
     else if ([type isEqualToString:kNCComponentLabel]) {
         UILabel *label = [NCLabelBuilder label:style_def];
         container.view = label;
-        container.component = [[UIBarButtonItem alloc] initWithCustomView:label];
+        NCBarButtonItem* ncBarButtonItem = [[NCBarButtonItem alloc] initWithCustomView:label];
+        ncBarButtonItem.hidden = label.hidden;
+        container.component = ncBarButtonItem; 
         container.type = kNCComponentLabel;
     }
     else if ([type isEqualToString:kNCComponentSearchBox]) {
         UISearchBar *searchBox = [NCSearchBoxBuilder searchBox:style_def];
         container.view = searchBox;
-        container.component = [[UIBarButtonItem alloc] initWithCustomView:searchBox];
+        NCBarButtonItem* ncBarButtonItem = [[NCBarButtonItem alloc] initWithCustomView:searchBox];
+        ncBarButtonItem.hidden = searchBox.hidden;
+        container.component = ncBarButtonItem;
         container.onSearchScript = [[params objectForKey:kNCTypeEvent] objectForKey:kNCEventTypeSearch];
         searchBox.delegate = container;
 
@@ -91,8 +98,9 @@
     else if ([type isEqualToString:kNCComponentSegment]) {
         UISegmentedControl *segment = [NCSegmentBuilder segment:style_def];
         container.view = segment;
-        container.component = [[UIBarButtonItem alloc] initWithCustomView:segment];
-        
+        NCBarButtonItem* ncBarButtonItem  = [[NCBarButtonItem alloc] initWithCustomView:segment];
+        ncBarButtonItem.hidden = segment.hidden; 
+        container.component = ncBarButtonItem;
         container.onTapScript = [[params objectForKey:kNCTypeEvent] objectForKey:kNCEventTypeTap];
         container.onChangeScript = [[params objectForKey:kNCTypeEvent] objectForKey:kNCEventTypeChange];
         
