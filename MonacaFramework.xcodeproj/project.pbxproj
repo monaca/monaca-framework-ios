@@ -405,6 +405,10 @@
 		F1A2886A174DBB9400233B47 /* MFVIewBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = F1A28868174DBB9300233B47 /* MFVIewBackground.m */; };
 		F1A2886B174DBB9400233B47 /* MFVIewBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = F1A28868174DBB9300233B47 /* MFVIewBackground.m */; };
 		F1A2886C174DBB9400233B47 /* MFVIewBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = F1A28868174DBB9300233B47 /* MFVIewBackground.m */; };
+		F1C170671752F9040020915D /* NCBarButtonItem.h in Headers */ = {isa = PBXBuildFile; fileRef = F1C170651752F9040020915D /* NCBarButtonItem.h */; };
+		F1C170681752F9040020915D /* NCBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F1C170661752F9040020915D /* NCBarButtonItem.m */; };
+		F1C170691752F9040020915D /* NCBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F1C170661752F9040020915D /* NCBarButtonItem.m */; };
+		F1C1706A1752F9040020915D /* NCBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F1C170661752F9040020915D /* NCBarButtonItem.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -571,6 +575,8 @@
 		D49CA081173CEF6000738DC9 /* MFTransitPushParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFTransitPushParameter.m; sourceTree = "<group>"; };
 		F1A28867174DBB9200233B47 /* MFVIewBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFVIewBackground.h; sourceTree = "<group>"; };
 		F1A28868174DBB9300233B47 /* MFVIewBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFVIewBackground.m; sourceTree = "<group>"; };
+		F1C170651752F9040020915D /* NCBarButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCBarButtonItem.h; sourceTree = "<group>"; };
+		F1C170661752F9040020915D /* NCBarButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCBarButtonItem.m; sourceTree = "<group>"; };
 		F50460AC13B361730050803F /* MonacaFramework-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MonacaFramework-Prefix.pch"; sourceTree = "<group>"; };
 		F50460D813B3633B0050803F /* MFDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFDelegate.m; sourceTree = "<group>"; };
 		F50460DA13B3633B0050803F /* MFViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFViewController.m; sourceTree = "<group>"; };
@@ -955,6 +961,8 @@
 		F503A593146BE13800764D05 /* NativeComponents */ = {
 			isa = PBXGroup;
 			children = (
+				F1C170651752F9040020915D /* NCBarButtonItem.h */,
+				F1C170661752F9040020915D /* NCBarButtonItem.m */,
 				D44C9E291592ED86006372F3 /* NCButton.h */,
 				D44C9E2A1592ED86006372F3 /* NCButton.m */,
 				D44C9E2B1592ED86006372F3 /* NCSearchBar.h */,
@@ -1208,6 +1216,7 @@
 				0E01CCA8174F4C6A003E60D6 /* MFTransitPlugin.h in Headers */,
 				0E01CCAC174F4C6A003E60D6 /* MFTransitPopParameter.h in Headers */,
 				0E01CCB0174F4C6A003E60D6 /* MFTransitPushParameter.h in Headers */,
+				F1C170671752F9040020915D /* NCBarButtonItem.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1453,6 +1462,7 @@
 				0E01CCAB174F4C6A003E60D6 /* MFTransitPlugin.m in Sources */,
 				0E01CCAF174F4C6A003E60D6 /* MFTransitPopParameter.m in Sources */,
 				0E01CCB3174F4C6A003E60D6 /* MFTransitPushParameter.m in Sources */,
+				F1C1706A1752F9040020915D /* NCBarButtonItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1540,6 +1550,7 @@
 				0E01CCA9174F4C6A003E60D6 /* MFTransitPlugin.m in Sources */,
 				0E01CCAD174F4C6A003E60D6 /* MFTransitPopParameter.m in Sources */,
 				0E01CCB1174F4C6A003E60D6 /* MFTransitPushParameter.m in Sources */,
+				F1C170681752F9040020915D /* NCBarButtonItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1624,6 +1635,7 @@
 				0E01CCAA174F4C6A003E60D6 /* MFTransitPlugin.m in Sources */,
 				0E01CCAE174F4C6A003E60D6 /* MFTransitPopParameter.m in Sources */,
 				0E01CCB2174F4C6A003E60D6 /* MFTransitPushParameter.m in Sources */,
+				F1C170691752F9040020915D /* NCBarButtonItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
