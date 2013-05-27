@@ -90,6 +90,10 @@
             return @"Integer";
         }
     }
+    if ([NSStringFromClass([object class]) isEqualToString:@"__NSCFBoolean"]) {
+        return @"Boolean";
+    }
+    
     return nil;
 }
 
