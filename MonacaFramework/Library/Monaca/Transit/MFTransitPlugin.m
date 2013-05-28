@@ -56,12 +56,6 @@
     return [path substringFromIndex:[path rangeOfString:@"www"].location + [@"www" length]];
 }
 
-- (void)setupViewController:(MFViewController *)viewController options:(NSDictionary *)options
-{
-    viewController.monacaPluginOptions = options;
-//    [MFUtility setupMonacaViewController:viewController];
-}
-
 - (void)pushGenerically:(NSMutableArray *)arguments withDict:(NSMutableDictionary *)options
 {
     NSString *urlString = [arguments objectAtIndex:1];
@@ -85,7 +79,7 @@
     
     MFViewController *viewController = [MFViewBuilder createViewControllerWithPath:urlStringWithoutQuery];
     [MFViewBuilder setIgnoreBottom:NO];
-    [self setupViewController:viewController options:options];
+
 //    [self.class changeDelegate:viewController];
 
     UIViewController *previousController;
