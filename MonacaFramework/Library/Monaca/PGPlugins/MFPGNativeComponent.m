@@ -9,8 +9,17 @@
 #import "MFPGNativeComponent.h"
 #import "NativeComponents.h"
 #import "MFUtility.h"
+#import "MFSpinnerView.h"
+#import "MFSpinnerParameter.h"
+
+@interface MFPGNativeComponent()
+- (void)updateNCManagerPropertyStyle:(NSMutableDictionary *)properties style:(NSMutableDictionary *)currentStyle;
+@end
+
+static NSDictionary *defaultList_;
 
 @implementation MFPGNativeComponent
+
 /*
 - (void)badge:(NSMutableArray *)arguments withDict:(NSDictionary *)options
 {
@@ -55,6 +64,21 @@
             return;
         }
         [component updateUIStyle:propertyValue forKey:propertyKey];
+    }
+}
+
+- (void)showSpinner:(NSMutableArray *)arguments withDict:(NSDictionary *)options {
+    [MFSpinnerView show:[MFSpinnerParameter parseFromCodrovaPluginArguments:arguments]];
+}
+
+- (void)hideSpinner:(NSMutableArray *)arguments withDict:(NSDictionary *)options {
+    [MFSpinnerView hide];
+}
+
+- (void)updateSpinnerTitle:(NSMutableArray *)arguments withDict:(NSDictionary *)options {
+    if ([[arguments objectAtIndex:1] isKindOfClass:NSString.class]) {
+        NSString *title = [arguments objectAtIndex:1];
+        [MFSpinnerView updateTitle:title];
     }
 }
 
