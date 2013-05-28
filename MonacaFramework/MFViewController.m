@@ -1,9 +1,9 @@
 //
-//  MFViewController.m
-//  MonacaFramework
+//  MonacaViewController.m
+//  Template
 //
-//  Created by Yasuhiro Mitsuno on 2013/02/23.
-//  Copyright (c) 2013年 ASIAL CORPORATION. All rights reserved.
+//  Created by Hiroki Nakagawa on 11/06/07.
+//  Copyright 2011 ASIAL CORPORATION. All rights reserved.
 //
 
 #import "MFViewController.h"
@@ -38,34 +38,33 @@
 
 #pragma mark - View lifecycle
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     
     [self applyUserInterface];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-}
-
-- (void)viewDidDisappear:(BOOL)animated
-{
+    self.webView.delegate = self;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    // NavigationBarの背景色などを適応させるため、self.navigationControllerがnilでなくなった後に行う。
 
     [self setUserInterface:self.uiDict];
 
     [self applyMonacaPlugin];
     
+    // whether auto link for datatype
+    [self processDataTypes];
+    
     [self initPlugins]; // 画面を消す手前でdestroyを実行すること
-    self.webView.scrollView.decelerationRate = UIScrollViewDecelerationRateNormal;
+//    self.webView.scrollView.decelerationRate = UIScrollViewDecelerationRateNormal;
 }
 
 - (void)releaseWebView {
@@ -90,11 +89,12 @@
 
 - (void)processDataTypes
 {
-    id types = [[MFUtility getApplicationPlist] objectForKey:@"DetectDataTypes"];
+    // dataDetectorTypes from plist
+    id types = [MFUtility.getApplicationPlist objectForKey:@"DetectDataTypes"];
+    
     if ([types respondsToSelector:@selector(boolValue)]) {
         BOOL res = [types boolValue];
-        self.webView.dataDetectorTypes = res ? UIDataDetectorTypeAll :
-            UIDataDetectorTypeNone;
+        self.webView.dataDetectorTypes = res ? UIDataDetectorTypeAll : UIDataDetectorTypeNone;
     }
 }
 
@@ -146,9 +146,11 @@
     NSString *errorPath = nil;
     
     if (![fileManager fileExistsAtPath:startPagePath] && !_previousPath) {
+        // for push
         errorPath = [self.wwwFolderName stringByAppendingFormat:@"/%@", self.startPage];
     } else if (![fileManager fileExistsAtPath:[url path]]) {
-       errorPath = url.path;
+        // for link
+        errorPath = url.path;
     }
     if ([request.URL.scheme isEqualToString:@"file"] && [request.URL.absoluteString hasSuffix:@"/"]) {
         errorPath = request.URL.absoluteString;

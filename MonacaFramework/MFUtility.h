@@ -1,9 +1,9 @@
 //
-//  MFUtility.h
-//  MonacaFramework
+//  Utility.h
+//  Template
 //
-//  Created by Yasuhiro Mitsuno on 2013/02/23.
-//  Copyright (c) 2013年 ASIAL CORPORATION. All rights reserved.
+//  Created by Hiroki Nakagawa on 11/06/07.
+//  Copyright 2011 ASIAL CORPORATION. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

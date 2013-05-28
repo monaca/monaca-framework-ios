@@ -25,6 +25,7 @@
 @implementation MFDelegate
 
 @synthesize monacaNavigationController = monacaNavigationController_;
+@synthesize window;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -51,7 +52,6 @@
         method_exchangeImplementations(old, new);
     }
     
-    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.monacaNavigationController = [MFViewBuilder createMonacaNavigationControllerWithWwwDir:[MFUtility getBaseURL].path withPath:@"index.html"];
     
@@ -73,6 +73,15 @@
     [MFUtility setMonacaCloudCookie];
 
     return YES;
+}
+
+- (UIInterfaceOrientation)currentInterfaceOrientation{
+    return self.monacaNavigationController.interfaceOrientation;
+}
+
+- (NSDictionary *)getApplicationPlist
+{
+    return [[NSBundle mainBundle] infoDictionary];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -130,10 +139,6 @@
     application.applicationIconBadgeNumber = 0;
 
     [[MFUtility currentViewController] sendPush];
-}
-
-- (UIInterfaceOrientation)currentInterfaceOrientation{
-    return self.monacaNavigationController.interfaceOrientation;
 }
 
 @end

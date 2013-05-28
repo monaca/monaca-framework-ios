@@ -1,9 +1,9 @@
 //
-//  MFTransitPlugin.h
+//  MonacaTransitPlugin.h
 //  MonacaFramework
 //
-//  Created by Yasuhiro Mitsuno on 2013/03/31.
-//  Copyright (c) 2013年 ASIAL CORPORATION. All rights reserved.
+//  Created by air on 12/06/28.
+//  Copyright (c) 2012年 ASIAL CORPORATION. All rights reserved.
 //
 
 #import "CDVPlugin.h"
@@ -17,5 +17,10 @@
 - (void)push:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options;
 - (void)pop:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options;
 - (void)modal:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options;
+- (void)dismiss:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options;
+- (void)home:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options;
+- (void)browse:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options;
+- (void)link:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options;
+- (void)clearPageStack:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options;
 
 @end

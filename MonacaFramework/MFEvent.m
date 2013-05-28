@@ -1,9 +1,9 @@
 //
-//  MFEvent.m
+//  MonacaEvent.m
 //  MonacaFramework
 //
-//  Created by Yasuhiro Mitsuno on 2013/02/23.
-//  Copyright (c) 2013年 ASIAL CORPORATION. All rights reserved.
+//  Created by Katsuya Saitou on 12/10/26.
+//  Copyright (c) 2012年 ASIAL CORPORATION. All rights reserved.
 //
 
 #import "MFEvent.h"

@@ -10,8 +10,7 @@
 #import "MFViewController.h"
 #import "MFNavigationController.h"
 
-@interface MFDelegate : NSObject <UIApplicationDelegate, UIWebViewDelegate>
-{
+@interface MFDelegate : NSObject <UIApplicationDelegate, UIWebViewDelegate> {
  @private
     MFNavigationController *monacaNavigationController_;
 }

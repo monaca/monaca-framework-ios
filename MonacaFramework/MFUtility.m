@@ -10,9 +10,6 @@
 #import "JSONKit.h"
 #import "MFEvent.h"
 
-static MFViewController *currentViewController;
-static MFTabBarController *currentTabBarController;
-
 @implementation MFUtility
 
 static NSString *base_url = @"https://api.monaca.mobi";
@@ -31,7 +28,7 @@ static NSString *base_url = @"https://api.monaca.mobi";
     NSURLResponse *response = nil;
     NSError *error = nil;
     [NSURLConnection sendSynchronousRequest:request
-                          returningResponse:&response error:&error];
+                                         returningResponse:&response error:&error];
     if (error != nil) {
         return nil;
         //        @throw error;
@@ -57,9 +54,9 @@ static NSString *base_url = @"https://api.monaca.mobi";
         [MFEvent dispatchEvent:monacaEventNoUIFile withInfo:info];
         return nil;
     }
-    if (YES){
-        data = [[self class] correctJSON:data];
-    }
+
+    data = [[self class] correctJSON:data];
+
     id jsonString = [data cdvjk_objectFromJSONStringWithParseOptions:CDVJKParseOptionStrict error:&error];
     
     // send log error
@@ -88,6 +85,7 @@ static NSString *base_url = @"https://api.monaca.mobi";
     }
 }
 
+// key : "value" => "key" : "value"
 + (NSString *)correctJSON:(NSString *)data
 {
     NSRegularExpression *reg = [[NSRegularExpression alloc] initWithPattern:@"(^[^\"]*?(\"[^\"]*?\"[^\"]*?)*?[^\"\\w]+)\\s*(\\w+)\\s*:"
@@ -107,6 +105,7 @@ static NSString *base_url = @"https://api.monaca.mobi";
     } while ([results count] != 0);
     return data;
 }
+
 + (NSDictionary *)parseJSON:(NSString *)json {
     return [json cdvjk_objectFromJSONString];
 }
@@ -124,54 +123,13 @@ static NSString *base_url = @"https://api.monaca.mobi";
     return [[self class] parseJSON:json];
 }
 
-+ (NSMutableDictionary *)parseQuery:(NSURLRequest *)request
-{
-    NSString *query = request.URL.query;
-    NSArray *pairs = [query componentsSeparatedByString:@"&"];
-    NSMutableDictionary *keyValues = [NSMutableDictionary dictionary];
-    
-    for (NSString *pair in pairs) {
-        NSArray *elements = [pair componentsSeparatedByString:@"="];
-        NSString *key = [[elements objectAtIndex:0] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-        if ([key isEqualToString:@""] == YES) {
-            continue;
-        }
-        NSString *value;
-        if (elements.count>1) {
-            value = [[elements objectAtIndex:1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-            NSDictionary *dictionary = [NSDictionary dictionaryWithObject:value forKey:key];
-            [keyValues addEntriesFromDictionary:dictionary];
-        }else {
-            NSDictionary *dictionary = [NSDictionary dictionaryWithObject:[NSNull null] forKey:key];
-            [keyValues addEntriesFromDictionary:dictionary];
-        }
-    }
-    return keyValues;
-}
-
-+ (NSString *)urlEncode:(NSString *)text
-{
-    if ([text isKindOfClass:[NSString class]] == NO) {
-        NSLog(@"[error] parameter should be string type, but parameter is:%@", text);
-        return @"";
-    }
-    CFStringRef cfString = CFURLCreateStringByAddingPercentEscapes(NULL,
-                                                                   (CFStringRef)text,
-                                                                   NULL,
-                                                                   (CFStringRef)@"!*'();:@&=+$,/?%#[]",
-                                                                   kCFStringEncodingUTF8);
-    NSString *string = [NSString stringWithString:(__bridge NSString *)cfString];
-    CFRelease(cfString);
-    return string;
-}
 
 + (UIInterfaceOrientation)currentInterfaceOrientation {
     MFDelegate *delegate = [[self class] getAppDelegate];
     return [delegate currentInterfaceOrientation];
 }
 
-+ (BOOL)getAllowOrientationFromPlist:(UIInterfaceOrientation)interfaceOrientation
-{
++ (BOOL)getAllowOrientationFromPlist:(UIInterfaceOrientation)interfaceOrientation {
     NSDictionary *orientationkv = [NSDictionary dictionaryWithObjectsAndKeys:
                                    [NSNumber numberWithInt:UIInterfaceOrientationPortrait],@"UIInterfaceOrientationPortrait",
                                    [NSNumber numberWithInt:UIInterfaceOrientationPortraitUpsideDown],@"UIInterfaceOrientationPortraitUpsideDown",
@@ -225,6 +183,29 @@ static NSString *base_url = @"https://api.monaca.mobi";
     return [NSURL URLWithString:str];
 }
 
+/*
+ * 表示される時のレイアウトを修正する
+ */
++ (void) fixedLayout:(MFViewController *)monacaViewController interfaceOrientation:(UIInterfaceOrientation)aInterfaceOrientation{
+    if (aInterfaceOrientation == UIInterfaceOrientationPortrait || aInterfaceOrientation == UIInterfaceOrientationPortraitUpsideDown){
+        monacaViewController.view.frame = [[UIScreen mainScreen] bounds];
+        UIViewController *vc = [monacaViewController.tabBarController.viewControllers objectAtIndex:0];
+        [vc setWantsFullScreenLayout:YES];
+    }
+}
+
+/*
+ * 404 page
+ */
++ (void) show404PageWithWebView:(UIWebView *)webView path:(NSString *)aPath {
+    NSLog(@"Page not found (as warning):%@", [MFUtility getWWWShortPath:aPath]);
+    NSString *pathFor404 = [[NSBundle mainBundle] pathForResource:@"404/index" ofType:@"html"];
+    NSString *html = [NSString stringWithContentsOfFile:pathFor404 encoding:NSUTF8StringEncoding error:nil];
+
+    html = [html stringByReplacingOccurrencesOfString:@"%%%urlPlaceHolder%%%" withString:[MFUtility getWWWShortPath:aPath]];
+    [webView loadHTMLString:html baseURL:[NSURL fileURLWithPath:pathFor404]];
+}
+
 + (NSURL *)getBaseURL
 {
     NSString *basePath = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"www"];
@@ -259,8 +240,7 @@ static NSString *base_url = @"https://api.monaca.mobi";
 /*
  * build url Moaca query params
  */
-+ (NSString *)insertMonacaQueryParams:(NSString *)html query:(NSString *)aQuery
-{
++ (NSString *)insertMonacaQueryParams:(NSString *)html query:(NSString *)aQuery {
     if (aQuery){
         NSArray *pairs = [aQuery componentsSeparatedByString:@"&"];
         NSMutableArray *keyValues = [NSMutableArray array];
@@ -292,22 +272,29 @@ static NSString *base_url = @"https://api.monaca.mobi";
     return html;
 }
 
-
-+ (void) fixedLayout:(MFViewController *)monacaViewController interfaceOrientation:(UIInterfaceOrientation)aInterfaceOrientation{
-    if (aInterfaceOrientation == UIInterfaceOrientationPortrait || aInterfaceOrientation == UIInterfaceOrientationPortraitUpsideDown){
-        monacaViewController.view.frame = [[UIScreen mainScreen] bounds];
-        UIViewController *vc = [monacaViewController.tabBarController.viewControllers objectAtIndex:0];
-        [vc setWantsFullScreenLayout:YES];
++ (NSString *)urlEncode:(NSString *)text{
+    if ([text isKindOfClass:[NSString class]] == NO) {
+        NSLog(@"[error] parameter should be string type, but parameter is:%@", text);
+        return @"";
     }
+    CFStringRef cfString = CFURLCreateStringByAddingPercentEscapes(NULL,
+                                                                   (CFStringRef)text,
+                                                                   NULL,
+                                                                   (CFStringRef)@"!*'();:@&=+$,/?%#[]",
+                                                                   kCFStringEncodingUTF8);
+    NSString *string = [NSString stringWithString:(__bridge NSString *)cfString];
+    CFRelease(cfString);
+    return string;
 }
 
-+ (void) show404PageWithWebView:(UIWebView *)webView path:(NSString *)aPath {
-    NSLog(@"Page not found (as warning):%@", [MFUtility getWWWShortPath:aPath]);
-    NSString *pathFor404 = [[NSBundle mainBundle] pathForResource:@"404/index" ofType:@"html"];
-    NSString *html = [NSString stringWithContentsOfFile:pathFor404 encoding:NSUTF8StringEncoding error:nil];
-    
-    html = [html stringByReplacingOccurrencesOfString:@"%%%urlPlaceHolder%%%" withString:[MFUtility getWWWShortPath:aPath]];
-    [webView loadHTMLString:html baseURL:[NSURL fileURLWithPath:pathFor404]];
++ (NSString *)urlDecode:(NSString *)text{
+    CFStringRef cfString = CFURLCreateStringByReplacingPercentEscapesUsingEncoding(NULL,
+                                                                                   (CFStringRef)text,
+                                                                                   CFSTR(""),
+                                                                                   kCFStringEncodingUTF8);
+    NSString *string = [NSString stringWithString:(__bridge NSString *)cfString];
+    CFRelease(cfString);
+    return string;
 }
 
 + (MFDelegate *)getAppDelegate
@@ -325,32 +312,57 @@ static NSString *base_url = @"https://api.monaca.mobi";
     }
 }
 
++ (NSMutableDictionary *)parseQuery:(NSURLRequest *)request
+{
+    NSString *query = request.URL.query;
+    NSArray *pairs = [query componentsSeparatedByString:@"&"];
+    NSMutableDictionary *keyValues = [NSMutableDictionary dictionary];
+
+    for (NSString *pair in pairs) {
+        NSArray *elements = [pair componentsSeparatedByString:@"="];
+        NSString *key = [[elements objectAtIndex:0] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        if ([key isEqualToString:@""] == YES) {
+            continue;
+        }
+        NSString *value;
+        if (elements.count>1) {
+            value = [[elements objectAtIndex:1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            NSDictionary *dictionary = [NSDictionary dictionaryWithObject:value forKey:key];
+            [keyValues addEntriesFromDictionary:dictionary];
+        }else {
+            NSDictionary *dictionary = [NSDictionary dictionaryWithObject:[NSNull null] forKey:key];
+            [keyValues addEntriesFromDictionary:dictionary];
+        }
+    }
+    return keyValues;
+}
+
 + (NSURLResponse *)register_push:(NSString *)deviceToken
 {
     NSString *push_projectId = [[[[self class] getAppJSON] objectForKey:@"pushNotification"] objectForKey:@"pushProjectId"];
-    
+
     if ([[NSBundle mainBundle] objectForInfoDictionaryKey:@"MonacaDomain"] != nil) {
         base_url = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"MonacaDomain"];
     }
-    
+
     NSString *url = [NSString stringWithFormat:@"%@/v1/push/register/%@", base_url, [MFUtility urlEncode:push_projectId]];
     NSString *os = @"ios";
     NSString *deviceId = [[NSUserDefaults standardUserDefaults] objectForKey:@"UUID"];
     NSString *env = @"prod";
     NSString *buildType;
-    
+
     if ([[NSBundle mainBundle] objectForInfoDictionaryKey:@"MonacaEnv"] != nil) {
         env = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"MonacaEnv"];
     }
-    
+
 #ifdef DEBUG
     buildType = @"debug";
 #else
     buildType = @"release";
 #endif
-    
+
     NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString*)kCFBundleVersionKey];
-    
+
     NSString *parameter = [NSString stringWithFormat:@"platform=%@&deviceId=%@&env=%@&buildType=%@&version=%@&deviceToken=%@",
                            [MFUtility urlEncode:os],
                            [MFUtility urlEncode:deviceId],
@@ -358,7 +370,7 @@ static NSString *base_url = @"https://api.monaca.mobi";
                            [MFUtility urlEncode:buildType],
                            [MFUtility urlEncode:version],
                            [MFUtility urlEncode:deviceToken]];
-    
+
     return [[self class] fetchFrom:url method:@"POST" parameter:parameter];
 }
 
@@ -402,44 +414,6 @@ static NSString *base_url = @"https://api.monaca.mobi";
             NSHTTPCookie *newCookie = [NSHTTPCookie cookieWithProperties:properties];
             [storage deleteCookie:cookie];
             [storage setCookie:newCookie];
-        }
-    }
-}
-
-+ (void)checkWithInfo:(NSDictionary *)info
-{
-    NSString *component = [info objectForKey:@"component"];
-    NSMutableDictionary *uidict = [info objectForKey:@"uidict"];
-    NSDictionary *validDict = [info objectForKey:@"validDict"];
-    NSArray *requiredKeys = [info objectForKey:@"requiredKeys"];
-    NSEnumerator* enumerator = [[uidict copy] keyEnumerator];
-    id key;
-
-    while (key = [enumerator nextObject]) {
-        if ([validDict objectForKey:key] == nil) {
-            NSEnumerator* enumerator = [validDict keyEnumerator];
-            NSString *ss = @"[";
-            id string = [enumerator nextObject];
-            while (string) {
-                ss = [ss stringByAppendingString:[NSString stringWithFormat:@"\"%@\"", string]];
-                string = [enumerator nextObject];
-                if (string)
-                    ss = [ss stringByAppendingString:@", "];
-            }
-            ss = [ss stringByAppendingString:@"]"];
-            NSLog(@"Error: %@ key \"%@\" is not one of %@", component, key, ss);
-            continue;
-        }
-        if (![[uidict objectForKey:key] isKindOfClass:[validDict valueForKey:key]]) {
-            NSLog(@"Error: %@ \"%@\" value must be of type %@. You specified \"%@\"", component ,
-                  key,[[validDict objectForKey:key] class], [uidict valueForKey:key]);
-            [uidict removeObjectForKey:key];
-            continue;
-        }
-    }
-    for (id key in requiredKeys) {
-        if ([uidict objectForKey:key] == nil) {
-            NSLog(@"Error: missing required key \"%@\" in %@", key ,component);
         }
     }
 }
