@@ -26,6 +26,7 @@
 #define kNCPositionBottom @"bottom"
 #define kNCPositionMenu   @"menu"
 
+#define kNCContainerPage     @"page"
 #define kNCContainerToolbar @"toolbar"
 #define kNCContainerTabbar  @"tabbar"
 
@@ -40,6 +41,12 @@
 #define kNCTypeID        @"id"
 #define kNCTypeItems     @"items"
 #define kNCTypeLink      @"link"
+
+#define kNCTypeRepeat    @"repeat"
+#define kNCTypeNoRepeat  @"no-repeat"
+#define kNCTypeContain   @"contain"
+#define kNCTypeAuto      @"auto"
+#define kNCTypeCover     @"cover"
 
 #define kNCEventTypeTap     @"onTap"
 #define kNCEventTypeChange  @"onChange"
@@ -59,6 +66,10 @@
 #define kNCStyleDisable            @"disable"
 #define kNCStyleOpacity            @"opacity"
 #define kNCStyleBackgroundColor    @"backgroundColor"
+#define kNCStyleBackgroundImage    @"backgroundImage"
+#define kNCStyleBackgroundSize     @"backgroundSize"
+#define kNCStyleBackgroundRepeat   @"backgroundRepeat"
+#define kNCStyleBackgroundPosition @"backgroundPosition"
 #define kNCStyleTextColor          @"textColor"
 #define kNCStyleActiveTextColor    @"activeTextColor"
 #define kNCStylePlaceholder        @"placeholder"
@@ -77,6 +88,12 @@
 #define kNCStyleFocus              @"focus"
 #define kNCStyleWideBox            @"wideBox"
 #define kNCStyleShadowOpacity      @"shadowOpacity"
+
+#define kNCStyleBackgroundImageFilePath         @"backgroundImageFilePath"
+#define kNCStyleBackgroundSizeWidth             @"backgroundSizeWidth"
+#define kNCStyleBackgroundSizeHeight            @"backgroundSizeHeight"
+#define kNCStyleBackgroundPositionHorizontal    @"backgroundPositionHorizontal"
+#define kNCStyleBackgroundPositionVertical      @"backgroundPositionVertical"
 
 #define kNCStyleIOSBarStyle     @"iosBarStyle"
 #define kNCStyleIOSButtonStyle  @"iosButtonStyle"

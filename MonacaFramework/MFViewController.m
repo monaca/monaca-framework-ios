@@ -12,6 +12,9 @@
 #import "MFEvent.h"
 #import "CDVPlugin.h"
 #import "MFTransitPlugin.h"
+#import "MFViewBackground.h"
+
+#define kWebViewBackground  @"bg"
 
 @interface MFViewController ()
 
@@ -203,7 +206,10 @@
         } else {
             [self setBackgroundColor:UIColor.whiteColor];
         }
+    } else {
+        [self applyStyleDict:_ncStyle];
     }
+    
     
     if (value == [NSNull null]) {
         value = kNCUndefined;
@@ -319,6 +325,7 @@
         [activityView removeFromSuperview];
         [imageView addSubview:activityView];
     }
+    [self applyStyleDict:_ncStyle];
 }
 
 #pragma mark - Cordova Plugin
@@ -380,5 +387,42 @@
 }
 
 
+- (void)applyStyleDict:(NSMutableDictionary*)pageStyle
+{
+    self.webView.backgroundColor = [UIColor clearColor];
+    self.webView.opaque = NO;
+    
+    UIInterfaceOrientation orientation = [MFUtility currentInterfaceOrientation];
+    float navBarHeight = [MFDevice heightOfNavigationBar:orientation];
+    if ( self.navigationController.navigationBar.hidden == YES) {
+        navBarHeight = 0;
+    }
+    
+    float tabBarHeight = 0;
+    
+    //tabBarは表示が定義されていない場合も画面外に保持されている
+    if ( self.tabBarController.tabBar.frame.origin.y < self.view.frame.size.height) {
+        tabBarHeight = [MFDevice heightOfTabBar];
+    }
+    
+    // remove old background
+    if( [[self.view viewWithTag:kWebViewBackground] isKindOfClass:UIImageView.class] )
+    {
+        [[self.view viewWithTag:kWebViewBackground] removeFromSuperview];
+    }
+    
+    MFViewBackground* backgroundImageView = [[MFViewBackground alloc] initWithFrame:CGRectMake( self.view.frame.origin.x,
+                                                                                               self.view.frame.origin.y,
+                                                                                               self.view.frame.size.width,
+                                                                                               self.view.frame.size.height)];
+    
+    backgroundImageView.tag = kWebViewBackground;
+    [backgroundImageView setAutoresizingMask:UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth ];
+    [backgroundImageView setBackgroundStyle:pageStyle];
+    [self.view insertSubview:backgroundImageView atIndex:0];
+    [backgroundImageView sendSubviewToBack:self.view];
+    [self.ncManager setComponent:backgroundImageView forID:kNCContainerPage];
+    
+}
 
 @end

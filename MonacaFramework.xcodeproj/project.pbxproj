@@ -46,6 +46,10 @@
 		0E8386E117544AA2006FBD98 /* UserDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E8386C417544AA2006FBD98 /* UserDelegate.m */; };
 		0E885C9A169E8DFB001DB4B1 /* exist.html in Resources */ = {isa = PBXBuildFile; fileRef = 0E885C99169E8DFB001DB4B1 /* exist.html */; };
 		0E885C9C169E9583001DB4B1 /* exist.css in Resources */ = {isa = PBXBuildFile; fileRef = 0E885C9B169E9583001DB4B1 /* exist.css */; };
+		0EED0973175472EF006DDE72 /* MFViewBackground.h in Headers */ = {isa = PBXBuildFile; fileRef = 0EED0971175472EF006DDE72 /* MFViewBackground.h */; };
+		0EED0974175472EF006DDE72 /* MFViewBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EED0972175472EF006DDE72 /* MFViewBackground.m */; };
+		0EED0975175472EF006DDE72 /* MFViewBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EED0972175472EF006DDE72 /* MFViewBackground.m */; };
+		0EED0976175472EF006DDE72 /* MFViewBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EED0972175472EF006DDE72 /* MFViewBackground.m */; };
 		3E0B18C8169D8CD7001A35BB /* MFDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = F54FBB3E14BBE04100F702D9 /* MFDevice.m */; };
 		3E0B18C9169D8CD7001A35BB /* MFDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F50460D813B3633B0050803F /* MFDelegate.m */; };
 		3E0B18E0169D8CD7001A35BB /* DatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EDD680816155CBA0018698B /* DatePicker.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -439,6 +443,8 @@
 		0E8386C417544AA2006FBD98 /* UserDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDelegate.m; sourceTree = "<group>"; };
 		0E885C99169E8DFB001DB4B1 /* exist.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = exist.html; sourceTree = "<group>"; };
 		0E885C9B169E9583001DB4B1 /* exist.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = exist.css; sourceTree = "<group>"; };
+		0EED0971175472EF006DDE72 /* MFViewBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFViewBackground.h; sourceTree = "<group>"; };
+		0EED0972175472EF006DDE72 /* MFViewBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFViewBackground.m; sourceTree = "<group>"; };
 		3E0B192D169D8CD7001A35BB /* MFUnitTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MFUnitTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E0B1935169D8E24001A35BB /* GHUnitIOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GHUnitIOS.framework; sourceTree = "<group>"; };
 		3E0B1936169D8E24001A35BB /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -969,6 +975,8 @@
 		5A83D31616D91E6D00D25E98 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				0EED0971175472EF006DDE72 /* MFViewBackground.h */,
+				0EED0972175472EF006DDE72 /* MFViewBackground.m */,
 				5AAB3F34171C3D220044FB77 /* MFViewBuilder.h */,
 				5AAB3F35171C3D220044FB77 /* MFViewBuilder.m */,
 				0E813EBA174DEE8B0062A13C /* MFUIChecker.h */,
@@ -1226,6 +1234,7 @@
 				0E8386D617544AA2006FBD98 /* MIPUtility.h in Headers */,
 				0E8386DA17544AA2006FBD98 /* ProfileDelegate.h in Headers */,
 				0E8386DE17544AA2006FBD98 /* UserDelegate.h in Headers */,
+				0EED0973175472EF006DDE72 /* MFViewBackground.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1472,6 +1481,7 @@
 				0E8386D917544AA2006FBD98 /* MIPUtility.m in Sources */,
 				0E8386DD17544AA2006FBD98 /* ProfileDelegate.m in Sources */,
 				0E8386E117544AA2006FBD98 /* UserDelegate.m in Sources */,
+				0EED0976175472EF006DDE72 /* MFViewBackground.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1559,6 +1569,7 @@
 				0E8386D717544AA2006FBD98 /* MIPUtility.m in Sources */,
 				0E8386DB17544AA2006FBD98 /* ProfileDelegate.m in Sources */,
 				0E8386DF17544AA2006FBD98 /* UserDelegate.m in Sources */,
+				0EED0974175472EF006DDE72 /* MFViewBackground.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1647,6 +1658,7 @@
 				0E8386D817544AA2006FBD98 /* MIPUtility.m in Sources */,
 				0E8386DC17544AA2006FBD98 /* ProfileDelegate.m in Sources */,
 				0E8386E017544AA2006FBD98 /* UserDelegate.m in Sources */,
+				0EED0975175472EF006DDE72 /* MFViewBackground.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

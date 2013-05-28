@@ -10,7 +10,6 @@
 
 #define kMonacaTransitPluginJsReactivate @"window.onReactivate"
 #define kMonacaTransitPluginOptionUrl @"url"
-#define kMonacaTransitPluginOptionBg  @"bg"
 
 @interface MFTransitPlugin : CDVPlugin
 
