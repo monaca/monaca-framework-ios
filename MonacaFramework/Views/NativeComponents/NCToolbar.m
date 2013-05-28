@@ -164,13 +164,9 @@
         [_viewController.navigationController setToolbarHidden:hidden];
     }
     if ([key isEqualToString:kNCStyleBackgroundColor]) {
-        @try {
-            [_toolbar setTintColor:hexToUIColor(removeSharpPrefix(value), 1)];
-        }
-        @catch (NSException *exception) {
-            NSLog(@"%@", exception);
-        }
+        [_toolbar setTintColor:hexToUIColor(removeSharpPrefix(value), 1)];
     }
+
     if ([key isEqualToString:kNCStyleIOSBarStyle]) {
         UIBarStyle style = UIBarStyleDefault;
         if ([value isEqualToString:kNCBarStyleBlack]) {

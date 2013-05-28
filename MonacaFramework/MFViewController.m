@@ -68,6 +68,8 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    
+    [self applyBarUserInterface];
     [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
 }
 
@@ -75,7 +77,6 @@
 {
     [super viewWillAppear:animated];
     
-    [self applyBarUserInterface];
     self.webView.delegate = self;
 }
 
