@@ -16,11 +16,12 @@
 {
 @private
     NSString *_previousPath;
-    NCManager *_ncManager_;
+    NCManager *_ncManager;
     NSDictionary *_uiDict;
     id<UIStyleProtocol> _navigationBar;
     id<UIStyleProtocol> _toolbar;
     NCContainer *_backButton;
+    NSMutableDictionary *_ncStyle;
 }
 - (void)setUserInterface:(NSDictionary *)uidict;
 - (void)applyUserInterface;

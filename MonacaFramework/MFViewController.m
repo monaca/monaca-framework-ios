@@ -24,16 +24,40 @@
 @synthesize uiDict = _uiDict;
 @synthesize backButton = _backButton;
 
++ (NSDictionary *)defaultStyles
+{
+    NSMutableDictionary *defaultStyle = [[NSMutableDictionary alloc] init];
+    [defaultStyle setValue:kNCTrue forKey:kNCStyleVisibility];
+    [defaultStyle setValue:kNCFalse forKey:kNCStyleDisable];
+    [defaultStyle setValue:kNCBlack forKey:kNCStyleBackgroundColor];
+    [defaultStyle setValue:kNCUndefined forKey:kNCStyleTitle];
+    [defaultStyle setValue:kNCUndefined forKey:kNCStyleSubtitle];
+    [defaultStyle setValue:kNCWhite forKey:kNCStyleTitleColor];
+    [defaultStyle setValue:kNCWhite forKey:kNCStyleSubtitleColor];
+    [defaultStyle setValue:[NSNumber numberWithFloat:1.0]  forKey:kNCStyleTitleFontScale];
+    [defaultStyle setValue:[NSNumber numberWithFloat:1.0]  forKey:kNCStyleSubtitleFontScale];
+    [defaultStyle setValue:kNCBarStyleDefault forKey:kNCStyleIOSBarStyle];
+    [defaultStyle setValue:kNCUndefined forKey:kNCStyleTitleImage];
+    [defaultStyle setValue:[NSNumber numberWithFloat:0.3] forKey:kNCStyleShadowOpacity];
+    
+    return defaultStyle;
+}
+
 - (id)initWithFileName:(NSString *)fileName
 {
     self = [super init];
     
     if (self) {
-        self.startPage = fileName;
+        self.startPage = [self removeFragment:fileName];
         self.ncManager = [[NCManager alloc] init];
+        _ncStyle = [[self.class defaultStyles] mutableCopy];
         self.wantsFullScreenLayout = NO;
     }
     return self;
+}
+
+- (NSString *)removeFragment:(NSString*)fileName {
+    return [[fileName componentsSeparatedByString:@"#"] objectAtIndex:0];
 }
 
 #pragma mark - View lifecycle
@@ -48,7 +72,7 @@
 {
     [super viewWillAppear:animated];
     
-    [self applyUserInterface];
+    [self applyBarUserInterface];
     self.webView.delegate = self;
 }
 
@@ -56,9 +80,9 @@
 {
     [super viewDidLoad];
 
-    [self setUserInterface:self.uiDict];
+    [self setBarUserInterface:self.uiDict];
 
-    [self applyMonacaPlugin];
+    [self applyUserInterface];
     
     // whether auto link for datatype
     [self processDataTypes];
@@ -98,7 +122,7 @@
     }
 }
 
-- (void)applyUserInterface
+- (void)applyBarUserInterface
 {
     if (_navigationBar) {
         [_navigationBar applyUserInterface];
@@ -114,10 +138,11 @@
     }
 }
 
-- (void)setUserInterface:(NSDictionary *)uidict
+- (void)setBarUserInterface:(NSDictionary *)uidict
 {
     NSDictionary *top = [uidict objectForKey:kNCPositionTop];
     NSDictionary *bottom = [uidict objectForKey:kNCPositionBottom];
+    NSDictionary *style = [uidict objectForKey:kNCTypeStyle];
 
     if (top != nil) {
         _navigationBar = [[NCNavigationBar alloc] initWithViewController:self];
@@ -129,7 +154,74 @@
         [self.ncManager setComponent:_toolbar forID:[bottom objectForKey:kNCTypeID]];
         [(NCToolbar *)_toolbar createToolbar:bottom];
     }
+    
+    // setting for page style
+    if ([style isKindOfClass:NSDictionary.class]) {
+        [self setUserInterface:style];
+    }
 }
+
+#pragma mark - UIStyleProtocol
+
+- (void)setUserInterface:(NSDictionary *)uidict
+{
+    for (id key in uidict) {
+        if ([_ncStyle objectForKey:key] == nil)
+            continue;
+        [_ncStyle setValue:[uidict valueForKey:key] forKey:key];
+    }
+}
+
+- (void)applyUserInterface
+{
+    for (id key in [_ncStyle copy]) {
+        [self updateUIStyle:[_ncStyle objectForKey:key] forKey:key];
+    }
+}
+
+- (void)updateUIStyle:(id)value forKey:(NSString *)key
+{
+    if ([_ncStyle objectForKey:key] == nil) {
+        // 例外処理
+        return;
+    }
+    if (value == [NSNull null]) {
+        value = nil;
+    }
+    if ([NSStringFromClass([value class]) isEqualToString:@"__NSCFBoolean"]) {
+        if (isFalse(value)) {
+            value = kNCFalse;
+        } else {
+            value = kNCTrue;
+        }
+    }
+    
+    if ([key isEqualToString:kNCStyleBackgroundColor]) {
+        if ([value isKindOfClass:NSString.class]) {
+            UIColor *color = hexToUIColor(removeSharpPrefix(value), 1);
+            [self setBackgroundColor:color];
+        } else {
+            [self setBackgroundColor:UIColor.whiteColor];
+        }
+    }
+    
+    if (value == [NSNull null]) {
+        value = kNCUndefined;
+    }
+    [_ncStyle setValue:value forKey:key];
+}
+
+- (id)retrieveUIStyle:(NSString *)key
+{
+    if ([_ncStyle objectForKey:key] == nil) {
+        // 例外処理
+        return nil;
+    }
+    
+    return [_ncStyle objectForKey:key];
+}
+
+#pragma mark - webview delegate
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
@@ -263,22 +355,7 @@
     }
 }
 
-#pragma mark - Monaca Plugin
-
-- (void)applyMonacaPlugin
-{
-    if (self.monacaPluginOptions == nil)
-        return;
-    
-    NSString *bgName = [self.monacaPluginOptions objectForKey:kMonacaTransitPluginOptionBg];
-    if (bgName) {
-        NSString *bgPath = [self.wwwFolderName stringByAppendingFormat:@"/%@", bgName];
-        UIImage *bgImage = [UIImage imageWithContentsOfFile:bgPath];
-        if (bgImage) {
-            [self setBackgroundColor:[UIColor colorWithPatternImage:bgImage]];
-        }
-    }
-}
+#pragma mark - Other methods
 
 - (void)setBackgroundColor:(UIColor *)color
 {
@@ -301,5 +378,7 @@
     self.view.opaque = YES;
     self.view.backgroundColor = color;
 }
+
+
 
 @end

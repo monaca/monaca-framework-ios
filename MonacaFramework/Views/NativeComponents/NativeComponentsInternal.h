@@ -122,9 +122,22 @@ removeSharpPrefix(NSString *color) {
     return [color substringFromIndex:1];
 }
 
+static inline NSString *
+normalizeColorHex(NSString *colorHex) {
+    if (colorHex.length == 3) {
+        NSString *a, *b, *c;
+        a = [colorHex substringWithRange:NSMakeRange(0, 1)];
+        b = [colorHex substringWithRange:NSMakeRange(1, 1)];
+        c = [colorHex substringWithRange:NSMakeRange(2, 1)];
+        colorHex = [NSString stringWithFormat:@"%@%@%@%@%@%@", a, a, b, b, c, c, nil];
+    }
+    
+    return colorHex;
+}
+
 static inline UIColor *
 hexToUIColor(NSString *hex, CGFloat a) {
-	NSScanner *colorScanner = [NSScanner scannerWithString:hex];
+	NSScanner *colorScanner = [NSScanner scannerWithString:normalizeColorHex(hex)];
 	unsigned int color;
 	[colorScanner scanHexInt:&color];
 	CGFloat r = ((color & 0xFF0000) >> 16)/255.0f;
@@ -133,6 +146,16 @@ hexToUIColor(NSString *hex, CGFloat a) {
 	return [UIColor colorWithRed:r green:g blue:b alpha:a];
 }
 
+static inline NSString*
+UIColorToHex(UIColor *color) {
+    CGFloat red, green, blue, alpha;
+    NSNumber *redValue, *greenValue, *blueValue;
+    [color getRed:&red green:&green blue:&blue alpha:&alpha];
+    redValue = [[NSNumber alloc] initWithFloat:red * 255.0f];
+    greenValue = [[NSNumber alloc] initWithFloat:green * 255.0f];
+    blueValue = [[NSNumber alloc ] initWithFloat:blue * 255.0f];
+    return [NSString stringWithFormat:@"#%02X%02X%02X", [redValue intValue], [greenValue intValue], [blueValue intValue]];
+}
 
 // =================================================
 // iOS version.

@@ -22,5 +22,6 @@
 - (void)browse:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options;
 - (void)link:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options;
 - (void)clearPageStack:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options;
-
+- (BOOL)isValidString:(NSString*)urlString;
+- (BOOL)isValidOptions:(NSDictionary*)options;
 @end
