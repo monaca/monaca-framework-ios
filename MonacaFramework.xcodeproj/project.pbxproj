@@ -15,6 +15,35 @@
 		0E81EF321741DD49003A4F9E /* UILabel+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E81EF301741DD49003A4F9E /* UILabel+Resize.m */; };
 		0E81EF331741DD51003A4F9E /* UILabel+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E81EF301741DD49003A4F9E /* UILabel+Resize.m */; };
 		0E81EF341741DD51003A4F9E /* UILabel+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E81EF301741DD49003A4F9E /* UILabel+Resize.m */; };
+		0E8386C517544AA2006FBD98 /* ApplicationResourceDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 0E8386B717544AA2006FBD98 /* ApplicationResourceDelegate.h */; };
+		0E8386C617544AA2006FBD98 /* ApplicationResourceDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E8386B817544AA2006FBD98 /* ApplicationResourceDelegate.m */; };
+		0E8386C717544AA2006FBD98 /* ApplicationResourceDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E8386B817544AA2006FBD98 /* ApplicationResourceDelegate.m */; };
+		0E8386C817544AA2006FBD98 /* ApplicationResourceDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E8386B817544AA2006FBD98 /* ApplicationResourceDelegate.m */; };
+		0E8386C917544AA2006FBD98 /* GeolocationDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 0E8386B917544AA2006FBD98 /* GeolocationDelegate.h */; };
+		0E8386CA17544AA2006FBD98 /* GeolocationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E8386BA17544AA2006FBD98 /* GeolocationDelegate.m */; };
+		0E8386CB17544AA2006FBD98 /* GeolocationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E8386BA17544AA2006FBD98 /* GeolocationDelegate.m */; };
+		0E8386CC17544AA2006FBD98 /* GeolocationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E8386BA17544AA2006FBD98 /* GeolocationDelegate.m */; };
+		0E8386CD17544AA2006FBD98 /* IPP_RESTKit4iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E8386BB17544AA2006FBD98 /* IPP_RESTKit4iOS.framework */; };
+		0E8386CE17544AA2006FBD98 /* IPP_RESTKit4iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E8386BB17544AA2006FBD98 /* IPP_RESTKit4iOS.framework */; };
+		0E8386CF17544AA2006FBD98 /* IPP_RESTKit4iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E8386BB17544AA2006FBD98 /* IPP_RESTKit4iOS.framework */; };
+		0E8386D017544AA2006FBD98 /* MICommunication-info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0E8386BC17544AA2006FBD98 /* MICommunication-info.plist */; };
+		0E8386D117544AA2006FBD98 /* MICommunication-info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0E8386BC17544AA2006FBD98 /* MICommunication-info.plist */; };
+		0E8386D217544AA2006FBD98 /* MIPCommunicationPlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = 0E8386BD17544AA2006FBD98 /* MIPCommunicationPlugin.h */; };
+		0E8386D317544AA2006FBD98 /* MIPCommunicationPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E8386BE17544AA2006FBD98 /* MIPCommunicationPlugin.m */; };
+		0E8386D417544AA2006FBD98 /* MIPCommunicationPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E8386BE17544AA2006FBD98 /* MIPCommunicationPlugin.m */; };
+		0E8386D517544AA2006FBD98 /* MIPCommunicationPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E8386BE17544AA2006FBD98 /* MIPCommunicationPlugin.m */; };
+		0E8386D617544AA2006FBD98 /* MIPUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 0E8386BF17544AA2006FBD98 /* MIPUtility.h */; };
+		0E8386D717544AA2006FBD98 /* MIPUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E8386C017544AA2006FBD98 /* MIPUtility.m */; };
+		0E8386D817544AA2006FBD98 /* MIPUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E8386C017544AA2006FBD98 /* MIPUtility.m */; };
+		0E8386D917544AA2006FBD98 /* MIPUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E8386C017544AA2006FBD98 /* MIPUtility.m */; };
+		0E8386DA17544AA2006FBD98 /* ProfileDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 0E8386C117544AA2006FBD98 /* ProfileDelegate.h */; };
+		0E8386DB17544AA2006FBD98 /* ProfileDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E8386C217544AA2006FBD98 /* ProfileDelegate.m */; };
+		0E8386DC17544AA2006FBD98 /* ProfileDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E8386C217544AA2006FBD98 /* ProfileDelegate.m */; };
+		0E8386DD17544AA2006FBD98 /* ProfileDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E8386C217544AA2006FBD98 /* ProfileDelegate.m */; };
+		0E8386DE17544AA2006FBD98 /* UserDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 0E8386C317544AA2006FBD98 /* UserDelegate.h */; };
+		0E8386DF17544AA2006FBD98 /* UserDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E8386C417544AA2006FBD98 /* UserDelegate.m */; };
+		0E8386E017544AA2006FBD98 /* UserDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E8386C417544AA2006FBD98 /* UserDelegate.m */; };
+		0E8386E117544AA2006FBD98 /* UserDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E8386C417544AA2006FBD98 /* UserDelegate.m */; };
 		0E885C9A169E8DFB001DB4B1 /* exist.html in Resources */ = {isa = PBXBuildFile; fileRef = 0E885C99169E8DFB001DB4B1 /* exist.html */; };
 		0E885C9C169E9583001DB4B1 /* exist.css in Resources */ = {isa = PBXBuildFile; fileRef = 0E885C9B169E9583001DB4B1 /* exist.css */; };
 		3E0B18C8169D8CD7001A35BB /* MFDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = F54FBB3E14BBE04100F702D9 /* MFDevice.m */; };
@@ -394,6 +423,20 @@
 		0E813EBB174DEE8B0062A13C /* MFUIChecker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFUIChecker.m; sourceTree = "<group>"; };
 		0E81EF2F1741DD49003A4F9E /* UILabel+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+Resize.h"; sourceTree = "<group>"; };
 		0E81EF301741DD49003A4F9E /* UILabel+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Resize.m"; sourceTree = "<group>"; };
+		0E8386B717544AA2006FBD98 /* ApplicationResourceDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplicationResourceDelegate.h; sourceTree = "<group>"; };
+		0E8386B817544AA2006FBD98 /* ApplicationResourceDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplicationResourceDelegate.m; sourceTree = "<group>"; };
+		0E8386B917544AA2006FBD98 /* GeolocationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeolocationDelegate.h; sourceTree = "<group>"; };
+		0E8386BA17544AA2006FBD98 /* GeolocationDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeolocationDelegate.m; sourceTree = "<group>"; };
+		0E8386BB17544AA2006FBD98 /* IPP_RESTKit4iOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = IPP_RESTKit4iOS.framework; sourceTree = "<group>"; };
+		0E8386BC17544AA2006FBD98 /* MICommunication-info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MICommunication-info.plist"; sourceTree = "<group>"; };
+		0E8386BD17544AA2006FBD98 /* MIPCommunicationPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIPCommunicationPlugin.h; sourceTree = "<group>"; };
+		0E8386BE17544AA2006FBD98 /* MIPCommunicationPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIPCommunicationPlugin.m; sourceTree = "<group>"; };
+		0E8386BF17544AA2006FBD98 /* MIPUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIPUtility.h; sourceTree = "<group>"; };
+		0E8386C017544AA2006FBD98 /* MIPUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIPUtility.m; sourceTree = "<group>"; };
+		0E8386C117544AA2006FBD98 /* ProfileDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileDelegate.h; sourceTree = "<group>"; };
+		0E8386C217544AA2006FBD98 /* ProfileDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileDelegate.m; sourceTree = "<group>"; };
+		0E8386C317544AA2006FBD98 /* UserDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDelegate.h; sourceTree = "<group>"; };
+		0E8386C417544AA2006FBD98 /* UserDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDelegate.m; sourceTree = "<group>"; };
 		0E885C99169E8DFB001DB4B1 /* exist.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = exist.html; sourceTree = "<group>"; };
 		0E885C9B169E9583001DB4B1 /* exist.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = exist.css; sourceTree = "<group>"; };
 		3E0B192D169D8CD7001A35BB /* MFUnitTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MFUnitTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -614,6 +657,7 @@
 				3E0B191D169D8CD7001A35BB /* UIKit.framework in Frameworks */,
 				3E0B191E169D8CD7001A35BB /* Foundation.framework in Frameworks */,
 				3E0B193D169D8E24001A35BB /* GHUnitIOS.framework in Frameworks */,
+				0E8386CF17544AA2006FBD98 /* IPP_RESTKit4iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -637,6 +681,7 @@
 				3E4F516E15A05BF10054EB23 /* QuartzCore.framework in Frameworks */,
 				3E4F516F15A05BF10054EB23 /* SystemConfiguration.framework in Frameworks */,
 				3E4F517015A05BF10054EB23 /* AudioToolbox.framework in Frameworks */,
+				0E8386CD17544AA2006FBD98 /* IPP_RESTKit4iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -660,12 +705,34 @@
 				3E7FD2B7159D8F2300E85C81 /* CoreGraphics.framework in Frameworks */,
 				3E7FD2B5159D8F2300E85C81 /* UIKit.framework in Frameworks */,
 				3E7FD2B6159D8F2300E85C81 /* Foundation.framework in Frameworks */,
+				0E8386CE17544AA2006FBD98 /* IPP_RESTKit4iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0E8386B617544AA2006FBD98 /* InnovationPlusPlugin */ = {
+			isa = PBXGroup;
+			children = (
+				0E8386B717544AA2006FBD98 /* ApplicationResourceDelegate.h */,
+				0E8386B817544AA2006FBD98 /* ApplicationResourceDelegate.m */,
+				0E8386B917544AA2006FBD98 /* GeolocationDelegate.h */,
+				0E8386BA17544AA2006FBD98 /* GeolocationDelegate.m */,
+				0E8386BB17544AA2006FBD98 /* IPP_RESTKit4iOS.framework */,
+				0E8386BC17544AA2006FBD98 /* MICommunication-info.plist */,
+				0E8386BD17544AA2006FBD98 /* MIPCommunicationPlugin.h */,
+				0E8386BE17544AA2006FBD98 /* MIPCommunicationPlugin.m */,
+				0E8386BF17544AA2006FBD98 /* MIPUtility.h */,
+				0E8386C017544AA2006FBD98 /* MIPUtility.m */,
+				0E8386C117544AA2006FBD98 /* ProfileDelegate.h */,
+				0E8386C217544AA2006FBD98 /* ProfileDelegate.m */,
+				0E8386C317544AA2006FBD98 /* UserDelegate.h */,
+				0E8386C417544AA2006FBD98 /* UserDelegate.m */,
+			);
+			path = InnovationPlusPlugin;
+			sourceTree = "<group>";
+		};
 		0E885C97169E8CD0001DB4B1 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -1055,6 +1122,7 @@
 		F5F31BDD14820C7800C40C0B /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				0E8386B617544AA2006FBD98 /* InnovationPlusPlugin */,
 				3EB9B3F9161455B600E5F32C /* PhoneGap-plugins */,
 				F54CEB541500D1A000516444 /* Monaca */,
 				F54CEB581500D1A000516444 /* Vendor */,
@@ -1152,6 +1220,12 @@
 				0E813EBC174DEE8C0062A13C /* MFUIChecker.h in Headers */,
 				5A99A8F51750FB8C00D4ABD7 /* MFTransitPopParameter.h in Headers */,
 				5A99A8F91750FB8C00D4ABD7 /* MFTransitPushParameter.h in Headers */,
+				0E8386C517544AA2006FBD98 /* ApplicationResourceDelegate.h in Headers */,
+				0E8386C917544AA2006FBD98 /* GeolocationDelegate.h in Headers */,
+				0E8386D217544AA2006FBD98 /* MIPCommunicationPlugin.h in Headers */,
+				0E8386D617544AA2006FBD98 /* MIPUtility.h in Headers */,
+				0E8386DA17544AA2006FBD98 /* ProfileDelegate.h in Headers */,
+				0E8386DE17544AA2006FBD98 /* UserDelegate.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1257,6 +1331,7 @@
 				3E0B1929169D8CD7001A35BB /* Default-568h@2x.png in Resources */,
 				0E885C9A169E8DFB001DB4B1 /* exist.html in Resources */,
 				0E885C9C169E9583001DB4B1 /* exist.css in Resources */,
+				0E8386D117544AA2006FBD98 /* MICommunication-info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1274,6 +1349,7 @@
 				3EDD681C16155D0F0018698B /* ChildBrowser.bundle in Resources */,
 				3EDD682516155D0F0018698B /* ChildBrowserViewController.xib in Resources */,
 				3E7708E0161169CF0041CF4D /* Default-568h@2x.png in Resources */,
+				0E8386D017544AA2006FBD98 /* MICommunication-info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1390,6 +1466,12 @@
 				0E813EBF174DEE8C0062A13C /* MFUIChecker.m in Sources */,
 				5A99A8F81750FB8C00D4ABD7 /* MFTransitPopParameter.m in Sources */,
 				5A99A8FC1750FB8C00D4ABD7 /* MFTransitPushParameter.m in Sources */,
+				0E8386C817544AA2006FBD98 /* ApplicationResourceDelegate.m in Sources */,
+				0E8386CC17544AA2006FBD98 /* GeolocationDelegate.m in Sources */,
+				0E8386D517544AA2006FBD98 /* MIPCommunicationPlugin.m in Sources */,
+				0E8386D917544AA2006FBD98 /* MIPUtility.m in Sources */,
+				0E8386DD17544AA2006FBD98 /* ProfileDelegate.m in Sources */,
+				0E8386E117544AA2006FBD98 /* UserDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1471,6 +1553,12 @@
 				0E813EBD174DEE8C0062A13C /* MFUIChecker.m in Sources */,
 				5A99A8F61750FB8C00D4ABD7 /* MFTransitPopParameter.m in Sources */,
 				5A99A8FA1750FB8C00D4ABD7 /* MFTransitPushParameter.m in Sources */,
+				0E8386C617544AA2006FBD98 /* ApplicationResourceDelegate.m in Sources */,
+				0E8386CA17544AA2006FBD98 /* GeolocationDelegate.m in Sources */,
+				0E8386D317544AA2006FBD98 /* MIPCommunicationPlugin.m in Sources */,
+				0E8386D717544AA2006FBD98 /* MIPUtility.m in Sources */,
+				0E8386DB17544AA2006FBD98 /* ProfileDelegate.m in Sources */,
+				0E8386DF17544AA2006FBD98 /* UserDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1553,6 +1641,12 @@
 				0E813EBE174DEE8C0062A13C /* MFUIChecker.m in Sources */,
 				5A99A8F71750FB8C00D4ABD7 /* MFTransitPopParameter.m in Sources */,
 				5A99A8FB1750FB8C00D4ABD7 /* MFTransitPushParameter.m in Sources */,
+				0E8386C717544AA2006FBD98 /* ApplicationResourceDelegate.m in Sources */,
+				0E8386CB17544AA2006FBD98 /* GeolocationDelegate.m in Sources */,
+				0E8386D417544AA2006FBD98 /* MIPCommunicationPlugin.m in Sources */,
+				0E8386D817544AA2006FBD98 /* MIPUtility.m in Sources */,
+				0E8386DC17544AA2006FBD98 /* ProfileDelegate.m in Sources */,
+				0E8386E017544AA2006FBD98 /* UserDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1596,6 +1690,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/MonacaFramework/Library/Vendor\"",
 					"\"$(SRCROOT)/MFUnitTest\"",
+					"\"$(SRCROOT)/MonacaFramework/Library/InnovationPlusPlugin\"",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1633,6 +1728,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/MonacaFramework/Library/Vendor\"",
 					"\"$(SRCROOT)/MFUnitTest\"",
+					"\"$(SRCROOT)/MonacaFramework/Library/InnovationPlusPlugin\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MFUnitTest/MFUnitTest-Prefix.pch";
@@ -1668,6 +1764,7 @@
 					"\"$(SRCROOT)/MonacaFramework/Plugins\"",
 					"\"$(SRCROOT)/../../../Shared/PhoneGap/Frameworks\"",
 					"\"$(SRCROOT)/MonacaFramework/Library/Vendor\"",
+					"\"$(SRCROOT)/MonacaFramework/Library/InnovationPlusPlugin\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MonacaFramework/MonacaFramework-Prefix.pch";
@@ -1701,6 +1798,7 @@
 					"\"$(SRCROOT)/MonacaFramework/Plugins\"",
 					"\"$(SRCROOT)/../../../Shared/PhoneGap/Frameworks\"",
 					"\"$(SRCROOT)/MonacaFramework/Library/Vendor\"",
+					"\"$(SRCROOT)/MonacaFramework/Library/InnovationPlusPlugin\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MonacaFramework/MonacaFramework-Prefix.pch";
@@ -1729,6 +1827,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/MonacaFramework/Library/Vendor\"",
+					"\"$(SRCROOT)/MonacaFramework/Library/InnovationPlusPlugin\"",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1765,6 +1864,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/MonacaFramework/Library/Vendor\"",
+					"\"$(SRCROOT)/MonacaFramework/Library/InnovationPlusPlugin\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MonacaSandbox/MonacaSandbox-Prefix.pch";
