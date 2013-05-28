@@ -63,10 +63,13 @@
     
     UIBarButtonItem *spacer =
     [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    UIBarButtonItem *negativeSpacer =[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+    negativeSpacer.width = -7.0f;
     
     /***** create leftContainers *****/
     NSMutableArray *containers = [NSMutableArray array];
     if (topLeft) {
+        [containers addObject:negativeSpacer];
         for (id component in topLeft) {
             NCContainer *container = [NCContainer container:component forToolbar:self];
             if (container.component == nil) continue;
@@ -95,8 +98,6 @@
             [_viewController.ncManager setComponent:container forID:container.cid];
         }
         // 右のスペースをnavigationBarのそれと合わせる
-        UIBarButtonItem *negativeSpacer =[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-        negativeSpacer.width = -5.0f;
         [containers addObject:negativeSpacer];
     }
     
