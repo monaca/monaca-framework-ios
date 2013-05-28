@@ -184,24 +184,22 @@
 //    }
 }
 
-/*
 - (void)clearPageStack:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options
 {
     id clearAll = [arguments objectAtIndex:1];
     NSMutableArray *controllers;
     
     if ([clearAll isKindOfClass:NSNumber.class] && [clearAll isEqualToNumber:[NSNumber numberWithBool:YES]]) {
-        controllers = [NSMutableArray arrayWithObject:self.monacaNavigationController.viewControllers.lastObject];
+        controllers = [NSMutableArray arrayWithObject:[MFUtility currentViewController]];
     } else {
-        controllers = [NSMutableArray arrayWithArray:self.monacaNavigationController.viewControllers];
+        controllers = [NSMutableArray arrayWithArray:[MFUtility currentViewController].navigationController.viewControllers];
         if (controllers.count > 1) {
             [controllers removeObjectAtIndex:controllers.count - 2];
         }
     }
     
-    [self.monacaNavigationController setViewControllers:controllers animated:NO];
+    [[MFUtility getAppDelegate].monacaNavigationController setViewControllers:controllers animated:NO];
 }
-*/
 
 - (void)popToHomeViewController:(BOOL)isAnimated
 {
