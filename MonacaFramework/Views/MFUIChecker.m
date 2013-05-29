@@ -29,14 +29,6 @@
 + (void)parse:(NSMutableDictionary *)dict withPosition:(NSString *)position;
 @end
 
-@interface StyleNode : NSObject
-+ (void)parse:(NSMutableDictionary *)dict withComponent:(NSString *)component;
-@end
-
-@interface IOSBarStyleNode : NSObject
-+ (void)parse:(NSString *)style withComponent:(NSString *)component;
-@end
-
 
 @implementation MFUIChecker
 
@@ -210,7 +202,7 @@
         }
     }
     if ([dict objectForKey:kNCTypeStyle]) {
-        [StyleNode parse:[dict objectForKey:kNCTypeStyle] withComponent:kNCContainerToolbar];
+//        [StyleNode parse:[dict objectForKey:kNCTypeStyle] withComponent:kNCContainerToolbar];
     }
     NSArray *array;
     if ((array = [dict objectForKey:kNCTypeLeft])) {
@@ -263,7 +255,7 @@
         }
     }
     if ([dict objectForKey:kNCTypeStyle]) {
-        [StyleNode parse:[dict objectForKey:kNCTypeStyle] withComponent:kNCContainerTabbar];
+//        [StyleNode parse:[dict objectForKey:kNCTypeStyle] withComponent:kNCContainerTabbar];
     }
     NSArray *array;
     if ((array = [dict objectForKey:kNCTypeRight])) {
@@ -327,89 +319,5 @@
             continue;
         }
     }
-    [StyleNode parse:[dict objectForKey:kNCTypeStyle] withComponent:component];
 }
-@end
-
-@implementation StyleNode
-
-+ (NSDictionary *)getValidDictionary:(NSString *)component
-{
-    if ([component isEqualToString:kNCContainerToolbar]) {
-        return [NCNavigationBar defaultStyles];
-    }
-    if ([component isEqualToString:kNCContainerTabbar]) {
-        return [MFTabBarController defaultStyles];
-    }
-    if ([component isEqualToString:kNCComponentButton]) {
-        return [NCButton defaultStyles];
-    }
-    if ([component isEqualToString:kNCComponentBackButton]) {
-        return [NCBackButton defaultStyles];
-    }
-    if ([component isEqualToString:kNCComponentLabel]) {
-        return [NCLabel defaultStyles];
-    }
-    if ([component isEqualToString:kNCComponentSearchBox]) {
-        return [NCSearchBox defaultStyles];
-    }
-    if ([component isEqualToString:kNCComponentSegment]) {
-        return [NCSegment defaultStyles];
-    }
-    if ([component isEqualToString:kNCComponentTabbarItem]) {
-        return [NCTabbarItem defaultStyles];
-    }
-    
-    return  nil;
-}
-
-+ (void)parse:(NSMutableDictionary *)dict withComponent:(NSString *)component
-{
-    NSDictionary *validDict = [self getValidDictionary:component];
-    NSEnumerator* enumerator = [[dict copy] keyEnumerator];
-    id key;
-    while (key = [enumerator nextObject]) {
-        if ([validDict objectForKey:key] == nil) {
-            NSLog(NSLocalizedString(@"Key is not one of valid keys", nil), component, key, [MFUIChecker dictionaryKeysToString:validDict]);
-            continue;
-        }
-        if (![[MFUIChecker valueType:[dict objectForKey:key]] isEqualToString:[MFUIChecker valueType:[validDict valueForKey:key]]]) {
-            if ([[MFUIChecker valueType:[dict objectForKey:key]] isEqualToString:@"Integer"] &&
-                [[MFUIChecker valueType:[validDict valueForKey:key]] isEqualToString:@"Float"]) {
-                continue;
-            }
-            NSLog(NSLocalizedString(@"Invalid value type", nil), component , key,
-                  [MFUIChecker valueType:[validDict objectForKey:key]], [dict valueForKey:key]);
-            [dict removeObjectForKey:key];
-            continue;
-        }
-        if ([key isEqualToString:kNCStyleIOSBarStyle]) {
-            [IOSBarStyleNode parse:[dict objectForKey:kNCStyleIOSBarStyle] withComponent:component];
-        }
-    }
-}
-
-@end
-
-@implementation IOSBarStyleNode
-
-+ (NSDictionary *)iosBarStyles
-{
-    NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
-    [dict setValue:kNCTrue forKey:kNCBarStyleBlack];
-    [dict setValue:kNCTrue forKey:kNCBarStyleBlackOpaque];
-    [dict setValue:kNCTrue forKey:kNCBarStyleBlackTranslucent];
-    [dict setValue:kNCTrue forKey:kNCBarStyleDefault];
-    
-    return dict;
-}
-
-+ (void)parse:(NSString *)style withComponent:(NSString *)component
-{
-    NSDictionary *validValue = [self iosBarStyles];
-    if (![[validValue objectForKey:style] isEqualToString:kNCTrue]) {
-        NSLog(NSLocalizedString(@"Value not in one of valid values", nil), component, style, [MFUIChecker dictionaryKeysToString:validValue]);
-    }
-}
-
 @end

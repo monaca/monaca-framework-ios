@@ -28,17 +28,13 @@
 
 - (void)setUserInterface:(NSDictionary *)uidict
 {
-    for (id key in uidict) { 
-        if ([_ncStyle objectForKey:key] == nil)
-            continue;
-        [_ncStyle setValue:[uidict valueForKey:key] forKey:key];
-    }
+    [_ncStyle setStyles:uidict];
 }
 
 - (void)applyUserInterface
 {
-    for (id key in [_ncStyle copy]) {
-        [self updateUIStyle:[_ncStyle objectForKey:key] forKey:key];
+    for (id key in [[_ncStyle getStyles] copy]) {
+        [self updateUIStyle:[[_ncStyle getStyles] objectForKey:key] forKey:key];
     }
 }
 
@@ -46,12 +42,7 @@
 
 - (id)retrieveUIStyle:(NSString *)key
 {
-    if ([_ncStyle objectForKey:key] == nil) {
-        // 例外処理
-        return nil;
-    }
-    
-    return [_ncStyle objectForKey:key];
+    return [_ncStyle retrieveStyle:key];
 }
 
 @end
