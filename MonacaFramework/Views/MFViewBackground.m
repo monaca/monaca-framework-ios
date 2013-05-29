@@ -8,8 +8,9 @@
 
 #import "MFVIewBackground.h"
 #import "NativeComponentsInternal.h"
+#import "MFUtility.h"
 
-@implementation MFVIewBackground
+@implementation MFViewBackground
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -152,8 +153,7 @@
     if ([imageString isKindOfClass:NSString.class])
     {
         NSString *imageFilePath = imageString;
-        MFDelegate *mfDelegate = (MFDelegate *)[UIApplication sharedApplication].delegate;
-        NSString *currentDirectory = [mfDelegate.viewController.previousPath stringByDeletingLastPathComponent];
+        NSString *currentDirectory = [[MFUtility currentViewController].previousPath stringByDeletingLastPathComponent];
         imagePath = [currentDirectory stringByAppendingPathComponent:imageFilePath];
         
         // get ImageFilePath for Retina Display

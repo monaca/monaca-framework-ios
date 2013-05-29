@@ -7,7 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MFViewController.h"
+#import "UIStyleProtocol.h"
 
-@interface NCToolbar : UIToolbar
-- (void)sizeToFitCenter;
+@interface NCToolbar : NSObject <UIStyleProtocol>
+{
+    MFViewController *_viewController;
+    UIToolbar *_toolbar;
+    NSMutableDictionary *_ncStyle;
+    NSArray *_containers;
+}
+
+- (id)initWithViewController:(MFViewController *)viewController;
+- (void)createToolbar:(NSDictionary *)uidict;
+
+@property (nonatomic, retain) MFViewController *viewController;
+
 @end

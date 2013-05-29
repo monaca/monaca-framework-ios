@@ -14,14 +14,14 @@
     CATransition *transition_;
     BOOL hasDefaultPushAnimation_;
     BOOL clearStack_;
+    NSString *target_;
 }
 
-- (id)init:(CATransition*)transition withClearStack:(BOOL)clearStack hasDefaultPushAnimation:(BOOL)hasDefaultPushAnimation;
-
-- (BOOL)clearStack;
-- (CATransition *)transition;
-- (BOOL)hasDefaultPushAnimation;
-
 + (MFTransitPushParameter*)parseOptionsDict:(NSDictionary*)options;
+
+@property (assign, readonly) BOOL clearStack;
+@property (retain, readonly) CATransition *transition;
+@property (assign, readonly) BOOL hasDefaultPushAnimation;
+@property (retain, readonly) NSString *target;
 
 @end

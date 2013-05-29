@@ -13,14 +13,13 @@
     @protected
     CATransition *transition_;
     BOOL hasDefaultPopAnimation_;
+    NSString *target_;
 }
 
-
-- (id)init:(CATransition*)transition hasDefaultPopAnimation:(BOOL)hasDefaultPopAnimation;
-
-- (CATransition *)transition;
-- (BOOL)hasDefaultPopAnimation;
-
 + (MFTransitPopParameter*)parseOptionsDict:(NSDictionary*)options;
+
+@property (retain, readonly) CATransition *transition;
+@property (assign, readonly) BOOL hasDefaultPopAnimation;
+@property (retain, readonly) NSString *target;
 
 @end

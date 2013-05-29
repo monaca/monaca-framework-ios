@@ -8,7 +8,7 @@
 
 #import "NCContainer.h"
 #import "NCButton.h"
-#import "NCBarButtonItem.h"  
+#import "MFUtility.h"
 
 @implementation NCContainer
 
@@ -36,7 +36,8 @@
 // =================================================
 
 // Creates a container, wrapping a component, for the toolbar.
-+ (NCContainer *)container:(NSDictionary *)params position:(NSString *)aPosition {
++ (NCContainer *)container:(NSDictionary *)params forToolbar:(id<UIStyleProtocol>)toolbar
+{
     NSString *type = [params objectForKey:kNCStyleComponent];
     NCContainer *container = [[NCContainer alloc] init];
     
@@ -48,66 +49,53 @@
     [style_def addEntriesFromDictionary:[params objectForKey:kNCTypeIOSStyle]];
 
     if ([type isEqualToString:kNCComponentButton]) {
-        container.component = [NCButtonBuilder button:style_def position:aPosition];
+        NCButton *button = [[NCButton alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:container action:@selector(didTap:forEvent:)];
+        [button setUserInterface:style_def];
+        [button applyUserInterface];
+        button.toolbar = toolbar;
+        container.component = button;
         container.onTapScript = [[params objectForKey:kNCTypeEvent] objectForKey:kNCEventTypeTap];
-        
-        // for image button case
-        NCButton* button = (NCButton*)container.component;
-        [(UIButton *)button.imageButtonView addTarget:container action:@selector(didTap:forEvent:) forControlEvents:UIControlEventTouchUpInside];
-        
-        // for UIBarButtonItem case
-        [container.component setAction:@selector(didTap:forEvent:)];
-        [container.component setTarget:container];
-        
         container.type = kNCComponentButton;
     }
     else if ([type isEqualToString:kNCComponentBackButton]) {
-        UIButton *button = [NCBackButtonBuilder backButton:style_def];
-        container.view = button;
-        NCBarButtonItem* ncBarButtonItem = [[NCBarButtonItem alloc] initWithCustomView:button];
-        ncBarButtonItem.hidden =button.hidden;
-        container.component = ncBarButtonItem;
+        NCBackButton *backButton = [[NCBackButton alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:nil action:nil];
+        [backButton setUserInterface:style_def];
+        [backButton applyUserInterface];
+        backButton.toolbar = toolbar;
+        container.component = backButton;
         container.onTapScript = [[params objectForKey:kNCTypeEvent] objectForKey:kNCEventTypeTap];
-        [button addTarget:container action:@selector(didTap:forEvent:) forControlEvents:UIControlEventTouchUpInside];
         container.type = kNCComponentBackButton;
     }
     else if ([type isEqualToString:kNCComponentLabel]) {
-        UILabel *label = [NCLabelBuilder label:style_def];
-        container.view = label;
-        NCBarButtonItem* ncBarButtonItem = [[NCBarButtonItem alloc] initWithCustomView:label];
-        ncBarButtonItem.hidden = label.hidden;
-        container.component = ncBarButtonItem; 
+        NCLabel *label = [[NCLabel alloc] init];
+        label.toolbar = toolbar;
+        [label setUserInterface:style_def];
+        [label applyUserInterface];
+        container.component = label;
         container.type = kNCComponentLabel;
     }
     else if ([type isEqualToString:kNCComponentSearchBox]) {
-        UISearchBar *searchBox = [NCSearchBoxBuilder searchBox:style_def];
-        container.view = searchBox;
-        NCBarButtonItem* ncBarButtonItem = [[NCBarButtonItem alloc] initWithCustomView:searchBox];
-        ncBarButtonItem.hidden = searchBox.hidden;
-        container.component = ncBarButtonItem;
+        NCSearchBox *searchBox = [[NCSearchBox alloc] init];
+        searchBox.toolbar = toolbar;
+        [searchBox applyUserInterface];
+        container.component = searchBox;
         container.onSearchScript = [[params objectForKey:kNCTypeEvent] objectForKey:kNCEventTypeSearch];
-        searchBox.delegate = container;
-
-        for (UIView *subview in searchBox.subviews) {
-            if ([subview isKindOfClass:NSClassFromString(@"UITextField")]) {
-                ((UITextField *)subview).enablesReturnKeyAutomatically = NO;
-            }
-        }
         container.type = kNCComponentSearchBox;
+        searchBox.deleagte = container;
     }
     else if ([type isEqualToString:kNCComponentSegment]) {
-        UISegmentedControl *segment = [NCSegmentBuilder segment:style_def];
-        container.view = segment;
-        NCBarButtonItem* ncBarButtonItem  = [[NCBarButtonItem alloc] initWithCustomView:segment];
-        ncBarButtonItem.hidden = segment.hidden; 
-        container.component = ncBarButtonItem;
-        container.onTapScript = [[params objectForKey:kNCTypeEvent] objectForKey:kNCEventTypeTap];
+        NCSegment *segment = [[NCSegment alloc] init];
+        segment.toolbar = toolbar;
+        container.component = segment;
+        [segment setUserInterface:style_def];
+        [segment applyUserInterface];
+//        container.onTapScript = [[params objectForKey:kNCTypeEvent] objectForKey:kNCEventTypeTap];
         container.onChangeScript = [[params objectForKey:kNCTypeEvent] objectForKey:kNCEventTypeChange];
         
         [segment addTarget:container action:@selector(didChange:forEvent:) forControlEvents:UIControlEventValueChanged];
         // TODO(nhiroki): Do not work.
-        [segment addTarget:container action:@selector(didTap:forEvent:) forControlEvents:UIControlEventTouchUpInside];
-        
+//        [segment addTarget:container action:@selector(didTap:forEvent:) forControlEvents:UIControlEventTouchUpInside];
+
         container.type = kNCComponentSegment;
     }
     
@@ -125,14 +113,24 @@
     return container;
 }
 
+- (void)updateUIStyle:(id)value forKey:(NSString *)key
+{
+    [(id<UIStyleProtocol>)self.component updateUIStyle:value forKey:key];
+}
+
+- (id)retrieveUIStyle:(NSString *)key
+{
+    return [(id<UIStyleProtocol>)self.component retrieveUIStyle:key];
+}
+
 
 // =================================================
 // Event handlers.
 // =================================================
-
+             
 // Handle an onSearch event.
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-    UIWebView *webView = ((MFDelegate *)[UIApplication sharedApplication].delegate).viewController.cdvViewController.webView;
+    UIWebView *webView = [MFUtility currentViewController].webView;
     NSString *js = [NSString stringWithFormat:@"__search_text='%@';%@", searchBar.text, onSearchScript_];
     [webView stringByEvaluatingJavaScriptFromString:js];
     [searchBar resignFirstResponder];
@@ -150,13 +148,13 @@
     }
 
     NSString *js = [NSString stringWithFormat:@"%@%@", index, onChangeScript_];
-    UIWebView *webView = ((MFDelegate *)[UIApplication sharedApplication].delegate).viewController.cdvViewController.webView;
+    UIWebView *webView = [MFUtility currentViewController].webView;
     [webView stringByEvaluatingJavaScriptFromString:js];
 }
 
 // Handle an onTap event.
 - (void)didTap:(id)sender forEvent:(UIEvent *)event {
-    UIWebView *webView = ((MFDelegate *)[UIApplication sharedApplication].delegate).viewController.cdvViewController.webView;
+    UIWebView *webView = [MFUtility currentViewController].webView;
     [webView stringByEvaluatingJavaScriptFromString:onTapScript_];
 }
 

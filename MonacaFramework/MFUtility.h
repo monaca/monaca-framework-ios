@@ -7,30 +7,36 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "MFDelegate.h"
-#import "MFViewController.h"
-#import "MFTabBarController.h"
+#import "NativeComponents.h"
 
-
-@interface MFUtility : NSObject {
-
+@interface MFUtility : NSObject
+{
+    
 }
 
-+ (MFTabBarController *) currentTabBarController;
 + (UIInterfaceOrientation) currentInterfaceOrientation;
 + (BOOL) getAllowOrientationFromPlist:(UIInterfaceOrientation)interfaceOrientation;
-+ (void) setupMonacaViewController:(MFViewController *)monacaViewController;
-+ (void) fixedLayout:(MFViewController *)monacaViewController interfaceOrientation:(UIInterfaceOrientation)aInterfaceOrientation;
-+ (void) show404PageWithWebView:(UIWebView *)webView path:(NSString *)aPath;
++ (NSDictionary *)parseJSONFile:(NSString *)path;
++ (NSString *)correctJSON:(NSString *)data;
++ (NSMutableDictionary *)parseQuery:(NSURLRequest *)request;
++ (NSString *)urlEncode:(NSString *)text;
++ (BOOL)isPhoneGapScheme:(NSURL *)url;
++ (BOOL)isExternalPage:(NSURL *)url;
++ (BOOL)hasAnchor:(NSURL *)url;
++ (NSURL *)standardizedURL:(NSURL *)url;
++ (NSURL *)getBaseURL;
 + (NSString *)getWWWShortPath:(NSString *)path;
 + (NSString *)insertMonacaQueryParams:(NSString *)html query:(NSString *)aQuery;
-+ (NSString *)urlEncode:(NSString *)text;
-+ (NSString *)urlDecode:(NSString *)text;
++ (NSString *)getUIFileName:(NSString *)filename;
++ (NSDictionary *)getApplicationPlist;
++ (void)fixedLayout:(MFViewController *)monacaViewController interfaceOrientation:
+    (UIInterfaceOrientation)aInterfaceOrientation;
++ (void) show404PageWithWebView:(UIWebView *)webView path:(NSString *)aPath;
 + (MFDelegate *)getAppDelegate;
-+ (NSMutableDictionary *)parseQuery:(NSURLRequest *)request;
++ (MFViewController *)currentViewController;
 + (NSURLResponse *)register_push:(NSString *)deviceToken;
-+ (NSDictionary *)getAppJSON;
 + (void)setMonacaCloudCookie;
 + (void)clearMonacaCloudCookie;
++ (void)checkWithInfo:(NSDictionary *)info;
 
 @end

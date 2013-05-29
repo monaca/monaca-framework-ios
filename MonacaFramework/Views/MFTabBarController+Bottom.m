@@ -7,8 +7,12 @@
 //
 
 #import "MFTabBarController+Bottom.h"
+<<<<<<< HEAD
+#import "MFUtility.h"
+=======
 
 #import <QuartzCore/QuartzCore.h>
+>>>>>>> dev
 
 /*
  * Supports iOS4. Cannot use setTintColor method in iOS4.
@@ -46,7 +50,11 @@ stringByRelativePath(NSString *relativePath) {
     
     BOOL isDir;
     NSFileManager *fm = [NSFileManager defaultManager];
+<<<<<<< HEAD
+    NSURL *currentURL = delegate.viewController.webView.request.URL;
+=======
     NSURL *currentURL = delegate.viewController.cdvViewController.webView.request.URL;
+>>>>>>> dev
     
     [fm fileExistsAtPath:[currentURL path] isDirectory:&isDir];
     if (isDir) {
@@ -170,6 +178,8 @@ stringByRelativePath(NSString *relativePath) {
             UIColor *bgColor = hexToUIColor(removeSharpPrefix(toolbarColor), 1);
             toolbar.tintColor = bgColor;
         }
+<<<<<<< HEAD
+=======
         
         // modify:2013.05.17 navbar_shadowOpacity add by shikata
         CALayer *navBarLayer = toolbar.layer;
@@ -195,6 +205,7 @@ stringByRelativePath(NSString *relativePath) {
             }
         }
         // modify_end
+>>>>>>> dev
     }
     
     return toolbar;
@@ -415,7 +426,11 @@ stringByRelativePath(NSString *relativePath) {
     [delegate.viewController.tabBarController.navigationController setToolbarHidden:YES];
     self.delegate = self;
     
+<<<<<<< HEAD
+    CGRect frame = delegate.viewController.webView.frame;
+=======
     CGRect frame = delegate.viewController.cdvViewController.webView.frame;
+>>>>>>> dev
     
     NSMutableArray *controllers = [NSMutableArray array];
     NSArray *items = [bottomBarStyle objectForKey:kNCTypeItems];
@@ -442,7 +457,11 @@ stringByRelativePath(NSString *relativePath) {
         [self.ncManager setComponent:controller.tabBarItem forID:cid];
         i++;
     }
+<<<<<<< HEAD
+    [((UIViewController *)[controllers objectAtIndex:0]).view addSubview:delegate.viewController.webView];
+=======
     [((UIViewController *)[controllers objectAtIndex:0]).view addSubview:delegate.viewController.cdvViewController.webView];
+>>>>>>> dev
     
     NSString *tabbarId = [bottomBarStyle objectForKey:kNCTypeID];
     if (tabbarId != nil) {
@@ -457,8 +476,13 @@ stringByRelativePath(NSString *relativePath) {
     self.activeIndex = [[style objectForKey:kNCStyleActiveIndex] intValue];
     if (!isInitialized_) {
         [self setSelectedIndex:self.activeIndex];
+<<<<<<< HEAD
+        [delegate.viewController.webView removeFromSuperview];
+        [((UIViewController *)[controllers objectAtIndex:self.activeIndex]).view addSubview:delegate.viewController.webView];
+=======
         [delegate.viewController.cdvViewController.webView removeFromSuperview];
         [((UIViewController *)[controllers objectAtIndex:self.activeIndex]).view addSubview:delegate.viewController.cdvViewController.webView];
+>>>>>>> dev
             // タブバーが存在し、かつ activeIndex が指定されている場合はその html ファイルを読む
         NSString *containerType = [bottomBarStyle objectForKey:kNCTypeContainer];
         if ([containerType isEqualToString:kNCContainerTabbar]) {
@@ -471,15 +495,24 @@ stringByRelativePath(NSString *relativePath) {
                 // 初回表示時activeIndexが0以外の場合には、ここで指定してpreviousPathをactiveIndexの示すパスに対応させる。
                 NSString *filepath = [NSString stringWithFormat:@"%@/%@", dirpath, [[items objectAtIndex:activeIndex] objectForKey:kNCTypeLink]];
                 delegate.viewController.previousPath = filepath;
+<<<<<<< HEAD
+                delegate.viewController.webView.tag = kWebViewIgnoreStyle;
+                [delegate.viewController.webView loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:filepath]]];
+=======
                 delegate.viewController.cdvViewController.webView.tag = kWebViewIgnoreStyle;
                 [delegate.viewController.cdvViewController.webView loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:filepath]]];
+>>>>>>> dev
             }
         }
         isInitialized_ = YES;
     }
     
     // Resize the webview because |setViewController| method modified the size.
+<<<<<<< HEAD
+    delegate.viewController.webView.frame = frame;
+=======
     delegate.viewController.cdvViewController.webView.frame = frame;
+>>>>>>> dev
     
     [self showTabBar:!isFalse([style objectForKey:kNCStyleVisibility])];
 }
@@ -494,6 +527,10 @@ stringByRelativePath(NSString *relativePath) {
         [tabbarController showTabBar:YES];
     }
     
+<<<<<<< HEAD
+}
+
+=======
     if ([style objectForKey:kNCStyleActiveIndex]) {
         [tabbarController setSelectedIndex:[[style objectForKey:kNCStyleActiveIndex] intValue]];
         MFDelegate *delegate = (MFDelegate *)[UIApplication sharedApplication].delegate;
@@ -502,13 +539,19 @@ stringByRelativePath(NSString *relativePath) {
 }
 
 
+>>>>>>> dev
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
     if (isLocked == NO) {
         isLocked = YES;
 
         MFDelegate *delegate = (MFDelegate *)[UIApplication sharedApplication].delegate;
+<<<<<<< HEAD
+        [delegate.viewController.webView removeFromSuperview];
+        [viewController.view addSubview:delegate.viewController.webView];
+=======
         [delegate.viewController.cdvViewController.webView removeFromSuperview];
         [viewController.view addSubview:delegate.viewController.cdvViewController.webView];
+>>>>>>> dev
 
         self.activeIndex = self.selectedIndex;
         NSArray *items = [[self dictionaryWithBottomBar] objectForKey:kNCTypeItems];
@@ -517,8 +560,13 @@ stringByRelativePath(NSString *relativePath) {
 
         // Load link url page.
         NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:linkpath]];
+<<<<<<< HEAD
+        delegate.viewController.webView.tag = kWebViewIgnoreStyle;
+        [delegate.viewController.webView loadRequest:request];
+=======
         delegate.viewController.cdvViewController.webView.tag = kWebViewIgnoreStyle;
         [delegate.viewController.cdvViewController.webView loadRequest:request];
+>>>>>>> dev
     }
     self.selectedIndex = self.activeIndex;
 }

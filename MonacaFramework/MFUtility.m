@@ -1,12 +1,14 @@
 //
-//  Utility.m
-//  Template
+//  MFUtility.m
+//  MonacaFramework
 //
-//  Created by Hiroki Nakagawa on 11/06/07.
-//  Copyright 2011 ASIAL CORPORATION. All rights reserved.
+//  Created by Yasuhiro Mitsuno on 2013/02/23.
+//  Copyright (c) 2013年 ASIAL CORPORATION. All rights reserved.
 //
 
 #import "MFUtility.h"
+#import "JSONKit.h"
+#import "MFEvent.h"
 
 @implementation MFUtility
 
@@ -41,6 +43,68 @@ static NSString *base_url = @"https://api.monaca.mobi";
             [[NSBundle mainBundle] objectForInfoDictionaryKey: @"CFBundleVersion"]];
 }
 
++ (NSDictionary *)parseJSONFile:(NSString *)path {
+    NSError *error = nil;
+    NSString *data = [NSString stringWithContentsOfFile:path
+                                               encoding:NSUTF8StringEncoding
+                                                  error:&error];
+    if (data == nil) {
+        NSMutableDictionary *info = [NSMutableDictionary dictionary];
+        [info setObject:path forKey:@"path"];
+        [MFEvent dispatchEvent:monacaEventNoUIFile withInfo:info];
+        return nil;
+    }
+
+    data = [[self class] correctJSON:data];
+
+    id jsonString = [data cdvjk_objectFromJSONStringWithParseOptions:CDVJKParseOptionStrict error:&error];
+    
+    // send log error
+    if (error) {
+        NSMutableDictionary *info = [NSMutableDictionary dictionary];
+        [info setObject:error forKey:@"error"];
+        [info setObject:path forKey:@"path"];
+        [MFEvent dispatchEvent:monacaEventNCParseError withInfo:info];
+    } else {
+        NSMutableDictionary *info = [NSMutableDictionary dictionary];
+        [info setObject:path forKey:@"path"];
+//        [MFEvent dispatchEvent:monacaEventNCParseSuccess withInfo:info];
+        NSLog(@"%@",[NSLocalizedString(@"Load UI File", nil) stringByAppendingString:[MFUtility getWWWShortPath:path]]);
+    }
+    
+    // return ui dictionary
+    if (jsonString == nil) {
+        return [NSMutableDictionary dictionary];
+    } else {
+        CFDictionaryRef cfUiDict = CFPropertyListCreateDeepCopy(kCFAllocatorDefault,
+                                                                (__bridge CFPropertyListRef)(jsonString),
+                                                                kCFPropertyListMutableContainers);
+        NSMutableDictionary *uidict = [NSMutableDictionary dictionaryWithDictionary:(__bridge NSMutableDictionary *)cfUiDict];
+        CFRelease(cfUiDict);
+        return uidict;
+    }
+}
+
+// key : "value" => "key" : "value"
++ (NSString *)correctJSON:(NSString *)data
+{
+    NSRegularExpression *reg = [[NSRegularExpression alloc] initWithPattern:@"(^[^\"]*?(\"[^\"]*?\"[^\"]*?)*?[^\"\\w]+)\\s*(\\w+)\\s*:"
+                                                                    options:0
+                                                                      error:nil];
+    NSArray *results;
+    do {
+        results  = [reg matchesInString:data options:0 range:NSMakeRange(0, data.length)];
+        for (NSTextCheckingResult *result in results) {
+            NSRange range = [result rangeAtIndex:3];
+            NSString *str = [data substringWithRange:range];
+            data = [data stringByReplacingOccurrencesOfString:[data substringWithRange:range]
+                                                   withString:[NSString stringWithFormat:@"\"%@\"", str]
+                                                      options:0
+                                                        range:range];
+        }
+    } while ([results count] != 0);
+    return data;
+}
 
 + (NSDictionary *)parseJSON:(NSString *)json {
     return [json cdvjk_objectFromJSONString];
@@ -48,8 +112,8 @@ static NSString *base_url = @"https://api.monaca.mobi";
 
 + (NSDictionary *)getAppJSON
 {
-    NSString *base_path = [[[[MFUtility getAppDelegate] getBaseURL] path] stringByReplacingOccurrencesOfString:@"www" withString:@""];
-    NSURL *json_url = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@app.json", base_path]];
+    NSString *base_path = [[[self class] currentViewController].wwwFolderName stringByReplacingOccurrencesOfString:@"www" withString:@""];
+    NSURL *json_url = [NSURL fileURLWithPath:[base_path stringByAppendingPathComponent:@"app.json"]];
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:json_url];
     NSURLResponse *response = nil;
     NSError *error = nil;
@@ -59,12 +123,9 @@ static NSString *base_url = @"https://api.monaca.mobi";
     return [[self class] parseJSON:json];
 }
 
-+ (MFTabBarController *)currentTabBarController {
-    return (MFTabBarController *)((MFDelegate *)[UIApplication sharedApplication].delegate).viewController.tabBarController;
-}
 
 + (UIInterfaceOrientation)currentInterfaceOrientation {
-    MFDelegate *delegate = ((MFDelegate *)[UIApplication sharedApplication].delegate);
+    MFDelegate *delegate = [[self class] getAppDelegate];
     return [delegate currentInterfaceOrientation];
 }
 
@@ -85,30 +146,41 @@ static NSString *base_url = @"https://api.monaca.mobi";
     return NO;
 }
 
-/*
- * 4.3と5.1の互換性を保ちつつ、MonacaViewControllerをセットアップする
- */
-+ (void) setupMonacaViewController:(MFViewController *)monacaViewController{
-    if ([MFDevice iOSVersionMajor] < 5) {
-    }else{
-        BOOL forceStartupRotation = YES;
-        UIDeviceOrientation curDevOrientation = [[UIDevice currentDevice] orientation];
-        if (UIDeviceOrientationUnknown == curDevOrientation) {
-            curDevOrientation = (UIDeviceOrientation)[[UIApplication sharedApplication] statusBarOrientation];
-        }
-        if (UIDeviceOrientationIsValidInterfaceOrientation(curDevOrientation)) {
-            for (NSNumber *orient in monacaViewController.cdvViewController.supportedOrientations) {
-                if ([orient intValue] == curDevOrientation) {
-                    forceStartupRotation = NO;
-                    break;
-                }
-            }
-        }
-        if (forceStartupRotation) {
-            UIInterfaceOrientation newOrient = [[monacaViewController.cdvViewController.supportedOrientations objectAtIndex:0] intValue];
-            [[UIApplication sharedApplication] setStatusBarOrientation:newOrient];
-        }
++ (BOOL)isPhoneGapScheme:(NSURL *)url {
+    return ([[url scheme] isEqualToString:@"gap"]);
+}
+
++ (BOOL)isExternalPage:(NSURL *)url {
+    return ([[url scheme] isEqualToString:@"http"] ||
+            [[url scheme] isEqualToString:@"https"]);
+}
+
+// Returns YES if |url| has anchor parameter (http://example.com/index.html#aaa).
+// TODO(nhiroki): Should use fragment method in NSURL class.
++ (BOOL)hasAnchor:(NSURL *)url {
+    NSRange searchResult = [[url absoluteString] rangeOfString:@"#"];
+    return searchResult.location != NSNotFound;
+}
+
++ (NSURL *)standardizedURL:(NSURL *)url {
+    // Standardize relative path ("." and "..").
+    url = [url standardizedURL];
+    NSString *last = [url lastPathComponent];
+    
+    // Replace double thrash to single thrash ("//" => "/").
+    NSString *tmp = [url absoluteString];
+    NSString *str = [tmp stringByReplacingOccurrencesOfString:@"//" withString:@"/"];
+    while (![str isEqualToString:tmp]) {
+        tmp = str;
+        str = [tmp stringByReplacingOccurrencesOfString:@"//" withString:@"/"];
     }
+    
+    // Remove |index.html| ("/www/item/index.html" => "/www/item").
+    if ([last isEqualToString:@"index.html"]) {
+        str = [str substringToIndex:[str length] - [@"/index.html" length]];
+    }
+    
+    return [NSURL URLWithString:str];
 }
 
 /*
@@ -132,18 +204,37 @@ static NSString *base_url = @"https://api.monaca.mobi";
 
     html = [html stringByReplacingOccurrencesOfString:@"%%%urlPlaceHolder%%%" withString:[MFUtility getWWWShortPath:aPath]];
     [webView loadHTMLString:html baseURL:[NSURL fileURLWithPath:pathFor404]];
-    [[MFUtility currentTabBarController] applyUserInterface:nil];
+}
+
++ (NSURL *)getBaseURL
+{
+    NSString *basePath = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"www"];
+    return [NSURL fileURLWithPath:basePath];
+}
+
++ (NSDictionary *)getApplicationPlist
+{
+    return [[NSBundle mainBundle] infoDictionary];
 }
 
 /*
  *  convert path (ex 1234/xxxx/www/yyy.html -> www/yyy.html)
  */
-+ (NSString *)getWWWShortPath:(NSString *)path{
-    if (path == nil || [path rangeOfString:@"assets/"].location == NSNotFound) {
-        return @"";
-    } else {
++ (NSString *)getWWWShortPath:(NSString *)path
+{
+    if ([path rangeOfString:@"www"].location != NSNotFound) {
+        return [path substringFromIndex:[path rangeOfString:@"www"].location];
+    }
+    if ([path rangeOfString:@"assets"].location != NSNotFound) {
         return [path substringFromIndex:[path rangeOfString:@"assets/"].location + [@"assets/" length]];
     }
+    return path;
+}
+
+
++ (NSString *)getUIFileName:(NSString *)filename
+{
+    return [[filename stringByDeletingPathExtension] stringByAppendingFormat:@".ui"];
 }
 
 /*
@@ -209,6 +300,16 @@ static NSString *base_url = @"https://api.monaca.mobi";
 + (MFDelegate *)getAppDelegate
 {
     return ((MFDelegate *)[[UIApplication sharedApplication] delegate]);
+}
+
++ (MFViewController *)currentViewController
+{
+    id viewController = [self getAppDelegate].monacaNavigationController.topViewController;
+    if ([viewController isKindOfClass:MFTabBarController.class]) {
+        return (MFViewController *)[(MFNavigationController *)[(MFTabBarController *)viewController selectedViewController] topViewController];
+    } else {
+        return viewController;
+    }
 }
 
 + (NSMutableDictionary *)parseQuery:(NSURLRequest *)request

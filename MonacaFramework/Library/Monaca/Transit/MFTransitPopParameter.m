@@ -10,30 +10,45 @@
 
 @implementation MFTransitPopParameter
 
-- (id)init:(CATransition*)transition hasDefaultPopAnimation:(BOOL)hasDefaultPopAnimation
+@synthesize transition = transition_;
+@synthesize hasDefaultPopAnimation = hasDefaultPopAnimation_;
+@synthesize target = target_;
+
+- (id)init
 {
     self = [super init];
+
     if (self != nil) {
-        transition_ = transition;
-        hasDefaultPopAnimation_ = hasDefaultPopAnimation;
+
     }
-    
+
     return self;
 }
 
-- (CATransition *)transition
+#pragma mark - private method
+
+- (void)setTarget:(NSString *)target
 {
-    return transition_;
+    target_ = target;
 }
-- (BOOL)hasDefaultPopAnimation
+
+- (void)setTransition:(CATransition *)transition
 {
-    return hasDefaultPopAnimation_;
+    transition_ = transition;
 }
+
+- (void)setHasDefaultPopAnimation:(BOOL)hasDefaultPopAnimation
+{
+    hasDefaultPopAnimation_ = hasDefaultPopAnimation;
+}
+
+#pragma mark private method end -
 
 + (MFTransitPopParameter*)parseOptionsDict:(NSDictionary*)options
 {
     CATransition *transition = nil;
     BOOL hasDefaultPopAnimation = YES;
+    NSString *target = nil;
     
     // "animation" option parsing
     {
@@ -72,9 +87,27 @@
                 hasDefaultPopAnimation = NO;
             }
         }
-    
     }
 
-    return [MFTransitPopParameter.alloc init:transition hasDefaultPopAnimation:hasDefaultPopAnimation];
+    // "target" parameter parsing
+    {
+        id targetParam = [options objectForKey:@"target"];
+        if (targetParam != nil && [targetParam isKindOfClass:NSString.class]) {
+            if ([targetParam isEqualToString:@"_parent"] || [targetParam isEqualToString:@"_self"]) {
+                target = targetParam;
+            }
+        }
+        if (target == nil) {
+            NSLog(@"unkonwn target type: %@", targetParam);
+            target = @"_parent";
+        }
+    }
+
+    MFTransitPopParameter *parameter = [[MFTransitPopParameter alloc] init];
+    parameter.transition = transition;
+    parameter.hasDefaultPopAnimation = hasDefaultPopAnimation;
+    parameter.target = target;
+    
+    return parameter;
 }
 @end

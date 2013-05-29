@@ -8,7 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MFNavigationController : UINavigationController<UINavigationControllerDelegate>{
+@interface MFNavigationController : UINavigationController <UINavigationControllerDelegate,UINavigationBarDelegate>
+{
+    BOOL popFlag;
 }
+
+- (void)destroy;
 
 @end

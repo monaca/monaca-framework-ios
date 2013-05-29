@@ -1,3 +1,5 @@
+
+
 //
 //  NativeComponentsInternal.h
 //  MonacaFramework
@@ -6,24 +8,24 @@
 //  Copyright (c) 2011 ASIAL CORPORATION. All rights reserved.
 //
 
-#import "MFViewController.h"
-#import "MFTabBarController.h"
+#define kNCTrue  @"true"
+#define kNCFalse @"false"
+#define kNCUndefined @""
 
-#define kNCTrue         @"true"
-#define kNCFalse        @"false"
-#define kNCUndefined    @"undefined"
-#define kNCBlack        @"#000000"
-#define kNCWhite        @"#FFFFFF"
-#define kNCBlue         @"#0000FF"
-#define kNCArray        [NSArray array]
-#define kNCInt0         [NSNumber numberWithInt:0]
-#define kNCFloat1       [NSNumber numberWithFloat:1.0]
+#define kNCBlack @"#000000"
+#define kNCWhite @"#FFFFFF"
+#define kNCRed @"#FF0000"
+#define kNCBlue @"#0000FF"
 
-#define kNCPageStyle     @"style"
+#define kNCBarStyleBlack @"UIBarStyleBlack"
+#define kNCBarStyleBlackOpaque @"UIBarStyleBlackOpaque"
+#define kNCBarStyleBlackTranslucent @"UIBarStyleBlackTranslucent"
+#define kNCBarStyleDefault @"UIBarStyleDefault"
 
 #define kNCPositionTop    @"top"
 #define kNCPositionMiddle @"middle"
 #define kNCPositionBottom @"bottom"
+#define kNCPositionMenu   @"menu"
 
 #define kNCContainerPage     @"page"
 #define kNCContainerToolbar @"toolbar"
@@ -31,6 +33,7 @@
 
 #define kNCTypeStyle     @"style"
 #define kNCTypeIOSStyle  @"iosStyle"
+#define kNCTypeAndroidStyle  @"androidStyle"
 #define kNCTypeCenter    @"center"
 #define kNCTypeLeft      @"left"
 #define kNCTypeRight     @"right"
@@ -39,6 +42,7 @@
 #define kNCTypeID        @"id"
 #define kNCTypeItems     @"items"
 #define kNCTypeLink      @"link"
+
 #define kNCTypeRepeat    @"repeat"
 #define kNCTypeNoRepeat  @"no-repeat"
 #define kNCTypeContain   @"contain"
@@ -68,12 +72,12 @@
 #define kNCStyleBackgroundRepeat   @"backgroundRepeat"
 #define kNCStyleBackgroundPosition @"backgroundPosition"
 #define kNCStyleTextColor          @"textColor"
+#define kNCStyleActiveTextColor    @"activeTextColor"
 #define kNCStylePlaceholder        @"placeholder"
 #define kNCStyleValue              @"value"
 #define kNCStyleTitle              @"title"
 #define kNCStyleSubtitle           @"subtitle"
 #define kNCStyleTitleImage         @"titleImage"
-#define kNCStyleShadowOpacity      @"shadowOpacity"
 #define kNCStyleTitleColor         @"titleColor"
 #define kNCStyleSubtitleColor      @"subtitleColor"
 #define kNCStyleTitleFontScale     @"titleFontScale"
@@ -83,14 +87,14 @@
 #define kNCStyleActiveIndex        @"activeIndex"
 #define kNCStyleBadgeText          @"badgeText"
 #define kNCStyleFocus              @"focus"
-#define kNCStyleActiveTextColor    @"activeTextColor"
-#define kNCStyleForceVisibility    @"forceVisibility"
+#define kNCStyleWideBox            @"wideBox"
+#define kNCStyleShadowOpacity      @"shadowOpacity"
 
-#define kNCStyleBackgroundImageFilePath        @"backgroundImageFilePath"
-#define kNCStyleBackgroundSizeWidth        @"backgroundSizeWidth"
-#define kNCStyleBackgroundSizeHeight       @"backgroundSizeHeight"
-#define kNCStyleBackgroundPositionHorizontal  @"backgroundPositionHorizontal"
-#define kNCStyleBackgroundPositionVertical    @"backgroundPositionVertical"
+#define kNCStyleBackgroundImageFilePath         @"backgroundImageFilePath"
+#define kNCStyleBackgroundSizeWidth             @"backgroundSizeWidth"
+#define kNCStyleBackgroundSizeHeight            @"backgroundSizeHeight"
+#define kNCStyleBackgroundPositionHorizontal    @"backgroundPositionHorizontal"
+#define kNCStyleBackgroundPositionVertical      @"backgroundPositionVertical"
 
 #define kNCStyleIOSBarStyle     @"iosBarStyle"
 #define kNCStyleIOSButtonStyle  @"iosButtonStyle"

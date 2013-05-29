@@ -9,118 +9,60 @@
 #import "MFTabBarController.h"
 #import "MFUtility.h"
 #import "MFEvent.h"
+#import "MFViewBuilder.h"
 
 @implementation MFTabBarController
 
-@synthesize centerContainer = centerContainer_;
-@synthesize leftContainers = leftContainers_;
-@synthesize rightContainers = rightContainers_;
-@synthesize leftBottomToolbarContainers = leftBottomToolbarContainers_;
-@synthesize centerBottomToolbarContainers = centerBottomToolbarContainers_;
-@synthesize rightBottomToolbarContainers = rightBottomToolbarContainers_;
-
-@synthesize viewDict = viewDict_;
-@synthesize ncManager = ncManager_;
-@synthesize activeIndex = activeIndex_;
-@synthesize isInitialized = isInitialized_;
+@synthesize ncManager = _ncManager;
 
 // iOS4 の場合、このメソッドは MonacaViewController の viewDidApper メソッドから呼ばれる
 - (void)viewWillAppear:(BOOL)animated {
+    [self.navigationController setNavigationBarHidden:YES];
     [super viewWillAppear:animated];
-    [self setSelectedIndex:self.activeIndex];
 }
 
 // iOS4 の場合、このメソッドは MonacaViewController の viewDidApper メソッドから呼ばれる
 - (void)viewDidAppear:(BOOL)animated {
-    MFDelegate *delegate = (MFDelegate *)[UIApplication sharedApplication].delegate;
-    if ([self.viewControllers count] > 0) {
-        [delegate.viewController.cdvViewController.webView removeFromSuperview];
-        UIView *view = ((UIViewController *)[self.viewControllers objectAtIndex:self.activeIndex]).view;
-        [view addSubview:delegate.viewController.cdvViewController.webView];
-    }
+    [super viewDidAppear:animated];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+}
+
++ (NSDictionary *)defaultStyles
+{
+    NSMutableDictionary *defaultStyle = [[NSMutableDictionary alloc] init];
+    [defaultStyle setValue:kNCTrue forKey:kNCStyleVisibility];
+    [defaultStyle setValue:kNCBlack forKey:kNCStyleBackgroundColor];
+    [defaultStyle setValue:[NSNumber numberWithInt:0] forKey:kNCStyleActiveIndex];
+    
+    return defaultStyle;
 }
 
 - (id)init {
     self = [super init];
     if (nil != self) {
-        self.viewDict = [NSMutableDictionary dictionary];
         self.ncManager = [[NCManager alloc] init];
-        isLocked = YES;
-        isInitialized_ = NO;
-
-        NSNotificationCenter* center = [NSNotificationCenter defaultCenter];
-        [center addObserver:self selector:@selector(onWillLoadUIFile:) name:monacaEventWillLoadUIFile object:nil];
-        [center addObserver:self selector:@selector(onDidLoadUIFile:) name:monacaEventDidLoadUIFile object:nil];
-        [center addObserver:self selector:@selector(onReloadPage:) name:monacaEventReloadPage object:nil];
+        _ncStyle = [[self.class defaultStyles] mutableCopy];
     }
     return self;
 }
 
+- (void)destroy
+{
+    for (MFViewController *view in self.viewControllers) {
+        [view destroy];
+    }
+}
+
 - (void)dealloc {
-    self.centerContainer = nil;
-    self.leftContainers = nil;
-    self.rightContainers = nil;
-    self.leftBottomToolbarContainers = nil;
-    self.centerBottomToolbarContainers = nil;
-    self.rightBottomToolbarContainers = nil;
-    
-    self.viewDict = nil;
-    
     self.ncManager = nil;
 }
 
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)orientation {
     return [MFUtility getAllowOrientationFromPlist:orientation];
-}
-
-- (NSMutableArray *)createContainers:(NSArray *)components position:(NSString *)aPosition {
-    NSMutableArray *containers = [NSMutableArray array];
-    for (id component in components) {
-        NCContainer *container = [NCContainer container:component position:aPosition];
-        [containers addObject:container];
-        
-        // Store a reference to the object representing the native component.
-        [self.ncManager setComponent:container forID:container.cid];
-    }
-    return containers;
-}
-
-- (void)applyUserInterface:(NSDictionary *)uidict
-{
-    id item;
-    
-    // Clear all component IDs.
-    [self.ncManager.components removeAllObjects];
-    [self.viewDict removeAllObjects];
-    
-    [self.ncManager.properties removeAllObjects];
-    [self.ncManager.properties addEntriesFromDictionary:uidict];
-    
-    item = [uidict objectForKey:kNCPositionTop];
-    if (nil != item) {
-        if ([[item objectForKey:kNCTypeContainer] isEqualToString:kNCContainerToolbar]) {
-            [self apply:item];
-        }
-        [self.navigationController setNavigationBarHidden:NO animated:NO];
-    } else {
-        [self.navigationController setNavigationBarHidden:YES animated:NO];
-    }
-    
-    item = [uidict objectForKey:kNCPositionBottom];
-    if (nil != item) {
-        NSString *containerType = [item objectForKey:kNCTypeContainer];
-        if ([containerType isEqualToString:kNCContainerToolbar]) {
-            [self applyBottomToolbar:item];
-            [self hideTabbar];
-        } else if ([containerType isEqualToString:kNCContainerTabbar]) {
-            [self applyBottomTabbar:item];
-        }
-    } else {
-        // Hides a bottom toolbar and a tabbar.
-        [self hideTabbar];
-        [self.navigationController setToolbarHidden:YES animated:NO];
-        [self setToolbarItems:nil];
-    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -129,7 +71,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self restoreUserInterface];
 }
 
 - (void)viewDidUnload {
@@ -140,21 +81,96 @@
     [super loadView];
 }
 
-- (void)restoreUserInterface
+#pragma mark - UITabBarDeledate
+
+/*
+    現時点ではmoreNavigationControllerの編集は不可としているため呼び出されないが、
+    編集を許可した場合にはbackButtonの表示問題を解決しなければならない。
+*/
+- (void)tabBar:(UITabBar *)tabBar didEndCustomizingItems:(NSArray *)items changed:(BOOL)changed
 {
-    [self applyUserInterface:[self.ncManager.properties copy]];
+    if (!changed) {
+        return;
+    }
+    // moreViewControllerで呼び出されるviewControllerは全てRootViewControllerに戻す.
+    for (MFNavigationController *viewController in self.viewControllers) {
+        BOOL exist = NO;
+        for (UITabBarItem *item in items) {
+            if (viewController.tabBarItem == item) {
+                exist = YES;
+                break;
+            }
+        }
+        if (!exist) {
+            [viewController popToRootViewControllerAnimated:NO];
+        }
+    }
 }
 
-#pragma mark - EventListener
-
-- (void)onWillLoadUIFile:(NSNotificationCenter *)center {
-    isLocked = YES;
+- (void)setUserInterface:(NSDictionary *)uidict
+{
+    for (id key in uidict) { 
+        if ([_ncStyle objectForKey:key] == nil)
+            continue;
+        [_ncStyle setValue:[uidict valueForKey:key] forKey:key];
+    }
 }
 
-- (void)onDidLoadUIFile:(NSNotificationCenter *)center {
-    isLocked = NO;
+- (void)applyUserInterface
+{
+    for (id key in [_ncStyle copy]) {
+        [self updateUIStyle:[_ncStyle objectForKey:key] forKey:key];
+    }
 }
-- (void)onReloadPage:(NSNotificationCenter *)center {
-    isInitialized_ = NO;
+
+#pragma mark - UIStyleProtocol
+
+- (void)updateUIStyle:(id)value forKey:(NSString *)key
+{
+    if ([_ncStyle objectForKey:key] == nil) {
+        // 例外処理
+        return;
+    }
+    if (value == [NSNull null]) {
+        value = nil;
+    }
+    if ([NSStringFromClass([value class]) isEqualToString:@"__NSCFBoolean"]) {
+        if (isFalse(value)) {
+            value = kNCFalse;
+        } else {
+            value = kNCTrue;
+        }
+    }
+
+    // TODO: Implement hideTabbar
+    if ([key isEqualToString:kNCStyleBackgroundColor]) {
+        [self.tabBar setTintColor:hexToUIColor(removeSharpPrefix(value), 1)];
+    }
+    if ([key isEqualToString:kNCStyleActiveIndex]) {
+        NSInteger index = [value intValue];
+        if (index < 0 || index >= [self.viewControllers count]) {
+            index = 0;
+        }
+        [self setSelectedIndex:index];
+    }
+
+    if (value == [NSNull null]) {
+        value = kNCUndefined; 
+    }
+    [_ncStyle setValue:value forKey:key];
 }
+
+- (id)retrieveUIStyle:(NSString *)key
+{
+    if ([_ncStyle objectForKey:key] == nil) {
+        // 例外処理
+        return nil;
+    }
+
+    // activeIndexについてはselectedIndexから取得する．
+    [_ncStyle setValue:[NSNumber numberWithInt:[self selectedIndex]] forKey:kNCStyleActiveIndex];
+
+    return [_ncStyle objectForKey:key];
+}
+
 @end

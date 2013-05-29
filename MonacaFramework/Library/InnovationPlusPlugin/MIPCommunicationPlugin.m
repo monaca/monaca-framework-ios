@@ -223,8 +223,7 @@ const int ERROR_applicationIdNotDefined = -80;
 // === Plugin Info Get Method ==========================================================================
 -(NSString*)getApplicationId
 {
-    MFDelegate *mfDelegate = (MFDelegate *)[UIApplication sharedApplication].delegate;
-    return [[mfDelegate getApplicationPlist] objectForKey:@"application_id"];
+    return [[MFUtility getApplicationPlist] objectForKey:@"application_id"];
 }
 
 -(NSString*)getAuthKey
