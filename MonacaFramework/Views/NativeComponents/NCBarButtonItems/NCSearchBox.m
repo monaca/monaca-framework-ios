@@ -76,8 +76,19 @@
             [_searchBar becomeFirstResponder];
         }
     }
+    if ([key isEqualToString:kNCStyleValue]) {
+        [_searchBar setText:value];
+    }
 
     [_ncStyle updateStyle:value forKey:key];
+}
+
+- (id)retrieveUIStyle:(NSString *)key
+{
+    // valueについてはsearchBarから取得する．
+    [_ncStyle updateStyle:[_searchBar text] forKey:kNCStyleValue];
+    
+    return [_ncStyle retrieveStyle:key];
 }
 
 @end

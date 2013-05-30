@@ -74,6 +74,7 @@
         [defaultStyle setValue:kNCBlack forKey:kNCStyleTextColor];
         [defaultStyle setValue:kNCUndefined forKey:kNCStylePlaceholder];
         [defaultStyle setValue:kNCFalse forKey:kNCStyleFocus];
+        [defaultStyle setValue:kNCUndefined forKey:kNCStyleValue];
     }
     if ([component isEqualToString:kNCComponentSegment]) {
         [defaultStyle setValue:kNCTrue forKey:kNCStyleVisibility];
