@@ -75,7 +75,7 @@ static const CGFloat kSizeOfPortraitTitleFont     = 19.0f;
         [_title setCenter:CGPointMake(self.frame.size.width/2.0f, self.frame.size.height/2.0f)];
         [_subtitle setHidden:YES];
     } else {
-        if (![[self retrieveUIStyle:kNCStyleSubtitle] isEqual:TitleUndefined]) {
+        if (![[self retrieveUIStyle:kNCStyleSubtitle] isEqual:kNCUndefined]) {
             _title.font = [UIFont boldSystemFontOfSize:kSizeOfTitleFont * [[self retrieveUIStyle:kNCStyleTitleFontScale] floatValue]];
             _subtitle.font = [UIFont systemFontOfSize:kSizeOfSubtitleFont * [[self retrieveUIStyle:kNCStyleSubtitleFontScale] floatValue]];
             _title.frame = [_title resizedFrameWithPoint:CGPointMake(0, 0)];
@@ -104,15 +104,17 @@ static const CGFloat kSizeOfPortraitTitleFont     = 19.0f;
     
     if ([key isEqualToString:kNCStyleTitle]) {
         if ([value isEqualToString:kNCUndefined]) {
-            value = TitleUndefined;
+            [_title setText:@" "];
+        } else {
+            [_title setText:value];
         }
-        [_title setText:value];
     }
     if ([key isEqualToString:kNCStyleSubtitle]) {
         if ([value isEqualToString:kNCUndefined]) {
-            value = TitleUndefined;
+            [_subtitle setText:@" "];
+        } else {
+            [_subtitle setText:value];
         }
-        [_subtitle setText:value];
     }
     if ([key isEqualToString:kNCStyleTitleColor]) {
         [_title setTextColor:hexToUIColor(removeSharpPrefix(value), 1)];

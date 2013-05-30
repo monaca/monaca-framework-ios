@@ -22,7 +22,7 @@
     if (self) {
         _viewController = viewController;
         _navigationBar = viewController.navigationController.navigationBar;
-        _centerViewToolbar = [[UIToolbar alloc] init];
+        _centerView = nil;
         _titleView = [[NCTitleView alloc] init];
         _ncStyle = [[NCStyle alloc] initWithComponent:kNCContainerToolbar];
     }
@@ -146,18 +146,23 @@
     }
     [visiableContainers addObject:spacer];
 
-    if (![[_titleView retrieveUIStyle:kNCStyleTitle] isEqualToString:TitleUndefined]) {
+    if ([visiableContainers count] > 2) {
+        // TODO: allow few containers
+        _centerView = [[visiableContainers objectAtIndex:1] view];
+    }
+    
+    _viewController.navigationItem.titleView = _titleView;
+}
+
+- (void)applyTitleViewVisibility
+{
+    if ([[_titleView retrieveUIStyle:kNCStyleTitle] isEqualToString:kNCUndefined] &&
+        [[_titleView retrieveUIStyle:kNCStyleSubtitle] isEqualToString:kNCUndefined]) {
+        _viewController.navigationItem.titleView = nil;
+        _viewController.navigationItem.titleView = _centerView;
+    } else {
         _viewController.navigationItem.titleView = nil;
         _viewController.navigationItem.titleView = _titleView;
-    } else {
-        if ([visiableContainers count] > 2) {
-            [_centerViewToolbar setItems:visiableContainers];
-            // TODO: allow few containers
-            _viewController.navigationItem.titleView = nil;
-            _viewController.navigationItem.titleView = [[visiableContainers objectAtIndex:1] view];
-        } else {
-            _viewController.navigationItem.titleView = nil;
-        }
     }
 }
 
@@ -190,11 +195,13 @@
     }
     if ([key isEqualToString:kNCStyleBackgroundColor]) {
         [_navigationBar setTintColor:hexToUIColor(removeSharpPrefix(value), 1)];
-        [_centerViewToolbar setTintColor:hexToUIColor(removeSharpPrefix(value), 1)];
     }
 
     // title,subtitleに関してはNCTitleViewに委譲
     [_titleView updateUIStyle:value forKey:key];
+    if ([key isEqualToString:kNCStyleTitle] || [key isEqualToString:kNCStyleSubtitle]) {
+        [self applyTitleViewVisibility];
+    }
     
     if ([key isEqualToString:kNCStyleIOSBarStyle]) {
         UIBarStyle style = UIBarStyleDefault;
