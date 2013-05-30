@@ -165,6 +165,12 @@
     }
 }
 
+- (void)removeUserInterface
+{
+    _ncStyle = [[self.class defaultStyles] mutableCopy];
+    [self.ncManager removeAllComponents];
+}
+
 #pragma mark - UIStyleProtocol
 
 - (void)setUserInterface:(NSDictionary *)uidict

@@ -40,4 +40,10 @@
     [_components setValue:component forKey:cid];
 }
 
+- (void)removeAllComponents
+{
+    [_components removeAllObjects];
+    [_noIDComponents removeAllObjects];
+}
+
 @end
