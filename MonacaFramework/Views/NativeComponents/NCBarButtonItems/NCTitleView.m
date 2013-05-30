@@ -19,8 +19,6 @@ static const CGFloat kSizeOfSubtitleFont          = 11.0f;
 static const CGFloat kSizeOfLandscapeTitleFont    = 18.0f;
 static const CGFloat kSizeOfPortraitTitleFont     = 19.0f;
 
-#define TitleUndefined @" "
-
 - (id)init {
     self = [super init];
     
