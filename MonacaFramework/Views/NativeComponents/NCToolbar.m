@@ -35,6 +35,10 @@
     NSArray *topLeft = [uidict objectForKey:kNCTypeLeft];
     NSArray *topCenter = [uidict objectForKey:kNCTypeCenter];
 
+    NSMutableDictionary *style = [NSMutableDictionary dictionary];
+    [style addEntriesFromDictionary:[uidict objectForKey:kNCTypeStyle]];
+    [style addEntriesFromDictionary:[uidict objectForKey:kNCTypeIOSStyle]];
+    
     if (uidict != nil) {
         [_viewController.navigationController setToolbarHidden:NO];
     }

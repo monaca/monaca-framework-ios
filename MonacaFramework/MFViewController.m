@@ -129,7 +129,9 @@
 {
     NSDictionary *top = [uidict objectForKey:kNCPositionTop];
     NSDictionary *bottom = [uidict objectForKey:kNCPositionBottom];
-    NSDictionary *style = [uidict objectForKey:kNCTypeStyle];
+    NSMutableDictionary *style = [NSMutableDictionary dictionary];
+    [style addEntriesFromDictionary:[uidict objectForKey:kNCTypeStyle]];
+    [style addEntriesFromDictionary:[uidict objectForKey:kNCTypeIOSStyle]];
 
     if (top != nil) {
         _navigationBar = [[NCNavigationBar alloc] initWithViewController:self];
