@@ -13,7 +13,7 @@
     UILabel *_title;
     UILabel *_subtitle;
     UIImageView *_titleImageView;
-    NSMutableDictionary *_ncStyle;
+    NCStyle *_ncStyle;
 }
 
 @end

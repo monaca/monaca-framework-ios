@@ -10,14 +10,15 @@
 
 @interface NCStyle : NSObject
 {
-    NSDictionary *_defaultStyle;
-    NSMutableDictionary *_style;
+    NSDictionary *_defaultStyles;
+    NSMutableDictionary *_styles;
     NSString *_component;
 }
 
 - (id)initWithComponent:(NSString *)component;
+- (void)resetStyles;
 - (void)setStyles:(NSDictionary *)styles;
-- (NSDictionary *)getStyles;
+- (NSDictionary *)styles;
 - (void)updateStyle:(id)value forKey:(NSString *)key;
 - (id)retrieveStyle:(NSString *)key;
 - (BOOL)checkStyle:(id)value forKey:(id)key;

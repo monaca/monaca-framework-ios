@@ -16,6 +16,14 @@
 {
     NSMutableDictionary *defaultStyle = [[NSMutableDictionary alloc] init];
 
+    if ([component isEqualToString:kNCContainerPage]) {
+        [defaultStyle setValue:kNCWhite forKey:kNCStyleBackgroundColor];
+        [defaultStyle setValue:kNCUndefined forKey:kNCStyleBackgroundImage];
+        [defaultStyle setValue:kNCTypeAuto forKey:kNCStyleBackgroundSize];
+        [defaultStyle setValue:kNCTypeNoRepeat forKey:kNCStyleBackgroundRepeat];
+        [defaultStyle setValue:@[kNCTypeCenter, kNCTypeCenter] forKey:kNCStyleBackgroundPosition];
+        [defaultStyle setValue:kNCTypeInherit forKey:kNCStyleSupportedOrientation];
+    }
     if ([component isEqualToString:kNCContainerToolbar]) {
         [defaultStyle setValue:kNCTrue forKey:kNCStyleVisibility];
         [defaultStyle setValue:kNCFalse forKey:kNCStyleDisable];
@@ -92,29 +100,33 @@
     
     if (self) {
         _component = component;
-        _defaultStyle = [self.class defaultStyleForComponent:_component];
-        _style = [_defaultStyle mutableCopy];
-        
+        _defaultStyles = [self.class defaultStyleForComponent:_component];
+        _styles = [_defaultStyles mutableCopy];    
     }
     
     return self;
 }
 
+- (void)resetStyles
+{
+    _styles = [_defaultStyles mutableCopy];
+}
+
 - (void)setStyles:(NSDictionary *)styles
 {
     for (id styleKey in styles) {
-        if ([_defaultStyle objectForKey:styleKey] == nil)
+        if ([_defaultStyles objectForKey:styleKey] == nil)
             continue;
         if (![self checkStyle:[styles objectForKey:styleKey] forKey:styleKey]) {
             continue;
         }
-        [_style setValue:[styles valueForKey:styleKey] forKey:styleKey];
+        [_styles setValue:[styles valueForKey:styleKey] forKey:styleKey];
     }
 }
 
-- (NSDictionary *)getStyles
+- (NSDictionary *)styles
 {
-    return _style;
+    return [_styles copy];
 }
 
 - (void)updateStyle:(id)value forKey:(NSString *)key
@@ -122,22 +134,22 @@
     if (value == [NSNull null]) {
         value = kNCUndefined;
     }
-    [_style setValue:value forKey:key];
+    [_styles setValue:value forKey:key];
 }
 
 - (id)retrieveStyle:(NSString *)key
 {
-    if ([_style objectForKey:key] == nil) {
+    if ([_styles objectForKey:key] == nil) {
         // 例外処理
         return nil;
     }
     
-    return [_style objectForKey:key];
+    return [_styles objectForKey:key];
 }
 
 - (BOOL)checkStyle:(id)value forKey:(id)key
 {
-    if ([_style objectForKey:key] == nil) {
+    if ([_styles objectForKey:key] == nil) {
         // 例外処理
         return NO;
     }
@@ -152,13 +164,13 @@
             value = kNCTrue;
         }
     }
-    if (![[MFUIChecker valueType:value] isEqualToString:[MFUIChecker valueType:[_defaultStyle valueForKey:key]]]) {
+    if (![[MFUIChecker valueType:value] isEqualToString:[MFUIChecker valueType:[_defaultStyles valueForKey:key]]]) {
         if ([[MFUIChecker valueType:value] isEqualToString:@"Integer"] &&
-            [[MFUIChecker valueType:[_defaultStyle valueForKey:key]] isEqualToString:@"Float"]) {
+            [[MFUIChecker valueType:[_defaultStyles valueForKey:key]] isEqualToString:@"Float"]) {
             return YES;
         }
         NSLog(NSLocalizedString(@"Invalid value type", nil), _component , key,
-              [MFUIChecker valueType:[_defaultStyle objectForKey:key]], value);
+              [MFUIChecker valueType:[_defaultStyles objectForKey:key]], value);
         return NO;
     }
     return YES;

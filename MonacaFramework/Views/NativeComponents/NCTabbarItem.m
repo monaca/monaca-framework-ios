@@ -12,15 +12,6 @@
 
 @implementation NCTabbarItem
 
-+ (NSDictionary *)defaultStyles
-{
-    NSMutableDictionary *defaultStyle = [[NSMutableDictionary alloc] init];
-    [defaultStyle setValue:kNCUndefined forKey:kNCStyleText];
-    [defaultStyle setValue:kNCUndefined forKey:kNCStyleImage];
-    [defaultStyle setValue:kNCUndefined forKey:kNCStyleBadgeText];
-    return defaultStyle;
-}
-
 - (id)init
 {
     self = [super init];
@@ -41,8 +32,8 @@
 
 - (void)applyUserInterface
 {
-    for (id key in [[_ncStyle getStyles] copy]) {
-        [self updateUIStyle:[[_ncStyle getStyles] objectForKey:key] forKey:key];
+    for (id key in [_ncStyle styles]) {
+        [self updateUIStyle:[[_ncStyle styles] objectForKey:key] forKey:key];
     }
 }
 

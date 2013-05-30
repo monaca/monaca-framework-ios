@@ -21,7 +21,7 @@
     id<UIStyleProtocol> _navigationBar;
     id<UIStyleProtocol> _toolbar;
     NCContainer *_backButton;
-    NSMutableDictionary *_ncStyle;
+    NCStyle *_ncStyle;
 }
 
 - (void)applyBarUserInterface;

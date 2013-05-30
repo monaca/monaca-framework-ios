@@ -106,8 +106,8 @@
 
 - (void)applyUserInterface
 {
-    for (id key in [[_ncStyle getStyles] copy]) {
-        [self updateUIStyle:[[_ncStyle getStyles] objectForKey:key] forKey:key];
+    for (id key in [_ncStyle styles]) {
+        [self updateUIStyle:[[_ncStyle styles] objectForKey:key] forKey:key];
     }
 }
 
