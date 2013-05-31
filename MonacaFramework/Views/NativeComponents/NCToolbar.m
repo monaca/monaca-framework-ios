@@ -105,6 +105,15 @@
     [_viewController setToolbarItems:visiableContainers];
 }
 
+- (void)setOpacity:(float)value
+{
+    [[[_toolbar subviews] objectAtIndex:0] setAlpha:value];
+    if ([MFDevice iOSVersionMajor] >= 6) {
+        // iOS6以降では枠が別に用意されている．
+        [[[_toolbar subviews] objectAtIndex:1] setAlpha:value];
+    }
+}
+
 #pragma mark - UIStyleProtocol
 
 - (void)setUserInterface:(NSDictionary *)uidict
@@ -135,7 +144,14 @@
     if ([key isEqualToString:kNCStyleBackgroundColor]) {
         [_toolbar setTintColor:hexToUIColor(removeSharpPrefix(value), 1)];
     }
-
+    if ([key isEqualToString:kNCStyleOpacity]) {
+        [self setOpacity:[value floatValue]];
+        if (_toolbar.barStyle != UIBarStyleBlackTranslucent && [value floatValue] == 1.0) {
+            [_toolbar setTranslucent:NO];
+        } else {
+            [_toolbar setTranslucent:YES];
+        }
+    }
     if ([key isEqualToString:kNCStyleIOSBarStyle]) {
         UIBarStyle style = UIBarStyleDefault;
         if ([value isEqualToString:kNCBarStyleBlack]) {

@@ -196,7 +196,14 @@
     if ([key isEqualToString:kNCStyleBackgroundColor]) {
         [_navigationBar setTintColor:hexToUIColor(removeSharpPrefix(value), 1)];
     }
-
+    if ([key isEqualToString:kNCStyleOpacity]) {
+        [[[_navigationBar subviews] objectAtIndex:0] setAlpha:[value floatValue]];
+        if (_navigationBar.barStyle != UIBarStyleBlackTranslucent && [value floatValue] == 1.0) {
+            [_navigationBar setTranslucent:NO];
+        } else {
+            [_navigationBar setTranslucent:YES];
+        }
+    }
     // title,subtitleに関してはNCTitleViewに委譲
     [_titleView updateUIStyle:value forKey:key];
     if ([key isEqualToString:kNCStyleTitle] || [key isEqualToString:kNCStyleSubtitle]) {

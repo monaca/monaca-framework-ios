@@ -28,6 +28,7 @@
         [defaultStyle setValue:kNCTrue forKey:kNCStyleVisibility];
         [defaultStyle setValue:kNCFalse forKey:kNCStyleDisable];
         [defaultStyle setValue:kNCBlack forKey:kNCStyleBackgroundColor];
+        [defaultStyle setValue:[NSNumber numberWithFloat:1.0] forKey:kNCStyleOpacity];
         [defaultStyle setValue:kNCUndefined forKey:kNCStyleTitle];
         [defaultStyle setValue:kNCUndefined forKey:kNCStyleSubtitle];
         [defaultStyle setValue:kNCWhite forKey:kNCStyleTitleColor];
