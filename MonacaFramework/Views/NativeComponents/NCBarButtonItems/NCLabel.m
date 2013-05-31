@@ -11,16 +11,6 @@
 
 @implementation NCLabel
 
-+ (NSDictionary *)defaultStyles
-{
-    NSMutableDictionary *defaultStyle = [[NSMutableDictionary alloc] init];
-    [defaultStyle setValue:kNCTrue forKey:kNCStyleVisibility];
-    [defaultStyle setValue:[NSNumber numberWithFloat:1.0] forKey:kNCStyleOpacity];
-    [defaultStyle setValue:kNCWhite forKey:kNCStyleTextColor];
-    [defaultStyle setValue:kNCUndefined forKey:kNCStyleText];
-    return defaultStyle;
-}
-
 - (id)init {
     self = [super init];
     
@@ -28,7 +18,7 @@
         _label = [[UILabel alloc] init];
         [_label setBackgroundColor:[UIColor clearColor]];
         self.customView = _label;
-        _ncStyle = [[self.class defaultStyles] mutableCopy];
+        _ncStyle = [[NCStyle alloc] initWithComponent:kNCComponentLabel];
     }
     
     return self;
@@ -38,21 +28,10 @@
 
 - (void)updateUIStyle:(id)value forKey:(NSString *)key
 {
-    if ([_ncStyle objectForKey:key] == nil) {
-        // 例外処理
+    if (![_ncStyle checkStyle:value forKey:key]) {
         return;
     }
-    if (value == [NSNull null]) {
-        value = nil;
-    }
-    if ([NSStringFromClass([value class]) isEqualToString:@"__NSCFBoolean"]) {
-        if (isFalse(value)) {
-            value = kNCFalse;
-        } else {
-            value = kNCTrue;
-        }
-    }
-    
+
     if ([key isEqualToString:kNCStyleVisibility]) {
         _hidden = isFalse(value);
         [_toolbar applyVisibility];
@@ -69,10 +48,7 @@
         [_label sizeToFit];
     }
     
-    if (value == [NSNull null]) {
-        value = kNCUndefined;
-    }
-    [_ncStyle setValue:value forKey:key];
+    [_ncStyle updateStyle:value forKey:key];
 }
 
 @end

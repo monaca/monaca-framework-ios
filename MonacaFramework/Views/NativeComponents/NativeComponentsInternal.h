@@ -49,6 +49,11 @@
 #define kNCTypeAuto      @"auto"
 #define kNCTypeCover     @"cover"
 
+#define kNCTypeInherit      @"inherit"
+#define kNCTypeLandscape    @"landscape"
+#define kNCTypePortrait     @"portrait"
+#define kNCTypeAutoRotate   @"auto-rotate"
+
 #define kNCEventTypeTap     @"onTap"
 #define kNCEventTypeChange  @"onChange"
 #define kNCEventTypeSearch  @"onSearch"
@@ -89,6 +94,7 @@
 #define kNCStyleFocus              @"focus"
 #define kNCStyleWideBox            @"wideBox"
 #define kNCStyleShadowOpacity      @"shadowOpacity"
+#define kNCStyleSupportedOrientation @"supportedOrientation"
 
 #define kNCStyleBackgroundImageFilePath         @"backgroundImageFilePath"
 #define kNCStyleBackgroundSizeWidth             @"backgroundSizeWidth"

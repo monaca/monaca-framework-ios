@@ -30,7 +30,7 @@
     }
     
     NSURL *url;
-    if ([NSURL fileURLWithPath:[self.commandDelegate pathForResource:path]]) {
+    if ([self.commandDelegate pathForResource:path]) {
         url = [NSURL fileURLWithPath:[self.commandDelegate pathForResource:path]];
         if ([query.class isSubclassOfClass:[NSString class]]) {
             url = [NSURL URLWithString:[url.absoluteString stringByAppendingFormat:@"?%@", query]];
@@ -46,14 +46,11 @@
 }
 
 - (NSString *)getRelativePathTo:(NSString *)filePath{
-    NSString *currentDirectory = [[MFUtility currentViewController].webView.request.URL URLByDeletingLastPathComponent].filePathURL.path;
-    NSString *urlString = [currentDirectory stringByAppendingPathComponent:filePath];
-    if (urlString == nil)
-        return filePath;
-    NSURL *url = [NSURL fileURLWithPath:urlString];
-    urlString = [url standardizedURL].path;
-    NSString *path = [MFUtility getWWWShortPath:urlString];
-    return [path substringFromIndex:[path rangeOfString:@"www"].location + [@"www" length]];
+    if ([self.commandDelegate pathForResource:filePath]) {
+        NSString *path = [MFUtility getWWWShortPath:[self.commandDelegate pathForResource:filePath]];
+        return [path substringFromIndex:[path rangeOfString:@"www"].location + [@"www" length]];
+    }
+    return filePath;
 }
 
 - (void)pushGenerically:(NSMutableArray *)arguments withDict:(NSMutableDictionary *)options
@@ -212,10 +209,10 @@
 
 - (void)link:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options
 {
-    NSString *urlString = [self getRelativePathTo:[arguments objectAtIndex:1]];
+    NSString *urlString = [arguments objectAtIndex:1];
     NSString *query = [self getQueryFromPluginArguments:arguments urlString:urlString];
     NSString *urlStringWithoutQuery = [[urlString componentsSeparatedByString:@"?"] objectAtIndex:0];
-    
+
     [[MFUtility currentViewController].webView loadRequest:[self createRequest:urlStringWithoutQuery withQuery:query]];
 }
 

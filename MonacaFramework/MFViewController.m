@@ -27,25 +27,6 @@
 @synthesize uiDict = _uiDict;
 @synthesize backButton = _backButton;
 
-+ (NSDictionary *)defaultStyles
-{
-    NSMutableDictionary *defaultStyle = [[NSMutableDictionary alloc] init];
-    [defaultStyle setValue:kNCTrue forKey:kNCStyleVisibility];
-    [defaultStyle setValue:kNCFalse forKey:kNCStyleDisable];
-    [defaultStyle setValue:kNCBlack forKey:kNCStyleBackgroundColor];
-    [defaultStyle setValue:kNCUndefined forKey:kNCStyleTitle];
-    [defaultStyle setValue:kNCUndefined forKey:kNCStyleSubtitle];
-    [defaultStyle setValue:kNCWhite forKey:kNCStyleTitleColor];
-    [defaultStyle setValue:kNCWhite forKey:kNCStyleSubtitleColor];
-    [defaultStyle setValue:[NSNumber numberWithFloat:1.0]  forKey:kNCStyleTitleFontScale];
-    [defaultStyle setValue:[NSNumber numberWithFloat:1.0]  forKey:kNCStyleSubtitleFontScale];
-    [defaultStyle setValue:kNCBarStyleDefault forKey:kNCStyleIOSBarStyle];
-    [defaultStyle setValue:kNCUndefined forKey:kNCStyleTitleImage];
-    [defaultStyle setValue:[NSNumber numberWithFloat:0.3] forKey:kNCStyleShadowOpacity];
-    
-    return defaultStyle;
-}
-
 - (id)initWithFileName:(NSString *)fileName
 {
     self = [super init];
@@ -53,7 +34,7 @@
     if (self) {
         self.startPage = [self removeFragment:fileName];
         self.ncManager = [[NCManager alloc] init];
-        _ncStyle = [[self.class defaultStyles] mutableCopy];
+        _ncStyle = [[NCStyle alloc] initWithComponent:kNCContainerPage];
         self.wantsFullScreenLayout = NO;
     }
     return self;
@@ -68,6 +49,8 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    
+    [self applyBarUserInterface];
     [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
 }
 
@@ -75,7 +58,6 @@
 {
     [super viewWillAppear:animated];
     
-    [self applyBarUserInterface];
     self.webView.delegate = self;
 }
 
@@ -86,6 +68,8 @@
     [self setBarUserInterface:self.uiDict];
 
     [self applyUserInterface];
+    
+
     
     // whether auto link for datatype
     [self processDataTypes];
@@ -145,7 +129,9 @@
 {
     NSDictionary *top = [uidict objectForKey:kNCPositionTop];
     NSDictionary *bottom = [uidict objectForKey:kNCPositionBottom];
-    NSDictionary *style = [uidict objectForKey:kNCTypeStyle];
+    NSMutableDictionary *style = [NSMutableDictionary dictionary];
+    [style addEntriesFromDictionary:[uidict objectForKey:kNCTypeStyle]];
+    [style addEntriesFromDictionary:[uidict objectForKey:kNCTypeIOSStyle]];
 
     if (top != nil) {
         _navigationBar = [[NCNavigationBar alloc] initWithViewController:self];
@@ -164,39 +150,30 @@
     }
 }
 
+- (void)removeUserInterface
+{
+    [_ncStyle resetStyles];
+    [self.ncManager removeAllComponents];
+}
+
 #pragma mark - UIStyleProtocol
 
 - (void)setUserInterface:(NSDictionary *)uidict
 {
-    for (id key in uidict) {
-        if ([_ncStyle objectForKey:key] == nil)
-            continue;
-        [_ncStyle setValue:[uidict valueForKey:key] forKey:key];
-    }
+    [_ncStyle setStyles:uidict];
 }
 
 - (void)applyUserInterface
 {
-    for (id key in [_ncStyle copy]) {
-        [self updateUIStyle:[_ncStyle objectForKey:key] forKey:key];
+    for (id key in [_ncStyle styles]) {
+        [self updateUIStyle:[[_ncStyle styles] objectForKey:key] forKey:key];
     }
 }
 
 - (void)updateUIStyle:(id)value forKey:(NSString *)key
 {
-    if ([_ncStyle objectForKey:key] == nil) {
-        // 例外処理
+    if (![_ncStyle checkStyle:value forKey:key]) {
         return;
-    }
-    if (value == [NSNull null]) {
-        value = nil;
-    }
-    if ([NSStringFromClass([value class]) isEqualToString:@"__NSCFBoolean"]) {
-        if (isFalse(value)) {
-            value = kNCFalse;
-        } else {
-            value = kNCTrue;
-        }
     }
     
     if ([key isEqualToString:kNCStyleBackgroundColor]) {
@@ -206,25 +183,14 @@
         } else {
             [self setBackgroundColor:UIColor.whiteColor];
         }
-    } else {
-        [self applyStyleDict:_ncStyle];
     }
     
-    
-    if (value == [NSNull null]) {
-        value = kNCUndefined;
-    }
-    [_ncStyle setValue:value forKey:key];
+    [_ncStyle updateStyle:value forKey:key];
 }
 
 - (id)retrieveUIStyle:(NSString *)key
 {
-    if ([_ncStyle objectForKey:key] == nil) {
-        // 例外処理
-        return nil;
-    }
-    
-    return [_ncStyle objectForKey:key];
+    return [_ncStyle retrieveStyle:key];
 }
 
 #pragma mark - webview delegate
@@ -325,7 +291,6 @@
         [activityView removeFromSuperview];
         [imageView addSubview:activityView];
     }
-    [self applyStyleDict:_ncStyle];
 }
 
 #pragma mark - Cordova Plugin

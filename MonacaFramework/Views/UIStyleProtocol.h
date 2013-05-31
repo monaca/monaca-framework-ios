@@ -7,11 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "NCStyle.h"
 
 @protocol UIStyleProtocol <NSObject>
 
 @optional
-+ (NSDictionary *)defaultStyles;
 - (void)setUserInterface:(NSDictionary *)uidict;
 - (void)applyUserInterface;
 - (void)applyVisibility;

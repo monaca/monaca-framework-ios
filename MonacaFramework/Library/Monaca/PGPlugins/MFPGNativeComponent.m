@@ -12,12 +12,6 @@
 #import "MFSpinnerView.h"
 #import "MFSpinnerParameter.h"
 
-@interface MFPGNativeComponent()
-- (void)updateNCManagerPropertyStyle:(NSMutableDictionary *)properties style:(NSMutableDictionary *)currentStyle;
-@end
-
-static NSDictionary *defaultList_;
-
 @implementation MFPGNativeComponent
 
 /*

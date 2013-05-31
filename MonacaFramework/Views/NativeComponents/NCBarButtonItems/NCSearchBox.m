@@ -13,18 +13,6 @@
 
 @synthesize deleagte = _delegate;
 
-+ (NSDictionary *)defaultStyles
-{
-    NSMutableDictionary *defaultStyle = [[NSMutableDictionary alloc] init];
-    [defaultStyle setValue:kNCTrue forKey:kNCStyleVisibility];
-    [defaultStyle setValue:kNCFalse forKey:kNCStyleDisable];
-    [defaultStyle setValue:[NSNumber numberWithFloat:1.0] forKey:kNCStyleOpacity];
-    [defaultStyle setValue:kNCBlack forKey:kNCStyleTextColor];
-    [defaultStyle setValue:kNCUndefined forKey:kNCStylePlaceholder];
-    [defaultStyle setValue:kNCFalse forKey:kNCStyleFocus];
-    return defaultStyle;
-}
-
 - (id)init {
     self = [super init];
 
@@ -39,7 +27,7 @@
         [_searchBar setFrame:CGRectMake(0, 0, 110, 44) ];
         self.customView = _searchBar;
         _searchBar.delegate = self;
-        _ncStyle = [[self.class defaultStyles] mutableCopy];
+        _ncStyle = [[NCStyle alloc] initWithComponent:kNCComponentSearchBox];
     }
 
     return self;
@@ -54,19 +42,8 @@
 
 - (void)updateUIStyle:(id)value forKey:(NSString *)key
 {
-    if ([_ncStyle objectForKey:key] == nil) {
-        // 例外処理
+    if (![_ncStyle checkStyle:value forKey:key]) {
         return;
-    }
-    if (value == [NSNull null]) {
-        value = nil;
-    }
-    if ([NSStringFromClass([value class]) isEqualToString:@"__NSCFBoolean"]) {
-        if (isFalse(value)) {
-            value = kNCFalse;
-        } else {
-            value = kNCTrue;
-        }
     }
 
     if ([key isEqualToString:kNCStyleVisibility]) {
@@ -99,11 +76,19 @@
             [_searchBar becomeFirstResponder];
         }
     }
-
-    if (value == [NSNull null]) {
-        value = kNCUndefined;
+    if ([key isEqualToString:kNCStyleValue]) {
+        [_searchBar setText:value];
     }
-    [_ncStyle setValue:value forKey:key];
+
+    [_ncStyle updateStyle:value forKey:key];
+}
+
+- (id)retrieveUIStyle:(NSString *)key
+{
+    // valueについてはsearchBarから取得する．
+    [_ncStyle updateStyle:[_searchBar text] forKey:kNCStyleValue];
+    
+    return [_ncStyle retrieveStyle:key];
 }
 
 @end

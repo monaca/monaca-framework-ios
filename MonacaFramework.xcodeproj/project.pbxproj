@@ -363,6 +363,10 @@
 		5A99A8FA1750FB8C00D4ABD7 /* MFTransitPushParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A99A8F41750FB8C00D4ABD7 /* MFTransitPushParameter.m */; };
 		5A99A8FB1750FB8C00D4ABD7 /* MFTransitPushParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A99A8F41750FB8C00D4ABD7 /* MFTransitPushParameter.m */; };
 		5A99A8FC1750FB8C00D4ABD7 /* MFTransitPushParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A99A8F41750FB8C00D4ABD7 /* MFTransitPushParameter.m */; };
+		5AA1129117565B430050BBC6 /* NCStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 5AA1128F17565B410050BBC6 /* NCStyle.h */; };
+		5AA1129217565B430050BBC6 /* NCStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA1129017565B420050BBC6 /* NCStyle.m */; };
+		5AA1129317565B430050BBC6 /* NCStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA1129017565B420050BBC6 /* NCStyle.m */; };
+		5AA1129417565B430050BBC6 /* NCStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA1129017565B420050BBC6 /* NCStyle.m */; };
 		5AA2B4B217369C4300E785EA /* MFJSInterfaceProtocolTest.h in Headers */ = {isa = PBXBuildFile; fileRef = 5AA2B4AE17369C4300E785EA /* MFJSInterfaceProtocolTest.h */; };
 		5AA2B4B517369C4300E785EA /* MFJSInterfaceProtocolTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA2B4AF17369C4300E785EA /* MFJSInterfaceProtocolTest.m */; };
 		5AA2B4B617369C4300E785EA /* MFUtilityTest.h in Headers */ = {isa = PBXBuildFile; fileRef = 5AA2B4B017369C4300E785EA /* MFUtilityTest.h */; };
@@ -603,6 +607,8 @@
 		5A99A8F21750FB8C00D4ABD7 /* MFTransitPopParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFTransitPopParameter.m; sourceTree = "<group>"; };
 		5A99A8F31750FB8C00D4ABD7 /* MFTransitPushParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFTransitPushParameter.h; sourceTree = "<group>"; };
 		5A99A8F41750FB8C00D4ABD7 /* MFTransitPushParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFTransitPushParameter.m; sourceTree = "<group>"; };
+		5AA1128F17565B410050BBC6 /* NCStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCStyle.h; sourceTree = "<group>"; };
+		5AA1129017565B420050BBC6 /* NCStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCStyle.m; sourceTree = "<group>"; };
 		5AA2B4AE17369C4300E785EA /* MFJSInterfaceProtocolTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFJSInterfaceProtocolTest.h; sourceTree = "<group>"; };
 		5AA2B4AF17369C4300E785EA /* MFJSInterfaceProtocolTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFJSInterfaceProtocolTest.m; sourceTree = "<group>"; };
 		5AA2B4B017369C4300E785EA /* MFUtilityTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFUtilityTest.h; sourceTree = "<group>"; };
@@ -1042,6 +1048,8 @@
 				5A83D32916D91E6D00D25E98 /* NCContainer.m */,
 				5A83D32C16D91E6D00D25E98 /* NCManager.h */,
 				5A83D32D16D91E6D00D25E98 /* NCManager.m */,
+				5AA1128F17565B410050BBC6 /* NCStyle.h */,
+				5AA1129017565B420050BBC6 /* NCStyle.m */,
 				5AEA5955172D506700FF15E2 /* NCBarButtonItems */,
 			);
 			path = NativeComponents;
@@ -1269,6 +1277,7 @@
 				0EED098617547926006DDE72 /* MFSpinnerParameter.h in Headers */,
 				0EED098A17547926006DDE72 /* MFSpinnerView.h in Headers */,
 				0EED09A7175496F9006DDE72 /* MFViewBackground.h in Headers */,
+				5AA1129117565B430050BBC6 /* NCStyle.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1522,6 +1531,7 @@
 				0EED098917547926006DDE72 /* MFSpinnerParameter.m in Sources */,
 				0EED098D17547926006DDE72 /* MFSpinnerView.m in Sources */,
 				0EED09AA175496F9006DDE72 /* MFViewBackground.m in Sources */,
+				5AA1129417565B430050BBC6 /* NCStyle.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1612,6 +1622,7 @@
 				0EED098717547926006DDE72 /* MFSpinnerParameter.m in Sources */,
 				0EED098B17547926006DDE72 /* MFSpinnerView.m in Sources */,
 				0EED09A8175496F9006DDE72 /* MFViewBackground.m in Sources */,
+				5AA1129217565B430050BBC6 /* NCStyle.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1703,6 +1714,7 @@
 				0EED098817547926006DDE72 /* MFSpinnerParameter.m in Sources */,
 				0EED098C17547926006DDE72 /* MFSpinnerView.m in Sources */,
 				0EED09A9175496F9006DDE72 /* MFViewBackground.m in Sources */,
+				5AA1129317565B430050BBC6 /* NCStyle.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

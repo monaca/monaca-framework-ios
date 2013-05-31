@@ -11,20 +11,6 @@
 
 @implementation NCSegment
 
-+ (NSDictionary *)defaultStyles
-{
-    NSMutableDictionary *defaultStyle = [[NSMutableDictionary alloc] init];
-    [defaultStyle setValue:kNCTrue forKey:kNCStyleVisibility];
-    [defaultStyle setValue:kNCFalse forKey:kNCStyleDisable];
-    [defaultStyle setValue:[NSNumber numberWithFloat:1.0] forKey:kNCStyleOpacity];
-    [defaultStyle setValue:kNCBlack forKey:kNCStyleBackgroundColor];
-    [defaultStyle setValue:kNCWhite forKey:kNCStyleActiveTextColor];
-    [defaultStyle setValue:kNCWhite forKey:kNCStyleTextColor];
-    [defaultStyle setValue:[NSArray array] forKey:kNCStyleTexts];
-    [defaultStyle setValue:[NSNumber numberWithInt:0] forKey:kNCStyleActiveIndex];
-    return defaultStyle;
-}
-
 - (id)init {
     self = [super init];
 
@@ -32,7 +18,7 @@
         _segment = [[UISegmentedControl alloc] initWithItems:nil];
         [_segment setSegmentedControlStyle:UISegmentedControlStyleBar];
         self.customView = _segment;
-        _ncStyle = [[self.class defaultStyles] mutableCopy];
+        _ncStyle = [[NCStyle alloc] initWithComponent:kNCComponentSegment];
     }
 
     return self;
@@ -47,19 +33,8 @@
 
 - (void)updateUIStyle:(id)value forKey:(NSString *)key
 {
-    if ([_ncStyle objectForKey:key] == nil) {
-        // 例外処理
+    if (![_ncStyle checkStyle:value forKey:key]) {
         return;
-    }
-    if (value == [NSNull null]) {
-        value = nil;
-    }
-    if ([NSStringFromClass([value class]) isEqualToString:@"__NSCFBoolean"]) {
-        if (isFalse(value)) {
-            value = kNCFalse;
-        } else {
-            value = kNCTrue;
-        }
     }
 
     if ([key isEqualToString:kNCStyleVisibility]) {
@@ -102,23 +77,15 @@
         [_segment setSelectedSegmentIndex:[value intValue]];
     }
 
-    if (value == [NSNull null]) {
-        value = kNCUndefined;
-    }
-    [_ncStyle setValue:value forKey:key];
+    [_ncStyle updateStyle:value forKey:key];
 }
 
 - (id)retrieveUIStyle:(NSString *)key
 {
-    if ([_ncStyle objectForKey:key] == nil) {
-        // 例外処理
-        return nil;
-    }
-    
     // activeIndexについてはselectedSegmentIndexから取得する．
-    [_ncStyle setValue:[NSNumber numberWithInt:[_segment selectedSegmentIndex]] forKey:kNCStyleActiveIndex];
+    [_ncStyle updateStyle:[NSNumber numberWithInt:[_segment selectedSegmentIndex]] forKey:kNCStyleActiveIndex];
     
-    return [_ncStyle objectForKey:key];
+    return [_ncStyle retrieveStyle:key];
 }
 
 @end

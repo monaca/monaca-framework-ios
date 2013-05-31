@@ -9,11 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "UIStyleProtocol.h"
 
+#define TitleUndefined @" "
+
 @interface NCTitleView : UIView <UIStyleProtocol> {
     UILabel *_title;
     UILabel *_subtitle;
     UIImageView *_titleImageView;
-    NSMutableDictionary *_ncStyle;
+    NCStyle *_ncStyle;
 }
 
 @end

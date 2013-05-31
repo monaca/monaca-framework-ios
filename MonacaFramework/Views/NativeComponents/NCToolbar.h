@@ -14,7 +14,7 @@
 {
     MFViewController *_viewController;
     UIToolbar *_toolbar;
-    NSMutableDictionary *_ncStyle;
+    NCStyle *_ncStyle;
     NSArray *_containers;
 }
 

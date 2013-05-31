@@ -18,5 +18,6 @@
 
 - (void)setComponent:(id)component forID:(NSString *)cid;
 - (id<UIStyleProtocol>)componentForID:(NSString *)cid;
+- (void)removeAllComponents;
 
 @end

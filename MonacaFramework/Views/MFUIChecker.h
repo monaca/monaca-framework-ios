@@ -11,6 +11,7 @@
 @interface MFUIChecker : NSObject
 
 + (void)checkUI:(NSDictionary *)uidict;
++ (NSString *)valueType:(id)object;
 
 @end
 

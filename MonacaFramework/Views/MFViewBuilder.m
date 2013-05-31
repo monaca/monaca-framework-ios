@@ -33,46 +33,49 @@ static NSString *_wwwDir;
 
 + (id)createViewControllerWithPath:(NSString *)path
 {
-    NSString *uipath = [_wwwDir stringByAppendingPathComponent:[MFUtility getUIFileName:path]];
-    NSMutableDictionary *uidict = [NSMutableDictionary dictionaryWithDictionary:[MFUtility parseJSONFile:uipath]];
-    
-    [MFUIChecker checkUI:uidict];
+    NSString *fullPath = [_wwwDir stringByAppendingPathComponent:path];
+    NSMutableDictionary *uidict = [[MFUtility parseJSONFile:[MFUtility getUIFileName:fullPath]] mutableCopy];
     
     id view;
-    if (ignoreBottom_) {
-        [uidict removeObjectForKey:kNCPositionBottom];
-    }
     id item = [uidict objectForKey:kNCPositionBottom];
-    NSString *containerType = [item objectForKey:kNCTypeContainer];
-    if ([containerType isEqualToString:kNCContainerTabbar]) {
-        ignoreBottom_ = YES; // タブバーは再起的に生成させない。
-        view = [self createTabbarControllerWithPath:path];
+    if (!ignoreBottom_ && [[item objectForKey:kNCTypeContainer] isEqualToString:kNCContainerTabbar]) {
+        view = [self createTabbarControllerWithPath:fullPath withDict:uidict];
         // moreViewControllerの編集ボタン非表示
         [view setCustomizableViewControllers:nil];
-        ignoreBottom_ = NO;
     } else {
-        view = [[MFViewController alloc] initWithFileName:[path lastPathComponent]];
-        [view setWwwFolderName:[uipath stringByDeletingLastPathComponent]];
-        [view setUiDict:uidict];
-//               [view setUserInterface:uidict];
+        view = [self createMFViewControllerWithPath:fullPath withDict:uidict];
     }
 
     return view;
 }
 
-+ (MFTabBarController *)createTabbarControllerWithPath:(NSString *)path
++ (MFViewController *)createMFViewControllerWithPath:(NSString *)path withDict:(NSMutableDictionary *)uidict
 {
-    NSString *uiPath = [_wwwDir stringByAppendingPathComponent:[MFUtility getUIFileName:path]];
-    NSDictionary *uidict = [NSDictionary dictionaryWithDictionary:[MFUtility parseJSONFile:uiPath]];
-
-    MFTabBarController *tabbarController = [[MFTabBarController alloc] init];
+    [MFUIChecker checkUI:uidict];
     
+    MFViewController *viewController = [[MFViewController alloc] initWithFileName:[path lastPathComponent]];
+    [viewController setWwwFolderName:[path stringByDeletingLastPathComponent]];
+    if (ignoreBottom_) {
+        [uidict removeObjectForKey:kNCPositionBottom];
+    }
+    [viewController setUiDict:uidict];
+    
+    return viewController;
+}
+
++ (MFTabBarController *)createTabbarControllerWithPath:(NSString *)path withDict:(NSMutableDictionary *)uidict
+{
+    [MFUIChecker checkUI:uidict];
+    
+    MFTabBarController *tabbarController = [[MFTabBarController alloc] init];
+
     NSMutableArray *viewControllers = [NSMutableArray array];
     NSDictionary *bottom = [uidict objectForKey:kNCPositionBottom];
     NSDictionary *bottomStyle = [bottom objectForKey:kNCTypeStyle];
     NSArray *items = [bottom objectForKey:kNCTypeItems];
     
     int i = 0;
+    ignoreBottom_ = YES;
     for (NSDictionary *item in items) {
         NSMutableDictionary *style = [NSMutableDictionary dictionary];
         [style addEntriesFromDictionary:[item objectForKey:kNCTypeStyle]];
@@ -82,7 +85,9 @@ static NSString *_wwwDir;
         
         // Setup a view controller in the tab contoller.
         // TODO: make viewControllerProtocol
-        MFViewController *viewController = [MFViewBuilder createViewControllerWithPath:[[path stringByDeletingLastPathComponent] stringByAppendingPathComponent:link]];
+        NSString *Path = [[path stringByDeletingLastPathComponent] stringByAppendingPathComponent:link];
+        NSMutableDictionary *uiDict = [[MFUtility parseJSONFile:[MFUtility getUIFileName:Path]] mutableCopy];
+        MFViewController *viewController = [MFViewBuilder createMFViewControllerWithPath:Path withDict:uiDict];
         
         MFNavigationController *navi = [[MFNavigationController alloc] init];
         [navi setViewControllers:[NSArray arrayWithObjects:[[MFDammyViewController alloc] init], viewController, nil]];
@@ -100,6 +105,7 @@ static NSString *_wwwDir;
 
         i++;
     }
+    ignoreBottom_ = NO;
     tabbarController.viewControllers  = viewControllers;
     
     [tabbarController setUserInterface:bottomStyle];

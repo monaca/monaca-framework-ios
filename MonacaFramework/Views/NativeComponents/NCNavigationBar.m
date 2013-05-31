@@ -15,25 +15,6 @@
 
 @synthesize viewController = _viewController;
 
-+ (NSDictionary *)defaultStyles
-{
-    NSMutableDictionary *defaultStyle = [[NSMutableDictionary alloc] init];
-    [defaultStyle setValue:kNCTrue forKey:kNCStyleVisibility];
-    [defaultStyle setValue:kNCFalse forKey:kNCStyleDisable];
-    [defaultStyle setValue:kNCBlack forKey:kNCStyleBackgroundColor];
-    [defaultStyle setValue:kNCUndefined forKey:kNCStyleTitle];
-    [defaultStyle setValue:kNCUndefined forKey:kNCStyleSubtitle];
-    [defaultStyle setValue:kNCWhite forKey:kNCStyleTitleColor];
-    [defaultStyle setValue:kNCWhite forKey:kNCStyleSubtitleColor];
-    [defaultStyle setValue:[NSNumber numberWithFloat:1.0]  forKey:kNCStyleTitleFontScale];
-    [defaultStyle setValue:[NSNumber numberWithFloat:1.0]  forKey:kNCStyleSubtitleFontScale];
-    [defaultStyle setValue:kNCBarStyleDefault forKey:kNCStyleIOSBarStyle];
-    [defaultStyle setValue:kNCUndefined forKey:kNCStyleTitleImage];
-    [defaultStyle setValue:[NSNumber numberWithFloat:0.3] forKey:kNCStyleShadowOpacity];
-    
-    return defaultStyle;
-}
-
 - (id)initWithViewController:(MFViewController *)viewController
 {
     self = [super init];
@@ -43,7 +24,7 @@
         _navigationBar = viewController.navigationController.navigationBar;
         _centerViewToolbar = [[UIToolbar alloc] init];
         _titleView = [[NCTitleView alloc] init];
-        _ncStyle = [[self.class defaultStyles] mutableCopy];
+        _ncStyle = [[NCStyle alloc] initWithComponent:kNCContainerToolbar];
     }
 
     return self;
@@ -55,11 +36,15 @@
     NSArray *topLeft = [uidict objectForKey:kNCTypeLeft];
     NSArray *topCenter = [uidict objectForKey:kNCTypeCenter];
 
+    NSMutableDictionary *style = [NSMutableDictionary dictionary];
+    [style addEntriesFromDictionary:[uidict objectForKey:kNCTypeStyle]];
+    [style addEntriesFromDictionary:[uidict objectForKey:kNCTypeIOSStyle]];
+    
     if (uidict != nil) {
         [_viewController.navigationController setNavigationBarHidden:NO];
     }
 
-    [self setUserInterface:[uidict objectForKey:kNCTypeStyle]];
+    [self setUserInterface:style];
     [self applyUserInterface];
 
     /***** create leftContainers *****/
@@ -161,7 +146,7 @@
     }
     [visiableContainers addObject:spacer];
 
-    if (![[_titleView retrieveUIStyle:kNCStyleTitle] isEqualToString:kNCUndefined]) {
+    if (![[_titleView retrieveUIStyle:kNCStyleTitle] isEqualToString:TitleUndefined]) {
         _viewController.navigationItem.titleView = nil;
         _viewController.navigationItem.titleView = _titleView;
     } else {
@@ -180,36 +165,20 @@
 
 - (void)setUserInterface:(NSDictionary *)uidict
 {
-    for (id key in uidict) { 
-        if ([_ncStyle objectForKey:key] == nil)
-            continue;
-        [_ncStyle setValue:[uidict valueForKey:key] forKey:key];
-    }
+    [_ncStyle setStyles:uidict];
 }
 
 - (void)applyUserInterface
 {
-    for (id key in [_ncStyle copy]) {
-        [self updateUIStyle:[_ncStyle objectForKey:key] forKey:key];
+    for (id key in [_ncStyle styles]) {
+        [self updateUIStyle:[[_ncStyle styles] objectForKey:key] forKey:key];
     }
 }
 
 - (void)updateUIStyle:(id)value forKey:(NSString *)key
 {
-    if ([_ncStyle objectForKey:key] == nil) {
-        // 例外処理
+    if (![_ncStyle checkStyle:value forKey:key]) {
         return;
-    }
-
-    if (value == [NSNull null]) {
-        value = nil;
-    }
-    if ([NSStringFromClass([value class]) isEqualToString:@"__NSCFBoolean"]) {
-        if (isFalse(value)) {
-            value = kNCFalse;
-        } else {
-            value = kNCTrue;
-        }
     }
 
     if ([key isEqualToString:kNCStyleVisibility]) {
@@ -253,20 +222,12 @@
         [navBarLayer setShadowOpacity:[value floatValue]];
     }
 
-    if (value == [NSNull null]) {
-        value = kNCUndefined;
-    }
-    [_ncStyle setValue:value forKey:key];
+    [_ncStyle updateStyle:value forKey:key];
 }
 
 - (id)retrieveUIStyle:(NSString *)key
 {
-    if ([_ncStyle objectForKey:key] == nil) {
-        // 例外処理
-        return nil;
-    }
-
-    return [_ncStyle objectForKey:key];
+    return [_ncStyle retrieveStyle:key];
 }
 
 @end

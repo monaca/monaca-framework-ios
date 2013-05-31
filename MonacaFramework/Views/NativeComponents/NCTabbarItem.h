@@ -11,7 +11,7 @@
 
 @interface NCTabbarItem : UITabBarItem <UIStyleProtocol>
 {
-    NSMutableDictionary *_ncStyle;
+    NCStyle *_ncStyle;
 }
 
 @end

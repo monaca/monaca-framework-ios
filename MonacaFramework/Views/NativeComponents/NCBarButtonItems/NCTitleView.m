@@ -43,14 +43,7 @@ static const CGFloat kSizeOfPortraitTitleFont     = 19.0f;
         [self addSubview:_title];
         [self addSubview:_subtitle];
         [self addSubview:_titleImageView];
-        _ncStyle = [[NSMutableDictionary alloc] init];
-        [_ncStyle setValue:kNCUndefined forKey:kNCStyleTitle];
-        [_ncStyle setValue:kNCUndefined forKey:kNCStyleSubtitle];
-        [_ncStyle setValue:kNCWhite forKey:kNCStyleTitleColor];
-        [_ncStyle setValue:kNCWhite forKey:kNCStyleSubtitleColor];
-        [_ncStyle setValue:[NSNumber numberWithFloat:1.0] forKey:kNCStyleTitleFontScale];
-        [_ncStyle setValue:[NSNumber numberWithFloat:1.0] forKey:kNCStyleSubtitleFontScale];
-        [_ncStyle setValue:kNCUndefined forKey:kNCStyleTitleImage];
+        _ncStyle = [[NCStyle alloc] initWithComponent:kNCContainerToolbar];
     }
     
     return self;
@@ -82,7 +75,7 @@ static const CGFloat kSizeOfPortraitTitleFont     = 19.0f;
         [_title setCenter:CGPointMake(self.frame.size.width/2.0f, self.frame.size.height/2.0f)];
         [_subtitle setHidden:YES];
     } else {
-        if (![[self retrieveUIStyle:kNCStyleSubtitle] isEqual:kNCUndefined]) {
+        if (![[self retrieveUIStyle:kNCStyleSubtitle] isEqual:TitleUndefined]) {
             _title.font = [UIFont boldSystemFontOfSize:kSizeOfTitleFont * [[self retrieveUIStyle:kNCStyleTitleFontScale] floatValue]];
             _subtitle.font = [UIFont systemFontOfSize:kSizeOfSubtitleFont * [[self retrieveUIStyle:kNCStyleSubtitleFontScale] floatValue]];
             _title.frame = [_title resizedFrameWithPoint:CGPointMake(0, 0)];
@@ -107,25 +100,18 @@ static const CGFloat kSizeOfPortraitTitleFont     = 19.0f;
 
 - (void)updateUIStyle:(id)value forKey:(NSString *)key
 {
-    if ([_ncStyle objectForKey:key] == nil) {
-        // 例外処理
-        return;
-    }
-    if (value == [NSNull null]) {
-        value = nil;
-    }
-    if ([NSStringFromClass([value class]) isEqualToString:@"__NSCFBoolean"]) {
-        if (isFalse(value)) {
-            value = kNCFalse;
-        } else {
-            value = kNCTrue;
-        }
-    }
+    [_ncStyle checkStyle:value forKey:key];
     
     if ([key isEqualToString:kNCStyleTitle]) {
+        if ([value isEqualToString:kNCUndefined]) {
+            value = TitleUndefined;
+        }
         [_title setText:value];
     }
     if ([key isEqualToString:kNCStyleSubtitle]) {
+        if ([value isEqualToString:kNCUndefined]) {
+            value = TitleUndefined;
+        }
         [_subtitle setText:value];
     }
     if ([key isEqualToString:kNCStyleTitleColor]) {
@@ -154,21 +140,14 @@ static const CGFloat kSizeOfPortraitTitleFont     = 19.0f;
         _titleImageView.contentMode = UIViewContentModeCenter;
     }
     
-    if (value == nil) {
-        value = kNCUndefined;
-    }
-    [_ncStyle setValue:value forKey:key];
+    [_ncStyle updateStyle:value forKey:key];
+    // 必ずupdateしてから実行
     [self sizeToFit];
 }
 
 - (id)retrieveUIStyle:(NSString *)key
 {
-    if ([_ncStyle objectForKey:key] == nil) {
-        // 例外処理
-        return nil;
-    }
-    
-    return [_ncStyle objectForKey:key];
+    return [_ncStyle retrieveStyle:key];
 }
 
 @end
