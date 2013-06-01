@@ -58,23 +58,23 @@
 {
     [super viewWillAppear:animated];
     
-    self.webView.delegate = self;
+    [MFUtility setCurrentWWWFolderName:self.wwwFolderName];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 
+    [MFUtility setCurrentWWWFolderName:self.wwwFolderName];
     [self setBarUserInterface:self.uiDict];
 
     [self applyUserInterface];
-    
-
     
     // whether auto link for datatype
     [self processDataTypes];
     
     [self initPlugins]; // 画面を消す手前でdestroyを実行すること
+    self.webView.delegate = self;
 //    self.webView.scrollView.decelerationRate = UIScrollViewDecelerationRateNormal;
 }
 
@@ -84,6 +84,7 @@
         self.webView.delegate = nil; // 解放しておかないとTransitを繰り返すとアプリが固まる
         self.webView = nil; // 解放しておかないとWebViewが増え続ける
         [self.webView removeFromSuperview];
+        [self resetPlugins];
     }
 }
 

@@ -68,6 +68,7 @@ static NSString *_wwwDir;
     [MFUIChecker checkUI:uidict];
     
     MFTabBarController *tabbarController = [[MFTabBarController alloc] init];
+    [MFUtility setCurrentWWWFolderName:[path stringByDeletingLastPathComponent]];
 
     NSMutableArray *viewControllers = [NSMutableArray array];
     NSDictionary *bottom = [uidict objectForKey:kNCPositionBottom];

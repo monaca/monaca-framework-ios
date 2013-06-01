@@ -14,6 +14,8 @@
 
 static NSString *base_url = @"https://api.monaca.mobi";
 
+static NSString *_wwwFolderName;
+
 + (NSURLResponse *)fetchFrom:(NSString *)url method:(NSString *)method parameter:(NSString *)parameter {
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
     [request setHTTPMethod:method];
@@ -300,6 +302,16 @@ static NSString *base_url = @"https://api.monaca.mobi";
 + (MFDelegate *)getAppDelegate
 {
     return ((MFDelegate *)[[UIApplication sharedApplication] delegate]);
+}
+
++ (void)setCurrentWWWFolderName:(NSString *)wwwFolderName
+{
+    _wwwFolderName = wwwFolderName;
+}
+
++ (NSString *)currentWWWFolderName
+{
+    return _wwwFolderName;
 }
 
 + (MFViewController *)currentViewController

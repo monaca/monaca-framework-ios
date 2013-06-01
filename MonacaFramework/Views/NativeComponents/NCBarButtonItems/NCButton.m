@@ -59,7 +59,7 @@
         // TODO: check
     }
     if ([key isEqualToString:kNCStyleInnerImage]) {
-        NSString *imagePath = [[MFUtility currentViewController].wwwFolderName stringByAppendingPathComponent:value];
+        NSString *imagePath = [[MFUtility currentWWWFolderName] stringByAppendingPathComponent:value];
         UIImage *image = [UIImage imageWithContentsOfFile:imagePath];
         [self setImage:image];
         if (image) {
