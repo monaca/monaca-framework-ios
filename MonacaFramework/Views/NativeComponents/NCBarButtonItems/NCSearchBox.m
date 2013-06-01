@@ -38,6 +38,11 @@
     [_delegate searchBarSearchButtonClicked:searchBar];
 }
 
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    [_ncStyle updateStyle:searchText forKey:kNCStyleValue];
+}
+
 #pragma mark - UIStyleProtocol
 
 - (void)updateUIStyle:(id)value forKey:(NSString *)key
@@ -81,14 +86,6 @@
     }
 
     [_ncStyle updateStyle:value forKey:key];
-}
-
-- (id)retrieveUIStyle:(NSString *)key
-{
-    // valueについてはsearchBarから取得する．
-    [_ncStyle updateStyle:[_searchBar text] forKey:kNCStyleValue];
-    
-    return [_ncStyle retrieveStyle:key];
 }
 
 @end
