@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "NCBarButtonItem.h"
 
-@interface NCSegment : NCBarButtonItem
+@interface NCSegment : NCBarButtonItem 
 {
     UISegmentedControl *_segment;
 }

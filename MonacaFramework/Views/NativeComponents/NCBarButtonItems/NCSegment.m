@@ -72,20 +72,15 @@
             [_segment insertSegmentWithTitle:text atIndex:index++ animated:NO];
         }
         [_segment sizeToFit];
+        // activeIndexはtextsが設定されるまで反映されないので再度実行
+        [self updateUIStyle:[[_ncStyle styles] objectForKey:kNCStyleActiveIndex] forKey:kNCStyleActiveIndex];
+        
     }
     if ([key isEqualToString:kNCStyleActiveIndex]) {
         [_segment setSelectedSegmentIndex:[value intValue]];
     }
-
-    [_ncStyle updateStyle:value forKey:key];
-}
-
-- (id)retrieveUIStyle:(NSString *)key
-{
-    // activeIndexについてはselectedSegmentIndexから取得する．
-    [_ncStyle updateStyle:[NSNumber numberWithInt:[_segment selectedSegmentIndex]] forKey:kNCStyleActiveIndex];
     
-    return [_ncStyle retrieveStyle:key];
+    [_ncStyle updateStyle:value forKey:key];
 }
 
 @end

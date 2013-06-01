@@ -140,10 +140,12 @@
 // Handle an onChange event.
 - (void)didChange:(id)sender forEvent:(UIEvent *)event {
 
+    
     NSString *index = @"";
     if ([sender isKindOfClass:[UISegmentedControl class]]) {
         UISegmentedControl *segment = sender;
         NSInteger _index = segment.selectedSegmentIndex;
+        [[self component] updateUIStyle:[NSNumber numberWithInt:_index] forKey:kNCStyleActiveIndex];
         index = [NSString stringWithFormat:@"var __segment_index = '%d';", _index];
     }
 
