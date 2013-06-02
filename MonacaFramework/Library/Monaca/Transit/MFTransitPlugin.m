@@ -78,8 +78,6 @@
     MFViewController *viewController = [MFViewBuilder createViewControllerWithPath:urlStringWithoutQuery];
     [MFViewBuilder setIgnoreBottom:NO];
 
-//    [self.class changeDelegate:viewController];
-
     UIViewController *previousController;
     if (parameter.clearStack) {
         previousController = [navigationController popViewControllerAnimated:NO];
@@ -190,7 +188,7 @@
         }
     }
     
-    [[MFUtility getAppDelegate].monacaNavigationController setViewControllers:controllers animated:NO];
+    [[MFViewManager currentViewController].navigationController setViewControllers:controllers animated:NO];
 }
 
 - (void)popToHomeViewController:(BOOL)isAnimated
@@ -233,6 +231,45 @@
     }
 }
 
+- (NSString *)encode:(id)object
+{
+    if ([object isKindOfClass:NSString.class]) {
+        return [MFUtility urlEncode:object];
+    }
+    if ([object isKindOfClass:NSNumber.class]) {
+        return [NSString stringWithFormat:@"%@", object];
+    }
+    if ([object isKindOfClass:NSArray.class]) {
+        NSArray *array = (NSArray *)object;
+        NSString *string = @"[";
+        NSEnumerator *enumerator = [array objectEnumerator];
+        id obj = [enumerator nextObject];
+        while (obj) {
+            string = [string stringByAppendingString:[self encode:obj]];
+            obj = [enumerator nextObject];
+            if (obj)
+                string = [string stringByAppendingString:@","];
+        }
+        return [string stringByAppendingString:@"]"];
+    }
+/*    if ([object isKindOfClass:NSDictionary.class]) {
+        NSDictionary *dict = (NSDictionary *)object;
+        NSString *string = @"{";
+        NSEnumerator *enumerator = [dict keyEnumerator];
+        id key = [enumerator nextObject];
+        while (key) {
+            string = [string stringByAppendingFormat:@"%@=", [self encode:key]];
+            string = [string stringByAppendingString:[self encode:[dict objectForKey:key]]];
+            key = [enumerator nextObject];
+                if (key)
+                string = [string stringByAppendingString:@","];
+        }
+        return [string stringByAppendingString:@"}"];
+    }
+ */
+    return @"";
+}
+
 - (NSString*) buildQuery:(NSDictionary *)jsonQueryParams urlString:(NSString *)urlString
 {
     NSString *query = @"";
@@ -249,7 +286,7 @@
             if ([[jsonQueryParams objectForKey:key] isEqual:[NSNull null]]){
                 [queryParams addObject:[NSString stringWithFormat:@"%@", encodedKey]];
             }else {
-                encodedValue = [MFUtility urlEncode:[jsonQueryParams objectForKey:key]];
+                encodedValue = [self encode:[jsonQueryParams objectForKey:key]];
                 [queryParams addObject:[NSString stringWithFormat:@"%@=%@", encodedKey, encodedValue]];
             }
         }
