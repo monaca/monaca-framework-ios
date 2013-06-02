@@ -9,6 +9,7 @@
 #import "NCContainer.h"
 #import "NCButton.h"
 #import "MFUtility.h"
+#import "MFViewManager.h"
 
 @implementation NCContainer
 
@@ -130,7 +131,7 @@
              
 // Handle an onSearch event.
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-    UIWebView *webView = [MFUtility currentViewController].webView;
+    UIWebView *webView = [MFViewManager currentViewController].webView;
     NSString *js = [NSString stringWithFormat:@"__search_text='%@';%@", searchBar.text, onSearchScript_];
     [webView stringByEvaluatingJavaScriptFromString:js];
     [searchBar resignFirstResponder];
@@ -150,13 +151,13 @@
     }
 
     NSString *js = [NSString stringWithFormat:@"%@%@", index, onChangeScript_];
-    UIWebView *webView = [MFUtility currentViewController].webView;
+    UIWebView *webView = [MFViewManager currentViewController].webView;
     [webView stringByEvaluatingJavaScriptFromString:js];
 }
 
 // Handle an onTap event.
 - (void)didTap:(id)sender forEvent:(UIEvent *)event {
-    UIWebView *webView = [MFUtility currentViewController].webView;
+    UIWebView *webView = [MFViewManager currentViewController].webView;
     [webView stringByEvaluatingJavaScriptFromString:onTapScript_];
 }
 

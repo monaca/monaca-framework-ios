@@ -9,6 +9,7 @@
 #import "NCTabbarItem.h"
 #import "NativeComponentsInternal.h"
 #import "MFUtility.h"
+#import "MFViewManager.h"
 
 @implementation NCTabbarItem
 
@@ -47,7 +48,7 @@
         [self setTitle:value];
     }
     if ([key isEqualToString:kNCStyleImage]) {
-        NSString *imagePath = [[MFUtility currentWWWFolderName] stringByAppendingPathComponent:value];
+        NSString *imagePath = [[MFViewManager currentWWWFolderName] stringByAppendingPathComponent:value];
         UIImage *image = [UIImage imageWithContentsOfFile:imagePath];
         [self setImage:image];
     }

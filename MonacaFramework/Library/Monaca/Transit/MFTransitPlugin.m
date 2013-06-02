@@ -11,6 +11,7 @@
 #import "MFViewController.h"
 #import "MFUtility.h"
 #import "MFViewBuilder.h"
+#import "MFViewManager.h"
 #import "MFTransitPushParameter.h"
 #import "MFTransitPopParameter.h"
 
@@ -71,7 +72,7 @@
         navigationController = [MFUtility getAppDelegate].monacaNavigationController;
     } else {
         [MFViewBuilder setIgnoreBottom:YES];
-        navigationController = (MFNavigationController *)[MFUtility currentViewController].navigationController;
+        navigationController = (MFNavigationController *)[MFViewManager currentViewController].navigationController;
     }
     
     MFViewController *viewController = [MFViewBuilder createViewControllerWithPath:urlStringWithoutQuery];
@@ -109,7 +110,7 @@
         navigationController = [MFUtility getAppDelegate].monacaNavigationController;
     } else {
         [MFViewBuilder setIgnoreBottom:YES];
-        navigationController = (MFNavigationController *)[MFUtility currentViewController].navigationController;
+        navigationController = (MFNavigationController *)[MFViewManager currentViewController].navigationController;
     }
 
     if (parameter.transition != nil) {
@@ -160,7 +161,7 @@
 {
     NSString *fileName = [options objectForKey:kMonacaTransitPluginOptionUrl];
 
-    UINavigationController *nav = [MFUtility currentViewController].navigationController;
+    UINavigationController *nav = [MFViewManager currentViewController].navigationController;
     [self popToHomeViewController:YES];
 
     UIViewController *viewController = [[nav viewControllers] objectAtIndex:0];
@@ -181,9 +182,9 @@
     NSMutableArray *controllers;
     
     if ([clearAll isKindOfClass:NSNumber.class] && [clearAll isEqualToNumber:[NSNumber numberWithBool:YES]]) {
-        controllers = [NSMutableArray arrayWithObject:[MFUtility currentViewController]];
+        controllers = [NSMutableArray arrayWithObject:[MFViewManager currentViewController]];
     } else {
-        controllers = [NSMutableArray arrayWithArray:[MFUtility currentViewController].navigationController.viewControllers];
+        controllers = [NSMutableArray arrayWithArray:[MFViewManager currentViewController].navigationController.viewControllers];
         if (controllers.count > 1) {
             [controllers removeObjectAtIndex:controllers.count - 2];
         }
@@ -194,7 +195,7 @@
 
 - (void)popToHomeViewController:(BOOL)isAnimated
 {
-    NSArray *viewControllers = [[MFUtility currentViewController].navigationController popToRootViewControllerAnimated:isAnimated];
+    NSArray *viewControllers = [[MFViewManager currentViewController].navigationController popToRootViewControllerAnimated:isAnimated];
     
     for (MFViewController *vc in viewControllers) {
         [vc destroy];
@@ -213,9 +214,24 @@
     NSString *query = [self getQueryFromPluginArguments:arguments urlString:urlString];
     NSString *urlStringWithoutQuery = [[urlString componentsSeparatedByString:@"?"] objectAtIndex:0];
 
-    [[MFUtility currentViewController].webView loadRequest:[self createRequest:urlStringWithoutQuery withQuery:query]];
+    [[MFViewManager currentViewController] removeUserInterface];
+    
+    NSString *fullPath = [[MFViewManager currentWWWFolderName] stringByAppendingPathComponent:urlStringWithoutQuery];
+    NSMutableDictionary *uidict = [[MFUtility parseJSONFile:[MFUtility getUIFileName:fullPath]] mutableCopy];
+    
+    NSDictionary *bottom = [uidict objectForKey:kNCPositionBottom];
+    if ([[bottom objectForKey:kNCTypeContainer] isEqualToString:kNCContainerTabbar] && [MFViewManager isViewControllerTop]) {
+        MFTabBarController *tabarController = [MFViewBuilder createTabbarControllerWithPath:fullPath withDict:uidict];
+        NSMutableArray *viewControllers = [[MFViewManager currentViewController].navigationController.viewControllers mutableCopy];
+        [viewControllers removeLastObject];
+        [viewControllers addObject:tabarController];
+        [[MFViewManager currentViewController].navigationController setViewControllers:viewControllers];
+    } else {
+        [[MFViewManager currentViewController] setBarUserInterface:uidict];
+        [[MFViewManager currentViewController] applyBarUserInterface];
+        [[MFViewManager currentViewController].webView loadRequest:[self createRequest:urlStringWithoutQuery withQuery:query]];
+    }
 }
-
 
 - (NSString*) buildQuery:(NSDictionary *)jsonQueryParams urlString:(NSString *)urlString
 {
@@ -276,7 +292,7 @@
 
 - (NSString*) writeJavascriptOnDelegateViewController:(NSString*)javascript
 {
-    MFViewController *vc = [MFUtility currentViewController];
+    MFViewController *vc = [MFViewManager currentViewController];
     return [vc.webView stringByEvaluatingJavaScriptFromString:javascript];
 }
 

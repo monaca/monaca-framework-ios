@@ -9,6 +9,7 @@
 #import "NCButton.h"
 #import "NativeComponentsInternal.h"
 #import "MFUtility.h"
+#import "MFViewManager.h"
 
 @implementation NCButton
 
@@ -59,7 +60,7 @@
         // TODO: check
     }
     if ([key isEqualToString:kNCStyleInnerImage]) {
-        NSString *imagePath = [[MFUtility currentWWWFolderName] stringByAppendingPathComponent:value];
+        NSString *imagePath = [[MFViewManager currentWWWFolderName] stringByAppendingPathComponent:value];
         UIImage *image = [UIImage imageWithContentsOfFile:imagePath];
         [self setImage:image];
         if (image) {

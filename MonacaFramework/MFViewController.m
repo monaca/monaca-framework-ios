@@ -13,6 +13,7 @@
 #import "CDVPlugin.h"
 #import "MFTransitPlugin.h"
 #import "MFViewBackground.h"
+#import "MFViewManager.h"
 
 #define kWebViewBackground  @"bg"
 
@@ -58,14 +59,14 @@
 {
     [super viewWillAppear:animated];
     
-    [MFUtility setCurrentWWWFolderName:self.wwwFolderName];
+    [MFViewManager setCurrentWWWFolderName:self.wwwFolderName];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 
-    [MFUtility setCurrentWWWFolderName:self.wwwFolderName];
+    [MFViewManager setCurrentWWWFolderName:self.wwwFolderName];
     [self setBarUserInterface:self.uiDict];
 
     [self applyUserInterface];
@@ -122,7 +123,6 @@
         [_toolbar applyUserInterface];
     } else {
         [self.navigationController setToolbarHidden:YES];
-        [self.tabBarController.navigationController setToolbarHidden:YES];
     }
 }
 
@@ -134,12 +134,12 @@
     [style addEntriesFromDictionary:[uidict objectForKey:kNCTypeStyle]];
     [style addEntriesFromDictionary:[uidict objectForKey:kNCTypeIOSStyle]];
 
-    if (top != nil) {
+    if ([[top objectForKey:kNCTypeContainer] isEqualToString:kNCContainerToolbar]) {
         _navigationBar = [[NCNavigationBar alloc] initWithViewController:self];
         [self.ncManager setComponent:_navigationBar forID:[top objectForKey:kNCTypeID]];
         [(NCNavigationBar *)_navigationBar createNavigationBar:top];
     }
-    if (bottom != nil) {
+    if ([[bottom objectForKey:kNCTypeContainer] isEqualToString:kNCContainerToolbar]) {
         _toolbar =  [[NCToolbar alloc] initWithViewController:self];
         [self.ncManager setComponent:_toolbar forID:[bottom objectForKey:kNCTypeID]];
         [(NCToolbar *)_toolbar createToolbar:bottom];
@@ -154,6 +154,11 @@
 - (void)removeUserInterface
 {
     [_ncStyle resetStyles];
+    [_navigationBar removeUserInterface];
+    _navigationBar = nil;
+    [_toolbar removeUserInterface];
+    _toolbar = nil;
+    
     [self.ncManager removeAllComponents];
 }
 
@@ -225,7 +230,7 @@
         [info setObject:errorPath forKey:@"path"];
         [MFEvent dispatchEvent:monacaEvent404Error withInfo:info];
 
-        [MFUtility show404PageWithWebView:webView path:errorPath];
+        [MFViewManager show404PageWithWebView:webView path:errorPath];
         _previousPath = errorPath;
         return NO;
     }

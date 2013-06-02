@@ -14,6 +14,7 @@
 @optional
 - (void)setUserInterface:(NSDictionary *)uidict;
 - (void)applyUserInterface;
+- (void)removeUserInterface;
 - (void)applyVisibility;
 - (void)applyBackButton;
 @required

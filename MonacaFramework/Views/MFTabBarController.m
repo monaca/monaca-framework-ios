@@ -18,6 +18,7 @@
 // iOS4 の場合、このメソッドは MonacaViewController の viewDidApper メソッドから呼ばれる
 - (void)viewWillAppear:(BOOL)animated {
     [self.navigationController setNavigationBarHidden:YES];
+    [self.navigationController setToolbarHidden:YES];
     [super viewWillAppear:animated];
 }
 

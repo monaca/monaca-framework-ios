@@ -128,6 +128,12 @@
     }
 }
 
+
+- (void)removeUserInterface
+{
+    _viewController.toolbarItems = nil;
+}
+
 - (void)updateUIStyle:(id)value forKey:(NSString *)key
 {
     if (![_ncStyle checkStyle:value forKey:key]) {

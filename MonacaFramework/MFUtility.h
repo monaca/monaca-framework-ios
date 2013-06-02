@@ -31,11 +31,7 @@
 + (NSDictionary *)getApplicationPlist;
 + (void)fixedLayout:(MFViewController *)monacaViewController interfaceOrientation:
     (UIInterfaceOrientation)aInterfaceOrientation;
-+ (void) show404PageWithWebView:(UIWebView *)webView path:(NSString *)aPath;
 + (MFDelegate *)getAppDelegate;
-+ (void)setCurrentWWWFolderName:(NSString *)wwwFolderName;
-+ (NSString *)currentWWWFolderName;
-+ (MFViewController *)currentViewController;
 + (NSURLResponse *)register_push:(NSString *)deviceToken;
 + (void)setMonacaCloudCookie;
 + (void)clearMonacaCloudCookie;

@@ -9,12 +9,11 @@
 #import "MFUtility.h"
 #import "JSONKit.h"
 #import "MFEvent.h"
+#import "MFViewManager.h"
 
 @implementation MFUtility
 
 static NSString *base_url = @"https://api.monaca.mobi";
-
-static NSString *_wwwFolderName;
 
 + (NSURLResponse *)fetchFrom:(NSString *)url method:(NSString *)method parameter:(NSString *)parameter {
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
@@ -114,7 +113,7 @@ static NSString *_wwwFolderName;
 
 + (NSDictionary *)getAppJSON
 {
-    NSString *base_path = [[[self class] currentViewController].wwwFolderName stringByReplacingOccurrencesOfString:@"www" withString:@""];
+    NSString *base_path = [[MFViewManager currentViewController].wwwFolderName stringByReplacingOccurrencesOfString:@"www" withString:@""];
     NSURL *json_url = [NSURL fileURLWithPath:[base_path stringByAppendingPathComponent:@"app.json"]];
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:json_url];
     NSURLResponse *response = nil;
@@ -194,18 +193,6 @@ static NSString *_wwwFolderName;
         UIViewController *vc = [monacaViewController.tabBarController.viewControllers objectAtIndex:0];
         [vc setWantsFullScreenLayout:YES];
     }
-}
-
-/*
- * 404 page
- */
-+ (void) show404PageWithWebView:(UIWebView *)webView path:(NSString *)aPath {
-    NSLog(@"Page not found (as warning):%@", [MFUtility getWWWShortPath:aPath]);
-    NSString *pathFor404 = [[NSBundle mainBundle] pathForResource:@"404/index" ofType:@"html"];
-    NSString *html = [NSString stringWithContentsOfFile:pathFor404 encoding:NSUTF8StringEncoding error:nil];
-
-    html = [html stringByReplacingOccurrencesOfString:@"%%%urlPlaceHolder%%%" withString:[MFUtility getWWWShortPath:aPath]];
-    [webView loadHTMLString:html baseURL:[NSURL fileURLWithPath:pathFor404]];
 }
 
 + (NSURL *)getBaseURL
@@ -302,26 +289,6 @@ static NSString *_wwwFolderName;
 + (MFDelegate *)getAppDelegate
 {
     return ((MFDelegate *)[[UIApplication sharedApplication] delegate]);
-}
-
-+ (void)setCurrentWWWFolderName:(NSString *)wwwFolderName
-{
-    _wwwFolderName = wwwFolderName;
-}
-
-+ (NSString *)currentWWWFolderName
-{
-    return _wwwFolderName;
-}
-
-+ (MFViewController *)currentViewController
-{
-    id viewController = [self getAppDelegate].monacaNavigationController.topViewController;
-    if ([viewController isKindOfClass:MFTabBarController.class]) {
-        return (MFViewController *)[(MFNavigationController *)[(MFTabBarController *)viewController selectedViewController] topViewController];
-    } else {
-        return viewController;
-    }
 }
 
 + (NSMutableDictionary *)parseQuery:(NSURLRequest *)request

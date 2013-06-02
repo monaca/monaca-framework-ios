@@ -14,6 +14,7 @@
 #import "MFJSInterfaceProtocol.h"
 #import "CDVSplashScreen.h"
 #import "MFUtility.h"
+#import "MFViewManager.h"
 #import "MFViewBuilder.h"
 
 @class MFViewController;
@@ -138,7 +139,7 @@
     [[NSUserDefaults standardUserDefaults] setObject:extraJson forKey:@"extraJSON"];
     application.applicationIconBadgeNumber = 0;
 
-    [[MFUtility currentViewController] sendPush];
+    [[MFViewManager currentViewController] sendPush];
 }
 
 @end

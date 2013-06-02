@@ -180,6 +180,13 @@
     }
 }
 
+- (void)removeUserInterface
+{
+    _viewController.navigationItem.leftBarButtonItems = nil;
+    _viewController.navigationItem.rightBarButtonItems = nil;
+    _viewController.navigationItem.titleView = nil;
+}
+
 - (void)updateUIStyle:(id)value forKey:(NSString *)key
 {
     if (![_ncStyle checkStyle:value forKey:key]) {

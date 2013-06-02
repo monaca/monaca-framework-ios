@@ -10,7 +10,7 @@
 #import "MFUtility.h"
 #import "MFDammyViewController.h"
 #import "MFUIChecker.h"
-
+#import "MFViewManager.h"
 
 @implementation MFViewBuilder
 
@@ -56,19 +56,22 @@ static NSString *_wwwDir;
     MFViewController *viewController = [[MFViewController alloc] initWithFileName:[path lastPathComponent]];
     [viewController setWwwFolderName:[path stringByDeletingLastPathComponent]];
     if (ignoreBottom_) {
-        [uidict removeObjectForKey:kNCPositionBottom];
+        NSDictionary *bottom = [uidict objectForKey:kNCPositionBottom];
+        if ([[bottom objectForKey:kNCTypeContainer] isEqualToString:kNCContainerTabbar]) {
+            [uidict removeObjectForKey:kNCPositionBottom];
+        }
     }
     [viewController setUiDict:uidict];
     
     return viewController;
 }
 
-+ (MFTabBarController *)createTabbarControllerWithPath:(NSString *)path withDict:(NSMutableDictionary *)uidict
++ (MFTabBarController *)createTabbarControllerWithPath:(NSString *)path withDict:(NSDictionary *)uidict
 {
     [MFUIChecker checkUI:uidict];
     
     MFTabBarController *tabbarController = [[MFTabBarController alloc] init];
-    [MFUtility setCurrentWWWFolderName:[path stringByDeletingLastPathComponent]];
+    [MFViewManager setCurrentWWWFolderName:[path stringByDeletingLastPathComponent]];
 
     NSMutableArray *viewControllers = [NSMutableArray array];
     NSDictionary *bottom = [uidict objectForKey:kNCPositionBottom];
@@ -93,7 +96,7 @@ static NSString *_wwwDir;
         MFNavigationController *navi = [[MFNavigationController alloc] init];
         [navi setViewControllers:[NSArray arrayWithObjects:[[MFDammyViewController alloc] init], viewController, nil]];
         [viewControllers addObject:navi];
-        
+
         NCTabbarItem *tabbarItem = [[NCTabbarItem alloc] init];
 
         [tabbarItem setUserInterface:style];

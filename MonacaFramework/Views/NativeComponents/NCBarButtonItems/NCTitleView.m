@@ -10,6 +10,7 @@
 #import "MFDelegate.h"
 #import "MFDevice.h"
 #import "MFUtility.h"
+#import "MFViewManager.h"
 #import "UILabel+Resize.h"
 
 @implementation NCTitleView
@@ -137,7 +138,7 @@ static const CGFloat kSizeOfPortraitTitleFont     = 19.0f;
         [_subtitle setFont:[UIFont boldSystemFontOfSize:kSizeOfSubtitleFont * [value floatValue]]];
     }
     if ([key isEqualToString:kNCStyleTitleImage]) {
-        NSString *imagePath = [[MFUtility currentViewController].wwwFolderName stringByAppendingPathComponent:value];
+        NSString *imagePath = [[MFViewManager currentViewController].wwwFolderName stringByAppendingPathComponent:value];
         _titleImageView.image = [UIImage imageWithContentsOfFile:imagePath];
         _titleImageView.contentMode = UIViewContentModeCenter;
     }
