@@ -14,6 +14,7 @@
 #import "MFViewManager.h"
 #import "MFTransitPushParameter.h"
 #import "MFTransitPopParameter.h"
+#import "MFDammyViewController.h"
 
 @implementation MFTransitPlugin
 
@@ -95,7 +96,9 @@
         }
     }
     if (query != nil) {
-        [viewController.webView loadRequest:[self createRequest:urlStringWithoutQuery withQuery:query]];
+        if ([viewController isKindOfClass:[MFViewController class]]) {
+            [viewController.webView loadRequest:[self createRequest:urlStringWithoutQuery withQuery:query]];
+        }
      }
 }
 
@@ -117,13 +120,11 @@
     
     MFViewController *vc = (MFViewController*)[navigationController popViewControllerAnimated:parameter.hasDefaultPopAnimation];
     [vc destroy];
-/*
-    BOOL res = [[self class] changeDelegate:[[navigationController viewControllers] lastObject]];
-    if (res) {
+
+    if (vc != nil) {
         NSString *command =[NSString stringWithFormat:@"%@ && %@();", kMonacaTransitPluginJsReactivate, kMonacaTransitPluginJsReactivate];
         [self writeJavascriptOnDelegateViewController:command];
     }
- */
 }
 
 #pragma mark - plugins methods
@@ -159,19 +160,15 @@
 {
     NSString *fileName = [options objectForKey:kMonacaTransitPluginOptionUrl];
 
-    UINavigationController *nav = [MFViewManager currentViewController].navigationController;
-    [self popToHomeViewController:YES];
+    BOOL ret = [self popToHomeViewController:YES];
 
-    UIViewController *viewController = [[nav viewControllers] objectAtIndex:0];
-
-//    BOOL res = [[self class] changeDelegate:viewController];
-//    if (res) {
+    if (ret) {
         if (fileName) {
-            [self.webView loadRequest:[self createRequest:fileName withQuery:nil]];
+            [[MFViewManager currentViewController].webView loadRequest:[self createRequest:fileName withQuery:nil]];
         }
         NSString *command =[NSString stringWithFormat:@"%@ && %@();", kMonacaTransitPluginJsReactivate, kMonacaTransitPluginJsReactivate];
         [self writeJavascript:command];
-//    }
+    }
 }
 
 - (void)clearPageStack:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options
@@ -180,10 +177,12 @@
     NSMutableArray *controllers;
     
     if ([clearAll isKindOfClass:NSNumber.class] && [clearAll isEqualToNumber:[NSNumber numberWithBool:YES]]) {
-        controllers = [NSMutableArray arrayWithObject:[MFViewManager currentViewController]];
+        controllers = [NSMutableArray array];
+        [controllers addObject:[[MFDammyViewController alloc] init]];
+        [controllers addObject:[MFViewManager currentViewController]];
     } else {
         controllers = [NSMutableArray arrayWithArray:[MFViewManager currentViewController].navigationController.viewControllers];
-        if (controllers.count > 1) {
+        if (controllers.count > 2) {
             [controllers removeObjectAtIndex:controllers.count - 2];
         }
     }
@@ -191,13 +190,15 @@
     [[MFViewManager currentViewController].navigationController setViewControllers:controllers animated:NO];
 }
 
-- (void)popToHomeViewController:(BOOL)isAnimated
+- (BOOL)popToHomeViewController:(BOOL)isAnimated
 {
     NSArray *viewControllers = [[MFViewManager currentViewController].navigationController popToRootViewControllerAnimated:isAnimated];
     
     for (MFViewController *vc in viewControllers) {
         [vc destroy];
     }
+    
+    return viewControllers != nil ? YES: NO;
 }
 
 - (void)browse:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options
