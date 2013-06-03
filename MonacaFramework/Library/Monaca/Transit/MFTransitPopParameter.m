@@ -92,10 +92,12 @@
     // "target" parameter parsing
     {
         id targetParam = [options objectForKey:@"target"];
-        if (targetParam != nil && [targetParam isKindOfClass:NSString.class]) {
+        if ([targetParam isKindOfClass:NSString.class]) {
             if ([targetParam isEqualToString:@"_parent"] || [targetParam isEqualToString:@"_self"]) {
                 target = targetParam;
             }
+        } else if (targetParam == nil) {
+            target = @"_parent";
         }
         if (target == nil) {
             NSLog(@"unkonwn target type: %@", targetParam);
