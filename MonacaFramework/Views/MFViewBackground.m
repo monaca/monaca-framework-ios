@@ -11,16 +11,149 @@
 #import "MFUtility.h"
 #import "MFViewManager.h"
 
+#define kWebViewBackground  @"bg"
+
 @implementation MFViewBackground
 
-- (id)initWithFrame:(CGRect)frame
+- (id)initWithViewController:(MFViewController *)viewController
 {
-    self = [super initWithFrame:frame];
+    self = [super init];
+    
     if (self) {
-        // Initialization code
+        _viewController = viewController;
+        _ncStyle = [[NCStyle alloc] initWithComponent:kNCContainerPage];
+        self.frame = viewController.view.frame;
     }
+    
     return self;
 }
+
+#pragma mark - Other methods
+
+- (void)setBackgroundColor:(UIColor *)color
+{
+    _viewController.webView.backgroundColor = [UIColor clearColor];
+    _viewController.webView.opaque = NO;
+    
+    UIScrollView *scrollView = (UIScrollView *)[_viewController.webView scrollView];
+    
+    if (scrollView) {
+        scrollView.opaque = NO;
+        scrollView.backgroundColor = [UIColor clearColor];
+        // Remove shadow
+        for (UIView *subview in [scrollView subviews]) {
+            if([subview isKindOfClass:[UIImageView class]]){
+                subview.hidden = YES;
+            }
+        }
+    }
+    
+    _viewController.view.opaque = YES;
+    _viewController.view.backgroundColor = color;
+}
+
+#pragma mark - UIStyleProtocol
+
+- (void)createBackgroundView:(NSDictionary *)uidict
+{
+    [_viewController.view insertSubview:self atIndex:0];
+    [self setUserInterface:uidict];
+    [self applyUserInterface];
+}
+
+- (void)setUserInterface:(NSDictionary *)uidict
+{
+    [_ncStyle setStyles:uidict];
+}
+
+- (void)applyUserInterface
+{
+    for (id key in [_ncStyle styles]) {
+        [self updateUIStyle:[[_ncStyle styles] objectForKey:key] forKey:key];
+    }
+}
+
+- (void)updateUIStyle:(id)value forKey:(NSString *)key
+{
+    if (![_ncStyle checkStyle:value forKey:key]) {
+        return;
+    }
+    
+    if ([key isEqualToString:kNCStyleBackgroundColor]) {
+        if (value != nil) {
+            UIColor *color = hexToUIColor(removeSharpPrefix(value), 1);
+            [self setBackgroundColor:color];
+        } else {
+            [self setBackgroundColor:UIColor.whiteColor];
+        }
+    }
+    if ([key isEqualToString:kNCStyleBackgroundImage]) {
+        NSString *imagePath = [[MFViewManager currentWWWFolderName] stringByAppendingPathComponent:value];
+        self.image = [UIImage imageWithContentsOfFile:imagePath];
+    }
+    if ([key isEqualToString:kNCStyleBackgroundSize]) {
+        
+    }
+    if ([key isEqualToString:kNCStyleBackgroundRepeat]) {
+        
+    }
+    if ([key isEqualToString:kNCStyleBackgroundPosition]) {
+        
+    }
+    
+    [_ncStyle updateStyle:value forKey:key];
+}
+
+- (id)retrieveUIStyle:(NSString *)key
+{
+    return [_ncStyle retrieveStyle:key];
+}
+/*
+- (void)detectPosition:(NSArray *)style
+{
+    if ([[style objectAtIndex:0] isEqual:kNCTypeCenter] && [[style objectAtIndex:0] isEqual:kNCTypeCenter]) {
+        self.contentMode = UIViewContentModeCenter;
+    }
+    else if ([[style objectAtIndex:0] isEqual:kNCTypeCenter] && [[style objectAtIndex:0] isEqual:kNCPositionTop]) {
+            self.contentMode = UIViewContentModeTop;
+    else if([[backgroundStyle objectForKey:kNCStyleBackgroundPositionHorizontal] isEqual:kNCTypeCenter] &&
+                [[backgroundStyle objectForKey:kNCStyleBackgroundPositionVertical] isEqual:kNCPositionBottom])
+        {
+            self.contentMode = UIViewContentModeBottom;
+        }
+        else if([[backgroundStyle objectForKey:kNCStyleBackgroundPositionHorizontal] isEqual:kNCTypeRight] &&
+                [[backgroundStyle objectForKey:kNCStyleBackgroundPositionVertical] isEqual:kNCTypeCenter])
+        {
+            self.contentMode = UIViewContentModeRight;
+        }
+        else if([[backgroundStyle objectForKey:kNCStyleBackgroundPositionHorizontal] isEqual:kNCTypeRight] &&
+                [[backgroundStyle objectForKey:kNCStyleBackgroundPositionVertical] isEqual:kNCPositionTop])
+        {
+            self.contentMode = UIViewContentModeTopRight;
+        }
+        else if([[backgroundStyle objectForKey:kNCStyleBackgroundPositionHorizontal] isEqual:kNCTypeRight ] &&
+                [[backgroundStyle objectForKey:kNCStyleBackgroundPositionVertical] isEqual:kNCPositionBottom])
+        {
+            self.contentMode = UIViewContentModeBottomRight;
+        }
+        else if([[backgroundStyle objectForKey:kNCStyleBackgroundPositionHorizontal] isEqual:kNCTypeLeft ] &&
+                [[backgroundStyle objectForKey:kNCStyleBackgroundPositionVertical] isEqual:kNCTypeCenter])
+        {
+            self.contentMode = UIViewContentModeLeft;
+        }
+        else if([[backgroundStyle objectForKey:kNCStyleBackgroundPositionHorizontal] isEqual:kNCTypeLeft ] &&
+                [[backgroundStyle objectForKey:kNCStyleBackgroundPositionVertical] isEqual:kNCPositionTop])
+        {
+            self.contentMode = UIViewContentModeTopLeft;
+        }
+        else if([[backgroundStyle objectForKey:kNCStyleBackgroundPositionHorizontal] isEqual:kNCTypeLeft ] &&
+                [[backgroundStyle objectForKey:kNCStyleBackgroundPositionVertical] isEqual:kNCPositionBottom])
+        {
+            self.contentMode = UIViewContentModeBottomLeft;
+        }
+    }
+}
+*/
 
 -(void)setBackgroundStyle:(NSMutableDictionary*)style
 {

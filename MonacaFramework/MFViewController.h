@@ -20,14 +20,12 @@
     NSDictionary *_uiDict;
     id<UIStyleProtocol> _navigationBar;
     id<UIStyleProtocol> _toolbar;
+    id<UIStyleProtocol> _bgView;
     NCContainer *_backButton;
-    NCStyle *_ncStyle;
 }
 
 - (void)applyBarUserInterface;
 - (void)setBarUserInterface:(NSDictionary *)uidict;
-- (void)setUserInterface:(NSDictionary *)uidict;
-- (void)applyUserInterface;
 - (void)removeUserInterface;
 - (void)sendPush;
 - (id)initWithFileName:(NSString *)fileName;

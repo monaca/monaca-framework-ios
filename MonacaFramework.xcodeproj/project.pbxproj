@@ -469,8 +469,8 @@
 		0EED098317547926006DDE72 /* MFSpinnerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFSpinnerView.m; sourceTree = "<group>"; };
 		0EED098417547926006DDE72 /* spinner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spinner.png; sourceTree = "<group>"; };
 		0EED098517547926006DDE72 /* spinner@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "spinner@2x.png"; sourceTree = "<group>"; };
-		0EED09A5175496F7006DDE72 /* MFViewBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFViewBackground.h; sourceTree = "<group>"; };
-		0EED09A6175496F8006DDE72 /* MFViewBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFViewBackground.m; sourceTree = "<group>"; };
+		0EED09A5175496F7006DDE72 /* MFViewBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MFViewBackground.h; path = ../MFViewBackground.h; sourceTree = "<group>"; };
+		0EED09A6175496F8006DDE72 /* MFViewBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MFViewBackground.m; path = ../MFViewBackground.m; sourceTree = "<group>"; };
 		3E0B192D169D8CD7001A35BB /* MFUnitTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MFUnitTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E0B1935169D8E24001A35BB /* GHUnitIOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GHUnitIOS.framework; sourceTree = "<group>"; };
 		3E0B1936169D8E24001A35BB /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -1020,8 +1020,6 @@
 			children = (
 				5AF11559175B079B002E4E6B /* MFViewManager.h */,
 				5AF1155A175B079F002E4E6B /* MFViewManager.m */,
-				0EED09A5175496F7006DDE72 /* MFViewBackground.h */,
-				0EED09A6175496F8006DDE72 /* MFViewBackground.m */,
 				5AAB3F34171C3D220044FB77 /* MFViewBuilder.h */,
 				5AAB3F35171C3D220044FB77 /* MFViewBuilder.m */,
 				0E813EBA174DEE8B0062A13C /* MFUIChecker.h */,
@@ -1046,6 +1044,8 @@
 				5A3202DD172573CD0055A59F /* UIStyleProtocol.h */,
 				5A83D32016D91E6D00D25E98 /* NativeComponents.h */,
 				5A83D32116D91E6D00D25E98 /* NativeComponentsInternal.h */,
+				0EED09A5175496F7006DDE72 /* MFViewBackground.h */,
+				0EED09A6175496F8006DDE72 /* MFViewBackground.m */,
 				5AEA5945172D1A1100FF15E2 /* NCNavigationBar.h */,
 				5AEA5946172D1A1100FF15E2 /* NCNavigationBar.m */,
 				5A83D33816D91E6D00D25E98 /* NCToolbar.h */,

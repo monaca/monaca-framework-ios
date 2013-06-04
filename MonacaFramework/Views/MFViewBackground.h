@@ -7,9 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UIStyleProtocol.h"
+#import "MFViewController.h"
 
-@interface MFViewBackground : UIImageView
+@interface MFViewBackground : UIImageView <UIStyleProtocol>
+{
+    MFViewController *_viewController;
+    NCStyle *_ncStyle;
+}
 
--(void)setBackgroundStyle:(NSDictionary*)style;
+- (id)initWithViewController:(MFViewController *)viewController;
+- (void)createBackgroundView:(NSDictionary *)uidict;
+- (void)setBackgroundStyle:(NSDictionary*)style;
 
 @end

@@ -15,8 +15,6 @@
 #import "MFViewBackground.h"
 #import "MFViewManager.h"
 
-#define kWebViewBackground  @"bg"
-
 @interface MFViewController ()
 
 @end
@@ -35,7 +33,6 @@
     if (self) {
         self.startPage = [self removeFragment:fileName];
         self.ncManager = [[NCManager alloc] init];
-        _ncStyle = [[NCStyle alloc] initWithComponent:kNCContainerPage];
         self.wantsFullScreenLayout = NO;
     }
     return self;
@@ -68,8 +65,6 @@
     [super viewDidLoad];
 
     [self setBarUserInterface:self.uiDict];
-
-    [self applyUserInterface];
     
     // whether auto link for datatype
     [self processDataTypes];
@@ -147,13 +142,14 @@
     
     // setting for page style
     if ([style isKindOfClass:NSDictionary.class]) {
-        [self setUserInterface:style];
+        _bgView = [[MFViewBackground alloc] initWithViewController:self];
+        [self.ncManager setComponent:_bgView forID:[uidict objectForKey:kNCTypeID]];
+        [(MFViewBackground *)_bgView createBackgroundView:style];
     }
 }
 
 - (void)removeUserInterface
 {
-    [_ncStyle resetStyles];
     [_navigationBar removeUserInterface];
     _navigationBar = nil;
     [_toolbar removeUserInterface];
@@ -162,42 +158,6 @@
     [self.ncManager removeAllComponents];
 }
 
-#pragma mark - UIStyleProtocol
-
-- (void)setUserInterface:(NSDictionary *)uidict
-{
-    [_ncStyle setStyles:uidict];
-}
-
-- (void)applyUserInterface
-{
-    for (id key in [_ncStyle styles]) {
-        [self updateUIStyle:[[_ncStyle styles] objectForKey:key] forKey:key];
-    }
-}
-
-- (void)updateUIStyle:(id)value forKey:(NSString *)key
-{
-    if (![_ncStyle checkStyle:value forKey:key]) {
-        return;
-    }
-    
-    if ([key isEqualToString:kNCStyleBackgroundColor]) {
-        if ([value isKindOfClass:NSString.class]) {
-            UIColor *color = hexToUIColor(removeSharpPrefix(value), 1);
-            [self setBackgroundColor:color];
-        } else {
-            [self setBackgroundColor:UIColor.whiteColor];
-        }
-    }
-    
-    [_ncStyle updateStyle:value forKey:key];
-}
-
-- (id)retrieveUIStyle:(NSString *)key
-{
-    return [_ncStyle retrieveStyle:key];
-}
 
 #pragma mark - webview delegate
 
@@ -331,69 +291,6 @@
             [plugin setWebView:nil];
         }
     }
-}
-
-#pragma mark - Other methods
-
-- (void)setBackgroundColor:(UIColor *)color
-{
-    self.webView.backgroundColor = [UIColor clearColor];
-    self.webView.opaque = NO;
-    
-    UIScrollView *scrollView = (UIScrollView *)[self.webView scrollView];
-    
-    if (scrollView) {
-        scrollView.opaque = NO;
-        scrollView.backgroundColor = [UIColor clearColor];
-        // Remove shadow
-        for (UIView *subview in [scrollView subviews]) {
-            if([subview isKindOfClass:[UIImageView class]]){
-                subview.hidden = YES;
-            }
-        }
-    }
-    
-    self.view.opaque = YES;
-    self.view.backgroundColor = color;
-}
-
-
-- (void)applyStyleDict:(NSMutableDictionary*)pageStyle
-{
-    self.webView.backgroundColor = [UIColor clearColor];
-    self.webView.opaque = NO;
-    
-    UIInterfaceOrientation orientation = [MFUtility currentInterfaceOrientation];
-    float navBarHeight = [MFDevice heightOfNavigationBar:orientation];
-    if ( self.navigationController.navigationBar.hidden == YES) {
-        navBarHeight = 0;
-    }
-    
-    float tabBarHeight = 0;
-    
-    //tabBarは表示が定義されていない場合も画面外に保持されている
-    if ( self.tabBarController.tabBar.frame.origin.y < self.view.frame.size.height) {
-        tabBarHeight = [MFDevice heightOfTabBar];
-    }
-    
-    // remove old background
-    if( [[self.view viewWithTag:kWebViewBackground] isKindOfClass:UIImageView.class] )
-    {
-        [[self.view viewWithTag:kWebViewBackground] removeFromSuperview];
-    }
-    
-    MFViewBackground* backgroundImageView = [[MFViewBackground alloc] initWithFrame:CGRectMake( self.view.frame.origin.x,
-                                                                                               self.view.frame.origin.y,
-                                                                                               self.view.frame.size.width,
-                                                                                               self.view.frame.size.height)];
-    
-    backgroundImageView.tag = kWebViewBackground;
-    [backgroundImageView setAutoresizingMask:UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth ];
-    [backgroundImageView setBackgroundStyle:pageStyle];
-    [self.view insertSubview:backgroundImageView atIndex:0];
-    [backgroundImageView sendSubviewToBack:self.view];
-    [self.ncManager setComponent:backgroundImageView forID:kNCContainerPage];
-    
 }
 
 @end
