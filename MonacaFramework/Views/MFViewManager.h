@@ -14,6 +14,7 @@
     
 }
 
++ (void)setCurrentViewController:(MFViewController *)viewController;
 + (MFViewController *)currentViewController;
 + (void)setCurrentWWWFolderName:(NSString *)wwwFolderName;
 + (NSString *)currentWWWFolderName;

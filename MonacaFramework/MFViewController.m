@@ -59,6 +59,7 @@
 {
     [super viewWillAppear:animated];
     
+    [MFViewManager setCurrentViewController:self];
     [MFViewManager setCurrentWWWFolderName:self.wwwFolderName];
 }
 
@@ -66,7 +67,6 @@
 {
     [super viewDidLoad];
 
-    [MFViewManager setCurrentWWWFolderName:self.wwwFolderName];
     [self setBarUserInterface:self.uiDict];
 
     [self applyUserInterface];

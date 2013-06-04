@@ -55,6 +55,7 @@ static NSString *_wwwDir;
     
     MFViewController *viewController = [[MFViewController alloc] initWithFileName:[path lastPathComponent]];
     [viewController setWwwFolderName:[path stringByDeletingLastPathComponent]];
+    [MFViewManager setCurrentWWWFolderName:viewController.wwwFolderName];
     if (ignoreBottom_) {
         NSDictionary *bottom = [uidict objectForKey:kNCPositionBottom];
         if ([[bottom objectForKey:kNCTypeContainer] isEqualToString:kNCContainerTabbar]) {

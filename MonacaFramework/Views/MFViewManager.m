@@ -12,6 +12,7 @@
 @implementation MFViewManager
 
 static NSString *_wwwFolderName;
+static MFViewController *_currentViewController;
 
 + (void)setCurrentWWWFolderName:(NSString *)wwwFolderName;
 {
@@ -23,14 +24,14 @@ static NSString *_wwwFolderName;
     return _wwwFolderName;
 }
 
++ (void)setCurrentViewController:(MFViewController *)viewController
+{
+    _currentViewController = viewController;
+}
+
 + (MFViewController *)currentViewController;
 {
-    id viewController = [MFUtility getAppDelegate].monacaNavigationController.topViewController;
-    if ([viewController isKindOfClass:MFTabBarController.class]) {
-        return (MFViewController *)[(MFNavigationController *)[(MFTabBarController *)viewController selectedViewController] topViewController];
-    } else {
-        return viewController;
-    }
+    return _currentViewController;
 }
 
 /*

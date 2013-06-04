@@ -69,7 +69,6 @@ static NSString *base_url = @"https://api.monaca.mobi";
     } else {
         NSMutableDictionary *info = [NSMutableDictionary dictionary];
         [info setObject:path forKey:@"path"];
-//        [MFEvent dispatchEvent:monacaEventNCParseSuccess withInfo:info];
         NSLog(@"%@",[NSLocalizedString(@"Load UI File", nil) stringByAppendingString:[MFUtility getWWWShortPath:path]]);
     }
     
@@ -113,7 +112,7 @@ static NSString *base_url = @"https://api.monaca.mobi";
 
 + (NSDictionary *)getAppJSON
 {
-    NSString *base_path = [[MFViewManager currentViewController].wwwFolderName stringByReplacingOccurrencesOfString:@"www" withString:@""];
+    NSString *base_path = [[MFViewManager currentWWWFolderName] stringByReplacingOccurrencesOfString:@"www" withString:@""];
     NSURL *json_url = [NSURL fileURLWithPath:[base_path stringByAppendingPathComponent:@"app.json"]];
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:json_url];
     NSURLResponse *response = nil;
