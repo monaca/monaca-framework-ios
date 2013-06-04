@@ -53,7 +53,6 @@
 
 + (NSString *)valueType:(id)object
 {
-
     if ([NSStringFromClass([object class]) isEqualToString:@"__NSCFConstantString"] ||
         [NSStringFromClass([object class]) isEqualToString:@"__NSCFString"]) {
         NSString *str = object;
@@ -97,9 +96,14 @@
 + (NSDictionary *)getValidDictionary
 {
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
-    [dict setValue:NSDictionary.class forKey:kNCPositionTop];
-    [dict setValue:NSDictionary.class forKey:kNCPositionBottom];
-    [dict setValue:NSDictionary.class forKey:kNCPositionMenu];
+    [dict setValue:[NSDictionary dictionary] forKey:kNCPositionTop];
+    [dict setValue:[NSDictionary dictionary] forKey:kNCPositionBottom];
+    [dict setValue:[NSDictionary dictionary] forKey:kNCTypeEvent];
+    [dict setValue:[NSDictionary dictionary] forKey:kNCTypeIOSStyle];
+    [dict setValue:[NSDictionary dictionary] forKey:kNCTypeAndroidStyle];
+    [dict setValue:[NSDictionary dictionary] forKey:kNCTypeStyle];
+    [dict setValue:[NSDictionary dictionary] forKey:kNCPositionMenu];
+    [dict setValue:kNCUndefined forKey:kNCTypeID];
     return dict;
 }
 
@@ -113,6 +117,12 @@
             NSLog(NSLocalizedString(@"Key is not one of valid keys", nil), @"<root>", key, [MFUIChecker dictionaryKeysToString:validDict]);
             continue;
         }
+        if (![[MFUIChecker valueType:[dict objectForKey:key]] isEqualToString:[MFUIChecker valueType:[validDict valueForKey:key]]]) {
+            NSLog(NSLocalizedString(@"Invalid value type", nil), kNCContainerPage , key,
+                  [MFUIChecker valueType:[validDict objectForKey:key]], [dict valueForKey:key]);
+            [dict removeObjectForKey:key];
+            continue;
+        }
     }
     NSMutableDictionary *Dict;
     if ((Dict = [dict objectForKey:kNCPositionTop])) {
@@ -122,7 +132,7 @@
         [ContainerNode parse:Dict withPosition:kNCPositionBottom];
     }
     if ((Dict = [dict objectForKey:kNCPositionMenu])) {
-        //        [ContainerNode parse:Dict withPosition:kNCPositionMenu];
+//        [ContainerNode parse:Dict withPosition:kNCPositionMenu];
     }
 }
 
@@ -133,12 +143,12 @@
 + (NSDictionary *)getValidDictionary:(NSString *)position
 {
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
-    [dict setValue:NSString.class forKey:kNCContainerToolbar];
+    [dict setValue:kNCUndefined forKey:kNCContainerToolbar];
     if ([position isEqualToString:kNCPositionTop]) {
         return dict;
     }
     if ([position isEqualToString:kNCPositionBottom]) {
-        [dict setValue:NSString.class forKey:kNCContainerTabbar];
+        [dict setValue:kNCUndefined forKey:kNCContainerTabbar];
         return dict;
     }
     
@@ -174,14 +184,14 @@
 + (NSDictionary *)getValidDictionary
 {
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
-    [dict setValue:NSString.class forKey:kNCTypeContainer];
-    [dict setValue:NSDictionary.class forKey:kNCTypeStyle];
-    [dict setValue:NSDictionary.class forKey:kNCTypeIOSStyle];
-    [dict setValue:NSDictionary.class forKey:kNCTypeAndroidStyle];
-    [dict setValue:NSString.class forKey:kNCTypeID];
-    [dict setValue:NSArray.class forKey:kNCTypeLeft];
-    [dict setValue:NSArray.class forKey:kNCTypeCenter];
-    [dict setValue:NSArray.class forKey:kNCTypeRight];
+    [dict setValue:kNCUndefined forKey:kNCTypeContainer];
+    [dict setValue:[NSDictionary dictionary] forKey:kNCTypeStyle];
+    [dict setValue:[NSDictionary dictionary] forKey:kNCTypeIOSStyle];
+    [dict setValue:[NSDictionary dictionary] forKey:kNCTypeAndroidStyle];
+    [dict setValue:kNCUndefined forKey:kNCTypeID];
+    [dict setValue:[NSArray array] forKey:kNCTypeLeft];
+    [dict setValue:[NSArray array] forKey:kNCTypeCenter];
+    [dict setValue:[NSArray array] forKey:kNCTypeRight];
     return dict;
 }
 
@@ -195,15 +205,12 @@
             NSLog(NSLocalizedString(@"Key is not one of valid keys", nil), position, key, [MFUIChecker dictionaryKeysToString:validDict]);
             continue;
         }
-        if (![[dict objectForKey:key] isKindOfClass:[validDict valueForKey:key]]) {
+        if (![[MFUIChecker valueType:[dict objectForKey:key]] isEqualToString:[MFUIChecker valueType:[validDict valueForKey:key]]]) {
             NSLog(NSLocalizedString(@"Invalid value type", nil), position , key,
                    [MFUIChecker valueType:[validDict objectForKey:key]], [dict valueForKey:key]);
             [dict removeObjectForKey:key];
             continue;
         }
-    }
-    if ([dict objectForKey:kNCTypeStyle]) {
-//        [StyleNode parse:[dict objectForKey:kNCTypeStyle] withComponent:kNCContainerToolbar];
     }
     NSArray *array;
     if ((array = [dict objectForKey:kNCTypeLeft])) {
@@ -231,12 +238,12 @@
 + (NSDictionary *)getValidDictionary
 {
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
-    [dict setValue:NSString.class forKey:kNCTypeContainer];
-    [dict setValue:NSDictionary.class forKey:kNCTypeStyle];
-    [dict setValue:NSDictionary.class forKey:kNCTypeIOSStyle];
-    [dict setValue:NSDictionary.class forKey:kNCTypeAndroidStyle];
-    [dict setValue:NSString.class forKey:kNCTypeID];
-    [dict setValue:NSArray.class forKey:kNCTypeItems];
+    [dict setValue:kNCUndefined forKey:kNCTypeContainer];
+    [dict setValue:[NSDictionary dictionary] forKey:kNCTypeStyle];
+    [dict setValue:[NSDictionary dictionary] forKey:kNCTypeIOSStyle];
+    [dict setValue:[NSDictionary dictionary] forKey:kNCTypeAndroidStyle];
+    [dict setValue:kNCUndefined forKey:kNCTypeID];
+    [dict setValue:[NSArray array] forKey:kNCTypeItems];
     return dict;
 }
 
@@ -255,9 +262,6 @@
             continue;
         }
     }
-    if ([dict objectForKey:kNCTypeStyle]) {
-//        [StyleNode parse:[dict objectForKey:kNCTypeStyle] withComponent:kNCContainerTabbar];
-    }
     NSArray *array;
     if ((array = [dict objectForKey:kNCTypeRight])) {
         for (NSMutableDictionary *Dict in array) {
@@ -273,12 +277,12 @@
 + (NSDictionary *)getValidDictionary:(NSString *)component
 {
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
-    [dict setValue:NSString.class forKey:kNCStyleComponent];
-    [dict setValue:NSDictionary.class forKey:kNCTypeStyle];
-    [dict setValue:NSDictionary.class forKey:kNCTypeIOSStyle];
-    [dict setValue:NSDictionary.class forKey:kNCTypeAndroidStyle];
-    [dict setValue:NSString.class forKey:kNCTypeID];
-    [dict setValue:NSDictionary.class forKey:kNCTypeEvent];
+    [dict setValue:kNCUndefined forKey:kNCStyleComponent];
+    [dict setValue:[NSDictionary dictionary] forKey:kNCTypeStyle];
+    [dict setValue:[NSDictionary dictionary] forKey:kNCTypeIOSStyle];
+    [dict setValue:[NSDictionary dictionary] forKey:kNCTypeAndroidStyle];
+    [dict setValue:kNCUndefined forKey:kNCTypeID];
+    [dict setValue:[NSDictionary dictionary] forKey:kNCTypeEvent];
     if ([component isEqualToString:kNCComponentButton]) {
         return dict;
     }
@@ -297,7 +301,7 @@
     }
     if ([component isEqualToString:kNCComponentTabbarItem]) {
         [dict removeObjectForKey:kNCTypeEvent];
-        [dict setValue:NSString.class forKey:kNCTypeLink];
+        [dict setValue:kNCUndefined forKey:kNCTypeLink];
         return dict;
     }
     
