@@ -151,7 +151,7 @@
         _centerView = [[visiableContainers objectAtIndex:1] view];
     }
     
-    _viewController.navigationItem.titleView = _titleView;
+    [self applyTitleViewVisibility];
 }
 
 - (void)applyTitleViewVisibility
