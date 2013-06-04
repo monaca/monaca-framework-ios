@@ -184,7 +184,7 @@ const int ERROR_applicationIdNotDefined = -80;
 -(void)ApplicationResource_retrieveQueryResource:(CDVInvokedUrlCommand*)command
 {
     callbackId = command.callbackId;
-    if([self checkAllParameterExists:command] && [self checkArgumentsExistsOfIndex:command :1] && [self checkIosVersion])
+    if([self checkAllParameterExists:command] && [self checkArgumentsExistsOfIndex:command :1] && [self checkArgumentsIsQuery:[command.arguments objectAtIndex:0]]&& [self checkIosVersion])
     {
         ApplicationResourceDelegate* applicationResourceDelegate = [[ApplicationResourceDelegate alloc]initWithCDVPlugin:self :[self getApplicationId] :[self getAuthKey]];
         [applicationResourceDelegate retrieveQueryResource:[command.arguments objectAtIndex:0] :[command.arguments objectAtIndex:1]];
@@ -317,6 +317,20 @@ const int ERROR_applicationIdNotDefined = -80;
     }
     
     return TRUE;
+}
+
+-(BOOL)checkArgumentsIsQuery:(NSMutableDictionary*)condition
+{
+    
+    NSArray *conditionKeys = [condition allKeys];
+    if([conditionKeys containsObject:@"query"] && [[condition objectForKey:@"query"] isKindOfClass:[NSDictionary class]])
+    {
+        return TRUE;
+    }
+    
+    [self returnErrorValue:ERROR_invalidParametersOrArguments];
+    return FALSE;
+    
 }
 
 @end
