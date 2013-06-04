@@ -16,6 +16,7 @@
 }
 
 - (id)initWithComponent:(NSString *)component;
+- (id)getDefaultStyle:(NSString *)key;
 - (void)resetStyles;
 - (void)setStyles:(NSDictionary *)styles;
 - (NSDictionary *)styles;

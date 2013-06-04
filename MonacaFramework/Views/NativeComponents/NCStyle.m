@@ -110,6 +110,11 @@
     return self;
 }
 
+- (id)getDefaultStyle:(NSString *)key
+{
+    return [_defaultStyles objectForKey:key];
+}
+
 - (void)resetStyles
 {
     _styles = [_defaultStyles mutableCopy];

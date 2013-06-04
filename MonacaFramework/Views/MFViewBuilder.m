@@ -73,7 +73,9 @@ static NSString *_wwwDir;
 
     NSMutableArray *viewControllers = [NSMutableArray array];
     NSDictionary *bottom = [uidict objectForKey:kNCPositionBottom];
-    NSDictionary *bottomStyle = [bottom objectForKey:kNCTypeStyle];
+    NSMutableDictionary *bottomStyle = [NSMutableDictionary dictionary];
+    [bottomStyle addEntriesFromDictionary:[bottom objectForKey:kNCTypeStyle]];
+    [bottomStyle addEntriesFromDictionary:[bottom objectForKey:kNCTypeIOSStyle]];
     NSArray *items = [bottom objectForKey:kNCTypeItems];
     
     int i = 0;

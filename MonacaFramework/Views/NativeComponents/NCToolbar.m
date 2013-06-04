@@ -43,7 +43,7 @@
         [_viewController.navigationController setToolbarHidden:NO];
     }
 
-    [self setUserInterface:[uidict objectForKey:kNCTypeStyle]];
+    [self setUserInterface:style];
     [self applyUserInterface];
     
     UIBarButtonItem *spacer =
@@ -114,6 +114,16 @@
     }
 }
 
+- (void)setShadowOpacity:(float)value
+{
+    CALayer *navBarLayer = _toolbar.layer;
+    //        navBarLayer.shadowColor = [[UIColor blackColor] CGColor];
+    //        navBarLayer.shadowRadius = 3.0f;
+    navBarLayer.shadowOffset = CGSizeMake(0.0f, 2.0f);
+    
+    [navBarLayer setShadowOpacity:value];
+}
+
 #pragma mark - UIStyleProtocol
 
 - (void)setUserInterface:(NSDictionary *)uidict
@@ -139,7 +149,7 @@
     if (![_ncStyle checkStyle:value forKey:key]) {
         return;
     }
-  
+
     if ([key isEqualToString:kNCStyleVisibility]) {
         BOOL hidden = NO;
         if (isFalse(value)) {
@@ -148,14 +158,18 @@
         [_viewController.navigationController setToolbarHidden:hidden];
     }
     if ([key isEqualToString:kNCStyleBackgroundColor]) {
-        [_toolbar setTintColor:hexToUIColor(removeSharpPrefix(value), 1)];
+        if (_toolbar.barStyle == UIBarStyleDefault) {
+            [_toolbar setTintColor:hexToUIColor(removeSharpPrefix(value), 1)];
+        }
     }
     if ([key isEqualToString:kNCStyleOpacity]) {
-        [self setOpacity:[value floatValue]];
-        if (_toolbar.barStyle != UIBarStyleBlackTranslucent && [value floatValue] == 1.0) {
-            [_toolbar setTranslucent:NO];
-        } else {
-            [_toolbar setTranslucent:YES];
+        if (_toolbar.barStyle == UIBarStyleDefault) {
+            [self setOpacity:[value floatValue]];
+            if ([value floatValue] == 1.0) {
+                [_toolbar setTranslucent:NO];
+            } else {
+                [_toolbar setTranslucent:YES];
+            }
         }
     }
     if ([key isEqualToString:kNCStyleIOSBarStyle]) {
@@ -173,6 +187,17 @@
             style = UIBarStyleDefault;
             [_toolbar setTranslucent:NO];
         }
+        
+        if (style == UIBarStyleDefault) {
+            [self updateUIStyle:[self retrieveUIStyle:kNCStyleBackgroundColor] forKey:kNCStyleBackgroundColor];
+            [self updateUIStyle:[self retrieveUIStyle:kNCStyleOpacity] forKey:kNCStyleOpacity];
+            [self updateUIStyle:[self retrieveUIStyle:kNCStyleShadowOpacity] forKey:kNCStyleShadowOpacity];
+        } else {
+            [_toolbar setTintColor:nil];
+            [self setOpacity:[[_ncStyle getDefaultStyle:kNCStyleOpacity] floatValue]];
+            [self setShadowOpacity:[[_ncStyle getDefaultStyle:kNCStyleShadowOpacity] floatValue]];
+        }
+
         [_toolbar setBarStyle:style];
         /// translucentを反映させる
         [_viewController.navigationController setToolbarHidden:YES];
@@ -181,12 +206,9 @@
          }
     }
     if ([key isEqualToString:kNCStyleShadowOpacity]) {
-        CALayer *toolBarLayer = _toolbar.layer;
-        //        navBarLayer.shadowColor = [[UIColor blackColor] CGColor];
-        //        navBarLayer.shadowRadius = 3.0f;
-        toolBarLayer.shadowOffset = CGSizeMake(0.0f, -2.0f);
-
-        [toolBarLayer setShadowOpacity:[value floatValue]];
+        if (_toolbar.barStyle == UIBarStyleDefault) {
+            [self setShadowOpacity:[value floatValue]];
+        }
     }
 
     [_ncStyle updateStyle:value forKey:key];

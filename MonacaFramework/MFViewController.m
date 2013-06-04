@@ -48,13 +48,14 @@
 {
     [super viewDidAppear:animated];
     
-    [self applyBarUserInterface];
     [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    [self applyBarUserInterface];
     
     [MFViewManager setCurrentViewController:self];
     [MFViewManager setCurrentWWWFolderName:self.wwwFolderName];
