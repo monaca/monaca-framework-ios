@@ -205,7 +205,7 @@ const int ERROR_applicationIdNotDefined = -80;
         }
         else if([[command.arguments objectAtIndex:0]  isKindOfClass:[NSArray class]])
         {
-            [applicationResourceDelegate createResourceForArray:[command.arguments objectAtIndex:0] :[command.arguments objectAtIndex:0] ];
+            [applicationResourceDelegate createResourceForArray:[command.arguments objectAtIndex:0] :[command.arguments objectAtIndex:1] ];
         }
     }
 }
