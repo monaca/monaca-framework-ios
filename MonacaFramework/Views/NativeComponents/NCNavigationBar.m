@@ -157,7 +157,8 @@
 - (void)applyTitleViewVisibility
 {
     if ([[_titleView retrieveUIStyle:kNCStyleTitle] isEqualToString:kNCUndefined] &&
-        [[_titleView retrieveUIStyle:kNCStyleSubtitle] isEqualToString:kNCUndefined]) {
+        [[_titleView retrieveUIStyle:kNCStyleSubtitle] isEqualToString:kNCUndefined] &&
+        [[_titleView retrieveUIStyle:kNCStyleTitleImage] isEqualToString:kNCUndefined]) {
         _viewController.navigationItem.titleView = nil;
         _viewController.navigationItem.titleView = _centerView;
     } else {

@@ -9,6 +9,7 @@
 #import "NCStyle.h"
 #import "MFUIChecker.h"
 #import "NativeComponentsInternal.h"
+#import "MFViewManager.h"
 
 @implementation NCStyle
 
@@ -175,6 +176,16 @@
               [MFUIChecker valueType:[_defaultStyles objectForKey:key]], value);
         return NO;
     }
+    if ([key isEqualToString:kNCStyleInnerImage] || [key isEqualToString:kNCStyleImage]) {
+        if (value != nil && ![value isEqualToString:kNCUndefined]) {
+            NSString *imagePath = [[MFViewManager currentWWWFolderName] stringByAppendingPathComponent:value];
+            if ([UIImage imageWithContentsOfFile:imagePath] == nil) {
+                NSLog(NSLocalizedString(@"Resource not found", nil), _component, key, value);
+                return NO;
+            }
+        }
+    }
+    
     return YES;
 }
 

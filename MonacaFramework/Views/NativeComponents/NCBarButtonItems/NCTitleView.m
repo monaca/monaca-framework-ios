@@ -138,7 +138,7 @@ static const CGFloat kSizeOfPortraitTitleFont     = 19.0f;
         [_subtitle setFont:[UIFont boldSystemFontOfSize:kSizeOfSubtitleFont * [value floatValue]]];
     }
     if ([key isEqualToString:kNCStyleTitleImage]) {
-        NSString *imagePath = [[MFViewManager currentViewController].wwwFolderName stringByAppendingPathComponent:value];
+        NSString *imagePath = [[MFViewManager currentWWWFolderName] stringByAppendingPathComponent:value];
         _titleImageView.image = [UIImage imageWithContentsOfFile:imagePath];
         _titleImageView.contentMode = UIViewContentModeCenter;
     }
