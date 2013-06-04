@@ -69,7 +69,7 @@
     NSString *urlStringWithoutQuery = [[relativeUrlString componentsSeparatedByString:@"?"] objectAtIndex:0];
 
     MFNavigationController *navigationController;
-    if ([parameter.target isEqualToString:@"_parent"]) {
+    if ([parameter.target isEqualToString:@"_parent"] || [MFViewManager isViewControllerTop]) {
         navigationController = [MFUtility getAppDelegate].monacaNavigationController;
     } else {
         [MFViewBuilder setIgnoreBottom:YES];
@@ -107,10 +107,9 @@
     MFTransitPopParameter* parameter = [MFTransitPopParameter parseOptionsDict:options];
     
     MFNavigationController *navigationController;
-    if ([parameter.target isEqualToString:@"_parent"]) {
+    if ([parameter.target isEqualToString:@"_parent"] || [MFViewManager isViewControllerTop]) {
         navigationController = [MFUtility getAppDelegate].monacaNavigationController;
     } else {
-        [MFViewBuilder setIgnoreBottom:YES];
         navigationController = (MFNavigationController *)[MFViewManager currentViewController].navigationController;
     }
 
@@ -221,11 +220,15 @@
     NSDictionary *bottom = [uidict objectForKey:kNCPositionBottom];
     if ([[bottom objectForKey:kNCTypeContainer] isEqualToString:kNCContainerTabbar] && [MFViewManager isViewControllerTop]) {
         MFTabBarController *tabarController = [MFViewBuilder createTabbarControllerWithPath:fullPath withDict:uidict];
+        [tabarController setCustomizableViewControllers:nil];
         NSMutableArray *viewControllers = [[MFViewManager currentViewController].navigationController.viewControllers mutableCopy];
         [viewControllers removeLastObject];
         [viewControllers addObject:tabarController];
         [[MFViewManager currentViewController].navigationController setViewControllers:viewControllers];
     } else {
+        if ([MFViewManager isTabbarControllerTop]) {
+            [uidict removeObjectForKey:kNCPositionBottom];
+        }
         [[MFViewManager currentViewController] setBarUserInterface:uidict];
         [[MFViewManager currentViewController] applyBarUserInterface];
         [[MFViewManager currentViewController].webView loadRequest:[self createRequest:urlStringWithoutQuery withQuery:query]];
