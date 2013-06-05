@@ -16,10 +16,14 @@ updateBackButton(UIButton *button, NSDictionary *style) {
     BOOL invisible = isFalse([style objectForKey:kNCStyleVisibility]);
     [button setHidden:invisible];
 
+    
+    button.userInteractionEnabled = YES;
     BOOL disable = isTrue([style objectForKey:kNCStyleDisable]);
     //[button setEnabled:!disable];
-    button.userInteractionEnabled = !disable;
-
+    if(disable){
+        button.userInteractionEnabled = !disable;
+    }
+    
     NSString *textColor = [style objectForKey:kNCStyleTextColor];
     if (textColor) {
         [button setTitleColor:hexToUIColor(removeSharpPrefix(textColor), 1) forState:UIControlStateNormal];
@@ -42,6 +46,7 @@ updateBackButton(UIButton *button, NSDictionary *style) {
         else
         {
             [button setImage: [UIImage imageWithData: nil] forState:UIControlStateNormal];
+            [style setValue:[NSNull null] forKey:kNCStyleInnerImage];
         }
     } else if (text) {
         [button setTitle:text forState:UIControlStateNormal];
