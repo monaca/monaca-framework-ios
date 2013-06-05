@@ -393,14 +393,6 @@
 		3EE0E80B1664BA8200F1E677 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EE0E8091664B78000F1E677 /* AssetsLibrary.framework */; };
 		3EE0E80C1664BA9200F1E677 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EE0E8071664B69300F1E677 /* CoreVideo.framework */; };
 		3EF566AF168ECCD800DE569B /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EBC68C41664D23000244FE1 /* libiconv.dylib */; };
-		D49CA07A173CEEDC00738DC9 /* MFSpinnerParameter.h in Headers */ = {isa = PBXBuildFile; fileRef = D49CA075173CEEDC00738DC9 /* MFSpinnerParameter.h */; };
-		D49CA07B173CEEDC00738DC9 /* MFSpinnerParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = D49CA076173CEEDC00738DC9 /* MFSpinnerParameter.m */; };
-		D49CA07C173CEEDC00738DC9 /* MFSpinnerView.h in Headers */ = {isa = PBXBuildFile; fileRef = D49CA077173CEEDC00738DC9 /* MFSpinnerView.h */; };
-		D49CA07D173CEEDC00738DC9 /* MFSpinnerView.m in Sources */ = {isa = PBXBuildFile; fileRef = D49CA078173CEEDC00738DC9 /* MFSpinnerView.m */; };
-		D49CA082173CEF6000738DC9 /* MFTransitPopParameter.h in Headers */ = {isa = PBXBuildFile; fileRef = D49CA07E173CEF6000738DC9 /* MFTransitPopParameter.h */; };
-		D49CA083173CEF6000738DC9 /* MFTransitPopParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = D49CA07F173CEF6000738DC9 /* MFTransitPopParameter.m */; };
-		D49CA084173CEF6000738DC9 /* MFTransitPushParameter.h in Headers */ = {isa = PBXBuildFile; fileRef = D49CA080173CEF6000738DC9 /* MFTransitPushParameter.h */; };
-		D49CA085173CEF6000738DC9 /* MFTransitPushParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = D49CA081173CEF6000738DC9 /* MFTransitPushParameter.m */; };
 		F142AD7B175449BD00814179 /* ApplicationResourceDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = F142AD6D175449BC00814179 /* ApplicationResourceDelegate.h */; };
 		F142AD7C175449BD00814179 /* ApplicationResourceDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F142AD6E175449BC00814179 /* ApplicationResourceDelegate.m */; };
 		F142AD7D175449BD00814179 /* ApplicationResourceDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F142AD6E175449BC00814179 /* ApplicationResourceDelegate.m */; };
@@ -594,14 +586,6 @@
 		D44C9E2A1592ED86006372F3 /* NCButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCButton.m; sourceTree = "<group>"; };
 		D44C9E2B1592ED86006372F3 /* NCSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCSearchBar.h; sourceTree = "<group>"; };
 		D44C9E2C1592ED86006372F3 /* NCSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCSearchBar.m; sourceTree = "<group>"; };
-		D49CA075173CEEDC00738DC9 /* MFSpinnerParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFSpinnerParameter.h; sourceTree = "<group>"; };
-		D49CA076173CEEDC00738DC9 /* MFSpinnerParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFSpinnerParameter.m; sourceTree = "<group>"; };
-		D49CA077173CEEDC00738DC9 /* MFSpinnerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFSpinnerView.h; sourceTree = "<group>"; };
-		D49CA078173CEEDC00738DC9 /* MFSpinnerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFSpinnerView.m; sourceTree = "<group>"; };
-		D49CA07E173CEF6000738DC9 /* MFTransitPopParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFTransitPopParameter.h; sourceTree = "<group>"; };
-		D49CA07F173CEF6000738DC9 /* MFTransitPopParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFTransitPopParameter.m; sourceTree = "<group>"; };
-		D49CA080173CEF6000738DC9 /* MFTransitPushParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFTransitPushParameter.h; sourceTree = "<group>"; };
-		D49CA081173CEF6000738DC9 /* MFTransitPushParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFTransitPushParameter.m; sourceTree = "<group>"; };
 		F142AD6D175449BC00814179 /* ApplicationResourceDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplicationResourceDelegate.h; sourceTree = "<group>"; };
 		F142AD6E175449BC00814179 /* ApplicationResourceDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplicationResourceDelegate.m; sourceTree = "<group>"; };
 		F142AD6F175449BC00814179 /* GeolocationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeolocationDelegate.h; sourceTree = "<group>"; };
@@ -1266,10 +1250,6 @@
 				3E4E8AEB16AD122200653A9F /* MonacaNoCacheURLProtocol.h in Headers */,
 				3E4E8AEF16AD122200653A9F /* MonacaQueryParamURLProtocol.h in Headers */,
 				3E4E8B0516AD14A500653A9F /* MFJSInterfaceProtocol.h in Headers */,
-				D49CA07A173CEEDC00738DC9 /* MFSpinnerParameter.h in Headers */,
-				D49CA07C173CEEDC00738DC9 /* MFSpinnerView.h in Headers */,
-				D49CA082173CEF6000738DC9 /* MFTransitPopParameter.h in Headers */,
-				D49CA084173CEF6000738DC9 /* MFTransitPushParameter.h in Headers */,
 				F1A28869174DBB9400233B47 /* MFVIewBackground.h in Headers */,
 				0E01CC95174F4C06003E60D6 /* MFSpinnerParameter.h in Headers */,
 				0E01CC99174F4C06003E60D6 /* MFSpinnerView.h in Headers */,
@@ -1614,10 +1594,6 @@
 				3E4E8AEC16AD122200653A9F /* MonacaNoCacheURLProtocol.m in Sources */,
 				3E4E8AF016AD122200653A9F /* MonacaQueryParamURLProtocol.m in Sources */,
 				3E4E8B0616AD14A500653A9F /* MFJSInterfaceProtocol.m in Sources */,
-				D49CA07B173CEEDC00738DC9 /* MFSpinnerParameter.m in Sources */,
-				D49CA07D173CEEDC00738DC9 /* MFSpinnerView.m in Sources */,
-				D49CA083173CEF6000738DC9 /* MFTransitPopParameter.m in Sources */,
-				D49CA085173CEF6000738DC9 /* MFTransitPushParameter.m in Sources */,
 				F1A2886A174DBB9400233B47 /* MFVIewBackground.m in Sources */,
 				0E01CC96174F4C06003E60D6 /* MFSpinnerParameter.m in Sources */,
 				0E01CC9A174F4C06003E60D6 /* MFSpinnerView.m in Sources */,

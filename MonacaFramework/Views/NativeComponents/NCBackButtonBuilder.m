@@ -39,6 +39,10 @@ updateBackButton(UIButton *button, NSDictionary *style) {
             [button setImage:image forState:UIControlStateNormal];
             [button setImageEdgeInsets:UIEdgeInsetsMake(0, 2, 0, -2)];
         }
+        else
+        {
+            [button setImage: [UIImage imageWithData: nil] forState:UIControlStateNormal];
+        }
     } else if (text) {
         [button setTitle:text forState:UIControlStateNormal];
     }
