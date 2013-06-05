@@ -64,9 +64,7 @@
     else if ([type isEqualToString:kNCComponentBackButton]) {
         UIButton *button = [NCBackButtonBuilder backButton:style_def];
         container.view = button;
-        NCBarButtonItem* ncBarButtonItem = [[NCBarButtonItem alloc] initWithCustomView:button];
-        ncBarButtonItem.hidden =button.hidden;
-        container.component = ncBarButtonItem;
+        container.component = [[NCButton alloc] initWithCustomView:button];
         container.onTapScript = [[params objectForKey:kNCTypeEvent] objectForKey:kNCEventTypeTap];
         [button addTarget:container action:@selector(didTap:forEvent:) forControlEvents:UIControlEventTouchUpInside];
         container.type = kNCComponentBackButton;
