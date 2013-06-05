@@ -230,7 +230,7 @@
             [uidict removeObjectForKey:kNCPositionBottom];
         }
         [[MFViewManager currentViewController] setBarUserInterface:uidict];
-        [[MFViewManager currentViewController] applyBarUserInterface];
+        [[MFViewManager currentViewController] applyBarVisibility:NO];
         [[MFViewManager currentViewController].webView loadRequest:[self createRequest:urlStringWithoutQuery withQuery:query]];
     }
 }

@@ -105,23 +105,28 @@
     [_viewController setToolbarItems:visiableContainers];
 }
 
-- (void)setOpacity:(float)value
+- (void)setBackgroundColor:(id)value
 {
-    [[[_toolbar subviews] objectAtIndex:0] setAlpha:value];
+    [_toolbar setTintColor:hexToUIColor(removeSharpPrefix(value), 1)];
+}
+
+- (void)setOpacity:(id)value
+{
+    [[[_toolbar subviews] objectAtIndex:0] setAlpha:[value floatValue]];
     if ([MFDevice iOSVersionMajor] >= 6) {
         // iOS6以降では枠が別に用意されている．
-        [[[_toolbar subviews] objectAtIndex:1] setAlpha:value];
+        [[[_toolbar subviews] objectAtIndex:1] setAlpha:[value floatValue]];
     }
 }
 
-- (void)setShadowOpacity:(float)value
+- (void)setShadowOpacity:(id)value
 {
     CALayer *navBarLayer = _toolbar.layer;
     //        navBarLayer.shadowColor = [[UIColor blackColor] CGColor];
     //        navBarLayer.shadowRadius = 3.0f;
-    navBarLayer.shadowOffset = CGSizeMake(0.0f, 2.0f);
+    navBarLayer.shadowOffset = CGSizeMake(0.0f, -2.0f);
     
-    [navBarLayer setShadowOpacity:value];
+    [navBarLayer setShadowOpacity:[value floatValue]];
 }
 
 #pragma mark - UIStyleProtocol
@@ -159,12 +164,12 @@
     }
     if ([key isEqualToString:kNCStyleBackgroundColor]) {
         if (_toolbar.barStyle == UIBarStyleDefault) {
-            [_toolbar setTintColor:hexToUIColor(removeSharpPrefix(value), 1)];
+            [self setBackgroundColor:value];
         }
     }
     if ([key isEqualToString:kNCStyleOpacity]) {
         if (_toolbar.barStyle == UIBarStyleDefault) {
-            [self setOpacity:[value floatValue]];
+            [self setOpacity:value];
             if ([value floatValue] == 1.0) {
                 [_toolbar setTranslucent:NO];
             } else {
@@ -187,27 +192,28 @@
             style = UIBarStyleDefault;
             [_toolbar setTranslucent:NO];
         }
-        
+
         if (style == UIBarStyleDefault) {
-            [self updateUIStyle:[self retrieveUIStyle:kNCStyleBackgroundColor] forKey:kNCStyleBackgroundColor];
-            [self updateUIStyle:[self retrieveUIStyle:kNCStyleOpacity] forKey:kNCStyleOpacity];
+            [self setBackgroundColor:[self retrieveUIStyle:kNCStyleBackgroundColor]];
+            [self setOpacity:[self retrieveUIStyle:kNCStyleOpacity]];
             [self updateUIStyle:[self retrieveUIStyle:kNCStyleShadowOpacity] forKey:kNCStyleShadowOpacity];
         } else {
             [_toolbar setTintColor:nil];
-            [self setOpacity:[[_ncStyle getDefaultStyle:kNCStyleOpacity] floatValue]];
-            [self setShadowOpacity:[[_ncStyle getDefaultStyle:kNCStyleShadowOpacity] floatValue]];
+            [self setOpacity:[_ncStyle getDefaultStyle:kNCStyleOpacity]];
+            [self setShadowOpacity:[_ncStyle getDefaultStyle:kNCStyleShadowOpacity]];
         }
-
+        
         [_toolbar setBarStyle:style];
+    
         /// translucentを反映させる
         [_viewController.navigationController setToolbarHidden:YES];
         if (!isFalse([self retrieveUIStyle:kNCStyleVisibility])) {
             [_viewController.navigationController setToolbarHidden:NO];
-         }
+        }        
     }
     if ([key isEqualToString:kNCStyleShadowOpacity]) {
         if (_toolbar.barStyle == UIBarStyleDefault) {
-            [self setShadowOpacity:[value floatValue]];
+            [self setShadowOpacity:value];
         }
     }
 

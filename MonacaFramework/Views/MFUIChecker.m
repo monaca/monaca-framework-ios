@@ -72,7 +72,8 @@
         [NSStringFromClass([object class]) isEqualToString:@"CDVJKArray"]) {
         return @"Array";
     }
-    if ([NSStringFromClass([object class]) isEqualToString:@"__NSCFDictionary"]) {
+    if ([NSStringFromClass([object class]) isEqualToString:@"__NSCFDictionary"] ||
+        [NSStringFromClass([object class]) isEqualToString:@"__NSDictionaryI"]) {
         return @"Object";
     }
     if ([NSStringFromClass([object class]) isEqualToString:@"__NSCFNumber"]) {

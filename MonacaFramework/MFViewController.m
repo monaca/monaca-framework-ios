@@ -48,6 +48,8 @@
 {
     [super viewDidAppear:animated];
     
+    [self applyBarUserInterface];
+    
     [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
 }
 
@@ -55,7 +57,7 @@
 {
     [super viewWillAppear:animated];
     
-    [self applyBarUserInterface];
+    [self applyBarVisibility:YES];
     
     [MFViewManager setCurrentViewController:self];
     [MFViewManager setCurrentWWWFolderName:self.wwwFolderName];
@@ -107,18 +109,27 @@
     }
 }
 
+- (void)applyBarVisibility:(BOOL)animated
+{
+    if (_navigationBar) {
+        [self.navigationController setNavigationBarHidden:NO animated:animated];
+    } else {
+        [self.navigationController setNavigationBarHidden:YES animated:animated];
+    }
+    if (_toolbar) {
+        [self.navigationController setToolbarHidden:NO animated:animated];
+    } else {
+        [self.navigationController setToolbarHidden:YES animated:animated];
+    }
+}
+
 - (void)applyBarUserInterface
 {
     if (_navigationBar) {
         [_navigationBar applyUserInterface];
-    } else {
-        [self.navigationController setNavigationBarHidden:YES];
     }
-    
     if (_toolbar) {
         [_toolbar applyUserInterface];
-    } else {
-        [self.navigationController setToolbarHidden:YES];
     }
 }
 

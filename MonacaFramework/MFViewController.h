@@ -24,6 +24,7 @@
     NCContainer *_backButton;
 }
 
+- (void)applyBarVisibility:(BOOL)animated;
 - (void)applyBarUserInterface;
 - (void)setBarUserInterface:(NSDictionary *)uidict;
 - (void)removeUserInterface;

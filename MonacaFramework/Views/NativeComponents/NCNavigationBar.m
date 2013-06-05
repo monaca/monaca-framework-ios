@@ -167,19 +167,24 @@
     }
 }
 
-- (void)setOpacity:(float)value
+- (void)setBackgroundColor:(id)value
 {
-    [[[_navigationBar subviews] objectAtIndex:0] setAlpha:value];
+    [_navigationBar setTintColor:hexToUIColor(removeSharpPrefix(value), 1)];
 }
 
-- (void)setShadowOpacity:(float)value
+- (void)setOpacity:(id)value
+{
+    [[[_navigationBar subviews] objectAtIndex:0] setAlpha:[value floatValue]];
+}
+
+- (void)setShadowOpacity:(id)value
 {
     CALayer *navBarLayer = _navigationBar.layer;
     //        navBarLayer.shadowColor = [[UIColor blackColor] CGColor];
     //        navBarLayer.shadowRadius = 3.0f;
     navBarLayer.shadowOffset = CGSizeMake(0.0f, 2.0f);
     
-    [navBarLayer setShadowOpacity:value];
+    [navBarLayer setShadowOpacity:[value floatValue]];
 }
 
 #pragma mark - UIStyleProtocol
@@ -218,16 +223,18 @@
     }
     if ([key isEqualToString:kNCStyleBackgroundColor]) {
         if (_navigationBar.barStyle == UIBarStyleDefault) {
-            [_navigationBar setTintColor:hexToUIColor(removeSharpPrefix(value), 1)];
+            [self setBackgroundColor:value];
         }
     }
     if ([key isEqualToString:kNCStyleOpacity]) {
         if (_navigationBar.barStyle == UIBarStyleDefault) {
-            [self setOpacity:[value floatValue]];
+            [self setOpacity:value];
             if ([value floatValue] == 1.0) {
                 [_navigationBar setTranslucent:NO];
+                [self updateUIStyle:[self retrieveUIStyle:kNCStyleIOSBarStyle] forKey:kNCStyleIOSBarStyle];
             } else {
                 [_navigationBar setTranslucent:YES];
+                [_navigationBar setBarStyle:UIBarStyleBlackTranslucent];
             }
         }
     }
@@ -254,20 +261,20 @@
         }
         
         if (style == UIBarStyleDefault) {
-            [self updateUIStyle:[self retrieveUIStyle:kNCStyleBackgroundColor] forKey:kNCStyleBackgroundColor];
-            [self updateUIStyle:[self retrieveUIStyle:kNCStyleOpacity] forKey:kNCStyleOpacity];
-            [self updateUIStyle:[self retrieveUIStyle:kNCStyleShadowOpacity] forKey:kNCStyleShadowOpacity];
+            [self setBackgroundColor:[self retrieveUIStyle:kNCStyleBackgroundColor]];
+            [self setOpacity:[self retrieveUIStyle:kNCStyleOpacity]];
+            [self setShadowOpacity:[self retrieveUIStyle:kNCStyleShadowOpacity]];
         } else {
             [_navigationBar setTintColor:nil];
-            [self setOpacity:[[_ncStyle getDefaultStyle:kNCStyleOpacity] floatValue]];
-            [self setShadowOpacity:[[_ncStyle getDefaultStyle:kNCStyleShadowOpacity] floatValue]];
+            [self setOpacity:[_ncStyle getDefaultStyle:kNCStyleOpacity]];
+            [self setShadowOpacity:[_ncStyle getDefaultStyle:kNCStyleShadowOpacity]];
         }
         
         [_navigationBar setBarStyle:style];
     }
     if ([key isEqualToString:kNCStyleShadowOpacity]) {
         if (_navigationBar.barStyle == UIBarStyleDefault) {
-            [self setShadowOpacity:[value floatValue]];
+            [self setShadowOpacity:value];
         }
     }
 
