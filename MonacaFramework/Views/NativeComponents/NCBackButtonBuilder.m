@@ -17,7 +17,8 @@ updateBackButton(UIButton *button, NSDictionary *style) {
     [button setHidden:invisible];
 
     BOOL disable = isTrue([style objectForKey:kNCStyleDisable]);
-    [button setEnabled:!disable];
+    //[button setEnabled:!disable];
+    button.userInteractionEnabled = !disable;
 
     NSString *textColor = [style objectForKey:kNCStyleTextColor];
     if (textColor) {
@@ -29,8 +30,11 @@ updateBackButton(UIButton *button, NSDictionary *style) {
 
     
     if (innerImagePath && ![innerImagePath isEqual:[NSNull null]]) {
-        NSString *imagePath = [@"www" stringByAppendingPathComponent:innerImagePath];
-        UIImage *image = [UIImage imageNamed:imagePath];
+        MFDelegate *mfDelegate = (MFDelegate *)[UIApplication sharedApplication].delegate;
+        NSString *currentDirectory = [mfDelegate.viewController.previousPath stringByDeletingLastPathComponent];
+        NSString *imagePath = [currentDirectory stringByAppendingPathComponent:innerImagePath];
+        UIImage *image = [UIImage imageWithContentsOfFile:imagePath];
+        
         if (image) {
             [button setImage:image forState:UIControlStateNormal];
             [button setImageEdgeInsets:UIEdgeInsetsMake(0, 2, 0, -2)];
