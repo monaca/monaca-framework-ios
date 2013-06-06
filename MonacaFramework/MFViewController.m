@@ -74,6 +74,10 @@
     
     [self initPlugins]; // 画面を消す手前でdestroyを実行すること
     self.webView.delegate = self;
+    
+    // viewBackground用のキー値監視
+    [self addObserver:self forKeyPath:@"view.frame" options:NSKeyValueObservingOptionOld context:NULL];
+    
 //    self.webView.scrollView.decelerationRate = UIScrollViewDecelerationRateNormal;
 }
 
@@ -166,6 +170,7 @@
     _navigationBar = nil;
     [_toolbar removeUserInterface];
     _toolbar = nil;
+    [_bgView removeUserInterface];
     
     [self.ncManager removeAllComponents];
 }
@@ -240,6 +245,15 @@
     NSString *js = [NSString stringWithFormat:@"monaca.cloud.Push.send(%@);", [[NSUserDefaults standardUserDefaults] objectForKey:@"extraJSON"]];
     [self.webView stringByEvaluatingJavaScriptFromString:js];
     [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"extraJSON"];
+}
+
+#pragma mark - key observer
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if([keyPath isEqualToString:@"view.frame"]) {
+        [(MFViewBackground *)_bgView updateFrame];
+    }
 }
 
 #pragma mark - splash screen

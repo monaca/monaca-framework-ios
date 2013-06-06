@@ -14,10 +14,13 @@
 {
     MFViewController *_viewController;
     NCStyle *_ncStyle;
+    UIImage *_originalImage;
+    UIImage *_resizedImage;
 }
 
 - (id)initWithViewController:(MFViewController *)viewController;
 - (void)createBackgroundView:(NSDictionary *)uidict;
 - (void)setBackgroundStyle:(NSDictionary*)style;
+- (void)updateFrame;
 
 @end

@@ -102,6 +102,12 @@
 #define kNCStyleBackgroundPositionHorizontal    @"backgroundPositionHorizontal"
 #define kNCStyleBackgroundPositionVertical      @"backgroundPositionVertical"
 
+#define kNCBackgroundImagePositionCenter    @"center"
+#define kNCBackgroundImagePositionBottom    @"bottom"
+#define kNCBackgroundImagePositionTop       @"top"
+#define kNCBackgroundImagePositionLeft      @"left"
+#define kNCBackgroundImagePositionRight     @"right"
+
 #define kNCStyleIOSBarStyle     @"iosBarStyle"
 #define kNCStyleIOSButtonStyle  @"iosButtonStyle"
 #define kNCStyleIOSFrame        @"ios-frame"

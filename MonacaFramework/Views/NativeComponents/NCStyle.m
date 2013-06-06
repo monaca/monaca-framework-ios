@@ -177,6 +177,10 @@
             [[MFUIChecker valueType:[_defaultStyles valueForKey:key]] isEqualToString:@"Float"]) {
             return YES;
         }
+        if ([_component isEqualToString:kNCContainerPage]) {
+            //TODO: Page styleは他でcheckする。
+            return YES;
+        }
         NSLog(NSLocalizedString(@"Invalid value type", nil), _component , key,
               [MFUIChecker valueType:[_defaultStyles objectForKey:key]], value);
         return NO;

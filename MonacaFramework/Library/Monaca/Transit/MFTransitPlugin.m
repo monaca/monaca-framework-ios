@@ -15,6 +15,7 @@
 #import "MFTransitPushParameter.h"
 #import "MFTransitPopParameter.h"
 #import "MFDammyViewController.h"
+#import "MFUIChecker.h"
 
 @implementation MFTransitPlugin
 
@@ -216,6 +217,7 @@
     
     NSString *fullPath = [[MFViewManager currentWWWFolderName] stringByAppendingPathComponent:urlStringWithoutQuery];
     NSMutableDictionary *uidict = [[MFUtility parseJSONFile:[MFUtility getUIFileName:fullPath]] mutableCopy];
+    [MFUIChecker checkUI:uidict];
     
     NSDictionary *bottom = [uidict objectForKey:kNCPositionBottom];
     if ([[bottom objectForKey:kNCTypeContainer] isEqualToString:kNCContainerTabbar] && [MFViewManager isViewControllerTop]) {
