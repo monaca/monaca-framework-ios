@@ -218,6 +218,7 @@
    
     if ([url isFileURL]) {
         self.wwwFolderName = [url.path stringByDeletingLastPathComponent];
+        [MFViewManager setCurrentWWWFolderName:self.wwwFolderName];
         self.previousPath = [url path];
 
         [MFEvent dispatchEvent:monacaEventOpenPage withInfo:nil];

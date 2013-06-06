@@ -231,6 +231,7 @@
         if ([MFViewManager isTabbarControllerTop]) {
             [uidict removeObjectForKey:kNCPositionBottom];
         }
+        [MFViewManager setCurrentWWWFolderName:[fullPath stringByDeletingLastPathComponent]];
         [[MFViewManager currentViewController] setBarUserInterface:uidict];
         [[MFViewManager currentViewController] applyBarVisibility:NO];
         [[MFViewManager currentViewController].webView loadRequest:[self createRequest:urlStringWithoutQuery withQuery:query]];
