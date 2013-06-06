@@ -54,10 +54,10 @@
     _viewController.view.backgroundColor = color;
 }
 
--(NSNumber*)castBackgroundSizeValue:(NSString*)stringParameterValue
+-(float)castBackgroundSizeValue:(NSString*)stringParameterValue
 {
     // 引数は"○○%"で渡されてくるので"%"を除去
-    NSRegularExpression* matchResult = [NSRegularExpression regularExpressionWithPattern:@"(%)" options:0 error:nil];
+    NSRegularExpression* matchResult = [NSRegularExpression regularExpressionWithPattern:@"[^0-9]" options:0 error:nil];
     NSString* castStringParameterValue = [matchResult stringByReplacingMatchesInString:stringParameterValue
                                                                                options:NSMatchingReportProgress
                                                                                  range:NSMakeRange(0, stringParameterValue.length)
@@ -66,35 +66,57 @@
     float castParameter = 100;
     
     // 不正な値の場合は100（デフォルト値）のままで返す
-    if ([castStringParameterValue floatValue] && [castStringParameterValue floatValue] < castParameter && [castStringParameterValue floatValue] >= 0 ) {
+    if ([castStringParameterValue floatValue] && [castStringParameterValue floatValue] >= 0 ) {
         castParameter = [castStringParameterValue floatValue];
     }
+
+    return castParameter;
+}
+
+-(CGSize)getBackgroundSize:(NSArray *)value
+{
+    float width, height;
+    if ([[value objectAtIndex:0] rangeOfString:@"%"].location != NSNotFound) {
+        width = self.frame.size.width * 0.01 * [self castBackgroundSizeValue:[value objectAtIndex:0]];
+    } else {
+        width = [self castBackgroundSizeValue:[value objectAtIndex:0]];
+    }
     
-    return [NSNumber numberWithFloat:castParameter];
+    if ([[value objectAtIndex:1] rangeOfString:@"%"].location != NSNotFound) {
+        height = self.frame.size.height * 0.01 * [self castBackgroundSizeValue:[value objectAtIndex:1]];
+    } else {
+        height = [self castBackgroundSizeValue:[value objectAtIndex:1]];
+    }
+
+    return CGSizeMake(roundf(width),roundf(height));
 }
 
 - (void)setBackgroundImageSize:(id)value
 {
     if ([[MFUIChecker valueType:value] isEqualToString:@"Array"]) {
-        NSArray *size = (NSArray *)value;
-        float width = [[self castBackgroundSizeValue:[size objectAtIndex:0]] floatValue];
-        float height = [[self castBackgroundSizeValue:[size objectAtIndex:1]] floatValue];
-        CGSize newSize = CGSizeMake(self.frame.size.width * 0.01 * width,
-                               self.frame.size.height * 0.01 * height);
-
-        UIGraphicsBeginImageContext(newSize);
-        [_originalImage drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
+        NSArray *array = (NSArray *)value;
+        CGSize size = [self getBackgroundSize:array];
+        UIGraphicsBeginImageContext(size);
+        [_originalImage drawInRect:CGRectMake(0, 0, size.width, size.height)];
         _resizedImage = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
+        [self setPosition:[self retrieveUIStyle:kNCStyleBackgroundPosition]];
     } else {
-        _resizedImage = _originalImage;
+
         if ([value isEqualToString:kNCTypeAuto]) {
             [self setPosition:[self retrieveUIStyle:kNCStyleBackgroundPosition]];
+            _resizedImage = _originalImage;
         }
         else if ([value isEqualToString:kNCTypeCover]) {
+            if ([[self retrieveUIStyle:kNCStyleBackgroundRepeat] isEqualToString:kNCTypeNoRepeat]) {
+                _resizedImage = _originalImage;
+            }
             self.contentMode = UIViewContentModeScaleToFill;
         }
         else if ([value isEqualToString:kNCTypeContain]) {
+            if ([[self retrieveUIStyle:kNCStyleBackgroundRepeat] isEqualToString:kNCTypeNoRepeat]) {
+                _resizedImage = _originalImage;
+            }
             self.contentMode = UIViewContentModeScaleAspectFit;
         }
     }
@@ -144,8 +166,11 @@
 {
     if (!CGRectEqualToRect(self.frame, _viewController.view.frame)) {
         self.frame = _viewController.view.frame;
+        [self setBackgroundImageSize:[_ncStyle retrieveStyle:kNCStyleBackgroundSize]];
         if ([[self retrieveUIStyle:kNCStyleBackgroundRepeat] isEqualToString:kNCTypeNoRepeat]) {
-            [self setBackgroundImageSize:[_ncStyle retrieveStyle:kNCStyleBackgroundSize]];
+            self.image = _resizedImage;
+        } else {
+            self.backgroundColor = [UIColor colorWithPatternImage:_resizedImage];
         }
     }
 }
@@ -192,25 +217,27 @@
     if ([key isEqualToString:kNCStyleBackgroundImage]) {
         NSString *imagePath = [[MFViewManager currentWWWFolderName] stringByAppendingPathComponent:value];
         _originalImage = [UIImage imageWithContentsOfFile:imagePath];
+        [self setBackgroundImageSize:[_ncStyle retrieveStyle:kNCStyleBackgroundSize]];
         if (![[self retrieveUIStyle:kNCStyleBackgroundRepeat] isEqualToString:kNCTypeRepeat]) {
-            [self setBackgroundImageSize:[_ncStyle retrieveStyle:kNCStyleBackgroundSize]];
             self.image = _resizedImage;
         } else {
-            self.backgroundColor = [UIColor colorWithPatternImage:_originalImage];
+            self.backgroundColor = [UIColor colorWithPatternImage:_resizedImage];
         }
     }
     if ([key isEqualToString:kNCStyleBackgroundSize]) {
-        if (![[self retrieveUIStyle:kNCStyleBackgroundRepeat] isEqualToString:kNCTypeRepeat]) {
-            [self setBackgroundImageSize:value];
+        [self setBackgroundImageSize:value];
+        if ([[self retrieveUIStyle:kNCStyleBackgroundRepeat] isEqualToString:kNCTypeRepeat]) {
+            self.backgroundColor = [UIColor colorWithPatternImage:_resizedImage];
+        } else {
             self.image = _resizedImage;
         }
     }
     if ([key isEqualToString:kNCStyleBackgroundRepeat]) {
+        [self setBackgroundImageSize:[_ncStyle retrieveStyle:kNCStyleBackgroundSize]];
         if ([value isEqualToString:kNCTypeRepeat]) {
             self.image = nil;
-            self.backgroundColor = [UIColor colorWithPatternImage:_originalImage];
+            self.backgroundColor = [UIColor colorWithPatternImage:_resizedImage];
         } else {
-            [self setBackgroundImageSize:[_ncStyle retrieveStyle:kNCStyleBackgroundSize]];
             self.image = _resizedImage;
             NSString *colorString = [self retrieveUIStyle:kNCStyleBackgroundColor];
             [self setBackgroundColor:hexToUIColor(removeSharpPrefix(colorString), 1)];
@@ -218,8 +245,9 @@
     }
 
     if ([key isEqualToString:kNCStyleBackgroundPosition]) {
-        if ([[self retrieveUIStyle:kNCStyleBackgroundSize] isKindOfClass:NSString.class] &&
-            [[self retrieveUIStyle:kNCStyleBackgroundSize] isEqualToString:kNCTypeAuto]) {
+        if ([[self retrieveUIStyle:kNCStyleBackgroundSize] isKindOfClass:NSArray.class] ||
+            ([[self retrieveUIStyle:kNCStyleBackgroundSize] isKindOfClass:NSString.class] &&
+            [[self retrieveUIStyle:kNCStyleBackgroundSize] isEqualToString:kNCTypeAuto])) {
             [self setPosition:value];
         }
     }

@@ -20,7 +20,6 @@
 
 - (id)initWithViewController:(MFViewController *)viewController;
 - (void)createBackgroundView:(NSDictionary *)uidict;
-- (void)setBackgroundStyle:(NSDictionary*)style;
 - (void)updateFrame;
 
 @end
