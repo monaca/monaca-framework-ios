@@ -195,6 +195,8 @@
         if (![[self retrieveUIStyle:kNCStyleBackgroundRepeat] isEqualToString:kNCTypeRepeat]) {
             [self setBackgroundImageSize:[_ncStyle retrieveStyle:kNCStyleBackgroundSize]];
             self.image = _resizedImage;
+        } else {
+            self.backgroundColor = [UIColor colorWithPatternImage:_originalImage];
         }
     }
     if ([key isEqualToString:kNCStyleBackgroundSize]) {
