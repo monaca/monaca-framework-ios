@@ -98,10 +98,10 @@
     
     item = [uidict objectForKey:kNCPositionTop];
     if (nil != item) {
+        [self.navigationController setNavigationBarHidden:NO animated:NO];
         if ([[item objectForKey:kNCTypeContainer] isEqualToString:kNCContainerToolbar]) {
             [self apply:item];
         }
-        [self.navigationController setNavigationBarHidden:NO animated:NO];
     } else {
         [self.navigationController setNavigationBarHidden:YES animated:NO];
     }
