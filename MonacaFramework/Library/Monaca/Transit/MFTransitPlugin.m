@@ -192,7 +192,7 @@
 
 - (BOOL)popToHomeViewController:(BOOL)isAnimated
 {
-    NSArray *viewControllers = [[MFViewManager currentViewController].navigationController popToRootViewControllerAnimated:isAnimated];
+    NSArray *viewControllers = [[MFUtility getAppDelegate].monacaNavigationController popToRootViewControllerAnimated:isAnimated];
     
     for (MFViewController *vc in viewControllers) {
         [vc destroy];
