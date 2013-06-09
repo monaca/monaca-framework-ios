@@ -121,11 +121,11 @@
                 target = targetParam;
             }
         } else if (targetParam == nil) {
-            target = @"_parent";
+            target = @"_self";
         }
         if (target == nil) {
             NSLog(@"unkonwn target type: %@", targetParam);
-            target = @"_parent";
+            target = @"_self";
         }
     }
     
