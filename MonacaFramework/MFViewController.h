@@ -22,6 +22,7 @@
     id<UIStyleProtocol> _toolbar;
     id<UIStyleProtocol> _bgView;
     NCContainer *_backButton;
+    BOOL _transitAnimated;
 }
 
 - (void)applyBarVisibility:(BOOL)animated;
@@ -38,6 +39,6 @@
 @property (nonatomic, retain) NSDictionary *uiDict;
 @property (nonatomic, retain) NSDictionary *monacaPluginOptions;
 @property (nonatomic, retain) NCContainer *backButton;
-
+@property (nonatomic, assign) BOOL transitAnimated;
 
 @end

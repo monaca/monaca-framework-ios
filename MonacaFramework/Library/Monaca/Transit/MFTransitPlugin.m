@@ -90,6 +90,9 @@
     }
     
     [navigationController pushViewController:viewController animated:parameter.hasDefaultPushAnimation];
+    if ([viewController isKindOfClass:[MFViewController class]]) {
+        [viewController setTransitAnimated:parameter.hasDefaultPushAnimation];
+    }
     
     if (parameter.clearStack) {
         if (previousController == nil) {

@@ -27,6 +27,7 @@ static NSString *_wwwDir;
     _wwwDir = wwwDir;
     MFNavigationController *navigationController = [[MFNavigationController alloc] init];
     [navigationController setViewControllers:[NSArray arrayWithObjects:[[MFDammyViewController alloc] init], [MFViewBuilder createViewControllerWithPath:path], nil]];
+    [navigationController setNavigationBarHidden:YES];
     
     return navigationController;
 }
@@ -94,6 +95,7 @@ static NSString *_wwwDir;
         MFViewController *viewController = [MFViewBuilder createMFViewControllerWithPath:Path withDict:uiDict];
         
         MFNavigationController *navi = [[MFNavigationController alloc] init];
+        [navi setNavigationBarHidden:YES];
         [navi setViewControllers:[NSArray arrayWithObjects:[[MFDammyViewController alloc] init], viewController, nil]];
         [viewControllers addObject:navi];
 

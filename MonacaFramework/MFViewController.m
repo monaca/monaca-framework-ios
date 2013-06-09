@@ -25,6 +25,7 @@
 @synthesize ncManager = _ncManager;
 @synthesize uiDict = _uiDict;
 @synthesize backButton = _backButton;
+@synthesize transitAnimated = _transitAnimated;
 
 - (id)initWithFileName:(NSString *)fileName
 {
@@ -34,6 +35,7 @@
         self.startPage = [self removeFragment:fileName];
         self.ncManager = [[NCManager alloc] init];
         self.wantsFullScreenLayout = NO;
+        self.transitAnimated = YES;
     }
     return self;
 }
@@ -57,7 +59,7 @@
 {
     [super viewWillAppear:animated];
     
-    [self applyBarVisibility:YES];
+    [self applyBarVisibility:_transitAnimated];
     
     [MFViewManager setCurrentViewController:self];
     [MFViewManager setCurrentWWWFolderName:self.wwwFolderName];
