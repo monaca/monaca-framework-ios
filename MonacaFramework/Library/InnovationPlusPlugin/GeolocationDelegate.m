@@ -37,6 +37,7 @@
 -(void)createResourceForArray:(NSMutableArray*)resources
 {
     multiCreateFrag =TRUE;
+    createDataCount = [resources count];
     [client createAll:resources callback:self];
 }
 
@@ -64,14 +65,17 @@
     NSArray* radiusSquare = [condition objectForKey:@"radiusSquare"];
     if([radiusSquare count] > 0)
     {
-        [query geolocationQuery_radiusSquare:[[radiusSquare objectAtIndex:0] intValue]
-                              centerLatitude:[[radiusSquare objectAtIndex:1] doubleValue]
-                             centerLongitude:[[radiusSquare objectAtIndex:2] doubleValue]];
+        [query geolocationQuery_radiusSquare:[[radiusSquare objectAtIndex:2] intValue]
+                              centerLatitude:[[radiusSquare objectAtIndex:0] doubleValue]
+                             centerLongitude:[[radiusSquare objectAtIndex:1] doubleValue]];
     }
-    [query geolocationQuery_count:[condition objectForKey:@"count"]];
-    [query geolocationQuery_self];
-    [query geolocationQuery_since:[condition objectForKey:@"since"]];
-    [query geolocationQuery_until:[condition objectForKey:@"until"]];
+    [query geolocationQuery_count:[[condition objectForKey:@"count"] intValue]];
+    [query geolocationQuery_since:[[condition objectForKey:@"since"] longLongValue]];
+    [query geolocationQuery_until:[[condition objectForKey:@"until"] longLongValue]];
+    
+    if([[condition objectForKey:@"self"] boolValue]){
+        [query geolocationQuery_self];
+    }
 
     [client query:query callback:self];
 }
@@ -83,14 +87,14 @@
         NSDictionary* resource = result;
         [cdvPlugin returnSuccessValueForJson:resource];
     }
-    else if ([result isKindOfClass:[NSArray class]])
+    else if ([result isKindOfClass:[NSArray class]] || multiCreateFrag)
     {
         NSArray* resources = result;
         
         NSDictionary *resultJsonData;
         if(multiCreateFrag)
         {
-            resultJsonData = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt: [resources count]], @"resultCount", nil];
+            resultJsonData = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt: createDataCount], @"resultCount", nil];
         }
         else
         {
