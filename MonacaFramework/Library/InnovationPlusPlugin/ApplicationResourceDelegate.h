@@ -17,6 +17,7 @@
     MIPCommunicationPlugin* cdvPlugin;
     IPPApplicationResourceClient* client;
     BOOL multiCreateFrag;
+    int createDataCount = 0;
 }
 
 -(id)initWithCDVPlugin :(MIPCommunicationPlugin*)plugin :(NSString*)plistApplicationId  :(NSString*)authKey;

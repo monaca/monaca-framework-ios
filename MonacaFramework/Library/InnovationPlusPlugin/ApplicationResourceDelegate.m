@@ -51,9 +51,9 @@
         }
     }
     
-    [executeCondition applicationresourceQuery_since:[condition objectForKey:@"since"]];
-    [executeCondition applicationresourceQuery_until:[condition objectForKey:@"until"]];
-    [executeCondition applicationresourceQuery_count:[condition objectForKey:@"count"]];
+    [executeCondition applicationresourceQuery_since:[[condition objectForKey:@"since"] longLongValue]];
+    [executeCondition applicationresourceQuery_until:[[condition objectForKey:@"until"] longLongValue]];
+    [executeCondition applicationresourceQuery_count:[[condition objectForKey:@"count"] intValue]];
     [executeCondition applicationresourceQuery_self];
     [client query:resourceName condition:executeCondition callback:self];
 }
@@ -66,6 +66,7 @@
 -(void)createResourceForArray :(NSMutableArray*)resources :(NSString*)resourceName
 {
     multiCreateFrag =TRUE;
+    createDataCount = [resources count];
     [client createAll:resourceName resources:resources callback:self];
 }
 
@@ -81,14 +82,14 @@
         NSDictionary* resource = result;
         [cdvPlugin returnSuccessValueForJson:resource];
     }
-    else if ([result isKindOfClass:[NSArray class]])
+    else if ([result isKindOfClass:[NSArray class]] || multiCreateFrag)
     {
         NSArray* resources = result;
         NSDictionary *resultJsonData;
         
         if(multiCreateFrag)
         {
-            resultJsonData = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt: [resources count]], @"resultCount", nil];
+            resultJsonData = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt: createDataCount], @"resultCount", nil];
         }
         else
         {
