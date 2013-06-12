@@ -66,6 +66,7 @@
 -(void)createResourceForArray :(NSMutableArray*)resources :(NSString*)resourceName
 {
     multiCreateFrag =TRUE;
+    createDataCount = 0;
     createDataCount = [resources count];
     [client createAll:resourceName resources:resources callback:self];
 }

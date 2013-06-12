@@ -330,7 +330,9 @@ setBackgroundColor(NSArray *components, NCToolbar *toolbar) {
     // Center component.
     // If title or subtitle property exists, center component will be ignored.
     if (![[uidict objectForKey:kNCTypeStyle] objectForKey:kNCStyleTitle] &&
-        ![[uidict objectForKey:kNCTypeStyle] objectForKey:kNCStyleSubtitle]) {
+        ![[uidict objectForKey:kNCTypeStyle] objectForKey:kNCStyleSubtitle]&&
+        ![[uidict objectForKey:kNCTypeStyle] objectForKey:kNCStyleTitleImage]
+        ) {
         params = [uidict objectForKey:kNCTypeCenter];
         [self setCenterComponent:params];
     }
