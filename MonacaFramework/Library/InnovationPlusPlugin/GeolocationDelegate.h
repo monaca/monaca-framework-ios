@@ -18,7 +18,7 @@
     MIPCommunicationPlugin* cdvPlugin;
     IPPGeoLocationClient* client;
     BOOL multiCreateFrag;
-    int createDataCount = 0;
+    int createDataCount;
 }
 -(id)initWithCDVPlugin:(MIPCommunicationPlugin*)plugin :(NSString*)plistApplicationId  :(NSString*)authKey;
 -(void)retrieveOwnResource;

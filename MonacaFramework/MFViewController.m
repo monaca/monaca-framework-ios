@@ -32,6 +32,40 @@
 @synthesize cdvViewController;
 
 // Parses *.ui files.
+- (id)init {
+    self = [super init];
+ 	if (nil != self) {
+        uiSetting = nil;
+        supportedOrientationsMask_ = UIInterfaceOrientationMaskAll;
+    }
+ 	return self;
+}
+- (id)initWithFileName:(NSString *)fileName {
+    self = [self init];
+    if (nil != self) {
+        cdvViewController = [[CDVViewController alloc] init];
+        cdvViewController.wwwFolderName = @"www";
+        cdvViewController.startPage = [self removeFragment:fileName];
+        
+        self.recall = NO;
+        self.previousPath = nil;
+        
+        isFirstRendering = YES;
+        interfaceOrientationUnspecified = YES;
+        interfaceOrientation = UIInterfaceOrientationPortrait;
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivedOrientationChange)
+                                                     name:UIDeviceOrientationDidChangeNotification object:nil];
+        
+        // create native component items.
+        monacaTabViewControllers = [[NSMutableArray alloc] init];
+        [monacaTabViewControllers addObject:cdvViewController];
+        tabBarController = [[MFTabBarController alloc] init];
+        [tabBarController setViewControllers:monacaTabViewControllers];
+        
+        appNavigationController = [[UINavigationController alloc] initWithRootViewController:tabBarController];
+    }
+    return self;
+}
 
 - (NSDictionary *)loadUIFile:(NSString *)path {
 
@@ -132,41 +166,7 @@
     return [NSURL URLWithString:str];
 }
 
-- (id)init {
-    self = [super init];
-    if (self){
-        uiSetting = nil;
-    }
-    return self;
-}
 
-- (id)initWithFileName:(NSString *)fileName {
-    self = [self init];
-    if (nil != self) {
-        cdvViewController = [[CDVViewController alloc] init];
-        cdvViewController.wwwFolderName = @"www";
-        cdvViewController.startPage = [self removeFragment:fileName];
-        
-        self.recall = NO;
-        self.previousPath = nil;
-        
-        isFirstRendering = YES;
-        interfaceOrientationUnspecified = YES;
-        interfaceOrientation = UIInterfaceOrientationPortrait;
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivedOrientationChange)
-                                                     name:UIDeviceOrientationDidChangeNotification object:nil];
-
-        // create native component items.
-        monacaTabViewControllers = [[NSMutableArray alloc] init];
-        [monacaTabViewControllers addObject:cdvViewController];
-        tabBarController = [[MFTabBarController alloc] init];
-        [tabBarController setViewControllers:monacaTabViewControllers];
-        
-        appNavigationController = [[UINavigationController alloc] initWithRootViewController:tabBarController];
-    }
-    
-    return self;
-}
 
 - (NSString *)removeFragment:(NSString*)fileName {
     return [[fileName componentsSeparatedByString:@"#"] objectAtIndex:0];
@@ -246,7 +246,11 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)aInterfaceOrientation
 {
-    return [MFUtility getAllowOrientationFromPlist:aInterfaceOrientation];
+    return (supportedOrientationsMask_ & (1 << aInterfaceOrientation)) > 0;
+}
+
+- (NSUInteger)supportedInterfaceOrientations{
+    return supportedOrientationsMask_;
 }
 
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
@@ -418,6 +422,16 @@
 {
     // monaca.updateUIStyle対策
     styleDict_ = pageStyle;
+    
+    
+    // "screenOrientation" setting
+    {
+        id orientationString = [styleDict_ objectForKey:kNCStyleScreenOrientation];
+        if (![orientationString isKindOfClass:NSString.class]) {
+            orientationString = kNCOrientationInherit;
+        }
+        supportedOrientationsMask_ = parseScreenOrientationsMask(orientationString);
+    }
     
     self.cdvViewController.webView.backgroundColor = [UIColor clearColor];
     self.cdvViewController.webView.opaque = NO;

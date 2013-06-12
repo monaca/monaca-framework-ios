@@ -18,7 +18,18 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)aInterfaceOrientation
 {
-    return [MFUtility getAllowOrientationFromPlist:aInterfaceOrientation];
+    MFDelegate *delegate = (MFDelegate *)UIApplication.sharedApplication.delegate;
+ 	BOOL result = [delegate.viewController shouldAutorotateToInterfaceOrientation:aInterfaceOrientation];
+ 	return [MFUtility getAllowOrientationFromPlist:aInterfaceOrientation] && result;
+}
+
+- (BOOL)shouldAutorotate{
+    return YES;
+}
+
+- (NSUInteger)supportedInterfaceOrientations{
+    MFDelegate *delegate = (MFDelegate *)UIApplication.sharedApplication.delegate;
+    return [delegate.viewController supportedInterfaceOrientations];
 }
 
 - (void)loadView

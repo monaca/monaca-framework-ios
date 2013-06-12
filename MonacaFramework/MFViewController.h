@@ -31,6 +31,7 @@
  @protected
     NSString *initialQuery;
     BOOL isFirstRendering;
+    NSUInteger supportedOrientationsMask_;
 }
 
 + (BOOL)isPhoneGapScheme:(NSURL *)url;
@@ -61,5 +62,6 @@
 @property (nonatomic, retain) UINavigationController *appNavigationController;
 @property (nonatomic, retain) CDVViewController *cdvViewController;
 @property (nonatomic, retain) MFTabBarController *tabBarController;
+@property (nonatomic, retain) NSDictionary* queryParams;
 
 @end

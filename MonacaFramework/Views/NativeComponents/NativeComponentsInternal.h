@@ -67,6 +67,12 @@
 #define kNCStyleBackgroundSize     @"backgroundSize"
 #define kNCStyleBackgroundRepeat   @"backgroundRepeat"
 #define kNCStyleBackgroundPosition @"backgroundPosition"
+#define kNCStyleScreenOrientation  @"screenOrientation"
+#define kNCOrientationPortrait  @"portrait"
+#define kNCOrientationInherit   @"inherit"
+#define kNCOrientationLandscape @"landscape"
+#define kNCOrientationSeparator @","
+
 #define kNCStyleTextColor          @"textColor"
 #define kNCStylePlaceholder        @"placeholder"
 #define kNCStyleValue              @"value"
@@ -192,3 +198,31 @@ iOSVersionMinor2() {
     NSArray *versions = [[[UIDevice currentDevice] systemVersion] componentsSeparatedByString:@"."];
     return [[versions objectAtIndex:2] intValue];
 }
+
+// Parse orienation string. (ex "portrait, landscape")
+static NSUInteger
+parseScreenOrientationsMask(NSString* orientationString) {
+    NSUInteger result = 0;
+    for (NSString* orientation in [orientationString componentsSeparatedByString:kNCOrientationSeparator]) {
+        NSString *trimed = [orientation stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+        
+        if ([trimed isEqualToString:kNCOrientationPortrait]) {
+            result = result | UIInterfaceOrientationMaskPortrait;
+            
+        } else if ([trimed isEqualToString:kNCOrientationLandscape]) {
+            result = result | UIInterfaceOrientationMaskLandscape;
+            result = result | UIInterfaceOrientationMaskLandscapeRight;
+            
+        } else if ([trimed isEqualToString:kNCOrientationInherit]) {
+            result = result | UIInterfaceOrientationMaskAll;
+        }
+    }
+    
+    if (result == 0) {
+        result = UIInterfaceOrientationMaskAll;
+    }
+    
+    return result;
+}
+
+
