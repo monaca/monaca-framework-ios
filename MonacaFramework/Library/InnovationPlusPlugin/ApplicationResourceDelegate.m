@@ -54,7 +54,11 @@
     [executeCondition applicationresourceQuery_since:[[condition objectForKey:@"since"] longLongValue]];
     [executeCondition applicationresourceQuery_until:[[condition objectForKey:@"until"] longLongValue]];
     [executeCondition applicationresourceQuery_count:[[condition objectForKey:@"count"] intValue]];
-    [executeCondition applicationresourceQuery_self];
+    
+    if([[condition objectForKey:@"self"] boolValue]){
+        [executeCondition applicationresourceQuery_self];
+    }
+    
     [client query:resourceName condition:executeCondition callback:self];
 }
 
