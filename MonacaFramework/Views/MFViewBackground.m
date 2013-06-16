@@ -251,6 +251,11 @@
             [self setPosition:value];
         }
     }
+    
+    if ([key isEqualToString:kNCStyleSupportedOrientation]) {
+        _viewController.screenOrientations = parseScreenOrientationsMask(value);
+    }
+
     [_ncStyle updateStyle:value forKey:key];
 }
 

@@ -26,6 +26,7 @@
 @synthesize uiDict = _uiDict;
 @synthesize backButton = _backButton;
 @synthesize transitAnimated = _transitAnimated;
+@synthesize screenOrientations = _screenOrientations;
 
 - (id)initWithFileName:(NSString *)fileName
 {
@@ -36,6 +37,7 @@
         self.ncManager = [[NCManager alloc] init];
         self.wantsFullScreenLayout = NO;
         self.transitAnimated = YES;
+        self.screenOrientations = UIInterfaceOrientationMaskAll;
     }
     return self;
 }

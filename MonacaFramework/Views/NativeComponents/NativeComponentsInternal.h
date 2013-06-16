@@ -112,6 +112,11 @@
 #define kNCStyleIOSButtonStyle  @"iosButtonStyle"
 #define kNCStyleIOSFrame        @"ios-frame"
 
+#define kNCStyleScreenOrientation  @"screenOrientation"
+#define kNCOrientationPortrait  @"portrait"
+#define kNCOrientationInherit   @"inherit"
+#define kNCOrientationLandscape @"landscape"
+#define kNCOrientationSeparator @","
 
 static BOOL
 isTrue(id object) {
@@ -207,4 +212,28 @@ static inline NSInteger
 iOSVersionMinor2() {
     NSArray *versions = [[[UIDevice currentDevice] systemVersion] componentsSeparatedByString:@"."];
     return [[versions objectAtIndex:2] intValue];
+}
+
+// Parse orienation string. (ex "portrait, landscape")
+static NSUInteger
+parseScreenOrientationsMask(NSString* orientationString) {
+    NSUInteger result = 0;
+    for (NSString* orientation in [orientationString componentsSeparatedByString:kNCOrientationSeparator]) {
+        NSString *trimed = [orientation stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+        
+        if ([trimed isEqualToString:kNCOrientationPortrait]) {
+            result = result | UIInterfaceOrientationMaskPortrait;
+            
+        } else if ([trimed isEqualToString:kNCOrientationLandscape]) {
+            result = result | UIInterfaceOrientationMaskLandscape;
+            result = result | UIInterfaceOrientationMaskLandscapeRight;
+            
+        }
+    }
+    
+    if (result == 0) {
+        result = UIInterfaceOrientationMaskAll;
+    }
+    
+    return result;
 }

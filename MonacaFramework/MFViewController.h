@@ -23,6 +23,7 @@
     id<UIStyleProtocol> _bgView;
     NCContainer *_backButton;
     BOOL _transitAnimated;
+    NSUInteger _screenOrientations;
 }
 
 - (void)applyBarVisibility:(BOOL)animated;
@@ -40,5 +41,6 @@
 @property (nonatomic, retain) NSDictionary *monacaPluginOptions;
 @property (nonatomic, retain) NCContainer *backButton;
 @property (nonatomic, assign) BOOL transitAnimated;
+@property (nonatomic, assign) NSUInteger screenOrientations;
 
 @end

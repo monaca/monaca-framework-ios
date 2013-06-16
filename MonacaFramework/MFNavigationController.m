@@ -10,6 +10,7 @@
 #import "MFUtility.h"
 #import "NativeComponents.h"
 #import "MFDammyViewController.h"
+#import "MFViewManager.h"
 
 @interface MFNavigationController ()
 
@@ -30,7 +31,8 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
-    return [MFUtility getAllowOrientationFromPlist:toInterfaceOrientation];
+    return [MFUtility getAllowOrientationFromPlist:toInterfaceOrientation] &&
+    ([MFViewManager currentViewController].screenOrientations & 1 << toInterfaceOrientation);
 }
 
 - (BOOL)shouldAutorotate
@@ -96,7 +98,7 @@
     if ([MFUtility getAllowOrientationFromPlist:UIInterfaceOrientationLandscapeLeft]){
         mask |= UIInterfaceOrientationMaskLandscapeLeft;
     }
-    return mask;
+    return mask & [MFViewManager currentViewController].screenOrientations;
 }
 
 @end
