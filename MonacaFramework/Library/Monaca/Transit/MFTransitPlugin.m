@@ -170,7 +170,7 @@
             [[MFViewManager currentViewController].webView loadRequest:[self createRequest:fileName withQuery:nil]];
         }
         NSString *command =[NSString stringWithFormat:@"%@ && %@();", kMonacaTransitPluginJsReactivate, kMonacaTransitPluginJsReactivate];
-        [self writeJavascript:command];
+        [self writeJavascriptOnDelegateViewController:command];
     }
 }
 
