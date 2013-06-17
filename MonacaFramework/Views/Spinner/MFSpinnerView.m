@@ -8,6 +8,7 @@
 
 #import "MFSpinnerView.h"
 #import "QuartzCore/QuartzCore.h"
+#import "MFUtility.h"
 
 @implementation MFSpinnerView
 
@@ -116,9 +117,8 @@ static MFSpinnerView *spinnerView = nil;
     [spinnerView applyParameter:parameter];
     [spinnerView startSpinnerAnimating];
     
-    UIWindow *window = UIApplication.sharedApplication.delegate.window;
-    [window addSubview:spinnerView];
-    
+    UIView *view = [MFUtility getAppDelegate].monacaNavigationController.view.superview;
+    [view insertSubview:spinnerView atIndex:1];
 }
 
 + (BOOL)isAnimating
