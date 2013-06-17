@@ -11,6 +11,7 @@
 #import "NativeComponents.h"
 #import "MFDammyViewController.h"
 #import "MFViewManager.h"
+#import "MFSpinnerView.h"
 
 @interface MFNavigationController ()
 
@@ -31,6 +32,8 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
+    if ([MFSpinnerView isAnimating])
+        return NO;
     return [MFUtility getAllowOrientationFromPlist:toInterfaceOrientation] &&
     ([MFViewManager currentViewController].screenOrientations & 1 << toInterfaceOrientation);
 }
