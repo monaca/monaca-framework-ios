@@ -8,6 +8,8 @@
 //  Copyright (c) 2011 ASIAL CORPORATION. All rights reserved.
 //
 
+#import <UIKit/UIKit.h>
+
 #define kNCTrue  @"true"
 #define kNCFalse @"false"
 #define kNCUndefined @""
