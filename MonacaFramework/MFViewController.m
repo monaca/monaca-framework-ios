@@ -234,6 +234,12 @@
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
     [super webViewDidFinishLoad:webView];
+    NSURL *url = [[webView.request URL] standardizedURL];
+    if ([url isFileURL]) {
+        self.wwwFolderName = [url.path stringByDeletingLastPathComponent];
+        [MFViewManager setCurrentWWWFolderName:self.wwwFolderName];
+        self.previousPath = [url path];
+    }
     [webView stringByEvaluatingJavaScriptFromString:@"document.documentElement.style.webkitTouchCallout = 'none';"];
 }
 
