@@ -15,6 +15,10 @@
 		0E81EF321741DD49003A4F9E /* UILabel+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E81EF301741DD49003A4F9E /* UILabel+Resize.m */; };
 		0E81EF331741DD51003A4F9E /* UILabel+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E81EF301741DD49003A4F9E /* UILabel+Resize.m */; };
 		0E81EF341741DD51003A4F9E /* UILabel+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E81EF301741DD49003A4F9E /* UILabel+Resize.m */; };
+		0E829471176EA9BA00BEB9DB /* MFTransitParameter.h in Headers */ = {isa = PBXBuildFile; fileRef = 0E82946F176EA9BA00BEB9DB /* MFTransitParameter.h */; };
+		0E829472176EA9BA00BEB9DB /* MFTransitParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E829470176EA9BA00BEB9DB /* MFTransitParameter.m */; };
+		0E829473176EA9BA00BEB9DB /* MFTransitParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E829470176EA9BA00BEB9DB /* MFTransitParameter.m */; };
+		0E829474176EA9BA00BEB9DB /* MFTransitParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E829470176EA9BA00BEB9DB /* MFTransitParameter.m */; };
 		0E8386C517544AA2006FBD98 /* ApplicationResourceDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 0E8386B717544AA2006FBD98 /* ApplicationResourceDelegate.h */; };
 		0E8386C617544AA2006FBD98 /* ApplicationResourceDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E8386B817544AA2006FBD98 /* ApplicationResourceDelegate.m */; };
 		0E8386C717544AA2006FBD98 /* ApplicationResourceDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E8386B817544AA2006FBD98 /* ApplicationResourceDelegate.m */; };
@@ -447,6 +451,8 @@
 		0E813EBB174DEE8B0062A13C /* MFUIChecker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFUIChecker.m; sourceTree = "<group>"; };
 		0E81EF2F1741DD49003A4F9E /* UILabel+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+Resize.h"; sourceTree = "<group>"; };
 		0E81EF301741DD49003A4F9E /* UILabel+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Resize.m"; sourceTree = "<group>"; };
+		0E82946F176EA9BA00BEB9DB /* MFTransitParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFTransitParameter.h; sourceTree = "<group>"; };
+		0E829470176EA9BA00BEB9DB /* MFTransitParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFTransitParameter.m; sourceTree = "<group>"; };
 		0E8386B717544AA2006FBD98 /* ApplicationResourceDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplicationResourceDelegate.h; sourceTree = "<group>"; };
 		0E8386B817544AA2006FBD98 /* ApplicationResourceDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplicationResourceDelegate.m; sourceTree = "<group>"; };
 		0E8386B917544AA2006FBD98 /* GeolocationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeolocationDelegate.h; sourceTree = "<group>"; };
@@ -925,6 +931,8 @@
 			children = (
 				5A40CBDD170836F2002DD96C /* MFTransitPlugin.h */,
 				5A40CBDE170836F2002DD96C /* MFTransitPlugin.m */,
+				0E82946F176EA9BA00BEB9DB /* MFTransitParameter.h */,
+				0E829470176EA9BA00BEB9DB /* MFTransitParameter.m */,
 				5A99A8F11750FB8C00D4ABD7 /* MFTransitPopParameter.h */,
 				5A99A8F21750FB8C00D4ABD7 /* MFTransitPopParameter.m */,
 				5A99A8F31750FB8C00D4ABD7 /* MFTransitPushParameter.h */,
@@ -1287,6 +1295,7 @@
 				0EED09A7175496F9006DDE72 /* MFViewBackground.h in Headers */,
 				5AA1129117565B430050BBC6 /* NCStyle.h in Headers */,
 				5AF1155B175B07A2002E4E6B /* MFViewManager.h in Headers */,
+				0E829471176EA9BA00BEB9DB /* MFTransitParameter.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1542,6 +1551,7 @@
 				0EED09AA175496F9006DDE72 /* MFViewBackground.m in Sources */,
 				5AA1129417565B430050BBC6 /* NCStyle.m in Sources */,
 				5AF1155E175B07A2002E4E6B /* MFViewManager.m in Sources */,
+				0E829474176EA9BA00BEB9DB /* MFTransitParameter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1634,6 +1644,7 @@
 				0EED09A8175496F9006DDE72 /* MFViewBackground.m in Sources */,
 				5AA1129217565B430050BBC6 /* NCStyle.m in Sources */,
 				5AF1155C175B07A2002E4E6B /* MFViewManager.m in Sources */,
+				0E829472176EA9BA00BEB9DB /* MFTransitParameter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1727,6 +1738,7 @@
 				0EED09A9175496F9006DDE72 /* MFViewBackground.m in Sources */,
 				5AA1129317565B430050BBC6 /* NCStyle.m in Sources */,
 				5AF1155D175B07A2002E4E6B /* MFViewManager.m in Sources */,
+				0E829473176EA9BA00BEB9DB /* MFTransitParameter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

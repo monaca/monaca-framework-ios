@@ -216,6 +216,8 @@
     NSString *query = [self getQueryFromPluginArguments:arguments urlString:urlString];
     NSString *urlStringWithoutQuery = [[urlString componentsSeparatedByString:@"?"] objectAtIndex:0];
 
+    MFTransitPushParameter* parameter = [MFTransitPushParameter parseOptionsDict:options];
+    
     [[MFViewManager currentViewController] removeUserInterface];
     
     NSString *fullPath = [[MFViewManager currentWWWFolderName] stringByAppendingPathComponent:urlStringWithoutQuery];
@@ -223,13 +225,13 @@
     [MFUIChecker checkUI:uidict];
     
     NSDictionary *bottom = [uidict objectForKey:kNCPositionBottom];
-    if ([[bottom objectForKey:kNCTypeContainer] isEqualToString:kNCContainerTabbar] && [MFViewManager isViewControllerTop]) {
+    if ([[bottom objectForKey:kNCTypeContainer] isEqualToString:kNCContainerTabbar] && ([MFViewManager isViewControllerTop] || [parameter.target isEqualToString:@"_parent"])) {
         MFTabBarController *tabarController = [MFViewBuilder createTabbarControllerWithPath:fullPath withDict:uidict];
         [tabarController setCustomizableViewControllers:nil];
         NSMutableArray *viewControllers = [[MFViewManager currentViewController].navigationController.viewControllers mutableCopy];
         [viewControllers removeLastObject];
         [viewControllers addObject:tabarController];
-        [[MFViewManager currentViewController].navigationController setViewControllers:viewControllers];
+        [[MFUtility getAppDelegate].monacaNavigationController setViewControllers:viewControllers];
     } else {
         if ([MFViewManager isTabbarControllerTop]) {
             [uidict removeObjectForKey:kNCPositionBottom];
