@@ -88,6 +88,8 @@
 
 - (NSUInteger)supportedInterfaceOrientations
 {
+    if ([MFSpinnerView isAnimating])
+        return 0;
     UIInterfaceOrientationMask mask = nil;
     if ([MFUtility getAllowOrientationFromPlist:UIInterfaceOrientationPortrait]) {
         mask |= UIInterfaceOrientationMaskPortrait;
