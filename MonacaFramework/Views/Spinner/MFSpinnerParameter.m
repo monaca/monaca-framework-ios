@@ -8,6 +8,7 @@
 
 #import "MFSpinnerParameter.h"
 #import "NativeComponentsInternal.h"
+#import "MFViewManager.h"
 
 #define DEFAULT_SPINNER_SRC @"spinner.png"
 
@@ -94,7 +95,11 @@ withTitleFontSize:(NSUInteger)titleFontSize
             srcString = DEFAULT_SPINNER_SRC;
             frameCount = 12;
         }
-        UIImage *sourceImage = [UIImage imageNamed:srcString];
+        NSString *imagePath = [[MFViewManager currentWWWFolderName] stringByAppendingPathComponent:srcString];
+        UIImage *sourceImage = [UIImage imageWithContentsOfFile:imagePath];
+        if (sourceImage == nil) {
+            sourceImage = [UIImage imageNamed:DEFAULT_SPINNER_SRC];
+        }
     
         if (frameCount == 0) {
             id frames = [arguments objectAtIndex:2];
