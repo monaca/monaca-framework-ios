@@ -291,6 +291,10 @@
     }
     
     if (jsonQueryParams.count > 0) {
+        
+        MFDelegate *mfDelegate = (MFDelegate *)[UIApplication sharedApplication].delegate;
+        mfDelegate.queryParams = [NSMutableDictionary dictionaryWithObject:jsonQueryParams forKey:@"queryParams"];
+        
         NSMutableArray *queryParams = [NSMutableArray array];
         for (NSString *key in jsonQueryParams) {
             NSString *encodedKey = [MFUtility urlEncode:key];
@@ -298,9 +302,18 @@
             if ([[jsonQueryParams objectForKey:key] isEqual:[NSNull null]]){
                 [queryParams addObject:[NSString stringWithFormat:@"%@", encodedKey]];
             }else {
-                encodedValue = [self encode:[jsonQueryParams objectForKey:key]];
-                [queryParams addObject:[NSString stringWithFormat:@"%@=%@", encodedKey, encodedValue]];
-            }
+                id jsonQueryParamsValue = [jsonQueryParams objectForKey:key];
+                
+                if([jsonQueryParamsValue isKindOfClass:[NSString class]])
+                {
+                    encodedValue = [MFUtility urlEncode:[jsonQueryParams objectForKey:key]];
+                    [queryParams addObject:[NSString stringWithFormat:@"%@=%@", encodedKey, encodedValue]];
+                }
+                else if([jsonQueryParamsValue isKindOfClass:[NSNumber class]])
+                {
+                    NSString *jsonStringValue = [jsonQueryParamsValue stringValue];
+                    [queryParams addObject:[NSString stringWithFormat:@"%@=%@", encodedKey, jsonStringValue]];
+                }            }
         }
         if([query isEqualToString:@""]){
             query = [[[queryParams reverseObjectEnumerator] allObjects] componentsJoinedByString:@"&"];

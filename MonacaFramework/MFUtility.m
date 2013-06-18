@@ -229,7 +229,12 @@ static NSString *base_url = @"https://api.monaca.mobi";
  * build url Moaca query params
  */
 + (NSString *)insertMonacaQueryParams:(NSString *)html query:(NSString *)aQuery {
-    if (aQuery){
+    
+    // Json value return
+    MFDelegate *mfDelegate = (MFDelegate *)[UIApplication sharedApplication].delegate;
+    NSDictionary* jsonQueryParams = mfDelegate.queryParams;
+    
+    if (aQuery || [jsonQueryParams objectForKey:@"queryParams"]){
         NSArray *pairs = [aQuery componentsSeparatedByString:@"&"];
         NSMutableArray *keyValues = [NSMutableArray array];
 
@@ -250,6 +255,19 @@ static NSString *base_url = @"https://api.monaca.mobi";
         }
         NSString *keyValuesString = [keyValues componentsJoinedByString:@","];
         NSString *queryScriptTag = [NSString stringWithFormat:@"<script>window.monaca = window.monaca || {};window.monaca.queryParams = {%@};</script>", keyValuesString];
+        
+        
+        if([jsonQueryParams objectForKey:@"queryParams"])
+        {
+            NSData *jsonData =  [NSJSONSerialization dataWithJSONObject:[jsonQueryParams objectForKey:@"queryParams"] options:kNilOptions error:nil];
+            keyValuesString = [[NSString alloc]initWithData:jsonData encoding:NSUTF8StringEncoding];
+            queryScriptTag = [NSString stringWithFormat:@"<script>window.monaca = window.monaca || {};window.monaca.queryParams = %@;</script>", keyValuesString];
+            
+            mfDelegate.queryParams = nil;
+            
+        }
+
+        
         NSRange replaceRange = [html rangeOfString:@"<head>"];
         if(replaceRange.location == NSNotFound){
             html = [queryScriptTag stringByAppendingString:html];
