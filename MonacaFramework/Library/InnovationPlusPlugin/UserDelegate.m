@@ -32,6 +32,7 @@
 - (void)ippDidFinishLoading:(id)result
 {
     [mipUtility updateMIPPlist:[result objectForKey:@"auth_key"]];
+    resultValues = result;
     [cdvPlugin returnSuccessValueForJson:resultValues];
 }
 

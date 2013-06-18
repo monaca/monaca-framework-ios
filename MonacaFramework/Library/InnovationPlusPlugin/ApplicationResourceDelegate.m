@@ -46,7 +46,7 @@
         }
         else if ([[query objectForKey:[keys objectAtIndex:i]]  isKindOfClass:[NSNumber class]])
         {
-            [executeCondition applicationresourceQuery_eqField:[keys objectAtIndex:i] withValue:[[NSNumber alloc] initWithInt:100111]];
+            [executeCondition applicationresourceQuery_eqField:[keys objectAtIndex:i] withValue:[[NSNumber alloc] initWithInt:[query objectForKey:[keys objectAtIndex:i]]]];
             
         }
     }
