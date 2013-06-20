@@ -13,7 +13,19 @@
 
 @implementation MFUtility
 
-static NSString *base_url = @"https://api.monaca.mobi";
+const static NSString *base_url = @"https://api.monaca.mobi";
+
+static NSDictionary *queryParams;
+
++ (NSDictionary *)queryParams
+{
+    return queryParams;
+}
+
++ (void)setQueryParams:(NSDictionary *)params
+{
+    queryParams = params;
+}
 
 + (NSURLResponse *)fetchFrom:(NSString *)url method:(NSString *)method parameter:(NSString *)parameter {
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
@@ -231,8 +243,7 @@ static NSString *base_url = @"https://api.monaca.mobi";
 + (NSString *)insertMonacaQueryParams:(NSString *)html query:(NSString *)aQuery {
     
     // Json value return
-    MFDelegate *mfDelegate = (MFDelegate *)[UIApplication sharedApplication].delegate;
-    NSDictionary* jsonQueryParams = mfDelegate.queryParams;
+    NSDictionary* jsonQueryParams =  queryParams;
     
     if (aQuery || [jsonQueryParams objectForKey:@"queryParams"]){
         NSArray *pairs = [aQuery componentsSeparatedByString:@"&"];
@@ -263,7 +274,7 @@ static NSString *base_url = @"https://api.monaca.mobi";
             keyValuesString = [[NSString alloc]initWithData:jsonData encoding:NSUTF8StringEncoding];
             queryScriptTag = [NSString stringWithFormat:@"<script>window.monaca = window.monaca || {};window.monaca.queryParams = %@;</script>", keyValuesString];
             
-            mfDelegate.queryParams = nil;
+            queryParams = nil;
             
         }
 

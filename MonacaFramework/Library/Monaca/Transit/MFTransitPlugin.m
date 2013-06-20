@@ -291,9 +291,8 @@
     }
     
     if (jsonQueryParams.count > 0) {
-        
-        MFDelegate *mfDelegate = (MFDelegate *)[UIApplication sharedApplication].delegate;
-        mfDelegate.queryParams = [NSMutableDictionary dictionaryWithObject:jsonQueryParams forKey:@"queryParams"];
+
+        [MFUtility setQueryParams:[NSMutableDictionary dictionaryWithObject:jsonQueryParams forKey:@"queryParams"]];
         
         NSMutableArray *queryParams = [NSMutableArray array];
         for (NSString *key in jsonQueryParams) {

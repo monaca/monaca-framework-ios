@@ -14,6 +14,8 @@
 
 }
 
++ (NSDictionary *)queryParams;
++ (void)setQueryParams:(NSDictionary *)params;
 + (UIInterfaceOrientation) currentInterfaceOrientation;
 + (BOOL) getAllowOrientationFromPlist:(UIInterfaceOrientation)interfaceOrientation;
 + (NSDictionary *)parseJSONFile:(NSString *)path;
