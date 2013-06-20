@@ -65,9 +65,8 @@
     
     MFTransitPushParameter* parameter = [MFTransitPushParameter parseOptionsDict:options];
     
-    NSString *relativeUrlString = [self getRelativePathTo:urlString];
-    NSString *query = [self getQueryFromPluginArguments:arguments urlString:relativeUrlString];
-    NSString *urlStringWithoutQuery = [[relativeUrlString componentsSeparatedByString:@"?"] objectAtIndex:0];
+    NSString *query = [self getQueryFromPluginArguments:arguments urlString:urlString];
+    NSString *urlStringWithoutQuery = [[urlString componentsSeparatedByString:@"?"] objectAtIndex:0];
 
     MFNavigationController *navigationController;
     if ([parameter.target isEqualToString:@"_parent"] || [MFViewManager isViewControllerTop]) {
@@ -77,7 +76,7 @@
         navigationController = (MFNavigationController *)[MFViewManager currentViewController].navigationController;
     }
     
-    MFViewController *viewController = [MFViewBuilder createViewControllerWithPath:urlStringWithoutQuery];
+    MFViewController *viewController = [MFViewBuilder createViewControllerWithPath:[self getRelativePathTo:urlStringWithoutQuery]];
     [MFViewBuilder setIgnoreBottom:NO];
 
     UIViewController *previousController;
@@ -137,7 +136,6 @@
 {
     [self pushGenerically:arguments withDict:options];
 }
-
 
 - (void)slideRight:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options
 {

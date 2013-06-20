@@ -7,6 +7,8 @@
 //
 
 #import "MFTransitParameter.h"
+#import "MFUtility.h"
+#import "MFViewManager.h"
 
 @implementation MFTransitParameter
 
@@ -32,13 +34,54 @@
 
 #pragma mark private method end -
 
-+ (MFTransitParameter*)parseOptionsDict:(NSDictionary*)options
++ (NSString *)detectAnimation:(NSString *)direction
+{
+    if ([MFViewManager isTabbarControllerTop])
+        return direction;
+    
+    NSString *animation;
+    UIInterfaceOrientation interfaceOrientaion = [MFUtility currentInterfaceOrientation];
+    if ([direction isEqualToString:kCATransitionFromTop]) {
+        if (interfaceOrientaion == UIInterfaceOrientationPortrait) {
+            animation = kCATransitionFromTop;
+        } else if (interfaceOrientaion == UIInterfaceOrientationPortraitUpsideDown) {
+            animation = kCATransitionFromBottom;
+        } else if (interfaceOrientaion == UIInterfaceOrientationLandscapeLeft) {
+            animation = kCATransitionFromRight;
+        } else if (interfaceOrientaion == UIInterfaceOrientationLandscapeRight) {
+            animation = kCATransitionFromLeft;
+        }
+    } else if ([direction isEqualToString:kCATransitionFromLeft]) {
+        if (interfaceOrientaion == UIInterfaceOrientationPortrait) {
+            animation = kCATransitionFromLeft;
+        } else if (interfaceOrientaion == UIInterfaceOrientationPortraitUpsideDown) {
+            animation = kCATransitionFromRight;
+        } else if (interfaceOrientaion == UIInterfaceOrientationLandscapeLeft) {
+            animation = kCATransitionFromTop;
+        } else if (interfaceOrientaion == UIInterfaceOrientationLandscapeRight) {
+            animation = kCATransitionFromBottom;
+        }
+    } else if ([direction isEqualToString:kCATransitionFromRight]) {
+        if (interfaceOrientaion == UIInterfaceOrientationPortrait) {
+            animation = kCATransitionFromRight;
+        } else if (interfaceOrientaion == UIInterfaceOrientationPortraitUpsideDown) {
+            animation = kCATransitionFromLeft;
+        } else if (interfaceOrientaion == UIInterfaceOrientationLandscapeLeft) {
+            animation = kCATransitionFromBottom;
+        } else if (interfaceOrientaion == UIInterfaceOrientationLandscapeRight) {
+            animation = kCATransitionFromTop;
+        }
+    }
+    
+    return animation;
+}
+
++ (NSString *)parseTargetParameter:(NSString *)targetParam
 {
     NSString *target = nil;
     
     // "target" parameter parsing
     {
-        id targetParam = [options objectForKey:@"target"];
         if ([targetParam isKindOfClass:NSString.class]) {
             if ([targetParam isEqualToString:@"_parent"] || [targetParam isEqualToString:@"_self"]) {
                 target = targetParam;
@@ -52,9 +95,6 @@
         }
     }
     
-    MFTransitParameter *parameter = [[MFTransitParameter alloc] init];
-    parameter.target = target;
-    
-    return parameter;
+    return target;
 }
 @end

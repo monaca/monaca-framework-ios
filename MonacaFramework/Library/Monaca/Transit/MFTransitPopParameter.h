@@ -8,12 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import <QuartzCore/QuartzCore.h>
+#import "MFTransitParameter.h"
 
-@interface MFTransitPopParameter : NSObject {
+@interface MFTransitPopParameter : MFTransitParameter {
     @protected
     CATransition *transition_;
     BOOL hasDefaultPopAnimation_;
-    NSString *target_;
 }
 
 + (MFTransitPopParameter*)parseOptionsDict:(NSDictionary*)options;

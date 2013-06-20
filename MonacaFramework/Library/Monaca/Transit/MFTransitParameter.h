@@ -14,7 +14,8 @@
     NSString *target_;
 }
 
-+ (MFTransitParameter*)parseOptionsDict:(NSDictionary*)options;
++ (NSString *)parseTargetParameter:(NSString *)targetParam;
++ (NSString *)detectAnimation:(NSString *)direction;
 
 @property (retain, readonly) NSString *target;
 

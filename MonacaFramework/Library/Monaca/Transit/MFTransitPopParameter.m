@@ -12,7 +12,6 @@
 
 @synthesize transition = transition_;
 @synthesize hasDefaultPopAnimation = hasDefaultPopAnimation_;
-@synthesize target = target_;
 
 - (id)init
 {
@@ -66,7 +65,7 @@
                 transition = [CATransition animation];
                 transition.duration = 0.4f;
                 transition.type = kCATransitionReveal;
-                transition.subtype = kCATransitionFromTop;
+                transition.subtype = [self detectAnimation:kCATransitionFromTop];
                 [transition setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionDefault]];
                 hasDefaultPopAnimation = YES;
                 
@@ -90,20 +89,7 @@
     }
 
     // "target" parameter parsing
-    {
-        id targetParam = [options objectForKey:@"target"];
-        if ([targetParam isKindOfClass:NSString.class]) {
-            if ([targetParam isEqualToString:@"_parent"] || [targetParam isEqualToString:@"_self"]) {
-                target = targetParam;
-            }
-        } else if (targetParam == nil) {
-            target = @"_self";
-        }
-        if (target == nil) {
-            NSLog(@"unkonwn target type: %@", targetParam);
-            target = @"_self";
-        }
-    }
+    target = [self parseTargetParameter:[options objectForKey:@"target"]];
 
     MFTransitPopParameter *parameter = [[MFTransitPopParameter alloc] init];
     parameter.transition = transition;

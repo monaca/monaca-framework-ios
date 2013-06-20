@@ -13,7 +13,6 @@
 @synthesize transition = transition_;
 @synthesize clearStack = clearStack_;
 @synthesize hasDefaultPushAnimation = hasDefaultPushAnimation_;
-@synthesize target = target_;
 
 - (id)init
 {
@@ -77,8 +76,8 @@
                 // animation : "slideRight"
                 transition = [CATransition animation];
                 transition.duration = 0.4f;
-                transition.type = kCATransitionPush;
-                transition.subtype = kCATransitionFromLeft;
+                transition.type = kCATransitionMoveIn;
+                transition.subtype = [self detectAnimation:kCATransitionFromLeft];
                 [transition setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionDefault]];
                 hasDefaultPushAnimation = NO;
                 
@@ -88,7 +87,7 @@
                 transition = [CATransition animation];
                 transition.duration = 0.4f;
                 transition.type = kCATransitionMoveIn;
-                transition.subtype = kCATransitionFromTop;
+                transition.subtype = [self detectAnimation:kCATransitionFromTop];
                 [transition setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionDefault]];
                 hasDefaultPushAnimation = NO;
                 
@@ -114,20 +113,7 @@
     }
     
     // "target" parameter parsing
-    {
-        id targetParam = [options objectForKey:@"target"];
-        if ([targetParam isKindOfClass:NSString.class]) {
-            if ([targetParam isEqualToString:@"_parent"] || [targetParam isEqualToString:@"_self"]) {
-                target = targetParam;
-            }
-        } else if (targetParam == nil) {
-            target = @"_self";
-        }
-        if (target == nil) {
-            NSLog(@"unkonwn target type: %@", targetParam);
-            target = @"_self";
-        }
-    }
+    target = [self parseTargetParameter:[options objectForKey:@"target"]];
     
     MFTransitPushParameter *_self = [[MFTransitPushParameter alloc] init];
     _self.clearStack = clearStack;
