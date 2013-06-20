@@ -19,6 +19,5 @@
 
 @property (nonatomic, retain) UIWindow *window;
 @property (nonatomic, retain) MFNavigationController *monacaNavigationController;
-@property (nonatomic, retain) NSMutableDictionary* queryParams;
 
 @end
