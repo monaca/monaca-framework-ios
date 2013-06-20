@@ -45,6 +45,7 @@ static NSString *_wwwDir;
         [view setCustomizableViewControllers:nil];
     } else {
         view = [self createMFViewControllerWithPath:fullPath withDict:uidict];
+        [MFViewManager setCurrentWWWFolderName:[view wwwFolderName]];
     }
 
     return view;
@@ -56,7 +57,6 @@ static NSString *_wwwDir;
     
     MFViewController *viewController = [[MFViewController alloc] initWithFileName:[path lastPathComponent]];
     [viewController setWwwFolderName:[path stringByDeletingLastPathComponent]];
-    [MFViewManager setCurrentWWWFolderName:viewController.wwwFolderName];
     if (ignoreBottom_) {
         [uidict removeObjectForKey:kNCPositionBottom];
     }
