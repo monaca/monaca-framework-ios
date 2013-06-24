@@ -124,7 +124,7 @@ static NSDictionary *queryParams;
 
 + (NSDictionary *)getAppJSON
 {
-    NSString *base_path = [[MFViewManager currentWWWFolderName] stringByReplacingOccurrencesOfString:@"www" withString:@""];
+    NSString *base_path = [[[self class] getBaseURL].path stringByReplacingOccurrencesOfString:@"www" withString:@""];
     NSURL *json_url = [NSURL fileURLWithPath:[base_path stringByAppendingPathComponent:@"app.json"]];
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:json_url];
     NSURLResponse *response = nil;
@@ -383,7 +383,7 @@ static NSDictionary *queryParams;
 
 + (void)setMonacaCloudCookie
 {
-    NSDictionary *appJSON = [MFUtility getAppJSON];
+    NSDictionary *appJSON = [[self class] getAppJSON];
     NSURL *endPoint = [NSURL URLWithString:[[appJSON objectForKey:@"monacaCloud"] objectForKey:@"endPoint"]];
     NSString *domain = [endPoint host];
     NSString *path = [endPoint path];
