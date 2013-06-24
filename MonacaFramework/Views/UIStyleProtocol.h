@@ -21,4 +21,6 @@
 - (void)updateUIStyle:(id)value forKey:(NSString *)key;
 - (id)retrieveUIStyle:(NSString *)key;
 
+@property (nonatomic, copy) NSString *type;
+
 @end

@@ -19,6 +19,7 @@
     if (self) {
         [self setTitle:@""];
         _ncStyle = [[NCStyle alloc] initWithComponent:kNCComponentButton];
+        _type = kNCComponentButton;
     }
     
     return self;

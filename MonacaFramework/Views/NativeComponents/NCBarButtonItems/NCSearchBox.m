@@ -18,6 +18,7 @@
 
     if (self) {
         _searchBar = [[UISearchBar alloc] init];
+        _type = kNCComponentSearchBox;
         UITextField *searchField = [_searchBar valueForKey:@"_searchField"];
         [searchField  setEnablesReturnKeyAutomatically:NO];
 

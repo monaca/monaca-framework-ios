@@ -17,7 +17,9 @@
     if (self) {
         _segment = [[UISegmentedControl alloc] initWithItems:nil];
         [_segment setSegmentedControlStyle:UISegmentedControlStyleBar];
+        _type = kNCComponentSegment;
         self.customView = _segment;
+
         _ncStyle = [[NCStyle alloc] initWithComponent:kNCComponentSegment];
     }
 

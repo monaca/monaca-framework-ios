@@ -17,6 +17,7 @@
 
     if (self) {
         _ncStyle = [[NCStyle alloc] initWithComponent:kNCComponentBackButton];
+        _type = kNCComponentBackButton;
     }
 
     return self;

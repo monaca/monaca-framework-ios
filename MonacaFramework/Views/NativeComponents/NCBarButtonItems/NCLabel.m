@@ -16,6 +16,7 @@
     
     if (self) {
         _label = [[UILabel alloc] init];
+        _type = kNCComponentLabel;
         [_label setBackgroundColor:[UIColor clearColor]];
         self.customView = _label;
         _ncStyle = [[NCStyle alloc] initWithComponent:kNCComponentLabel];

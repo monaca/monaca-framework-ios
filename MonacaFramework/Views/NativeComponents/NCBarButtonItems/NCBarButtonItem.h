@@ -12,11 +12,13 @@
 @interface NCBarButtonItem : UIBarButtonItem <UIStyleProtocol>
 {
     NCStyle *_ncStyle;
+    NSString *_type;
     id<UIStyleProtocol> _toolbar;
     BOOL _hidden;
 }
 
 @property (nonatomic, assign) BOOL hidden;
 @property (nonatomic, retain) id<UIStyleProtocol> toolbar;
+@property (nonatomic, copy) NSString *type;
 
 @end

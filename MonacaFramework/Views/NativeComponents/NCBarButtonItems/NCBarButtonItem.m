@@ -10,6 +10,7 @@
 
 @implementation NCBarButtonItem
 
+@synthesize type = _type;
 @synthesize hidden = _hidden;
 @synthesize toolbar = _toolbar;
 

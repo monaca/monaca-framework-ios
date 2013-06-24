@@ -15,6 +15,7 @@
 @implementation NCToolbar
 
 @synthesize viewController = _viewController;
+@synthesize type = _type;
 
 - (id)initWithViewController:(MFViewController *)viewController
 {
@@ -22,6 +23,7 @@
     
     if (self) {
         _viewController = viewController;
+        _type = kNCContainerToolbar;
         _toolbar = viewController.navigationController.toolbar;
         _ncStyle = [[NCStyle alloc] initWithComponent:kNCContainerToolbar];
     }

@@ -13,12 +13,15 @@
 
 @implementation NCTabbarItem
 
+@synthesize type = _type;
+
 - (id)init
 {
     self = [super init];
 
     if (self) {
         _ncStyle = [[NCStyle alloc] initWithComponent:kNCComponentTabbarItem];
+        _type = kNCComponentTabbarItem;
     }
 
     return self;

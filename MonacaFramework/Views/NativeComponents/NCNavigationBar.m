@@ -14,6 +14,7 @@
 @implementation NCNavigationBar
 
 @synthesize viewController = _viewController;
+@synthesize type = _type;
 
 - (id)initWithViewController:(MFViewController *)viewController
 {
@@ -21,6 +22,7 @@
 
     if (self) {
         _viewController = viewController;
+        _type = kNCContainerToolbar;
         _navigationBar = viewController.navigationController.navigationBar;
         _centerView = nil;
         _titleView = [[NCTitleView alloc] init];

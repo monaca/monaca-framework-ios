@@ -14,6 +14,7 @@
     UILabel *_subtitle;
     UIImageView *_titleImageView;
     NCStyle *_ncStyle;
+    NSString *type;
 }
 
 @end

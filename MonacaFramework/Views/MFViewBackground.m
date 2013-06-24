@@ -16,12 +16,15 @@
 
 @implementation MFViewBackground
 
+@synthesize type = _type;
+
 - (id)initWithViewController:(MFViewController *)viewController
 {
     self = [super init];
     
     if (self) {
         _viewController = viewController;
+        _type = kNCContainerPage;
         _ncStyle = [[NCStyle alloc] initWithComponent:kNCContainerPage];
         CGRect frame = CGRectMake(0, 0, viewController.view.frame.size.width, viewController.view.frame.size.height);
         self.frame = frame;
