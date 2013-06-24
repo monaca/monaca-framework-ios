@@ -122,9 +122,12 @@
 
 - (void)setStyles:(NSDictionary *)styles
 {
+
     for (id styleKey in styles) {
-        if ([_defaultStyles objectForKey:styleKey] == nil)
+        if ([_defaultStyles objectForKey:styleKey] == nil) {
+            NSLog(NSLocalizedString(@"Key is not one of valid keys", nil), _component, styleKey, [MFUIChecker dictionaryKeysToString:[_styles copy]]);
             continue;
+        }
         if (![self checkStyle:[styles objectForKey:styleKey] forKey:styleKey]) {
             continue;
         }
@@ -185,7 +188,7 @@
               [MFUIChecker valueType:[_defaultStyles objectForKey:key]], value);
         return NO;
     }
-    if ([key isEqualToString:kNCStyleInnerImage] || [key isEqualToString:kNCStyleImage]) {
+    if ([key isEqualToString:kNCStyleInnerImage] || [key isEqualToString:kNCStyleImage] || [key isEqualToString:kNCStyleBackgroundImage]) {
         if (value != nil && ![value isEqualToString:kNCUndefined]) {
             NSString *imagePath = [[MFViewManager currentWWWFolderName] stringByAppendingPathComponent:value];
             if ([UIImage imageWithContentsOfFile:imagePath] == nil) {
