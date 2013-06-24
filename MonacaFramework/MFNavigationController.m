@@ -34,7 +34,7 @@
 {
     if ([MFSpinnerView isAnimating])
         return [MFViewManager currentViewController].interfaceOrientation == toInterfaceOrientation;
-    if ([MFViewManager currentViewController] != NULL) {
+    if ([MFViewManager currentViewController]) {
         return [MFUtility getAllowOrientationFromPlist:toInterfaceOrientation] &&
         ([MFViewManager currentViewController].screenOrientations & 1 << toInterfaceOrientation);
     } else {
@@ -109,7 +109,12 @@
     if ([MFUtility getAllowOrientationFromPlist:UIInterfaceOrientationLandscapeLeft]){
         mask |= UIInterfaceOrientationMaskLandscapeLeft;
     }
-    return mask & [MFViewManager currentViewController].screenOrientations;
+    if ([MFViewManager currentViewController]) {
+        return mask & [MFViewManager currentViewController].screenOrientations;
+    } else {
+        return mask;
+    }
+    
 }
 
 @end
