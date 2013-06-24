@@ -34,8 +34,12 @@
 {
     if ([MFSpinnerView isAnimating])
         return [MFViewManager currentViewController].interfaceOrientation == toInterfaceOrientation;
-    return [MFUtility getAllowOrientationFromPlist:toInterfaceOrientation] &&
-    ([MFViewManager currentViewController].screenOrientations & 1 << toInterfaceOrientation);
+    if ([MFViewManager currentViewController] != NULL) {
+        return [MFUtility getAllowOrientationFromPlist:toInterfaceOrientation] &&
+        ([MFViewManager currentViewController].screenOrientations & 1 << toInterfaceOrientation);
+    } else {
+        return [MFUtility getAllowOrientationFromPlist:toInterfaceOrientation];
+    }
 }
 
 - (BOOL)shouldAutorotate
@@ -88,8 +92,10 @@
 
 - (NSUInteger)supportedInterfaceOrientations
 {
-    if ([MFSpinnerView isAnimating])
-        return [MFUtility currentInterfaceOrientation];
+    if ([MFSpinnerView isAnimating]) {
+        return 0;
+    }
+
     UIInterfaceOrientationMask mask = nil;
     if ([MFUtility getAllowOrientationFromPlist:UIInterfaceOrientationPortrait]) {
         mask |= UIInterfaceOrientationMaskPortrait;
