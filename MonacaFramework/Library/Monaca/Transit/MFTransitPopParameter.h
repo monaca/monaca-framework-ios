@@ -20,6 +20,5 @@
 
 @property (retain, readonly) CATransition *transition;
 @property (assign, readonly) BOOL hasDefaultPopAnimation;
-@property (retain, readonly) NSString *target;
 
 @end

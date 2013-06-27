@@ -119,6 +119,9 @@
 
 - (void)applyBarVisibility:(BOOL)animated
 {
+    if ([MFViewManager isTabbarControllerTop])
+        return;
+        
     if (_navigationBar) {
         [self.navigationController setNavigationBarHidden:NO animated:animated];
     } else {
@@ -143,12 +146,23 @@
 
 - (void)setBarUserInterface:(NSDictionary *)uidict
 {
+    
     NSDictionary *top = [uidict objectForKey:kNCPositionTop];
     NSDictionary *bottom = [uidict objectForKey:kNCPositionBottom];
     NSMutableDictionary *style = [NSMutableDictionary dictionary];
     [style addEntriesFromDictionary:[uidict objectForKey:kNCTypeStyle]];
     [style addEntriesFromDictionary:[uidict objectForKey:kNCTypeIOSStyle]];
 
+    // setting for page style
+    if ([style isKindOfClass:NSDictionary.class]) {
+        _bgView = [[MFViewBackground alloc] initWithViewController:self];
+        [self.ncManager setComponent:_bgView forID:[uidict objectForKey:kNCTypeID]];
+        [(MFViewBackground *)_bgView createBackgroundView:style];
+    }
+    
+    if (!self.navigationController || [MFViewManager isTabbarControllerTop])
+        return;
+    
     if ([[top objectForKey:kNCTypeContainer] isEqualToString:kNCContainerToolbar]) {
         _navigationBar = [[NCNavigationBar alloc] initWithViewController:self];
         [self.ncManager setComponent:_navigationBar forID:[top objectForKey:kNCTypeID]];
@@ -158,13 +172,6 @@
         _toolbar =  [[NCToolbar alloc] initWithViewController:self];
         [self.ncManager setComponent:_toolbar forID:[bottom objectForKey:kNCTypeID]];
         [(NCToolbar *)_toolbar createToolbar:bottom];
-    }
-    
-    // setting for page style
-    if ([style isKindOfClass:NSDictionary.class]) {
-        _bgView = [[MFViewBackground alloc] initWithViewController:self];
-        [self.ncManager setComponent:_bgView forID:[uidict objectForKey:kNCTypeID]];
-        [(MFViewBackground *)_bgView createBackgroundView:style];
     }
 }
 

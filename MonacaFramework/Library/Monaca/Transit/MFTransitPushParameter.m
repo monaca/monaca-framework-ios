@@ -32,11 +32,6 @@
     clearStack_ = clearStack;
 }
 
-- (void)setTarget:(NSString *)target
-{
-    target_ = target;
-}
-
 - (void)setTransition:(CATransition *)transition
 {
     transition_ = transition;
@@ -53,7 +48,6 @@
 { 
     CATransition* transition = nil;
     BOOL hasDefaultPushAnimation = YES, clearStack = NO;
-    NSString *target = nil;
     
     // "animation" parameter parsing
     {
@@ -112,14 +106,10 @@
         }
     }
     
-    // "target" parameter parsing
-    target = [self parseTargetParameter:[options objectForKey:@"target"]];
-    
     MFTransitPushParameter *_self = [[MFTransitPushParameter alloc] init];
     _self.clearStack = clearStack;
     _self.transition = transition;
     _self.hasDefaultPushAnimation = hasDefaultPushAnimation;
-    _self.target = target;
     
     return _self;
 }

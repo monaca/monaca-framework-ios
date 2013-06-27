@@ -10,13 +10,9 @@
 #import <QuartzCore/QuartzCore.h>
 
 @interface MFTransitParameter : NSObject {
-@protected
-    NSString *target_;
+
 }
 
-+ (NSString *)parseTargetParameter:(NSString *)targetParam;
 + (NSString *)detectAnimation:(NSString *)direction;
-
-@property (retain, readonly) NSString *target;
 
 @end

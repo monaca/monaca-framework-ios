@@ -19,8 +19,14 @@
  @private
     NCManager *_ncManager;
     NCStyle *_ncStyle;
+    id<UIStyleProtocol> _navigationBar;
+    NCContainer *_backButton;
+    NSDictionary *_uidict;
+    BOOL _isload;
 }
 
 @property(nonatomic, retain) NCManager *ncManager;
+@property(nonatomic, retain) NSDictionary *uidict;
+@property (nonatomic, retain) NCContainer *backButton;
 
 @end

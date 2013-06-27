@@ -14,13 +14,7 @@
 
 @implementation MFViewBuilder
 
-static BOOL ignoreBottom_ = NO;
 static NSString *_wwwDir;
-
-+ (void)setIgnoreBottom:(BOOL)ignore
-{
-    ignoreBottom_ = ignore;
-}
 
 + (MFNavigationController *)createMonacaNavigationControllerWithWwwDir:(NSString *)wwwDir withPath:(NSString *)path
 {
@@ -39,9 +33,10 @@ static NSString *_wwwDir;
     
     id view;
     id item = [uidict objectForKey:kNCPositionBottom];
-    if (!ignoreBottom_ && [[item objectForKey:kNCTypeContainer] isEqualToString:kNCContainerTabbar]) {
+    if ([[item objectForKey:kNCTypeContainer] isEqualToString:kNCContainerTabbar]) {
         view = [self createTabbarControllerWithPath:fullPath withDict:uidict];
         // moreViewControllerの編集ボタン非表示
+        [[view moreNavigationController] setNavigationBarHidden:YES];
         [view setCustomizableViewControllers:nil];
     } else {
         view = [self createMFViewControllerWithPath:fullPath withDict:uidict];
@@ -57,9 +52,6 @@ static NSString *_wwwDir;
     
     MFViewController *viewController = [[MFViewController alloc] initWithFileName:[path lastPathComponent]];
     [viewController setWwwFolderName:[path stringByDeletingLastPathComponent]];
-    if (ignoreBottom_) {
-        [uidict removeObjectForKey:kNCPositionBottom];
-    }
     [viewController setUiDict:uidict];
     
     return viewController;
@@ -70,17 +62,22 @@ static NSString *_wwwDir;
     [MFUIChecker checkUI:uidict];
     
     MFTabBarController *tabbarController = [[MFTabBarController alloc] init];
+    [tabbarController setUidict:uidict];
     [MFViewManager setCurrentWWWFolderName:[path stringByDeletingLastPathComponent]];
 
+
     NSMutableArray *viewControllers = [NSMutableArray array];
+    NSDictionary *top = [uidict objectForKey:kNCPositionTop];
     NSDictionary *bottom = [uidict objectForKey:kNCPositionBottom];
+    NSMutableDictionary *topStyle = [NSMutableDictionary dictionary];
     NSMutableDictionary *bottomStyle = [NSMutableDictionary dictionary];
+    [topStyle addEntriesFromDictionary:[top objectForKey:kNCTypeStyle]];
+    [topStyle addEntriesFromDictionary:[top objectForKey:kNCTypeIOSStyle]];
     [bottomStyle addEntriesFromDictionary:[bottom objectForKey:kNCTypeStyle]];
     [bottomStyle addEntriesFromDictionary:[bottom objectForKey:kNCTypeIOSStyle]];
     NSArray *items = [bottom objectForKey:kNCTypeItems];
     
     int i = 0;
-    ignoreBottom_ = YES;
     for (NSDictionary *item in items) {
         NSMutableDictionary *style = [NSMutableDictionary dictionary];
         [style addEntriesFromDictionary:[item objectForKey:kNCTypeStyle]];
@@ -91,13 +88,9 @@ static NSString *_wwwDir;
         // Setup a view controller in the tab contoller.
         // TODO: make viewControllerProtocol
         NSString *Path = [[path stringByDeletingLastPathComponent] stringByAppendingPathComponent:link];
-        NSMutableDictionary *uiDict = [[MFUtility parseJSONFile:[MFUtility getUIFileName:Path]] mutableCopy];
-        MFViewController *viewController = [MFViewBuilder createMFViewControllerWithPath:Path withDict:uiDict];
-        
-        MFNavigationController *navi = [[MFNavigationController alloc] init];
-        [navi setNavigationBarHidden:YES];
-        [navi setViewControllers:[NSArray arrayWithObjects:[[MFDammyViewController alloc] init], viewController, nil]];
-        [viewControllers addObject:navi];
+        MFViewController *viewController = [MFViewBuilder createMFViewControllerWithPath:Path withDict:[uidict mutableCopy]];
+        [viewController setWantsFullScreenLayout:YES];
+        [viewControllers addObject:viewController];
 
         NCTabbarItem *tabbarItem = [[NCTabbarItem alloc] init];
 
@@ -107,11 +100,10 @@ static NSString *_wwwDir;
         NSString *cid = [item objectForKey:kNCTypeID];
         [tabbarController.ncManager setComponent:tabbarItem forID:cid];
         
-        [navi setTabBarItem:tabbarItem];
+        [viewController setTabBarItem:tabbarItem];
 
         i++;
     }
-    ignoreBottom_ = NO;
     tabbarController.viewControllers  = viewControllers;
     
     [tabbarController setUserInterface:bottomStyle];

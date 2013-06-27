@@ -24,18 +24,6 @@
     return self;
 }
 
-#pragma mark - private method
-
-- (void)setTarget:(NSString *)target
-{
-    target_ = target;
-}
-
-- (void)setTransition:(CATransition *)transition
-{
-    transition_ = transition;
-}
-
 - (void)setHasDefaultPopAnimation:(BOOL)hasDefaultPopAnimation
 {
     hasDefaultPopAnimation_ = hasDefaultPopAnimation;
@@ -47,7 +35,6 @@
 {
     CATransition *transition = nil;
     BOOL hasDefaultPopAnimation = YES;
-    NSString *target = nil;
     
     // "animation" option parsing
     {
@@ -88,13 +75,8 @@
         }
     }
 
-    // "target" parameter parsing
-    target = [self parseTargetParameter:[options objectForKey:@"target"]];
-
     MFTransitPopParameter *parameter = [[MFTransitPopParameter alloc] init];
-    parameter.transition = transition;
     parameter.hasDefaultPopAnimation = hasDefaultPopAnimation;
-    parameter.target = target;
     
     return parameter;
 }

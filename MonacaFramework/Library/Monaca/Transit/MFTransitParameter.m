@@ -12,8 +12,6 @@
 
 @implementation MFTransitParameter
 
-@synthesize target = target_;
-
 - (id)init
 {
     self = [super init];
@@ -23,13 +21,6 @@
     }
     
     return self;
-}
-
-#pragma mark - private method
-
-- (void)setTarget:(NSString *)target
-{
-    target_ = target;
 }
 
 #pragma mark private method end -
@@ -76,25 +67,4 @@
     return animation;
 }
 
-+ (NSString *)parseTargetParameter:(NSString *)targetParam
-{
-    NSString *target = nil;
-    
-    // "target" parameter parsing
-    {
-        if ([targetParam isKindOfClass:NSString.class]) {
-            if ([targetParam isEqualToString:@"_parent"] || [targetParam isEqualToString:@"_self"]) {
-                target = targetParam;
-            }
-        } else if (targetParam == nil) {
-            target = @"_self";
-        }
-        if (target == nil) {
-            NSLog(@"unkonwn target type: %@", targetParam);
-            target = @"_self";
-        }
-    }
-    
-    return target;
-}
 @end

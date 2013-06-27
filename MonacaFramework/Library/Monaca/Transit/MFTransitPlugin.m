@@ -69,15 +69,9 @@
     NSString *urlStringWithoutQuery = [[urlString componentsSeparatedByString:@"?"] objectAtIndex:0];
 
     MFNavigationController *navigationController;
-    if ([parameter.target isEqualToString:@"_parent"] || [MFViewManager isViewControllerTop]) {
-        navigationController = [MFUtility getAppDelegate].monacaNavigationController;
-    } else {
-        [MFViewBuilder setIgnoreBottom:YES];
-        navigationController = (MFNavigationController *)[MFViewManager currentViewController].navigationController;
-    }
+    navigationController = [MFUtility getAppDelegate].monacaNavigationController;
     
     MFViewController *viewController = [MFViewBuilder createViewControllerWithPath:[self getRelativePathTo:urlStringWithoutQuery]];
-    [MFViewBuilder setIgnoreBottom:NO];
 
     UIViewController *previousController;
     if (parameter.clearStack) {
@@ -110,7 +104,7 @@
     MFTransitPopParameter* parameter = [MFTransitPopParameter parseOptionsDict:options];
     
     MFNavigationController *navigationController;
-    if ([parameter.target isEqualToString:@"_parent"] || [MFViewManager isViewControllerTop]) {
+    if ([MFViewManager isViewControllerTop]) {
         navigationController = [MFUtility getAppDelegate].monacaNavigationController;
     } else {
         navigationController = (MFNavigationController *)[MFViewManager currentViewController].navigationController;
@@ -214,8 +208,6 @@
     NSString *query = [self getQueryFromPluginArguments:arguments urlString:urlString];
     NSString *urlStringWithoutQuery = [[urlString componentsSeparatedByString:@"?"] objectAtIndex:0];
 
-    MFTransitPushParameter* parameter = [MFTransitPushParameter parseOptionsDict:options];
-    
     [[MFViewManager currentViewController] removeUserInterface];
     
     NSString *fullPath = [[MFViewManager currentWWWFolderName] stringByAppendingPathComponent:urlStringWithoutQuery];
@@ -223,7 +215,7 @@
     [MFUIChecker checkUI:uidict];
     
     NSDictionary *bottom = [uidict objectForKey:kNCPositionBottom];
-    if ([[bottom objectForKey:kNCTypeContainer] isEqualToString:kNCContainerTabbar] && ([MFViewManager isViewControllerTop] || [parameter.target isEqualToString:@"_parent"])) {
+    if ([[bottom objectForKey:kNCTypeContainer] isEqualToString:kNCContainerTabbar] && ([MFViewManager isViewControllerTop])) {
         MFTabBarController *tabarController = [MFViewBuilder createTabbarControllerWithPath:fullPath withDict:uidict];
         [tabarController setCustomizableViewControllers:nil];
         NSMutableArray *viewControllers = [[MFViewManager currentViewController].navigationController.viewControllers mutableCopy];
