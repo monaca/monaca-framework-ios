@@ -33,7 +33,7 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
     if ([MFSpinnerView isAnimating])
-        return [MFViewManager currentViewController].interfaceOrientation == toInterfaceOrientation;
+        return NO;
     if ([MFViewManager currentViewController]) {
         return [MFUtility getAllowOrientationFromPlist:toInterfaceOrientation] &&
         ([MFViewManager currentViewController].screenOrientations & 1 << toInterfaceOrientation);
