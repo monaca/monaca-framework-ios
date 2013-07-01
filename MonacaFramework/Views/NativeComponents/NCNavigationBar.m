@@ -247,7 +247,6 @@
                 [self updateUIStyle:[self retrieveUIStyle:kNCStyleIOSBarStyle] forKey:kNCStyleIOSBarStyle];
             } else {
                 [_navigationBar setTranslucent:YES];
-                [_navigationBar setBarStyle:UIBarStyleBlackTranslucent];
             }
         }
     }
