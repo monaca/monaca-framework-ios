@@ -136,6 +136,17 @@
         return;
     }
     
+    if (value == [NSNull null]) {
+        value = kNCUndefined;
+    }
+    if ([NSStringFromClass([[_ncStyle.styles valueForKey:key] class]) isEqualToString:@"__NSCFBoolean"]) {
+        if (isFalse(value)) {
+            value = kNCFalse;
+        } else {
+            value = kNCTrue;
+        }
+    }
+    
     // TODO: Implement hideTabbar
     if ([key isEqualToString:kNCStyleBackgroundColor]) {
         [self.tabBar setTintColor:hexToUIColor(removeSharpPrefix(value), 1)];

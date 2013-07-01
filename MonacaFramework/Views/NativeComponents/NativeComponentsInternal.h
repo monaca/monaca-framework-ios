@@ -10,8 +10,8 @@
 
 #import <UIKit/UIKit.h>
 
-#define kNCTrue  @"true"
-#define kNCFalse @"false"
+#define kNCTrue  [NSNumber numberWithBool:YES]
+#define kNCFalse [NSNumber numberWithBool:NO]
 #define kNCUndefined @""
 
 #define kNCBlack @"#000000"
@@ -126,7 +126,7 @@ isTrue(id object) {
         return NO;
     }
     if ([object isKindOfClass:[NSString class]]) {
-        return [(NSString *)object isEqualToString:kNCTrue];
+        return [(NSString *)object isEqualToString:@"true"];
     }
     if ([object isKindOfClass:[NSNumber class]]) {
         return [object intValue] == 1;
@@ -140,7 +140,7 @@ isFalse(id object) {
         return NO;
     }
     if ([object isKindOfClass:[NSString class]]) {
-        return [(NSString *)object isEqualToString:kNCFalse];
+        return [(NSString *)object isEqualToString:@"false"];
     }
     if ([object isKindOfClass:[NSNumber class]]) {
         return [object intValue] == 0;

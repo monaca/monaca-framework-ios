@@ -78,6 +78,7 @@
     else if ([type isEqualToString:kNCComponentSearchBox]) {
         NCSearchBox *searchBox = [[NCSearchBox alloc] init];
         searchBox.toolbar = toolbar;
+        [searchBox setUserInterface:style_def];
         [searchBox applyUserInterface];
         container.component = searchBox;
         container.onSearchScript = [[params objectForKey:kNCTypeEvent] objectForKey:kNCEventTypeSearch];

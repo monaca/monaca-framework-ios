@@ -51,6 +51,18 @@
     if (![_ncStyle checkStyle:value forKey:key]) {
         return;
     }
+    
+    if (value == [NSNull null]) {
+        value = kNCUndefined;
+    }
+    if ([NSStringFromClass([[_ncStyle.styles valueForKey:key] class]) isEqualToString:@"__NSCFBoolean"]) {
+        if (isFalse(value)) {
+            value = kNCFalse;
+        } else {
+            value = kNCTrue;
+        }
+    }
+    
 
     if ([key isEqualToString:kNCStyleVisibility]) {
         _hidden = isFalse(value);

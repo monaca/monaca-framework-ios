@@ -214,6 +214,14 @@
         return;
     }
     
+    if ([NSStringFromClass([[_ncStyle.styles valueForKey:key] class]) isEqualToString:@"__NSCFBoolean"]) {
+        if (isFalse(value)) {
+            value = kNCFalse;
+        } else {
+            value = kNCTrue;
+        }
+    }
+    
     if ([key isEqualToString:kNCStyleBackgroundColor]) {
         if (![[self retrieveUIStyle:kNCStyleBackgroundRepeat] isEqualToString:kNCTypeRepeat] || _originalImage == nil) {
             [self setBackgroundColor:hexToUIColor(removeSharpPrefix(value), 1)];

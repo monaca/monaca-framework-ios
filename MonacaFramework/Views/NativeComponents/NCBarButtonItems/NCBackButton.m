@@ -29,7 +29,7 @@
         if (![_ncStyle checkStyle:value forKey:key]) {
             value = [_ncStyle retrieveStyle:key];
         }
-        
+        [self setEnabled:NO];
         if ([value isEqualToString:kNCUndefined]) {
             [self setTitle:@" "];
         } else {

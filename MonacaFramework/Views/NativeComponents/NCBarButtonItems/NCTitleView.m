@@ -104,7 +104,16 @@ static const CGFloat kSizeOfPortraitTitleFont     = 19.0f;
 
 - (void)updateUIStyle:(id)value forKey:(NSString *)key
 {
-    [_ncStyle checkStyle:value forKey:key];
+    if (value == [NSNull null]) {
+        value = kNCUndefined;
+    }
+    if ([NSStringFromClass([[_ncStyle.styles valueForKey:key] class]) isEqualToString:@"__NSCFBoolean"]) {
+        if (isFalse(value)) {
+            value = kNCFalse;
+        } else {
+            value = kNCTrue;
+        }
+    }
     
     if ([key isEqualToString:kNCStyleTitle]) {
         if ([value isEqualToString:kNCUndefined]) {

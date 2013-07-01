@@ -57,6 +57,7 @@
     }
     if ([component isEqualToString:kNCComponentBackButton]) {
         [defaultStyle setValue:kNCTrue forKey:kNCStyleVisibility];
+        [defaultStyle setValue:kNCFalse forKey:kNCStyleDisable];
         [defaultStyle setValue:kNCBlack forKey:kNCStyleBackgroundColor];
         [defaultStyle setValue:kNCWhite forKey:kNCStyleActiveTextColor];
         [defaultStyle setValue:kNCWhite forKey:kNCStyleTextColor];
@@ -166,9 +167,9 @@
     }
     
     if (value == [NSNull null]) {
-        value = nil;
+        value = kNCUndefined;
     }
-    if ([NSStringFromClass([value class]) isEqualToString:@"__NSCFBoolean"]) {
+    if ([NSStringFromClass([[_styles valueForKey:key] class]) isEqualToString:@"__NSCFBoolean"]) {
         if (isFalse(value)) {
             value = kNCFalse;
         } else {
