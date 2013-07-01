@@ -65,7 +65,7 @@
     
     MFTransitPushParameter* parameter = [MFTransitPushParameter parseOptionsDict:options];
     
-    NSString *query = [self getQueryFromPluginArguments:arguments urlString:urlString];
+    [self getQueryFromPluginArguments:arguments urlString:urlString];
     NSString *urlStringWithoutQuery = [[urlString componentsSeparatedByString:@"?"] objectAtIndex:0];
 
     MFNavigationController *navigationController;
@@ -92,11 +92,6 @@
             [navigationController setViewControllers:[NSArray arrayWithObject:viewController] animated:NO];
         }
     }
-    if (query != nil) {
-        if ([viewController isKindOfClass:[MFViewController class]]) {
-            [viewController.webView loadRequest:[self createRequest:urlStringWithoutQuery withQuery:query]];
-        }
-     }
 }
 
 - (void)popGenerically:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options
@@ -205,7 +200,7 @@
 - (void)link:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options
 {
     NSString *urlString = [arguments objectAtIndex:1];
-    NSString *query = [self getQueryFromPluginArguments:arguments urlString:urlString];
+    [self getQueryFromPluginArguments:arguments urlString:urlString];
     NSString *urlStringWithoutQuery = [[urlString componentsSeparatedByString:@"?"] objectAtIndex:0];
 
     [[MFViewManager currentViewController] removeUserInterface];
@@ -229,7 +224,7 @@
         [MFViewManager setCurrentWWWFolderName:[fullPath stringByDeletingLastPathComponent]];
         [[MFViewManager currentViewController] setBarUserInterface:uidict];
         [[MFViewManager currentViewController] applyBarVisibility:NO];
-        [[MFViewManager currentViewController].webView loadRequest:[self createRequest:urlStringWithoutQuery withQuery:query]];
+        [[MFViewManager currentViewController].webView loadRequest:[self createRequest:urlStringWithoutQuery withQuery:nil]];
     }
 }
 

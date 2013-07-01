@@ -226,6 +226,11 @@
     }
     if ([key isEqualToString:kNCStyleShadowOpacity]) {
         if (_toolbar.barStyle == UIBarStyleDefault) {
+            if ([value floatValue] < 0.0f) {
+                value = [NSNumber numberWithFloat:0.0f];
+            } if ([value floatValue] > 1.0f) {
+                value = [NSNumber numberWithFloat:1.0f];
+            }
             [self setShadowOpacity:value];
         }
     }

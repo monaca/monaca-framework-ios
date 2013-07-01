@@ -104,14 +104,18 @@
                 [self writeJavascript:script];
                 return;
             } else {
-                pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDouble:[property doubleValue]];
+                pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"%%FLOAT%%"];
+                NSString *script = [pluginResult toSuccessCallbackString:callbackID];
+                script = [script stringByReplacingOccurrencesOfString:@"\"%%FLOAT%%\"" withString:[NSString stringWithFormat:@"%f", [property floatValue]]];
+                [self writeJavascript:script];
+                return;
             }
         } else if ([property isKindOfClass:[NSString class]]) {
             if ([property isEqualToString:kNCUndefined]) {
                 property = @"undefined";
-                pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"%%BOOL%%"];
+                pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"%%UNDEFINED%%"];
                 NSString *script = [pluginResult toSuccessCallbackString:callbackID];
-                script = [script stringByReplacingOccurrencesOfString:@"\"%%BOOL%%\"" withString:property];
+                script = [script stringByReplacingOccurrencesOfString:@"\"%%UNDEFINED%%\"" withString:property];
                 [self writeJavascript:script];
                 return;
             } else {

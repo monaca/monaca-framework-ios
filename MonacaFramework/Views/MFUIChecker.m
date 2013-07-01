@@ -115,7 +115,7 @@
     id key;
     while (key = [enumerator nextObject]) {
         if ([validDict objectForKey:key] == nil) {
-            NSLog(NSLocalizedString(@"Key is not one of valid keys", nil), @"<root>", key, [MFUIChecker dictionaryKeysToString:validDict]);
+            NSLog(NSLocalizedString(@"Key is not one of valid keys", nil), @"page", key, [MFUIChecker dictionaryKeysToString:validDict]);
             continue;
         }
         if (![[MFUIChecker valueType:[dict objectForKey:key]] isEqualToString:[MFUIChecker valueType:[validDict valueForKey:key]]]) {

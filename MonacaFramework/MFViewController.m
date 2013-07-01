@@ -81,7 +81,7 @@
     
     // viewBackground用のキー値監視
     [self addObserver:self forKeyPath:@"view.frame" options:NSKeyValueObservingOptionOld context:NULL];
-    
+
 //    self.webView.scrollView.decelerationRate = UIScrollViewDecelerationRateNormal;
 }
 
