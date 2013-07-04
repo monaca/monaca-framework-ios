@@ -44,6 +44,27 @@
 
 - (BOOL)shouldAutorotate
 {
+    
+    UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
+    NSArray *pageSceenOrientationSetting = [MFViewManager currentViewController].pageScreenOrientation;
+    
+    if(![pageSceenOrientationSetting containsObject:kNCOrientationInherit]){
+    
+        if (orientation == UIDeviceOrientationPortrait && [pageSceenOrientationSetting containsObject:kNCOrientationLandscape] && ![pageSceenOrientationSetting containsObject:kNCOrientationPortrait]){
+            return NO;
+            
+        }else if (orientation == UIDeviceOrientationPortraitUpsideDown
+                  && ([pageSceenOrientationSetting containsObject:kNCOrientationLandscape] || [pageSceenOrientationSetting containsObject:kNCOrientationPortrait]) ){
+            return NO;
+            
+        }else if ( (orientation == UIDeviceOrientationLandscapeLeft || orientation == UIDeviceOrientationLandscapeRight )
+                  && ![pageSceenOrientationSetting containsObject:kNCOrientationLandscape]
+                  && [pageSceenOrientationSetting containsObject:kNCOrientationPortrait]){
+            return NO;
+            
+        }
+    
+    }
     return YES;
 }
 
@@ -110,6 +131,7 @@
         mask |= UIInterfaceOrientationMaskLandscapeLeft;
     }
     if ([MFViewManager currentViewController]) {
+        MFViewController *test = [MFViewManager currentViewController];
         return mask & [MFViewManager currentViewController].screenOrientations;
     } else {
         return mask;
