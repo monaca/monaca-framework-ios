@@ -393,6 +393,10 @@
 		3EE0E80B1664BA8200F1E677 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EE0E8091664B78000F1E677 /* AssetsLibrary.framework */; };
 		3EE0E80C1664BA9200F1E677 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EE0E8071664B69300F1E677 /* CoreVideo.framework */; };
 		3EF566AF168ECCD800DE569B /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EBC68C41664D23000244FE1 /* libiconv.dylib */; };
+		F117D44F178698A500ED4449 /* MFDevicePlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = F117D44D178698A500ED4449 /* MFDevicePlugin.h */; };
+		F117D450178698A500ED4449 /* MFDevicePlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = F117D44E178698A500ED4449 /* MFDevicePlugin.m */; };
+		F117D451178698A500ED4449 /* MFDevicePlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = F117D44E178698A500ED4449 /* MFDevicePlugin.m */; };
+		F117D452178698A500ED4449 /* MFDevicePlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = F117D44E178698A500ED4449 /* MFDevicePlugin.m */; };
 		F142AD7B175449BD00814179 /* ApplicationResourceDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = F142AD6D175449BC00814179 /* ApplicationResourceDelegate.h */; };
 		F142AD7C175449BD00814179 /* ApplicationResourceDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F142AD6E175449BC00814179 /* ApplicationResourceDelegate.m */; };
 		F142AD7D175449BD00814179 /* ApplicationResourceDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F142AD6E175449BC00814179 /* ApplicationResourceDelegate.m */; };
@@ -586,6 +590,8 @@
 		D44C9E2A1592ED86006372F3 /* NCButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCButton.m; sourceTree = "<group>"; };
 		D44C9E2B1592ED86006372F3 /* NCSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCSearchBar.h; sourceTree = "<group>"; };
 		D44C9E2C1592ED86006372F3 /* NCSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCSearchBar.m; sourceTree = "<group>"; };
+		F117D44D178698A500ED4449 /* MFDevicePlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MFDevicePlugin.h; path = Device/MFDevicePlugin.h; sourceTree = "<group>"; };
+		F117D44E178698A500ED4449 /* MFDevicePlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MFDevicePlugin.m; path = Device/MFDevicePlugin.m; sourceTree = "<group>"; };
 		F142AD6D175449BC00814179 /* ApplicationResourceDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplicationResourceDelegate.h; sourceTree = "<group>"; };
 		F142AD6E175449BC00814179 /* ApplicationResourceDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplicationResourceDelegate.m; sourceTree = "<group>"; };
 		F142AD6F175449BC00814179 /* GeolocationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeolocationDelegate.h; sourceTree = "<group>"; };
@@ -981,6 +987,15 @@
 			path = ChildBrowser;
 			sourceTree = "<group>";
 		};
+		F117D44C1786984A00ED4449 /* Device */ = {
+			isa = PBXGroup;
+			children = (
+				F117D44D178698A500ED4449 /* MFDevicePlugin.h */,
+				F117D44E178698A500ED4449 /* MFDevicePlugin.m */,
+			);
+			name = Device;
+			sourceTree = "<group>";
+		};
 		F13F51851741D906006D6D59 /* InnovationPlusPlugin */ = {
 			isa = PBXGroup;
 			children = (
@@ -1125,6 +1140,7 @@
 		F54CEB541500D1A000516444 /* Monaca */ = {
 			isa = PBXGroup;
 			children = (
+				F117D44C1786984A00ED4449 /* Device */,
 				0E01CCA1174F4C6A003E60D6 /* Transit */,
 				3E8F180A16187F60005B09FC /* PhoneGap */,
 				3E0F08FC15A81D000025EFC2 /* PGPlugins */,
@@ -1263,6 +1279,7 @@
 				F142AD8C175449BD00814179 /* MIPUtility.h in Headers */,
 				F142AD90175449BD00814179 /* ProfileDelegate.h in Headers */,
 				F142AD94175449BD00814179 /* UserDelegate.h in Headers */,
+				F117D44F178698A500ED4449 /* MFDevicePlugin.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1517,6 +1534,7 @@
 				F142AD8F175449BD00814179 /* MIPUtility.m in Sources */,
 				F142AD93175449BD00814179 /* ProfileDelegate.m in Sources */,
 				F142AD97175449BD00814179 /* UserDelegate.m in Sources */,
+				F117D452178698A500ED4449 /* MFDevicePlugin.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1607,6 +1625,7 @@
 				F142AD8D175449BD00814179 /* MIPUtility.m in Sources */,
 				F142AD91175449BD00814179 /* ProfileDelegate.m in Sources */,
 				F142AD95175449BD00814179 /* UserDelegate.m in Sources */,
+				F117D450178698A500ED4449 /* MFDevicePlugin.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1698,6 +1717,7 @@
 				F142AD8E175449BD00814179 /* MIPUtility.m in Sources */,
 				F142AD92175449BD00814179 /* ProfileDelegate.m in Sources */,
 				F142AD96175449BD00814179 /* UserDelegate.m in Sources */,
+				F117D451178698A500ED4449 /* MFDevicePlugin.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
