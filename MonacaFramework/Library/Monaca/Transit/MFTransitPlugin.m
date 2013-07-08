@@ -75,7 +75,12 @@
 
     UIViewController *previousController;
     if (parameter.clearStack) {
-        previousController = [navigationController popViewControllerAnimated:NO];
+        @try {
+            previousController = [navigationController popViewControllerAnimated:NO];
+        }
+        @catch (NSException *exception) {
+            // Case:Not found before View
+        }
     }
 
     if (parameter.transition != nil) {
