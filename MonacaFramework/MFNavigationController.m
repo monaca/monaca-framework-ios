@@ -35,8 +35,7 @@
     if ([MFSpinnerView isAnimating])
         return NO;
     if ([MFViewManager currentViewController]) {
-        return [MFUtility getAllowOrientationFromPlist:toInterfaceOrientation] &&
-        ([MFViewManager currentViewController].screenOrientations & 1 << toInterfaceOrientation);
+        return [MFUtility getAllowOrientationFromPlistAndMonacaSkeletonInfo:[MFViewManager currentViewController].pageScreenOrientation];
     } else {
         return [MFUtility getAllowOrientationFromPlist:toInterfaceOrientation];
     }
@@ -44,28 +43,7 @@
 
 - (BOOL)shouldAutorotate
 {
-    
-    UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
-    NSArray *pageSceenOrientationSetting = [MFViewManager currentViewController].pageScreenOrientation;
-    
-    if(![pageSceenOrientationSetting containsObject:kNCOrientationInherit]){
-    
-        if (orientation == UIDeviceOrientationPortrait && [pageSceenOrientationSetting containsObject:kNCOrientationLandscape] && ![pageSceenOrientationSetting containsObject:kNCOrientationPortrait]){
-            return NO;
-            
-        }else if (orientation == UIDeviceOrientationPortraitUpsideDown
-                  && ([pageSceenOrientationSetting containsObject:kNCOrientationLandscape] || [pageSceenOrientationSetting containsObject:kNCOrientationPortrait]) ){
-            return NO;
-            
-        }else if ( (orientation == UIDeviceOrientationLandscapeLeft || orientation == UIDeviceOrientationLandscapeRight )
-                  && ![pageSceenOrientationSetting containsObject:kNCOrientationLandscape]
-                  && [pageSceenOrientationSetting containsObject:kNCOrientationPortrait]){
-            return NO;
-            
-        }
-    
-    }
-    return YES;
+    return [MFUtility getAllowOrientationFromPlistAndMonacaSkeletonInfo:[MFViewManager currentViewController].pageScreenOrientation];
 }
 
 - (UIViewController *)popViewControllerAnimated:(BOOL)animated

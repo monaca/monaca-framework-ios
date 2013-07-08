@@ -158,6 +158,29 @@ static NSDictionary *queryParams;
     return NO;
 }
 
++ (BOOL)getAllowOrientationFromPlistAndMonacaSkeletonInfo:(NSArray*)pageSceenOrientationSetting {
+    UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
+    
+    if(![pageSceenOrientationSetting containsObject:kNCOrientationInherit]){
+        
+        if (orientation == UIDeviceOrientationPortrait && [pageSceenOrientationSetting containsObject:kNCOrientationLandscape] && ![pageSceenOrientationSetting containsObject:kNCOrientationPortrait]){
+            return NO;
+            
+        }else if (orientation == UIDeviceOrientationPortraitUpsideDown
+                  && ([pageSceenOrientationSetting containsObject:kNCOrientationLandscape] || [pageSceenOrientationSetting containsObject:kNCOrientationPortrait]) ){
+            return NO;
+            
+        }else if ( (orientation == UIDeviceOrientationLandscapeLeft || orientation == UIDeviceOrientationLandscapeRight )
+                  && ![pageSceenOrientationSetting containsObject:kNCOrientationLandscape]
+                  && [pageSceenOrientationSetting containsObject:kNCOrientationPortrait]){
+            return NO;
+            
+        }
+        
+    }
+    return YES;
+}
+
 + (BOOL)isPhoneGapScheme:(NSURL *)url {
     return ([[url scheme] isEqualToString:@"gap"]);
 }

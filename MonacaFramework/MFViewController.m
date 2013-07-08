@@ -40,6 +40,9 @@
         self.transitAnimated = YES;
         self.screenOrientations = UIInterfaceOrientationMaskAll;
         self.pageScreenOrientation = [[NSMutableArray alloc]init];
+        
+        NSString *deviceId = [[NSUserDefaults standardUserDefaults] objectForKey:@"UUID"];
+        NSLog(@"%@",deviceId);
     }
     return self;
 }

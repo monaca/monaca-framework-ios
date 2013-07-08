@@ -18,6 +18,7 @@
 + (void)setQueryParams:(NSDictionary *)params;
 + (UIInterfaceOrientation) currentInterfaceOrientation;
 + (BOOL) getAllowOrientationFromPlist:(UIInterfaceOrientation)interfaceOrientation;
++ (BOOL)getAllowOrientationFromPlistAndMonacaSkeletonInfo:(NSArray*)orientations;
 + (NSDictionary *)parseJSONFile:(NSString *)path;
 + (NSString *)correctJSON:(NSString *)data;
 + (NSMutableDictionary *)parseQuery:(NSURLRequest *)request;
