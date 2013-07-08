@@ -91,7 +91,10 @@
 
 - (NSDictionary *)getApplicationPlist
 {
-    return [[NSBundle mainBundle] infoDictionary];
+    NSMutableDictionary* applicationPlist = [NSMutableDictionary dictionaryWithDictionary:[[NSBundle mainBundle] infoDictionary]];
+    //MonacaBackend Plugin always use
+    [applicationPlist setObject:@"true" forKey:@"Monaca"];
+    return applicationPlist;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
