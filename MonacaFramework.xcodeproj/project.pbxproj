@@ -444,6 +444,10 @@
 		5AF1155C175B07A2002E4E6B /* MFViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AF1155A175B079F002E4E6B /* MFViewManager.m */; };
 		5AF1155D175B07A2002E4E6B /* MFViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AF1155A175B079F002E4E6B /* MFViewManager.m */; };
 		5AF1155E175B07A2002E4E6B /* MFViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AF1155A175B079F002E4E6B /* MFViewManager.m */; };
+		F1660A2C178C050900D74D5D /* MFDevicePlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = F1660A2A178C050900D74D5D /* MFDevicePlugin.h */; };
+		F1660A2D178C050900D74D5D /* MFDevicePlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = F1660A2B178C050900D74D5D /* MFDevicePlugin.m */; };
+		F1660A2E178C050900D74D5D /* MFDevicePlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = F1660A2B178C050900D74D5D /* MFDevicePlugin.m */; };
+		F1660A2F178C050900D74D5D /* MFDevicePlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = F1660A2B178C050900D74D5D /* MFDevicePlugin.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -658,6 +662,8 @@
 		5AEA5975172D50ED00FF15E2 /* NCBarButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCBarButtonItem.m; sourceTree = "<group>"; };
 		5AF11559175B079B002E4E6B /* MFViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFViewManager.h; sourceTree = "<group>"; };
 		5AF1155A175B079F002E4E6B /* MFViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFViewManager.m; sourceTree = "<group>"; };
+		F1660A2A178C050900D74D5D /* MFDevicePlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFDevicePlugin.h; sourceTree = "<group>"; };
+		F1660A2B178C050900D74D5D /* MFDevicePlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFDevicePlugin.m; sourceTree = "<group>"; };
 		F50460D813B3633B0050803F /* MFDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFDelegate.m; sourceTree = "<group>"; };
 		F504611413B364C60050803F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F504611513B364C60050803F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -1094,6 +1100,15 @@
 			path = NCBarButtonItems;
 			sourceTree = "<group>";
 		};
+		F1660A29178C050900D74D5D /* Device */ = {
+			isa = PBXGroup;
+			children = (
+				F1660A2A178C050900D74D5D /* MFDevicePlugin.h */,
+				F1660A2B178C050900D74D5D /* MFDevicePlugin.m */,
+			);
+			path = Device;
+			sourceTree = "<group>";
+		};
 		F504609A13B361720050803F = {
 			isa = PBXGroup;
 			children = (
@@ -1168,6 +1183,7 @@
 		F54CEB541500D1A000516444 /* Monaca */ = {
 			isa = PBXGroup;
 			children = (
+				F1660A29178C050900D74D5D /* Device */,
 				3E8F180A16187F60005B09FC /* PhoneGap */,
 				3E0F08FC15A81D000025EFC2 /* PGPlugins */,
 				3E4F50FC15A040DE0054EB23 /* Transit */,
@@ -1296,6 +1312,7 @@
 				5AA1129117565B430050BBC6 /* NCStyle.h in Headers */,
 				5AF1155B175B07A2002E4E6B /* MFViewManager.h in Headers */,
 				0E829471176EA9BA00BEB9DB /* MFTransitParameter.h in Headers */,
+				F1660A2C178C050900D74D5D /* MFDevicePlugin.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1552,6 +1569,7 @@
 				5AA1129417565B430050BBC6 /* NCStyle.m in Sources */,
 				5AF1155E175B07A2002E4E6B /* MFViewManager.m in Sources */,
 				0E829474176EA9BA00BEB9DB /* MFTransitParameter.m in Sources */,
+				F1660A2F178C050900D74D5D /* MFDevicePlugin.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1645,6 +1663,7 @@
 				5AA1129217565B430050BBC6 /* NCStyle.m in Sources */,
 				5AF1155C175B07A2002E4E6B /* MFViewManager.m in Sources */,
 				0E829472176EA9BA00BEB9DB /* MFTransitParameter.m in Sources */,
+				F1660A2D178C050900D74D5D /* MFDevicePlugin.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1739,6 +1758,7 @@
 				5AA1129317565B430050BBC6 /* NCStyle.m in Sources */,
 				5AF1155D175B07A2002E4E6B /* MFViewManager.m in Sources */,
 				0E829473176EA9BA00BEB9DB /* MFTransitParameter.m in Sources */,
+				F1660A2E178C050900D74D5D /* MFDevicePlugin.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
