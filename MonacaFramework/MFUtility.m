@@ -245,9 +245,9 @@ static NSDictionary *queryParams;
     // Json value return
     NSDictionary* jsonQueryParams =  queryParams;
     
-    if (aQuery || [jsonQueryParams objectForKey:@"queryParams"]){
-        NSArray *pairs = [aQuery componentsSeparatedByString:@"&"];
-        NSMutableArray *keyValues = [NSMutableArray array];
+    if (aQuery || [jsonQueryParams objectForKey:@"queryString"]){
+        NSArray *pairs = [[jsonQueryParams objectForKey:@"queryString"] componentsSeparatedByString:@"&"];
+        NSMutableArray *keyValues = [NSMutableArray array];	
 
         for (NSString *pair in pairs) {
             NSArray *elements = [pair componentsSeparatedByString:@"="];
@@ -274,11 +274,9 @@ static NSDictionary *queryParams;
             keyValuesString = [[NSString alloc]initWithData:jsonData encoding:NSUTF8StringEncoding];
             queryScriptTag = [NSString stringWithFormat:@"<script>window.monaca = window.monaca || {};window.monaca.queryParams = %@;</script>", keyValuesString];
             
-            queryParams = nil;
-            
         }
 
-        
+        queryParams = nil;
         NSRange replaceRange = [html rangeOfString:@"<head>"];
         if(replaceRange.location == NSNotFound){
             html = [queryScriptTag stringByAppendingString:html];

@@ -183,7 +183,7 @@
     _toolbar = nil;
     [_bgView removeUserInterface];
     
-    [self.ncManager removeAllComponents];
+    [self.ncManager removeAllComponents];	
 }
 
 

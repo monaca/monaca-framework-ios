@@ -37,6 +37,5 @@
 + (NSURLResponse *)register_push:(NSString *)deviceToken;
 + (void)setMonacaCloudCookie;
 + (void)clearMonacaCloudCookie;
-+ (void)checkWithInfo:(NSDictionary *)info;
 
 @end

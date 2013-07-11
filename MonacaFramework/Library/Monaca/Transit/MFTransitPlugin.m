@@ -73,16 +73,6 @@
     
     MFViewController *viewController = [MFViewBuilder createViewControllerWithPath:[self getRelativePathTo:urlStringWithoutQuery]];
 
-    UIViewController *previousController;
-    if (parameter.clearStack) {
-        @try {
-            previousController = [navigationController popViewControllerAnimated:NO];
-        }
-        @catch (NSException *exception) {
-            // Case:Not found before View
-        }
-    }
-
     if (parameter.transition != nil) {
         [navigationController.view.layer addAnimation:parameter.transition forKey:kCATransition];
     }
@@ -93,9 +83,12 @@
     }
     
     if (parameter.clearStack) {
-        if (previousController == nil) {
-            [navigationController setViewControllers:[NSArray arrayWithObject:viewController] animated:NO];
-        }
+        NSMutableArray * controllers = [NSMutableArray arrayWithArray:[MFViewManager currentViewController].navigationController.viewControllers];
+         if (controllers.count > 2) {
+             [controllers removeObjectAtIndex:controllers.count - 2];
+         }
+         
+        [[MFViewManager currentViewController].navigationController setViewControllers:controllers animated:NO];
     }
 }
 
@@ -183,6 +176,7 @@
     }
     
     [[MFViewManager currentViewController].navigationController setViewControllers:controllers animated:NO];
+    [[MFViewManager currentViewController] applyBarUserInterface];
 }
 
 - (BOOL)popToHomeViewController:(BOOL)isAnimated
@@ -280,10 +274,6 @@
         query = [array objectAtIndex:1];
     }
     
-    if (jsonQueryParams.count > 0) {
-
-        [MFUtility setQueryParams:[NSMutableDictionary dictionaryWithObject:jsonQueryParams forKey:@"queryParams"]];
-        
         NSMutableArray *queryParams = [NSMutableArray array];
         for (NSString *key in jsonQueryParams) {
             NSString *encodedKey = [MFUtility urlEncode:key];
@@ -309,7 +299,8 @@
         }else{
             query = [NSString stringWithFormat:@"%@&%@",query,[[[queryParams reverseObjectEnumerator] allObjects] componentsJoinedByString:@"&"]];
         }
-    }
+        [MFUtility setQueryParams:[NSMutableDictionary dictionaryWithObject:query forKey:@"queryString"]];
+
     return [query isEqualToString:@""]?nil:query;
 }
 
@@ -317,6 +308,8 @@
     NSString *query = nil;
     if (arguments.count > 2 && ![[arguments objectAtIndex:2] isEqual:[NSNull null]]){
         query = [self buildQuery:[arguments objectAtIndex:2] urlString:aUrlString];
+    } else {
+        query = [self buildQuery:nil urlString:aUrlString];
     }
     return query;
 }

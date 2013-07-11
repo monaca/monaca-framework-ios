@@ -201,6 +201,7 @@
     for (id key in [_ncStyle styles]) {
         [self updateUIStyle:[[_ncStyle styles] objectForKey:key] forKey:key];
     }
+    [self applyBackButton];
 }
 
 - (void)removeUserInterface
