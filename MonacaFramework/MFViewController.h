@@ -24,7 +24,6 @@
     NCContainer *_backButton;
     BOOL _transitAnimated;
     NSUInteger _screenOrientations;
-    NSArray *_pageScreenOrientation;
 }
 
 - (void)applyBarVisibility:(BOOL)animated;
@@ -43,6 +42,5 @@
 @property (nonatomic, retain) NCContainer *backButton;
 @property (nonatomic, assign) BOOL transitAnimated;
 @property (nonatomic, assign) NSUInteger screenOrientations;
-@property (nonatomic, retain) NSArray *pageScreenOrientation;
 
 @end

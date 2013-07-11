@@ -35,7 +35,10 @@
     if ([MFSpinnerView isAnimating])
         return NO;
     if ([MFViewManager currentViewController]) {
-        return [MFUtility getAllowOrientationFromPlistAndMonacaSkeletonInfo:[MFViewManager currentViewController].pageScreenOrientation];
+        if ([MFViewManager currentViewController].screenOrientations == UIInterfaceOrientationMaskAll)
+            return [MFUtility getAllowOrientationFromPlist:toInterfaceOrientation];
+        else
+            return [MFViewManager currentViewController].screenOrientations & 1 << toInterfaceOrientation;
     } else {
         return [MFUtility getAllowOrientationFromPlist:toInterfaceOrientation];
     }
@@ -43,7 +46,7 @@
 
 - (BOOL)shouldAutorotate
 {
-    return [MFUtility getAllowOrientationFromPlistAndMonacaSkeletonInfo:[MFViewManager currentViewController].pageScreenOrientation];
+    return YES;
 }
 
 - (UIViewController *)popViewControllerAnimated:(BOOL)animated
@@ -109,8 +112,10 @@
         mask |= UIInterfaceOrientationMaskLandscapeLeft;
     }
     if ([MFViewManager currentViewController]) {
-        MFViewController *test = [MFViewManager currentViewController];
-        return mask & [MFViewManager currentViewController].screenOrientations;
+        if ([MFViewManager currentViewController].screenOrientations == UIInterfaceOrientationMaskAll)
+            return mask;
+        else
+            return [MFViewManager currentViewController].screenOrientations;
     } else {
         return mask;
     }

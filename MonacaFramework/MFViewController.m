@@ -27,7 +27,6 @@
 @synthesize backButton = _backButton;
 @synthesize transitAnimated = _transitAnimated;
 @synthesize screenOrientations = _screenOrientations;
-@synthesize pageScreenOrientation = _pageScreenOrientation;
 
 - (id)initWithFileName:(NSString *)fileName
 {
@@ -39,10 +38,6 @@
         self.wantsFullScreenLayout = NO;
         self.transitAnimated = YES;
         self.screenOrientations = UIInterfaceOrientationMaskAll;
-        self.pageScreenOrientation = [[NSMutableArray alloc]init];
-        
-        NSString *deviceId = [[NSUserDefaults standardUserDefaults] objectForKey:@"UUID"];
-        NSLog(@"%@",deviceId);
     }
     return self;
 }
@@ -163,11 +158,6 @@
         _bgView = [[MFViewBackground alloc] initWithViewController:self];
         [self.ncManager setComponent:_bgView forID:[uidict objectForKey:kNCTypeID]];
         [(MFViewBackground *)_bgView createBackgroundView:style];
-        
-        if(self.navigationController && [[style objectForKey:kNCStyleScreenOrientation]isKindOfClass:[NSString class]]){
-            NSString *orientationSetting = [style objectForKey:kNCStyleScreenOrientation];
-            _pageScreenOrientation = [orientationSetting componentsSeparatedByString:kNCOrientationSeparator];
-        }
     }
     
     if (!self.navigationController || [MFViewManager isTabbarControllerTop])
