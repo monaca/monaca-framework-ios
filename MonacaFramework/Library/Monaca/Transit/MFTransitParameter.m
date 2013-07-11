@@ -62,6 +62,16 @@
         } else if (interfaceOrientaion == UIInterfaceOrientationLandscapeRight) {
             animation = kCATransitionFromTop;
         }
+    } else if ([direction isEqualToString:kCATransitionFromBottom]) {
+        if (interfaceOrientaion == UIInterfaceOrientationPortrait) {
+            animation = kCATransitionFromBottom;
+        } else if (interfaceOrientaion == UIInterfaceOrientationPortraitUpsideDown) {
+            animation = kCATransitionFromTop;
+        } else if (interfaceOrientaion == UIInterfaceOrientationLandscapeLeft) {
+            animation = kCATransitionFromLeft;
+        } else if (interfaceOrientaion == UIInterfaceOrientationLandscapeRight) {
+            animation = kCATransitionFromRight;
+        }
     }
     
     return animation;

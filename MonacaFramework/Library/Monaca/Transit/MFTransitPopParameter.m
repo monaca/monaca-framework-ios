@@ -29,6 +29,11 @@
     hasDefaultPopAnimation_ = hasDefaultPopAnimation;
 }
 
+- (void)setTransition:(CATransition *)transition
+{
+    transition_ = transition;
+}
+
 #pragma mark private method end -
 
 + (MFTransitPopParameter*)parseOptionsDict:(NSDictionary*)options
@@ -52,16 +57,25 @@
                 transition = [CATransition animation];
                 transition.duration = 0.4f;
                 transition.type = kCATransitionReveal;
-                transition.subtype = [self detectAnimation:kCATransitionFromTop];
+                transition.subtype = [self detectAnimation:kCATransitionFromBottom];
                 [transition setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionDefault]];
-                hasDefaultPopAnimation = YES;
+                hasDefaultPopAnimation = NO;
                 
-            } else if ([animationName isEqualToString:@"slide"] || [animationName isEqualToString:@"slideLeft"]) {
+            } else if ([animationName isEqualToString:@"slide"] || [animationName isEqualToString:@"slideRight"]) {
             
                 // animation : "slide" or "slideLeft"
                 transition = nil;
                 hasDefaultPopAnimation = YES;
+            } else if ([animationName isEqualToString:@"slideLeft"]) {
                 
+                // animation : "slideRight"
+                // animation : "lift"
+                transition = [CATransition animation];
+                transition.duration = 0.4f;
+                transition.type = kCATransitionReveal;
+                transition.subtype = [self detectAnimation:kCATransitionFromRight];
+                [transition setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionDefault]];
+                hasDefaultPopAnimation = NO;
             } else {
                 NSLog(@"unknown pop animation type: %@", animationName);
             }
@@ -77,6 +91,7 @@
 
     MFTransitPopParameter *parameter = [[MFTransitPopParameter alloc] init];
     parameter.hasDefaultPopAnimation = hasDefaultPopAnimation;
+    parameter.transition = transition;
     
     return parameter;
 }

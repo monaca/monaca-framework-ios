@@ -103,13 +103,14 @@
         navigationController = (MFNavigationController *)[MFViewManager currentViewController].navigationController;
     }
 
-    if (parameter.transition != nil) {
-        [navigationController.view.layer addAnimation:parameter.transition forKey:kCATransition];
-    }
     
     MFViewController *vc = (MFViewController*)[navigationController popViewControllerAnimated:parameter.hasDefaultPopAnimation];
     [vc destroy];
-
+    
+    if (parameter.transition != nil && vc != nil) {
+        [navigationController.view.layer addAnimation:parameter.transition forKey:kCATransition];
+    }
+    
     if (vc != nil) {
         NSString *command =[NSString stringWithFormat:@"%@ && %@();", kMonacaTransitPluginJsReactivate, kMonacaTransitPluginJsReactivate];
         [self writeJavascriptOnDelegateViewController:command];
@@ -315,6 +316,9 @@
 }
 
 - (BOOL)isValidString:(NSString *)urlString {
+    if (![urlString isKindOfClass:[NSString class]]) {
+        return NO;
+    }
     if (urlString.length > 512) {
         NSLog(@"[error] MonacaTransitException::Too long path length:%@", urlString);
         return NO;
