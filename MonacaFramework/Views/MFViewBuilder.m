@@ -8,7 +8,7 @@
 
 #import "MFViewBuilder.h"
 #import "MFUtility.h"
-#import "MFDammyViewController.h"
+#import "MFDummyViewController.h"
 #import "MFUIChecker.h"
 #import "MFViewManager.h"
 
@@ -20,7 +20,7 @@ static NSString *_wwwDir;
 {
     _wwwDir = wwwDir;
     MFNavigationController *navigationController = [[MFNavigationController alloc] init];
-    [navigationController setViewControllers:[NSArray arrayWithObjects:[[MFDammyViewController alloc] init], [MFViewBuilder createViewControllerWithPath:path], nil]];
+    [navigationController setViewControllers:[NSArray arrayWithObjects:[[MFDummyViewController alloc] init], [MFViewBuilder createViewControllerWithPath:path], nil]];
     [navigationController setNavigationBarHidden:YES];
     
     return navigationController;
@@ -50,7 +50,7 @@ static NSString *_wwwDir;
 {
     [MFUIChecker checkUI:uidict];
     
-    MFViewController *viewController = [[MFViewController alloc] initWithFileName:[path lastPathComponent]];
+    MFViewController *viewController = [[MFViewController alloc] initWithFileNameAndUiDict:[path lastPathComponent] :uidict];
     [viewController setWwwFolderName:[path stringByDeletingLastPathComponent]];
     [viewController setUiDict:uidict];
     

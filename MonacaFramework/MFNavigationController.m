@@ -9,7 +9,7 @@
 #import "MFNavigationController.h"
 #import "MFUtility.h"
 #import "NativeComponents.h"
-#import "MFDammyViewController.h"
+#import "MFDummyViewController.h"
 #import "MFViewManager.h"
 #import "MFSpinnerView.h"
 
@@ -53,7 +53,7 @@
 {
     id viewController;
     NSMutableArray *viewControllers = [NSMutableArray arrayWithArray:self.viewControllers];
-    if (![[viewControllers objectAtIndex:[viewControllers count]-2] isKindOfClass:[MFDammyViewController class]]) {
+    if (![[viewControllers objectAtIndex:[viewControllers count]-2] isKindOfClass:[MFDummyViewController class]]) {
         popFlag = YES;
         viewController = [super popViewControllerAnimated:animated];
         popFlag = NO;

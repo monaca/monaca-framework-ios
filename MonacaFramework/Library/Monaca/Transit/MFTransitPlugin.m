@@ -14,7 +14,7 @@
 #import "MFViewManager.h"
 #import "MFTransitPushParameter.h"
 #import "MFTransitPopParameter.h"
-#import "MFDammyViewController.h"
+#import "MFDummyViewController.h"
 #import "MFUIChecker.h"
 
 @implementation MFTransitPlugin
@@ -167,7 +167,7 @@
     
     if ([clearAll isKindOfClass:NSNumber.class] && [clearAll isEqualToNumber:[NSNumber numberWithBool:YES]]) {
         controllers = [NSMutableArray array];
-        [controllers addObject:[[MFDammyViewController alloc] init]];
+        [controllers addObject:[[MFDummyViewController alloc] init]];
         [controllers addObject:[MFViewManager currentViewController]];
     } else {
         controllers = [NSMutableArray arrayWithArray:[MFViewManager currentViewController].navigationController.viewControllers];

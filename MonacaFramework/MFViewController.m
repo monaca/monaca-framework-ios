@@ -15,6 +15,8 @@
 #import "MFViewBackground.h"
 #import "MFViewManager.h"
 
+#import "NativeComponentsInternal.h"
+
 @interface MFViewController ()
 
 @end
@@ -38,6 +40,22 @@
         self.wantsFullScreenLayout = NO;
         self.transitAnimated = YES;
         self.screenOrientations = UIInterfaceOrientationMaskAll;
+    }
+    return self;
+}
+
+- (id)initWithFileNameAndUiDict:(NSString *)fileName :(NSDictionary *)uidict
+{
+    self = [super init];
+    
+    if (self) {
+        self.startPage = [self removeFragment:fileName];
+        self.ncManager = [[NCManager alloc] init];
+        self.wantsFullScreenLayout = NO;
+        self.transitAnimated = YES;
+        //self.screenOrientations = UIInterfaceOrientationMaskAll;
+        self.screenOrientations = parseScreenOrientationsMask([[uidict objectForKey:kNCTypeStyle]objectForKey:kNCStyleScreenOrientation]);
+        
     }
     return self;
 }

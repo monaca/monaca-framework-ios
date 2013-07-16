@@ -32,6 +32,7 @@
 - (void)removeUserInterface;
 - (void)sendPush;
 - (id)initWithFileName:(NSString *)fileName;
+- (id)initWithFileNameAndUiDict:(NSString *)fileName :(NSDictionary *)uidict;
 - (void)destroy;
 - (void)showSplash:(BOOL)show;
 
