@@ -271,7 +271,7 @@
         }
     }
     
-    if ([key isEqualToString:kNCStyleSupportedOrientation]) {
+    if ([key isEqualToString:kNCStyleScreenOrientation]) {
         _viewController.screenOrientations = parseScreenOrientationsMask(value);
     }
 

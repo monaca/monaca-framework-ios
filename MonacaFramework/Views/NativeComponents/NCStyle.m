@@ -23,7 +23,7 @@
         [defaultStyle setValue:kNCTypeAuto forKey:kNCStyleBackgroundSize];
         [defaultStyle setValue:kNCTypeNoRepeat forKey:kNCStyleBackgroundRepeat];
         [defaultStyle setValue:@[kNCTypeCenter, kNCTypeCenter] forKey:kNCStyleBackgroundPosition];
-        [defaultStyle setValue:kNCTypeInherit forKey:kNCStyleSupportedOrientation];
+        [defaultStyle setValue:kNCTypeInherit forKey:kNCStyleScreenOrientation];
     }
     if ([component isEqualToString:kNCContainerToolbar]) {
         [defaultStyle setValue:kNCTrue forKey:kNCStyleVisibility];

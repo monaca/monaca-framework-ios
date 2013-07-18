@@ -96,7 +96,6 @@
 #define kNCStyleFocus              @"focus"
 #define kNCStyleWideBox            @"wideBox"
 #define kNCStyleShadowOpacity      @"shadowOpacity"
-#define kNCStyleSupportedOrientation @"supportedOrientation"
 
 #define kNCStyleBackgroundImageFilePath         @"backgroundImageFilePath"
 #define kNCStyleBackgroundSizeWidth             @"backgroundSizeWidth"

@@ -50,7 +50,7 @@ static NSString *_wwwDir;
 {
     [MFUIChecker checkUI:uidict];
     
-    MFViewController *viewController = [[MFViewController alloc] initWithFileNameAndUiDict:[path lastPathComponent] :uidict];
+    MFViewController *viewController = [[MFViewController alloc] initWithFileName:[path lastPathComponent]];
     [viewController setWwwFolderName:[path stringByDeletingLastPathComponent]];
     [viewController setUiDict:uidict];
     
