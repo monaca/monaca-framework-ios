@@ -30,6 +30,7 @@
 @synthesize transitAnimated = _transitAnimated;
 @synthesize screenOrientations = _screenOrientations;
 
+
 - (id)initWithFileName:(NSString *)fileName
 {
     self = [super init];

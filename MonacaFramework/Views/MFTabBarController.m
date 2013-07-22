@@ -10,6 +10,7 @@
 #import "MFUtility.h"
 #import "MFEvent.h"
 #import "MFViewBuilder.h"
+#import "MFViewManager.h"
 
 @implementation MFTabBarController
 
@@ -55,6 +56,7 @@
         self.ncManager = [[NCManager alloc] init];
         _ncStyle = [[NCStyle alloc] initWithComponent:kNCContainerTabbar];
         _isload = NO;
+        self.delegate = self;
     }
     return self;
 }
@@ -114,6 +116,13 @@
             [viewController popToRootViewControllerAnimated:NO];
         }
     }
+}
+
+- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController
+{
+    MFViewController *vc = (MFViewController *)viewController;
+    NSString *path = [vc.startWwwFolder stringByAppendingPathComponent:vc.startPage];
+    [vc.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:path]]];
 }
 
 #pragma mark - UIStyleProtocol

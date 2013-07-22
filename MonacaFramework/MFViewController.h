@@ -24,6 +24,7 @@
     NCContainer *_backButton;
     BOOL _transitAnimated;
     NSUInteger _screenOrientations;
+    NSString *_startWwwFolder;
 }
 
 - (void)applyBarVisibility:(BOOL)animated;
@@ -32,7 +33,6 @@
 - (void)removeUserInterface;
 - (void)sendPush;
 - (id)initWithFileName:(NSString *)fileName;
-- (id)initWithFileNameAndUiDict:(NSString *)fileName :(NSDictionary *)uidict;
 - (void)destroy;
 - (void)showSplash:(BOOL)show;
 
@@ -43,5 +43,6 @@
 @property (nonatomic, retain) NCContainer *backButton;
 @property (nonatomic, assign) BOOL transitAnimated;
 @property (nonatomic, assign) NSUInteger screenOrientations;
+@property (nonatomic, copy) NSString *startWwwFolder;
 
 @end

@@ -52,6 +52,7 @@ static NSString *_wwwDir;
     
     MFViewController *viewController = [[MFViewController alloc] initWithFileName:[path lastPathComponent]];
     [viewController setWwwFolderName:[path stringByDeletingLastPathComponent]];
+    [viewController setStartWwwFolder:[path stringByDeletingLastPathComponent]];
     [viewController setUiDict:uidict];
     
     return viewController;
@@ -89,6 +90,7 @@ static NSString *_wwwDir;
         // TODO: make viewControllerProtocol
         NSString *Path = [[path stringByDeletingLastPathComponent] stringByAppendingPathComponent:link];
         MFViewController *viewController = [MFViewBuilder createMFViewControllerWithPath:Path withDict:[uidict mutableCopy]];
+
 //        [viewController setWantsFullScreenLayout:YES];
         [viewControllers addObject:viewController];
 
