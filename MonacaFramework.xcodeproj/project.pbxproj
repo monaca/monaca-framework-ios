@@ -965,7 +965,6 @@
 		5A83D31616D91E6D00D25E98 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				5A83D31B16D91E6D00D25E98 /* MFTabBarController.h */,
 				F1A1382C17959D5100C5784D /* MFDummyViewController.h */,
 				F1A1382D17959D5100C5784D /* MFDummyViewController.m */,
 				5AF11559175B079B002E4E6B /* MFViewManager.h */,
@@ -978,6 +977,7 @@
 				5A83D2F916D90BD700D25E98 /* MFNavigationController.m */,
 				5A83D2ED16D9087100D25E98 /* MFViewController.h */,
 				5A83D2EE16D9087100D25E98 /* MFViewController.m */,
+				5A83D31B16D91E6D00D25E98 /* MFTabBarController.h */,
 				5A83D31C16D91E6D00D25E98 /* MFTabBarController.m */,
 				0EED097F17547926006DDE72 /* Spinner */,
 				5A83D31F16D91E6D00D25E98 /* NativeComponents */,

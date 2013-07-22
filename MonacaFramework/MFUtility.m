@@ -246,7 +246,8 @@ static NSDictionary *queryParams;
     NSDictionary* jsonQueryParams =  queryParams;
     
     if (aQuery || [jsonQueryParams objectForKey:@"queryString"]){
-        NSArray *pairs = [[jsonQueryParams objectForKey:@"queryString"] componentsSeparatedByString:@"&"];
+        NSMutableArray *pairs = [NSMutableArray arrayWithArray:[[jsonQueryParams objectForKey:@"queryString"] componentsSeparatedByString:@"&"]];
+        [pairs addObjectsFromArray:[aQuery componentsSeparatedByString:@"&"]];
         NSMutableArray *keyValues = [NSMutableArray array];	
 
         for (NSString *pair in pairs) {
