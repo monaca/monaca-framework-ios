@@ -56,7 +56,7 @@
     if ([NSStringFromClass([object class]) isEqualToString:@"__NSCFConstantString"] ||
         [NSStringFromClass([object class]) isEqualToString:@"__NSCFString"]) {
         NSString *str = object;
-        NSRange range = [str rangeOfString:@"^#[0-9a-fA-F]{6}$" options:NSRegularExpressionSearch];
+        NSRange range = [str rangeOfString:@"^#[0-9a-fA-F]{5}[0-9a-fA-F]$" options:NSRegularExpressionSearch];
         if (range.location != NSNotFound) {
             return @"Color";
         }

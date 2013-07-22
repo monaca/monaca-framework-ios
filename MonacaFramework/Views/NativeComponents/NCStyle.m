@@ -183,6 +183,8 @@
         }
         if ([_component isEqualToString:kNCContainerPage]) {
             //TODO: Page styleは他でcheckする。
+            if ([key isEqualToString:kNCStyleBackgroundColor])
+                return NO;
             return YES;
         }
         NSLog(NSLocalizedString(@"Invalid value type", nil), _component , key,

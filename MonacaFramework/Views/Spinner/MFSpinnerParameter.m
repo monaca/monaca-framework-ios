@@ -9,6 +9,7 @@
 #import "MFSpinnerParameter.h"
 #import "NativeComponentsInternal.h"
 #import "MFViewManager.h"
+#import "MFUIChecker.h"
 
 #define DEFAULT_SPINNER_SRC @"spinner.png"
 
@@ -89,23 +90,22 @@ withTitleFontSize:(NSUInteger)titleFontSize
 {
     NSArray *images;
     {
-        NSUInteger frameCount = 0;
+
         id srcString = [arguments objectAtIndex:1];
-        if (![srcString isKindOfClass:NSString.class]) {
+        if (![[MFUIChecker valueType:srcString] isEqualToString:@"String"]) {
             srcString = DEFAULT_SPINNER_SRC;
-            frameCount = 12;
         }
         NSString *imagePath = [[MFViewManager currentWWWFolderName] stringByAppendingPathComponent:srcString];
         UIImage *sourceImage = [UIImage imageWithContentsOfFile:imagePath];
         if (sourceImage == nil) {
             sourceImage = [UIImage imageNamed:DEFAULT_SPINNER_SRC];
         }
-    
-        if (frameCount == 0) {
-            id frames = [arguments objectAtIndex:2];
-            if ([frames isKindOfClass:NSNumber.class]) {
-                frameCount = [frames integerValue];
-            }
+        NSUInteger frameCount;
+        id frames = [arguments objectAtIndex:2];
+        if ([[MFUIChecker valueType:frames] isEqualToString:@"Integer"]) {
+            frameCount = [frames integerValue];
+        } else {
+            frameCount = 12;
         }
     
         images = [self splitToAnimationImagesFromImage:sourceImage withFrameCount:frameCount];
@@ -114,7 +114,8 @@ withTitleFontSize:(NSUInteger)titleFontSize
     float animationDuration;
     {
         id interval = [arguments objectAtIndex:3];
-        if (![interval isKindOfClass:NSString.class]) {
+        if (![[MFUIChecker valueType:interval] isEqualToString:@"Float"] &&
+            ![[MFUIChecker valueType:interval] isEqualToString:@"Integer"]) {
             interval = @"0.1";
         }
         animationDuration = ((NSString*)interval).floatValue * images.count;
@@ -125,11 +126,12 @@ withTitleFontSize:(NSUInteger)titleFontSize
         id backgroundColorHex = [arguments objectAtIndex:4];
         id backgroundOpacity = [arguments objectAtIndex:5];
     
-        if (![backgroundColorHex isKindOfClass:NSString.class]) {
+        if (![[MFUIChecker valueType:backgroundColorHex] isEqualToString:@"Color"]) {
             backgroundColorHex = @"#000000";
         }
     
-        if (![backgroundOpacity isKindOfClass:NSNumber.class]) {
+        if (![[MFUIChecker valueType:backgroundOpacity] isEqualToString:@"Float"] &&
+            ![[MFUIChecker valueType:backgroundOpacity] isEqualToString:@"Integer"]) {
             backgroundOpacity = [NSNumber numberWithFloat:0.8];
         }
     
@@ -149,7 +151,7 @@ withTitleFontSize:(NSUInteger)titleFontSize
     {
         id titleColorHex = [arguments objectAtIndex:7];
     
-        if (![titleColorHex isKindOfClass:NSString.class]) {
+        if (![[MFUIChecker valueType:titleColorHex] isEqualToString:@"Color"]) {
             titleColorHex = @"#ffffff";
         }
     
@@ -159,7 +161,8 @@ withTitleFontSize:(NSUInteger)titleFontSize
     NSUInteger titleFontSize = 20;
     {
         id titleFontScale = [arguments objectAtIndex:8];
-        if (![titleFontScale isKindOfClass:NSNumber.class]) {
+        if (![[MFUIChecker valueType:titleFontScale] isEqualToString:@"Float"] &&
+            ![[MFUIChecker valueType:titleFontScale] isEqualToString:@"Integer"]) {
             titleFontScale = [NSNumber numberWithFloat:1.0];
         }
         titleFontSize = 20 * ((NSNumber *)titleFontScale).floatValue;
