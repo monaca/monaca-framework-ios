@@ -14,6 +14,7 @@
 @implementation NCNavigationBar
 
 @synthesize viewController = _viewController;
+@synthesize type = _type;
 
 - (id)initWithViewController:(MFViewController *)viewController
 {
@@ -21,8 +22,9 @@
 
     if (self) {
         _viewController = viewController;
+        _type = kNCContainerToolbar;
         _navigationBar = viewController.navigationController.navigationBar;
-        _centerViewToolbar = [[UIToolbar alloc] init];
+        _centerView = nil;
         _titleView = [[NCTitleView alloc] init];
         _ncStyle = [[NCStyle alloc] initWithComponent:kNCContainerToolbar];
     }
@@ -146,19 +148,45 @@
     }
     [visiableContainers addObject:spacer];
 
-    if (![[_titleView retrieveUIStyle:kNCStyleTitle] isEqualToString:TitleUndefined]) {
+    if ([visiableContainers count] > 2) {
+        // TODO: allow few containers
+        _centerView = [[visiableContainers objectAtIndex:1] view];
+    }
+    
+    [self applyTitleViewVisibility];
+}
+
+- (void)applyTitleViewVisibility
+{
+    if ([[_titleView retrieveUIStyle:kNCStyleTitle] isEqualToString:kNCUndefined] &&
+        [[_titleView retrieveUIStyle:kNCStyleSubtitle] isEqualToString:kNCUndefined] &&
+        [[_titleView retrieveUIStyle:kNCStyleTitleImage] isEqualToString:kNCUndefined]) {
+        _viewController.navigationItem.titleView = nil;
+        _viewController.navigationItem.titleView = _centerView;
+    } else {
         _viewController.navigationItem.titleView = nil;
         _viewController.navigationItem.titleView = _titleView;
-    } else {
-        if ([visiableContainers count] > 2) {
-            [_centerViewToolbar setItems:visiableContainers];
-            // TODO: allow few containers
-            _viewController.navigationItem.titleView = nil;
-            _viewController.navigationItem.titleView = [[visiableContainers objectAtIndex:1] view];
-        } else {
-            _viewController.navigationItem.titleView = nil;
-        }
     }
+}
+
+- (void)setBackgroundColor:(id)value
+{
+    [_navigationBar setTintColor:hexToUIColor(removeSharpPrefix(value), 1)];
+}
+
+- (void)setOpacity:(id)value
+{
+    [[[_navigationBar subviews] objectAtIndex:0] setAlpha:[value floatValue]];
+}
+
+- (void)setShadowOpacity:(id)value
+{
+    CALayer *navBarLayer = _navigationBar.layer;
+    //        navBarLayer.shadowColor = [[UIColor blackColor] CGColor];
+    //        navBarLayer.shadowRadius = 3.0f;
+    navBarLayer.shadowOffset = CGSizeMake(0.0f, 2.0f);
+    
+    [navBarLayer setShadowOpacity:[value floatValue]];
 }
 
 #pragma mark - UIStyleProtocol
@@ -173,12 +201,31 @@
     for (id key in [_ncStyle styles]) {
         [self updateUIStyle:[[_ncStyle styles] objectForKey:key] forKey:key];
     }
+    [self applyBackButton];
+}
+
+- (void)removeUserInterface
+{
+    _viewController.navigationItem.leftBarButtonItems = nil;
+    _viewController.navigationItem.rightBarButtonItems = nil;
+    _viewController.navigationItem.titleView = nil;
 }
 
 - (void)updateUIStyle:(id)value forKey:(NSString *)key
 {
     if (![_ncStyle checkStyle:value forKey:key]) {
         return;
+    }
+
+    if (value == [NSNull null]) {
+        value = kNCUndefined;
+    }
+    if ([NSStringFromClass([[_ncStyle.styles valueForKey:key] class]) isEqualToString:@"__NSCFBoolean"]) {
+        if (isFalse(value)) {
+            value = kNCFalse;
+        } else {
+            value = kNCTrue;
+        }
     }
 
     if ([key isEqualToString:kNCStyleVisibility]) {
@@ -189,12 +236,26 @@
         [_viewController.navigationController setNavigationBarHidden:hidden];
     }
     if ([key isEqualToString:kNCStyleBackgroundColor]) {
-        [_navigationBar setTintColor:hexToUIColor(removeSharpPrefix(value), 1)];
-        [_centerViewToolbar setTintColor:hexToUIColor(removeSharpPrefix(value), 1)];
+        if (_navigationBar.barStyle == UIBarStyleDefault) {
+            [self setBackgroundColor:value];
+        }
     }
-
+    if ([key isEqualToString:kNCStyleOpacity]) {
+        if (_navigationBar.barStyle == UIBarStyleDefault) {
+            [self setOpacity:value];
+            if ([value floatValue] == 1.0) {
+                [_navigationBar setTranslucent:NO];
+                [self updateUIStyle:[self retrieveUIStyle:kNCStyleIOSBarStyle] forKey:kNCStyleIOSBarStyle];
+            } else {
+                [_navigationBar setTranslucent:YES];
+            }
+        }
+    }
     // title,subtitleに関してはNCTitleViewに委譲
     [_titleView updateUIStyle:value forKey:key];
+    if ([key isEqualToString:kNCStyleTitle] || [key isEqualToString:kNCStyleSubtitle]) {
+        [self applyTitleViewVisibility];
+    }
     
     if ([key isEqualToString:kNCStyleIOSBarStyle]) {
         UIBarStyle style = UIBarStyleDefault;
@@ -211,15 +272,28 @@
             style = UIBarStyleDefault;
             [_navigationBar setTranslucent:NO];
         }
+        
+        if (style == UIBarStyleDefault) {
+            [self setBackgroundColor:[self retrieveUIStyle:kNCStyleBackgroundColor]];
+            [self setOpacity:[self retrieveUIStyle:kNCStyleOpacity]];
+            [self setShadowOpacity:[self retrieveUIStyle:kNCStyleShadowOpacity]];
+        } else {
+            [_navigationBar setTintColor:nil];
+            [self setOpacity:[_ncStyle getDefaultStyle:kNCStyleOpacity]];
+            [self setShadowOpacity:[_ncStyle getDefaultStyle:kNCStyleShadowOpacity]];
+        }
+        
         [_navigationBar setBarStyle:style];
     }
     if ([key isEqualToString:kNCStyleShadowOpacity]) {
-        CALayer *navBarLayer = _navigationBar.layer;
-        //        navBarLayer.shadowColor = [[UIColor blackColor] CGColor];
-        //        navBarLayer.shadowRadius = 3.0f;
-        navBarLayer.shadowOffset = CGSizeMake(0.0f, 2.0f);
-
-        [navBarLayer setShadowOpacity:[value floatValue]];
+        if (_navigationBar.barStyle == UIBarStyleDefault) {
+            if ([value floatValue] < 0.0f) {
+                value = [NSNumber numberWithFloat:0.0f];
+            } if ([value floatValue] > 1.0f) {
+                value = [NSNumber numberWithFloat:1.0f];
+            }
+            [self setShadowOpacity:value];
+        }
     }
 
     [_ncStyle updateStyle:value forKey:key];

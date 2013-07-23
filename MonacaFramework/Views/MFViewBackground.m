@@ -9,248 +9,58 @@
 #import "MFVIewBackground.h"
 #import "NativeComponentsInternal.h"
 #import "MFUtility.h"
+#import "MFViewManager.h"
+#import "MFUIChecker.h"
+
+#define kWebViewBackground  @"bg"
 
 @implementation MFViewBackground
 
-- (id)initWithFrame:(CGRect)frame
+@synthesize type = _type;
+
+- (id)initWithViewController:(MFViewController *)viewController
 {
-    self = [super initWithFrame:frame];
+    self = [super init];
+    
     if (self) {
-        // Initialization code
+        _viewController = viewController;
+        _type = kNCContainerPage;
+        _ncStyle = [[NCStyle alloc] initWithComponent:kNCContainerPage];
+        CGRect frame = CGRectMake(0, 0, viewController.view.frame.size.width, viewController.view.frame.size.height);
+        self.frame = frame;
     }
+    
     return self;
 }
 
--(void)setBackgroundStyle:(NSMutableDictionary*)style
-{
-    
-    NSMutableDictionary* backgroundStyle = [self setBackgroundParameter:style];
-    
-    // set background color
-    if( !(backgroundStyle) || [[backgroundStyle objectForKey:kNCStyleBackgroundColor] isEqual:[NSNull null]])
-    {
-        self.backgroundColor = [UIColor whiteColor];
-    }
-    else
-    {
-        self.backgroundColor = [backgroundStyle objectForKey:kNCStyleBackgroundColor];
-        
-    }
-    
-    // set background image
-    if (![[backgroundStyle objectForKey:kNCStyleBackgroundImageFilePath]isEqual:[NSNull null]])
-    {
-        UIImage* backgroundImage = [UIImage imageWithContentsOfFile:[backgroundStyle objectForKey:kNCStyleBackgroundImageFilePath]];
-        UIImage* setImage = backgroundImage;
-        
-        // Image size set
-        id sizeString = [backgroundStyle objectForKey:kNCStyleBackgroundSize];
-        
-        if ([sizeString isKindOfClass:NSArray.class])
-        {
-            CGSize sz = CGSizeMake( backgroundImage.size.width * 0.01 * [[backgroundStyle objectForKey:kNCStyleBackgroundSizeWidth] floatValue],
-                                   backgroundImage.size.height * 0.01 * [[backgroundStyle objectForKey:kNCStyleBackgroundSizeHeight] floatValue] );
-            
-            UIGraphicsBeginImageContext(sz);
-            [backgroundImage drawInRect:CGRectMake(0, 0, sz.width, sz.height)];
-            setImage = UIGraphicsGetImageFromCurrentImageContext();
-            UIGraphicsEndImageContext();
-        }
-        
-        // set image repeat
-        if ([[backgroundStyle objectForKey:kNCStyleBackgroundRepeat] isEqual:kNCTypeRepeat] )
-        {
-            self.backgroundColor = [UIColor colorWithPatternImage:setImage];
-        }
-        else
-        {
-            if ([sizeString isKindOfClass:NSArray.class] || ([sizeString isKindOfClass:NSString.class] && [sizeString isEqual:kNCTypeAuto])) {
-                
-                if([[backgroundStyle objectForKey:kNCStyleBackgroundPositionHorizontal] isEqual:kNCTypeCenter] &&
-                   [[backgroundStyle objectForKey:kNCStyleBackgroundPositionVertical] isEqual:kNCTypeCenter])
-                {
-                    self.contentMode = UIViewContentModeCenter;
-                }
-                else if([[backgroundStyle objectForKey:kNCStyleBackgroundPositionHorizontal] isEqual:kNCTypeCenter] &&
-                        [[backgroundStyle objectForKey:kNCStyleBackgroundPositionVertical] isEqual:kNCPositionTop])
-                {
-                    self.contentMode = UIViewContentModeTop;
-                }
-                else if([[backgroundStyle objectForKey:kNCStyleBackgroundPositionHorizontal] isEqual:kNCTypeCenter] &&
-                        [[backgroundStyle objectForKey:kNCStyleBackgroundPositionVertical] isEqual:kNCPositionBottom])
-                {
-                    self.contentMode = UIViewContentModeBottom;
-                }
-                else if([[backgroundStyle objectForKey:kNCStyleBackgroundPositionHorizontal] isEqual:kNCTypeRight] &&
-                        [[backgroundStyle objectForKey:kNCStyleBackgroundPositionVertical] isEqual:kNCTypeCenter])
-                {
-                    self.contentMode = UIViewContentModeRight;
-                }
-                else if([[backgroundStyle objectForKey:kNCStyleBackgroundPositionHorizontal] isEqual:kNCTypeRight] &&
-                        [[backgroundStyle objectForKey:kNCStyleBackgroundPositionVertical] isEqual:kNCPositionTop])
-                {
-                    self.contentMode = UIViewContentModeTopRight;
-                }
-                else if([[backgroundStyle objectForKey:kNCStyleBackgroundPositionHorizontal] isEqual:kNCTypeRight ] &&
-                        [[backgroundStyle objectForKey:kNCStyleBackgroundPositionVertical] isEqual:kNCPositionBottom])
-                {
-                    self.contentMode = UIViewContentModeBottomRight;
-                }
-                else if([[backgroundStyle objectForKey:kNCStyleBackgroundPositionHorizontal] isEqual:kNCTypeLeft ] &&
-                        [[backgroundStyle objectForKey:kNCStyleBackgroundPositionVertical] isEqual:kNCTypeCenter])
-                {
-                    self.contentMode = UIViewContentModeLeft;
-                }
-                else if([[backgroundStyle objectForKey:kNCStyleBackgroundPositionHorizontal] isEqual:kNCTypeLeft ] &&
-                        [[backgroundStyle objectForKey:kNCStyleBackgroundPositionVertical] isEqual:kNCPositionTop])
-                {
-                    self.contentMode = UIViewContentModeTopLeft;
-                }
-                else if([[backgroundStyle objectForKey:kNCStyleBackgroundPositionHorizontal] isEqual:kNCTypeLeft ] &&
-                        [[backgroundStyle objectForKey:kNCStyleBackgroundPositionVertical] isEqual:kNCPositionBottom])
-                {
-                    self.contentMode = UIViewContentModeBottomLeft;
-                }
-            }
-            else if([sizeString isKindOfClass:NSString.class] && [sizeString isEqual:kNCTypeCover])
-            {
-                self.contentMode = UIViewContentModeScaleToFill;
-            }
-            else if([sizeString isKindOfClass:NSString.class] && [sizeString isEqual:kNCTypeContain])
-            {
-                self.contentMode = UIViewContentModeScaleAspectFit;
-            }
-            
-            self.image = setImage;
-        }
-    }
-    
+#pragma mark - Other methods
 
+- (void)setBackgroundColor:(UIColor *)color
+{
+    _viewController.webView.backgroundColor = [UIColor clearColor];
+    _viewController.webView.opaque = NO;
+    
+    UIScrollView *scrollView = (UIScrollView *)[_viewController.webView scrollView];
+    
+    if (scrollView) {
+        scrollView.opaque = NO;
+        scrollView.backgroundColor = [UIColor clearColor];
+        // Remove shadow
+        for (UIView *subview in [scrollView subviews]) {
+            if([subview isKindOfClass:[UIImageView class]]){
+                subview.hidden = YES;
+            }
+        }
+    }
+    
+    _viewController.view.opaque = YES;
+    _viewController.view.backgroundColor = color;
 }
 
--(NSMutableDictionary*)setBackgroundParameter:(NSMutableDictionary*)style
-{
-    // set background color
-    id colorString = [style objectForKey:kNCStyleBackgroundColor];
-    if ([colorString isKindOfClass:NSString.class])
-    {
-        // 変な文字列が入ってた場合の対策
-        @try {
-            [style setObject:hexToUIColor(removeSharpPrefix(colorString), 1) forKey:kNCStyleBackgroundColor];
-        }
-        @catch (NSException *exception) {
-            [style setObject:[NSNull null] forKey:kNCStyleBackgroundColor];
-        }
-    }
-    else if (!([colorString isKindOfClass:UIColor.class]))
-    {
-        [style setObject:[NSNull null] forKey:kNCStyleBackgroundColor];
-    }
-    
-    // set background image(file path)
-    id imageString = [style objectForKey:kNCStyleBackgroundImage];
-    NSString *imagePath;
-    if ([imageString isKindOfClass:NSString.class])
-    {
-        NSString *imageFilePath = imageString;
-        NSString *currentDirectory = [[MFUtility currentViewController].previousPath stringByDeletingLastPathComponent];
-        imagePath = [currentDirectory stringByAppendingPathComponent:imageFilePath];
-        
-        // get ImageFilePath for Retina Display
-        if([UIScreen mainScreen].scale > 1.0)
-        {
-            NSRegularExpression* matchResult = [NSRegularExpression regularExpressionWithPattern:@"(\\.)" options:0 error:nil];
-            NSString* retinaImageFileName = [matchResult
-                                             stringByReplacingMatchesInString:imageFilePath options:NSMatchingReportProgress range:NSMakeRange(0, imageFilePath.length) withTemplate:@"@2x."];
-            
-            NSString *retinaImageFilePath = [currentDirectory stringByAppendingPathComponent:retinaImageFileName];
-            
-            // file exist check for Retina
-            if([[NSFileManager defaultManager] fileExistsAtPath:retinaImageFilePath])
-            {
-                imagePath = retinaImageFilePath;
-            }
-        }
-    }
-    
-    if([[NSFileManager defaultManager] fileExistsAtPath:imagePath])
-    {
-        [style setObject:imagePath forKey:kNCStyleBackgroundImageFilePath];
-    }
-    else
-    {
-        [style setObject:[NSNull null] forKey:kNCStyleBackgroundImageFilePath];
-    }
-    
-    // set background size
-    
-    [style setObject:[NSNumber numberWithFloat:100] forKey:kNCStyleBackgroundSizeWidth];
-    [style setObject:[NSNumber numberWithFloat:100] forKey:kNCStyleBackgroundSizeHeight];
-    
-    id sizeString = [style objectForKey:kNCStyleBackgroundSize];
-    
-    if([sizeString isKindOfClass:NSString.class])
-    {
-        if (!( [sizeString isEqual:kNCTypeAuto]) && !( [sizeString isEqual:kNCTypeCover]) && !( [sizeString isEqual:kNCTypeContain]))
-        {
-            [style setObject:kNCTypeAuto forKey:kNCStyleBackgroundSize];
-        }
-    }
-    else if ([sizeString isKindOfClass:NSArray.class])
-    {
-        //[style setObject:nil forKey:kNCStyleBackgroundSize];
-        
-        NSArray* backgroundSize = sizeString;
-        if([backgroundSize count] == 2 && [backgroundSize objectAtIndex:0] && [backgroundSize objectAtIndex:1] )
-        {
-            [style setObject:[self castBackgroundSizeValue:[backgroundSize objectAtIndex:0]] forKey:kNCStyleBackgroundSizeWidth];
-            [style setObject:[self castBackgroundSizeValue:[backgroundSize objectAtIndex:1]] forKey:kNCStyleBackgroundSizeHeight];
-        }
-    }
-    
-    // set background repeat
-    id repeatString = [style objectForKey:kNCStyleBackgroundRepeat];
-    if([repeatString isKindOfClass:NSString.class] && [repeatString isEqual:kNCTypeRepeat])
-    {
-        [style setObject:kNCTypeRepeat forKey:kNCStyleBackgroundRepeat];
-    }
-    else
-    {
-        [style setObject:kNCTypeNoRepeat forKey:kNCStyleBackgroundRepeat];
-    }
-    
-    // set background position
-    [style setObject:kNCTypeCenter forKey:kNCStyleBackgroundPositionHorizontal];
-    [style setObject:kNCTypeCenter forKey:kNCStyleBackgroundPositionVertical];
-    id positionString = [style objectForKey:kNCStyleBackgroundPosition];
-    if ([positionString isKindOfClass:NSArray.class])
-    {
-        NSArray* backgroundPosition = positionString;
-        if([backgroundPosition count] == 2 && [backgroundPosition objectAtIndex:0] && [backgroundPosition objectAtIndex:1] )
-        {
-            // 水平方向のalign
-            if ([[backgroundPosition objectAtIndex:0] isEqual:kNCTypeLeft ]
-                || [[backgroundPosition objectAtIndex:0] isEqual:kNCTypeRight] )
-            {
-                [style setObject:[backgroundPosition objectAtIndex:0] forKey:kNCStyleBackgroundPositionHorizontal];
-            }
-            
-            // 垂直方向のalign
-            if ([[backgroundPosition objectAtIndex:1] isEqual:kNCPositionTop]
-                || [[backgroundPosition objectAtIndex:1] isEqual:kNCPositionBottom] )
-            {
-                [style setObject:[backgroundPosition objectAtIndex:1] forKey:kNCStyleBackgroundPositionVertical];
-            }
-        }
-        
-    }
-    return  style;
-}
-
--(NSNumber*)castBackgroundSizeValue:(NSString*)stringParameterValue
+-(float)castBackgroundSizeValue:(NSString*)stringParameterValue
 {
     // 引数は"○○%"で渡されてくるので"%"を除去
-    NSRegularExpression* matchResult = [NSRegularExpression regularExpressionWithPattern:@"(%)" options:0 error:nil];
+    NSRegularExpression* matchResult = [NSRegularExpression regularExpressionWithPattern:@"[^0-9]" options:0 error:nil];
     NSString* castStringParameterValue = [matchResult stringByReplacingMatchesInString:stringParameterValue
                                                                                options:NSMatchingReportProgress
                                                                                  range:NSMakeRange(0, stringParameterValue.length)
@@ -259,12 +69,218 @@
     float castParameter = 100;
     
     // 不正な値の場合は100（デフォルト値）のままで返す
-    if ([castStringParameterValue floatValue] && [castStringParameterValue floatValue] < castParameter && [castStringParameterValue floatValue] >= 0 ) {
+    if ([castStringParameterValue floatValue] && [castStringParameterValue floatValue] >= 0 ) {
         castParameter = [castStringParameterValue floatValue];
     }
-    
-    return [NSNumber numberWithFloat:castParameter];
+
+    return castParameter;
 }
 
+-(CGSize)getBackgroundSize:(NSArray *)value
+{
+    float width, height;
+    if ([[value objectAtIndex:0] rangeOfString:@"%"].location != NSNotFound) {
+        width = self.frame.size.width * 0.01 * [self castBackgroundSizeValue:[value objectAtIndex:0]];
+    } else {
+        width = [self castBackgroundSizeValue:[value objectAtIndex:0]];
+    }
+    
+    if ([[value objectAtIndex:1] rangeOfString:@"%"].location != NSNotFound) {
+        height = self.frame.size.height * 0.01 * [self castBackgroundSizeValue:[value objectAtIndex:1]];
+    } else {
+        height = [self castBackgroundSizeValue:[value objectAtIndex:1]];
+    }
+
+    return CGSizeMake(roundf(width),roundf(height));
+}
+
+- (void)setBackgroundImageSize:(id)value
+{
+    if ([[MFUIChecker valueType:value] isEqualToString:@"Array"]) {
+        NSArray *array = (NSArray *)value;
+        CGSize size = [self getBackgroundSize:array];
+        UIGraphicsBeginImageContext(size);
+        [_originalImage drawInRect:CGRectMake(0, 0, size.width, size.height)];
+        _resizedImage = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        [self setPosition:[self retrieveUIStyle:kNCStyleBackgroundPosition]];
+    } else {
+
+        if ([value isEqualToString:kNCTypeAuto]) {
+            [self setPosition:[self retrieveUIStyle:kNCStyleBackgroundPosition]];
+            _resizedImage = _originalImage;
+        }
+        else if ([value isEqualToString:kNCTypeCover]) {
+            if ([[self retrieveUIStyle:kNCStyleBackgroundRepeat] isEqualToString:kNCTypeNoRepeat]) {
+                _resizedImage = _originalImage;
+            }
+            self.contentMode = UIViewContentModeScaleToFill;
+        }
+        else if ([value isEqualToString:kNCTypeContain]) {
+            if ([[self retrieveUIStyle:kNCStyleBackgroundRepeat] isEqualToString:kNCTypeNoRepeat]) {
+                _resizedImage = _originalImage;
+            }
+            self.contentMode = UIViewContentModeScaleAspectFit;
+        }
+    }
+}
+
+- (void)setPosition:(NSArray *)style
+{
+    if ([[style objectAtIndex:0] isEqual:kNCBackgroundImagePositionCenter] &&
+        [[style objectAtIndex:1] isEqual:kNCBackgroundImagePositionCenter]) {
+        self.contentMode = UIViewContentModeCenter;
+    }
+    if ([[style objectAtIndex:0] isEqual:kNCBackgroundImagePositionCenter] &&
+        [[style objectAtIndex:1] isEqual:kNCBackgroundImagePositionTop]) {
+        self.contentMode = UIViewContentModeTop;
+    }
+    if ([[style objectAtIndex:0] isEqual:kNCBackgroundImagePositionCenter] &&
+        [[style objectAtIndex:1] isEqual:kNCBackgroundImagePositionBottom]) {
+        self.contentMode = UIViewContentModeBottom;
+    }
+    if ([[style objectAtIndex:0] isEqual:kNCBackgroundImagePositionRight] &&
+        [[style objectAtIndex:1] isEqual:kNCBackgroundImagePositionCenter]) {
+        self.contentMode = UIViewContentModeRight;
+    }
+    if ([[style objectAtIndex:0] isEqual:kNCBackgroundImagePositionRight] &&
+        [[style objectAtIndex:1] isEqual:kNCBackgroundImagePositionTop]) {
+        self.contentMode = UIViewContentModeTopRight;
+    }
+    if ([[style objectAtIndex:0] isEqual:kNCBackgroundImagePositionRight] &&
+        [[style objectAtIndex:1] isEqual:kNCBackgroundImagePositionBottom]) {
+        self.contentMode = UIViewContentModeBottomRight;
+    }
+    if ([[style objectAtIndex:0] isEqual:kNCBackgroundImagePositionLeft] &&
+        [[style objectAtIndex:1] isEqual:kNCBackgroundImagePositionCenter]) {
+        self.contentMode = UIViewContentModeLeft;
+    }
+    if ([[style objectAtIndex:0] isEqual:kNCBackgroundImagePositionLeft] &&
+        [[style objectAtIndex:1] isEqual:kNCBackgroundImagePositionTop]) {
+        self.contentMode = UIViewContentModeTopLeft;
+    }
+    if ([[style objectAtIndex:0] isEqual:kNCBackgroundImagePositionLeft] &&
+        [[style objectAtIndex:1] isEqual:kNCBackgroundImagePositionBottom]) {
+        self.contentMode = UIViewContentModeBottomLeft;
+    }
+}
+
+- (void)updateFrame
+{
+    if (!CGRectEqualToRect(self.frame, _viewController.view.frame)) {
+        self.frame = _viewController.view.frame;
+        [self setBackgroundImageSize:[_ncStyle retrieveStyle:kNCStyleBackgroundSize]];
+        if (_originalImage != nil) {
+            if ([[self retrieveUIStyle:kNCStyleBackgroundRepeat] isEqualToString:kNCTypeNoRepeat]) {
+                self.image = _resizedImage;
+            } else {
+                self.backgroundColor = [UIColor colorWithPatternImage:_resizedImage];
+            }
+        }
+    }
+}
+
+- (void)createBackgroundView:(NSDictionary *)uidict
+{
+    [self setUserInterface:uidict];
+    [self applyUserInterface];
+    [_viewController.view insertSubview:self atIndex:0];
+}
+
+#pragma mark - UIStyleProtocol
+
+- (void)setUserInterface:(NSDictionary *)uidict
+{
+    [_ncStyle setStyles:uidict];
+}
+
+- (void)applyUserInterface
+{
+    [self updateUIStyle:[[_ncStyle styles] objectForKey:kNCStyleBackgroundImage] forKey:kNCStyleBackgroundImage];
+    for (id key in [_ncStyle styles]) {
+        [self updateUIStyle:[[_ncStyle styles] objectForKey:key] forKey:key];
+    }
+}
+
+- (void)removeUserInterface
+{
+    self.backgroundColor = UIColor.whiteColor;
+    self.image = nil;
+}
+
+- (void)updateUIStyle:(id)value forKey:(NSString *)key
+{
+    if (![_ncStyle checkStyle:value forKey:key]) {
+        return;
+    }
+    
+    if ([NSStringFromClass([[_ncStyle.styles valueForKey:key] class]) isEqualToString:@"__NSCFBoolean"]) {
+        if (isFalse(value)) {
+            value = kNCFalse;
+        } else {
+            value = kNCTrue;
+        }
+    }
+    
+    if ([key isEqualToString:kNCStyleBackgroundColor]) {
+        if (![[self retrieveUIStyle:kNCStyleBackgroundRepeat] isEqualToString:kNCTypeRepeat] || _originalImage == nil) {
+            [self setBackgroundColor:hexToUIColor(removeSharpPrefix(value), 1)];
+        }
+    }
+    if ([key isEqualToString:kNCStyleBackgroundImage]) {
+        NSString *imagePath = [[MFViewManager currentWWWFolderName] stringByAppendingPathComponent:value];
+        _originalImage = [UIImage imageWithContentsOfFile:imagePath];
+        [self setBackgroundImageSize:[_ncStyle retrieveStyle:kNCStyleBackgroundSize]];
+        if (_originalImage != nil) {
+            if (![[self retrieveUIStyle:kNCStyleBackgroundRepeat] isEqualToString:kNCTypeRepeat]) {
+                self.image = _resizedImage;
+            } else {
+                self.backgroundColor = [UIColor colorWithPatternImage:_resizedImage];
+            }
+        }
+    }
+    if ([key isEqualToString:kNCStyleBackgroundSize]) {
+        [self setBackgroundImageSize:value];
+        if (_originalImage != nil) {
+            if ([[self retrieveUIStyle:kNCStyleBackgroundRepeat] isEqualToString:kNCTypeRepeat]) {
+                self.backgroundColor = [UIColor colorWithPatternImage:_resizedImage];
+            } else {
+                self.image = _resizedImage;
+            }
+        }
+    }
+    if ([key isEqualToString:kNCStyleBackgroundRepeat]) {
+        if (_originalImage != nil) {
+            [self setBackgroundImageSize:[_ncStyle retrieveStyle:kNCStyleBackgroundSize]];
+            if ([value isEqualToString:kNCTypeRepeat]) {
+                self.image = nil;
+                self.backgroundColor = [UIColor colorWithPatternImage:_resizedImage];
+            } else {
+                self.image = _resizedImage;
+                NSString *colorString = [self retrieveUIStyle:kNCStyleBackgroundColor];
+                [self setBackgroundColor:hexToUIColor(removeSharpPrefix(colorString), 1)];
+            }
+        }
+    }
+
+    if ([key isEqualToString:kNCStyleBackgroundPosition]) {
+        if ([[self retrieveUIStyle:kNCStyleBackgroundSize] isKindOfClass:NSArray.class] ||
+            ([[self retrieveUIStyle:kNCStyleBackgroundSize] isKindOfClass:NSString.class] &&
+            [[self retrieveUIStyle:kNCStyleBackgroundSize] isEqualToString:kNCTypeAuto])) {
+            [self setPosition:value];
+        }
+    }
+    
+    if ([key isEqualToString:kNCStyleScreenOrientation]) {
+        _viewController.screenOrientations = parseScreenOrientationsMask(value);
+    }
+
+    [_ncStyle updateStyle:value forKey:key];
+}
+
+- (id)retrieveUIStyle:(NSString *)key
+{
+    return [_ncStyle retrieveStyle:key];
+}
 
 @end

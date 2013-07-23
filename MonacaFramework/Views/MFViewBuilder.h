@@ -8,10 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import "MFNavigationController.h"
+#import "MFTabBarController.h"
 
 @interface MFViewBuilder : NSObject
-+ (void)setIgnoreBottom:(BOOL)ignore;
+
 + (MFNavigationController *)createMonacaNavigationControllerWithWwwDir:(NSString *)wwwDir withPath:(NSString *)path;
 + (id)createViewControllerWithPath:(NSString *)path;
++ (MFTabBarController *)createTabbarControllerWithPath:(NSString *)path withDict:(NSDictionary *)uidict;
 
 @end

@@ -14,6 +14,7 @@
 #import "MFJSInterfaceProtocol.h"
 #import "CDVSplashScreen.h"
 #import "MFUtility.h"
+#import "MFViewManager.h"
 #import "MFViewBuilder.h"
 
 @class MFViewController;
@@ -81,7 +82,10 @@
 
 - (NSDictionary *)getApplicationPlist
 {
-    return [[NSBundle mainBundle] infoDictionary];
+    NSMutableDictionary* applicationPlist = [NSMutableDictionary dictionaryWithDictionary:[[NSBundle mainBundle] infoDictionary]];
+    //MonacaBackend Plugin always use
+    [applicationPlist setObject:@"true" forKey:@"Monaca"];
+    return applicationPlist;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -138,7 +142,7 @@
     [[NSUserDefaults standardUserDefaults] setObject:extraJson forKey:@"extraJSON"];
     application.applicationIconBadgeNumber = 0;
 
-    [[MFUtility currentViewController] sendPush];
+    [[MFViewManager currentViewController] sendPush];
 }
 
 @end

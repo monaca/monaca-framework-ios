@@ -9,7 +9,9 @@
 #import "MFNavigationController.h"
 #import "MFUtility.h"
 #import "NativeComponents.h"
-#import "MFDammyViewController.h"
+#import "MFDummyViewController.h"
+#import "MFViewManager.h"
+#import "MFSpinnerView.h"
 
 @interface MFNavigationController ()
 
@@ -30,7 +32,16 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
-    return [MFUtility getAllowOrientationFromPlist:toInterfaceOrientation];
+    if ([MFSpinnerView isAnimating])
+        return NO;
+    if ([MFViewManager currentViewController]) {
+        if ([MFViewManager currentViewController].screenOrientations == UIInterfaceOrientationMaskAll)
+            return [MFUtility getAllowOrientationFromPlist:toInterfaceOrientation];
+        else
+            return [MFViewManager currentViewController].screenOrientations & 1 << toInterfaceOrientation;
+    } else {
+        return [MFUtility getAllowOrientationFromPlist:toInterfaceOrientation];
+    }
 }
 
 - (BOOL)shouldAutorotate
@@ -42,7 +53,7 @@
 {
     id viewController;
     NSMutableArray *viewControllers = [NSMutableArray arrayWithArray:self.viewControllers];
-    if (![[viewControllers objectAtIndex:[viewControllers count]-2] isKindOfClass:[MFDammyViewController class]]) {
+    if (![[viewControllers objectAtIndex:[viewControllers count]-2] isKindOfClass:[MFDummyViewController class]]) {
         popFlag = YES;
         viewController = [super popViewControllerAnimated:animated];
         popFlag = NO;
@@ -83,6 +94,10 @@
 
 - (NSUInteger)supportedInterfaceOrientations
 {
+    if ([MFSpinnerView isAnimating]) {
+        return 0;
+    }
+
     UIInterfaceOrientationMask mask = nil;
     if ([MFUtility getAllowOrientationFromPlist:UIInterfaceOrientationPortrait]) {
         mask |= UIInterfaceOrientationMaskPortrait;
@@ -96,7 +111,15 @@
     if ([MFUtility getAllowOrientationFromPlist:UIInterfaceOrientationLandscapeLeft]){
         mask |= UIInterfaceOrientationMaskLandscapeLeft;
     }
-    return mask;
+    if ([MFViewManager currentViewController]) {
+        if ([MFViewManager currentViewController].screenOrientations == UIInterfaceOrientationMaskAll)
+            return mask;
+        else
+            return [MFViewManager currentViewController].screenOrientations;
+    } else {
+        return mask;
+    }
+    
 }
 
 @end

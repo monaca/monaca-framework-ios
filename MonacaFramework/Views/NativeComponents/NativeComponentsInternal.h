@@ -8,8 +8,10 @@
 //  Copyright (c) 2011 ASIAL CORPORATION. All rights reserved.
 //
 
-#define kNCTrue  @"true"
-#define kNCFalse @"false"
+#import <UIKit/UIKit.h>
+
+#define kNCTrue  [NSNumber numberWithBool:YES]
+#define kNCFalse [NSNumber numberWithBool:NO]
 #define kNCUndefined @""
 
 #define kNCBlack @"#000000"
@@ -94,7 +96,6 @@
 #define kNCStyleFocus              @"focus"
 #define kNCStyleWideBox            @"wideBox"
 #define kNCStyleShadowOpacity      @"shadowOpacity"
-#define kNCStyleSupportedOrientation @"supportedOrientation"
 
 #define kNCStyleBackgroundImageFilePath         @"backgroundImageFilePath"
 #define kNCStyleBackgroundSizeWidth             @"backgroundSizeWidth"
@@ -102,10 +103,21 @@
 #define kNCStyleBackgroundPositionHorizontal    @"backgroundPositionHorizontal"
 #define kNCStyleBackgroundPositionVertical      @"backgroundPositionVertical"
 
+#define kNCBackgroundImagePositionCenter    @"center"
+#define kNCBackgroundImagePositionBottom    @"bottom"
+#define kNCBackgroundImagePositionTop       @"top"
+#define kNCBackgroundImagePositionLeft      @"left"
+#define kNCBackgroundImagePositionRight     @"right"
+
 #define kNCStyleIOSBarStyle     @"iosBarStyle"
 #define kNCStyleIOSButtonStyle  @"iosButtonStyle"
 #define kNCStyleIOSFrame        @"ios-frame"
 
+#define kNCStyleScreenOrientation  @"screenOrientation"
+#define kNCOrientationPortrait  @"portrait"
+#define kNCOrientationInherit   @"inherit"
+#define kNCOrientationLandscape @"landscape"
+#define kNCOrientationSeparator @","
 
 static BOOL
 isTrue(id object) {
@@ -113,7 +125,7 @@ isTrue(id object) {
         return NO;
     }
     if ([object isKindOfClass:[NSString class]]) {
-        return [(NSString *)object isEqualToString:kNCTrue];
+        return [(NSString *)object isEqualToString:@"true"];
     }
     if ([object isKindOfClass:[NSNumber class]]) {
         return [object intValue] == 1;
@@ -127,7 +139,7 @@ isFalse(id object) {
         return NO;
     }
     if ([object isKindOfClass:[NSString class]]) {
-        return [(NSString *)object isEqualToString:kNCFalse];
+        return [(NSString *)object isEqualToString:@"false"];
     }
     if ([object isKindOfClass:[NSNumber class]]) {
         return [object intValue] == 0;
@@ -201,4 +213,28 @@ static inline NSInteger
 iOSVersionMinor2() {
     NSArray *versions = [[[UIDevice currentDevice] systemVersion] componentsSeparatedByString:@"."];
     return [[versions objectAtIndex:2] intValue];
+}
+
+// Parse orienation string. (ex "portrait, landscape")
+static NSUInteger
+parseScreenOrientationsMask(NSString* orientationString) {
+    NSUInteger result = 0;
+    for (NSString* orientation in [orientationString componentsSeparatedByString:kNCOrientationSeparator]) {
+        NSString *trimed = [orientation stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+        
+        if ([trimed isEqualToString:kNCOrientationPortrait]) {
+            result = result | UIInterfaceOrientationMaskPortrait;
+            
+        } else if ([trimed isEqualToString:kNCOrientationLandscape]) {
+            result = result | UIInterfaceOrientationMaskLandscape;
+            result = result | UIInterfaceOrientationMaskLandscapeRight;
+            
+        }
+    }
+    
+    if (result == 0) {
+        result = UIInterfaceOrientationMaskAll;
+    }
+    
+    return result;
 }

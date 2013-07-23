@@ -20,7 +20,7 @@
     NSArray *_leftContainers;
     NSArray *_rightContainers;
     NSArray *_centerContainers;
-    UIToolbar *_centerViewToolbar;
+    UIView *_centerView;
     NCContainer *_backButton;
     NCTitleView *_titleView;
 }

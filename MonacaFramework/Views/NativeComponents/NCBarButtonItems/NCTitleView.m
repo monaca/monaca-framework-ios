@@ -10,9 +10,12 @@
 #import "MFDelegate.h"
 #import "MFDevice.h"
 #import "MFUtility.h"
+#import "MFViewManager.h"
 #import "UILabel+Resize.h"
 
 @implementation NCTitleView
+
+@synthesize type = _type;
 
 static const CGFloat kSizeOfTitleFont             = 14.0f;
 static const CGFloat kSizeOfSubtitleFont          = 11.0f;
@@ -26,6 +29,7 @@ static const CGFloat kSizeOfPortraitTitleFont     = 19.0f;
 
         _title = [[UILabel alloc] init];
         _subtitle = [[UILabel alloc] init];
+        _type = kNCStyleTitle;
         _titleImageView = [[UIImageView alloc] init];
 
         [_title setBackgroundColor:[UIColor clearColor]];
@@ -75,7 +79,7 @@ static const CGFloat kSizeOfPortraitTitleFont     = 19.0f;
         [_title setCenter:CGPointMake(self.frame.size.width/2.0f, self.frame.size.height/2.0f)];
         [_subtitle setHidden:YES];
     } else {
-        if (![[self retrieveUIStyle:kNCStyleSubtitle] isEqual:TitleUndefined]) {
+        if (![[self retrieveUIStyle:kNCStyleSubtitle] isEqual:kNCUndefined]) {
             _title.font = [UIFont boldSystemFontOfSize:kSizeOfTitleFont * [[self retrieveUIStyle:kNCStyleTitleFontScale] floatValue]];
             _subtitle.font = [UIFont systemFontOfSize:kSizeOfSubtitleFont * [[self retrieveUIStyle:kNCStyleSubtitleFontScale] floatValue]];
             _title.frame = [_title resizedFrameWithPoint:CGPointMake(0, 0)];
@@ -100,19 +104,30 @@ static const CGFloat kSizeOfPortraitTitleFont     = 19.0f;
 
 - (void)updateUIStyle:(id)value forKey:(NSString *)key
 {
-    [_ncStyle checkStyle:value forKey:key];
+    if (value == [NSNull null]) {
+        value = kNCUndefined;
+    }
+    if ([NSStringFromClass([[_ncStyle.styles valueForKey:key] class]) isEqualToString:@"__NSCFBoolean"]) {
+        if (isFalse(value)) {
+            value = kNCFalse;
+        } else {
+            value = kNCTrue;
+        }
+    }
     
     if ([key isEqualToString:kNCStyleTitle]) {
         if ([value isEqualToString:kNCUndefined]) {
-            value = TitleUndefined;
+            [_title setText:@" "];
+        } else {
+            [_title setText:value];
         }
-        [_title setText:value];
     }
     if ([key isEqualToString:kNCStyleSubtitle]) {
         if ([value isEqualToString:kNCUndefined]) {
-            value = TitleUndefined;
+            [_subtitle setText:@" "];
+        } else {
+            [_subtitle setText:value];
         }
-        [_subtitle setText:value];
     }
     if ([key isEqualToString:kNCStyleTitleColor]) {
         [_title setTextColor:hexToUIColor(removeSharpPrefix(value), 1)];
@@ -135,7 +150,7 @@ static const CGFloat kSizeOfPortraitTitleFont     = 19.0f;
         [_subtitle setFont:[UIFont boldSystemFontOfSize:kSizeOfSubtitleFont * [value floatValue]]];
     }
     if ([key isEqualToString:kNCStyleTitleImage]) {
-        NSString *imagePath = [[MFUtility currentViewController].wwwFolderName stringByAppendingPathComponent:value];
+        NSString *imagePath = [[MFViewManager currentWWWFolderName] stringByAppendingPathComponent:value];
         _titleImageView.image = [UIImage imageWithContentsOfFile:imagePath];
         _titleImageView.contentMode = UIViewContentModeCenter;
     }

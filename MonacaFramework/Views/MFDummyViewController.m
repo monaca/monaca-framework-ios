@@ -1,18 +1,18 @@
 //
-//  MFDammyViewController.m
+//  MFDummyViewController.m
 //  MonacaFramework
 //
 //  Created by Yasuhiro Mitsuno on 2013/05/03.
 //  Copyright (c) 2013年 ASIAL CORPORATION. All rights reserved.
 //
 
-#import "MFDammyViewController.h"
+#import "MFDummyViewController.h"
 
-@interface MFDammyViewController ()
+@interface MFDummyViewController ()
 
 @end
 
-@implementation MFDammyViewController
+@implementation MFDummyViewController
 
 - (void)viewDidLoad
 {

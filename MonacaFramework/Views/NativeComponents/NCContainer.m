@@ -9,6 +9,7 @@
 #import "NCContainer.h"
 #import "NCButton.h"
 #import "MFUtility.h"
+#import "MFViewManager.h"
 
 @implementation NCContainer
 
@@ -77,6 +78,7 @@
     else if ([type isEqualToString:kNCComponentSearchBox]) {
         NCSearchBox *searchBox = [[NCSearchBox alloc] init];
         searchBox.toolbar = toolbar;
+        [searchBox setUserInterface:style_def];
         [searchBox applyUserInterface];
         container.component = searchBox;
         container.onSearchScript = [[params objectForKey:kNCTypeEvent] objectForKey:kNCEventTypeSearch];
@@ -130,7 +132,7 @@
              
 // Handle an onSearch event.
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-    UIWebView *webView = [MFUtility currentViewController].webView;
+    UIWebView *webView = [MFViewManager currentViewController].webView;
     NSString *js = [NSString stringWithFormat:@"__search_text='%@';%@", searchBar.text, onSearchScript_];
     [webView stringByEvaluatingJavaScriptFromString:js];
     [searchBar resignFirstResponder];
@@ -140,21 +142,23 @@
 // Handle an onChange event.
 - (void)didChange:(id)sender forEvent:(UIEvent *)event {
 
+    
     NSString *index = @"";
     if ([sender isKindOfClass:[UISegmentedControl class]]) {
         UISegmentedControl *segment = sender;
         NSInteger _index = segment.selectedSegmentIndex;
+        [[self component] updateUIStyle:[NSNumber numberWithInt:_index] forKey:kNCStyleActiveIndex];
         index = [NSString stringWithFormat:@"var __segment_index = '%d';", _index];
     }
 
     NSString *js = [NSString stringWithFormat:@"%@%@", index, onChangeScript_];
-    UIWebView *webView = [MFUtility currentViewController].webView;
+    UIWebView *webView = [MFViewManager currentViewController].webView;
     [webView stringByEvaluatingJavaScriptFromString:js];
 }
 
 // Handle an onTap event.
 - (void)didTap:(id)sender forEvent:(UIEvent *)event {
-    UIWebView *webView = [MFUtility currentViewController].webView;
+    UIWebView *webView = [MFViewManager currentViewController].webView;
     [webView stringByEvaluatingJavaScriptFromString:onTapScript_];
 }
 

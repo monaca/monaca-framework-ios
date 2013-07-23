@@ -13,6 +13,7 @@
 
 @interface MFTransitPlugin : CDVPlugin
 
+- (NSURLRequest *)createRequest:(NSString *)urlString withQuery:(NSString *)query;
 - (void)push:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options;
 - (void)pop:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options;
 - (void)modal:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options;

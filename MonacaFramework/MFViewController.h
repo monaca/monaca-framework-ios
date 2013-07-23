@@ -20,14 +20,16 @@
     NSDictionary *_uiDict;
     id<UIStyleProtocol> _navigationBar;
     id<UIStyleProtocol> _toolbar;
+    id<UIStyleProtocol> _bgView;
     NCContainer *_backButton;
-    NCStyle *_ncStyle;
+    BOOL _transitAnimated;
+    NSUInteger _screenOrientations;
+    NSString *_startWwwFolder;
 }
 
+- (void)applyBarVisibility:(BOOL)animated;
 - (void)applyBarUserInterface;
 - (void)setBarUserInterface:(NSDictionary *)uidict;
-- (void)setUserInterface:(NSDictionary *)uidict;
-- (void)applyUserInterface;
 - (void)removeUserInterface;
 - (void)sendPush;
 - (id)initWithFileName:(NSString *)fileName;
@@ -39,6 +41,8 @@
 @property (nonatomic, retain) NSDictionary *uiDict;
 @property (nonatomic, retain) NSDictionary *monacaPluginOptions;
 @property (nonatomic, retain) NCContainer *backButton;
-
+@property (nonatomic, assign) BOOL transitAnimated;
+@property (nonatomic, assign) NSUInteger screenOrientations;
+@property (nonatomic, copy) NSString *startWwwFolder;
 
 @end

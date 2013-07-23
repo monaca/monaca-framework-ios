@@ -11,9 +11,11 @@
 
 @interface MFUtility : NSObject
 {
-    
+
 }
 
++ (NSDictionary *)queryParams;
++ (void)setQueryParams:(NSDictionary *)params;
 + (UIInterfaceOrientation) currentInterfaceOrientation;
 + (BOOL) getAllowOrientationFromPlist:(UIInterfaceOrientation)interfaceOrientation;
 + (NSDictionary *)parseJSONFile:(NSString *)path;
@@ -31,12 +33,9 @@
 + (NSDictionary *)getApplicationPlist;
 + (void)fixedLayout:(MFViewController *)monacaViewController interfaceOrientation:
     (UIInterfaceOrientation)aInterfaceOrientation;
-+ (void) show404PageWithWebView:(UIWebView *)webView path:(NSString *)aPath;
 + (MFDelegate *)getAppDelegate;
-+ (MFViewController *)currentViewController;
 + (NSURLResponse *)register_push:(NSString *)deviceToken;
 + (void)setMonacaCloudCookie;
 + (void)clearMonacaCloudCookie;
-+ (void)checkWithInfo:(NSDictionary *)info;
 
 @end

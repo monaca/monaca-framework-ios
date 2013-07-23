@@ -32,11 +32,17 @@
         return;
     }
 
-    if (cid == nil || [_components valueForKey:cid] != nil) {
+    if (cid == nil) {
         [_noIDComponents addObject:component];
         return;
     }
-
+    
+    if ([_components valueForKey:cid] != nil) {
+        NSLog(NSLocalizedString(@"Duplicate id", nil), cid, [self componentForID:cid].type, [component type]);
+        [_noIDComponents addObject:component];
+        return;
+    }
+    
     [_components setValue:component forKey:cid];
 }
 

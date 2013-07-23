@@ -10,20 +10,39 @@
 #import "MFUtility.h"
 #import "MFEvent.h"
 #import "MFViewBuilder.h"
+#import "MFViewManager.h"
 
 @implementation MFTabBarController
 
 @synthesize ncManager = _ncManager;
+@synthesize uidict = _uidict;
+@synthesize backButton = _backButton;
+@synthesize type;
 
 // iOS4 の場合、このメソッドは MonacaViewController の viewDidApper メソッドから呼ばれる
 - (void)viewWillAppear:(BOOL)animated {
-    [self.navigationController setNavigationBarHidden:YES];
+    [self.navigationController setToolbarHidden:YES];
     [super viewWillAppear:animated];
+    if (!_isload) {
+        _isload = YES;
+        NSDictionary *top = [_uidict objectForKey:kNCPositionTop];
+        NSMutableDictionary *style = [NSMutableDictionary dictionary];
+        [style addEntriesFromDictionary:[_uidict objectForKey:kNCTypeStyle]];
+        [style addEntriesFromDictionary:[_uidict objectForKey:kNCTypeIOSStyle]];
+        
+        if ([[top objectForKey:kNCTypeContainer] isEqualToString:kNCContainerToolbar]) {
+            _navigationBar = [[NCNavigationBar alloc] initWithViewController:(id)self];
+            [self.ncManager setComponent:_navigationBar forID:[top objectForKey:kNCTypeID]];
+            [(NCNavigationBar *)_navigationBar createNavigationBar:top];
+        }
+    }
 }
 
 // iOS4 の場合、このメソッドは MonacaViewController の viewDidApper メソッドから呼ばれる
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    
+    [_navigationBar applyUserInterface];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -36,15 +55,15 @@
     if (nil != self) {
         self.ncManager = [[NCManager alloc] init];
         _ncStyle = [[NCStyle alloc] initWithComponent:kNCContainerTabbar];
+        _isload = NO;
+        self.delegate = self;
     }
     return self;
 }
 
 - (void)destroy
 {
-    for (MFViewController *view in self.viewControllers) {
-        [view destroy];
-    }
+
 }
 
 - (void)dealloc {
@@ -61,6 +80,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+
 }
 
 - (void)viewDidUnload {
@@ -97,6 +118,13 @@
     }
 }
 
+- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController
+{
+    MFViewController *vc = (MFViewController *)viewController;
+    NSString *path = [vc.startWwwFolder stringByAppendingPathComponent:vc.startPage];
+    [vc.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:path]]];
+}
+
 #pragma mark - UIStyleProtocol
 
 - (void)setUserInterface:(NSDictionary *)uidict
@@ -115,6 +143,17 @@
 {
     if (![_ncStyle checkStyle:value forKey:key]) {
         return;
+    }
+    
+    if (value == [NSNull null]) {
+        value = kNCUndefined;
+    }
+    if ([NSStringFromClass([[_ncStyle.styles valueForKey:key] class]) isEqualToString:@"__NSCFBoolean"]) {
+        if (isFalse(value)) {
+            value = kNCFalse;
+        } else {
+            value = kNCTrue;
+        }
     }
     
     // TODO: Implement hideTabbar

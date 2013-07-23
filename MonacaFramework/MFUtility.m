@@ -9,10 +9,23 @@
 #import "MFUtility.h"
 #import "JSONKit.h"
 #import "MFEvent.h"
+#import "MFViewManager.h"
 
 @implementation MFUtility
 
-static NSString *base_url = @"https://api.monaca.mobi";
+const static NSString *base_url = @"https://api.monaca.mobi";
+
+static NSDictionary *queryParams;
+
++ (NSDictionary *)queryParams
+{
+    return queryParams;
+}
+
++ (void)setQueryParams:(NSDictionary *)params
+{
+    queryParams = params;
+}
 
 + (NSURLResponse *)fetchFrom:(NSString *)url method:(NSString *)method parameter:(NSString *)parameter {
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
@@ -68,7 +81,6 @@ static NSString *base_url = @"https://api.monaca.mobi";
     } else {
         NSMutableDictionary *info = [NSMutableDictionary dictionary];
         [info setObject:path forKey:@"path"];
-//        [MFEvent dispatchEvent:monacaEventNCParseSuccess withInfo:info];
         NSLog(@"%@",[NSLocalizedString(@"Load UI File", nil) stringByAppendingString:[MFUtility getWWWShortPath:path]]);
     }
     
@@ -112,7 +124,7 @@ static NSString *base_url = @"https://api.monaca.mobi";
 
 + (NSDictionary *)getAppJSON
 {
-    NSString *base_path = [[[self class] currentViewController].wwwFolderName stringByReplacingOccurrencesOfString:@"www" withString:@""];
+    NSString *base_path = [[[self class] getBaseURL].path stringByReplacingOccurrencesOfString:@"www" withString:@""];
     NSURL *json_url = [NSURL fileURLWithPath:[base_path stringByAppendingPathComponent:@"app.json"]];
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:json_url];
     NSURLResponse *response = nil;
@@ -194,18 +206,6 @@ static NSString *base_url = @"https://api.monaca.mobi";
     }
 }
 
-/*
- * 404 page
- */
-+ (void) show404PageWithWebView:(UIWebView *)webView path:(NSString *)aPath {
-    NSLog(@"Page not found (as warning):%@", [MFUtility getWWWShortPath:aPath]);
-    NSString *pathFor404 = [[NSBundle mainBundle] pathForResource:@"404/index" ofType:@"html"];
-    NSString *html = [NSString stringWithContentsOfFile:pathFor404 encoding:NSUTF8StringEncoding error:nil];
-
-    html = [html stringByReplacingOccurrencesOfString:@"%%%urlPlaceHolder%%%" withString:[MFUtility getWWWShortPath:aPath]];
-    [webView loadHTMLString:html baseURL:[NSURL fileURLWithPath:pathFor404]];
-}
-
 + (NSURL *)getBaseURL
 {
     NSString *basePath = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"www"];
@@ -241,9 +241,14 @@ static NSString *base_url = @"https://api.monaca.mobi";
  * build url Moaca query params
  */
 + (NSString *)insertMonacaQueryParams:(NSString *)html query:(NSString *)aQuery {
-    if (aQuery){
-        NSArray *pairs = [aQuery componentsSeparatedByString:@"&"];
-        NSMutableArray *keyValues = [NSMutableArray array];
+    
+    // Json value return
+    NSDictionary* jsonQueryParams =  queryParams;
+    
+    if (aQuery || [jsonQueryParams objectForKey:@"queryString"]){
+        NSMutableArray *pairs = [NSMutableArray arrayWithArray:[[jsonQueryParams objectForKey:@"queryString"] componentsSeparatedByString:@"&"]];
+        [pairs addObjectsFromArray:[aQuery componentsSeparatedByString:@"&"]];
+        NSMutableArray *keyValues = [NSMutableArray array];	
 
         for (NSString *pair in pairs) {
             NSArray *elements = [pair componentsSeparatedByString:@"="];
@@ -262,6 +267,17 @@ static NSString *base_url = @"https://api.monaca.mobi";
         }
         NSString *keyValuesString = [keyValues componentsJoinedByString:@","];
         NSString *queryScriptTag = [NSString stringWithFormat:@"<script>window.monaca = window.monaca || {};window.monaca.queryParams = {%@};</script>", keyValuesString];
+        
+        
+        if([jsonQueryParams objectForKey:@"queryParams"])
+        {
+            NSData *jsonData =  [NSJSONSerialization dataWithJSONObject:[jsonQueryParams objectForKey:@"queryParams"] options:kNilOptions error:nil];
+            keyValuesString = [[NSString alloc]initWithData:jsonData encoding:NSUTF8StringEncoding];
+            queryScriptTag = [NSString stringWithFormat:@"<script>window.monaca = window.monaca || {};window.monaca.queryParams = %@;</script>", keyValuesString];
+            
+        }
+
+        queryParams = nil;
         NSRange replaceRange = [html rangeOfString:@"<head>"];
         if(replaceRange.location == NSNotFound){
             html = [queryScriptTag stringByAppendingString:html];
@@ -300,16 +316,6 @@ static NSString *base_url = @"https://api.monaca.mobi";
 + (MFDelegate *)getAppDelegate
 {
     return ((MFDelegate *)[[UIApplication sharedApplication] delegate]);
-}
-
-+ (MFViewController *)currentViewController
-{
-    id viewController = [self getAppDelegate].monacaNavigationController.topViewController;
-    if ([viewController isKindOfClass:MFTabBarController.class]) {
-        return (MFViewController *)[(MFNavigationController *)[(MFTabBarController *)viewController selectedViewController] topViewController];
-    } else {
-        return viewController;
-    }
 }
 
 + (NSMutableDictionary *)parseQuery:(NSURLRequest *)request
@@ -376,7 +382,7 @@ static NSString *base_url = @"https://api.monaca.mobi";
 
 + (void)setMonacaCloudCookie
 {
-    NSDictionary *appJSON = [MFUtility getAppJSON];
+    NSDictionary *appJSON = [[self class] getAppJSON];
     NSURL *endPoint = [NSURL URLWithString:[[appJSON objectForKey:@"monacaCloud"] objectForKey:@"endPoint"]];
     NSString *domain = [endPoint host];
     NSString *path = [endPoint path];

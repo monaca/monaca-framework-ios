@@ -89,19 +89,33 @@
             NSLog(@"[debug] No such component: %@", key);
             return;
         }
-         NSString *property = [component retrieveUIStyle:propertyKey];
+        id property = [component retrieveUIStyle:propertyKey];
         CDVPluginResult *pluginResult = nil;
         
         if ([property isKindOfClass:[NSNumber class]]) {
-            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDouble:[property doubleValue]];
-        } else if ([property isKindOfClass:[NSString class]]) {
-            if ([property isEqualToString:kNCTrue] || [property isEqualToString:kNCFalse]
-                || [property isEqualToString:kNCUndefined]) {
-                if ([property isEqualToString:kNCUndefined])
-                    property = @"undefined";
+            if ([NSStringFromClass([property class]) isEqualToString:@"__NSCFBoolean"]) {
+                if ([property isEqual:kNCTrue])
+                    property = @"true";
+                else
+                    property = @"false";
                 pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"%%BOOL%%"];
                 NSString *script = [pluginResult toSuccessCallbackString:callbackID];
                 script = [script stringByReplacingOccurrencesOfString:@"\"%%BOOL%%\"" withString:property];
+                [self writeJavascript:script];
+                return;
+            } else {
+                pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"%%FLOAT%%"];
+                NSString *script = [pluginResult toSuccessCallbackString:callbackID];
+                script = [script stringByReplacingOccurrencesOfString:@"\"%%FLOAT%%\"" withString:[NSString stringWithFormat:@"%f", [property floatValue]]];
+                [self writeJavascript:script];
+                return;
+            }
+        } else if ([property isKindOfClass:[NSString class]]) {
+            if ([property isEqualToString:kNCUndefined]) {
+                property = @"undefined";
+                pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"%%UNDEFINED%%"];
+                NSString *script = [pluginResult toSuccessCallbackString:callbackID];
+                script = [script stringByReplacingOccurrencesOfString:@"\"%%UNDEFINED%%\"" withString:property];
                 [self writeJavascript:script];
                 return;
             } else {

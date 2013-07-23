@@ -8,13 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import <QuartzCore/QuartzCore.h>
+#import "MFTransitParameter.h"
 
-@interface MFTransitPushParameter : NSObject {
+@interface MFTransitPushParameter : MFTransitParameter {
     @protected
     CATransition *transition_;
     BOOL hasDefaultPushAnimation_;
     BOOL clearStack_;
-    NSString *target_;
 }
 
 + (MFTransitPushParameter*)parseOptionsDict:(NSDictionary*)options;
@@ -22,6 +22,5 @@
 @property (assign, readonly) BOOL clearStack;
 @property (retain, readonly) CATransition *transition;
 @property (assign, readonly) BOOL hasDefaultPushAnimation;
-@property (retain, readonly) NSString *target;
 
 @end

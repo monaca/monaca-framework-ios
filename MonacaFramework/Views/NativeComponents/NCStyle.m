@@ -9,6 +9,7 @@
 #import "NCStyle.h"
 #import "MFUIChecker.h"
 #import "NativeComponentsInternal.h"
+#import "MFViewManager.h"
 
 @implementation NCStyle
 
@@ -22,12 +23,13 @@
         [defaultStyle setValue:kNCTypeAuto forKey:kNCStyleBackgroundSize];
         [defaultStyle setValue:kNCTypeNoRepeat forKey:kNCStyleBackgroundRepeat];
         [defaultStyle setValue:@[kNCTypeCenter, kNCTypeCenter] forKey:kNCStyleBackgroundPosition];
-        [defaultStyle setValue:kNCTypeInherit forKey:kNCStyleSupportedOrientation];
+        [defaultStyle setValue:kNCTypeInherit forKey:kNCStyleScreenOrientation];
     }
     if ([component isEqualToString:kNCContainerToolbar]) {
         [defaultStyle setValue:kNCTrue forKey:kNCStyleVisibility];
         [defaultStyle setValue:kNCFalse forKey:kNCStyleDisable];
         [defaultStyle setValue:kNCBlack forKey:kNCStyleBackgroundColor];
+        [defaultStyle setValue:[NSNumber numberWithFloat:1.0] forKey:kNCStyleOpacity];
         [defaultStyle setValue:kNCUndefined forKey:kNCStyleTitle];
         [defaultStyle setValue:kNCUndefined forKey:kNCStyleSubtitle];
         [defaultStyle setValue:kNCWhite forKey:kNCStyleTitleColor];
@@ -55,6 +57,7 @@
     }
     if ([component isEqualToString:kNCComponentBackButton]) {
         [defaultStyle setValue:kNCTrue forKey:kNCStyleVisibility];
+        [defaultStyle setValue:kNCFalse forKey:kNCStyleDisable];
         [defaultStyle setValue:kNCBlack forKey:kNCStyleBackgroundColor];
         [defaultStyle setValue:kNCWhite forKey:kNCStyleActiveTextColor];
         [defaultStyle setValue:kNCWhite forKey:kNCStyleTextColor];
@@ -108,6 +111,11 @@
     return self;
 }
 
+- (id)getDefaultStyle:(NSString *)key
+{
+    return [_defaultStyles objectForKey:key];
+}
+
 - (void)resetStyles
 {
     _styles = [_defaultStyles mutableCopy];
@@ -115,9 +123,12 @@
 
 - (void)setStyles:(NSDictionary *)styles
 {
+
     for (id styleKey in styles) {
-        if ([_defaultStyles objectForKey:styleKey] == nil)
+        if ([_defaultStyles objectForKey:styleKey] == nil) {
+            NSLog(NSLocalizedString(@"Key is not one of valid keys", nil), _component, styleKey, [MFUIChecker dictionaryKeysToString:[_styles copy]]);
             continue;
+        }
         if (![self checkStyle:[styles objectForKey:styleKey] forKey:styleKey]) {
             continue;
         }
@@ -156,9 +167,9 @@
     }
     
     if (value == [NSNull null]) {
-        value = nil;
+        value = kNCUndefined;
     }
-    if ([NSStringFromClass([value class]) isEqualToString:@"__NSCFBoolean"]) {
+    if ([NSStringFromClass([[_styles valueForKey:key] class]) isEqualToString:@"__NSCFBoolean"]) {
         if (isFalse(value)) {
             value = kNCFalse;
         } else {
@@ -170,10 +181,26 @@
             [[MFUIChecker valueType:[_defaultStyles valueForKey:key]] isEqualToString:@"Float"]) {
             return YES;
         }
+        if ([_component isEqualToString:kNCContainerPage]) {
+            //TODO: Page styleは他でcheckする。
+            if ([key isEqualToString:kNCStyleBackgroundColor])
+                return NO;
+            return YES;
+        }
         NSLog(NSLocalizedString(@"Invalid value type", nil), _component , key,
               [MFUIChecker valueType:[_defaultStyles objectForKey:key]], value);
         return NO;
     }
+    if ([key isEqualToString:kNCStyleInnerImage] || [key isEqualToString:kNCStyleImage] || [key isEqualToString:kNCStyleBackgroundImage]) {
+        if (value != nil && ![value isEqualToString:kNCUndefined]) {
+            NSString *imagePath = [[MFViewManager currentWWWFolderName] stringByAppendingPathComponent:value];
+            if ([UIImage imageWithContentsOfFile:imagePath] == nil) {
+                NSLog(NSLocalizedString(@"Resource not found", nil), _component, key, value);
+                return NO;
+            }
+        }
+    }
+    
     return YES;
 }
 

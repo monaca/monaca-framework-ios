@@ -30,7 +30,6 @@
 @property(nonatomic, copy) NSString *cid;
 @property(nonatomic, retain) id view;
 @property(nonatomic, retain) NCBarButtonItem *component;
-@property(nonatomic, copy) NSString *type;
 @property(nonatomic, copy) NSString *onTapScript;
 @property(nonatomic, copy) NSString *onChangeScript;
 @property(nonatomic, copy) NSString *onSearchScript;

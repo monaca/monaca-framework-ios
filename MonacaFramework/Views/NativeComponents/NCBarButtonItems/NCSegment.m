@@ -17,7 +17,9 @@
     if (self) {
         _segment = [[UISegmentedControl alloc] initWithItems:nil];
         [_segment setSegmentedControlStyle:UISegmentedControlStyleBar];
+        _type = kNCComponentSegment;
         self.customView = _segment;
+
         _ncStyle = [[NCStyle alloc] initWithComponent:kNCComponentSegment];
     }
 
@@ -36,7 +38,19 @@
     if (![_ncStyle checkStyle:value forKey:key]) {
         return;
     }
-
+    
+    if (value == [NSNull null]) {
+        value = kNCUndefined;
+    }
+    if ([NSStringFromClass([[_ncStyle.styles valueForKey:key] class]) isEqualToString:@"__NSCFBoolean"]) {
+        if (isFalse(value)) {
+            value = kNCFalse;
+        } else {
+            value = kNCTrue;
+        }
+    }
+    
+    
     if ([key isEqualToString:kNCStyleVisibility]) {
         _hidden = isFalse(value);
         [_toolbar applyVisibility];
@@ -72,20 +86,15 @@
             [_segment insertSegmentWithTitle:text atIndex:index++ animated:NO];
         }
         [_segment sizeToFit];
+        // activeIndexはtextsが設定されるまで反映されないので再度実行
+        [self updateUIStyle:[[_ncStyle styles] objectForKey:kNCStyleActiveIndex] forKey:kNCStyleActiveIndex];
+        
     }
     if ([key isEqualToString:kNCStyleActiveIndex]) {
         [_segment setSelectedSegmentIndex:[value intValue]];
     }
-
-    [_ncStyle updateStyle:value forKey:key];
-}
-
-- (id)retrieveUIStyle:(NSString *)key
-{
-    // activeIndexについてはselectedSegmentIndexから取得する．
-    [_ncStyle updateStyle:[NSNumber numberWithInt:[_segment selectedSegmentIndex]] forKey:kNCStyleActiveIndex];
     
-    return [_ncStyle retrieveStyle:key];
+    [_ncStyle updateStyle:value forKey:key];
 }
 
 @end

@@ -9,6 +9,7 @@
 #import "NCButton.h"
 #import "NativeComponentsInternal.h"
 #import "MFUtility.h"
+#import "MFViewManager.h"
 
 @implementation NCButton
 
@@ -18,6 +19,7 @@
     if (self) {
         [self setTitle:@""];
         _ncStyle = [[NCStyle alloc] initWithComponent:kNCComponentButton];
+        _type = kNCComponentButton;
     }
     
     return self;
@@ -29,6 +31,17 @@
 {
     if (![_ncStyle checkStyle:value forKey:key]) {
         return;
+    }
+    
+    if (value == [NSNull null]) {
+        value = kNCUndefined;
+    }
+    if ([NSStringFromClass([[_ncStyle.styles valueForKey:key] class]) isEqualToString:@"__NSCFBoolean"]) {
+        if (isFalse(value)) {
+            value = kNCFalse;
+        } else {
+            value = kNCTrue;
+        }
     }
 
     if ([key isEqualToString:kNCStyleVisibility]) {
@@ -42,6 +55,7 @@
             [self setEnabled:NO];
         }
     }
+
     if ([key isEqualToString:kNCStyleBackgroundColor]) {
         [self setTintColor:hexToUIColor(removeSharpPrefix(value), 1)];
     }
@@ -59,7 +73,7 @@
         // TODO: check
     }
     if ([key isEqualToString:kNCStyleInnerImage]) {
-        NSString *imagePath = [[MFUtility currentViewController].wwwFolderName stringByAppendingPathComponent:value];
+        NSString *imagePath = [[MFViewManager currentWWWFolderName] stringByAppendingPathComponent:value];
         UIImage *image = [UIImage imageWithContentsOfFile:imagePath];
         [self setImage:image];
         if (image) {

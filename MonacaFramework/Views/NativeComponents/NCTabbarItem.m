@@ -9,8 +9,11 @@
 #import "NCTabbarItem.h"
 #import "NativeComponentsInternal.h"
 #import "MFUtility.h"
+#import "MFViewManager.h"
 
 @implementation NCTabbarItem
+
+@synthesize type = _type;
 
 - (id)init
 {
@@ -18,6 +21,7 @@
 
     if (self) {
         _ncStyle = [[NCStyle alloc] initWithComponent:kNCComponentTabbarItem];
+        _type = kNCComponentTabbarItem;
     }
 
     return self;
@@ -42,12 +46,23 @@
     if (![_ncStyle checkStyle:value forKey:key]) {
         return;
     }
+    
+    if (value == [NSNull null]) {
+        value = kNCUndefined;
+    }
+    if ([NSStringFromClass([[_ncStyle.styles valueForKey:key] class]) isEqualToString:@"__NSCFBoolean"]) {
+        if (isFalse(value)) {
+            value = kNCFalse;
+        } else {
+            value = kNCTrue;
+        }
+    }
 
     if ([key isEqualToString:kNCStyleText]) {
         [self setTitle:value];
     }
     if ([key isEqualToString:kNCStyleImage]) {
-        NSString *imagePath = [[MFUtility currentViewController].wwwFolderName stringByAppendingPathComponent:value];
+        NSString *imagePath = [[MFViewManager currentWWWFolderName] stringByAppendingPathComponent:value];
         UIImage *image = [UIImage imageWithContentsOfFile:imagePath];
         [self setImage:image];
     }

@@ -14,10 +14,13 @@
 @optional
 - (void)setUserInterface:(NSDictionary *)uidict;
 - (void)applyUserInterface;
+- (void)removeUserInterface;
 - (void)applyVisibility;
 - (void)applyBackButton;
 @required
 - (void)updateUIStyle:(id)value forKey:(NSString *)key;
 - (id)retrieveUIStyle:(NSString *)key;
+
+@property (nonatomic, copy) NSString *type;
 
 @end

@@ -16,6 +16,7 @@
     
     if (self) {
         _label = [[UILabel alloc] init];
+        _type = kNCComponentLabel;
         [_label setBackgroundColor:[UIColor clearColor]];
         self.customView = _label;
         _ncStyle = [[NCStyle alloc] initWithComponent:kNCComponentLabel];
@@ -31,6 +32,17 @@
     if (![_ncStyle checkStyle:value forKey:key]) {
         return;
     }
+    
+    if (value == [NSNull null]) {
+        value = kNCUndefined;
+    }
+    if ([NSStringFromClass([[_ncStyle.styles valueForKey:key] class]) isEqualToString:@"__NSCFBoolean"]) {
+        if (isFalse(value)) {
+            value = kNCFalse;
+        } else {
+            value = kNCTrue;
+        }
+    } 
 
     if ([key isEqualToString:kNCStyleVisibility]) {
         _hidden = isFalse(value);

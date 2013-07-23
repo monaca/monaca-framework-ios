@@ -13,8 +13,9 @@
 #import "CDVPlugin.h"
 #import "MFTransitPlugin.h"
 #import "MFViewBackground.h"
+#import "MFViewManager.h"
 
-#define kWebViewBackground  @"bg"
+#import "NativeComponentsInternal.h"
 
 @interface MFViewController ()
 
@@ -26,6 +27,9 @@
 @synthesize ncManager = _ncManager;
 @synthesize uiDict = _uiDict;
 @synthesize backButton = _backButton;
+@synthesize transitAnimated = _transitAnimated;
+@synthesize screenOrientations = _screenOrientations;
+
 
 - (id)initWithFileName:(NSString *)fileName
 {
@@ -34,8 +38,9 @@
     if (self) {
         self.startPage = [self removeFragment:fileName];
         self.ncManager = [[NCManager alloc] init];
-        _ncStyle = [[NCStyle alloc] initWithComponent:kNCContainerPage];
         self.wantsFullScreenLayout = NO;
+        self.transitAnimated = YES;
+        self.screenOrientations = UIInterfaceOrientationMaskAll;
     }
     return self;
 }
@@ -51,6 +56,7 @@
     [super viewDidAppear:animated];
     
     [self applyBarUserInterface];
+    
     [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
 }
 
@@ -58,7 +64,10 @@
 {
     [super viewWillAppear:animated];
     
-    self.webView.delegate = self;
+    [self applyBarVisibility:_transitAnimated];
+    
+    [MFViewManager setCurrentViewController:self];
+    [MFViewManager setCurrentWWWFolderName:self.wwwFolderName];
 }
 
 - (void)viewDidLoad
@@ -66,15 +75,16 @@
     [super viewDidLoad];
 
     [self setBarUserInterface:self.uiDict];
-
-    [self applyUserInterface];
-    
-
     
     // whether auto link for datatype
     [self processDataTypes];
     
     [self initPlugins]; // 画面を消す手前でdestroyを実行すること
+    self.webView.delegate = self;
+    
+    // viewBackground用のキー値監視
+    [self addObserver:self forKeyPath:@"view.frame" options:NSKeyValueObservingOptionOld context:NULL];
+
 //    self.webView.scrollView.decelerationRate = UIScrollViewDecelerationRateNormal;
 }
 
@@ -84,6 +94,7 @@
         self.webView.delegate = nil; // 解放しておかないとTransitを繰り返すとアプリが固まる
         self.webView = nil; // 解放しておかないとWebViewが増え続ける
         [self.webView removeFromSuperview];
+        [self resetPlugins];
     }
 }
 
@@ -109,89 +120,75 @@
     }
 }
 
+- (void)applyBarVisibility:(BOOL)animated
+{
+    if ([MFViewManager isTabbarControllerTop])
+        return;
+        
+    if (_navigationBar) {
+        [self.navigationController setNavigationBarHidden:NO animated:animated];
+    } else {
+        [self.navigationController setNavigationBarHidden:YES animated:animated];
+    }
+    if (_toolbar) {
+        [self.navigationController setToolbarHidden:NO animated:animated];
+    } else {
+        [self.navigationController setToolbarHidden:YES animated:animated];
+    }
+}
+
 - (void)applyBarUserInterface
 {
     if (_navigationBar) {
         [_navigationBar applyUserInterface];
-    } else {
-        [self.navigationController setNavigationBarHidden:YES];
     }
-    
     if (_toolbar) {
         [_toolbar applyUserInterface];
-    } else {
-        [self.navigationController setToolbarHidden:YES];
-        [self.tabBarController.navigationController setToolbarHidden:YES];
     }
 }
 
 - (void)setBarUserInterface:(NSDictionary *)uidict
 {
+    
     NSDictionary *top = [uidict objectForKey:kNCPositionTop];
     NSDictionary *bottom = [uidict objectForKey:kNCPositionBottom];
     NSMutableDictionary *style = [NSMutableDictionary dictionary];
     [style addEntriesFromDictionary:[uidict objectForKey:kNCTypeStyle]];
     [style addEntriesFromDictionary:[uidict objectForKey:kNCTypeIOSStyle]];
 
-    if (top != nil) {
+    // setting for page style
+    if ([style isKindOfClass:NSDictionary.class]) {
+        _bgView = [[MFViewBackground alloc] initWithViewController:self];
+        [self.ncManager setComponent:_bgView forID:[uidict objectForKey:kNCTypeID]];
+        [(MFViewBackground *)_bgView createBackgroundView:style];
+    }
+    
+    if (!self.navigationController || [MFViewManager isTabbarControllerTop])
+        return;
+    
+    if ([[top objectForKey:kNCTypeContainer] isEqualToString:kNCContainerToolbar]) {
         _navigationBar = [[NCNavigationBar alloc] initWithViewController:self];
         [self.ncManager setComponent:_navigationBar forID:[top objectForKey:kNCTypeID]];
         [(NCNavigationBar *)_navigationBar createNavigationBar:top];
     }
-    if (bottom != nil) {
+    if ([[bottom objectForKey:kNCTypeContainer] isEqualToString:kNCContainerToolbar]) {
         _toolbar =  [[NCToolbar alloc] initWithViewController:self];
         [self.ncManager setComponent:_toolbar forID:[bottom objectForKey:kNCTypeID]];
         [(NCToolbar *)_toolbar createToolbar:bottom];
-    }
-    
-    // setting for page style
-    if ([style isKindOfClass:NSDictionary.class]) {
-        [self setUserInterface:style];
     }
 }
 
 - (void)removeUserInterface
 {
-    [_ncStyle resetStyles];
-    [self.ncManager removeAllComponents];
-}
-
-#pragma mark - UIStyleProtocol
-
-- (void)setUserInterface:(NSDictionary *)uidict
-{
-    [_ncStyle setStyles:uidict];
-}
-
-- (void)applyUserInterface
-{
-    for (id key in [_ncStyle styles]) {
-        [self updateUIStyle:[[_ncStyle styles] objectForKey:key] forKey:key];
-    }
-}
-
-- (void)updateUIStyle:(id)value forKey:(NSString *)key
-{
-    if (![_ncStyle checkStyle:value forKey:key]) {
-        return;
-    }
+    [_navigationBar removeUserInterface];
+    _navigationBar = nil;
+    [_toolbar removeUserInterface];
+    _toolbar = nil;
+    [_bgView removeUserInterface];
     
-    if ([key isEqualToString:kNCStyleBackgroundColor]) {
-        if ([value isKindOfClass:NSString.class]) {
-            UIColor *color = hexToUIColor(removeSharpPrefix(value), 1);
-            [self setBackgroundColor:color];
-        } else {
-            [self setBackgroundColor:UIColor.whiteColor];
-        }
-    }
-    
-    [_ncStyle updateStyle:value forKey:key];
+    [self.ncManager removeAllComponents];	
 }
 
-- (id)retrieveUIStyle:(NSString *)key
-{
-    return [_ncStyle retrieveStyle:key];
-}
 
 #pragma mark - webview delegate
 
@@ -224,7 +221,7 @@
         [info setObject:errorPath forKey:@"path"];
         [MFEvent dispatchEvent:monacaEvent404Error withInfo:info];
 
-        [MFUtility show404PageWithWebView:webView path:errorPath];
+        [MFViewManager show404PageWithWebView:webView path:errorPath];
         _previousPath = errorPath;
         return NO;
     }
@@ -235,6 +232,7 @@
    
     if ([url isFileURL]) {
         self.wwwFolderName = [url.path stringByDeletingLastPathComponent];
+        [MFViewManager setCurrentWWWFolderName:self.wwwFolderName];
         self.previousPath = [url path];
 
         [MFEvent dispatchEvent:monacaEventOpenPage withInfo:nil];
@@ -246,6 +244,12 @@
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
     [super webViewDidFinishLoad:webView];
+    NSURL *url = [[webView.request URL] standardizedURL];
+    if ([url isFileURL]) {
+        self.wwwFolderName = [url.path stringByDeletingLastPathComponent];
+        [MFViewManager setCurrentWWWFolderName:self.wwwFolderName];
+        self.previousPath = [url path];
+    }
     [webView stringByEvaluatingJavaScriptFromString:@"document.documentElement.style.webkitTouchCallout = 'none';"];
 }
 
@@ -262,6 +266,15 @@
     NSString *js = [NSString stringWithFormat:@"monaca.cloud.Push.send(%@);", [[NSUserDefaults standardUserDefaults] objectForKey:@"extraJSON"]];
     [self.webView stringByEvaluatingJavaScriptFromString:js];
     [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"extraJSON"];
+}
+
+#pragma mark - key observer
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if([keyPath isEqualToString:@"view.frame"]) {
+        [(MFViewBackground *)_bgView updateFrame];
+    }
 }
 
 #pragma mark - splash screen
@@ -325,69 +338,6 @@
             [plugin setWebView:nil];
         }
     }
-}
-
-#pragma mark - Other methods
-
-- (void)setBackgroundColor:(UIColor *)color
-{
-    self.webView.backgroundColor = [UIColor clearColor];
-    self.webView.opaque = NO;
-    
-    UIScrollView *scrollView = (UIScrollView *)[self.webView scrollView];
-    
-    if (scrollView) {
-        scrollView.opaque = NO;
-        scrollView.backgroundColor = [UIColor clearColor];
-        // Remove shadow
-        for (UIView *subview in [scrollView subviews]) {
-            if([subview isKindOfClass:[UIImageView class]]){
-                subview.hidden = YES;
-            }
-        }
-    }
-    
-    self.view.opaque = YES;
-    self.view.backgroundColor = color;
-}
-
-
-- (void)applyStyleDict:(NSMutableDictionary*)pageStyle
-{
-    self.webView.backgroundColor = [UIColor clearColor];
-    self.webView.opaque = NO;
-    
-    UIInterfaceOrientation orientation = [MFUtility currentInterfaceOrientation];
-    float navBarHeight = [MFDevice heightOfNavigationBar:orientation];
-    if ( self.navigationController.navigationBar.hidden == YES) {
-        navBarHeight = 0;
-    }
-    
-    float tabBarHeight = 0;
-    
-    //tabBarは表示が定義されていない場合も画面外に保持されている
-    if ( self.tabBarController.tabBar.frame.origin.y < self.view.frame.size.height) {
-        tabBarHeight = [MFDevice heightOfTabBar];
-    }
-    
-    // remove old background
-    if( [[self.view viewWithTag:kWebViewBackground] isKindOfClass:UIImageView.class] )
-    {
-        [[self.view viewWithTag:kWebViewBackground] removeFromSuperview];
-    }
-    
-    MFViewBackground* backgroundImageView = [[MFViewBackground alloc] initWithFrame:CGRectMake( self.view.frame.origin.x,
-                                                                                               self.view.frame.origin.y,
-                                                                                               self.view.frame.size.width,
-                                                                                               self.view.frame.size.height)];
-    
-    backgroundImageView.tag = kWebViewBackground;
-    [backgroundImageView setAutoresizingMask:UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth ];
-    [backgroundImageView setBackgroundStyle:pageStyle];
-    [self.view insertSubview:backgroundImageView atIndex:0];
-    [backgroundImageView sendSubviewToBack:self.view];
-    [self.ncManager setComponent:backgroundImageView forID:kNCContainerPage];
-    
 }
 
 @end

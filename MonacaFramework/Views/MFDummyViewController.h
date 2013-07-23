@@ -1,5 +1,5 @@
 //
-//  MFDammyViewController.h
+//  MFDummyViewController.h
 //  MonacaFramework
 //
 //  Created by Yasuhiro Mitsuno on 2013/05/03.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MFDammyViewController : UIViewController
+@interface MFDummyViewController : UIViewController
 
 @end

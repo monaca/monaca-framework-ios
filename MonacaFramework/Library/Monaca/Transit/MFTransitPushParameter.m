@@ -13,7 +13,6 @@
 @synthesize transition = transition_;
 @synthesize clearStack = clearStack_;
 @synthesize hasDefaultPushAnimation = hasDefaultPushAnimation_;
-@synthesize target = target_;
 
 - (id)init
 {
@@ -33,11 +32,6 @@
     clearStack_ = clearStack;
 }
 
-- (void)setTarget:(NSString *)target
-{
-    target_ = target;
-}
-
 - (void)setTransition:(CATransition *)transition
 {
     transition_ = transition;
@@ -54,7 +48,6 @@
 { 
     CATransition* transition = nil;
     BOOL hasDefaultPushAnimation = YES, clearStack = NO;
-    NSString *target = nil;
     
     // "animation" parameter parsing
     {
@@ -77,8 +70,8 @@
                 // animation : "slideRight"
                 transition = [CATransition animation];
                 transition.duration = 0.4f;
-                transition.type = kCATransitionPush;
-                transition.subtype = kCATransitionFromLeft;
+                transition.type = kCATransitionMoveIn;
+                transition.subtype = [self detectAnimation:kCATransitionFromLeft];
                 [transition setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionDefault]];
                 hasDefaultPushAnimation = NO;
                 
@@ -88,7 +81,7 @@
                 transition = [CATransition animation];
                 transition.duration = 0.4f;
                 transition.type = kCATransitionMoveIn;
-                transition.subtype = kCATransitionFromTop;
+                transition.subtype = [self detectAnimation:kCATransitionFromTop];
                 [transition setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionDefault]];
                 hasDefaultPushAnimation = NO;
                 
@@ -113,25 +106,10 @@
         }
     }
     
-    // "target" parameter parsing
-    {
-        id targetParam = [options objectForKey:@"target"];
-        if (targetParam != nil && [targetParam isKindOfClass:NSString.class]) {
-            if ([targetParam isEqualToString:@"_parent"] || [targetParam isEqualToString:@"_self"]) {
-                target = targetParam;
-            }
-        }
-        if (target == nil) {
-            NSLog(@"unkonwn target type: %@", targetParam);
-            target = @"_parent";
-        }
-    }
-    
     MFTransitPushParameter *_self = [[MFTransitPushParameter alloc] init];
     _self.clearStack = clearStack;
     _self.transition = transition;
     _self.hasDefaultPushAnimation = hasDefaultPushAnimation;
-    _self.target = target;
     
     return _self;
 }

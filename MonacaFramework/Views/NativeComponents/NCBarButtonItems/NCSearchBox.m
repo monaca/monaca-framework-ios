@@ -18,6 +18,7 @@
 
     if (self) {
         _searchBar = [[UISearchBar alloc] init];
+        _type = kNCComponentSearchBox;
         UITextField *searchField = [_searchBar valueForKey:@"_searchField"];
         [searchField  setEnablesReturnKeyAutomatically:NO];
 
@@ -38,6 +39,11 @@
     [_delegate searchBarSearchButtonClicked:searchBar];
 }
 
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    [_ncStyle updateStyle:searchText forKey:kNCStyleValue];
+}
+
 #pragma mark - UIStyleProtocol
 
 - (void)updateUIStyle:(id)value forKey:(NSString *)key
@@ -45,6 +51,18 @@
     if (![_ncStyle checkStyle:value forKey:key]) {
         return;
     }
+    
+    if (value == [NSNull null]) {
+        value = kNCUndefined;
+    }
+    if ([NSStringFromClass([[_ncStyle.styles valueForKey:key] class]) isEqualToString:@"__NSCFBoolean"]) {
+        if (isFalse(value)) {
+            value = kNCFalse;
+        } else {
+            value = kNCTrue;
+        }
+    }
+    
 
     if ([key isEqualToString:kNCStyleVisibility]) {
         _hidden = isFalse(value);
@@ -81,14 +99,6 @@
     }
 
     [_ncStyle updateStyle:value forKey:key];
-}
-
-- (id)retrieveUIStyle:(NSString *)key
-{
-    // valueについてはsearchBarから取得する．
-    [_ncStyle updateStyle:[_searchBar text] forKey:kNCStyleValue];
-    
-    return [_ncStyle retrieveStyle:key];
 }
 
 @end
