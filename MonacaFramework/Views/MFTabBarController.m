@@ -122,7 +122,7 @@
 {
     MFViewController *vc = (MFViewController *)viewController;
     NSString *path = [vc.startWwwFolder stringByAppendingPathComponent:vc.startPage];
-    [vc.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:path]]];
+    [vc.webView loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:path]]];
 }
 
 #pragma mark - UIStyleProtocol
