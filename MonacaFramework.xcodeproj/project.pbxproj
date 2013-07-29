@@ -1708,7 +1708,6 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/MonacaFramework/Library/Vendor\"",
 					"\"$(SRCROOT)/MFUnitTest\"",
-					"\"$(SRCROOT)/MonacaFramework/Library/InnovationPlusPlugin\"",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1746,7 +1745,6 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/MonacaFramework/Library/Vendor\"",
 					"\"$(SRCROOT)/MFUnitTest\"",
-					"\"$(SRCROOT)/MonacaFramework/Library/InnovationPlusPlugin\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MFUnitTest/MFUnitTest-Prefix.pch";
@@ -1782,7 +1780,6 @@
 					"\"$(SRCROOT)/MonacaFramework/Plugins\"",
 					"\"$(SRCROOT)/../../../Shared/PhoneGap/Frameworks\"",
 					"\"$(SRCROOT)/MonacaFramework/Library/Vendor\"",
-					"\"$(SRCROOT)/MonacaFramework/Library/InnovationPlusPlugin\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MonacaFramework/MonacaFramework-Prefix.pch";
@@ -1816,7 +1813,6 @@
 					"\"$(SRCROOT)/MonacaFramework/Plugins\"",
 					"\"$(SRCROOT)/../../../Shared/PhoneGap/Frameworks\"",
 					"\"$(SRCROOT)/MonacaFramework/Library/Vendor\"",
-					"\"$(SRCROOT)/MonacaFramework/Library/InnovationPlusPlugin\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MonacaFramework/MonacaFramework-Prefix.pch";
@@ -1845,7 +1841,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/MonacaFramework/Library/Vendor\"",
-					"\"$(SRCROOT)/MonacaFramework/Library/InnovationPlusPlugin\"",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1882,7 +1877,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/MonacaFramework/Library/Vendor\"",
-					"\"$(SRCROOT)/MonacaFramework/Library/InnovationPlusPlugin\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MonacaSandbox/MonacaSandbox-Prefix.pch";
