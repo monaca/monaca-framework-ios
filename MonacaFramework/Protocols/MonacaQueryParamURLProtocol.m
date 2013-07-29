@@ -54,10 +54,7 @@ static BOOL isWork = YES;
 - (NSString *)InsertMonacaQueryParams:(NSURLRequest *)request
 {
     NSString *html = [NSString stringWithContentsOfFile:request.URL.path encoding:NSUTF8StringEncoding error:nil];
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    
-    html = [MFUtility insertMonacaQueryParams:html query: [userDefaults stringForKey:@"queryParams"]];
-
+    html = [MFUtility insertMonacaQueryParams:html query:request.URL.query];
     return html;
 }
 
