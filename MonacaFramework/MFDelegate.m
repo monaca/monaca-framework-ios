@@ -9,14 +9,13 @@
 #import <objc/runtime.h>
 
 #import "MFDelegate.h"
-#import "MFViewController.h"
-#import "MFTabBarController.h"
-#import "NativeComponents.h"
 #import "MFSecureFileURLProtocol.h"
 #import "MonacaQueryParamURLProtocol.h"
-#import "CDVViewController.h"
+#import "MFJSInterfaceProtocol.h"
 #import "CDVSplashScreen.h"
 #import "MFUtility.h"
+#import "MFViewManager.h"
+#import "MFViewBuilder.h"
 
 @class MFViewController;
 
@@ -28,7 +27,6 @@
 
 @synthesize monacaNavigationController = monacaNavigationController_;
 @synthesize window;
-@synthesize viewController = viewController_;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -40,14 +38,15 @@
     }
 
     // for use getMonacaBundlePlist
-    {
+    if (YES) {
         Class klass = [CDVViewController class];
         Method old = class_getClassMethod(klass, @selector(getBundlePlist:));
         Method new = class_getClassMethod(klass, @selector(getMonacaBundlePlist:));
         method_exchangeImplementations(old, new);
     }
 
-    {
+    // local scope with if block
+    if (YES) {
         Class klass = [CDVSplashScreen class];
         Method old = class_getInstanceMethod(klass, @selector(__show:));
         Method new = class_getInstanceMethod(klass, @selector(__showMonacaSplashScreen:));
@@ -55,10 +54,7 @@
     }
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.viewController = [[MFViewController alloc] initWithFileName:@"index.html"];
-    [MFUtility setupMonacaViewController:self.viewController];
-    
-    self.monacaNavigationController = [[MFNavigationController alloc] initWithRootViewController:self.viewController];
+    self.monacaNavigationController = [MFViewBuilder createMonacaNavigationControllerWithWwwDir:[MFUtility getBaseURL].path withPath:@"index.html"];
     
     // register protocols.
     [NSURLProtocol registerClass:[MonacaQueryParamURLProtocol class]];
@@ -78,11 +74,6 @@
     [MFUtility setMonacaCloudCookie];
 
     return YES;
-}
-
-- (NSURL *)getBaseURL {
-    NSString *base_path = [NSString stringWithFormat:@"%@/www", [[NSBundle mainBundle] bundlePath]];
-    return [NSURL fileURLWithPath:base_path];
 }
 
 - (UIInterfaceOrientation)currentInterfaceOrientation{
@@ -151,7 +142,7 @@
     [[NSUserDefaults standardUserDefaults] setObject:extraJson forKey:@"extraJSON"];
     application.applicationIconBadgeNumber = 0;
 
-    [self.viewController sendPush];
+    [[MFViewManager currentViewController] sendPush];
 }
 
 @end

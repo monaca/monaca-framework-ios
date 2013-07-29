@@ -16,6 +16,7 @@
 }
 
 + (void)show:(MFSpinnerParameter *)parameter;
++ (BOOL)isAnimating;
 + (void)updateTitle:(NSString *)title;
 + (void)hide;
 

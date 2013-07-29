@@ -7,109 +7,49 @@
 //
 
 #import "NCManager.h"
-
-
-static NSMutableDictionary *
-search(NSString *cid, NSMutableDictionary *barStyle) {
-    if ([[barStyle objectForKey:kNCTypeID] isEqualToString:cid]) {
-        return barStyle;
-    }
-    
-    NSArray *items = [barStyle objectForKey:kNCTypeItems];
-    for (NSMutableDictionary *dict in items) {
-        if ([[dict objectForKey:kNCTypeID] isEqualToString:cid]) {
-            return dict;
-        }
-    }
-
-    NSArray *leftComponents = [barStyle objectForKey:kNCTypeLeft];
-    for (NSMutableDictionary *dict in leftComponents) {
-        if ([[dict objectForKey:kNCTypeID] isEqualToString:cid]) {
-            return dict;
-        }
-    }
-    
-    NSArray *centerComponents = [barStyle objectForKey:kNCTypeCenter];
-    for (NSMutableDictionary *dict in centerComponents) {
-        if ([[dict objectForKey:kNCTypeID] isEqualToString:cid]) {
-            return dict;
-        }
-    }
-    
-    NSArray *rightComponents = [barStyle objectForKey:kNCTypeRight];
-    for (NSMutableDictionary *dict in rightComponents) {
-        if ([[dict objectForKey:kNCTypeID] isEqualToString:cid]) {
-            return dict;
-        }
-    }
-    return nil;
-}
-
+#import "MFUtility.h"
 
 @implementation NCManager
-
-@synthesize properties = properties_;
-@synthesize components = components_;
 
 - (id)init
 {
     self = [super init];
     if (nil != self) {
-        self.properties = [[NSMutableDictionary alloc] init];
-        self.components = [[NSMutableDictionary alloc] init];
+        _components = [[NSMutableDictionary alloc] init];
+        _noIDComponents = [[NSMutableArray alloc] init];
     }
     return self;
 }
 
-- (void)dealloc
+- (id<UIStyleProtocol>)componentForID:(NSString *)cid
 {
-    self.components = nil;
-    self.properties = nil;
+    return [_components objectForKey:cid];
 }
 
-/*
- * Returns dictionary which represents properties of a native component corresponding to the given ID.
- */
-- (NSMutableDictionary *)propertiesForID:(NSString *)cid
+- (void)setComponent:(id<UIStyleProtocol>)component forID:(NSString *)cid
 {
-    NSMutableDictionary *result = nil;
-    
-    NSMutableDictionary *topBarStyle = [self.properties objectForKey:kNCPositionTop];
-    result = search(cid, topBarStyle);
-    if (result) {
-        return result;
-    }
-    
-    NSMutableDictionary *bottomBarStyle = [self.properties objectForKey:kNCPositionBottom];
-    result = search(cid, bottomBarStyle);
-    if (result) {
-        return result;
-    }
-
-    if([cid isEqual:kNCContainerPage])
-    {
-        NSMutableDictionary *pageStyle = [self.properties objectForKey:kNCPageStyle];
-        if (pageStyle)
-        {
-            result = [NSDictionary dictionaryWithObject:pageStyle forKey:kNCPageStyle];
-            return result;
-        }
-    }
-    
-    return nil;
-}
-
-- (id)componentForID:(NSString *)cid
-{
-    return [self.components objectForKey:cid];
-}
-
-- (void)setComponent:(id)component forID:(NSString *)cid
-{
-    if (component == nil || cid == nil) {
+    if (component == nil) {
         return;
     }
-    [self.components setValue:component forKey:cid];
+
+    if (cid == nil) {
+        [_noIDComponents addObject:component];
+        return;
+    }
+    
+    if ([_components valueForKey:cid] != nil) {
+        NSLog(NSLocalizedString(@"Duplicate id", nil), cid, [self componentForID:cid].type, [component type]);
+        [_noIDComponents addObject:component];
+        return;
+    }
+    
+    [_components setValue:component forKey:cid];
+}
+
+- (void)removeAllComponents
+{
+    [_components removeAllObjects];
+    [_noIDComponents removeAllObjects];
 }
 
 @end

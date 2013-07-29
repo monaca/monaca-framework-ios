@@ -10,41 +10,42 @@
 
 @implementation MFTransitPushParameter
 
-- (id)init
-{
-    return [super init];
-}
+@synthesize transition = transition_;
+@synthesize clearStack = clearStack_;
+@synthesize hasDefaultPushAnimation = hasDefaultPushAnimation_;
 
-- (id)init:(CATransition*)transition withClearStack:(BOOL)clearStack hasDefaultPushAnimation:(BOOL)hasDefaultPushAnimation
+- (id)init
 {
     self = [super init];
     
-    if (self != nil) {
-        transition_ = transition;
-        clearStack_ = clearStack;
-        hasDefaultPushAnimation_ = hasDefaultPushAnimation;
+    if (self) {
+
     }
     
     return self;
 }
 
-- (BOOL)clearStack
+#pragma mark - private method
+
+- (void)setClearStack:(BOOL)clearStack
 {
-    return clearStack_;
+    clearStack_ = clearStack;
 }
 
-- (CATransition*)transition
+- (void)setTransition:(CATransition *)transition
 {
-    return transition_;
+    transition_ = transition;
 }
 
-- (BOOL)hasDefaultPushAnimation
+- (void)setHasDefaultPushAnimation:(BOOL)hasDefaultPushAnimation
 {
-    return hasDefaultPushAnimation_;
+    hasDefaultPushAnimation_ = hasDefaultPushAnimation;
 }
+
+#pragma mark private method end -
 
 + (MFTransitPushParameter*)parseOptionsDict:(NSDictionary*)options
-{
+{ 
     CATransition* transition = nil;
     BOOL hasDefaultPushAnimation = YES, clearStack = NO;
     
@@ -69,8 +70,8 @@
                 // animation : "slideRight"
                 transition = [CATransition animation];
                 transition.duration = 0.4f;
-                transition.type = kCATransitionPush;
-                transition.subtype = kCATransitionFromLeft;
+                transition.type = kCATransitionMoveIn;
+                transition.subtype = [self detectAnimation:kCATransitionFromLeft];
                 [transition setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionDefault]];
                 hasDefaultPushAnimation = NO;
                 
@@ -80,7 +81,7 @@
                 transition = [CATransition animation];
                 transition.duration = 0.4f;
                 transition.type = kCATransitionMoveIn;
-                transition.subtype = kCATransitionFromTop;
+                transition.subtype = [self detectAnimation:kCATransitionFromTop];
                 [transition setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionDefault]];
                 hasDefaultPushAnimation = NO;
                 
@@ -105,7 +106,12 @@
         }
     }
     
-    return [[MFTransitPushParameter alloc] init:transition withClearStack:clearStack hasDefaultPushAnimation:hasDefaultPushAnimation];
+    MFTransitPushParameter *_self = [[MFTransitPushParameter alloc] init];
+    _self.clearStack = clearStack;
+    _self.transition = transition;
+    _self.hasDefaultPushAnimation = hasDefaultPushAnimation;
+    
+    return _self;
 }
 
 @end

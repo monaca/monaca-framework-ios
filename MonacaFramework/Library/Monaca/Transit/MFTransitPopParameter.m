@@ -10,25 +10,31 @@
 
 @implementation MFTransitPopParameter
 
-- (id)init:(CATransition*)transition hasDefaultPopAnimation:(BOOL)hasDefaultPopAnimation
+@synthesize transition = transition_;
+@synthesize hasDefaultPopAnimation = hasDefaultPopAnimation_;
+
+- (id)init
 {
     self = [super init];
+
     if (self != nil) {
-        transition_ = transition;
-        hasDefaultPopAnimation_ = hasDefaultPopAnimation;
+
     }
-    
+
     return self;
 }
 
-- (CATransition *)transition
+- (void)setHasDefaultPopAnimation:(BOOL)hasDefaultPopAnimation
 {
-    return transition_;
+    hasDefaultPopAnimation_ = hasDefaultPopAnimation;
 }
-- (BOOL)hasDefaultPopAnimation
+
+- (void)setTransition:(CATransition *)transition
 {
-    return hasDefaultPopAnimation_;
+    transition_ = transition;
 }
+
+#pragma mark private method end -
 
 + (MFTransitPopParameter*)parseOptionsDict:(NSDictionary*)options
 {
@@ -51,16 +57,25 @@
                 transition = [CATransition animation];
                 transition.duration = 0.4f;
                 transition.type = kCATransitionReveal;
-                transition.subtype = kCATransitionFromTop;
+                transition.subtype = [self detectAnimation:kCATransitionFromBottom];
                 [transition setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionDefault]];
-                hasDefaultPopAnimation = YES;
+                hasDefaultPopAnimation = NO;
                 
-            } else if ([animationName isEqualToString:@"slide"] || [animationName isEqualToString:@"slideLeft"]) {
+            } else if ([animationName isEqualToString:@"slide"] || [animationName isEqualToString:@"slideRight"]) {
             
                 // animation : "slide" or "slideLeft"
                 transition = nil;
                 hasDefaultPopAnimation = YES;
+            } else if ([animationName isEqualToString:@"slideLeft"]) {
                 
+                // animation : "slideRight"
+                // animation : "lift"
+                transition = [CATransition animation];
+                transition.duration = 0.4f;
+                transition.type = kCATransitionReveal;
+                transition.subtype = [self detectAnimation:kCATransitionFromRight];
+                [transition setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionDefault]];
+                hasDefaultPopAnimation = NO;
             } else {
                 NSLog(@"unknown pop animation type: %@", animationName);
             }
@@ -72,9 +87,12 @@
                 hasDefaultPopAnimation = NO;
             }
         }
-    
     }
 
-    return [MFTransitPopParameter.alloc init:transition hasDefaultPopAnimation:hasDefaultPopAnimation];
+    MFTransitPopParameter *parameter = [[MFTransitPopParameter alloc] init];
+    parameter.hasDefaultPopAnimation = hasDefaultPopAnimation;
+    parameter.transition = transition;
+    
+    return parameter;
 }
 @end

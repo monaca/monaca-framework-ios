@@ -7,63 +7,41 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0E01CC95174F4C06003E60D6 /* MFSpinnerParameter.h in Headers */ = {isa = PBXBuildFile; fileRef = 0E01CC8F174F4C06003E60D6 /* MFSpinnerParameter.h */; };
-		0E01CC96174F4C06003E60D6 /* MFSpinnerParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E01CC90174F4C06003E60D6 /* MFSpinnerParameter.m */; };
-		0E01CC97174F4C06003E60D6 /* MFSpinnerParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E01CC90174F4C06003E60D6 /* MFSpinnerParameter.m */; };
-		0E01CC98174F4C06003E60D6 /* MFSpinnerParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E01CC90174F4C06003E60D6 /* MFSpinnerParameter.m */; };
-		0E01CC99174F4C06003E60D6 /* MFSpinnerView.h in Headers */ = {isa = PBXBuildFile; fileRef = 0E01CC91174F4C06003E60D6 /* MFSpinnerView.h */; };
-		0E01CC9A174F4C06003E60D6 /* MFSpinnerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E01CC92174F4C06003E60D6 /* MFSpinnerView.m */; };
-		0E01CC9B174F4C06003E60D6 /* MFSpinnerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E01CC92174F4C06003E60D6 /* MFSpinnerView.m */; };
-		0E01CC9C174F4C06003E60D6 /* MFSpinnerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E01CC92174F4C06003E60D6 /* MFSpinnerView.m */; };
-		0E01CC9D174F4C06003E60D6 /* spinner.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E01CC93174F4C06003E60D6 /* spinner.png */; };
-		0E01CC9E174F4C06003E60D6 /* spinner.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E01CC93174F4C06003E60D6 /* spinner.png */; };
-		0E01CC9F174F4C06003E60D6 /* spinner@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E01CC94174F4C06003E60D6 /* spinner@2x.png */; };
-		0E01CCA0174F4C06003E60D6 /* spinner@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E01CC94174F4C06003E60D6 /* spinner@2x.png */; };
-		0E01CCA8174F4C6A003E60D6 /* MFTransitPlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = 0E01CCA2174F4C6A003E60D6 /* MFTransitPlugin.h */; };
-		0E01CCA9174F4C6A003E60D6 /* MFTransitPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E01CCA3174F4C6A003E60D6 /* MFTransitPlugin.m */; };
-		0E01CCAA174F4C6A003E60D6 /* MFTransitPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E01CCA3174F4C6A003E60D6 /* MFTransitPlugin.m */; };
-		0E01CCAB174F4C6A003E60D6 /* MFTransitPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E01CCA3174F4C6A003E60D6 /* MFTransitPlugin.m */; };
-		0E01CCAC174F4C6A003E60D6 /* MFTransitPopParameter.h in Headers */ = {isa = PBXBuildFile; fileRef = 0E01CCA4174F4C6A003E60D6 /* MFTransitPopParameter.h */; };
-		0E01CCAD174F4C6A003E60D6 /* MFTransitPopParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E01CCA5174F4C6A003E60D6 /* MFTransitPopParameter.m */; };
-		0E01CCAE174F4C6A003E60D6 /* MFTransitPopParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E01CCA5174F4C6A003E60D6 /* MFTransitPopParameter.m */; };
-		0E01CCAF174F4C6A003E60D6 /* MFTransitPopParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E01CCA5174F4C6A003E60D6 /* MFTransitPopParameter.m */; };
-		0E01CCB0174F4C6A003E60D6 /* MFTransitPushParameter.h in Headers */ = {isa = PBXBuildFile; fileRef = 0E01CCA6174F4C6A003E60D6 /* MFTransitPushParameter.h */; };
-		0E01CCB1174F4C6A003E60D6 /* MFTransitPushParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E01CCA7174F4C6A003E60D6 /* MFTransitPushParameter.m */; };
-		0E01CCB2174F4C6A003E60D6 /* MFTransitPushParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E01CCA7174F4C6A003E60D6 /* MFTransitPushParameter.m */; };
-		0E01CCB3174F4C6A003E60D6 /* MFTransitPushParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E01CCA7174F4C6A003E60D6 /* MFTransitPushParameter.m */; };
-		0E4C72F1174B17F900883F51 /* spinner.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E4C72E6174B17F900883F51 /* spinner.png */; };
-		0E4C72F3174B17F900883F51 /* spinner@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E4C72E7174B17F900883F51 /* spinner@2x.png */; };
+		0E813EBC174DEE8C0062A13C /* MFUIChecker.h in Headers */ = {isa = PBXBuildFile; fileRef = 0E813EBA174DEE8B0062A13C /* MFUIChecker.h */; };
+		0E813EBD174DEE8C0062A13C /* MFUIChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E813EBB174DEE8B0062A13C /* MFUIChecker.m */; };
+		0E813EBE174DEE8C0062A13C /* MFUIChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E813EBB174DEE8B0062A13C /* MFUIChecker.m */; };
+		0E813EBF174DEE8C0062A13C /* MFUIChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E813EBB174DEE8B0062A13C /* MFUIChecker.m */; };
+		0E81EF311741DD49003A4F9E /* UILabel+Resize.h in Headers */ = {isa = PBXBuildFile; fileRef = 0E81EF2F1741DD49003A4F9E /* UILabel+Resize.h */; };
+		0E81EF321741DD49003A4F9E /* UILabel+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E81EF301741DD49003A4F9E /* UILabel+Resize.m */; };
+		0E81EF331741DD51003A4F9E /* UILabel+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E81EF301741DD49003A4F9E /* UILabel+Resize.m */; };
+		0E81EF341741DD51003A4F9E /* UILabel+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E81EF301741DD49003A4F9E /* UILabel+Resize.m */; };
+		0E829471176EA9BA00BEB9DB /* MFTransitParameter.h in Headers */ = {isa = PBXBuildFile; fileRef = 0E82946F176EA9BA00BEB9DB /* MFTransitParameter.h */; };
+		0E829472176EA9BA00BEB9DB /* MFTransitParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E829470176EA9BA00BEB9DB /* MFTransitParameter.m */; };
+		0E829473176EA9BA00BEB9DB /* MFTransitParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E829470176EA9BA00BEB9DB /* MFTransitParameter.m */; };
+		0E829474176EA9BA00BEB9DB /* MFTransitParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E829470176EA9BA00BEB9DB /* MFTransitParameter.m */; };
 		0E885C9A169E8DFB001DB4B1 /* exist.html in Resources */ = {isa = PBXBuildFile; fileRef = 0E885C99169E8DFB001DB4B1 /* exist.html */; };
 		0E885C9C169E9583001DB4B1 /* exist.css in Resources */ = {isa = PBXBuildFile; fileRef = 0E885C9B169E9583001DB4B1 /* exist.css */; };
+		0EED098617547926006DDE72 /* MFSpinnerParameter.h in Headers */ = {isa = PBXBuildFile; fileRef = 0EED098017547926006DDE72 /* MFSpinnerParameter.h */; };
+		0EED098717547926006DDE72 /* MFSpinnerParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EED098117547926006DDE72 /* MFSpinnerParameter.m */; };
+		0EED098817547926006DDE72 /* MFSpinnerParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EED098117547926006DDE72 /* MFSpinnerParameter.m */; };
+		0EED098917547926006DDE72 /* MFSpinnerParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EED098117547926006DDE72 /* MFSpinnerParameter.m */; };
+		0EED098A17547926006DDE72 /* MFSpinnerView.h in Headers */ = {isa = PBXBuildFile; fileRef = 0EED098217547926006DDE72 /* MFSpinnerView.h */; };
+		0EED098B17547926006DDE72 /* MFSpinnerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EED098317547926006DDE72 /* MFSpinnerView.m */; };
+		0EED098C17547926006DDE72 /* MFSpinnerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EED098317547926006DDE72 /* MFSpinnerView.m */; };
+		0EED098D17547926006DDE72 /* MFSpinnerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EED098317547926006DDE72 /* MFSpinnerView.m */; };
+		0EED098E17547926006DDE72 /* spinner.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EED098417547926006DDE72 /* spinner.png */; };
+		0EED098F17547926006DDE72 /* spinner.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EED098417547926006DDE72 /* spinner.png */; };
+		0EED099017547926006DDE72 /* spinner@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EED098517547926006DDE72 /* spinner@2x.png */; };
+		0EED099117547926006DDE72 /* spinner@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EED098517547926006DDE72 /* spinner@2x.png */; };
+		0EED09A7175496F9006DDE72 /* MFViewBackground.h in Headers */ = {isa = PBXBuildFile; fileRef = 0EED09A5175496F7006DDE72 /* MFViewBackground.h */; };
+		0EED09A8175496F9006DDE72 /* MFViewBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EED09A6175496F8006DDE72 /* MFViewBackground.m */; };
+		0EED09A9175496F9006DDE72 /* MFViewBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EED09A6175496F8006DDE72 /* MFViewBackground.m */; };
+		0EED09AA175496F9006DDE72 /* MFViewBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EED09A6175496F8006DDE72 /* MFViewBackground.m */; };
 		3E0B18C8169D8CD7001A35BB /* MFDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = F54FBB3E14BBE04100F702D9 /* MFDevice.m */; };
 		3E0B18C9169D8CD7001A35BB /* MFDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F50460D813B3633B0050803F /* MFDelegate.m */; };
-		3E0B18CA169D8CD7001A35BB /* MFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F50460DA13B3633B0050803F /* MFViewController.m */; };
-		3E0B18CC169D8CD7001A35BB /* MFTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5921FB6146B80F00025DED5 /* MFTabBarController.m */; };
-		3E0B18CD169D8CD7001A35BB /* NCManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F5E0F7D21506116900DC7988 /* NCManager.m */; };
-		3E0B18CE169D8CD7001A35BB /* NCContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = F5E0F7CE1506116900DC7988 /* NCContainer.m */; };
-		3E0B18CF169D8CD7001A35BB /* NCButtonBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = F5E0F7CC1506116900DC7988 /* NCButtonBuilder.m */; };
-		3E0B18D0169D8CD7001A35BB /* MFUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = F50460E013B3633B0050803F /* MFUtility.m */; };
-		3E0B18D1169D8CD7001A35BB /* NCBackButtonBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = F5E0F7CA1506116900DC7988 /* NCBackButtonBuilder.m */; };
-		3E0B18D2169D8CD7001A35BB /* NCLabelBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = F5E0F7D01506116900DC7988 /* NCLabelBuilder.m */; };
-		3E0B18D3169D8CD7001A35BB /* NCSearchBoxBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = F5E0F7D41506116900DC7988 /* NCSearchBoxBuilder.m */; };
-		3E0B18D4169D8CD7001A35BB /* NCSegmentBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = F5E0F7D61506116900DC7988 /* NCSegmentBuilder.m */; };
-		3E0B18D5169D8CD7001A35BB /* NCButton.m in Sources */ = {isa = PBXBuildFile; fileRef = D44C9E2A1592ED86006372F3 /* NCButton.m */; };
-		3E0B18D6169D8CD7001A35BB /* NCSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = D44C9E2C1592ED86006372F3 /* NCSearchBar.m */; };
-		3E0B18D7169D8CD7001A35BB /* NCTabbarItemBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = F5E0F7D81506116900DC7988 /* NCTabbarItemBuilder.m */; };
-		3E0B18D8169D8CD7001A35BB /* NCTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = F5E0F7DA1506116900DC7988 /* NCTitleView.m */; };
-		3E0B18D9169D8CD7001A35BB /* NCToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = F5E0F7DC1506116900DC7988 /* NCToolbar.m */; };
-		3E0B18DA169D8CD7001A35BB /* UILabel+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = F5E0F7DE1506116900DC7988 /* UILabel+Resize.m */; };
-		3E0B18DB169D8CD7001A35BB /* MFTabBarController+Top.m in Sources */ = {isa = PBXBuildFile; fileRef = F5EF734C14EE8AA1003B7BA5 /* MFTabBarController+Top.m */; };
-		3E0B18DD169D8CD7001A35BB /* MFNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4F510315A0419E0054EB23 /* MFNavigationController.m */; };
-		3E0B18DE169D8CD7001A35BB /* MFTabBarController+Bottom.m in Sources */ = {isa = PBXBuildFile; fileRef = F5EF734314EE84A8003B7BA5 /* MFTabBarController+Bottom.m */; };
-		3E0B18DF169D8CD7001A35BB /* MFPGNativeComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0F08FE15A81D000025EFC2 /* MFPGNativeComponent.m */; };
 		3E0B18E0169D8CD7001A35BB /* DatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EDD680816155CBA0018698B /* DatePicker.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		3E0B18E1169D8CD7001A35BB /* ChildBrowserCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EDD681016155D0F0018698B /* ChildBrowserCommand.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		3E0B18E2169D8CD7001A35BB /* ChildBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EDD681216155D0F0018698B /* ChildBrowserViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		3E0B18E3169D8CD7001A35BB /* CDVViewController+getMonacaBundlePlist.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E8F180C16187F60005B09FC /* CDVViewController+getMonacaBundlePlist.m */; };
-		3E0B18E4169D8CD7001A35BB /* MFEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC494C5163A8E410085D937 /* MFEvent.m */; };
-		3E0B18E5169D8CD7001A35BB /* CDVSplashScreen+monacaSplashScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E52828A1662A09000902EA7 /* CDVSplashScreen+monacaSplashScreen.m */; };
-		3E0B18E6169D8CD7001A35BB /* CDVCamera+MonacaAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB4088C1663987A00DC00A9 /* CDVCamera+MonacaAction.m */; };
 		3E0B18E7169D8CD7001A35BB /* CDVBarcodeScanner.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3E9B13AA1664AC82005908B7 /* CDVBarcodeScanner.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		3E0B18E8169D8CD7001A35BB /* zxing-all-in-one.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E9B13AC1664AC82005908B7 /* zxing-all-in-one.cpp */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		3E0B18E9169D8CD7001A35BB /* CDVAccelerometer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E47C241166F004600F97AAA /* CDVAccelerometer.m */; };
@@ -130,11 +108,6 @@
 		3E0B193D169D8E24001A35BB /* GHUnitIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E0B1935169D8E24001A35BB /* GHUnitIOS.framework */; };
 		3E0B193E169D8E24001A35BB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0B1936169D8E24001A35BB /* main.m */; };
 		3E0B1941169D8FD7001A35BB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E7FD2BE159D8F2400E85C81 /* main.m */; };
-		3E0B1944169D904A001A35BB /* MFUtilityTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0B1943169D904A001A35BB /* MFUtilityTest.m */; };
-		3E0F090015A81D000025EFC2 /* MFPGNativeComponent.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E0F08FD15A81D000025EFC2 /* MFPGNativeComponent.h */; };
-		3E0F090215A81D000025EFC2 /* MFPGNativeComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0F08FE15A81D000025EFC2 /* MFPGNativeComponent.m */; };
-		3E0F090315A81D000025EFC2 /* MFPGNativeComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0F08FE15A81D000025EFC2 /* MFPGNativeComponent.m */; };
-		3E4405DC15A137CD00BA0FF6 /* MFTabBarController+Bottom.m in Sources */ = {isa = PBXBuildFile; fileRef = F5EF734314EE84A8003B7BA5 /* MFTabBarController+Bottom.m */; };
 		3E47C293166F004600F97AAA /* CDV.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E47C23F166F004600F97AAA /* CDV.h */; };
 		3E47C294166F004600F97AAA /* CDVAccelerometer.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E47C240166F004600F97AAA /* CDVAccelerometer.h */; };
 		3E47C295166F004600F97AAA /* CDVAccelerometer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E47C241166F004600F97AAA /* CDVAccelerometer.m */; };
@@ -244,45 +217,8 @@
 		3E47C304166F004600F97AAA /* UIDevice+Extensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E47C291166F004600F97AAA /* UIDevice+Extensions.h */; };
 		3E47C305166F004600F97AAA /* UIDevice+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E47C292166F004600F97AAA /* UIDevice+Extensions.m */; };
 		3E47C306166F004600F97AAA /* UIDevice+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E47C292166F004600F97AAA /* UIDevice+Extensions.m */; };
-		3E4E8AE716AD122200653A9F /* MFSecureFileURLProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E4E8AE116AD122200653A9F /* MFSecureFileURLProtocol.h */; };
-		3E4E8AE816AD122200653A9F /* MFSecureFileURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4E8AE216AD122200653A9F /* MFSecureFileURLProtocol.m */; };
-		3E4E8AE916AD122200653A9F /* MFSecureFileURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4E8AE216AD122200653A9F /* MFSecureFileURLProtocol.m */; };
-		3E4E8AEA16AD122200653A9F /* MFSecureFileURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4E8AE216AD122200653A9F /* MFSecureFileURLProtocol.m */; };
-		3E4E8AEB16AD122200653A9F /* MonacaNoCacheURLProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E4E8AE316AD122200653A9F /* MonacaNoCacheURLProtocol.h */; };
-		3E4E8AEC16AD122200653A9F /* MonacaNoCacheURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4E8AE416AD122200653A9F /* MonacaNoCacheURLProtocol.m */; };
-		3E4E8AED16AD122200653A9F /* MonacaNoCacheURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4E8AE416AD122200653A9F /* MonacaNoCacheURLProtocol.m */; };
-		3E4E8AEE16AD122200653A9F /* MonacaNoCacheURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4E8AE416AD122200653A9F /* MonacaNoCacheURLProtocol.m */; };
-		3E4E8AEF16AD122200653A9F /* MonacaQueryParamURLProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E4E8AE516AD122200653A9F /* MonacaQueryParamURLProtocol.h */; };
-		3E4E8AF016AD122200653A9F /* MonacaQueryParamURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4E8AE616AD122200653A9F /* MonacaQueryParamURLProtocol.m */; };
-		3E4E8AF116AD122200653A9F /* MonacaQueryParamURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4E8AE616AD122200653A9F /* MonacaQueryParamURLProtocol.m */; };
-		3E4E8AF216AD122200653A9F /* MonacaQueryParamURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4E8AE616AD122200653A9F /* MonacaQueryParamURLProtocol.m */; };
-		3E4E8B0516AD14A500653A9F /* MFJSInterfaceProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E4E8B0316AD14A500653A9F /* MFJSInterfaceProtocol.h */; };
-		3E4E8B0616AD14A500653A9F /* MFJSInterfaceProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4E8B0416AD14A500653A9F /* MFJSInterfaceProtocol.m */; };
-		3E4E8B0716AD14A500653A9F /* MFJSInterfaceProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4E8B0416AD14A500653A9F /* MFJSInterfaceProtocol.m */; };
-		3E4E8B0816AD14A500653A9F /* MFJSInterfaceProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4E8B0416AD14A500653A9F /* MFJSInterfaceProtocol.m */; };
-		3E4E8B0E16AD14F500653A9F /* MFJSInterfaceProtocolTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4E8B0A16AD14F500653A9F /* MFJSInterfaceProtocolTest.m */; };
-		3E4F510815A042E50054EB23 /* MFNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4F510315A0419E0054EB23 /* MFNavigationController.m */; };
 		3E4F513F15A05BF10054EB23 /* MFDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F50460D813B3633B0050803F /* MFDelegate.m */; };
-		3E4F514015A05BF10054EB23 /* MFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F50460DA13B3633B0050803F /* MFViewController.m */; };
-		3E4F514115A05BF10054EB23 /* MFUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = F50460E013B3633B0050803F /* MFUtility.m */; };
-		3E4F514215A05BF10054EB23 /* MFTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5921FB6146B80F00025DED5 /* MFTabBarController.m */; };
 		3E4F514315A05BF10054EB23 /* MFDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = F54FBB3E14BBE04100F702D9 /* MFDevice.m */; };
-		3E4F514415A05BF10054EB23 /* MFTabBarController+Bottom.m in Sources */ = {isa = PBXBuildFile; fileRef = F5EF734314EE84A8003B7BA5 /* MFTabBarController+Bottom.m */; };
-		3E4F514515A05BF10054EB23 /* MFTabBarController+Top.m in Sources */ = {isa = PBXBuildFile; fileRef = F5EF734C14EE8AA1003B7BA5 /* MFTabBarController+Top.m */; };
-		3E4F514615A05BF10054EB23 /* NCBackButtonBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = F5E0F7CA1506116900DC7988 /* NCBackButtonBuilder.m */; };
-		3E4F514715A05BF10054EB23 /* NCButtonBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = F5E0F7CC1506116900DC7988 /* NCButtonBuilder.m */; };
-		3E4F514815A05BF10054EB23 /* NCContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = F5E0F7CE1506116900DC7988 /* NCContainer.m */; };
-		3E4F514915A05BF10054EB23 /* NCLabelBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = F5E0F7D01506116900DC7988 /* NCLabelBuilder.m */; };
-		3E4F514A15A05BF10054EB23 /* NCManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F5E0F7D21506116900DC7988 /* NCManager.m */; };
-		3E4F514B15A05BF10054EB23 /* NCSearchBoxBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = F5E0F7D41506116900DC7988 /* NCSearchBoxBuilder.m */; };
-		3E4F514C15A05BF10054EB23 /* NCSegmentBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = F5E0F7D61506116900DC7988 /* NCSegmentBuilder.m */; };
-		3E4F514D15A05BF10054EB23 /* NCTabbarItemBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = F5E0F7D81506116900DC7988 /* NCTabbarItemBuilder.m */; };
-		3E4F514E15A05BF10054EB23 /* NCTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = F5E0F7DA1506116900DC7988 /* NCTitleView.m */; };
-		3E4F514F15A05BF10054EB23 /* NCToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = F5E0F7DC1506116900DC7988 /* NCToolbar.m */; };
-		3E4F515015A05BF10054EB23 /* UILabel+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = F5E0F7DE1506116900DC7988 /* UILabel+Resize.m */; };
-		3E4F515E15A05BF10054EB23 /* NCButton.m in Sources */ = {isa = PBXBuildFile; fileRef = D44C9E2A1592ED86006372F3 /* NCButton.m */; };
-		3E4F515F15A05BF10054EB23 /* NCSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = D44C9E2C1592ED86006372F3 /* NCSearchBar.m */; };
-		3E4F516215A05BF10054EB23 /* MFNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4F510315A0419E0054EB23 /* MFNavigationController.m */; };
 		3E4F516415A05BF10054EB23 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F57E523313D2E8DE00074B18 /* CoreMedia.framework */; };
 		3E4F516515A05BF10054EB23 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F504611413B364C60050803F /* Foundation.framework */; };
 		3E4F516615A05BF10054EB23 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F504611513B364C60050803F /* UIKit.framework */; };
@@ -296,32 +232,8 @@
 		3E4F516E15A05BF10054EB23 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F504611E13B364C60050803F /* QuartzCore.framework */; };
 		3E4F516F15A05BF10054EB23 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F504611F13B364C60050803F /* SystemConfiguration.framework */; };
 		3E4F517015A05BF10054EB23 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F504612013B364C60050803F /* AudioToolbox.framework */; };
-		3E4F517415A05BF10054EB23 /* MFUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = F50460DF13B3633B0050803F /* MFUtility.h */; };
 		3E4F517515A05BF10054EB23 /* MFDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = F57E51BC13D2CCC200074B18 /* MFDelegate.h */; };
-		3E4F517615A05BF10054EB23 /* MFViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = F57E51BD13D2CCC200074B18 /* MFViewController.h */; };
-		3E4F517715A05BF10054EB23 /* MFTabBarController.h in Headers */ = {isa = PBXBuildFile; fileRef = F5921FB5146B80F00025DED5 /* MFTabBarController.h */; };
 		3E4F517815A05BF10054EB23 /* MFDevice.h in Headers */ = {isa = PBXBuildFile; fileRef = F54FBB3D14BBE04000F702D9 /* MFDevice.h */; };
-		3E4F517915A05BF10054EB23 /* MFTabBarController+Bottom.h in Headers */ = {isa = PBXBuildFile; fileRef = F5EF734214EE84A8003B7BA5 /* MFTabBarController+Bottom.h */; };
-		3E4F517A15A05BF10054EB23 /* MFTabBarController+Top.h in Headers */ = {isa = PBXBuildFile; fileRef = F5EF734B14EE8AA1003B7BA5 /* MFTabBarController+Top.h */; };
-		3E4F517B15A05BF10054EB23 /* NativeComponents.h in Headers */ = {isa = PBXBuildFile; fileRef = F5E0F7C71506116900DC7988 /* NativeComponents.h */; };
-		3E4F517C15A05BF10054EB23 /* NativeComponentsInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = F5E0F7C81506116900DC7988 /* NativeComponentsInternal.h */; };
-		3E4F517D15A05BF10054EB23 /* NCBackButtonBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = F5E0F7C91506116900DC7988 /* NCBackButtonBuilder.h */; };
-		3E4F517E15A05BF10054EB23 /* NCButtonBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = F5E0F7CB1506116900DC7988 /* NCButtonBuilder.h */; };
-		3E4F517F15A05BF10054EB23 /* NCContainer.h in Headers */ = {isa = PBXBuildFile; fileRef = F5E0F7CD1506116900DC7988 /* NCContainer.h */; };
-		3E4F518015A05BF10054EB23 /* NCLabelBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = F5E0F7CF1506116900DC7988 /* NCLabelBuilder.h */; };
-		3E4F518115A05BF10054EB23 /* NCManager.h in Headers */ = {isa = PBXBuildFile; fileRef = F5E0F7D11506116900DC7988 /* NCManager.h */; };
-		3E4F518215A05BF10054EB23 /* NCSearchBoxBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = F5E0F7D31506116900DC7988 /* NCSearchBoxBuilder.h */; };
-		3E4F518315A05BF10054EB23 /* NCSegmentBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = F5E0F7D51506116900DC7988 /* NCSegmentBuilder.h */; };
-		3E4F518415A05BF10054EB23 /* NCTabbarItemBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = F5E0F7D71506116900DC7988 /* NCTabbarItemBuilder.h */; };
-		3E4F518515A05BF10054EB23 /* NCTitleView.h in Headers */ = {isa = PBXBuildFile; fileRef = F5E0F7D91506116900DC7988 /* NCTitleView.h */; };
-		3E4F518615A05BF10054EB23 /* NCToolbar.h in Headers */ = {isa = PBXBuildFile; fileRef = F5E0F7DB1506116900DC7988 /* NCToolbar.h */; };
-		3E4F518715A05BF10054EB23 /* UILabel+Resize.h in Headers */ = {isa = PBXBuildFile; fileRef = F5E0F7DD1506116900DC7988 /* UILabel+Resize.h */; };
-		3E4F51B315A05BF10054EB23 /* NCButton.h in Headers */ = {isa = PBXBuildFile; fileRef = D44C9E291592ED86006372F3 /* NCButton.h */; };
-		3E4F51B415A05BF10054EB23 /* NCSearchBar.h in Headers */ = {isa = PBXBuildFile; fileRef = D44C9E2B1592ED86006372F3 /* NCSearchBar.h */; };
-		3E4F51B715A05BF10054EB23 /* MFNavigationController.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E4F510215A0419E0054EB23 /* MFNavigationController.h */; };
-		3E52828B1662A09000902EA7 /* CDVSplashScreen+monacaSplashScreen.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E5282891662A09000902EA7 /* CDVSplashScreen+monacaSplashScreen.h */; };
-		3E52828C1662A09000902EA7 /* CDVSplashScreen+monacaSplashScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E52828A1662A09000902EA7 /* CDVSplashScreen+monacaSplashScreen.m */; };
-		3E52828D1662A09000902EA7 /* CDVSplashScreen+monacaSplashScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E52828A1662A09000902EA7 /* CDVSplashScreen+monacaSplashScreen.m */; };
 		3E6A9A2C15DFB1CE004D530D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3E6A9A2A15DFB1CE004D530D /* Localizable.strings */; };
 		3E7708E0161169CF0041CF4D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E7708DF161169CF0041CF4D /* Default-568h@2x.png */; };
 		3E7FD2B5159D8F2300E85C81 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F504611513B364C60050803F /* UIKit.framework */; };
@@ -339,38 +251,12 @@
 		3E7FD2FA159D926000E85C81 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F504611D13B364C60050803F /* MobileCoreServices.framework */; };
 		3E7FD2FB159D926600E85C81 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F57E523313D2E8DE00074B18 /* CoreMedia.framework */; };
 		3E7FD31C159EA27700E85C81 /* MFDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F50460D813B3633B0050803F /* MFDelegate.m */; };
-		3E7FD31D159EA29700E85C81 /* MFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F50460DA13B3633B0050803F /* MFViewController.m */; };
 		3E7FD329159EA92F00E85C81 /* Cordova.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3E7FD328159EA92F00E85C81 /* Cordova.plist */; };
-		3E7FD32A159ECB7000E85C81 /* MFTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5921FB6146B80F00025DED5 /* MFTabBarController.m */; };
-		3E7FD32B159ECB9B00E85C81 /* NCManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F5E0F7D21506116900DC7988 /* NCManager.m */; };
-		3E7FD32C159ECBA400E85C81 /* NCContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = F5E0F7CE1506116900DC7988 /* NCContainer.m */; };
-		3E7FD32D159ECBCD00E85C81 /* NCButtonBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = F5E0F7CC1506116900DC7988 /* NCButtonBuilder.m */; };
-		3E7FD32E159ECBE700E85C81 /* MFUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = F50460E013B3633B0050803F /* MFUtility.m */; };
-		3E7FD32F159ECC0000E85C81 /* NCBackButtonBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = F5E0F7CA1506116900DC7988 /* NCBackButtonBuilder.m */; };
-		3E7FD330159ECC0900E85C81 /* NCLabelBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = F5E0F7D01506116900DC7988 /* NCLabelBuilder.m */; };
-		3E7FD331159ECC1200E85C81 /* NCSearchBoxBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = F5E0F7D41506116900DC7988 /* NCSearchBoxBuilder.m */; };
-		3E7FD332159ECC1A00E85C81 /* NCSegmentBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = F5E0F7D61506116900DC7988 /* NCSegmentBuilder.m */; };
-		3E7FD333159ECC2100E85C81 /* NCButton.m in Sources */ = {isa = PBXBuildFile; fileRef = D44C9E2A1592ED86006372F3 /* NCButton.m */; };
-		3E7FD334159ECC3000E85C81 /* NCSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = D44C9E2C1592ED86006372F3 /* NCSearchBar.m */; };
-		3E7FD335159ECC5400E85C81 /* NCTabbarItemBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = F5E0F7D81506116900DC7988 /* NCTabbarItemBuilder.m */; };
-		3E7FD336159ECC5900E85C81 /* NCTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = F5E0F7DA1506116900DC7988 /* NCTitleView.m */; };
-		3E7FD337159ECC5C00E85C81 /* NCToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = F5E0F7DC1506116900DC7988 /* NCToolbar.m */; };
-		3E7FD338159ECC6300E85C81 /* UILabel+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = F5E0F7DE1506116900DC7988 /* UILabel+Resize.m */; };
-		3E7FD33A159ECC8300E85C81 /* MFTabBarController+Top.m in Sources */ = {isa = PBXBuildFile; fileRef = F5EF734C14EE8AA1003B7BA5 /* MFTabBarController+Top.m */; };
 		3E7FD346159ED12400E85C81 /* www in Resources */ = {isa = PBXBuildFile; fileRef = 3E7FD345159ED11A00E85C81 /* www */; };
-		3E8F180D16187F60005B09FC /* CDVViewController+getMonacaBundlePlist.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E8F180B16187F60005B09FC /* CDVViewController+getMonacaBundlePlist.h */; };
-		3E8F180E16187F60005B09FC /* CDVViewController+getMonacaBundlePlist.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E8F180C16187F60005B09FC /* CDVViewController+getMonacaBundlePlist.m */; };
-		3E8F180F16187F60005B09FC /* CDVViewController+getMonacaBundlePlist.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E8F180C16187F60005B09FC /* CDVViewController+getMonacaBundlePlist.m */; };
 		3E9B13AE1664AC82005908B7 /* CDVBarcodeScanner.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3E9B13AA1664AC82005908B7 /* CDVBarcodeScanner.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		3E9B13B11664AC82005908B7 /* zxing-all-in-one.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E9B13AC1664AC82005908B7 /* zxing-all-in-one.cpp */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		3E9B13B31664AC82005908B7 /* zxing-all-in-one.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E9B13AD1664AC82005908B7 /* zxing-all-in-one.h */; };
-		3EB4088D1663987A00DC00A9 /* CDVCamera+MonacaAction.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EB4088B1663987A00DC00A9 /* CDVCamera+MonacaAction.h */; };
-		3EB4088E1663987A00DC00A9 /* CDVCamera+MonacaAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB4088C1663987A00DC00A9 /* CDVCamera+MonacaAction.m */; };
-		3EB4088F1663987A00DC00A9 /* CDVCamera+MonacaAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB4088C1663987A00DC00A9 /* CDVCamera+MonacaAction.m */; };
 		3EBC68C51664D23000244FE1 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EBC68C41664D23000244FE1 /* libiconv.dylib */; };
-		3EC494C6163A8E410085D937 /* MFEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EC494C4163A8E410085D937 /* MFEvent.h */; };
-		3EC494C7163A8E410085D937 /* MFEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC494C5163A8E410085D937 /* MFEvent.m */; };
-		3EC494C8163A8E410085D937 /* MFEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC494C5163A8E410085D937 /* MFEvent.m */; };
 		3ECEE94415ECF82300DD807D /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 3ECEE94115ECF82300DD807D /* Default-Portrait~ipad.png */; };
 		3ECEE94515ECF82300DD807D /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 3ECEE94215ECF82300DD807D /* Default.png */; };
 		3ECEE94615ECF82300DD807D /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3ECEE94315ECF82300DD807D /* Default@2x.png */; };
@@ -393,75 +279,170 @@
 		3EE0E80B1664BA8200F1E677 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EE0E8091664B78000F1E677 /* AssetsLibrary.framework */; };
 		3EE0E80C1664BA9200F1E677 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EE0E8071664B69300F1E677 /* CoreVideo.framework */; };
 		3EF566AF168ECCD800DE569B /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EBC68C41664D23000244FE1 /* libiconv.dylib */; };
-		F117D44F178698A500ED4449 /* MFDevicePlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = F117D44D178698A500ED4449 /* MFDevicePlugin.h */; };
-		F117D450178698A500ED4449 /* MFDevicePlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = F117D44E178698A500ED4449 /* MFDevicePlugin.m */; };
-		F117D451178698A500ED4449 /* MFDevicePlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = F117D44E178698A500ED4449 /* MFDevicePlugin.m */; };
-		F117D452178698A500ED4449 /* MFDevicePlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = F117D44E178698A500ED4449 /* MFDevicePlugin.m */; };
-		F142AD7B175449BD00814179 /* ApplicationResourceDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = F142AD6D175449BC00814179 /* ApplicationResourceDelegate.h */; };
-		F142AD7C175449BD00814179 /* ApplicationResourceDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F142AD6E175449BC00814179 /* ApplicationResourceDelegate.m */; };
-		F142AD7D175449BD00814179 /* ApplicationResourceDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F142AD6E175449BC00814179 /* ApplicationResourceDelegate.m */; };
-		F142AD7E175449BD00814179 /* ApplicationResourceDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F142AD6E175449BC00814179 /* ApplicationResourceDelegate.m */; };
-		F142AD7F175449BD00814179 /* GeolocationDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = F142AD6F175449BC00814179 /* GeolocationDelegate.h */; };
-		F142AD80175449BD00814179 /* GeolocationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F142AD70175449BC00814179 /* GeolocationDelegate.m */; };
-		F142AD81175449BD00814179 /* GeolocationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F142AD70175449BC00814179 /* GeolocationDelegate.m */; };
-		F142AD82175449BD00814179 /* GeolocationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F142AD70175449BC00814179 /* GeolocationDelegate.m */; };
-		F142AD83175449BD00814179 /* IPP_RESTKit4iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F142AD71175449BC00814179 /* IPP_RESTKit4iOS.framework */; };
-		F142AD84175449BD00814179 /* IPP_RESTKit4iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F142AD71175449BC00814179 /* IPP_RESTKit4iOS.framework */; };
-		F142AD85175449BD00814179 /* IPP_RESTKit4iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F142AD71175449BC00814179 /* IPP_RESTKit4iOS.framework */; };
-		F142AD86175449BD00814179 /* MICommunication-info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F142AD72175449BC00814179 /* MICommunication-info.plist */; };
-		F142AD87175449BD00814179 /* MICommunication-info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F142AD72175449BC00814179 /* MICommunication-info.plist */; };
-		F142AD88175449BD00814179 /* MIPCommunicationPlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = F142AD73175449BC00814179 /* MIPCommunicationPlugin.h */; };
-		F142AD89175449BD00814179 /* MIPCommunicationPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = F142AD74175449BC00814179 /* MIPCommunicationPlugin.m */; };
-		F142AD8A175449BD00814179 /* MIPCommunicationPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = F142AD74175449BC00814179 /* MIPCommunicationPlugin.m */; };
-		F142AD8B175449BD00814179 /* MIPCommunicationPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = F142AD74175449BC00814179 /* MIPCommunicationPlugin.m */; };
-		F142AD8C175449BD00814179 /* MIPUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = F142AD75175449BC00814179 /* MIPUtility.h */; };
-		F142AD8D175449BD00814179 /* MIPUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = F142AD76175449BC00814179 /* MIPUtility.m */; };
-		F142AD8E175449BD00814179 /* MIPUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = F142AD76175449BC00814179 /* MIPUtility.m */; };
-		F142AD8F175449BD00814179 /* MIPUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = F142AD76175449BC00814179 /* MIPUtility.m */; };
-		F142AD90175449BD00814179 /* ProfileDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = F142AD77175449BC00814179 /* ProfileDelegate.h */; };
-		F142AD91175449BD00814179 /* ProfileDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F142AD78175449BC00814179 /* ProfileDelegate.m */; };
-		F142AD92175449BD00814179 /* ProfileDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F142AD78175449BC00814179 /* ProfileDelegate.m */; };
-		F142AD93175449BD00814179 /* ProfileDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F142AD78175449BC00814179 /* ProfileDelegate.m */; };
-		F142AD94175449BD00814179 /* UserDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = F142AD79175449BC00814179 /* UserDelegate.h */; };
-		F142AD95175449BD00814179 /* UserDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F142AD7A175449BC00814179 /* UserDelegate.m */; };
-		F142AD96175449BD00814179 /* UserDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F142AD7A175449BC00814179 /* UserDelegate.m */; };
-		F142AD97175449BD00814179 /* UserDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F142AD7A175449BC00814179 /* UserDelegate.m */; };
-		F1A28869174DBB9400233B47 /* MFVIewBackground.h in Headers */ = {isa = PBXBuildFile; fileRef = F1A28867174DBB9200233B47 /* MFVIewBackground.h */; };
-		F1A2886A174DBB9400233B47 /* MFVIewBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = F1A28868174DBB9300233B47 /* MFVIewBackground.m */; };
-		F1A2886B174DBB9400233B47 /* MFVIewBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = F1A28868174DBB9300233B47 /* MFVIewBackground.m */; };
-		F1A2886C174DBB9400233B47 /* MFVIewBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = F1A28868174DBB9300233B47 /* MFVIewBackground.m */; };
-		F1C170671752F9040020915D /* NCBarButtonItem.h in Headers */ = {isa = PBXBuildFile; fileRef = F1C170651752F9040020915D /* NCBarButtonItem.h */; };
-		F1C170681752F9040020915D /* NCBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F1C170661752F9040020915D /* NCBarButtonItem.m */; };
-		F1C170691752F9040020915D /* NCBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F1C170661752F9040020915D /* NCBarButtonItem.m */; };
-		F1C1706A1752F9040020915D /* NCBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F1C170661752F9040020915D /* NCBarButtonItem.m */; };
+		5A3202DE172573CD0055A59F /* UIStyleProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A3202DD172573CD0055A59F /* UIStyleProtocol.h */; };
+		5A40CBDF170836F2002DD96C /* MFTransitPlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A40CBDD170836F2002DD96C /* MFTransitPlugin.h */; };
+		5A40CBE0170836F2002DD96C /* MFTransitPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A40CBDE170836F2002DD96C /* MFTransitPlugin.m */; };
+		5A40CBE1170836F2002DD96C /* MFTransitPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A40CBDE170836F2002DD96C /* MFTransitPlugin.m */; };
+		5A40CBE2170836F2002DD96C /* MFTransitPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A40CBDE170836F2002DD96C /* MFTransitPlugin.m */; };
+		5A45C5A3172D54450003B3BF /* NCTitleView.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A45C5A1172D54450003B3BF /* NCTitleView.h */; };
+		5A45C5A4172D54450003B3BF /* NCTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A45C5A2172D54450003B3BF /* NCTitleView.m */; };
+		5A83D2EF16D9087100D25E98 /* MFViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A83D2ED16D9087100D25E98 /* MFViewController.h */; };
+		5A83D2F016D9087100D25E98 /* MFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A83D2EE16D9087100D25E98 /* MFViewController.m */; };
+		5A83D2F116D9087100D25E98 /* MFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A83D2EE16D9087100D25E98 /* MFViewController.m */; };
+		5A83D2F216D9087100D25E98 /* MFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A83D2EE16D9087100D25E98 /* MFViewController.m */; };
+		5A83D2FA16D90BD700D25E98 /* MFNavigationController.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A83D2F816D90BD700D25E98 /* MFNavigationController.h */; };
+		5A83D2FB16D90BD700D25E98 /* MFNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A83D2F916D90BD700D25E98 /* MFNavigationController.m */; };
+		5A83D2FD16D90D8800D25E98 /* MFNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A83D2F916D90BD700D25E98 /* MFNavigationController.m */; };
+		5A83D2FE16D90D8900D25E98 /* MFNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A83D2F916D90BD700D25E98 /* MFNavigationController.m */; };
+		5A83D30116D90E5C00D25E98 /* MFUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A83D2FF16D90E5B00D25E98 /* MFUtility.h */; };
+		5A83D30216D90E5C00D25E98 /* MFUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A83D30016D90E5C00D25E98 /* MFUtility.m */; };
+		5A83D30316D90E5C00D25E98 /* MFUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A83D30016D90E5C00D25E98 /* MFUtility.m */; };
+		5A83D30416D90E5C00D25E98 /* MFUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A83D30016D90E5C00D25E98 /* MFUtility.m */; };
+		5A83D30716D9102E00D25E98 /* MFEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A83D30516D9102E00D25E98 /* MFEvent.h */; };
+		5A83D30816D9102E00D25E98 /* MFEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A83D30616D9102E00D25E98 /* MFEvent.m */; };
+		5A83D30916D9102E00D25E98 /* MFEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A83D30616D9102E00D25E98 /* MFEvent.m */; };
+		5A83D30A16D9102E00D25E98 /* MFEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A83D30616D9102E00D25E98 /* MFEvent.m */; };
+		5A83D34416D91E6D00D25E98 /* MFTabBarController.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A83D31B16D91E6D00D25E98 /* MFTabBarController.h */; };
+		5A83D34516D91E6D00D25E98 /* MFTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A83D31C16D91E6D00D25E98 /* MFTabBarController.m */; };
+		5A83D34616D91E6D00D25E98 /* MFTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A83D31C16D91E6D00D25E98 /* MFTabBarController.m */; };
+		5A83D34716D91E6D00D25E98 /* MFTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A83D31C16D91E6D00D25E98 /* MFTabBarController.m */; };
+		5A83D34C16D91E6D00D25E98 /* NativeComponents.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A83D32016D91E6D00D25E98 /* NativeComponents.h */; };
+		5A83D34D16D91E6D00D25E98 /* NativeComponentsInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A83D32116D91E6D00D25E98 /* NativeComponentsInternal.h */; };
+		5A83D35A16D91E6D00D25E98 /* NCContainer.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A83D32816D91E6D00D25E98 /* NCContainer.h */; };
+		5A83D35B16D91E6D00D25E98 /* NCContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A83D32916D91E6D00D25E98 /* NCContainer.m */; };
+		5A83D35C16D91E6D00D25E98 /* NCContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A83D32916D91E6D00D25E98 /* NCContainer.m */; };
+		5A83D35D16D91E6D00D25E98 /* NCContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A83D32916D91E6D00D25E98 /* NCContainer.m */; };
+		5A83D36216D91E6D00D25E98 /* NCManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A83D32C16D91E6D00D25E98 /* NCManager.h */; };
+		5A83D36316D91E6D00D25E98 /* NCManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A83D32D16D91E6D00D25E98 /* NCManager.m */; };
+		5A83D36416D91E6D00D25E98 /* NCManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A83D32D16D91E6D00D25E98 /* NCManager.m */; };
+		5A83D36516D91E6D00D25E98 /* NCManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A83D32D16D91E6D00D25E98 /* NCManager.m */; };
+		5A83D37A16D91E6D00D25E98 /* NCToolbar.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A83D33816D91E6D00D25E98 /* NCToolbar.h */; };
+		5A83D37B16D91E6D00D25E98 /* NCToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A83D33916D91E6D00D25E98 /* NCToolbar.m */; };
+		5A83D37C16D91E6D00D25E98 /* NCToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A83D33916D91E6D00D25E98 /* NCToolbar.m */; };
+		5A83D37D16D91E6D00D25E98 /* NCToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A83D33916D91E6D00D25E98 /* NCToolbar.m */; };
+		5A9838DF17413C4A00FAED14 /* NCTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A45C5A2172D54450003B3BF /* NCTitleView.m */; };
+		5A9838E017413C4A00FAED14 /* NCTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A45C5A2172D54450003B3BF /* NCTitleView.m */; };
+		5A993D7A17394ECE009135B0 /* CDVCommandDelegateImpl+pathForResource.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A993D7817394ECE009135B0 /* CDVCommandDelegateImpl+pathForResource.h */; };
+		5A993D7B17394ECE009135B0 /* CDVCommandDelegateImpl+pathForResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A993D7917394ECE009135B0 /* CDVCommandDelegateImpl+pathForResource.m */; };
+		5A993D7C17394ED1009135B0 /* CDVCommandDelegateImpl+pathForResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A993D7917394ECE009135B0 /* CDVCommandDelegateImpl+pathForResource.m */; };
+		5A993D7D17394ED2009135B0 /* CDVCommandDelegateImpl+pathForResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A993D7917394ECE009135B0 /* CDVCommandDelegateImpl+pathForResource.m */; };
+		5A99A8F51750FB8C00D4ABD7 /* MFTransitPopParameter.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A99A8F11750FB8C00D4ABD7 /* MFTransitPopParameter.h */; };
+		5A99A8F61750FB8C00D4ABD7 /* MFTransitPopParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A99A8F21750FB8C00D4ABD7 /* MFTransitPopParameter.m */; };
+		5A99A8F71750FB8C00D4ABD7 /* MFTransitPopParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A99A8F21750FB8C00D4ABD7 /* MFTransitPopParameter.m */; };
+		5A99A8F81750FB8C00D4ABD7 /* MFTransitPopParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A99A8F21750FB8C00D4ABD7 /* MFTransitPopParameter.m */; };
+		5A99A8F91750FB8C00D4ABD7 /* MFTransitPushParameter.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A99A8F31750FB8C00D4ABD7 /* MFTransitPushParameter.h */; };
+		5A99A8FA1750FB8C00D4ABD7 /* MFTransitPushParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A99A8F41750FB8C00D4ABD7 /* MFTransitPushParameter.m */; };
+		5A99A8FB1750FB8C00D4ABD7 /* MFTransitPushParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A99A8F41750FB8C00D4ABD7 /* MFTransitPushParameter.m */; };
+		5A99A8FC1750FB8C00D4ABD7 /* MFTransitPushParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A99A8F41750FB8C00D4ABD7 /* MFTransitPushParameter.m */; };
+		5AA1129117565B430050BBC6 /* NCStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 5AA1128F17565B410050BBC6 /* NCStyle.h */; };
+		5AA1129217565B430050BBC6 /* NCStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA1129017565B420050BBC6 /* NCStyle.m */; };
+		5AA1129317565B430050BBC6 /* NCStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA1129017565B420050BBC6 /* NCStyle.m */; };
+		5AA1129417565B430050BBC6 /* NCStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA1129017565B420050BBC6 /* NCStyle.m */; };
+		5AA2B4B217369C4300E785EA /* MFJSInterfaceProtocolTest.h in Headers */ = {isa = PBXBuildFile; fileRef = 5AA2B4AE17369C4300E785EA /* MFJSInterfaceProtocolTest.h */; };
+		5AA2B4B517369C4300E785EA /* MFJSInterfaceProtocolTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA2B4AF17369C4300E785EA /* MFJSInterfaceProtocolTest.m */; };
+		5AA2B4B617369C4300E785EA /* MFUtilityTest.h in Headers */ = {isa = PBXBuildFile; fileRef = 5AA2B4B017369C4300E785EA /* MFUtilityTest.h */; };
+		5AA2B4B917369C4300E785EA /* MFUtilityTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA2B4B117369C4300E785EA /* MFUtilityTest.m */; };
+		5AA2B4C217369C5D00E785EA /* MFJSInterfaceProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 5AA2B4BA17369C5D00E785EA /* MFJSInterfaceProtocol.h */; };
+		5AA2B4C317369C5D00E785EA /* MFJSInterfaceProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA2B4BB17369C5D00E785EA /* MFJSInterfaceProtocol.m */; };
+		5AA2B4C417369C5D00E785EA /* MFJSInterfaceProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA2B4BB17369C5D00E785EA /* MFJSInterfaceProtocol.m */; };
+		5AA2B4C517369C5D00E785EA /* MFJSInterfaceProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA2B4BB17369C5D00E785EA /* MFJSInterfaceProtocol.m */; };
+		5AA2B4C617369C5D00E785EA /* MFSecureFileURLProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 5AA2B4BC17369C5D00E785EA /* MFSecureFileURLProtocol.h */; };
+		5AA2B4C717369C5D00E785EA /* MFSecureFileURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA2B4BD17369C5D00E785EA /* MFSecureFileURLProtocol.m */; };
+		5AA2B4C817369C5D00E785EA /* MFSecureFileURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA2B4BD17369C5D00E785EA /* MFSecureFileURLProtocol.m */; };
+		5AA2B4C917369C5D00E785EA /* MFSecureFileURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA2B4BD17369C5D00E785EA /* MFSecureFileURLProtocol.m */; };
+		5AA2B4CA17369C5D00E785EA /* MonacaNoCacheURLProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 5AA2B4BE17369C5D00E785EA /* MonacaNoCacheURLProtocol.h */; };
+		5AA2B4CB17369C5D00E785EA /* MonacaNoCacheURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA2B4BF17369C5D00E785EA /* MonacaNoCacheURLProtocol.m */; };
+		5AA2B4CC17369C5D00E785EA /* MonacaNoCacheURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA2B4BF17369C5D00E785EA /* MonacaNoCacheURLProtocol.m */; };
+		5AA2B4CD17369C5D00E785EA /* MonacaNoCacheURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA2B4BF17369C5D00E785EA /* MonacaNoCacheURLProtocol.m */; };
+		5AA2B4CE17369C5D00E785EA /* MonacaQueryParamURLProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 5AA2B4C017369C5D00E785EA /* MonacaQueryParamURLProtocol.h */; };
+		5AA2B4CF17369C5D00E785EA /* MonacaQueryParamURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA2B4C117369C5D00E785EA /* MonacaQueryParamURLProtocol.m */; };
+		5AA2B4D017369C5D00E785EA /* MonacaQueryParamURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA2B4C117369C5D00E785EA /* MonacaQueryParamURLProtocol.m */; };
+		5AA2B4D117369C5D00E785EA /* MonacaQueryParamURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA2B4C117369C5D00E785EA /* MonacaQueryParamURLProtocol.m */; };
+		5AA2B4D31736A0A000E785EA /* MonacaFramework-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 5AA2B4D21736A0A000E785EA /* MonacaFramework-Prefix.pch */; };
+		5AA2B4E41736AE3300E785EA /* CDVSplashScreen+monacaSplashScreen.h in Headers */ = {isa = PBXBuildFile; fileRef = 5AA2B4E01736AE3300E785EA /* CDVSplashScreen+monacaSplashScreen.h */; };
+		5AA2B4E51736AE3300E785EA /* CDVSplashScreen+monacaSplashScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA2B4E11736AE3300E785EA /* CDVSplashScreen+monacaSplashScreen.m */; };
+		5AA2B4E61736AE3300E785EA /* CDVSplashScreen+monacaSplashScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA2B4E11736AE3300E785EA /* CDVSplashScreen+monacaSplashScreen.m */; };
+		5AA2B4E71736AE3300E785EA /* CDVSplashScreen+monacaSplashScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA2B4E11736AE3300E785EA /* CDVSplashScreen+monacaSplashScreen.m */; };
+		5AA2B4E81736AE3300E785EA /* CDVViewController+getMonacaBundlePlist.h in Headers */ = {isa = PBXBuildFile; fileRef = 5AA2B4E21736AE3300E785EA /* CDVViewController+getMonacaBundlePlist.h */; };
+		5AA2B4E91736AE3300E785EA /* CDVViewController+getMonacaBundlePlist.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA2B4E31736AE3300E785EA /* CDVViewController+getMonacaBundlePlist.m */; };
+		5AA2B4EA1736AE3300E785EA /* CDVViewController+getMonacaBundlePlist.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA2B4E31736AE3300E785EA /* CDVViewController+getMonacaBundlePlist.m */; };
+		5AA2B4EB1736AE3300E785EA /* CDVViewController+getMonacaBundlePlist.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA2B4E31736AE3300E785EA /* CDVViewController+getMonacaBundlePlist.m */; };
+		5AA6954E16D9FF27003C5D90 /* MFPGNativeComponent.h in Headers */ = {isa = PBXBuildFile; fileRef = 5AA6954C16D9FF27003C5D90 /* MFPGNativeComponent.h */; };
+		5AA6954F16D9FF27003C5D90 /* MFPGNativeComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA6954D16D9FF27003C5D90 /* MFPGNativeComponent.m */; };
+		5AA6955016D9FF27003C5D90 /* MFPGNativeComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA6954D16D9FF27003C5D90 /* MFPGNativeComponent.m */; };
+		5AA6955116D9FF27003C5D90 /* MFPGNativeComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA6954D16D9FF27003C5D90 /* MFPGNativeComponent.m */; };
+		5AAB3F36171C3D230044FB77 /* MFViewBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = 5AAB3F34171C3D220044FB77 /* MFViewBuilder.h */; };
+		5AAB3F37171C3D230044FB77 /* MFViewBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB3F35171C3D220044FB77 /* MFViewBuilder.m */; };
+		5AAB3F38171C44190044FB77 /* MFViewBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB3F35171C3D220044FB77 /* MFViewBuilder.m */; };
+		5AAB3F39171C44190044FB77 /* MFViewBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB3F35171C3D220044FB77 /* MFViewBuilder.m */; };
+		5ADB0BCD172AE2FE009AFD18 /* NCTabbarItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 5ADB0BCB172AE2FD009AFD18 /* NCTabbarItem.h */; };
+		5ADB0BCE172AE2FE009AFD18 /* NCTabbarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ADB0BCC172AE2FD009AFD18 /* NCTabbarItem.m */; };
+		5ADB0BCF172AE303009AFD18 /* NCTabbarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ADB0BCC172AE2FD009AFD18 /* NCTabbarItem.m */; };
+		5ADB0BD0172AE303009AFD18 /* NCTabbarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ADB0BCC172AE2FD009AFD18 /* NCTabbarItem.m */; };
+		5AEA5947172D1A1100FF15E2 /* NCNavigationBar.h in Headers */ = {isa = PBXBuildFile; fileRef = 5AEA5945172D1A1100FF15E2 /* NCNavigationBar.h */; };
+		5AEA5948172D1A1100FF15E2 /* NCNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AEA5946172D1A1100FF15E2 /* NCNavigationBar.m */; };
+		5AEA5949172D1A1100FF15E2 /* NCNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AEA5946172D1A1100FF15E2 /* NCNavigationBar.m */; };
+		5AEA594A172D1A1100FF15E2 /* NCNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AEA5946172D1A1100FF15E2 /* NCNavigationBar.m */; };
+		5AEA5960172D506700FF15E2 /* NCBackButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 5AEA5956172D506700FF15E2 /* NCBackButton.h */; };
+		5AEA5961172D506700FF15E2 /* NCBackButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AEA5957172D506700FF15E2 /* NCBackButton.m */; };
+		5AEA5962172D506700FF15E2 /* NCBackButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AEA5957172D506700FF15E2 /* NCBackButton.m */; };
+		5AEA5963172D506700FF15E2 /* NCBackButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AEA5957172D506700FF15E2 /* NCBackButton.m */; };
+		5AEA5964172D506700FF15E2 /* NCButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 5AEA5958172D506700FF15E2 /* NCButton.h */; };
+		5AEA5965172D506700FF15E2 /* NCButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AEA5959172D506700FF15E2 /* NCButton.m */; };
+		5AEA5966172D506700FF15E2 /* NCButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AEA5959172D506700FF15E2 /* NCButton.m */; };
+		5AEA5967172D506700FF15E2 /* NCButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AEA5959172D506700FF15E2 /* NCButton.m */; };
+		5AEA5968172D506700FF15E2 /* NCLabel.h in Headers */ = {isa = PBXBuildFile; fileRef = 5AEA595A172D506700FF15E2 /* NCLabel.h */; };
+		5AEA5969172D506700FF15E2 /* NCLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AEA595B172D506700FF15E2 /* NCLabel.m */; };
+		5AEA596A172D506700FF15E2 /* NCLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AEA595B172D506700FF15E2 /* NCLabel.m */; };
+		5AEA596B172D506700FF15E2 /* NCLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AEA595B172D506700FF15E2 /* NCLabel.m */; };
+		5AEA596C172D506700FF15E2 /* NCSearchBox.h in Headers */ = {isa = PBXBuildFile; fileRef = 5AEA595C172D506700FF15E2 /* NCSearchBox.h */; };
+		5AEA596D172D506700FF15E2 /* NCSearchBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AEA595D172D506700FF15E2 /* NCSearchBox.m */; };
+		5AEA596E172D506700FF15E2 /* NCSearchBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AEA595D172D506700FF15E2 /* NCSearchBox.m */; };
+		5AEA596F172D506700FF15E2 /* NCSearchBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AEA595D172D506700FF15E2 /* NCSearchBox.m */; };
+		5AEA5970172D506700FF15E2 /* NCSegment.h in Headers */ = {isa = PBXBuildFile; fileRef = 5AEA595E172D506700FF15E2 /* NCSegment.h */; };
+		5AEA5971172D506700FF15E2 /* NCSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AEA595F172D506700FF15E2 /* NCSegment.m */; };
+		5AEA5972172D506700FF15E2 /* NCSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AEA595F172D506700FF15E2 /* NCSegment.m */; };
+		5AEA5973172D506700FF15E2 /* NCSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AEA595F172D506700FF15E2 /* NCSegment.m */; };
+		5AEA5976172D50ED00FF15E2 /* NCBarButtonItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 5AEA5974172D50ED00FF15E2 /* NCBarButtonItem.h */; };
+		5AEA5977172D50ED00FF15E2 /* NCBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AEA5975172D50ED00FF15E2 /* NCBarButtonItem.m */; };
+		5AEA5978172D50ED00FF15E2 /* NCBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AEA5975172D50ED00FF15E2 /* NCBarButtonItem.m */; };
+		5AEA5979172D50ED00FF15E2 /* NCBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AEA5975172D50ED00FF15E2 /* NCBarButtonItem.m */; };
+		5AF1155B175B07A2002E4E6B /* MFViewManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 5AF11559175B079B002E4E6B /* MFViewManager.h */; };
+		5AF1155C175B07A2002E4E6B /* MFViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AF1155A175B079F002E4E6B /* MFViewManager.m */; };
+		5AF1155D175B07A2002E4E6B /* MFViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AF1155A175B079F002E4E6B /* MFViewManager.m */; };
+		5AF1155E175B07A2002E4E6B /* MFViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AF1155A175B079F002E4E6B /* MFViewManager.m */; };
+		F1660A2C178C050900D74D5D /* MFDevicePlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = F1660A2A178C050900D74D5D /* MFDevicePlugin.h */; };
+		F1660A2D178C050900D74D5D /* MFDevicePlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = F1660A2B178C050900D74D5D /* MFDevicePlugin.m */; };
+		F1660A2E178C050900D74D5D /* MFDevicePlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = F1660A2B178C050900D74D5D /* MFDevicePlugin.m */; };
+		F1660A2F178C050900D74D5D /* MFDevicePlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = F1660A2B178C050900D74D5D /* MFDevicePlugin.m */; };
+		F1A1382E17959D5100C5784D /* MFDummyViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = F1A1382C17959D5100C5784D /* MFDummyViewController.h */; };
+		F1A1382F17959D5100C5784D /* MFDummyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1A1382D17959D5100C5784D /* MFDummyViewController.m */; };
+		F1A1383017959D5100C5784D /* MFDummyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1A1382D17959D5100C5784D /* MFDummyViewController.m */; };
+		F1A1383117959D5100C5784D /* MFDummyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1A1382D17959D5100C5784D /* MFDummyViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0E01CC8F174F4C06003E60D6 /* MFSpinnerParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFSpinnerParameter.h; sourceTree = "<group>"; };
-		0E01CC90174F4C06003E60D6 /* MFSpinnerParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFSpinnerParameter.m; sourceTree = "<group>"; };
-		0E01CC91174F4C06003E60D6 /* MFSpinnerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFSpinnerView.h; sourceTree = "<group>"; };
-		0E01CC92174F4C06003E60D6 /* MFSpinnerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFSpinnerView.m; sourceTree = "<group>"; };
-		0E01CC93174F4C06003E60D6 /* spinner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spinner.png; sourceTree = "<group>"; };
-		0E01CC94174F4C06003E60D6 /* spinner@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "spinner@2x.png"; sourceTree = "<group>"; };
-		0E01CCA2174F4C6A003E60D6 /* MFTransitPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFTransitPlugin.h; sourceTree = "<group>"; };
-		0E01CCA3174F4C6A003E60D6 /* MFTransitPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFTransitPlugin.m; sourceTree = "<group>"; };
-		0E01CCA4174F4C6A003E60D6 /* MFTransitPopParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFTransitPopParameter.h; sourceTree = "<group>"; };
-		0E01CCA5174F4C6A003E60D6 /* MFTransitPopParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFTransitPopParameter.m; sourceTree = "<group>"; };
-		0E01CCA6174F4C6A003E60D6 /* MFTransitPushParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFTransitPushParameter.h; sourceTree = "<group>"; };
-		0E01CCA7174F4C6A003E60D6 /* MFTransitPushParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFTransitPushParameter.m; sourceTree = "<group>"; };
-		0E4C72E6174B17F900883F51 /* spinner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spinner.png; sourceTree = "<group>"; };
-		0E4C72E7174B17F900883F51 /* spinner@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "spinner@2x.png"; sourceTree = "<group>"; };
+		0E813EBA174DEE8B0062A13C /* MFUIChecker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFUIChecker.h; sourceTree = "<group>"; };
+		0E813EBB174DEE8B0062A13C /* MFUIChecker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFUIChecker.m; sourceTree = "<group>"; };
+		0E81EF2F1741DD49003A4F9E /* UILabel+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+Resize.h"; sourceTree = "<group>"; };
+		0E81EF301741DD49003A4F9E /* UILabel+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Resize.m"; sourceTree = "<group>"; };
+		0E82946F176EA9BA00BEB9DB /* MFTransitParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFTransitParameter.h; sourceTree = "<group>"; };
+		0E829470176EA9BA00BEB9DB /* MFTransitParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFTransitParameter.m; sourceTree = "<group>"; };
 		0E885C99169E8DFB001DB4B1 /* exist.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = exist.html; sourceTree = "<group>"; };
 		0E885C9B169E9583001DB4B1 /* exist.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = exist.css; sourceTree = "<group>"; };
+		0EED098017547926006DDE72 /* MFSpinnerParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFSpinnerParameter.h; sourceTree = "<group>"; };
+		0EED098117547926006DDE72 /* MFSpinnerParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFSpinnerParameter.m; sourceTree = "<group>"; };
+		0EED098217547926006DDE72 /* MFSpinnerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFSpinnerView.h; sourceTree = "<group>"; };
+		0EED098317547926006DDE72 /* MFSpinnerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFSpinnerView.m; sourceTree = "<group>"; };
+		0EED098417547926006DDE72 /* spinner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spinner.png; sourceTree = "<group>"; };
+		0EED098517547926006DDE72 /* spinner@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "spinner@2x.png"; sourceTree = "<group>"; };
+		0EED09A5175496F7006DDE72 /* MFViewBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MFViewBackground.h; path = ../MFViewBackground.h; sourceTree = "<group>"; };
+		0EED09A6175496F8006DDE72 /* MFViewBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MFViewBackground.m; path = ../MFViewBackground.m; sourceTree = "<group>"; };
 		3E0B192D169D8CD7001A35BB /* MFUnitTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MFUnitTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E0B1935169D8E24001A35BB /* GHUnitIOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GHUnitIOS.framework; sourceTree = "<group>"; };
 		3E0B1936169D8E24001A35BB /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3E0B1937169D8E24001A35BB /* MFUnitTest-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MFUnitTest-Info.plist"; sourceTree = "<group>"; };
 		3E0B1938169D8E24001A35BB /* MFUnitTest-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MFUnitTest-Prefix.pch"; sourceTree = "<group>"; };
-		3E0B1942169D904A001A35BB /* MFUtilityTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFUtilityTest.h; sourceTree = "<group>"; };
-		3E0B1943169D904A001A35BB /* MFUtilityTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFUtilityTest.m; sourceTree = "<group>"; };
-		3E0F08FD15A81D000025EFC2 /* MFPGNativeComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFPGNativeComponent.h; sourceTree = "<group>"; };
-		3E0F08FE15A81D000025EFC2 /* MFPGNativeComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFPGNativeComponent.m; sourceTree = "<group>"; };
 		3E47C23F166F004600F97AAA /* CDV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDV.h; sourceTree = "<group>"; };
 		3E47C240166F004600F97AAA /* CDVAccelerometer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDVAccelerometer.h; sourceTree = "<group>"; };
 		3E47C241166F004600F97AAA /* CDVAccelerometer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDVAccelerometer.m; sourceTree = "<group>"; };
@@ -536,21 +517,7 @@
 		3E47C290166F004600F97AAA /* NSMutableArray+QueueAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+QueueAdditions.m"; sourceTree = "<group>"; };
 		3E47C291166F004600F97AAA /* UIDevice+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+Extensions.h"; sourceTree = "<group>"; };
 		3E47C292166F004600F97AAA /* UIDevice+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+Extensions.m"; sourceTree = "<group>"; };
-		3E4E8AE116AD122200653A9F /* MFSecureFileURLProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFSecureFileURLProtocol.h; sourceTree = "<group>"; };
-		3E4E8AE216AD122200653A9F /* MFSecureFileURLProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFSecureFileURLProtocol.m; sourceTree = "<group>"; };
-		3E4E8AE316AD122200653A9F /* MonacaNoCacheURLProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonacaNoCacheURLProtocol.h; sourceTree = "<group>"; };
-		3E4E8AE416AD122200653A9F /* MonacaNoCacheURLProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonacaNoCacheURLProtocol.m; sourceTree = "<group>"; };
-		3E4E8AE516AD122200653A9F /* MonacaQueryParamURLProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonacaQueryParamURLProtocol.h; sourceTree = "<group>"; };
-		3E4E8AE616AD122200653A9F /* MonacaQueryParamURLProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonacaQueryParamURLProtocol.m; sourceTree = "<group>"; };
-		3E4E8B0316AD14A500653A9F /* MFJSInterfaceProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFJSInterfaceProtocol.h; sourceTree = "<group>"; };
-		3E4E8B0416AD14A500653A9F /* MFJSInterfaceProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFJSInterfaceProtocol.m; sourceTree = "<group>"; };
-		3E4E8B0916AD14F500653A9F /* MFJSInterfaceProtocolTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFJSInterfaceProtocolTest.h; sourceTree = "<group>"; };
-		3E4E8B0A16AD14F500653A9F /* MFJSInterfaceProtocolTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFJSInterfaceProtocolTest.m; sourceTree = "<group>"; };
-		3E4F510215A0419E0054EB23 /* MFNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFNavigationController.h; sourceTree = "<group>"; };
-		3E4F510315A0419E0054EB23 /* MFNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFNavigationController.m; sourceTree = "<group>"; };
 		3E4F51BC15A05BF10054EB23 /* libMonacaFramework.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMonacaFramework.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		3E5282891662A09000902EA7 /* CDVSplashScreen+monacaSplashScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CDVSplashScreen+monacaSplashScreen.h"; sourceTree = "<group>"; };
-		3E52828A1662A09000902EA7 /* CDVSplashScreen+monacaSplashScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CDVSplashScreen+monacaSplashScreen.m"; sourceTree = "<group>"; };
 		3E6A9A2D15DFB1D7004D530D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3E6A9A3015DFB215004D530D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3E6A9A3215DFB21F004D530D /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -562,16 +529,10 @@
 		3E7FD2C0159D8F2400E85C81 /* MonacaSandbox-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MonacaSandbox-Prefix.pch"; sourceTree = "<group>"; };
 		3E7FD328159EA92F00E85C81 /* Cordova.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Cordova.plist; path = MonacaSandbox/Cordova.plist; sourceTree = SOURCE_ROOT; };
 		3E7FD345159ED11A00E85C81 /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; name = www; path = MonacaSandbox/www; sourceTree = SOURCE_ROOT; };
-		3E8F180B16187F60005B09FC /* CDVViewController+getMonacaBundlePlist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CDVViewController+getMonacaBundlePlist.h"; sourceTree = "<group>"; };
-		3E8F180C16187F60005B09FC /* CDVViewController+getMonacaBundlePlist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CDVViewController+getMonacaBundlePlist.m"; sourceTree = "<group>"; };
 		3E9B13AA1664AC82005908B7 /* CDVBarcodeScanner.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CDVBarcodeScanner.mm; sourceTree = "<group>"; };
 		3E9B13AC1664AC82005908B7 /* zxing-all-in-one.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "zxing-all-in-one.cpp"; sourceTree = "<group>"; };
 		3E9B13AD1664AC82005908B7 /* zxing-all-in-one.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "zxing-all-in-one.h"; sourceTree = "<group>"; };
-		3EB4088B1663987A00DC00A9 /* CDVCamera+MonacaAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CDVCamera+MonacaAction.h"; sourceTree = "<group>"; };
-		3EB4088C1663987A00DC00A9 /* CDVCamera+MonacaAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CDVCamera+MonacaAction.m"; sourceTree = "<group>"; };
 		3EBC68C41664D23000244FE1 /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
-		3EC494C4163A8E410085D937 /* MFEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFEvent.h; sourceTree = "<group>"; };
-		3EC494C5163A8E410085D937 /* MFEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFEvent.m; sourceTree = "<group>"; };
 		3ECEE94115ECF82300DD807D /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = "<group>"; };
 		3ECEE94215ECF82300DD807D /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		3ECEE94315ECF82300DD807D /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
@@ -586,35 +547,81 @@
 		3EDD681316155D0F0018698B /* ChildBrowserViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChildBrowserViewController.xib; sourceTree = "<group>"; };
 		3EE0E8071664B69300F1E677 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		3EE0E8091664B78000F1E677 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
-		D44C9E291592ED86006372F3 /* NCButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCButton.h; sourceTree = "<group>"; };
-		D44C9E2A1592ED86006372F3 /* NCButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCButton.m; sourceTree = "<group>"; };
-		D44C9E2B1592ED86006372F3 /* NCSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCSearchBar.h; sourceTree = "<group>"; };
-		D44C9E2C1592ED86006372F3 /* NCSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCSearchBar.m; sourceTree = "<group>"; };
-		F117D44D178698A500ED4449 /* MFDevicePlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MFDevicePlugin.h; path = Device/MFDevicePlugin.h; sourceTree = "<group>"; };
-		F117D44E178698A500ED4449 /* MFDevicePlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MFDevicePlugin.m; path = Device/MFDevicePlugin.m; sourceTree = "<group>"; };
-		F142AD6D175449BC00814179 /* ApplicationResourceDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplicationResourceDelegate.h; sourceTree = "<group>"; };
-		F142AD6E175449BC00814179 /* ApplicationResourceDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplicationResourceDelegate.m; sourceTree = "<group>"; };
-		F142AD6F175449BC00814179 /* GeolocationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeolocationDelegate.h; sourceTree = "<group>"; };
-		F142AD70175449BC00814179 /* GeolocationDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeolocationDelegate.m; sourceTree = "<group>"; };
-		F142AD71175449BC00814179 /* IPP_RESTKit4iOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = IPP_RESTKit4iOS.framework; sourceTree = "<group>"; };
-		F142AD72175449BC00814179 /* MICommunication-info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MICommunication-info.plist"; sourceTree = "<group>"; };
-		F142AD73175449BC00814179 /* MIPCommunicationPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIPCommunicationPlugin.h; sourceTree = "<group>"; };
-		F142AD74175449BC00814179 /* MIPCommunicationPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIPCommunicationPlugin.m; sourceTree = "<group>"; };
-		F142AD75175449BC00814179 /* MIPUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIPUtility.h; sourceTree = "<group>"; };
-		F142AD76175449BC00814179 /* MIPUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIPUtility.m; sourceTree = "<group>"; };
-		F142AD77175449BC00814179 /* ProfileDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileDelegate.h; sourceTree = "<group>"; };
-		F142AD78175449BC00814179 /* ProfileDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileDelegate.m; sourceTree = "<group>"; };
-		F142AD79175449BC00814179 /* UserDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDelegate.h; sourceTree = "<group>"; };
-		F142AD7A175449BC00814179 /* UserDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDelegate.m; sourceTree = "<group>"; };
-		F1A28867174DBB9200233B47 /* MFVIewBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFVIewBackground.h; sourceTree = "<group>"; };
-		F1A28868174DBB9300233B47 /* MFVIewBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFVIewBackground.m; sourceTree = "<group>"; };
-		F1C170651752F9040020915D /* NCBarButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCBarButtonItem.h; sourceTree = "<group>"; };
-		F1C170661752F9040020915D /* NCBarButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCBarButtonItem.m; sourceTree = "<group>"; };
-		F50460AC13B361730050803F /* MonacaFramework-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MonacaFramework-Prefix.pch"; sourceTree = "<group>"; };
+		5A3202DD172573CD0055A59F /* UIStyleProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIStyleProtocol.h; path = ../UIStyleProtocol.h; sourceTree = "<group>"; };
+		5A40CBDD170836F2002DD96C /* MFTransitPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFTransitPlugin.h; sourceTree = "<group>"; };
+		5A40CBDE170836F2002DD96C /* MFTransitPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFTransitPlugin.m; sourceTree = "<group>"; };
+		5A45C5A1172D54450003B3BF /* NCTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCTitleView.h; sourceTree = "<group>"; };
+		5A45C5A2172D54450003B3BF /* NCTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCTitleView.m; sourceTree = "<group>"; };
+		5A83D2ED16D9087100D25E98 /* MFViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MFViewController.h; path = ../MFViewController.h; sourceTree = "<group>"; };
+		5A83D2EE16D9087100D25E98 /* MFViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MFViewController.m; path = ../MFViewController.m; sourceTree = "<group>"; };
+		5A83D2F816D90BD700D25E98 /* MFNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MFNavigationController.h; path = ../MFNavigationController.h; sourceTree = "<group>"; };
+		5A83D2F916D90BD700D25E98 /* MFNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MFNavigationController.m; path = ../MFNavigationController.m; sourceTree = "<group>"; };
+		5A83D2FF16D90E5B00D25E98 /* MFUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFUtility.h; sourceTree = "<group>"; };
+		5A83D30016D90E5C00D25E98 /* MFUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFUtility.m; sourceTree = "<group>"; };
+		5A83D30516D9102E00D25E98 /* MFEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFEvent.h; sourceTree = "<group>"; };
+		5A83D30616D9102E00D25E98 /* MFEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFEvent.m; sourceTree = "<group>"; };
+		5A83D31B16D91E6D00D25E98 /* MFTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFTabBarController.h; sourceTree = "<group>"; };
+		5A83D31C16D91E6D00D25E98 /* MFTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFTabBarController.m; sourceTree = "<group>"; };
+		5A83D32016D91E6D00D25E98 /* NativeComponents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeComponents.h; sourceTree = "<group>"; };
+		5A83D32116D91E6D00D25E98 /* NativeComponentsInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeComponentsInternal.h; sourceTree = "<group>"; };
+		5A83D32816D91E6D00D25E98 /* NCContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCContainer.h; sourceTree = "<group>"; };
+		5A83D32916D91E6D00D25E98 /* NCContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCContainer.m; sourceTree = "<group>"; };
+		5A83D32C16D91E6D00D25E98 /* NCManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCManager.h; sourceTree = "<group>"; };
+		5A83D32D16D91E6D00D25E98 /* NCManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCManager.m; sourceTree = "<group>"; };
+		5A83D33816D91E6D00D25E98 /* NCToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCToolbar.h; sourceTree = "<group>"; };
+		5A83D33916D91E6D00D25E98 /* NCToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCToolbar.m; sourceTree = "<group>"; };
+		5A993D7817394ECE009135B0 /* CDVCommandDelegateImpl+pathForResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CDVCommandDelegateImpl+pathForResource.h"; sourceTree = "<group>"; };
+		5A993D7917394ECE009135B0 /* CDVCommandDelegateImpl+pathForResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CDVCommandDelegateImpl+pathForResource.m"; sourceTree = "<group>"; };
+		5A99A8F11750FB8C00D4ABD7 /* MFTransitPopParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFTransitPopParameter.h; sourceTree = "<group>"; };
+		5A99A8F21750FB8C00D4ABD7 /* MFTransitPopParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFTransitPopParameter.m; sourceTree = "<group>"; };
+		5A99A8F31750FB8C00D4ABD7 /* MFTransitPushParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFTransitPushParameter.h; sourceTree = "<group>"; };
+		5A99A8F41750FB8C00D4ABD7 /* MFTransitPushParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFTransitPushParameter.m; sourceTree = "<group>"; };
+		5AA1128F17565B410050BBC6 /* NCStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCStyle.h; sourceTree = "<group>"; };
+		5AA1129017565B420050BBC6 /* NCStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCStyle.m; sourceTree = "<group>"; };
+		5AA2B4AE17369C4300E785EA /* MFJSInterfaceProtocolTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFJSInterfaceProtocolTest.h; sourceTree = "<group>"; };
+		5AA2B4AF17369C4300E785EA /* MFJSInterfaceProtocolTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFJSInterfaceProtocolTest.m; sourceTree = "<group>"; };
+		5AA2B4B017369C4300E785EA /* MFUtilityTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFUtilityTest.h; sourceTree = "<group>"; };
+		5AA2B4B117369C4300E785EA /* MFUtilityTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFUtilityTest.m; sourceTree = "<group>"; };
+		5AA2B4BA17369C5D00E785EA /* MFJSInterfaceProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFJSInterfaceProtocol.h; sourceTree = "<group>"; };
+		5AA2B4BB17369C5D00E785EA /* MFJSInterfaceProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFJSInterfaceProtocol.m; sourceTree = "<group>"; };
+		5AA2B4BC17369C5D00E785EA /* MFSecureFileURLProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFSecureFileURLProtocol.h; sourceTree = "<group>"; };
+		5AA2B4BD17369C5D00E785EA /* MFSecureFileURLProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFSecureFileURLProtocol.m; sourceTree = "<group>"; };
+		5AA2B4BE17369C5D00E785EA /* MonacaNoCacheURLProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonacaNoCacheURLProtocol.h; sourceTree = "<group>"; };
+		5AA2B4BF17369C5D00E785EA /* MonacaNoCacheURLProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonacaNoCacheURLProtocol.m; sourceTree = "<group>"; };
+		5AA2B4C017369C5D00E785EA /* MonacaQueryParamURLProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonacaQueryParamURLProtocol.h; sourceTree = "<group>"; };
+		5AA2B4C117369C5D00E785EA /* MonacaQueryParamURLProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonacaQueryParamURLProtocol.m; sourceTree = "<group>"; };
+		5AA2B4D21736A0A000E785EA /* MonacaFramework-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MonacaFramework-Prefix.pch"; sourceTree = "<group>"; };
+		5AA2B4E01736AE3300E785EA /* CDVSplashScreen+monacaSplashScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CDVSplashScreen+monacaSplashScreen.h"; sourceTree = "<group>"; };
+		5AA2B4E11736AE3300E785EA /* CDVSplashScreen+monacaSplashScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CDVSplashScreen+monacaSplashScreen.m"; sourceTree = "<group>"; };
+		5AA2B4E21736AE3300E785EA /* CDVViewController+getMonacaBundlePlist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CDVViewController+getMonacaBundlePlist.h"; sourceTree = "<group>"; };
+		5AA2B4E31736AE3300E785EA /* CDVViewController+getMonacaBundlePlist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CDVViewController+getMonacaBundlePlist.m"; sourceTree = "<group>"; };
+		5AA6954C16D9FF27003C5D90 /* MFPGNativeComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFPGNativeComponent.h; sourceTree = "<group>"; };
+		5AA6954D16D9FF27003C5D90 /* MFPGNativeComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFPGNativeComponent.m; sourceTree = "<group>"; };
+		5AAB3F34171C3D220044FB77 /* MFViewBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFViewBuilder.h; sourceTree = "<group>"; };
+		5AAB3F35171C3D220044FB77 /* MFViewBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFViewBuilder.m; sourceTree = "<group>"; };
+		5ADB0BCB172AE2FD009AFD18 /* NCTabbarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCTabbarItem.h; sourceTree = "<group>"; };
+		5ADB0BCC172AE2FD009AFD18 /* NCTabbarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCTabbarItem.m; sourceTree = "<group>"; };
+		5AEA5945172D1A1100FF15E2 /* NCNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCNavigationBar.h; sourceTree = "<group>"; };
+		5AEA5946172D1A1100FF15E2 /* NCNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCNavigationBar.m; sourceTree = "<group>"; };
+		5AEA5956172D506700FF15E2 /* NCBackButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCBackButton.h; sourceTree = "<group>"; };
+		5AEA5957172D506700FF15E2 /* NCBackButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCBackButton.m; sourceTree = "<group>"; };
+		5AEA5958172D506700FF15E2 /* NCButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCButton.h; sourceTree = "<group>"; };
+		5AEA5959172D506700FF15E2 /* NCButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCButton.m; sourceTree = "<group>"; };
+		5AEA595A172D506700FF15E2 /* NCLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCLabel.h; sourceTree = "<group>"; };
+		5AEA595B172D506700FF15E2 /* NCLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCLabel.m; sourceTree = "<group>"; };
+		5AEA595C172D506700FF15E2 /* NCSearchBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCSearchBox.h; sourceTree = "<group>"; };
+		5AEA595D172D506700FF15E2 /* NCSearchBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCSearchBox.m; sourceTree = "<group>"; };
+		5AEA595E172D506700FF15E2 /* NCSegment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCSegment.h; sourceTree = "<group>"; };
+		5AEA595F172D506700FF15E2 /* NCSegment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCSegment.m; sourceTree = "<group>"; };
+		5AEA5974172D50ED00FF15E2 /* NCBarButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCBarButtonItem.h; sourceTree = "<group>"; };
+		5AEA5975172D50ED00FF15E2 /* NCBarButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCBarButtonItem.m; sourceTree = "<group>"; };
+		5AF11559175B079B002E4E6B /* MFViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFViewManager.h; sourceTree = "<group>"; };
+		5AF1155A175B079F002E4E6B /* MFViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFViewManager.m; sourceTree = "<group>"; };
+		F1660A2A178C050900D74D5D /* MFDevicePlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFDevicePlugin.h; sourceTree = "<group>"; };
+		F1660A2B178C050900D74D5D /* MFDevicePlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFDevicePlugin.m; sourceTree = "<group>"; };
+		F1A1382C17959D5100C5784D /* MFDummyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFDummyViewController.h; sourceTree = "<group>"; };
+		F1A1382D17959D5100C5784D /* MFDummyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFDummyViewController.m; sourceTree = "<group>"; };
 		F50460D813B3633B0050803F /* MFDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFDelegate.m; sourceTree = "<group>"; };
-		F50460DA13B3633B0050803F /* MFViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFViewController.m; sourceTree = "<group>"; };
-		F50460DF13B3633B0050803F /* MFUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFUtility.h; sourceTree = "<group>"; };
-		F50460E013B3633B0050803F /* MFUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFUtility.m; sourceTree = "<group>"; };
 		F504611413B364C60050803F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F504611513B364C60050803F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		F504611613B364C60050803F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -630,38 +637,7 @@
 		F54FBB3D14BBE04000F702D9 /* MFDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFDevice.h; sourceTree = "<group>"; };
 		F54FBB3E14BBE04100F702D9 /* MFDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFDevice.m; sourceTree = "<group>"; };
 		F57E51BC13D2CCC200074B18 /* MFDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MFDelegate.h; path = MonacaFramework/MFDelegate.h; sourceTree = SOURCE_ROOT; };
-		F57E51BD13D2CCC200074B18 /* MFViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MFViewController.h; path = MonacaFramework/MFViewController.h; sourceTree = SOURCE_ROOT; };
 		F57E523313D2E8DE00074B18 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
-		F5921FB5146B80F00025DED5 /* MFTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFTabBarController.h; sourceTree = "<group>"; };
-		F5921FB6146B80F00025DED5 /* MFTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFTabBarController.m; sourceTree = "<group>"; };
-		F5E0F7C71506116900DC7988 /* NativeComponents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeComponents.h; sourceTree = "<group>"; };
-		F5E0F7C81506116900DC7988 /* NativeComponentsInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeComponentsInternal.h; sourceTree = "<group>"; };
-		F5E0F7C91506116900DC7988 /* NCBackButtonBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCBackButtonBuilder.h; sourceTree = "<group>"; };
-		F5E0F7CA1506116900DC7988 /* NCBackButtonBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCBackButtonBuilder.m; sourceTree = "<group>"; };
-		F5E0F7CB1506116900DC7988 /* NCButtonBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCButtonBuilder.h; sourceTree = "<group>"; };
-		F5E0F7CC1506116900DC7988 /* NCButtonBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCButtonBuilder.m; sourceTree = "<group>"; };
-		F5E0F7CD1506116900DC7988 /* NCContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCContainer.h; sourceTree = "<group>"; };
-		F5E0F7CE1506116900DC7988 /* NCContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCContainer.m; sourceTree = "<group>"; };
-		F5E0F7CF1506116900DC7988 /* NCLabelBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCLabelBuilder.h; sourceTree = "<group>"; };
-		F5E0F7D01506116900DC7988 /* NCLabelBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCLabelBuilder.m; sourceTree = "<group>"; };
-		F5E0F7D11506116900DC7988 /* NCManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCManager.h; sourceTree = "<group>"; };
-		F5E0F7D21506116900DC7988 /* NCManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCManager.m; sourceTree = "<group>"; };
-		F5E0F7D31506116900DC7988 /* NCSearchBoxBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCSearchBoxBuilder.h; sourceTree = "<group>"; };
-		F5E0F7D41506116900DC7988 /* NCSearchBoxBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCSearchBoxBuilder.m; sourceTree = "<group>"; };
-		F5E0F7D51506116900DC7988 /* NCSegmentBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCSegmentBuilder.h; sourceTree = "<group>"; };
-		F5E0F7D61506116900DC7988 /* NCSegmentBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCSegmentBuilder.m; sourceTree = "<group>"; };
-		F5E0F7D71506116900DC7988 /* NCTabbarItemBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCTabbarItemBuilder.h; sourceTree = "<group>"; };
-		F5E0F7D81506116900DC7988 /* NCTabbarItemBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCTabbarItemBuilder.m; sourceTree = "<group>"; };
-		F5E0F7D91506116900DC7988 /* NCTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCTitleView.h; sourceTree = "<group>"; };
-		F5E0F7DA1506116900DC7988 /* NCTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCTitleView.m; sourceTree = "<group>"; };
-		F5E0F7DB1506116900DC7988 /* NCToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCToolbar.h; sourceTree = "<group>"; };
-		F5E0F7DC1506116900DC7988 /* NCToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCToolbar.m; sourceTree = "<group>"; };
-		F5E0F7DD1506116900DC7988 /* UILabel+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+Resize.h"; sourceTree = "<group>"; };
-		F5E0F7DE1506116900DC7988 /* UILabel+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Resize.m"; sourceTree = "<group>"; };
-		F5EF734214EE84A8003B7BA5 /* MFTabBarController+Bottom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MFTabBarController+Bottom.h"; sourceTree = "<group>"; };
-		F5EF734314EE84A8003B7BA5 /* MFTabBarController+Bottom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MFTabBarController+Bottom.m"; sourceTree = "<group>"; };
-		F5EF734B14EE8AA1003B7BA5 /* MFTabBarController+Top.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MFTabBarController+Top.h"; sourceTree = "<group>"; };
-		F5EF734C14EE8AA1003B7BA5 /* MFTabBarController+Top.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MFTabBarController+Top.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -686,7 +662,6 @@
 				3E0B191D169D8CD7001A35BB /* UIKit.framework in Frameworks */,
 				3E0B191E169D8CD7001A35BB /* Foundation.framework in Frameworks */,
 				3E0B193D169D8E24001A35BB /* GHUnitIOS.framework in Frameworks */,
-				F142AD85175449BD00814179 /* IPP_RESTKit4iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -710,7 +685,6 @@
 				3E4F516E15A05BF10054EB23 /* QuartzCore.framework in Frameworks */,
 				3E4F516F15A05BF10054EB23 /* SystemConfiguration.framework in Frameworks */,
 				3E4F517015A05BF10054EB23 /* AudioToolbox.framework in Frameworks */,
-				F142AD83175449BD00814179 /* IPP_RESTKit4iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -734,39 +708,12 @@
 				3E7FD2B7159D8F2300E85C81 /* CoreGraphics.framework in Frameworks */,
 				3E7FD2B5159D8F2300E85C81 /* UIKit.framework in Frameworks */,
 				3E7FD2B6159D8F2300E85C81 /* Foundation.framework in Frameworks */,
-				F142AD84175449BD00814179 /* IPP_RESTKit4iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0E01CC8E174F4C06003E60D6 /* Spinner */ = {
-			isa = PBXGroup;
-			children = (
-				0E01CC8F174F4C06003E60D6 /* MFSpinnerParameter.h */,
-				0E01CC90174F4C06003E60D6 /* MFSpinnerParameter.m */,
-				0E01CC91174F4C06003E60D6 /* MFSpinnerView.h */,
-				0E01CC92174F4C06003E60D6 /* MFSpinnerView.m */,
-				0E01CC93174F4C06003E60D6 /* spinner.png */,
-				0E01CC94174F4C06003E60D6 /* spinner@2x.png */,
-			);
-			path = Spinner;
-			sourceTree = "<group>";
-		};
-		0E01CCA1174F4C6A003E60D6 /* Transit */ = {
-			isa = PBXGroup;
-			children = (
-				0E01CCA2174F4C6A003E60D6 /* MFTransitPlugin.h */,
-				0E01CCA3174F4C6A003E60D6 /* MFTransitPlugin.m */,
-				0E01CCA4174F4C6A003E60D6 /* MFTransitPopParameter.h */,
-				0E01CCA5174F4C6A003E60D6 /* MFTransitPopParameter.m */,
-				0E01CCA6174F4C6A003E60D6 /* MFTransitPushParameter.h */,
-				0E01CCA7174F4C6A003E60D6 /* MFTransitPushParameter.m */,
-			);
-			path = Transit;
-			sourceTree = "<group>";
-		};
 		0E885C97169E8CD0001DB4B1 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -779,14 +726,27 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		0EED097F17547926006DDE72 /* Spinner */ = {
+			isa = PBXGroup;
+			children = (
+				0EED098017547926006DDE72 /* MFSpinnerParameter.h */,
+				0EED098117547926006DDE72 /* MFSpinnerParameter.m */,
+				0EED098217547926006DDE72 /* MFSpinnerView.h */,
+				0EED098317547926006DDE72 /* MFSpinnerView.m */,
+				0EED098417547926006DDE72 /* spinner.png */,
+				0EED098517547926006DDE72 /* spinner@2x.png */,
+			);
+			path = Spinner;
+			sourceTree = "<group>";
+		};
 		3E0B1931169D8E24001A35BB /* MFUnitTest */ = {
 			isa = PBXGroup;
 			children = (
-				3E0B1942169D904A001A35BB /* MFUtilityTest.h */,
-				3E0B1943169D904A001A35BB /* MFUtilityTest.m */,
 				3E0B1938169D8E24001A35BB /* MFUnitTest-Prefix.pch */,
-				3E4E8B0916AD14F500653A9F /* MFJSInterfaceProtocolTest.h */,
-				3E4E8B0A16AD14F500653A9F /* MFJSInterfaceProtocolTest.m */,
+				5AA2B4AE17369C4300E785EA /* MFJSInterfaceProtocolTest.h */,
+				5AA2B4AF17369C4300E785EA /* MFJSInterfaceProtocolTest.m */,
+				5AA2B4B017369C4300E785EA /* MFUtilityTest.h */,
+				5AA2B4B117369C4300E785EA /* MFUtilityTest.m */,
 				0E885C97169E8CD0001DB4B1 /* Supporting Files */,
 			);
 			path = MFUnitTest;
@@ -795,8 +755,8 @@
 		3E0F08FC15A81D000025EFC2 /* PGPlugins */ = {
 			isa = PBXGroup;
 			children = (
-				3E0F08FD15A81D000025EFC2 /* MFPGNativeComponent.h */,
-				3E0F08FE15A81D000025EFC2 /* MFPGNativeComponent.m */,
+				5AA6954C16D9FF27003C5D90 /* MFPGNativeComponent.h */,
+				5AA6954D16D9FF27003C5D90 /* MFPGNativeComponent.m */,
 			);
 			path = PGPlugins;
 			sourceTree = "<group>";
@@ -893,16 +853,31 @@
 		3E4E8AE016AD122100653A9F /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				3E4E8AE116AD122200653A9F /* MFSecureFileURLProtocol.h */,
-				3E4E8AE216AD122200653A9F /* MFSecureFileURLProtocol.m */,
-				3E4E8AE316AD122200653A9F /* MonacaNoCacheURLProtocol.h */,
-				3E4E8AE416AD122200653A9F /* MonacaNoCacheURLProtocol.m */,
-				3E4E8AE516AD122200653A9F /* MonacaQueryParamURLProtocol.h */,
-				3E4E8AE616AD122200653A9F /* MonacaQueryParamURLProtocol.m */,
-				3E4E8B0316AD14A500653A9F /* MFJSInterfaceProtocol.h */,
-				3E4E8B0416AD14A500653A9F /* MFJSInterfaceProtocol.m */,
+				5AA2B4BA17369C5D00E785EA /* MFJSInterfaceProtocol.h */,
+				5AA2B4BB17369C5D00E785EA /* MFJSInterfaceProtocol.m */,
+				5AA2B4BC17369C5D00E785EA /* MFSecureFileURLProtocol.h */,
+				5AA2B4BD17369C5D00E785EA /* MFSecureFileURLProtocol.m */,
+				5AA2B4BE17369C5D00E785EA /* MonacaNoCacheURLProtocol.h */,
+				5AA2B4BF17369C5D00E785EA /* MonacaNoCacheURLProtocol.m */,
+				5AA2B4C017369C5D00E785EA /* MonacaQueryParamURLProtocol.h */,
+				5AA2B4C117369C5D00E785EA /* MonacaQueryParamURLProtocol.m */,
 			);
 			path = Protocols;
+			sourceTree = "<group>";
+		};
+		3E4F50FC15A040DE0054EB23 /* Transit */ = {
+			isa = PBXGroup;
+			children = (
+				5A40CBDD170836F2002DD96C /* MFTransitPlugin.h */,
+				5A40CBDE170836F2002DD96C /* MFTransitPlugin.m */,
+				0E82946F176EA9BA00BEB9DB /* MFTransitParameter.h */,
+				0E829470176EA9BA00BEB9DB /* MFTransitParameter.m */,
+				5A99A8F11750FB8C00D4ABD7 /* MFTransitPopParameter.h */,
+				5A99A8F21750FB8C00D4ABD7 /* MFTransitPopParameter.m */,
+				5A99A8F31750FB8C00D4ABD7 /* MFTransitPushParameter.h */,
+				5A99A8F41750FB8C00D4ABD7 /* MFTransitPushParameter.m */,
+			);
+			path = Transit;
 			sourceTree = "<group>";
 		};
 		3E7FD2B8159D8F2400E85C81 /* MonacaSandbox */ = {
@@ -935,12 +910,12 @@
 		3E8F180A16187F60005B09FC /* PhoneGap */ = {
 			isa = PBXGroup;
 			children = (
-				3E8F180B16187F60005B09FC /* CDVViewController+getMonacaBundlePlist.h */,
-				3E8F180C16187F60005B09FC /* CDVViewController+getMonacaBundlePlist.m */,
-				3E5282891662A09000902EA7 /* CDVSplashScreen+monacaSplashScreen.h */,
-				3E52828A1662A09000902EA7 /* CDVSplashScreen+monacaSplashScreen.m */,
-				3EB4088B1663987A00DC00A9 /* CDVCamera+MonacaAction.h */,
-				3EB4088C1663987A00DC00A9 /* CDVCamera+MonacaAction.m */,
+				5AA2B4E01736AE3300E785EA /* CDVSplashScreen+monacaSplashScreen.h */,
+				5AA2B4E11736AE3300E785EA /* CDVSplashScreen+monacaSplashScreen.m */,
+				5AA2B4E21736AE3300E785EA /* CDVViewController+getMonacaBundlePlist.h */,
+				5AA2B4E31736AE3300E785EA /* CDVViewController+getMonacaBundlePlist.m */,
+				5A993D7817394ECE009135B0 /* CDVCommandDelegateImpl+pathForResource.h */,
+				5A993D7917394ECE009135B0 /* CDVCommandDelegateImpl+pathForResource.m */,
 			);
 			path = PhoneGap;
 			sourceTree = "<group>";
@@ -987,71 +962,84 @@
 			path = ChildBrowser;
 			sourceTree = "<group>";
 		};
-		F117D44C1786984A00ED4449 /* Device */ = {
+		5A83D31616D91E6D00D25E98 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				F117D44D178698A500ED4449 /* MFDevicePlugin.h */,
-				F117D44E178698A500ED4449 /* MFDevicePlugin.m */,
+				F1A1382C17959D5100C5784D /* MFDummyViewController.h */,
+				F1A1382D17959D5100C5784D /* MFDummyViewController.m */,
+				5AF11559175B079B002E4E6B /* MFViewManager.h */,
+				5AF1155A175B079F002E4E6B /* MFViewManager.m */,
+				5AAB3F34171C3D220044FB77 /* MFViewBuilder.h */,
+				5AAB3F35171C3D220044FB77 /* MFViewBuilder.m */,
+				0E813EBA174DEE8B0062A13C /* MFUIChecker.h */,
+				0E813EBB174DEE8B0062A13C /* MFUIChecker.m */,
+				5A83D2F816D90BD700D25E98 /* MFNavigationController.h */,
+				5A83D2F916D90BD700D25E98 /* MFNavigationController.m */,
+				5A83D2ED16D9087100D25E98 /* MFViewController.h */,
+				5A83D2EE16D9087100D25E98 /* MFViewController.m */,
+				5A83D31B16D91E6D00D25E98 /* MFTabBarController.h */,
+				5A83D31C16D91E6D00D25E98 /* MFTabBarController.m */,
+				0EED097F17547926006DDE72 /* Spinner */,
+				5A83D31F16D91E6D00D25E98 /* NativeComponents */,
 			);
-			name = Device;
+			path = Views;
 			sourceTree = "<group>";
 		};
-		F13F51851741D906006D6D59 /* InnovationPlusPlugin */ = {
+		5A83D31F16D91E6D00D25E98 /* NativeComponents */ = {
 			isa = PBXGroup;
 			children = (
-				F142AD6D175449BC00814179 /* ApplicationResourceDelegate.h */,
-				F142AD6E175449BC00814179 /* ApplicationResourceDelegate.m */,
-				F142AD6F175449BC00814179 /* GeolocationDelegate.h */,
-				F142AD70175449BC00814179 /* GeolocationDelegate.m */,
-				F142AD71175449BC00814179 /* IPP_RESTKit4iOS.framework */,
-				F142AD72175449BC00814179 /* MICommunication-info.plist */,
-				F142AD73175449BC00814179 /* MIPCommunicationPlugin.h */,
-				F142AD74175449BC00814179 /* MIPCommunicationPlugin.m */,
-				F142AD75175449BC00814179 /* MIPUtility.h */,
-				F142AD76175449BC00814179 /* MIPUtility.m */,
-				F142AD77175449BC00814179 /* ProfileDelegate.h */,
-				F142AD78175449BC00814179 /* ProfileDelegate.m */,
-				F142AD79175449BC00814179 /* UserDelegate.h */,
-				F142AD7A175449BC00814179 /* UserDelegate.m */,
-			);
-			path = InnovationPlusPlugin;
-			sourceTree = "<group>";
-		};
-		F503A593146BE13800764D05 /* NativeComponents */ = {
-			isa = PBXGroup;
-			children = (
-				F1C170651752F9040020915D /* NCBarButtonItem.h */,
-				F1C170661752F9040020915D /* NCBarButtonItem.m */,
-				D44C9E291592ED86006372F3 /* NCButton.h */,
-				D44C9E2A1592ED86006372F3 /* NCButton.m */,
-				D44C9E2B1592ED86006372F3 /* NCSearchBar.h */,
-				D44C9E2C1592ED86006372F3 /* NCSearchBar.m */,
-				F5E0F7C71506116900DC7988 /* NativeComponents.h */,
-				F5E0F7C81506116900DC7988 /* NativeComponentsInternal.h */,
-				F5E0F7C91506116900DC7988 /* NCBackButtonBuilder.h */,
-				F5E0F7CA1506116900DC7988 /* NCBackButtonBuilder.m */,
-				F5E0F7CB1506116900DC7988 /* NCButtonBuilder.h */,
-				F5E0F7CC1506116900DC7988 /* NCButtonBuilder.m */,
-				F5E0F7CD1506116900DC7988 /* NCContainer.h */,
-				F5E0F7CE1506116900DC7988 /* NCContainer.m */,
-				F5E0F7CF1506116900DC7988 /* NCLabelBuilder.h */,
-				F5E0F7D01506116900DC7988 /* NCLabelBuilder.m */,
-				F5E0F7D11506116900DC7988 /* NCManager.h */,
-				F5E0F7D21506116900DC7988 /* NCManager.m */,
-				F5E0F7D31506116900DC7988 /* NCSearchBoxBuilder.h */,
-				F5E0F7D41506116900DC7988 /* NCSearchBoxBuilder.m */,
-				F5E0F7D51506116900DC7988 /* NCSegmentBuilder.h */,
-				F5E0F7D61506116900DC7988 /* NCSegmentBuilder.m */,
-				F5E0F7D71506116900DC7988 /* NCTabbarItemBuilder.h */,
-				F5E0F7D81506116900DC7988 /* NCTabbarItemBuilder.m */,
-				F5E0F7D91506116900DC7988 /* NCTitleView.h */,
-				F5E0F7DA1506116900DC7988 /* NCTitleView.m */,
-				F5E0F7DB1506116900DC7988 /* NCToolbar.h */,
-				F5E0F7DC1506116900DC7988 /* NCToolbar.m */,
-				F5E0F7DD1506116900DC7988 /* UILabel+Resize.h */,
-				F5E0F7DE1506116900DC7988 /* UILabel+Resize.m */,
+				5A3202DD172573CD0055A59F /* UIStyleProtocol.h */,
+				5A83D32016D91E6D00D25E98 /* NativeComponents.h */,
+				5A83D32116D91E6D00D25E98 /* NativeComponentsInternal.h */,
+				0EED09A5175496F7006DDE72 /* MFViewBackground.h */,
+				0EED09A6175496F8006DDE72 /* MFViewBackground.m */,
+				5AEA5945172D1A1100FF15E2 /* NCNavigationBar.h */,
+				5AEA5946172D1A1100FF15E2 /* NCNavigationBar.m */,
+				5A83D33816D91E6D00D25E98 /* NCToolbar.h */,
+				5A83D33916D91E6D00D25E98 /* NCToolbar.m */,
+				5ADB0BCB172AE2FD009AFD18 /* NCTabbarItem.h */,
+				5ADB0BCC172AE2FD009AFD18 /* NCTabbarItem.m */,
+				5A83D32816D91E6D00D25E98 /* NCContainer.h */,
+				5A83D32916D91E6D00D25E98 /* NCContainer.m */,
+				5A83D32C16D91E6D00D25E98 /* NCManager.h */,
+				5A83D32D16D91E6D00D25E98 /* NCManager.m */,
+				5AA1128F17565B410050BBC6 /* NCStyle.h */,
+				5AA1129017565B420050BBC6 /* NCStyle.m */,
+				5AEA5955172D506700FF15E2 /* NCBarButtonItems */,
 			);
 			path = NativeComponents;
+			sourceTree = "<group>";
+		};
+		5AEA5955172D506700FF15E2 /* NCBarButtonItems */ = {
+			isa = PBXGroup;
+			children = (
+				5AEA5974172D50ED00FF15E2 /* NCBarButtonItem.h */,
+				5AEA5975172D50ED00FF15E2 /* NCBarButtonItem.m */,
+				5AEA5956172D506700FF15E2 /* NCBackButton.h */,
+				5AEA5957172D506700FF15E2 /* NCBackButton.m */,
+				5AEA5958172D506700FF15E2 /* NCButton.h */,
+				5AEA5959172D506700FF15E2 /* NCButton.m */,
+				5AEA595A172D506700FF15E2 /* NCLabel.h */,
+				5AEA595B172D506700FF15E2 /* NCLabel.m */,
+				5AEA595C172D506700FF15E2 /* NCSearchBox.h */,
+				5AEA595D172D506700FF15E2 /* NCSearchBox.m */,
+				5AEA595E172D506700FF15E2 /* NCSegment.h */,
+				5AEA595F172D506700FF15E2 /* NCSegment.m */,
+				5A45C5A1172D54450003B3BF /* NCTitleView.h */,
+				5A45C5A2172D54450003B3BF /* NCTitleView.m */,
+				0E81EF2F1741DD49003A4F9E /* UILabel+Resize.h */,
+				0E81EF301741DD49003A4F9E /* UILabel+Resize.m */,
+			);
+			path = NCBarButtonItems;
+			sourceTree = "<group>";
+		};
+		F1660A29178C050900D74D5D /* Device */ = {
+			isa = PBXGroup;
+			children = (
+				F1660A2A178C050900D74D5D /* MFDevicePlugin.h */,
+				F1660A2B178C050900D74D5D /* MFDevicePlugin.m */,
+			);
+			path = Device;
 			sourceTree = "<group>";
 		};
 		F504609A13B361720050803F = {
@@ -1101,21 +1089,18 @@
 		F50460AA13B361730050803F /* MonacaFramework */ = {
 			isa = PBXGroup;
 			children = (
+				F57E51BC13D2CCC200074B18 /* MFDelegate.h */,
 				F50460D813B3633B0050803F /* MFDelegate.m */,
+				5A83D30516D9102E00D25E98 /* MFEvent.h */,
+				5A83D30616D9102E00D25E98 /* MFEvent.m */,
+				5A83D2FF16D90E5B00D25E98 /* MFUtility.h */,
+				5A83D30016D90E5C00D25E98 /* MFUtility.m */,
 				F54FBB3D14BBE04000F702D9 /* MFDevice.h */,
 				F54FBB3E14BBE04100F702D9 /* MFDevice.m */,
-				3EC494C4163A8E410085D937 /* MFEvent.h */,
-				3EC494C5163A8E410085D937 /* MFEvent.m */,
-				3E4F510215A0419E0054EB23 /* MFNavigationController.h */,
-				3E4F510315A0419E0054EB23 /* MFNavigationController.m */,
-				F50460DF13B3633B0050803F /* MFUtility.h */,
-				F50460E013B3633B0050803F /* MFUtility.m */,
-				F50460DA13B3633B0050803F /* MFViewController.m */,
-				F50460CE13B361BE0050803F /* Headers */,
+				5A83D31616D91E6D00D25E98 /* Views */,
 				F5F31BDD14820C7800C40C0B /* Library */,
 				3E4E8AE016AD122100653A9F /* Protocols */,
 				F50460AB13B361730050803F /* Supporting Files */,
-				F5921FB3146B80690025DED5 /* Views */,
 			);
 			path = MonacaFramework;
 			sourceTree = "<group>";
@@ -1123,27 +1108,18 @@
 		F50460AB13B361730050803F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				F50460AC13B361730050803F /* MonacaFramework-Prefix.pch */,
+				5AA2B4D21736A0A000E785EA /* MonacaFramework-Prefix.pch */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		F50460CE13B361BE0050803F /* Headers */ = {
-			isa = PBXGroup;
-			children = (
-				F57E51BC13D2CCC200074B18 /* MFDelegate.h */,
-				F57E51BD13D2CCC200074B18 /* MFViewController.h */,
-			);
-			path = Headers;
 			sourceTree = "<group>";
 		};
 		F54CEB541500D1A000516444 /* Monaca */ = {
 			isa = PBXGroup;
 			children = (
-				F117D44C1786984A00ED4449 /* Device */,
-				0E01CCA1174F4C6A003E60D6 /* Transit */,
+				F1660A29178C050900D74D5D /* Device */,
 				3E8F180A16187F60005B09FC /* PhoneGap */,
 				3E0F08FC15A81D000025EFC2 /* PGPlugins */,
+				3E4F50FC15A040DE0054EB23 /* Transit */,
 			);
 			path = Monaca;
 			sourceTree = "<group>";
@@ -1156,27 +1132,9 @@
 			path = Vendor;
 			sourceTree = "<group>";
 		};
-		F5921FB3146B80690025DED5 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				0E01CC8E174F4C06003E60D6 /* Spinner */,
-				F5EF734214EE84A8003B7BA5 /* MFTabBarController+Bottom.h */,
-				F5EF734314EE84A8003B7BA5 /* MFTabBarController+Bottom.m */,
-				F5EF734B14EE8AA1003B7BA5 /* MFTabBarController+Top.h */,
-				F5EF734C14EE8AA1003B7BA5 /* MFTabBarController+Top.m */,
-				F5921FB5146B80F00025DED5 /* MFTabBarController.h */,
-				F5921FB6146B80F00025DED5 /* MFTabBarController.m */,
-				F1A28867174DBB9200233B47 /* MFVIewBackground.h */,
-				F1A28868174DBB9300233B47 /* MFVIewBackground.m */,
-				F503A593146BE13800764D05 /* NativeComponents */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
 		F5F31BDD14820C7800C40C0B /* Library */ = {
 			isa = PBXGroup;
 			children = (
-				F13F51851741D906006D6D59 /* InnovationPlusPlugin */,
 				3EB9B3F9161455B600E5F32C /* PhoneGap-plugins */,
 				F54CEB541500D1A000516444 /* Monaca */,
 				F54CEB581500D1A000516444 /* Vendor */,
@@ -1191,37 +1149,11 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3E4F517415A05BF10054EB23 /* MFUtility.h in Headers */,
 				3E4F517515A05BF10054EB23 /* MFDelegate.h in Headers */,
-				3E4F517615A05BF10054EB23 /* MFViewController.h in Headers */,
-				3E4F517715A05BF10054EB23 /* MFTabBarController.h in Headers */,
 				3E4F517815A05BF10054EB23 /* MFDevice.h in Headers */,
-				3E4F517915A05BF10054EB23 /* MFTabBarController+Bottom.h in Headers */,
-				3E4F517A15A05BF10054EB23 /* MFTabBarController+Top.h in Headers */,
-				3E4F517B15A05BF10054EB23 /* NativeComponents.h in Headers */,
-				3E4F517C15A05BF10054EB23 /* NativeComponentsInternal.h in Headers */,
-				3E4F517D15A05BF10054EB23 /* NCBackButtonBuilder.h in Headers */,
-				3E4F517E15A05BF10054EB23 /* NCButtonBuilder.h in Headers */,
-				3E4F517F15A05BF10054EB23 /* NCContainer.h in Headers */,
-				3E4F518015A05BF10054EB23 /* NCLabelBuilder.h in Headers */,
-				3E4F518115A05BF10054EB23 /* NCManager.h in Headers */,
-				3E4F518215A05BF10054EB23 /* NCSearchBoxBuilder.h in Headers */,
-				3E4F518315A05BF10054EB23 /* NCSegmentBuilder.h in Headers */,
-				3E4F518415A05BF10054EB23 /* NCTabbarItemBuilder.h in Headers */,
-				3E4F518515A05BF10054EB23 /* NCTitleView.h in Headers */,
-				3E4F518615A05BF10054EB23 /* NCToolbar.h in Headers */,
-				3E4F518715A05BF10054EB23 /* UILabel+Resize.h in Headers */,
-				3E4F51B315A05BF10054EB23 /* NCButton.h in Headers */,
-				3E4F51B415A05BF10054EB23 /* NCSearchBar.h in Headers */,
-				3E4F51B715A05BF10054EB23 /* MFNavigationController.h in Headers */,
-				3E0F090015A81D000025EFC2 /* MFPGNativeComponent.h in Headers */,
 				3EDD680916155CBA0018698B /* DatePicker.h in Headers */,
 				3EDD681F16155D0F0018698B /* ChildBrowserCommand.h in Headers */,
 				3EDD682216155D0F0018698B /* ChildBrowserViewController.h in Headers */,
-				3E8F180D16187F60005B09FC /* CDVViewController+getMonacaBundlePlist.h in Headers */,
-				3EC494C6163A8E410085D937 /* MFEvent.h in Headers */,
-				3E52828B1662A09000902EA7 /* CDVSplashScreen+monacaSplashScreen.h in Headers */,
-				3EB4088D1663987A00DC00A9 /* CDVCamera+MonacaAction.h in Headers */,
 				3E9B13B31664AC82005908B7 /* zxing-all-in-one.h in Headers */,
 				3E47C293166F004600F97AAA /* CDV.h in Headers */,
 				3E47C294166F004600F97AAA /* CDVAccelerometer.h in Headers */,
@@ -1262,24 +1194,51 @@
 				3E47C2FE166F004600F97AAA /* NSDictionary+Extensions.h in Headers */,
 				3E47C301166F004600F97AAA /* NSMutableArray+QueueAdditions.h in Headers */,
 				3E47C304166F004600F97AAA /* UIDevice+Extensions.h in Headers */,
-				3E4E8AE716AD122200653A9F /* MFSecureFileURLProtocol.h in Headers */,
-				3E4E8AEB16AD122200653A9F /* MonacaNoCacheURLProtocol.h in Headers */,
-				3E4E8AEF16AD122200653A9F /* MonacaQueryParamURLProtocol.h in Headers */,
-				3E4E8B0516AD14A500653A9F /* MFJSInterfaceProtocol.h in Headers */,
-				F1A28869174DBB9400233B47 /* MFVIewBackground.h in Headers */,
-				0E01CC95174F4C06003E60D6 /* MFSpinnerParameter.h in Headers */,
-				0E01CC99174F4C06003E60D6 /* MFSpinnerView.h in Headers */,
-				0E01CCA8174F4C6A003E60D6 /* MFTransitPlugin.h in Headers */,
-				0E01CCAC174F4C6A003E60D6 /* MFTransitPopParameter.h in Headers */,
-				0E01CCB0174F4C6A003E60D6 /* MFTransitPushParameter.h in Headers */,
-				F1C170671752F9040020915D /* NCBarButtonItem.h in Headers */,
-				F142AD7B175449BD00814179 /* ApplicationResourceDelegate.h in Headers */,
-				F142AD7F175449BD00814179 /* GeolocationDelegate.h in Headers */,
-				F142AD88175449BD00814179 /* MIPCommunicationPlugin.h in Headers */,
-				F142AD8C175449BD00814179 /* MIPUtility.h in Headers */,
-				F142AD90175449BD00814179 /* ProfileDelegate.h in Headers */,
-				F142AD94175449BD00814179 /* UserDelegate.h in Headers */,
-				F117D44F178698A500ED4449 /* MFDevicePlugin.h in Headers */,
+				5A83D2EF16D9087100D25E98 /* MFViewController.h in Headers */,
+				5A83D2FA16D90BD700D25E98 /* MFNavigationController.h in Headers */,
+				5A83D30116D90E5C00D25E98 /* MFUtility.h in Headers */,
+				5A83D30716D9102E00D25E98 /* MFEvent.h in Headers */,
+				5A83D34416D91E6D00D25E98 /* MFTabBarController.h in Headers */,
+				5A83D34C16D91E6D00D25E98 /* NativeComponents.h in Headers */,
+				5A83D34D16D91E6D00D25E98 /* NativeComponentsInternal.h in Headers */,
+				5A83D35A16D91E6D00D25E98 /* NCContainer.h in Headers */,
+				5A83D36216D91E6D00D25E98 /* NCManager.h in Headers */,
+				5A83D37A16D91E6D00D25E98 /* NCToolbar.h in Headers */,
+				5AA6954E16D9FF27003C5D90 /* MFPGNativeComponent.h in Headers */,
+				5A40CBDF170836F2002DD96C /* MFTransitPlugin.h in Headers */,
+				5AAB3F36171C3D230044FB77 /* MFViewBuilder.h in Headers */,
+				5A3202DE172573CD0055A59F /* UIStyleProtocol.h in Headers */,
+				5ADB0BCD172AE2FE009AFD18 /* NCTabbarItem.h in Headers */,
+				5AEA5947172D1A1100FF15E2 /* NCNavigationBar.h in Headers */,
+				5AEA5960172D506700FF15E2 /* NCBackButton.h in Headers */,
+				5AEA5964172D506700FF15E2 /* NCButton.h in Headers */,
+				5AEA5968172D506700FF15E2 /* NCLabel.h in Headers */,
+				5AEA596C172D506700FF15E2 /* NCSearchBox.h in Headers */,
+				5AEA5970172D506700FF15E2 /* NCSegment.h in Headers */,
+				5AEA5976172D50ED00FF15E2 /* NCBarButtonItem.h in Headers */,
+				5A45C5A3172D54450003B3BF /* NCTitleView.h in Headers */,
+				5AA2B4B217369C4300E785EA /* MFJSInterfaceProtocolTest.h in Headers */,
+				5AA2B4B617369C4300E785EA /* MFUtilityTest.h in Headers */,
+				5AA2B4C217369C5D00E785EA /* MFJSInterfaceProtocol.h in Headers */,
+				5AA2B4C617369C5D00E785EA /* MFSecureFileURLProtocol.h in Headers */,
+				5AA2B4CA17369C5D00E785EA /* MonacaNoCacheURLProtocol.h in Headers */,
+				5AA2B4CE17369C5D00E785EA /* MonacaQueryParamURLProtocol.h in Headers */,
+				5AA2B4D31736A0A000E785EA /* MonacaFramework-Prefix.pch in Headers */,
+				5AA2B4E41736AE3300E785EA /* CDVSplashScreen+monacaSplashScreen.h in Headers */,
+				5AA2B4E81736AE3300E785EA /* CDVViewController+getMonacaBundlePlist.h in Headers */,
+				5A993D7A17394ECE009135B0 /* CDVCommandDelegateImpl+pathForResource.h in Headers */,
+				0E81EF311741DD49003A4F9E /* UILabel+Resize.h in Headers */,
+				0E813EBC174DEE8C0062A13C /* MFUIChecker.h in Headers */,
+				5A99A8F51750FB8C00D4ABD7 /* MFTransitPopParameter.h in Headers */,
+				5A99A8F91750FB8C00D4ABD7 /* MFTransitPushParameter.h in Headers */,
+				0EED098617547926006DDE72 /* MFSpinnerParameter.h in Headers */,
+				0EED098A17547926006DDE72 /* MFSpinnerView.h in Headers */,
+				0EED09A7175496F9006DDE72 /* MFViewBackground.h in Headers */,
+				5AA1129117565B430050BBC6 /* NCStyle.h in Headers */,
+				5AF1155B175B07A2002E4E6B /* MFViewManager.h in Headers */,
+				0E829471176EA9BA00BEB9DB /* MFTransitParameter.h in Headers */,
+				F1660A2C178C050900D74D5D /* MFDevicePlugin.h in Headers */,
+				F1A1382E17959D5100C5784D /* MFDummyViewController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1345,6 +1304,7 @@
 		F504609C13B361720050803F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = "ASIAL CORPORATION";
 			};
 			buildConfigurationList = F504609F13B361720050803F /* Build configuration list for PBXProject "MonacaFramework" */;
@@ -1384,11 +1344,8 @@
 				3E0B1929169D8CD7001A35BB /* Default-568h@2x.png in Resources */,
 				0E885C9A169E8DFB001DB4B1 /* exist.html in Resources */,
 				0E885C9C169E9583001DB4B1 /* exist.css in Resources */,
-				0E4C72F1174B17F900883F51 /* spinner.png in Resources */,
-				0E4C72F3174B17F900883F51 /* spinner@2x.png in Resources */,
-				0E01CC9E174F4C06003E60D6 /* spinner.png in Resources */,
-				0E01CCA0174F4C06003E60D6 /* spinner@2x.png in Resources */,
-				F142AD87175449BD00814179 /* MICommunication-info.plist in Resources */,
+				0EED098F17547926006DDE72 /* spinner.png in Resources */,
+				0EED099117547926006DDE72 /* spinner@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1406,9 +1363,8 @@
 				3EDD681C16155D0F0018698B /* ChildBrowser.bundle in Resources */,
 				3EDD682516155D0F0018698B /* ChildBrowserViewController.xib in Resources */,
 				3E7708E0161169CF0041CF4D /* Default-568h@2x.png in Resources */,
-				0E01CC9D174F4C06003E60D6 /* spinner.png in Resources */,
-				0E01CC9F174F4C06003E60D6 /* spinner@2x.png in Resources */,
-				F142AD86175449BD00814179 /* MICommunication-info.plist in Resources */,
+				0EED098E17547926006DDE72 /* spinner.png in Resources */,
+				0EED099017547926006DDE72 /* spinner@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1450,33 +1406,9 @@
 			files = (
 				3E0B18C8169D8CD7001A35BB /* MFDevice.m in Sources */,
 				3E0B18C9169D8CD7001A35BB /* MFDelegate.m in Sources */,
-				3E0B18CA169D8CD7001A35BB /* MFViewController.m in Sources */,
-				3E0B18CC169D8CD7001A35BB /* MFTabBarController.m in Sources */,
-				3E0B18CD169D8CD7001A35BB /* NCManager.m in Sources */,
-				3E0B18CE169D8CD7001A35BB /* NCContainer.m in Sources */,
-				3E0B18CF169D8CD7001A35BB /* NCButtonBuilder.m in Sources */,
-				3E0B18D0169D8CD7001A35BB /* MFUtility.m in Sources */,
-				3E0B18D1169D8CD7001A35BB /* NCBackButtonBuilder.m in Sources */,
-				3E0B18D2169D8CD7001A35BB /* NCLabelBuilder.m in Sources */,
-				3E0B18D3169D8CD7001A35BB /* NCSearchBoxBuilder.m in Sources */,
-				3E0B18D4169D8CD7001A35BB /* NCSegmentBuilder.m in Sources */,
-				3E0B18D5169D8CD7001A35BB /* NCButton.m in Sources */,
-				3E0B18D6169D8CD7001A35BB /* NCSearchBar.m in Sources */,
-				3E0B18D7169D8CD7001A35BB /* NCTabbarItemBuilder.m in Sources */,
-				3E0B18D8169D8CD7001A35BB /* NCTitleView.m in Sources */,
-				3E0B18D9169D8CD7001A35BB /* NCToolbar.m in Sources */,
-				3E0B18DA169D8CD7001A35BB /* UILabel+Resize.m in Sources */,
-				3E0B18DB169D8CD7001A35BB /* MFTabBarController+Top.m in Sources */,
-				3E0B18DD169D8CD7001A35BB /* MFNavigationController.m in Sources */,
-				3E0B18DE169D8CD7001A35BB /* MFTabBarController+Bottom.m in Sources */,
-				3E0B18DF169D8CD7001A35BB /* MFPGNativeComponent.m in Sources */,
 				3E0B18E0169D8CD7001A35BB /* DatePicker.m in Sources */,
 				3E0B18E1169D8CD7001A35BB /* ChildBrowserCommand.m in Sources */,
 				3E0B18E2169D8CD7001A35BB /* ChildBrowserViewController.m in Sources */,
-				3E0B18E3169D8CD7001A35BB /* CDVViewController+getMonacaBundlePlist.m in Sources */,
-				3E0B18E4169D8CD7001A35BB /* MFEvent.m in Sources */,
-				3E0B18E5169D8CD7001A35BB /* CDVSplashScreen+monacaSplashScreen.m in Sources */,
-				3E0B18E6169D8CD7001A35BB /* CDVCamera+MonacaAction.m in Sources */,
 				3E0B18E7169D8CD7001A35BB /* CDVBarcodeScanner.mm in Sources */,
 				3E0B18E8169D8CD7001A35BB /* zxing-all-in-one.cpp in Sources */,
 				3E0B18E9169D8CD7001A35BB /* CDVAccelerometer.m in Sources */,
@@ -1515,26 +1447,47 @@
 				3E0B190A169D8CD7001A35BB /* NSMutableArray+QueueAdditions.m in Sources */,
 				3E0B190B169D8CD7001A35BB /* UIDevice+Extensions.m in Sources */,
 				3E0B193E169D8E24001A35BB /* main.m in Sources */,
-				3E0B1944169D904A001A35BB /* MFUtilityTest.m in Sources */,
-				3E4E8AEA16AD122200653A9F /* MFSecureFileURLProtocol.m in Sources */,
-				3E4E8AEE16AD122200653A9F /* MonacaNoCacheURLProtocol.m in Sources */,
-				3E4E8AF216AD122200653A9F /* MonacaQueryParamURLProtocol.m in Sources */,
-				3E4E8B0816AD14A500653A9F /* MFJSInterfaceProtocol.m in Sources */,
-				3E4E8B0E16AD14F500653A9F /* MFJSInterfaceProtocolTest.m in Sources */,
-				F1A2886C174DBB9400233B47 /* MFVIewBackground.m in Sources */,
-				0E01CC98174F4C06003E60D6 /* MFSpinnerParameter.m in Sources */,
-				0E01CC9C174F4C06003E60D6 /* MFSpinnerView.m in Sources */,
-				0E01CCAB174F4C6A003E60D6 /* MFTransitPlugin.m in Sources */,
-				0E01CCAF174F4C6A003E60D6 /* MFTransitPopParameter.m in Sources */,
-				0E01CCB3174F4C6A003E60D6 /* MFTransitPushParameter.m in Sources */,
-				F1C1706A1752F9040020915D /* NCBarButtonItem.m in Sources */,
-				F142AD7E175449BD00814179 /* ApplicationResourceDelegate.m in Sources */,
-				F142AD82175449BD00814179 /* GeolocationDelegate.m in Sources */,
-				F142AD8B175449BD00814179 /* MIPCommunicationPlugin.m in Sources */,
-				F142AD8F175449BD00814179 /* MIPUtility.m in Sources */,
-				F142AD93175449BD00814179 /* ProfileDelegate.m in Sources */,
-				F142AD97175449BD00814179 /* UserDelegate.m in Sources */,
-				F117D452178698A500ED4449 /* MFDevicePlugin.m in Sources */,
+				5A83D2F216D9087100D25E98 /* MFViewController.m in Sources */,
+				5A83D2FE16D90D8900D25E98 /* MFNavigationController.m in Sources */,
+				5A83D30416D90E5C00D25E98 /* MFUtility.m in Sources */,
+				5A83D30A16D9102E00D25E98 /* MFEvent.m in Sources */,
+				5A83D34716D91E6D00D25E98 /* MFTabBarController.m in Sources */,
+				5A83D35D16D91E6D00D25E98 /* NCContainer.m in Sources */,
+				5A83D36516D91E6D00D25E98 /* NCManager.m in Sources */,
+				5A83D37D16D91E6D00D25E98 /* NCToolbar.m in Sources */,
+				5AA6955116D9FF27003C5D90 /* MFPGNativeComponent.m in Sources */,
+				5A40CBE2170836F2002DD96C /* MFTransitPlugin.m in Sources */,
+				5AAB3F39171C44190044FB77 /* MFViewBuilder.m in Sources */,
+				5ADB0BD0172AE303009AFD18 /* NCTabbarItem.m in Sources */,
+				5AEA594A172D1A1100FF15E2 /* NCNavigationBar.m in Sources */,
+				5AEA5963172D506700FF15E2 /* NCBackButton.m in Sources */,
+				5AEA5967172D506700FF15E2 /* NCButton.m in Sources */,
+				5AEA596B172D506700FF15E2 /* NCLabel.m in Sources */,
+				5AEA596F172D506700FF15E2 /* NCSearchBox.m in Sources */,
+				5AEA5973172D506700FF15E2 /* NCSegment.m in Sources */,
+				5AEA5979172D50ED00FF15E2 /* NCBarButtonItem.m in Sources */,
+				5AA2B4B517369C4300E785EA /* MFJSInterfaceProtocolTest.m in Sources */,
+				5AA2B4B917369C4300E785EA /* MFUtilityTest.m in Sources */,
+				5AA2B4C517369C5D00E785EA /* MFJSInterfaceProtocol.m in Sources */,
+				5AA2B4C917369C5D00E785EA /* MFSecureFileURLProtocol.m in Sources */,
+				5AA2B4CD17369C5D00E785EA /* MonacaNoCacheURLProtocol.m in Sources */,
+				5AA2B4D117369C5D00E785EA /* MonacaQueryParamURLProtocol.m in Sources */,
+				5AA2B4E71736AE3300E785EA /* CDVSplashScreen+monacaSplashScreen.m in Sources */,
+				5AA2B4EB1736AE3300E785EA /* CDVViewController+getMonacaBundlePlist.m in Sources */,
+				5A993D7C17394ED1009135B0 /* CDVCommandDelegateImpl+pathForResource.m in Sources */,
+				5A9838E017413C4A00FAED14 /* NCTitleView.m in Sources */,
+				0E81EF341741DD51003A4F9E /* UILabel+Resize.m in Sources */,
+				0E813EBF174DEE8C0062A13C /* MFUIChecker.m in Sources */,
+				5A99A8F81750FB8C00D4ABD7 /* MFTransitPopParameter.m in Sources */,
+				5A99A8FC1750FB8C00D4ABD7 /* MFTransitPushParameter.m in Sources */,
+				0EED098917547926006DDE72 /* MFSpinnerParameter.m in Sources */,
+				0EED098D17547926006DDE72 /* MFSpinnerView.m in Sources */,
+				0EED09AA175496F9006DDE72 /* MFViewBackground.m in Sources */,
+				5AA1129417565B430050BBC6 /* NCStyle.m in Sources */,
+				5AF1155E175B07A2002E4E6B /* MFViewManager.m in Sources */,
+				0E829474176EA9BA00BEB9DB /* MFTransitParameter.m in Sources */,
+				F1660A2F178C050900D74D5D /* MFDevicePlugin.m in Sources */,
+				F1A1383117959D5100C5784D /* MFDummyViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1543,34 +1496,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				3E4F513F15A05BF10054EB23 /* MFDelegate.m in Sources */,
-				3E4F514015A05BF10054EB23 /* MFViewController.m in Sources */,
-				3E4F514115A05BF10054EB23 /* MFUtility.m in Sources */,
-				3E4F514215A05BF10054EB23 /* MFTabBarController.m in Sources */,
 				3E4F514315A05BF10054EB23 /* MFDevice.m in Sources */,
-				3E4F514415A05BF10054EB23 /* MFTabBarController+Bottom.m in Sources */,
-				3E4F514515A05BF10054EB23 /* MFTabBarController+Top.m in Sources */,
-				3E4F514615A05BF10054EB23 /* NCBackButtonBuilder.m in Sources */,
-				3E4F514715A05BF10054EB23 /* NCButtonBuilder.m in Sources */,
-				3E4F514815A05BF10054EB23 /* NCContainer.m in Sources */,
-				3E4F514915A05BF10054EB23 /* NCLabelBuilder.m in Sources */,
-				3E4F514A15A05BF10054EB23 /* NCManager.m in Sources */,
-				3E4F514B15A05BF10054EB23 /* NCSearchBoxBuilder.m in Sources */,
-				3E4F514C15A05BF10054EB23 /* NCSegmentBuilder.m in Sources */,
-				3E4F514D15A05BF10054EB23 /* NCTabbarItemBuilder.m in Sources */,
-				3E4F514E15A05BF10054EB23 /* NCTitleView.m in Sources */,
-				3E4F514F15A05BF10054EB23 /* NCToolbar.m in Sources */,
-				3E4F515015A05BF10054EB23 /* UILabel+Resize.m in Sources */,
-				3E4F515E15A05BF10054EB23 /* NCButton.m in Sources */,
-				3E4F515F15A05BF10054EB23 /* NCSearchBar.m in Sources */,
-				3E4F516215A05BF10054EB23 /* MFNavigationController.m in Sources */,
-				3E0F090215A81D000025EFC2 /* MFPGNativeComponent.m in Sources */,
 				3EDD680A16155CBA0018698B /* DatePicker.m in Sources */,
 				3EDD682016155D0F0018698B /* ChildBrowserCommand.m in Sources */,
 				3EDD682316155D0F0018698B /* ChildBrowserViewController.m in Sources */,
-				3E8F180E16187F60005B09FC /* CDVViewController+getMonacaBundlePlist.m in Sources */,
-				3EC494C7163A8E410085D937 /* MFEvent.m in Sources */,
-				3E52828C1662A09000902EA7 /* CDVSplashScreen+monacaSplashScreen.m in Sources */,
-				3EB4088E1663987A00DC00A9 /* CDVCamera+MonacaAction.m in Sources */,
 				3E9B13AE1664AC82005908B7 /* CDVBarcodeScanner.mm in Sources */,
 				3E9B13B11664AC82005908B7 /* zxing-all-in-one.cpp in Sources */,
 				3E47C295166F004600F97AAA /* CDVAccelerometer.m in Sources */,
@@ -1608,24 +1537,45 @@
 				3E47C2FF166F004600F97AAA /* NSDictionary+Extensions.m in Sources */,
 				3E47C302166F004600F97AAA /* NSMutableArray+QueueAdditions.m in Sources */,
 				3E47C305166F004600F97AAA /* UIDevice+Extensions.m in Sources */,
-				3E4E8AE816AD122200653A9F /* MFSecureFileURLProtocol.m in Sources */,
-				3E4E8AEC16AD122200653A9F /* MonacaNoCacheURLProtocol.m in Sources */,
-				3E4E8AF016AD122200653A9F /* MonacaQueryParamURLProtocol.m in Sources */,
-				3E4E8B0616AD14A500653A9F /* MFJSInterfaceProtocol.m in Sources */,
-				F1A2886A174DBB9400233B47 /* MFVIewBackground.m in Sources */,
-				0E01CC96174F4C06003E60D6 /* MFSpinnerParameter.m in Sources */,
-				0E01CC9A174F4C06003E60D6 /* MFSpinnerView.m in Sources */,
-				0E01CCA9174F4C6A003E60D6 /* MFTransitPlugin.m in Sources */,
-				0E01CCAD174F4C6A003E60D6 /* MFTransitPopParameter.m in Sources */,
-				0E01CCB1174F4C6A003E60D6 /* MFTransitPushParameter.m in Sources */,
-				F1C170681752F9040020915D /* NCBarButtonItem.m in Sources */,
-				F142AD7C175449BD00814179 /* ApplicationResourceDelegate.m in Sources */,
-				F142AD80175449BD00814179 /* GeolocationDelegate.m in Sources */,
-				F142AD89175449BD00814179 /* MIPCommunicationPlugin.m in Sources */,
-				F142AD8D175449BD00814179 /* MIPUtility.m in Sources */,
-				F142AD91175449BD00814179 /* ProfileDelegate.m in Sources */,
-				F142AD95175449BD00814179 /* UserDelegate.m in Sources */,
-				F117D450178698A500ED4449 /* MFDevicePlugin.m in Sources */,
+				5A83D2F016D9087100D25E98 /* MFViewController.m in Sources */,
+				5A83D2FB16D90BD700D25E98 /* MFNavigationController.m in Sources */,
+				5A83D30216D90E5C00D25E98 /* MFUtility.m in Sources */,
+				5A83D30816D9102E00D25E98 /* MFEvent.m in Sources */,
+				5A83D34516D91E6D00D25E98 /* MFTabBarController.m in Sources */,
+				5A83D35B16D91E6D00D25E98 /* NCContainer.m in Sources */,
+				5A83D36316D91E6D00D25E98 /* NCManager.m in Sources */,
+				5A83D37B16D91E6D00D25E98 /* NCToolbar.m in Sources */,
+				5AA6954F16D9FF27003C5D90 /* MFPGNativeComponent.m in Sources */,
+				5A40CBE0170836F2002DD96C /* MFTransitPlugin.m in Sources */,
+				5AAB3F37171C3D230044FB77 /* MFViewBuilder.m in Sources */,
+				5ADB0BCE172AE2FE009AFD18 /* NCTabbarItem.m in Sources */,
+				5AEA5948172D1A1100FF15E2 /* NCNavigationBar.m in Sources */,
+				5AEA5961172D506700FF15E2 /* NCBackButton.m in Sources */,
+				5AEA5965172D506700FF15E2 /* NCButton.m in Sources */,
+				5AEA5969172D506700FF15E2 /* NCLabel.m in Sources */,
+				5AEA596D172D506700FF15E2 /* NCSearchBox.m in Sources */,
+				5AEA5971172D506700FF15E2 /* NCSegment.m in Sources */,
+				5AEA5977172D50ED00FF15E2 /* NCBarButtonItem.m in Sources */,
+				5A45C5A4172D54450003B3BF /* NCTitleView.m in Sources */,
+				5AA2B4C317369C5D00E785EA /* MFJSInterfaceProtocol.m in Sources */,
+				5AA2B4C717369C5D00E785EA /* MFSecureFileURLProtocol.m in Sources */,
+				5AA2B4CB17369C5D00E785EA /* MonacaNoCacheURLProtocol.m in Sources */,
+				5AA2B4CF17369C5D00E785EA /* MonacaQueryParamURLProtocol.m in Sources */,
+				5AA2B4E51736AE3300E785EA /* CDVSplashScreen+monacaSplashScreen.m in Sources */,
+				5AA2B4E91736AE3300E785EA /* CDVViewController+getMonacaBundlePlist.m in Sources */,
+				5A993D7B17394ECE009135B0 /* CDVCommandDelegateImpl+pathForResource.m in Sources */,
+				0E81EF321741DD49003A4F9E /* UILabel+Resize.m in Sources */,
+				0E813EBD174DEE8C0062A13C /* MFUIChecker.m in Sources */,
+				5A99A8F61750FB8C00D4ABD7 /* MFTransitPopParameter.m in Sources */,
+				5A99A8FA1750FB8C00D4ABD7 /* MFTransitPushParameter.m in Sources */,
+				0EED098717547926006DDE72 /* MFSpinnerParameter.m in Sources */,
+				0EED098B17547926006DDE72 /* MFSpinnerView.m in Sources */,
+				0EED09A8175496F9006DDE72 /* MFViewBackground.m in Sources */,
+				5AA1129217565B430050BBC6 /* NCStyle.m in Sources */,
+				5AF1155C175B07A2002E4E6B /* MFViewManager.m in Sources */,
+				0E829472176EA9BA00BEB9DB /* MFTransitParameter.m in Sources */,
+				F1660A2D178C050900D74D5D /* MFDevicePlugin.m in Sources */,
+				F1A1382F17959D5100C5784D /* MFDummyViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1635,33 +1585,9 @@
 			files = (
 				3E7FD2EB159D914100E85C81 /* MFDevice.m in Sources */,
 				3E7FD31C159EA27700E85C81 /* MFDelegate.m in Sources */,
-				3E7FD31D159EA29700E85C81 /* MFViewController.m in Sources */,
-				3E7FD32A159ECB7000E85C81 /* MFTabBarController.m in Sources */,
-				3E7FD32B159ECB9B00E85C81 /* NCManager.m in Sources */,
-				3E7FD32C159ECBA400E85C81 /* NCContainer.m in Sources */,
-				3E7FD32D159ECBCD00E85C81 /* NCButtonBuilder.m in Sources */,
-				3E7FD32E159ECBE700E85C81 /* MFUtility.m in Sources */,
-				3E7FD32F159ECC0000E85C81 /* NCBackButtonBuilder.m in Sources */,
-				3E7FD330159ECC0900E85C81 /* NCLabelBuilder.m in Sources */,
-				3E7FD331159ECC1200E85C81 /* NCSearchBoxBuilder.m in Sources */,
-				3E7FD332159ECC1A00E85C81 /* NCSegmentBuilder.m in Sources */,
-				3E7FD333159ECC2100E85C81 /* NCButton.m in Sources */,
-				3E7FD334159ECC3000E85C81 /* NCSearchBar.m in Sources */,
-				3E7FD335159ECC5400E85C81 /* NCTabbarItemBuilder.m in Sources */,
-				3E7FD336159ECC5900E85C81 /* NCTitleView.m in Sources */,
-				3E7FD337159ECC5C00E85C81 /* NCToolbar.m in Sources */,
-				3E7FD338159ECC6300E85C81 /* UILabel+Resize.m in Sources */,
-				3E7FD33A159ECC8300E85C81 /* MFTabBarController+Top.m in Sources */,
-				3E4F510815A042E50054EB23 /* MFNavigationController.m in Sources */,
-				3E4405DC15A137CD00BA0FF6 /* MFTabBarController+Bottom.m in Sources */,
-				3E0F090315A81D000025EFC2 /* MFPGNativeComponent.m in Sources */,
 				3EDD680B16155CBA0018698B /* DatePicker.m in Sources */,
 				3EDD682116155D0F0018698B /* ChildBrowserCommand.m in Sources */,
 				3EDD682416155D0F0018698B /* ChildBrowserViewController.m in Sources */,
-				3E8F180F16187F60005B09FC /* CDVViewController+getMonacaBundlePlist.m in Sources */,
-				3EC494C8163A8E410085D937 /* MFEvent.m in Sources */,
-				3E52828D1662A09000902EA7 /* CDVSplashScreen+monacaSplashScreen.m in Sources */,
-				3EB4088F1663987A00DC00A9 /* CDVCamera+MonacaAction.m in Sources */,
 				3EE0E8011664B58000F1E677 /* CDVBarcodeScanner.mm in Sources */,
 				3EE0E8061664B60A00F1E677 /* zxing-all-in-one.cpp in Sources */,
 				3E47C296166F004600F97AAA /* CDVAccelerometer.m in Sources */,
@@ -1700,24 +1626,45 @@
 				3E47C303166F004600F97AAA /* NSMutableArray+QueueAdditions.m in Sources */,
 				3E47C306166F004600F97AAA /* UIDevice+Extensions.m in Sources */,
 				3E0B1941169D8FD7001A35BB /* main.m in Sources */,
-				3E4E8AE916AD122200653A9F /* MFSecureFileURLProtocol.m in Sources */,
-				3E4E8AED16AD122200653A9F /* MonacaNoCacheURLProtocol.m in Sources */,
-				3E4E8AF116AD122200653A9F /* MonacaQueryParamURLProtocol.m in Sources */,
-				3E4E8B0716AD14A500653A9F /* MFJSInterfaceProtocol.m in Sources */,
-				F1A2886B174DBB9400233B47 /* MFVIewBackground.m in Sources */,
-				0E01CC97174F4C06003E60D6 /* MFSpinnerParameter.m in Sources */,
-				0E01CC9B174F4C06003E60D6 /* MFSpinnerView.m in Sources */,
-				0E01CCAA174F4C6A003E60D6 /* MFTransitPlugin.m in Sources */,
-				0E01CCAE174F4C6A003E60D6 /* MFTransitPopParameter.m in Sources */,
-				0E01CCB2174F4C6A003E60D6 /* MFTransitPushParameter.m in Sources */,
-				F1C170691752F9040020915D /* NCBarButtonItem.m in Sources */,
-				F142AD7D175449BD00814179 /* ApplicationResourceDelegate.m in Sources */,
-				F142AD81175449BD00814179 /* GeolocationDelegate.m in Sources */,
-				F142AD8A175449BD00814179 /* MIPCommunicationPlugin.m in Sources */,
-				F142AD8E175449BD00814179 /* MIPUtility.m in Sources */,
-				F142AD92175449BD00814179 /* ProfileDelegate.m in Sources */,
-				F142AD96175449BD00814179 /* UserDelegate.m in Sources */,
-				F117D451178698A500ED4449 /* MFDevicePlugin.m in Sources */,
+				5A83D2F116D9087100D25E98 /* MFViewController.m in Sources */,
+				5A83D2FD16D90D8800D25E98 /* MFNavigationController.m in Sources */,
+				5A83D30316D90E5C00D25E98 /* MFUtility.m in Sources */,
+				5A83D30916D9102E00D25E98 /* MFEvent.m in Sources */,
+				5A83D34616D91E6D00D25E98 /* MFTabBarController.m in Sources */,
+				5A83D35C16D91E6D00D25E98 /* NCContainer.m in Sources */,
+				5A83D36416D91E6D00D25E98 /* NCManager.m in Sources */,
+				5A83D37C16D91E6D00D25E98 /* NCToolbar.m in Sources */,
+				5AA6955016D9FF27003C5D90 /* MFPGNativeComponent.m in Sources */,
+				5A40CBE1170836F2002DD96C /* MFTransitPlugin.m in Sources */,
+				5AAB3F38171C44190044FB77 /* MFViewBuilder.m in Sources */,
+				5ADB0BCF172AE303009AFD18 /* NCTabbarItem.m in Sources */,
+				5AEA5949172D1A1100FF15E2 /* NCNavigationBar.m in Sources */,
+				5AEA5962172D506700FF15E2 /* NCBackButton.m in Sources */,
+				5AEA5966172D506700FF15E2 /* NCButton.m in Sources */,
+				5AEA596A172D506700FF15E2 /* NCLabel.m in Sources */,
+				5AEA596E172D506700FF15E2 /* NCSearchBox.m in Sources */,
+				5AEA5972172D506700FF15E2 /* NCSegment.m in Sources */,
+				5AEA5978172D50ED00FF15E2 /* NCBarButtonItem.m in Sources */,
+				5AA2B4C417369C5D00E785EA /* MFJSInterfaceProtocol.m in Sources */,
+				5AA2B4C817369C5D00E785EA /* MFSecureFileURLProtocol.m in Sources */,
+				5AA2B4CC17369C5D00E785EA /* MonacaNoCacheURLProtocol.m in Sources */,
+				5AA2B4D017369C5D00E785EA /* MonacaQueryParamURLProtocol.m in Sources */,
+				5AA2B4E61736AE3300E785EA /* CDVSplashScreen+monacaSplashScreen.m in Sources */,
+				5AA2B4EA1736AE3300E785EA /* CDVViewController+getMonacaBundlePlist.m in Sources */,
+				5A993D7D17394ED2009135B0 /* CDVCommandDelegateImpl+pathForResource.m in Sources */,
+				5A9838DF17413C4A00FAED14 /* NCTitleView.m in Sources */,
+				0E81EF331741DD51003A4F9E /* UILabel+Resize.m in Sources */,
+				0E813EBE174DEE8C0062A13C /* MFUIChecker.m in Sources */,
+				5A99A8F71750FB8C00D4ABD7 /* MFTransitPopParameter.m in Sources */,
+				5A99A8FB1750FB8C00D4ABD7 /* MFTransitPushParameter.m in Sources */,
+				0EED098817547926006DDE72 /* MFSpinnerParameter.m in Sources */,
+				0EED098C17547926006DDE72 /* MFSpinnerView.m in Sources */,
+				0EED09A9175496F9006DDE72 /* MFViewBackground.m in Sources */,
+				5AA1129317565B430050BBC6 /* NCStyle.m in Sources */,
+				5AF1155D175B07A2002E4E6B /* MFViewManager.m in Sources */,
+				0E829473176EA9BA00BEB9DB /* MFTransitParameter.m in Sources */,
+				F1660A2E178C050900D74D5D /* MFDevicePlugin.m in Sources */,
+				F1A1383017959D5100C5784D /* MFDummyViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1754,7 +1701,6 @@
 					armv6,
 				);
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_OBJCPP_ARC_ABI = YES;
 				CLANG_WARN__ARC_BRIDGE_CAST_NONARC = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
@@ -1771,10 +1717,11 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
+				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = "";
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				INFOPLIST_FILE = "MFUnitTest/MFUnitTest-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = MFUnitTest;
@@ -1792,7 +1739,6 @@
 					armv6,
 				);
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_OBJCPP_ARC_ABI = YES;
 				CLANG_WARN__ARC_BRIDGE_CAST_NONARC = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
@@ -1804,10 +1750,11 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MFUnitTest/MFUnitTest-Prefix.pch";
+				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = "";
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				INFOPLIST_FILE = "MFUnitTest/MFUnitTest-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				OTHER_LDFLAGS = "-all_load";
@@ -1827,7 +1774,6 @@
 					armv6,
 				);
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_OBJCPP_ARC_ABI = YES;
 				CLANG_WARN__ARC_BRIDGE_CAST_NONARC = YES;
 				COPY_PHASE_STRIP = NO;
 				DSTROOT = /tmp/MonacaFramework.dst;
@@ -1836,7 +1782,6 @@
 					"\"$(SRCROOT)/MonacaFramework/Plugins\"",
 					"\"$(SRCROOT)/../../../Shared/PhoneGap/Frameworks\"",
 					"\"$(SRCROOT)/MonacaFramework/Library/Vendor\"",
-					"\"$(SRCROOT)/../../../../../../Downloads/IPP_SampleApp\"",
 					"\"$(SRCROOT)/MonacaFramework/Library/InnovationPlusPlugin\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1845,6 +1790,7 @@
 					MONACA_PRIVATE_API,
 					DEBUG,
 				);
+				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = "";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
@@ -1862,7 +1808,6 @@
 					armv6,
 				);
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_OBJCPP_ARC_ABI = YES;
 				CLANG_WARN__ARC_BRIDGE_CAST_NONARC = YES;
 				COPY_PHASE_STRIP = NO;
 				DSTROOT = /tmp/MonacaFramework.dst;
@@ -1871,12 +1816,12 @@
 					"\"$(SRCROOT)/MonacaFramework/Plugins\"",
 					"\"$(SRCROOT)/../../../Shared/PhoneGap/Frameworks\"",
 					"\"$(SRCROOT)/MonacaFramework/Library/Vendor\"",
-					"\"$(SRCROOT)/../../../../../../Downloads/IPP_SampleApp\"",
 					"\"$(SRCROOT)/MonacaFramework/Library/InnovationPlusPlugin\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MonacaFramework/MonacaFramework-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = MONACA_PRIVATE_API;
+				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = "";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
@@ -1894,7 +1839,6 @@
 					armv6,
 				);
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_OBJCPP_ARC_ABI = YES;
 				CLANG_WARN__ARC_BRIDGE_CAST_NONARC = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
@@ -1910,12 +1854,12 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
+				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = "";
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				INFOPLIST_FILE = "MonacaSandbox/MonacaSandbox-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1932,7 +1876,6 @@
 					armv6,
 				);
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_OBJCPP_ARC_ABI = YES;
 				CLANG_WARN__ARC_BRIDGE_CAST_NONARC = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
@@ -1943,12 +1886,12 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MonacaSandbox/MonacaSandbox-Prefix.pch";
+				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = "";
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				INFOPLIST_FILE = "MonacaSandbox/MonacaSandbox-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1963,7 +1906,6 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_OBJCPP_ARC_ABI = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
@@ -1971,7 +1913,7 @@
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1981,12 +1923,11 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_OBJCPP_ARC_ABI = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				SDKROOT = iphoneos;
 			};
 			name = Release;

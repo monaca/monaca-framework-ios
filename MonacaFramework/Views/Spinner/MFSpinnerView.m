@@ -8,6 +8,7 @@
 
 #import "MFSpinnerView.h"
 #import "QuartzCore/QuartzCore.h"
+#import "MFUtility.h"
 
 @implementation MFSpinnerView
 
@@ -41,20 +42,6 @@
     return self;
 }
 
-- (void)layoutSubviews
-{
-    self.frame = WINDOW_FRAME;
-    
-    UIImage *image = [_imageView.animationImages objectAtIndex:0];
-    _imageView.frame = image
-        ? CGRectMake(self.center.x - image.size.width / 2, self.center.y - image.size.height / 2, image.size.width, image.size.height)
-        : CGRectMake(0, 0, 0, 0);
-    
-    CGFloat marginTop = _label.font.lineHeight * 0.5;
-    _label.frame = CGRectMake(0, _imageView.frame.origin.y + _imageView.frame.size.height + marginTop,
-                              WINDOW_FRAME.size.width, _label.font.lineHeight);
-}
-
 - (void)applyParameter:(MFSpinnerParameter *)parameter
 {
     _label.text = parameter.title;
@@ -82,7 +69,42 @@
 
 - (void)startSpinnerAnimating
 {
+    UIView *view = [MFUtility getAppDelegate].monacaNavigationController.view.superview;
+    UIInterfaceOrientation interfaceOrientation = [MFUtility getAppDelegate].monacaNavigationController.interfaceOrientation;
+    CGPoint center;
+    self.frame = view.frame;
+    if (interfaceOrientation == UIInterfaceOrientationPortrait) {
+        self.transform = CGAffineTransformMakeRotation(0);
+        center = CGPointMake(self.frame.size.width/2, self.frame.size.height/2);
+    }else if(interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown) {
+        self.transform = CGAffineTransformMakeRotation(M_PI);
+        center = CGPointMake(self.frame.size.width/2, self.frame.size.height/2);
+    }else if(interfaceOrientation == UIInterfaceOrientationLandscapeLeft) {
+        self.frame = CGRectMake(0, 0, view.frame.size.height, view.frame.size.width);
+        self.transform = CGAffineTransformMakeRotation(-M_PI/2);
+        center = CGPointMake(self.frame.size.height/2, self.frame.size.width/2);
+    }else if(interfaceOrientation == UIInterfaceOrientationLandscapeRight) {
+        self.frame = CGRectMake(0, 0, view.frame.size.height, view.frame.size.width);
+        self.transform = CGAffineTransformMakeRotation(M_PI/2);
+        center = CGPointMake(self.frame.size.height/2, self.frame.size.width/2);
+    }
+
+    self.center = view.center;
+    UIImage *image = [_imageView.animationImages objectAtIndex:0];
+    _imageView.frame = image
+    ? CGRectMake(center.x - image.size.width / 2, center.y - image.size.height / 2, image.size.width, image.size.height)
+    : CGRectMake(0, 0, 0, 0);
+    
+    CGFloat marginTop = _label.font.lineHeight * 0.5;
+    _label.frame = CGRectMake(0, _imageView.frame.origin.y + _imageView.frame.size.height + marginTop,
+                              center.x * 2.0f, _label.font.lineHeight);
+    [view addSubview:self];
     [_imageView startAnimating];
+}
+
+- (BOOL)isAnimating
+{
+    return _imageView.isAnimating;
 }
 
 static MFSpinnerView *spinnerView = nil;
@@ -95,11 +117,11 @@ static MFSpinnerView *spinnerView = nil;
     spinnerView = [MFSpinnerView.alloc init];
     [spinnerView applyParameter:parameter];
     [spinnerView startSpinnerAnimating];
-    
-    UIWindow *window = UIApplication.sharedApplication.delegate.window;
-    UIView *rootView = window.rootViewController.view;
-    [rootView addSubview:spinnerView];
-    
+}
+
++ (BOOL)isAnimating
+{
+    return spinnerView.isAnimating;
 }
 
 + (void)updateTitle:(NSString *)title

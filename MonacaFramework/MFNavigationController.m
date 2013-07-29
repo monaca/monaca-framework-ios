@@ -7,8 +7,11 @@
 //
 
 #import "MFNavigationController.h"
-#import "MFTransitPlugin.h"
 #import "MFUtility.h"
+#import "NativeComponents.h"
+#import "MFDummyViewController.h"
+#import "MFViewManager.h"
+#import "MFSpinnerView.h"
 
 @interface MFNavigationController ()
 
@@ -16,42 +19,107 @@
 
 @implementation MFNavigationController
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)aInterfaceOrientation
+- (id)init
 {
-    MFDelegate *delegate = (MFDelegate *)UIApplication.sharedApplication.delegate;
- 	BOOL result = [delegate.viewController shouldAutorotateToInterfaceOrientation:aInterfaceOrientation];
- 	return [MFUtility getAllowOrientationFromPlist:aInterfaceOrientation] && result;
+    self = [super init];
+
+    if (self) {
+        popFlag = NO;
+    }
+
+    return self;
 }
 
-- (BOOL)shouldAutorotate{
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+    if ([MFSpinnerView isAnimating])
+        return NO;
+    if ([MFViewManager currentViewController]) {
+        if ([MFViewManager currentViewController].screenOrientations == UIInterfaceOrientationMaskAll)
+            return [MFUtility getAllowOrientationFromPlist:toInterfaceOrientation];
+        else
+            return [MFViewManager currentViewController].screenOrientations & 1 << toInterfaceOrientation;
+    } else {
+        return [MFUtility getAllowOrientationFromPlist:toInterfaceOrientation];
+    }
+}
+
+- (BOOL)shouldAutorotate
+{
     return YES;
 }
 
-- (NSUInteger)supportedInterfaceOrientations{
-    MFDelegate *delegate = (MFDelegate *)UIApplication.sharedApplication.delegate;
-    return [delegate.viewController supportedInterfaceOrientations];
+- (UIViewController *)popViewControllerAnimated:(BOOL)animated
+{
+    id viewController;
+    NSMutableArray *viewControllers = [NSMutableArray arrayWithArray:self.viewControllers];
+    if (![[viewControllers objectAtIndex:[viewControllers count]-2] isKindOfClass:[MFDummyViewController class]]) {
+        popFlag = YES;
+        viewController = [super popViewControllerAnimated:animated];
+        popFlag = NO;
+        return viewController;
+    }
+    return nil;
 }
 
-- (void)loadView
+- (NSArray *)popToRootViewControllerAnimated:(BOOL)animated
 {
-    [super loadView];
-    self.delegate = self;
+    NSMutableArray *viewControllers = [NSMutableArray arrayWithArray:self.viewControllers];
+    int index = 0;
+    if ([viewControllers count] > 1) {
+        index = 1;
+    }
+    popFlag = YES;
+    NSArray *_viewControllers = [self popToViewController:[viewControllers objectAtIndex:index] animated:animated];
+    popFlag = NO;
+    return _viewControllers;
 }
 
-- (void)viewDidLoad
+- (BOOL)navigationBar:(UINavigationBar *)navigationBar shouldPopItem:(UINavigationItem *)item
 {
-    [super viewDidLoad];
-
-    self.navigationBarHidden = YES;
-    CGRect viewBounds = [[UIScreen mainScreen] applicationFrame];
-    self.view.frame = viewBounds;
+    if (!popFlag) {
+        [[(MFViewController *)self.topViewController backButton] didTap:self forEvent:nil];
+    } else {
+        return YES;
+    }
+    return NO;
 }
 
-#pragma mark - UINavigationControllerDelegate
-
-- (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated
+- (void)destroy
 {
-    [MFTransitPlugin changeDelegate:viewController];
+    for (MFViewController *view in self.viewControllers) {
+        [view destroy];
+    }
+}
+
+- (NSUInteger)supportedInterfaceOrientations
+{
+    if ([MFSpinnerView isAnimating]) {
+        return 0;
+    }
+
+    UIInterfaceOrientationMask mask = nil;
+    if ([MFUtility getAllowOrientationFromPlist:UIInterfaceOrientationPortrait]) {
+        mask |= UIInterfaceOrientationMaskPortrait;
+    }
+    if ([MFUtility getAllowOrientationFromPlist:UIInterfaceOrientationPortraitUpsideDown]){
+        mask |= UIInterfaceOrientationMaskPortraitUpsideDown;
+    }
+    if ([MFUtility getAllowOrientationFromPlist:UIInterfaceOrientationLandscapeRight]){
+        mask |= UIInterfaceOrientationMaskLandscapeRight;
+    }
+    if ([MFUtility getAllowOrientationFromPlist:UIInterfaceOrientationLandscapeLeft]){
+        mask |= UIInterfaceOrientationMaskLandscapeLeft;
+    }
+    if ([MFViewManager currentViewController]) {
+        if ([MFViewManager currentViewController].screenOrientations == UIInterfaceOrientationMaskAll)
+            return mask;
+        else
+            return [MFViewManager currentViewController].screenOrientations;
+    } else {
+        return mask;
+    }
+    
 }
 
 @end

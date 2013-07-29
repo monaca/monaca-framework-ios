@@ -8,60 +8,41 @@
 
 #import <UIKit/UIKit.h>
 #import "CDVViewController.h"
+#import "NCManager.h"
+#import "NCContainer.h"
+#import "UIStyleProtocol.h"
 
-@class MFDelegate;
-@class MFTabBarController;
-
-@interface MFViewController : UIViewController <UIScrollViewDelegate, UIWebViewDelegate> {
- @private
-    UINavigationController *appNavigationController;
-    MFTabBarController *tabBarController;
-    CDVViewController *cdvViewController;
-    
-    UIScrollView *scrollView_;
-    UIInterfaceOrientation interfaceOrientation;
-    
-    NSString *previousPath_;
-    NSMutableDictionary *styleDict_;
-    BOOL recall_;
-    BOOL interfaceOrientationUnspecified;
-    BOOL withinSinglePage;
-    NSMutableDictionary *uiSetting;
-    NSMutableArray *monacaTabViewControllers;
- @protected
-    NSString *initialQuery;
-    BOOL isFirstRendering;
-    NSUInteger supportedOrientationsMask_;
+@interface MFViewController : CDVViewController <UIScrollViewDelegate, UIWebViewDelegate>
+{
+@private
+    NSString *_previousPath;
+    NCManager *_ncManager;
+    NSDictionary *_uiDict;
+    id<UIStyleProtocol> _navigationBar;
+    id<UIStyleProtocol> _toolbar;
+    id<UIStyleProtocol> _bgView;
+    NCContainer *_backButton;
+    BOOL _transitAnimated;
+    NSUInteger _screenOrientations;
+    NSString *_startWwwFolder;
 }
 
-+ (BOOL)isPhoneGapScheme:(NSURL *)url;
-+ (BOOL)isExternalPage:(NSURL *)url;
-
-- (NSDictionary *)loadUIFile:(NSString *)path;
-- (id)initWithFileName:(NSString *)fileName;
-- (NSString*)removeFragment:(NSString *)fileName;
-- (void)setFixedInterfaceOrientation:(UIInterfaceOrientation)orientation;
-- (UIInterfaceOrientation)getFixedInterfaceOrientation;
-- (void)setInterfaceOrientationUnspecified:(BOOL)flag;
-- (BOOL)isInterfaceOrientationUnspecified;
-
-- (NSString *)hookForLoadedHTML:(NSString *)html request:(NSURLRequest *)aRequest;
+- (void)applyBarVisibility:(BOOL)animated;
+- (void)applyBarUserInterface;
+- (void)setBarUserInterface:(NSDictionary *)uidict;
+- (void)removeUserInterface;
 - (void)sendPush;
-- (void)initPlugins;
-- (void)resetPlugins;
-- (void)releaseWebView;
+- (id)initWithFileName:(NSString *)fileName;
 - (void)destroy;
 - (void)showSplash:(BOOL)show;
-- (void)applyStyleDict:(NSMutableDictionary*)pageStyle;
 
-@property (nonatomic, assign) BOOL recall;
 @property (nonatomic, copy) NSString *previousPath;
-@property (nonatomic, retain) UIScrollView *scrollView;
+@property (nonatomic, retain) NCManager *ncManager;
+@property (nonatomic, retain) NSDictionary *uiDict;
 @property (nonatomic, retain) NSDictionary *monacaPluginOptions;
-
-@property (nonatomic, retain) UINavigationController *appNavigationController;
-@property (nonatomic, retain) CDVViewController *cdvViewController;
-@property (nonatomic, retain) MFTabBarController *tabBarController;
-@property (nonatomic, retain) NSDictionary* queryParams;
+@property (nonatomic, retain) NCContainer *backButton;
+@property (nonatomic, assign) BOOL transitAnimated;
+@property (nonatomic, assign) NSUInteger screenOrientations;
+@property (nonatomic, copy) NSString *startWwwFolder;
 
 @end
