@@ -7,7 +7,7 @@
 //
 
 #import "MFUtility.h"
-#import "JSONKit.h"
+#import "CDVJSON.h"
 #import "MFEvent.h"
 #import "MFViewManager.h"
 
@@ -70,7 +70,7 @@ static NSDictionary *queryParams;
 
     data = [[self class] correctJSON:data];
 
-    id jsonString = [data cdvjk_objectFromJSONStringWithParseOptions:CDVJKParseOptionStrict error:&error];
+    id jsonString = [data JSONObject];
     
     // send log error
     if (error) {
@@ -119,7 +119,7 @@ static NSDictionary *queryParams;
 }
 
 + (NSDictionary *)parseJSON:(NSString *)json {
-    return [json cdvjk_objectFromJSONString];
+    return [json JSONObject];
 }
 
 + (NSDictionary *)getAppJSON

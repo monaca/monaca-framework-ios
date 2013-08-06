@@ -18,11 +18,14 @@
  */
 
 #import <Foundation/Foundation.h>
+#import <CoreLocation/CoreLocation.h>
+#import <CoreLocation/CLLocationManager.h>
 #import "CDVPlugin.h"
 
 enum CDVDestinationType {
     DestinationTypeDataUrl = 0,
-    DestinationTypeFileUri
+    DestinationTypeFileUri,
+    DestinationTypeNativeUri
 };
 typedef NSUInteger CDVDestinationType;
 
@@ -60,11 +63,15 @@ typedef NSUInteger CDVMediaType;
 // ======================================================================= //
 
 @interface CDVCamera : CDVPlugin <UIImagePickerControllerDelegate,
-    UINavigationControllerDelegate,
-    UIPopoverControllerDelegate>
+                       UINavigationControllerDelegate,
+                       UIPopoverControllerDelegate,
+                       CLLocationManagerDelegate>
 {}
 
 @property (strong) CDVCameraPicker* pickerController;
+@property (strong) NSMutableDictionary *metadata;
+@property (strong, nonatomic) CLLocationManager *locationManager;
+@property (strong) NSData* data;
 
 /*
  * getPicture
@@ -79,12 +86,17 @@ typedef NSUInteger CDVMediaType;
 - (void)takePicture:(CDVInvokedUrlCommand*)command;
 - (void)postImage:(UIImage*)anImage withFilename:(NSString*)filename toUrl:(NSURL*)url;
 - (void)cleanup:(CDVInvokedUrlCommand*)command;
+- (void)repositionPopover:(CDVInvokedUrlCommand*)command;
 
 - (void)imagePickerController:(UIImagePickerController*)picker didFinishPickingMediaWithInfo:(NSDictionary*)info;
 - (void)imagePickerController:(UIImagePickerController*)picker didFinishPickingImage:(UIImage*)image editingInfo:(NSDictionary*)editingInfo;
 - (void)imagePickerControllerDidCancel:(UIImagePickerController*)picker;
+- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated;
 - (UIImage*)imageByScalingAndCroppingForSize:(UIImage*)anImage toSize:(CGSize)targetSize;
 - (UIImage*)imageByScalingNotCroppingForSize:(UIImage*)anImage toSize:(CGSize)frameSize;
 - (UIImage*)imageCorrectedForCaptureOrientation:(UIImage*)anImage;
+
+- (void)locationManager:(CLLocationManager*)manager didUpdateToLocation:(CLLocation*)newLocation fromLocation:(CLLocation*)oldLocation;
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error;
 
 @end
