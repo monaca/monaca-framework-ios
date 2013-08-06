@@ -91,7 +91,6 @@
 		3E0B191C169D8CD7001A35BB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F504611613B364C60050803F /* CoreGraphics.framework */; };
 		3E0B191D169D8CD7001A35BB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F504611513B364C60050803F /* UIKit.framework */; };
 		3E0B191E169D8CD7001A35BB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F504611413B364C60050803F /* Foundation.framework */; };
-		3E0B1920169D8CD7001A35BB /* Cordova.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3E7FD328159EA92F00E85C81 /* Cordova.plist */; };
 		3E0B1921169D8CD7001A35BB /* www in Resources */ = {isa = PBXBuildFile; fileRef = 3E7FD345159ED11A00E85C81 /* www */; };
 		3E0B1922169D8CD7001A35BB /* 404 in Resources */ = {isa = PBXBuildFile; fileRef = 3ED315E615DFA837008B7E1C /* 404 */; };
 		3E0B1923169D8CD7001A35BB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3E6A9A2A15DFB1CE004D530D /* Localizable.strings */; };
@@ -235,7 +234,6 @@
 		3E7FD2FA159D926000E85C81 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F504611D13B364C60050803F /* MobileCoreServices.framework */; };
 		3E7FD2FB159D926600E85C81 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F57E523313D2E8DE00074B18 /* CoreMedia.framework */; };
 		3E7FD31C159EA27700E85C81 /* MFDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F50460D813B3633B0050803F /* MFDelegate.m */; };
-		3E7FD329159EA92F00E85C81 /* Cordova.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3E7FD328159EA92F00E85C81 /* Cordova.plist */; };
 		3E7FD346159ED12400E85C81 /* www in Resources */ = {isa = PBXBuildFile; fileRef = 3E7FD345159ED11A00E85C81 /* www */; };
 		3E9B13AE1664AC82005908B7 /* CDVBarcodeScanner.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3E9B13AA1664AC82005908B7 /* CDVBarcodeScanner.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		3E9B13B11664AC82005908B7 /* zxing-all-in-one.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E9B13AC1664AC82005908B7 /* zxing-all-in-one.cpp */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -433,6 +431,8 @@
 		F1A8C24717B0A9F100739AFF /* CDVWebViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F1A8C22B17B0A9F100739AFF /* CDVWebViewDelegate.m */; };
 		F1A8C24817B0A9F100739AFF /* CDVWebViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F1A8C22B17B0A9F100739AFF /* CDVWebViewDelegate.m */; };
 		F1A8C24917B0A9F100739AFF /* CDVWebViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F1A8C22B17B0A9F100739AFF /* CDVWebViewDelegate.m */; };
+		F1A8C24B17B0C28900739AFF /* config.xml in Resources */ = {isa = PBXBuildFile; fileRef = F1A8C24A17B0C28900739AFF /* config.xml */; };
+		F1A8C24C17B0C28900739AFF /* config.xml in Resources */ = {isa = PBXBuildFile; fileRef = F1A8C24A17B0C28900739AFF /* config.xml */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -533,7 +533,6 @@
 		3E7FD2BA159D8F2400E85C81 /* MonacaSandbox-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MonacaSandbox-Info.plist"; sourceTree = "<group>"; };
 		3E7FD2BE159D8F2400E85C81 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3E7FD2C0159D8F2400E85C81 /* MonacaSandbox-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MonacaSandbox-Prefix.pch"; sourceTree = "<group>"; };
-		3E7FD328159EA92F00E85C81 /* Cordova.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Cordova.plist; path = MonacaSandbox/Cordova.plist; sourceTree = SOURCE_ROOT; };
 		3E7FD345159ED11A00E85C81 /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; name = www; path = MonacaSandbox/www; sourceTree = SOURCE_ROOT; };
 		3E9B13AA1664AC82005908B7 /* CDVBarcodeScanner.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CDVBarcodeScanner.mm; sourceTree = "<group>"; };
 		3E9B13AC1664AC82005908B7 /* zxing-all-in-one.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "zxing-all-in-one.cpp"; sourceTree = "<group>"; };
@@ -643,6 +642,7 @@
 		F1A8C22917B0A9F100739AFF /* CDVUserAgentUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDVUserAgentUtil.m; sourceTree = "<group>"; };
 		F1A8C22A17B0A9F100739AFF /* CDVWebViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDVWebViewDelegate.h; sourceTree = "<group>"; };
 		F1A8C22B17B0A9F100739AFF /* CDVWebViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDVWebViewDelegate.m; sourceTree = "<group>"; };
+		F1A8C24A17B0C28900739AFF /* config.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = config.xml; sourceTree = "<group>"; };
 		F50460D813B3633B0050803F /* MFDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFDelegate.m; sourceTree = "<group>"; };
 		F504611413B364C60050803F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F504611513B364C60050803F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -921,7 +921,6 @@
 				3E6A9A2A15DFB1CE004D530D /* Localizable.strings */,
 				3ED315E615DFA837008B7E1C /* 404 */,
 				3E7FD345159ED11A00E85C81 /* www */,
-				3E7FD328159EA92F00E85C81 /* Cordova.plist */,
 				3E7FD2BA159D8F2400E85C81 /* MonacaSandbox-Info.plist */,
 				3E7FD2BE159D8F2400E85C81 /* main.m */,
 				3E7FD2C0159D8F2400E85C81 /* MonacaSandbox-Prefix.pch */,
@@ -1067,6 +1066,7 @@
 		F504609A13B361720050803F = {
 			isa = PBXGroup;
 			children = (
+				F1A8C24A17B0C28900739AFF /* config.xml */,
 				3E0B1931169D8E24001A35BB /* MFUnitTest */,
 				F50460AA13B361730050803F /* MonacaFramework */,
 				3E7FD2B8159D8F2400E85C81 /* MonacaSandbox */,
@@ -1359,7 +1359,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3E0B1920169D8CD7001A35BB /* Cordova.plist in Resources */,
 				3E0B1921169D8CD7001A35BB /* www in Resources */,
 				3E0B1922169D8CD7001A35BB /* 404 in Resources */,
 				3E0B1923169D8CD7001A35BB /* Localizable.strings in Resources */,
@@ -1373,6 +1372,7 @@
 				0E885C9C169E9583001DB4B1 /* exist.css in Resources */,
 				0EED098F17547926006DDE72 /* spinner.png in Resources */,
 				0EED099117547926006DDE72 /* spinner@2x.png in Resources */,
+				F1A8C24C17B0C28900739AFF /* config.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1380,7 +1380,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3E7FD329159EA92F00E85C81 /* Cordova.plist in Resources */,
 				3E7FD346159ED12400E85C81 /* www in Resources */,
 				3ED315E715DFA837008B7E1C /* 404 in Resources */,
 				3E6A9A2C15DFB1CE004D530D /* Localizable.strings in Resources */,
@@ -1392,6 +1391,7 @@
 				3E7708E0161169CF0041CF4D /* Default-568h@2x.png in Resources */,
 				0EED098E17547926006DDE72 /* spinner.png in Resources */,
 				0EED099017547926006DDE72 /* spinner@2x.png in Resources */,
+				F1A8C24B17B0C28900739AFF /* config.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
