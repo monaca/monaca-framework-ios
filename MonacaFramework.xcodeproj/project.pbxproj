@@ -431,8 +431,14 @@
 		F1A8C24717B0A9F100739AFF /* CDVWebViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F1A8C22B17B0A9F100739AFF /* CDVWebViewDelegate.m */; };
 		F1A8C24817B0A9F100739AFF /* CDVWebViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F1A8C22B17B0A9F100739AFF /* CDVWebViewDelegate.m */; };
 		F1A8C24917B0A9F100739AFF /* CDVWebViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F1A8C22B17B0A9F100739AFF /* CDVWebViewDelegate.m */; };
-		F1A8C24B17B0C28900739AFF /* config.xml in Resources */ = {isa = PBXBuildFile; fileRef = F1A8C24A17B0C28900739AFF /* config.xml */; };
-		F1A8C24C17B0C28900739AFF /* config.xml in Resources */ = {isa = PBXBuildFile; fileRef = F1A8C24A17B0C28900739AFF /* config.xml */; };
+		F1A8C25117B1062E00739AFF /* CDVCamera.h in Headers */ = {isa = PBXBuildFile; fileRef = F1A8C24F17B1062E00739AFF /* CDVCamera.h */; };
+		F1A8C25217B1062E00739AFF /* CDVCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = F1A8C25017B1062E00739AFF /* CDVCamera.m */; };
+		F1A8C25317B1062E00739AFF /* CDVCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = F1A8C25017B1062E00739AFF /* CDVCamera.m */; };
+		F1A8C25417B1062E00739AFF /* CDVCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = F1A8C25017B1062E00739AFF /* CDVCamera.m */; };
+		F1A8C25617B1079F00739AFF /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1A8C25517B1079F00739AFF /* OpenAL.framework */; };
+		F1A8C25817B107B500739AFF /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1A8C25717B107B500739AFF /* ImageIO.framework */; };
+		F1A8C25B17B1099300739AFF /* config.xml in Resources */ = {isa = PBXBuildFile; fileRef = F1A8C25A17B1099300739AFF /* config.xml */; };
+		F1A8C25C17B1099300739AFF /* config.xml in Resources */ = {isa = PBXBuildFile; fileRef = F1A8C25A17B1099300739AFF /* config.xml */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -642,7 +648,11 @@
 		F1A8C22917B0A9F100739AFF /* CDVUserAgentUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDVUserAgentUtil.m; sourceTree = "<group>"; };
 		F1A8C22A17B0A9F100739AFF /* CDVWebViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDVWebViewDelegate.h; sourceTree = "<group>"; };
 		F1A8C22B17B0A9F100739AFF /* CDVWebViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDVWebViewDelegate.m; sourceTree = "<group>"; };
-		F1A8C24A17B0C28900739AFF /* config.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = config.xml; sourceTree = "<group>"; };
+		F1A8C24F17B1062E00739AFF /* CDVCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDVCamera.h; sourceTree = "<group>"; };
+		F1A8C25017B1062E00739AFF /* CDVCamera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDVCamera.m; sourceTree = "<group>"; };
+		F1A8C25517B1079F00739AFF /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
+		F1A8C25717B107B500739AFF /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		F1A8C25A17B1099300739AFF /* config.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = config.xml; sourceTree = "<group>"; };
 		F50460D813B3633B0050803F /* MFDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFDelegate.m; sourceTree = "<group>"; };
 		F504611413B364C60050803F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F504611513B364C60050803F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -730,6 +740,8 @@
 				3E7FD2B7159D8F2300E85C81 /* CoreGraphics.framework in Frameworks */,
 				3E7FD2B5159D8F2300E85C81 /* UIKit.framework in Frameworks */,
 				3E7FD2B6159D8F2300E85C81 /* Foundation.framework in Frameworks */,
+				F1A8C25617B1079F00739AFF /* OpenAL.framework in Frameworks */,
+				F1A8C25817B107B500739AFF /* ImageIO.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -792,6 +804,8 @@
 				3E47C242166F004600F97AAA /* CDVAvailability.h */,
 				3E47C243166F004600F97AAA /* CDVBattery.h */,
 				3E47C244166F004600F97AAA /* CDVBattery.m */,
+				F1A8C24F17B1062E00739AFF /* CDVCamera.h */,
+				F1A8C25017B1062E00739AFF /* CDVCamera.m */,
 				3E47C247166F004600F97AAA /* CDVCapture.h */,
 				3E47C248166F004600F97AAA /* CDVCapture.m */,
 				3E47C249166F004600F97AAA /* CDVCommandDelegate.h */,
@@ -917,6 +931,7 @@
 		3E7FD2B9159D8F2400E85C81 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F1A8C25A17B1099300739AFF /* config.xml */,
 				3E6A9A2F15DFB215004D530D /* InfoPlist.strings */,
 				3E6A9A2A15DFB1CE004D530D /* Localizable.strings */,
 				3ED315E615DFA837008B7E1C /* 404 */,
@@ -1066,7 +1081,6 @@
 		F504609A13B361720050803F = {
 			isa = PBXGroup;
 			children = (
-				F1A8C24A17B0C28900739AFF /* config.xml */,
 				3E0B1931169D8E24001A35BB /* MFUnitTest */,
 				F50460AA13B361730050803F /* MonacaFramework */,
 				3E7FD2B8159D8F2400E85C81 /* MonacaSandbox */,
@@ -1089,21 +1103,23 @@
 			isa = PBXGroup;
 			children = (
 				3EBC68C41664D23000244FE1 /* libiconv.dylib */,
-				3EE0E8091664B78000F1E677 /* AssetsLibrary.framework */,
-				3EE0E8071664B69300F1E677 /* CoreVideo.framework */,
-				F57E523313D2E8DE00074B18 /* CoreMedia.framework */,
-				F504611413B364C60050803F /* Foundation.framework */,
-				F504611513B364C60050803F /* UIKit.framework */,
-				F504611613B364C60050803F /* CoreGraphics.framework */,
 				F504611713B364C60050803F /* AddressBook.framework */,
 				F504611813B364C60050803F /* AddressBookUI.framework */,
+				3EE0E8091664B78000F1E677 /* AssetsLibrary.framework */,
+				F504612013B364C60050803F /* AudioToolbox.framework */,
 				F504611913B364C60050803F /* AVFoundation.framework */,
+				F504611613B364C60050803F /* CoreGraphics.framework */,
 				F504611B13B364C60050803F /* CoreLocation.framework */,
+				F57E523313D2E8DE00074B18 /* CoreMedia.framework */,
+				3EE0E8071664B69300F1E677 /* CoreVideo.framework */,
+				F504611413B364C60050803F /* Foundation.framework */,
+				F1A8C25717B107B500739AFF /* ImageIO.framework */,
 				F504611C13B364C60050803F /* MediaPlayer.framework */,
 				F504611D13B364C60050803F /* MobileCoreServices.framework */,
+				F1A8C25517B1079F00739AFF /* OpenAL.framework */,
 				F504611E13B364C60050803F /* QuartzCore.framework */,
 				F504611F13B364C60050803F /* SystemConfiguration.framework */,
-				F504612013B364C60050803F /* AudioToolbox.framework */,
+				F504611513B364C60050803F /* UIKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1266,6 +1282,7 @@
 				F1A8C23E17B0A9F100739AFF /* CDVTimer.h in Headers */,
 				F1A8C24217B0A9F100739AFF /* CDVUserAgentUtil.h in Headers */,
 				F1A8C24617B0A9F100739AFF /* CDVWebViewDelegate.h in Headers */,
+				F1A8C25117B1062E00739AFF /* CDVCamera.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1372,7 +1389,7 @@
 				0E885C9C169E9583001DB4B1 /* exist.css in Resources */,
 				0EED098F17547926006DDE72 /* spinner.png in Resources */,
 				0EED099117547926006DDE72 /* spinner@2x.png in Resources */,
-				F1A8C24C17B0C28900739AFF /* config.xml in Resources */,
+				F1A8C25C17B1099300739AFF /* config.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1391,7 +1408,7 @@
 				3E7708E0161169CF0041CF4D /* Default-568h@2x.png in Resources */,
 				0EED098E17547926006DDE72 /* spinner.png in Resources */,
 				0EED099017547926006DDE72 /* spinner@2x.png in Resources */,
-				F1A8C24B17B0C28900739AFF /* config.xml in Resources */,
+				F1A8C25B17B1099300739AFF /* config.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1518,6 +1535,7 @@
 				F1A8C24117B0A9F100739AFF /* CDVTimer.m in Sources */,
 				F1A8C24517B0A9F100739AFF /* CDVUserAgentUtil.m in Sources */,
 				F1A8C24917B0A9F100739AFF /* CDVWebViewDelegate.m in Sources */,
+				F1A8C25417B1062E00739AFF /* CDVCamera.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1609,6 +1627,7 @@
 				F1A8C23F17B0A9F100739AFF /* CDVTimer.m in Sources */,
 				F1A8C24317B0A9F100739AFF /* CDVUserAgentUtil.m in Sources */,
 				F1A8C24717B0A9F100739AFF /* CDVWebViewDelegate.m in Sources */,
+				F1A8C25217B1062E00739AFF /* CDVCamera.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1701,6 +1720,7 @@
 				F1A8C24017B0A9F100739AFF /* CDVTimer.m in Sources */,
 				F1A8C24417B0A9F100739AFF /* CDVUserAgentUtil.m in Sources */,
 				F1A8C24817B0A9F100739AFF /* CDVWebViewDelegate.m in Sources */,
+				F1A8C25317B1062E00739AFF /* CDVCamera.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
