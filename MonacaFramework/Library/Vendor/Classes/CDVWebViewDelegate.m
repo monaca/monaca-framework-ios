@@ -298,8 +298,8 @@ typedef enum {
             [self pollForPageLoadFinish:webView];
             break;
 
-        default:
-            NSLog(@"CDVWebViewDelegate: Unexpected didStart with state=%d loadCount=%d", _state, _loadCount);
+        default:nil;
+//            NSLog(@"CDVWebViewDelegate: Unexpected didStart with state=%d loadCount=%d", _state, _loadCount);
     }
     VerboseLog(@"webView didStartLoad (after). state=%d loadCount=%d fireCallback=%d", _state, _loadCount, fireCallback);
     if (fireCallback && [_delegate respondsToSelector:@selector(webViewDidStartLoad:)]) {
@@ -316,7 +316,7 @@ typedef enum {
             break;
 
         case STATE_WAITING_FOR_LOAD_START:
-            NSLog(@"CDVWebViewDelegate: Unexpected didFinish while waiting for load start.");
+//            NSLog(@"CDVWebViewDelegate: Unexpected didFinish while waiting for load start.");
             break;
 
         case STATE_WAITING_FOR_LOAD_FINISH:
