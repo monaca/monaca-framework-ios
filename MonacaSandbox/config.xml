@@ -118,11 +118,12 @@
     <feature name="mobi.monaca.nativecomponent">
         <param name="ios-package" value="MFPGNativeComponent"/>
     </feature>
-    <feature name="Trangit">
+    <feature name="Transit">
         <param name="ios-package" value="MFTransitPlugin"/>
     </feature>
-    
+    <feature name="SplashScreen">
+        <param name="ios-package" value="CDVSplashScreen" />
+    </feature>
     <plugins>
-        
     </plugins>
 </widget>
