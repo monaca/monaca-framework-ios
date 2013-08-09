@@ -389,6 +389,10 @@
 		5AF1155C175B07A2002E4E6B /* MFViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AF1155A175B079F002E4E6B /* MFViewManager.m */; };
 		5AF1155D175B07A2002E4E6B /* MFViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AF1155A175B079F002E4E6B /* MFViewManager.m */; };
 		5AF1155E175B07A2002E4E6B /* MFViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AF1155A175B079F002E4E6B /* MFViewManager.m */; };
+		F11CF77017B4C61600DAD50E /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1A8C25717B107B500739AFF /* ImageIO.framework */; };
+		F11CF77117B4C61B00DAD50E /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1A8C25517B1079F00739AFF /* OpenAL.framework */; };
+		F11CF77217B4C62C00DAD50E /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1A8C25517B1079F00739AFF /* OpenAL.framework */; };
+		F11CF77317B4C62F00DAD50E /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1A8C25717B107B500739AFF /* ImageIO.framework */; };
 		F1660A2C178C050900D74D5D /* MFDevicePlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = F1660A2A178C050900D74D5D /* MFDevicePlugin.h */; };
 		F1660A2D178C050900D74D5D /* MFDevicePlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = F1660A2B178C050900D74D5D /* MFDevicePlugin.m */; };
 		F1660A2E178C050900D74D5D /* MFDevicePlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = F1660A2B178C050900D74D5D /* MFDevicePlugin.m */; };
@@ -688,6 +692,8 @@
 				3E0B191D169D8CD7001A35BB /* UIKit.framework in Frameworks */,
 				3E0B191E169D8CD7001A35BB /* Foundation.framework in Frameworks */,
 				3E0B193D169D8E24001A35BB /* GHUnitIOS.framework in Frameworks */,
+				F11CF77317B4C62F00DAD50E /* ImageIO.framework in Frameworks */,
+				F11CF77217B4C62C00DAD50E /* OpenAL.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -711,6 +717,8 @@
 				3E4F516E15A05BF10054EB23 /* QuartzCore.framework in Frameworks */,
 				3E4F516F15A05BF10054EB23 /* SystemConfiguration.framework in Frameworks */,
 				3E4F517015A05BF10054EB23 /* AudioToolbox.framework in Frameworks */,
+				F11CF77017B4C61600DAD50E /* ImageIO.framework in Frameworks */,
+				F11CF77117B4C61B00DAD50E /* OpenAL.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
