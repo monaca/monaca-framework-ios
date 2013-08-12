@@ -70,7 +70,18 @@
         [self setTitleTextAttributes:attributes forState:UIControlStateNormal];
     }
     if ([key isEqualToString:kNCStyleImage]) {
-        // TODO: check
+        NSString *imagePath = [[MFViewManager currentWWWFolderName] stringByAppendingPathComponent:value];
+        UIImage *image = [UIImage imageWithContentsOfFile:imagePath];
+        if (image) {
+            UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+            [btn setFrame:CGRectMake(0, 0, 20, 20)];
+            [btn setBackgroundImage:image forState:UIControlStateNormal];
+            [btn addTarget:self.target action:self.action forControlEvents:UIControlEventTouchUpInside];
+            [btn sizeToFit];
+            self.customView = btn;
+        } else {
+            self.customView = nil;
+        }
     }
     if ([key isEqualToString:kNCStyleInnerImage]) {
         NSString *imagePath = [[MFViewManager currentWWWFolderName] stringByAppendingPathComponent:value];
