@@ -32,7 +32,7 @@
     if (![_ncStyle checkStyle:value forKey:key]) {
         return;
     }
-    
+
     if (value == [NSNull null]) {
         value = kNCUndefined;
     }
@@ -48,8 +48,10 @@
         _hidden = isFalse(value);
         [_toolbar applyVisibility];
     }
+
     if ([key isEqualToString:kNCStyleOpacity]) {
-        [_label setAlpha:[value floatValue]];
+        NSString *color = [self retrieveUIStyle:kNCStyleTextColor];
+        [_label setTextColor:hexToUIColor(color, [value floatValue])];
     }
     if ([key isEqualToString:kNCStyleTextColor]) {
         float alpha = [[self retrieveUIStyle:kNCStyleOpacity] floatValue];
