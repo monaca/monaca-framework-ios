@@ -53,8 +53,9 @@
 
 + (NSString *)valueType:(id)object
 {
-    if ([NSStringFromClass([object class]) isEqualToString:@"__NSCFConstantString"] ||
-        [NSStringFromClass([object class]) isEqualToString:@"__NSCFString"]) {
+    NSString *class = NSStringFromClass([object class]);
+    if ([class isEqualToString:@"__NSCFConstantString"] ||
+        [class isEqualToString:@"__NSCFString"]) {
         NSString *str = object;
         NSRange range = [str rangeOfString:@"^#[0-9a-fA-F]{5}[0-9a-fA-F]$" options:NSRegularExpressionSearch];
         if (range.location != NSNotFound) {
@@ -66,24 +67,25 @@
         }
         return @"String";
     }
-    if ([NSStringFromClass([object class]) isEqualToString:@"__NSCFArray"] ||
-        [NSStringFromClass([object class]) isEqualToString:@"__NSArrayI"] ||
-        [NSStringFromClass([object class]) isEqualToString:@"NSArray"] ||
-        [NSStringFromClass([object class]) isEqualToString:@"CDVJKArray"]) {
+    if ([class isEqualToString:@"__NSCFArray"] ||
+        [class isEqualToString:@"__NSArrayI"] ||
+        [class isEqualToString:@"NSArray"] ||
+        [class isEqualToString:@"CDVJKArray"]) {
         return @"Array";
     }
-    if ([NSStringFromClass([object class]) isEqualToString:@"__NSCFDictionary"] ||
-        [NSStringFromClass([object class]) isEqualToString:@"__NSDictionaryI"]) {
+    if ([class isEqualToString:@"__NSCFDictionary"] ||
+        [class isEqualToString:@"__NSDictionaryI"]) {
         return @"Object";
     }
-    if ([NSStringFromClass([object class]) isEqualToString:@"__NSCFNumber"]) {
+    if ([class isEqualToString:@"__NSCFNumber"] ||
+        [class isEqualToString:@"NSDecimalNumber"]) {
         if (strcmp([object objCType], @encode(float)) == 0) {
             return @"Float";
         } else {
             return @"Integer";
         }
     }
-    if ([NSStringFromClass([object class]) isEqualToString:@"__NSCFBoolean"]) {
+    if ([class isEqualToString:@"__NSCFBoolean"]) {
         return @"Boolean";
     }
     
