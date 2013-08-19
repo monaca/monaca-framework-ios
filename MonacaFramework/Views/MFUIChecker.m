@@ -105,7 +105,7 @@
     [dict setValue:[NSDictionary dictionary] forKey:kNCTypeIOSStyle];
     [dict setValue:[NSDictionary dictionary] forKey:kNCTypeAndroidStyle];
     [dict setValue:[NSDictionary dictionary] forKey:kNCTypeStyle];
-    [dict setValue:[NSDictionary dictionary] forKey:kNCPositionMenu];
+    [dict setValue:[NSString string] forKey:kNCPositionMenu];
     [dict setValue:kNCUndefined forKey:kNCTypeID];
     return dict;
 }
