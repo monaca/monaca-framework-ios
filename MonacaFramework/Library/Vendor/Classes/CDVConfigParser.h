@@ -17,16 +17,15 @@
  under the License.
  */
 
-//  Bridge implementation file for using Cordova > 1.5 plugins in 1.5.0.
-//
+@interface CDVConfigParser : NSObject <NSXMLParserDelegate>
+{
+    NSString* featureName;
+}
 
-#import <Cordova/CDV.h>
+@property (nonatomic, readonly, strong) NSMutableDictionary* pluginsDict;
+@property (nonatomic, readonly, strong) NSMutableDictionary* settings;
+@property (nonatomic, readonly, strong) NSMutableArray* whitelistHosts;
+@property (nonatomic, readonly, strong) NSMutableArray* startupPluginNames;
+@property (nonatomic, readonly, strong) NSString* startPage;
 
-/*
- Returns YES if it is at least version specified as NSString(X)
- Usage:
- if (IsAtLeastiOSVersion(@"5.1")) {
- // do something for iOS 5.1 or greater
- }
- */
-#define IsAtLeastiOSVersion(X) ([[[UIDevice currentDevice] systemVersion] compare:X options:NSNumericSearch] != NSOrderedAscending)
+@end

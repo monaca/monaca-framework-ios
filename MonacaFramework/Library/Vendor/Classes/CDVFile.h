@@ -21,6 +21,7 @@
 #import "CDVPlugin.h"
 
 enum CDVFileError {
+    NO_ERROR = 0,
     NOT_FOUND_ERR = 1,
     SECURITY_ERR = 2,
     ABORT_ERR = 3,
@@ -41,6 +42,8 @@ enum CDVFileSystemType {
     PERSISTENT = 1
 };
 typedef int CDVFileSystemType;
+
+extern NSString* const kCDVAssetsLibraryPrefix;
 
 @interface CDVFile : CDVPlugin {
     NSString* appDocsPath;
@@ -74,6 +77,7 @@ typedef int CDVFileSystemType;
 
 - (void)readAsText:(CDVInvokedUrlCommand*)command;
 - (void)readAsDataURL:(CDVInvokedUrlCommand*)command;
+- (void)readAsArrayBuffer:(CDVInvokedUrlCommand*)command;
 - (NSString*)getMimeTypeFromPath:(NSString*)fullPath;
 - (void)write:(CDVInvokedUrlCommand*)command;
 - (void)testFileExists:(CDVInvokedUrlCommand*)command;
@@ -86,7 +90,8 @@ typedef int CDVFileSystemType;
 
 // - (BOOL) fileExists:(NSString*)fileName;
 // - (BOOL) directoryExists:(NSString*)dirName;
-- (void)writeToFile:(NSString*)fileName withData:(NSString*)data append:(BOOL)shouldAppend callback:(NSString*)callbackId;
+- (void)writeToFile:(NSString*)fileName withData:(NSData*)data append:(BOOL)shouldAppend callback:(NSString*)callbackId;
+- (void)writeToFile:(NSString*)fileName withString:(NSString*)data encoding:(NSStringEncoding)encoding append:(BOOL)shouldAppend callback:(NSString*)callbackId;
 - (unsigned long long)truncateFile:(NSString*)filePath atPosition:(unsigned long long)pos;
 
 @property (nonatomic, strong) NSString* appDocsPath;

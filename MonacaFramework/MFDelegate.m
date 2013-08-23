@@ -46,12 +46,12 @@
     }
 
     // local scope with if block
-    if (YES) {
-        Class klass = [CDVSplashScreen class];
-        Method old = class_getInstanceMethod(klass, @selector(__show:));
-        Method new = class_getInstanceMethod(klass, @selector(__showMonacaSplashScreen:));
-        method_exchangeImplementations(old, new);
-    }
+//    if (YES) {
+//        Class klass = [CDVSplashScreen class];
+//        Method old = class_getInstanceMethod(klass, @selector(__show:));
+//        Method new = class_getInstanceMethod(klass, @selector(__showMonacaSplashScreen:));
+//        method_exchangeImplementations(old, new);
+//    }
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.monacaNavigationController = [MFViewBuilder createMonacaNavigationControllerWithWwwDir:[MFUtility getBaseURL].path withPath:@"index.html"];

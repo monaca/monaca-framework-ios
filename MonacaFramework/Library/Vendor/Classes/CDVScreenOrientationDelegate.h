@@ -17,13 +17,12 @@
  under the License.
  */
 
-//  Bridge implementation file for using Cordova plugins in PhoneGap 0.9.6.
-//
+#import <Foundation/Foundation.h>
 
-#import "CDVPlugin.h"
+@protocol CDVScreenOrientationDelegate <NSObject>
 
-@implementation CDVPlugin
-@end
+- (NSUInteger)supportedInterfaceOrientations;
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation;
+- (BOOL)shouldAutorotate;
 
-@implementation CDVPluginResult
 @end
