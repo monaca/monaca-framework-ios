@@ -91,7 +91,7 @@ static NSString *_wwwDir;
         NSString *Path = [[path stringByDeletingLastPathComponent] stringByAppendingPathComponent:link];
         MFViewController *viewController = [MFViewBuilder createMFViewControllerWithPath:Path withDict:[uidict mutableCopy]];
 
-//        [viewController setWantsFullScreenLayout:YES];
+        [viewController setWantsFullScreenLayout:YES];
         [viewControllers addObject:viewController];
 
         NCTabbarItem *tabbarItem = [[NCTabbarItem alloc] init];
