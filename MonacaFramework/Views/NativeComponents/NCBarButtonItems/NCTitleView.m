@@ -61,6 +61,9 @@ static const CGFloat kSizeOfPortraitTitleFont     = 19.0f;
 
 - (void)sizeToFit
 {
+    [_title sizeToFit];
+    [_subtitle sizeToFit];
+    
     if (![[self retrieveUIStyle:kNCStyleTitleImage] isEqualToString:kNCUndefined]) {
         [_titleImageView setHidden:NO];
         [_title setHidden:YES];
@@ -84,8 +87,8 @@ static const CGFloat kSizeOfPortraitTitleFont     = 19.0f;
             _subtitle.font = [UIFont systemFontOfSize:kSizeOfSubtitleFont * [[self retrieveUIStyle:kNCStyleSubtitleFontScale] floatValue]];
             _title.frame = [_title resizedFrameWithPoint:CGPointMake(0, 0)];
             _subtitle.frame = [_subtitle resizedFrameWithPoint:CGPointMake(0, 0)];
-            _title.center = CGPointMake(0, 8);
-            _subtitle.center = CGPointMake(0, -10);
+            _title.center = CGPointMake(0, -8);
+            _subtitle.center = CGPointMake(0, 10);
         } else {
             _title.font = [UIFont boldSystemFontOfSize:kSizeOfPortraitTitleFont * [[self retrieveUIStyle:kNCStyleTitleFontScale] floatValue]];
             _title.frame = [_title resizedFrameWithPoint:CGPointMake(0, 0)];
@@ -93,8 +96,6 @@ static const CGFloat kSizeOfPortraitTitleFont     = 19.0f;
             [_subtitle setHidden:YES];
         }
     }
-    [_title sizeToFit];
-    [_subtitle sizeToFit];
     _title.frame = CGRectIntegral(_title.frame);
     _subtitle.frame = CGRectIntegral(_subtitle.frame);
     

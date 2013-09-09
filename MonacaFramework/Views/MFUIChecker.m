@@ -57,7 +57,16 @@
     if ([class isEqualToString:@"__NSCFConstantString"] ||
         [class isEqualToString:@"__NSCFString"]) {
         NSString *str = object;
-        NSRange range = [str rangeOfString:@"^#[0-9a-fA-F]{5}[0-9a-fA-F]$" options:NSRegularExpressionSearch];
+        NSRange range = [str rangeOfString:@"[^0-9.]" options:NSRegularExpressionSearch];
+        if (range.location == NSNotFound && ![str isEqualToString:kNCUndefined]) {
+            range = [str rangeOfString:@"[^0-9]" options:NSRegularExpressionSearch];
+            if (range.location != NSNotFound) {
+                return @"Float";
+            } else {
+                return @"Integer";
+            }
+        }
+        range = [str rangeOfString:@"^#[0-9a-fA-F]{5}[0-9a-fA-F]$" options:NSRegularExpressionSearch];
         if (range.location != NSNotFound) {
             return @"Color";
         }
