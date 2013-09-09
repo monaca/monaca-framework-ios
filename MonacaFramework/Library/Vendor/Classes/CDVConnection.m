@@ -126,7 +126,7 @@
 
 - (void)printDeprecationNotice
 {
-    NSLog(@"DEPRECATION NOTICE: The Connection ReachableViaWWAN return value of '2g' is deprecated as of Cordova version 2.6.0 and will be changed to 'cellular' in a future release. ");
+//    NSLog(@"DEPRECATION NOTICE: The Connection ReachableViaWWAN return value of '2g' is deprecated as of Cordova version 2.6.0 and will be changed to 'cellular' in a future release. ");
 }
 
 @end
