@@ -363,9 +363,12 @@ static NSDictionary *queryParams;
 
 #ifdef DEBUG
     buildType = @"debug";
+#elif defined ADHOC
+    buildType = @"adhoc";
 #else
     buildType = @"release";
 #endif
+    NSLog(@"buildType:%@",buildType);
 
     NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString*)kCFBundleVersionKey];
 

@@ -92,9 +92,6 @@
     <feature name="Battery">
       <param name="ios-package" value="CDVBattery"/>
     </feature>
-    <feature name="SplashScreen">
-      <param name="ios-package" value="CDVSplashScreen"/>
-    </feature>
     <feature name="Echo">
       <param name="ios-package" value="CDVEcho"/>
     </feature>
@@ -109,6 +106,9 @@
     </feature>
     <feature name="LocalStorage">
         <param name="ios-package" value="CDVLocalStorage"/>
+    </feature>
+    <feature name="SplashScreen">
+        <param name="ios-package" value="CDVSplashScreen"/>
     </feature>
     <!-- Deprecated plugins element. REmove in 3.0 -->
     
