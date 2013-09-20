@@ -18,6 +18,8 @@
  */
 
 #import "CDVSplashScreen.h"
+#import "MFUtility.h"
+#import "MFDelegate.h"
 
 #define kSplashScreenDurationDefault 0.25f
 
@@ -26,8 +28,11 @@
 - (void)pluginInitialize
 {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pageDidLoad) name:CDVPageDidLoadNotification object:self.webView];
-
-    [self setVisible:YES];
+    
+    if(![MFUtility getAppDelegate].applicationFirstRun){
+        [self setVisible:YES];
+        [MFUtility getAppDelegate].applicationFirstRun = YES;
+    }
 }
 
 - (void)show:(CDVInvokedUrlCommand*)command
@@ -126,7 +131,12 @@
     if (imageName) {
         imageName = [imageName stringByDeletingPathExtension];
     } else {
-        imageName = @"Default";
+//      imageName = @"Default";
+        if ([[MFUtility getAppDelegate]isKindOfClass:[MFDelegate class]]) {
+            imageName = @"Default";   
+        }else{
+            imageName = @"TemporaryDefault";
+        }
     }
 
     if (CDV_IsIPhone5()) {
