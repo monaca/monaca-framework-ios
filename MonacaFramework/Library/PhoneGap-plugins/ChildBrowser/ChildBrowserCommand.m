@@ -28,14 +28,14 @@
 
     [self.viewController presentModalViewController:childBrowser animated:YES];
 
-    NSString* url = (NSString*)[arguments objectAtIndex:0];
+    NSString* url = (NSString*)[arguments objectAtIndex:1];
 
     [self.childBrowser loadURL:url];
 }
 
 - (void)getPage:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options
 {
-    NSString* url = (NSString*)[arguments objectAtIndex:0];
+    NSString* url = (NSString*)[arguments objectAtIndex:1];
 
     [self.childBrowser loadURL:url];
 }

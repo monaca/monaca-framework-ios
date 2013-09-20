@@ -112,8 +112,6 @@
     </feature>
     <!-- Deprecated plugins element. REmove in 3.0 -->
     
-    
-    
     <!-- MonacaConfig -->
     <feature name="mobi.monaca.nativecomponent">
         <param name="ios-package" value="MFPGNativeComponent"/>
@@ -121,9 +119,13 @@
     <feature name="Transit">
         <param name="ios-package" value="MFTransitPlugin"/>
     </feature>
-    <feature name="SplashScreen">
-        <param name="ios-package" value="CDVSplashScreen" />
+    <feature name="DatePicker">
+        <param name="ios-package" value="DatePicker" />
     </feature>
-    <plugins>
-    </plugins>
+    <feature name="ChildBrowserCommand">
+        <param name="ios-package" value="ChildBrowserCommand" />
+    </feature>
+    <feature name="org.apache.cordova.barcodeScanner">
+        <param name="ios-package" value="CDVBarcodeScanner" />
+    </feature>
 </widget>
