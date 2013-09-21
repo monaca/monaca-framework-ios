@@ -26,6 +26,12 @@
 
 #define degreesToRadian(x) (M_PI * (x) / 180.0)
 
+#ifdef DEBUGGER
+    #import "MDUtility.h"
+#endif
+
+
+
 @interface CDVViewController () {
     NSInteger _userAgentLockToken;
     CDVWebViewDelegate* _webViewDelegate;
@@ -186,6 +192,12 @@
     // read from config.xml in the app bundle
     NSString* path = [[NSBundle mainBundle] pathForResource:@"config" ofType:@"xml"];
 
+#ifdef DEBUGGER
+    if([MDUtility getConfigXMLPath]){
+        path = [MDUtility getConfigXMLPath];
+    }
+#endif
+    
     if (![[NSFileManager defaultManager] fileExistsAtPath:path]) {
         NSAssert(NO, @"ERROR: config.xml does not exist. Please run cordova-ios/bin/cordova_plist_to_config_xml path/to/project.");
         return;
