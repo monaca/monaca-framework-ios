@@ -171,22 +171,33 @@
 
 - (void)setBackgroundColor:(id)value
 {
-    [_navigationBar setTintColor:hexToUIColor(removeSharpPrefix(value), 1)];
+    if ([MFDevice iOSVersionMajor] <= 6) {
+        [_navigationBar setTintColor:hexToUIColor(removeSharpPrefix(value), 1)];
+    } else {
+        // iOS7以降でbarTintColorを変更する
+        [_navigationBar setBarTintColor:hexToUIColor(removeSharpPrefix(value), 1)];
+    }
 }
 
 - (void)setOpacity:(id)value
 {
-    [[[_navigationBar subviews] objectAtIndex:0] setAlpha:[value floatValue]];
+    // iOS7では対応しない
+    if ([MFDevice iOSVersionMajor] <= 6) {
+        [[[_navigationBar subviews] objectAtIndex:0] setAlpha:[value floatValue]];
+    }
 }
 
 - (void)setShadowOpacity:(id)value
 {
-    CALayer *navBarLayer = _navigationBar.layer;
-    //        navBarLayer.shadowColor = [[UIColor blackColor] CGColor];
-    //        navBarLayer.shadowRadius = 3.0f;
-    navBarLayer.shadowOffset = CGSizeMake(0.0f, 2.0f);
+    // iOS7では対応しない
+    if ([MFDevice iOSVersionMajor] <= 6) {
+        CALayer *navBarLayer = _navigationBar.layer;
+        //        navBarLayer.shadowColor = [[UIColor blackColor] CGColor];
+        //        navBarLayer.shadowRadius = 3.0f;
+        navBarLayer.shadowOffset = CGSizeMake(0.0f, 2.0f);
     
-    [navBarLayer setShadowOpacity:[value floatValue]];
+        [navBarLayer setShadowOpacity:[value floatValue]];
+    }
 }
 
 #pragma mark - UIStyleProtocol
@@ -244,7 +255,10 @@
         if (_navigationBar.barStyle == UIBarStyleDefault) {
             [self setOpacity:value];
             if ([value floatValue] == 1.0) {
-                [_navigationBar setTranslucent:NO];
+                if ([MFDevice iOSVersionMajor] <= 6) {
+                    [_navigationBar setTranslucent:NO];
+                }
+                
                 [self updateUIStyle:[self retrieveUIStyle:kNCStyleIOSBarStyle] forKey:kNCStyleIOSBarStyle];
             } else {
                 [_navigationBar setTranslucent:YES];
@@ -261,16 +275,36 @@
         UIBarStyle style = UIBarStyleDefault;
         if ([value isEqualToString:kNCBarStyleBlack]) {
             style = UIBarStyleBlack;
-            [_navigationBar setTranslucent:NO];
+            
+            // iOS7のデフォルトスタイルは透明なので、6以前のみ設定
+            if ([MFDevice iOSVersionMajor] <= 6) {
+                [_navigationBar setTranslucent:NO];
+            }
         } else if ([value isEqualToString:kNCBarStyleBlackOpaque]) {
-            style = UIBarStyleBlackOpaque;
+            // iOS7ではUIBarStyleBlackOpaqueはdeprecated
+            if ([MFDevice iOSVersionMajor] <= 6) {
+                style = UIBarStyleBlackOpaque;
+            } else {
+                style = UIBarStyleBlack;
+            }
+            
             [_navigationBar setTranslucent:NO];
         } else if ([value isEqualToString:kNCBarStyleBlackTranslucent]) {
-            style = UIBarStyleBlackTranslucent;
+            // iOS7ではUIBarStyleBlackTranslucentはdeprecated
+            if ([MFDevice iOSVersionMajor] <= 6) {
+                style = UIBarStyleBlackTranslucent;
+            } else {
+                style = UIBarStyleBlack;
+            }
+            
             [_navigationBar setTranslucent:YES];
         } else if ([value isEqualToString:kNCBarStyleDefault]) {
             style = UIBarStyleDefault;
-            [_navigationBar setTranslucent:NO];
+            
+            // iOS7のデフォルトスタイルは透明なので、6以前のみ設定
+            if ([MFDevice iOSVersionMajor] <= 6) {
+                [_navigationBar setTranslucent:NO];
+            }
         }
         
         if (style == UIBarStyleDefault) {
