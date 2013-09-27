@@ -101,7 +101,8 @@
     } else {
         [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge                                                                           | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
     }
-
+    application.applicationIconBadgeNumber = 0;
+    
     [MFUtility setMonacaCloudCookie];
 }
 - (void)applicationDidEnterBackground:(UIApplication *)application
