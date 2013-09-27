@@ -43,6 +43,7 @@
     if ([component isEqualToString:kNCContainerTabbar]) {
         [defaultStyle setValue:kNCTrue forKey:kNCStyleVisibility];
         [defaultStyle setValue:kNCBlack forKey:kNCStyleBackgroundColor];
+        [defaultStyle setValue:[NSNumber numberWithFloat:1.0] forKey:kNCStyleOpacity];
         [defaultStyle setValue:[NSNumber numberWithInt:0] forKey:kNCStyleActiveIndex];
     }
     if ([component isEqualToString:kNCComponentButton]) {

@@ -183,7 +183,7 @@
     if ([key isEqualToString:kNCStyleOpacity]) {
         if (_toolbar.barStyle == UIBarStyleDefault) {
             [self setOpacity:value];
-            if ([value floatValue] == 1.0) {
+            if ([value floatValue] >= 1.0) {
                 [_toolbar setTranslucent:NO];
             } else {
                 [_toolbar setTranslucent:YES];
