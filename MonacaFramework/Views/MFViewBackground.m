@@ -127,7 +127,6 @@
 
 - (void)setPosition:(NSArray *)style
 {
-    if (![[MFUIChecker valueType:style] isEqualToString:@"Array"]) return;
     if ([[style objectAtIndex:0] isEqual:kNCBackgroundImagePositionCenter] &&
         [[style objectAtIndex:1] isEqual:kNCBackgroundImagePositionCenter]) {
         self.contentMode = UIViewContentModeCenter;
@@ -211,7 +210,7 @@
 
 - (void)updateUIStyle:(id)value forKey:(NSString *)key
 {
-    if (![_ncStyle checkStyle:value forKey:key]) {
+    if (![_ncStyle checkStyle:value forKey:key] || ![self checkStyle:value forKey:key]) {
         return;
     }
     
@@ -277,6 +276,29 @@
 - (id)retrieveUIStyle:(NSString *)key
 {
     return [_ncStyle retrieveStyle:key];
+}
+
+- (BOOL)checkStyle:(id)value forKey:(id)key
+{
+    BOOL ok = YES;
+    if ([key isEqualToString:kNCStyleBackgroundPosition]) {
+        NSArray *style = (NSArray *)value;
+        if (![[MFUIChecker valueType:value] isEqualToString:@"Array"]) ok = NO;
+        else if ([style count] != 2) ok = NO;
+        else if ((![[style objectAtIndex:0] isEqual:kNCBackgroundImagePositionLeft] &&
+            ![[style objectAtIndex:0] isEqual:kNCBackgroundImagePositionCenter] &&
+            ![[style objectAtIndex:0] isEqual:kNCBackgroundImagePositionRight]) ||
+            (![[style objectAtIndex:1] isEqual:kNCBackgroundImagePositionTop] &&
+            ![[style objectAtIndex:1] isEqual:kNCBackgroundImagePositionCenter] &&
+             ![[style objectAtIndex:1] isEqual:kNCBackgroundImagePositionBottom])) {
+                ok = NO;
+        }
+        if (!ok) {
+            NSLog(NSLocalizedString(@"Invalid value type", nil), kNCContainerPage , key, @"[{\"left\"|\"center\"|\"right\"},{\"top\"|\"center\"|\"bottom\"}]",          [MFUIChecker arrayToString:value]);
+        }
+
+    }
+    return ok;
 }
 
 @end

@@ -89,7 +89,9 @@ static NSString *_wwwDir;
         // Setup a view controller in the tab contoller.
         // TODO: make viewControllerProtocol
         NSString *Path = [[path stringByDeletingLastPathComponent] stringByAppendingPathComponent:link];
-        MFViewController *viewController = [MFViewBuilder createMFViewControllerWithPath:Path withDict:[uidict mutableCopy]];
+        NSMutableDictionary *dict = [uidict mutableCopy];
+        [dict removeObjectForKey:kNCPositionBottom];
+        MFViewController *viewController = [MFViewBuilder createMFViewControllerWithPath:Path withDict:dict];
 
         [viewController setWantsFullScreenLayout:YES];
         [viewControllers addObject:viewController];

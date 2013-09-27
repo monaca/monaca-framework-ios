@@ -13,6 +13,7 @@
 + (void)checkUI:(NSDictionary *)uidict;
 + (NSString *)valueType:(id)object;
 + (NSString *)dictionaryKeysToString:(NSDictionary *)dict;
++ (NSString *)arrayToString:(NSArray *)array;
 
 @end
 
