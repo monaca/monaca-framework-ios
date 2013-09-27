@@ -36,13 +36,19 @@ static const CGFloat kSizeOfPortraitTitleFont     = 19.0f;
         _title.textAlignment = UITextAlignmentCenter;
         [_title setFont:[UIFont boldSystemFontOfSize:kSizeOfTitleFont]];
         [_title setTextColor:[UIColor whiteColor]];
-        _title.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
-
+        // iOS7では影はつけない
+        if ([MFDevice iOSVersionMajor] <= 6) {
+            _title.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
+        }
+        
         [_subtitle setBackgroundColor:[UIColor clearColor]];
         _subtitle.textAlignment = UITextAlignmentCenter;
         [_subtitle setFont:[UIFont boldSystemFontOfSize:kSizeOfTitleFont]];
         [_subtitle setTextColor:[UIColor whiteColor]];
-        _subtitle.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
+        // iOS7では影はつけない
+        if ([MFDevice iOSVersionMajor] <= 6) {
+            _subtitle.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
+        }
         
         [self addSubview:_title];
         [self addSubview:_subtitle];
