@@ -8,6 +8,7 @@
 
 #import "NCSegment.h"
 #import "NativeComponentsInternal.h"
+#import "MFDevice.h"
 
 @implementation NCSegment
 
@@ -66,15 +67,18 @@
         [_segment setAlpha:[value floatValue]];
     }
     if ([key isEqualToString:kNCStyleBackgroundColor]) {
+        if ([value  isEqual: kNCUndefined]) {
+            return;
+        }
         float alpha = [[self retrieveUIStyle:kNCStyleOpacity] floatValue];
         [_segment setTintColor:hexToUIColor(removeSharpPrefix(value), alpha)];
     }
-    if ([key isEqualToString:kNCStyleActiveTextColor]) {
+    if ([key isEqualToString:kNCStyleActiveTextColor] && [MFDevice iOSVersionMajor] <= 6) {
         UIColor *color = hexToUIColor(removeSharpPrefix(value), 1);
         NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:color, UITextAttributeTextColor, nil];
         [_segment setTitleTextAttributes:attributes forState:UIControlStateHighlighted];
     }
-    if ([key isEqualToString:kNCStyleTextColor]) {
+    if ([key isEqualToString:kNCStyleTextColor] && [MFDevice iOSVersionMajor] <= 6) {
         UIColor *color = hexToUIColor(removeSharpPrefix(value), 1);
         NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:color, UITextAttributeTextColor, nil];
         [_segment setTitleTextAttributes:attributes forState:UIControlStateNormal];

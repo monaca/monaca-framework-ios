@@ -96,6 +96,7 @@
 #define kNCStyleFocus              @"focus"
 #define kNCStyleWideBox            @"wideBox"
 #define kNCStyleShadowOpacity      @"shadowOpacity"
+#define kNCStyleTranslucent        @"translucent"
 
 #define kNCStyleBackgroundImageFilePath         @"backgroundImageFilePath"
 #define kNCStyleBackgroundSizeWidth             @"backgroundSizeWidth"
@@ -112,6 +113,7 @@
 #define kNCStyleIOSBarStyle     @"iosBarStyle"
 #define kNCStyleIOSButtonStyle  @"iosButtonStyle"
 #define kNCStyleIOSFrame        @"ios-frame"
+#define kNCStyleIosThemeColor   @"iosThemeColor"
 
 #define kNCStyleScreenOrientation  @"screenOrientation"
 #define kNCOrientationPortrait  @"portrait"

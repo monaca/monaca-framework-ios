@@ -11,6 +11,7 @@
 #import "MFEvent.h"
 #import "MFViewBuilder.h"
 #import "MFViewManager.h"
+#import "MFDevice.h"
 
 @implementation MFTabBarController
 
@@ -160,7 +161,21 @@
     
     // TODO: Implement hideTabbar
     if ([key isEqualToString:kNCStyleBackgroundColor]) {
+        if ([MFDevice iOSVersionMajor] <= 6) {
+            [self.tabBar setTintColor:hexToUIColor(removeSharpPrefix(value), 1)];
+        } else {
+            [self.tabBar setBarTintColor:hexToUIColor(removeSharpPrefix(value), 1)];
+        }
+    }
+    if ([key isEqualToString:kNCStyleIosThemeColor] && [MFDevice iOSVersionMajor] >= 7) {
         [self.tabBar setTintColor:hexToUIColor(removeSharpPrefix(value), 1)];
+    }
+    if ([key isEqualToString:kNCStyleTranslucent] && [MFDevice iOSVersionMajor] >= 7) {
+        BOOL translucent = NO;
+        if (isTrue(value)) {
+            translucent = YES;
+        }
+        [self.tabBar setTranslucent:translucent];
     }
     if ([key isEqualToString:kNCStyleActiveIndex]) {
         NSInteger index = [value intValue];

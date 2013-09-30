@@ -8,6 +8,7 @@
 
 #import "NCSearchBox.h"
 #import "NativeComponentsInternal.h"
+#import "MFDevice.h"
 
 @implementation NCSearchBox
 
@@ -76,7 +77,7 @@
         }
     }
 
-    if ([key isEqualToString:kNCStyleOpacity]) {
+    if ([key isEqualToString:kNCStyleOpacity] && [MFDevice iOSVersionMajor] <= 6) {
         UITextField *searchField = [_searchBar valueForKey:@"_searchField"];
         [searchField setAlpha:[value floatValue]];
     }
