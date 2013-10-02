@@ -23,6 +23,8 @@
     NCContainer *_backButton;
     NSDictionary *_uidict;
     BOOL _isload;
+    BOOL _translucent;
+    BOOL _resized;
 }
 
 @property(nonatomic, retain) NCManager *ncManager;
