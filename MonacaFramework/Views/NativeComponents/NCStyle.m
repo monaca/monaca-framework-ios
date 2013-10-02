@@ -227,6 +227,10 @@
         }
     }
     if (![[MFUIChecker valueType:value] isEqualToString:[MFUIChecker valueType:[_defaultStyles valueForKey:key]]]) {
+        // 文字列が数字のみのときに反映されないバグの対応
+        if ([key isEqualToString:kNCStyleTitle] || [key isEqualToString:kNCStyleSubtitle] || [key isEqualToString:kNCStyleText] || [key isEqualToString:kNCStylePlaceholder] || [key isEqualToString:kNCStyleBadgeText]) {
+            return YES;
+        }
         if ([[MFUIChecker valueType:value] isEqualToString:@"Integer"] &&
             [[MFUIChecker valueType:[_defaultStyles valueForKey:key]] isEqualToString:@"Float"]) {
             return YES;
