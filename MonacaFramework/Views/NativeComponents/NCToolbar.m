@@ -113,7 +113,9 @@
         [_toolbar setTintColor:hexToUIColor(removeSharpPrefix(value), 1)];
     } else {
         // iOS7以降でbarTintColorを変更する
+#ifdef __IPHONE_7_0
         [_toolbar setBarTintColor:hexToUIColor(removeSharpPrefix(value), 1)];
+#endif
     }
 }
 

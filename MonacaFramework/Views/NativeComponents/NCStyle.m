@@ -28,7 +28,6 @@
     }
     if ([component isEqualToString:kNCContainerToolbar]) {
         [defaultStyle setValue:kNCTrue forKey:kNCStyleVisibility];
-        [defaultStyle setValue:kNCFalse forKey:kNCStyleDisable];
         [defaultStyle setValue:kNCUndefined forKey:kNCStyleTitle];
         [defaultStyle setValue:kNCUndefined forKey:kNCStyleSubtitle];
         [defaultStyle setValue:[NSNumber numberWithFloat:1.0]  forKey:kNCStyleTitleFontScale];
@@ -125,8 +124,6 @@
     }
     if ([component isEqualToString:kNCComponentSegment]) {
         [defaultStyle setValue:kNCTrue forKey:kNCStyleVisibility];
-        [defaultStyle setValue:kNCFalse forKey:kNCStyleDisable];
-        [defaultStyle setValue:[NSNumber numberWithFloat:1.0] forKey:kNCStyleOpacity];
         [defaultStyle setValue:[NSArray array] forKey:kNCStyleTexts];
         [defaultStyle setValue:[NSNumber numberWithInt:0] forKey:kNCStyleActiveIndex];
         

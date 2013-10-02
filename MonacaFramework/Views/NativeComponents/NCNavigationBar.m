@@ -175,7 +175,9 @@
         [_navigationBar setTintColor:hexToUIColor(removeSharpPrefix(value), 1)];
     } else {
         // iOS7以降でbarTintColorを変更する
+#ifdef __IPHONE_7_0
         [_navigationBar setBarTintColor:hexToUIColor(removeSharpPrefix(value), 1)];
+#endif
     }
 }
 

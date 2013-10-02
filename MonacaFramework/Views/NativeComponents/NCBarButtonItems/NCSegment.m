@@ -56,16 +56,16 @@
         _hidden = isFalse(value);
         [_toolbar applyVisibility];
     }
-    if ([key isEqualToString:kNCStyleDisable]) {
-        if (isFalse(value)) {
-            [_segment setUserInteractionEnabled:YES];
-        } else {
-            [_segment setUserInteractionEnabled:NO];
-        }
-    }
-    if ([key isEqualToString:kNCStyleOpacity]) {
-        [_segment setAlpha:[value floatValue]];
-    }
+    //if ([key isEqualToString:kNCStyleDisable]) {
+    //    if (isFalse(value)) {
+    //        [_segment setUserInteractionEnabled:YES];
+    //    } else {
+    //        [_segment setUserInteractionEnabled:NO];
+    //    }
+    //}
+    //if ([key isEqualToString:kNCStyleOpacity]) {
+    //    [_segment setAlpha:[value floatValue]];
+    //}
     if ([key isEqualToString:kNCStyleBackgroundColor]) {
         if ([value  isEqual: kNCUndefined]) {
             return;

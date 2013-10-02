@@ -164,7 +164,9 @@
         if ([MFDevice iOSVersionMajor] <= 6) {
             [self.tabBar setTintColor:hexToUIColor(removeSharpPrefix(value), 1)];
         } else {
+#ifdef __IPHONE_7_0
             [self.tabBar setBarTintColor:hexToUIColor(removeSharpPrefix(value), 1)];
+#endif
         }
     }
     if ([key isEqualToString:kNCStyleIosThemeColor] && [MFDevice iOSVersionMajor] >= 7) {
@@ -175,7 +177,9 @@
         if (isTrue(value)) {
             translucent = YES;
         }
+#ifdef __IPHONE_7_0
         [self.tabBar setTranslucent:translucent];
+#endif
     }
     if ([key isEqualToString:kNCStyleActiveIndex]) {
         NSInteger index = [value intValue];
