@@ -79,16 +79,18 @@
 -(CGSize)getBackgroundSize:(NSArray *)value
 {
     float width, height;
-    if ([[value objectAtIndex:0] rangeOfString:@"%"].location != NSNotFound) {
-        width = self.frame.size.width * 0.01 * [self castBackgroundSizeValue:[value objectAtIndex:0]];
+    NSString *widthVal = [NSString stringWithFormat:@"%@", [value objectAtIndex:0]];
+    if ([widthVal rangeOfString:@"%"].location != NSNotFound) {
+        width = self.frame.size.width * 0.01 * [self castBackgroundSizeValue:widthVal];
     } else {
-        width = [self castBackgroundSizeValue:[value objectAtIndex:0]];
+        width = [self castBackgroundSizeValue:widthVal];
     }
-    
-    if ([[value objectAtIndex:1] rangeOfString:@"%"].location != NSNotFound) {
-        height = self.frame.size.height * 0.01 * [self castBackgroundSizeValue:[value objectAtIndex:1]];
+
+    NSString *heightVal = [NSString stringWithFormat:@"%@", [value objectAtIndex:1]];
+    if ([heightVal rangeOfString:@"%"].location != NSNotFound) {
+        height = self.frame.size.height * 0.01 * [self castBackgroundSizeValue:heightVal];
     } else {
-        height = [self castBackgroundSizeValue:[value objectAtIndex:1]];
+        height = [self castBackgroundSizeValue:heightVal];
     }
 
     return CGSizeMake(roundf(width),roundf(height));
@@ -105,7 +107,8 @@
         UIGraphicsEndImageContext();
         [self setPosition:[self retrieveUIStyle:kNCStyleBackgroundPosition]];
     } else {
-
+        value = [NSString stringWithFormat:@"%@", value];
+        
         if ([value isEqualToString:kNCTypeAuto]) {
             [self setPosition:[self retrieveUIStyle:kNCStyleBackgroundPosition]];
             _resizedImage = _originalImage;
@@ -125,43 +128,47 @@
     }
 }
 
-- (void)setPosition:(NSArray *)style
+- (void)setPosition:(id)style
 {
-    if ([[style objectAtIndex:0] isEqual:kNCBackgroundImagePositionCenter] &&
-        [[style objectAtIndex:1] isEqual:kNCBackgroundImagePositionCenter]) {
+    if (![[MFUIChecker valueType:style] isEqualToString:@"Array"]) {
         self.contentMode = UIViewContentModeCenter;
-    }
-    if ([[style objectAtIndex:0] isEqual:kNCBackgroundImagePositionCenter] &&
-        [[style objectAtIndex:1] isEqual:kNCBackgroundImagePositionTop]) {
-        self.contentMode = UIViewContentModeTop;
-    }
-    if ([[style objectAtIndex:0] isEqual:kNCBackgroundImagePositionCenter] &&
-        [[style objectAtIndex:1] isEqual:kNCBackgroundImagePositionBottom]) {
-        self.contentMode = UIViewContentModeBottom;
-    }
-    if ([[style objectAtIndex:0] isEqual:kNCBackgroundImagePositionRight] &&
-        [[style objectAtIndex:1] isEqual:kNCBackgroundImagePositionCenter]) {
-        self.contentMode = UIViewContentModeRight;
-    }
-    if ([[style objectAtIndex:0] isEqual:kNCBackgroundImagePositionRight] &&
-        [[style objectAtIndex:1] isEqual:kNCBackgroundImagePositionTop]) {
-        self.contentMode = UIViewContentModeTopRight;
-    }
-    if ([[style objectAtIndex:0] isEqual:kNCBackgroundImagePositionRight] &&
-        [[style objectAtIndex:1] isEqual:kNCBackgroundImagePositionBottom]) {
-        self.contentMode = UIViewContentModeBottomRight;
-    }
-    if ([[style objectAtIndex:0] isEqual:kNCBackgroundImagePositionLeft] &&
-        [[style objectAtIndex:1] isEqual:kNCBackgroundImagePositionCenter]) {
-        self.contentMode = UIViewContentModeLeft;
-    }
-    if ([[style objectAtIndex:0] isEqual:kNCBackgroundImagePositionLeft] &&
-        [[style objectAtIndex:1] isEqual:kNCBackgroundImagePositionTop]) {
-        self.contentMode = UIViewContentModeTopLeft;
-    }
-    if ([[style objectAtIndex:0] isEqual:kNCBackgroundImagePositionLeft] &&
-        [[style objectAtIndex:1] isEqual:kNCBackgroundImagePositionBottom]) {
-        self.contentMode = UIViewContentModeBottomLeft;
+    } else {
+        if ([[style objectAtIndex:0] isEqual:kNCBackgroundImagePositionCenter] &&
+            [[style objectAtIndex:1] isEqual:kNCBackgroundImagePositionCenter]) {
+            self.contentMode = UIViewContentModeCenter;
+        }
+        if ([[style objectAtIndex:0] isEqual:kNCBackgroundImagePositionCenter] &&
+            [[style objectAtIndex:1] isEqual:kNCBackgroundImagePositionTop]) {
+            self.contentMode = UIViewContentModeTop;
+        }
+        if ([[style objectAtIndex:0] isEqual:kNCBackgroundImagePositionCenter] &&
+            [[style objectAtIndex:1] isEqual:kNCBackgroundImagePositionBottom]) {
+            self.contentMode = UIViewContentModeBottom;
+        }
+        if ([[style objectAtIndex:0] isEqual:kNCBackgroundImagePositionRight] &&
+            [[style objectAtIndex:1] isEqual:kNCBackgroundImagePositionCenter]) {
+            self.contentMode = UIViewContentModeRight;
+        }
+        if ([[style objectAtIndex:0] isEqual:kNCBackgroundImagePositionRight] &&
+            [[style objectAtIndex:1] isEqual:kNCBackgroundImagePositionTop]) {
+            self.contentMode = UIViewContentModeTopRight;
+        }
+        if ([[style objectAtIndex:0] isEqual:kNCBackgroundImagePositionRight] &&
+            [[style objectAtIndex:1] isEqual:kNCBackgroundImagePositionBottom]) {
+            self.contentMode = UIViewContentModeBottomRight;
+        }
+        if ([[style objectAtIndex:0] isEqual:kNCBackgroundImagePositionLeft] &&
+            [[style objectAtIndex:1] isEqual:kNCBackgroundImagePositionCenter]) {
+            self.contentMode = UIViewContentModeLeft;
+        }
+        if ([[style objectAtIndex:0] isEqual:kNCBackgroundImagePositionLeft] &&
+            [[style objectAtIndex:1] isEqual:kNCBackgroundImagePositionTop]) {
+            self.contentMode = UIViewContentModeTopLeft;
+        }
+        if ([[style objectAtIndex:0] isEqual:kNCBackgroundImagePositionLeft] &&
+            [[style objectAtIndex:1] isEqual:kNCBackgroundImagePositionBottom]) {
+            self.contentMode = UIViewContentModeBottomLeft;
+        }
     }
 }
 
@@ -223,7 +230,7 @@
     }
     
     if ([key isEqualToString:kNCStyleBackgroundColor]) {
-        if (![[self retrieveUIStyle:kNCStyleBackgroundRepeat] isEqualToString:kNCTypeRepeat] || _originalImage == nil) {
+        if (([[MFUIChecker valueType:[self retrieveUIStyle:kNCStyleBackgroundRepeat]] isEqualToString:@"String"] && ![[self retrieveUIStyle:kNCStyleBackgroundRepeat] isEqualToString:kNCTypeRepeat]) || _originalImage == nil) {
             [self setBackgroundColor:hexToUIColor(removeSharpPrefix(value), 1)];
         }
     } else  if ([key isEqualToString:kNCStyleBackgroundImage]) {
@@ -281,20 +288,32 @@
 - (BOOL)checkStyle:(id)value forKey:(id)key
 {
     BOOL ok = YES;
+    BOOL isArray = YES;
+    
     if ([key isEqualToString:kNCStyleBackgroundPosition]) {
-        NSArray *style = (NSArray *)value;
-        if (![[MFUIChecker valueType:value] isEqualToString:@"Array"]) ok = NO;
-        else if ([style count] != 2) ok = NO;
-        else if ((![[style objectAtIndex:0] isEqual:kNCBackgroundImagePositionLeft] &&
-            ![[style objectAtIndex:0] isEqual:kNCBackgroundImagePositionCenter] &&
-            ![[style objectAtIndex:0] isEqual:kNCBackgroundImagePositionRight]) ||
-            (![[style objectAtIndex:1] isEqual:kNCBackgroundImagePositionTop] &&
-            ![[style objectAtIndex:1] isEqual:kNCBackgroundImagePositionCenter] &&
-             ![[style objectAtIndex:1] isEqual:kNCBackgroundImagePositionBottom])) {
+
+        if (![[MFUIChecker valueType:value] isEqualToString:@"Array"]) {
+            ok = NO;
+            isArray = NO;
+        } else {
+            NSArray *style = (NSArray *)value;
+            if ([style count] != 2) ok = NO;
+            else if ((![[style objectAtIndex:0] isEqual:kNCBackgroundImagePositionLeft] &&
+                      ![[style objectAtIndex:0] isEqual:kNCBackgroundImagePositionCenter] &&
+                      ![[style objectAtIndex:0] isEqual:kNCBackgroundImagePositionRight]) ||
+                     (![[style objectAtIndex:1] isEqual:kNCBackgroundImagePositionTop] &&
+                      ![[style objectAtIndex:1] isEqual:kNCBackgroundImagePositionCenter] &&
+                      ![[style objectAtIndex:1] isEqual:kNCBackgroundImagePositionBottom]))
+            {
                 ok = NO;
+            }
         }
         if (!ok) {
-            NSLog(NSLocalizedString(@"Invalid value type", nil), kNCContainerPage , key, @"[{\"left\"|\"center\"|\"right\"},{\"top\"|\"center\"|\"bottom\"}]",          [MFUIChecker arrayToString:value]);
+            if (isArray) {
+                NSLog(NSLocalizedString(@"Invalid value type", nil), kNCContainerPage , key, @"[{\"left\"|\"center\"|\"right\"},{\"top\"|\"center\"|\"bottom\"}]",          [MFUIChecker arrayToString:value]);
+            } else {
+               NSLog(NSLocalizedString(@"Invalid value type", nil), kNCContainerPage , key, @"[{\"left\"|\"center\"|\"right\"},{\"top\"|\"center\"|\"bottom\"}]", value);
+            }
         }
 
     }
