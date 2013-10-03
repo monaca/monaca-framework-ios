@@ -8,6 +8,7 @@
 
 #import "NCSegment.h"
 #import "NativeComponentsInternal.h"
+#import "MFUIChecker.h"
 
 @implementation NCSegment
 
@@ -83,7 +84,7 @@
         [_segment removeAllSegments];
         int index = 0;
         for (id text in value) {
-            [_segment insertSegmentWithTitle:text atIndex:index++ animated:NO];
+            [_segment insertSegmentWithTitle:[NSString stringWithFormat:@"%@", text] atIndex:index++ animated:NO];
         }
         [_segment sizeToFit];
         // activeIndexはtextsが設定されるまで反映されないので再度実行

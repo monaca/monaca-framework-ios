@@ -59,6 +59,7 @@
     }
 
     if ([key isEqualToString:kNCStyleText]) {
+        value = [NSString stringWithFormat:@"%@", value];
         [self setTitle:value];
     }
     if ([key isEqualToString:kNCStyleImage]) {
@@ -67,6 +68,7 @@
         [self setImage:image];
     }
     if ([key isEqualToString:kNCStyleBadgeText]) {
+        value = [NSString stringWithFormat:@"%@", value];
         if ([value isEqualToString:kNCUndefined]) {
             [self setBadgeValue:nil];
         } else {

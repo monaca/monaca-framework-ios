@@ -93,7 +93,7 @@
         }
     }
     if ([key isEqualToString:kNCStyleText]) {
-        [self setTitle:value];
+        [self setTitle:[NSString stringWithFormat:@"%@", value]];
     }
 
     [_ncStyle updateStyle:value forKey:key];
