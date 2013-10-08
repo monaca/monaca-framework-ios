@@ -75,7 +75,7 @@
     [super viewDidLoad];
 
     [self setBarUserInterface:self.uiDict];
-    
+
     // whether auto link for datatype
     [self processDataTypes];
     
