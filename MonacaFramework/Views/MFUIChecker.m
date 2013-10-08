@@ -51,6 +51,16 @@
     return [string stringByAppendingString:@"]"];
 }
 
++ (NSString *)arrayToString:(NSArray *)array
+{
+    NSString *string = @"[";
+    for (id object in array) {
+        string = [string stringByAppendingString:[NSString stringWithFormat:@"\"%@\",", object]];
+    }
+    string = [string substringToIndex:([string length]-1)];
+    return [string stringByAppendingString:@"]"];
+}
+
 + (NSString *)valueType:(id)object
 {
     NSString *class = NSStringFromClass([object class]);

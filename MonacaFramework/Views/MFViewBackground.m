@@ -210,7 +210,7 @@
 
 - (void)updateUIStyle:(id)value forKey:(NSString *)key
 {
-    if (![_ncStyle checkStyle:value forKey:key]) {
+    if (![_ncStyle checkStyle:value forKey:key] || ![self checkStyle:value forKey:key]) {
         return;
     }
     
@@ -226,8 +226,7 @@
         if (![[self retrieveUIStyle:kNCStyleBackgroundRepeat] isEqualToString:kNCTypeRepeat] || _originalImage == nil) {
             [self setBackgroundColor:hexToUIColor(removeSharpPrefix(value), 1)];
         }
-    }
-    if ([key isEqualToString:kNCStyleBackgroundImage]) {
+    } else  if ([key isEqualToString:kNCStyleBackgroundImage]) {
         NSString *imagePath = [[MFViewManager currentWWWFolderName] stringByAppendingPathComponent:value];
         _originalImage = [UIImage imageWithContentsOfFile:imagePath];
         [self setBackgroundImageSize:[_ncStyle retrieveStyle:kNCStyleBackgroundSize]];
@@ -238,8 +237,7 @@
                 self.backgroundColor = [UIColor colorWithPatternImage:_resizedImage];
             }
         }
-    }
-    if ([key isEqualToString:kNCStyleBackgroundSize]) {
+    } else if ([key isEqualToString:kNCStyleBackgroundSize]) {
         [self setBackgroundImageSize:value];
         if (_originalImage != nil) {
             if ([[self retrieveUIStyle:kNCStyleBackgroundRepeat] isEqualToString:kNCTypeRepeat]) {
@@ -248,8 +246,7 @@
                 self.image = _resizedImage;
             }
         }
-    }
-    if ([key isEqualToString:kNCStyleBackgroundRepeat]) {
+    } else if ([key isEqualToString:kNCStyleBackgroundRepeat]) {
         if (_originalImage != nil) {
             [self setBackgroundImageSize:[_ncStyle retrieveStyle:kNCStyleBackgroundSize]];
             if ([value isEqualToString:kNCTypeRepeat]) {
@@ -261,9 +258,7 @@
                 [self setBackgroundColor:hexToUIColor(removeSharpPrefix(colorString), 1)];
             }
         }
-    }
-
-    if ([key isEqualToString:kNCStyleBackgroundPosition]) {
+    } else if ([key isEqualToString:kNCStyleBackgroundPosition]) {
         if ([[self retrieveUIStyle:kNCStyleBackgroundSize] isKindOfClass:NSArray.class] ||
             ([[self retrieveUIStyle:kNCStyleBackgroundSize] isKindOfClass:NSString.class] &&
             [[self retrieveUIStyle:kNCStyleBackgroundSize] isEqualToString:kNCTypeAuto])) {
@@ -281,6 +276,29 @@
 - (id)retrieveUIStyle:(NSString *)key
 {
     return [_ncStyle retrieveStyle:key];
+}
+
+- (BOOL)checkStyle:(id)value forKey:(id)key
+{
+    BOOL ok = YES;
+    if ([key isEqualToString:kNCStyleBackgroundPosition]) {
+        NSArray *style = (NSArray *)value;
+        if (![[MFUIChecker valueType:value] isEqualToString:@"Array"]) ok = NO;
+        else if ([style count] != 2) ok = NO;
+        else if ((![[style objectAtIndex:0] isEqual:kNCBackgroundImagePositionLeft] &&
+            ![[style objectAtIndex:0] isEqual:kNCBackgroundImagePositionCenter] &&
+            ![[style objectAtIndex:0] isEqual:kNCBackgroundImagePositionRight]) ||
+            (![[style objectAtIndex:1] isEqual:kNCBackgroundImagePositionTop] &&
+            ![[style objectAtIndex:1] isEqual:kNCBackgroundImagePositionCenter] &&
+             ![[style objectAtIndex:1] isEqual:kNCBackgroundImagePositionBottom])) {
+                ok = NO;
+        }
+        if (!ok) {
+            NSLog(NSLocalizedString(@"Invalid value type", nil), kNCContainerPage , key, @"[{\"left\"|\"center\"|\"right\"},{\"top\"|\"center\"|\"bottom\"}]",          [MFUIChecker arrayToString:value]);
+        }
+
+    }
+    return ok;
 }
 
 @end

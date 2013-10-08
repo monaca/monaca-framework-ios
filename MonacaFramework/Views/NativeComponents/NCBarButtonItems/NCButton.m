@@ -56,19 +56,21 @@
         }
     }
 
-    if ([key isEqualToString:kNCStyleBackgroundColor]) {
+    if ([key isEqualToString:kNCStyleBackgroundColor] && [MFDevice iOSVersionMajor] <= 6) {
         [self setTintColor:hexToUIColor(removeSharpPrefix(value), 1)];
     }
-    if ([key isEqualToString:kNCStyleActiveTextColor]) {
+    if ([key isEqualToString:kNCStyleActiveTextColor] && [MFDevice iOSVersionMajor] <= 6) {
         UIColor *color = hexToUIColor(removeSharpPrefix(value), 1);
         NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:color, UITextAttributeTextColor, nil];
         [self setTitleTextAttributes:attributes forState:UIControlStateHighlighted];
     }
     if ([key isEqualToString:kNCStyleTextColor]) {
         UIColor *color = hexToUIColor(removeSharpPrefix(value), 1);
+        
         NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:color, UITextAttributeTextColor, nil];
         [self setTitleTextAttributes:attributes forState:UIControlStateNormal];
     }
+
     if ([key isEqualToString:kNCStyleImage]) {
         NSString *imagePath = [[MFViewManager currentWWWFolderName] stringByAppendingPathComponent:value];
         UIImage *image = [UIImage imageWithContentsOfFile:imagePath];
@@ -83,7 +85,7 @@
             self.customView = nil;
         }
     }
-    if ([key isEqualToString:kNCStyleInnerImage]) {
+    if ([key isEqualToString:kNCStyleInnerImage] && [MFDevice iOSVersionMajor] <= 6) {
         NSString *imagePath = [[MFViewManager currentWWWFolderName] stringByAppendingPathComponent:value];
         UIImage *image = [UIImage imageWithContentsOfFile:imagePath];
         [self setImage:image];
@@ -95,7 +97,7 @@
     if ([key isEqualToString:kNCStyleText]) {
         [self setTitle:value];
     }
-
+    
     [_ncStyle updateStyle:value forKey:key];
 }
 

@@ -109,26 +109,58 @@
 
 - (void)setBackgroundColor:(id)value
 {
-    [_toolbar setTintColor:hexToUIColor(removeSharpPrefix(value), 1)];
+    if ([MFDevice iOSVersionMajor] <= 6) {
+        [_toolbar setTintColor:hexToUIColor(removeSharpPrefix(value), 1)];
+    } else {
+        // iOS7以降でbarTintColorを変更する
+#ifdef __IPHONE_7_0
+        [_toolbar setBarTintColor:hexToUIColor(removeSharpPrefix(value), 1)];
+#endif
+    }
 }
 
 - (void)setOpacity:(id)value
 {
-    [[[_toolbar subviews] objectAtIndex:0] setAlpha:[value floatValue]];
-    if ([MFDevice iOSVersionMajor] >= 6) {
-        // iOS6以降では枠が別に用意されている．
-        [[[_toolbar subviews] objectAtIndex:1] setAlpha:[value floatValue]];
+    if ([MFDevice iOSVersionMajor] <= 6) {
+        [[[_toolbar subviews] objectAtIndex:0] setAlpha:[value floatValue]];
+        if ([MFDevice iOSVersionMajor] >= 6) {
+            // iOS6以降では枠が別に用意されている．
+            [[[_toolbar subviews] objectAtIndex:1] setAlpha:[value floatValue]];
+        }
     }
 }
 
 - (void)setShadowOpacity:(id)value
 {
-    CALayer *navBarLayer = _toolbar.layer;
-    //        navBarLayer.shadowColor = [[UIColor blackColor] CGColor];
-    //        navBarLayer.shadowRadius = 3.0f;
-    navBarLayer.shadowOffset = CGSizeMake(0.0f, -2.0f);
+    if ([MFDevice iOSVersionMajor] <= 6) {
+        CALayer *navBarLayer = _toolbar.layer;
+        //        navBarLayer.shadowColor = [[UIColor blackColor] CGColor];
+        //        navBarLayer.shadowRadius = 3.0f;
+        navBarLayer.shadowOffset = CGSizeMake(0.0f, -2.0f);
     
-    [navBarLayer setShadowOpacity:[value floatValue]];
+        [navBarLayer setShadowOpacity:[value floatValue]];
+    }
+}
+
+
+- (void)setTranslucent:(id)value
+{
+    // iOS7のみ
+    if ([MFDevice iOSVersionMajor] >= 7) {
+        BOOL translucent = NO;
+        if (isTrue(value)) {
+            translucent = YES;
+        }
+        [_toolbar setTranslucent:translucent];
+    }
+}
+
+- (void)setIosThemeColor:(id)value
+{
+    // iOS7のみ
+    if ([MFDevice iOSVersionMajor] >= 7) {
+        [_toolbar setTintColor:hexToUIColor(removeSharpPrefix(value), 1)];
+    }
 }
 
 #pragma mark - UIStyleProtocol
@@ -180,10 +212,10 @@
             [self setBackgroundColor:value];
         }
     }
-    if ([key isEqualToString:kNCStyleOpacity]) {
+    if ([key isEqualToString:kNCStyleOpacity] && [MFDevice iOSVersionMajor] <= 6) {
         if (_toolbar.barStyle == UIBarStyleDefault) {
             [self setOpacity:value];
-            if ([value floatValue] == 1.0) {
+            if ([value floatValue] >= 1.0) {
                 [_toolbar setTranslucent:NO];
             } else {
                 [_toolbar setTranslucent:YES];
@@ -196,13 +228,24 @@
             style = UIBarStyleBlack;
             [_toolbar setTranslucent:NO];
         } else if ([value isEqualToString:kNCBarStyleBlackOpaque]) {
-            style = UIBarStyleBlackOpaque;
+            // iOS7ではUIBarStyleBlackOpaqueはdeprecated
+            if ([MFDevice iOSVersionMajor] <= 6) {
+                style = UIBarStyleBlackOpaque;
+            } else {
+                style = UIBarStyleBlack;
+            }
             [_toolbar setTranslucent:NO];
         } else if ([value isEqualToString:kNCBarStyleBlackTranslucent]) {
-            style = UIBarStyleBlackTranslucent;
+            // iOS7ではUIBarStyleBlackTranslucentはdeprecated
+            if ([MFDevice iOSVersionMajor] <= 6) {
+                style = UIBarStyleBlackTranslucent;
+            } else {
+                style = UIBarStyleBlack;
+            }
             [_toolbar setTranslucent:YES];
         } else if ([value isEqualToString:kNCBarStyleDefault]) {
             style = UIBarStyleDefault;
+            
             [_toolbar setTranslucent:NO];
         }
 
@@ -217,14 +260,19 @@
         }
         
         [_toolbar setBarStyle:style];
-    
-        /// translucentを反映させる
+        
+        // デフォルトのtranslucentとthemeColorの値を書き換える
+        if ([MFDevice iOSVersionMajor] >= 7) {
+            [self setTranslucent:[self retrieveUIStyle:kNCStyleTranslucent]];
+            [self setIosThemeColor:[self retrieveUIStyle:kNCStyleIosThemeColor]];
+        }
+        
         [_viewController.navigationController setToolbarHidden:YES];
         if (!isFalse([self retrieveUIStyle:kNCStyleVisibility])) {
             [_viewController.navigationController setToolbarHidden:NO];
         }        
     }
-    if ([key isEqualToString:kNCStyleShadowOpacity]) {
+    if ([key isEqualToString:kNCStyleShadowOpacity] && [MFDevice iOSVersionMajor] <= 6) {
         if (_toolbar.barStyle == UIBarStyleDefault) {
             if ([value floatValue] < 0.0f) {
                 value = [NSNumber numberWithFloat:0.0f];
@@ -233,6 +281,13 @@
             }
             [self setShadowOpacity:value];
         }
+    }
+    if ([key isEqualToString:kNCStyleTranslucent] && [MFDevice iOSVersionMajor] >= 7) {
+        [self setTranslucent:value];
+    }
+    
+    if ([key isEqualToString:kNCStyleIosThemeColor] && [MFDevice iOSVersionMajor] >= 7) {
+        [self setIosThemeColor:value];
     }
 
     [_ncStyle updateStyle:value forKey:key];

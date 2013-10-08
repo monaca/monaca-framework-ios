@@ -11,6 +11,7 @@
 #import "MFEvent.h"
 #import "MFViewBuilder.h"
 #import "MFViewManager.h"
+#import "MFDevice.h"
 
 @implementation MFTabBarController
 
@@ -56,6 +57,8 @@
         self.ncManager = [[NCManager alloc] init];
         _ncStyle = [[NCStyle alloc] initWithComponent:kNCContainerTabbar];
         _isload = NO;
+        _translucent = NO;
+        _resized = NO;
         self.delegate = self;
     }
     return self;
@@ -158,7 +161,25 @@
     
     // TODO: Implement hideTabbar
     if ([key isEqualToString:kNCStyleBackgroundColor]) {
+        if ([MFDevice iOSVersionMajor] <= 6) {
+            [self.tabBar setTintColor:hexToUIColor(removeSharpPrefix(value), 1)];
+        } else {
+#ifdef __IPHONE_7_0
+            [self.tabBar setBarTintColor:hexToUIColor(removeSharpPrefix(value), 1)];
+#endif
+        }
+    }
+    if ([key isEqualToString:kNCStyleIosThemeColor] && [MFDevice iOSVersionMajor] >= 7) {
         [self.tabBar setTintColor:hexToUIColor(removeSharpPrefix(value), 1)];
+    }
+    if ([key isEqualToString:kNCStyleTranslucent] && [MFDevice iOSVersionMajor] >= 7) {
+        BOOL translucent = NO;
+        if (isTrue(value)) {
+            translucent = YES;
+        }
+#ifdef __IPHONE_7_0
+        [self.tabBar setTranslucent:translucent];
+#endif
     }
     if ([key isEqualToString:kNCStyleActiveIndex]) {
         NSInteger index = [value intValue];
@@ -167,11 +188,55 @@
         }
         [self setSelectedIndex:index];
     }
-
+    if ([key isEqualToString:kNCStyleVisibility]) {
+        [self hideTabBar:![value boolValue]];
+    }
+    if ([key isEqualToString:kNCStyleOpacity]) {
+        [self.tabBar setAlpha:[value floatValue]];
+        if ([value floatValue] >= 1.0) {
+            [self setTranslucent:NO];
+        } else {
+            [self setTranslucent:YES];
+        }
+    }
+    
     if (value == [NSNull null]) {
         value = kNCUndefined; 
     }
     [_ncStyle updateStyle:value forKey:key];
+}
+
+- (void)resizeView:(BOOL)enable
+{
+    if (_resized == enable) return;
+    if (!enable && (self.tabBar.hidden || _translucent) ) return;
+    _resized = enable;
+    for (UIView *view in self.view.subviews)
+    {
+        CGRect _rect = view.frame;
+        if(![view isKindOfClass:[UITabBar class]]) {
+            if (enable) {
+                _rect.size.height += self.tabBar.frame.size.height;
+                [view setFrame:_rect];
+            } else {
+                _rect.size.height -= self.tabBar.frame.size.height;
+                [view setFrame:_rect];
+            }
+        }
+    }
+}
+
+- (void)hideTabBar:(BOOL)hiddenTabBar {
+    if (self.tabBar.hidden == hiddenTabBar) return;
+    [self.tabBar setHidden:hiddenTabBar];
+    [self resizeView:hiddenTabBar];
+}
+
+- (void)setTranslucent:(BOOL)enable
+{
+    if (_translucent == enable) return;
+    _translucent = enable;
+    [self resizeView:_translucent];
 }
 
 - (id)retrieveUIStyle:(NSString *)key
