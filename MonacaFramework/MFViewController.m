@@ -95,6 +95,10 @@
         self.webView = nil; // 解放しておかないとWebViewが増え続ける
         [self.webView removeFromSuperview];
         [self resetPlugins];
+        for (id view in self.view.subviews) {
+            [view removeFromSuperview];
+        }
+        [self.view removeFromSuperview];
     }
 }
 
@@ -105,6 +109,8 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+
+    [self.webView removeFromSuperview];
     // Dispose of any resources that can be recreated.
 }
 
