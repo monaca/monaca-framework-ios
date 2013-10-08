@@ -85,6 +85,7 @@
         [searchField setTextColor:hexToUIColor(removeSharpPrefix(value), 1)];
     }
     if ([key isEqualToString:kNCStylePlaceholder]) {
+        value = [NSString stringWithFormat:@"%@", value];
         [_searchBar setPlaceholder:value];
     }
     if ([key isEqualToString:kNCStyleFocus]) {

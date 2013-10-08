@@ -117,6 +117,7 @@ static const CGFloat kSizeOfPortraitTitleFont     = 19.0f;
     }
     
     if ([key isEqualToString:kNCStyleTitle]) {
+        value = [NSString stringWithFormat:@"%@", value];
         if ([value isEqualToString:kNCUndefined]) {
             [_title setText:@" "];
         } else {
@@ -124,6 +125,7 @@ static const CGFloat kSizeOfPortraitTitleFont     = 19.0f;
         }
     }
     if ([key isEqualToString:kNCStyleSubtitle]) {
+        value = [NSString stringWithFormat:@"%@", value];
         if ([value isEqualToString:kNCUndefined]) {
             [_subtitle setText:@" "];
         } else {
@@ -163,7 +165,11 @@ static const CGFloat kSizeOfPortraitTitleFont     = 19.0f;
 
 - (id)retrieveUIStyle:(NSString *)key
 {
-    return [_ncStyle retrieveStyle:key];
+    if ([key isEqualToString:@"title"] || [key isEqualToString:@"subTitle"]) {
+        return [NSString stringWithFormat:@"%@", [_ncStyle retrieveStyle:key]];
+    } else {
+        return [_ncStyle retrieveStyle:key];
+    }
 }
 
 @end
