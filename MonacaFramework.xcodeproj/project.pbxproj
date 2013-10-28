@@ -1046,7 +1046,7 @@
 		F1A8C25517B1079F00739AFF /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
 		F1A8C25717B107B500739AFF /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		F1A8C25A17B1099300739AFF /* config.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = config.xml; sourceTree = "<group>"; };
-		F1DA973617ECB5AF00FBB44A /* libAdhocBuild libMonacaFramework.a.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libAdhocBuild libMonacaFramework.a.a"; path = libAdhocLibMonacaFramework.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		F1DA973617ECB5AF00FBB44A /* libAdhocLibMonacaFramework.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libAdhocLibMonacaFramework.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F50460D813B3633B0050803F /* MFDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFDelegate.m; sourceTree = "<group>"; };
 		F504611413B364C60050803F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F504611513B364C60050803F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -1541,7 +1541,7 @@
 				3E7FD2B3159D8F2300E85C81 /* sandbox.app */,
 				3E4F51BC15A05BF10054EB23 /* libMonacaFramework.a */,
 				3E0B192D169D8CD7001A35BB /* MFUnitTest.app */,
-				F1DA973617ECB5AF00FBB44A /* libAdhocBuild libMonacaFramework.a.a */,
+				F1DA973617ECB5AF00FBB44A /* libAdhocLibMonacaFramework.a */,
 				F113CDDB17ECBA87002C4736 /* libReleaseLibMonacaFramework.a */,
 			);
 			name = Products;
@@ -2026,7 +2026,7 @@
 			);
 			name = AdhocLibMonacaFramework.a;
 			productName = MonacaFramework;
-			productReference = F1DA973617ECB5AF00FBB44A /* libAdhocBuild libMonacaFramework.a.a */;
+			productReference = F1DA973617ECB5AF00FBB44A /* libAdhocLibMonacaFramework.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */

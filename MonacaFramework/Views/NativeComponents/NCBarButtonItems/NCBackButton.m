@@ -30,6 +30,7 @@
             value = [_ncStyle retrieveStyle:key];
         }
         
+        value = [NSString stringWithFormat:@"%@", value];
         if ([value isEqualToString:kNCUndefined]) {
             [self setTitle:@" "];
         } else {

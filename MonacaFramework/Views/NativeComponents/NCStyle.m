@@ -35,6 +35,7 @@
         [defaultStyle setValue:kNCBarStyleDefault forKey:kNCStyleIOSBarStyle];
         [defaultStyle setValue:kNCUndefined forKey:kNCStyleTitleImage];
         
+#ifdef XCODE5
         // iOS6以下の場合の設定
         if ([MFDevice iOSVersionMajor] <= 6) {
             [defaultStyle setValue:kNCBlack forKey:kNCStyleBackgroundColor];
@@ -52,13 +53,22 @@
             [defaultStyle setValue:kNCFalse forKey:kNCStyleTranslucent];
             [defaultStyle setValue:@"#007aff" forKey:kNCStyleIosThemeColor];
         }
+#else
+        [defaultStyle setValue:kNCBlack forKey:kNCStyleBackgroundColor];
+        [defaultStyle setValue:kNCWhite forKey:kNCStyleTitleColor];
+        [defaultStyle setValue:kNCWhite forKey:kNCStyleSubtitleColor];
+        [defaultStyle setValue:[NSNumber numberWithFloat:1.0] forKey:kNCStyleOpacity];
+        [defaultStyle setValue:[NSNumber numberWithFloat:0.3] forKey:kNCStyleShadowOpacity];
+#endif
+        
     }
     if ([component isEqualToString:kNCContainerTabbar]) {
         [defaultStyle setValue:kNCTrue forKey:kNCStyleVisibility];
         [defaultStyle setValue:kNCBlack forKey:kNCStyleBackgroundColor];
         [defaultStyle setValue:[NSNumber numberWithFloat:1.0] forKey:kNCStyleOpacity];
         [defaultStyle setValue:[NSNumber numberWithInt:0] forKey:kNCStyleActiveIndex];
-        
+
+#ifdef XCODE5
         // iOS6以下の場合の設定
         if ([MFDevice iOSVersionMajor] <= 6) {
             [defaultStyle setValue:kNCBlack forKey:kNCStyleBackgroundColor];
@@ -70,6 +80,9 @@
             [defaultStyle setValue:@"#007aff" forKey:kNCStyleIosThemeColor];
             [defaultStyle setValue:kNCFalse forKey:kNCStyleTranslucent];
         }
+#else
+        [defaultStyle setValue:kNCBlack forKey:kNCStyleBackgroundColor];
+#endif
     }
     if ([component isEqualToString:kNCComponentButton]) {
         [defaultStyle setValue:kNCTrue forKey:kNCStyleVisibility];
@@ -77,19 +90,28 @@
         [defaultStyle setValue:kNCUndefined forKey:kNCStyleImage];
         [defaultStyle setValue:kNCUndefined forKey:kNCStyleText];
         [defaultStyle setValue:kNCWhite forKey:kNCStyleTextColor];
-        
+
+#ifdef XCODE5
         // iOS6以下の場合の設定
         if ([MFDevice iOSVersionMajor] <= 6) {
             [defaultStyle setValue:kNCBlack forKey:kNCStyleBackgroundColor];
             [defaultStyle setValue:kNCWhite forKey:kNCStyleActiveTextColor];
             [defaultStyle setValue:kNCUndefined forKey:kNCStyleInnerImage];
         }
+#else
+        [defaultStyle setValue:kNCBlack forKey:kNCStyleBackgroundColor];
+        [defaultStyle setValue:kNCWhite forKey:kNCStyleActiveTextColor];
+        [defaultStyle setValue:kNCUndefined forKey:kNCStyleInnerImage];
+
+#endif
+
     }
     if ([component isEqualToString:kNCComponentBackButton]) {
         [defaultStyle setValue:kNCTrue forKey:kNCStyleVisibility];
         [defaultStyle setValue:kNCFalse forKey:kNCStyleDisable];
         [defaultStyle setValue:kNCUndefined forKey:kNCStyleText];
-        
+
+#ifdef XCODE5
         // iOS6以下の場合の設定
         if ([MFDevice iOSVersionMajor] <= 6) {
             [defaultStyle setValue:kNCBlack forKey:kNCStyleBackgroundColor];
@@ -97,12 +119,20 @@
             [defaultStyle setValue:kNCWhite forKey:kNCStyleTextColor];
             [defaultStyle setValue:kNCUndefined forKey:kNCStyleInnerImage];
         }
+#else
+        [defaultStyle setValue:kNCBlack forKey:kNCStyleBackgroundColor];
+        [defaultStyle setValue:kNCWhite forKey:kNCStyleActiveTextColor];
+        [defaultStyle setValue:kNCWhite forKey:kNCStyleTextColor];
+        [defaultStyle setValue:kNCUndefined forKey:kNCStyleInnerImage];
+#endif
+        
     }
     if ([component isEqualToString:kNCComponentLabel]) {
         [defaultStyle setValue:kNCTrue forKey:kNCStyleVisibility];
         [defaultStyle setValue:[NSNumber numberWithFloat:1.0] forKey:kNCStyleOpacity];
         [defaultStyle setValue:kNCUndefined forKey:kNCStyleText];
-        
+
+#ifdef XCODE5
         // iOS6以下の場合の設定
         if ([MFDevice iOSVersionMajor] <= 6) {
             [defaultStyle setValue:kNCWhite forKey:kNCStyleTextColor];
@@ -112,6 +142,9 @@
         if ([MFDevice iOSVersionMajor] >= 7) {
             [defaultStyle setValue:kNCBlack forKey:kNCStyleTextColor];
         }
+#else
+        [defaultStyle setValue:kNCWhite forKey:kNCStyleTextColor];
+#endif
     }
     if ([component isEqualToString:kNCComponentSearchBox]) {
         [defaultStyle setValue:kNCTrue forKey:kNCStyleVisibility];
@@ -126,7 +159,8 @@
         [defaultStyle setValue:kNCTrue forKey:kNCStyleVisibility];
         [defaultStyle setValue:[NSArray array] forKey:kNCStyleTexts];
         [defaultStyle setValue:[NSNumber numberWithInt:0] forKey:kNCStyleActiveIndex];
-        
+
+#ifdef XCODE5
         // iOS6以下の場合の設定
         if ([MFDevice iOSVersionMajor] <= 6) {
             [defaultStyle setValue:kNCBlack forKey:kNCStyleBackgroundColor];
@@ -138,6 +172,11 @@
         if ([MFDevice iOSVersionMajor] >= 7) {
             [defaultStyle setValue:kNCUndefined forKey:kNCStyleBackgroundColor];
         }
+#else
+        [defaultStyle setValue:kNCBlack forKey:kNCStyleBackgroundColor];
+        [defaultStyle setValue:kNCWhite forKey:kNCStyleTextColor];
+        [defaultStyle setValue:kNCWhite forKey:kNCStyleActiveTextColor];
+#endif
     }
     if ([component isEqualToString:kNCComponentTabbarItem]) {
         [defaultStyle setValue:kNCUndefined forKey:kNCStyleText];
@@ -229,7 +268,9 @@
     if (![[MFUIChecker valueType:value] isEqualToString:[MFUIChecker valueType:[_defaultStyles valueForKey:key]]]) {
         // 文字列が数字のみのときに反映されないバグの対応
         if ([key isEqualToString:kNCStyleTitle] || [key isEqualToString:kNCStyleSubtitle] || [key isEqualToString:kNCStyleText] || [key isEqualToString:kNCStylePlaceholder] || [key isEqualToString:kNCStyleBadgeText]) {
+
             return YES;
+
         }
         if ([[MFUIChecker valueType:value] isEqualToString:@"Integer"] &&
             [[MFUIChecker valueType:[_defaultStyles valueForKey:key]] isEqualToString:@"Float"]) {

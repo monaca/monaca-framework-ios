@@ -107,14 +107,25 @@
     MFViewController *vc = (MFViewController*)[navigationController popViewControllerAnimated:parameter.hasDefaultPopAnimation];
     [vc destroy];
     
-    if (parameter.transition != nil && vc != nil) {
-        [navigationController.view.layer addAnimation:parameter.transition forKey:kCATransition];
-    }
-    
     if (vc != nil) {
-        NSString *command =[NSString stringWithFormat:@"%@ && %@();", kMonacaTransitPluginJsReactivate, kMonacaTransitPluginJsReactivate];
-        [self writeJavascriptOnDelegateViewController:command];
+        if (parameter.transition != nil) {
+            parameter.transition.delegate = self;
+            [navigationController.view.layer addAnimation:parameter.transition forKey:kCATransition];
+        } else {
+            [NSTimer scheduledTimerWithTimeInterval:0.5f target:self selector:@selector(reactivate) userInfo:nil repeats:NO];
+        }
     }
+}
+
+- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
+{
+    [NSTimer scheduledTimerWithTimeInterval:0.0f target:self selector:@selector(reactivate) userInfo:nil repeats:NO];
+}
+
+- (void)reactivate
+{
+    NSString *command =[NSString stringWithFormat:@"%@ && %@();", kMonacaTransitPluginJsReactivate, kMonacaTransitPluginJsReactivate];
+    [self writeJavascriptOnDelegateViewController:command];
 }
 
 #pragma mark - plugins methods
@@ -155,8 +166,7 @@
         if (fileName) {
             [[MFViewManager currentViewController].webView loadRequest:[self createRequest:fileName withQuery:nil]];
         }
-        NSString *command =[NSString stringWithFormat:@"%@ && %@();", kMonacaTransitPluginJsReactivate, kMonacaTransitPluginJsReactivate];
-        [self writeJavascriptOnDelegateViewController:command];
+        [NSTimer scheduledTimerWithTimeInterval:0.5f target:self selector:@selector(reactivate) userInfo:nil repeats:NO];
     }
 }
 

@@ -36,20 +36,27 @@ static const CGFloat kSizeOfPortraitTitleFont     = 19.0f;
         _title.textAlignment = UITextAlignmentCenter;
         [_title setFont:[UIFont boldSystemFontOfSize:kSizeOfTitleFont]];
         [_title setTextColor:[UIColor whiteColor]];
+#ifdef XCODE5
         // iOS7では影はつけない
         if ([MFDevice iOSVersionMajor] <= 6) {
             _title.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
         }
-        
+#else
+            _title.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
+#endif
         [_subtitle setBackgroundColor:[UIColor clearColor]];
         _subtitle.textAlignment = UITextAlignmentCenter;
         [_subtitle setFont:[UIFont boldSystemFontOfSize:kSizeOfTitleFont]];
         [_subtitle setTextColor:[UIColor whiteColor]];
+
+#ifdef XCODE5
         // iOS7では影はつけない
         if ([MFDevice iOSVersionMajor] <= 6) {
             _subtitle.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
         }
-        
+#else
+            _subtitle.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
+#endif
         [self addSubview:_title];
         [self addSubview:_subtitle];
         [self addSubview:_titleImageView];
@@ -123,6 +130,7 @@ static const CGFloat kSizeOfPortraitTitleFont     = 19.0f;
     }
     
     if ([key isEqualToString:kNCStyleTitle]) {
+        value = [NSString stringWithFormat:@"%@", value];
         if ([value isEqualToString:kNCUndefined]) {
             [_title setText:@" "];
         } else {
@@ -130,6 +138,7 @@ static const CGFloat kSizeOfPortraitTitleFont     = 19.0f;
         }
     }
     if ([key isEqualToString:kNCStyleSubtitle]) {
+        value = [NSString stringWithFormat:@"%@", value];
         if ([value isEqualToString:kNCUndefined]) {
             [_subtitle setText:@" "];
         } else {
@@ -169,7 +178,11 @@ static const CGFloat kSizeOfPortraitTitleFont     = 19.0f;
 
 - (id)retrieveUIStyle:(NSString *)key
 {
-    return [_ncStyle retrieveStyle:key];
+    if ([key isEqualToString:@"title"] || [key isEqualToString:@"subTitle"]) {
+        return [NSString stringWithFormat:@"%@", [_ncStyle retrieveStyle:key]];
+    } else {
+        return [_ncStyle retrieveStyle:key];
+    }
 }
 
 @end
