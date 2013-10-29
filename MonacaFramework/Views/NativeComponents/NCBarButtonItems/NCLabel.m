@@ -58,6 +58,7 @@
         [_label setTextColor:hexToUIColor(removeSharpPrefix(value), alpha)];
     }
     if ([key isEqualToString:kNCStyleText]) {
+        value = [NSString stringWithFormat:@"%@", value];
         [_label setText:value];
         [_label sizeToFit];
     }
