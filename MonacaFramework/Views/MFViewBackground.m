@@ -289,9 +289,8 @@
 {
     BOOL ok = YES;
     BOOL isArray = YES;
-    
-    if ([key isEqualToString:kNCStyleBackgroundPosition]) {
 
+    if ([key isEqualToString:kNCStyleBackgroundPosition]) {
         if (![[MFUIChecker valueType:value] isEqualToString:@"Array"]) {
             ok = NO;
             isArray = NO;
@@ -315,9 +314,52 @@
                NSLog(NSLocalizedString(@"Invalid value type", nil), kNCContainerPage , key, @"[{\"left\"|\"center\"|\"right\"},{\"top\"|\"center\"|\"bottom\"}]", value);
             }
         }
-
+        return ok;
     }
-    return ok;
+    
+    if ([key isEqualToString:kNCStyleBackgroundSize]) {
+        if ([[MFUIChecker valueType:value] isEqualToString:@"Array"]) {
+            isArray = YES;
+            if ([value count] != 2) ok = NO;
+            if (ok) for (id str in value) {
+                if (![[MFUIChecker valueType:str] isEqualToString:@"Integer"]) {
+                    if (![str isKindOfClass:[NSString class]]) ok = NO;
+                    NSRange range = [str rangeOfString:@"^[0-9]+\%?$" options:NSRegularExpressionSearch];
+                    if (range.location == NSNotFound)
+                        ok = NO;
+                }
+            }
+        } else {
+            if (![value isKindOfClass:[NSString class]]) {
+                ok = NO;
+            } else {
+                if (![value isEqualToString:kNCTypeAuto] && ![value isEqualToString:kNCTypeCover] && ![value isEqualToString:kNCTypeContain])
+                    ok = NO;
+            }
+        }
+        if (!ok) {
+            if (isArray) {
+                NSLog(NSLocalizedString(@"Invalid value type", nil), kNCContainerPage , key, [MFUIChecker arrayToString:@[@"[\"num(%)\", \"num(%)\"]",kNCTypeAuto,kNCTypeCover,kNCTypeContain]], [MFUIChecker arrayToString:value]);
+            } else {
+                NSLog(NSLocalizedString(@"Invalid value type", nil), kNCContainerPage , key, [MFUIChecker arrayToString:@[@"[\"num(%)\", \"num(%)\"]",kNCTypeAuto,kNCTypeCover,kNCTypeContain]], value);
+            }
+        }
+        return ok;
+    }
+    
+    if ([key isEqualToString:kNCStyleBackgroundRepeat]) {
+        if (![value isKindOfClass:[NSString class]]) {
+            ok = NO;
+        } else {
+            if (![value isEqualToString:kNCTypeRepeat] && ![value isEqualToString:kNCTypeNoRepeat]) ok = NO;
+        }
+        if (!ok) {
+            NSLog(NSLocalizedString(@"Invalid value type", nil), kNCContainerPage , key, [MFUIChecker arrayToString:@[kNCTypeRepeat, kNCTypeNoRepeat]], value);
+        }
+        return ok;
+    }
+    
+    return YES;
 }
 
 @end
