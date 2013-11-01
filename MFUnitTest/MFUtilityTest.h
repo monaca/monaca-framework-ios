@@ -9,6 +9,7 @@
 #import <GHUnitIOS/GHUnit.h>
 #import "MFUtility.h"
 #import "MonacaQueryParamURLProtocol.h"
+#import "MFUIChecker.h"
 
 @interface MFUtilityTest : GHTestCase
 

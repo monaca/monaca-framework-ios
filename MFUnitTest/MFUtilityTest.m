@@ -128,4 +128,17 @@
     GHAssertEqualStrings([MFUtility correctJSON:@"{test: \"hoge:\"}"], @"{\"test\": \"hoge:\"}", nil);
 }
 
+- (void)testValueType
+{
+    GHAssertEqualStrings([MFUIChecker valueType:@"-1.3"], @"Float", nil);
+    GHAssertEqualStrings([MFUIChecker valueType:@".3"], @"Float", nil);
+    GHAssertEqualStrings([MFUIChecker valueType:@"+1.0"], @"Float", nil);
+    GHAssertEqualStrings([MFUIChecker valueType:@"+10"], @"Integer", nil);
+    GHAssertEqualStrings([MFUIChecker valueType:@"#ff00ff"], @"Color", nil);
+    GHAssertEqualStrings([MFUIChecker valueType:@"$ff00ff"], @"String", nil);
+    GHAssertEqualStrings([MFUIChecker valueType:@"1.0.0"], @"String", nil);
+    GHAssertEqualStrings([MFUIChecker valueType:@"1..0"], @"String", nil);
+    GHAssertEqualStrings([MFUIChecker valueType:@"#10.0"], @"String", nil);
+}
+
 @end
