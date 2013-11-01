@@ -67,9 +67,14 @@
     if ([class isEqualToString:@"__NSCFConstantString"] ||
         [class isEqualToString:@"__NSCFString"]) {
         NSString *str = object;
-        NSRange range = [str rangeOfString:@"[^0-9.]" options:NSRegularExpressionSearch];
-        if (range.location == NSNotFound && ![str isEqualToString:kNCUndefined]) {
-            range = [str rangeOfString:@"[^0-9]" options:NSRegularExpressionSearch];
+        NSRange range;
+        NSRegularExpression *reg = [[NSRegularExpression alloc] initWithPattern:@"^[+-]?([0-9]*[.][0-9]+|[0-9]+[.]?[0-9]*)([eE][+-]?[0-9]+|)$"
+                                                                        options:0
+                                                                          error:nil];
+        NSTextCheckingResult *match = [reg firstMatchInString:str options:0 range:NSMakeRange(0, str.length)];
+        if (match.numberOfRanges) {
+            range = [str rangeOfString:@"[^0-9+-]" options:NSRegularExpressionSearch];
+
             if (range.location != NSNotFound) {
                 return @"Float";
             } else {
