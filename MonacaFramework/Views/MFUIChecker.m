@@ -29,6 +29,10 @@
 + (void)parse:(NSMutableDictionary *)dict withPosition:(NSString *)position;
 @end
 
+@interface EventNode : NSObject
++ (void)parse:(NSMutableDictionary *)dict withPosition:(NSString *)position;
+@end
+
 
 @implementation MFUIChecker
 
@@ -352,6 +356,43 @@
             NSLog(NSLocalizedString(@"Key is not one of valid keys", nil), component, key, [MFUIChecker dictionaryKeysToString:validDict]);
             continue;
         }
+        if ([key isEqualToString:kNCTypeEvent]) {
+            [EventNode parse:[dict objectForKey:kNCTypeEvent] withPosition:nil];
+        }
     }
 }
+
+@end
+
+@implementation EventNode
+
++ (NSDictionary *)getValidDictionary
+{
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setValue:kNCUndefined forKey:kNCEventTypeTap];
+    [dict setValue:kNCUndefined forKey:kNCEventTypeChange];
+    [dict setValue:kNCUndefined forKey:kNCEventTypeSearch];
+
+    return  dict;
+}
+
++ (void)parse:(NSMutableDictionary *)dict withPosition:(NSString *)position
+{
+    NSDictionary *validDict = [self getValidDictionary];
+    NSEnumerator* enumerator = [[dict copy] keyEnumerator];
+    id key;
+    while (key = [enumerator nextObject]) {
+        if ([validDict objectForKey:key] == nil) {
+            NSLog(NSLocalizedString(@"Key is not one of valid keys", nil), kNCTypeEvent, key, [MFUIChecker dictionaryKeysToString:validDict]);
+            continue;
+        }
+        if (![[MFUIChecker valueType:[dict objectForKey:key]] isEqualToString:[MFUIChecker valueType:[validDict valueForKey:key]]]) {
+            NSLog(NSLocalizedString(@"Invalid value type", nil), kNCTypeEvent , key,
+                  [MFUIChecker valueType:[validDict objectForKey:key]], [dict valueForKey:key]);
+            [dict removeObjectForKey:key];
+            continue;
+        }
+    }
+}
+
 @end
