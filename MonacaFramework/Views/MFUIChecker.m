@@ -93,12 +93,14 @@
     }
     if ([class isEqualToString:@"__NSCFArray"] ||
         [class isEqualToString:@"__NSArrayI"] ||
+        [class isEqualToString:@"__NSArrayM"] ||
         [class isEqualToString:@"NSArray"] ||
         [class isEqualToString:@"CDVJKArray"]) {
         return @"Array";
     }
     if ([class isEqualToString:@"__NSCFDictionary"] ||
-        [class isEqualToString:@"__NSDictionaryI"]) {
+        [class isEqualToString:@"__NSDictionaryI"] ||
+        [class isEqualToString:@"__NSDictionaryM"]) {
         return @"Object";
     }
     if ([class isEqualToString:@"__NSCFNumber"] ||

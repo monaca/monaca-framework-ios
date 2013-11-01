@@ -255,9 +255,6 @@
         return NO;
     }
     
-    if (value == [NSNull null]) {
-        value = kNCUndefined;
-    }
     if ([NSStringFromClass([[_styles valueForKey:key] class]) isEqualToString:@"__NSCFBoolean"]) {
         if (isFalse(value)) {
             value = kNCFalse;
