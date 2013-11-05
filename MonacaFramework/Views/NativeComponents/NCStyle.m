@@ -77,7 +77,7 @@
         // iOS7以上の場合の設定
         if ([MFDevice iOSVersionMajor] >= 7) {
             [defaultStyle setValue:kNCWhite forKey:kNCStyleBackgroundColor];
-            [defaultStyle setValue:@"#007aff" forKey:kNCStyleIosThemeColor];
+            [defaultStyle setValue:kNCStyleIos7DefaultBlue forKey:kNCStyleIosThemeColor];
             [defaultStyle setValue:kNCFalse forKey:kNCStyleTranslucent];
         }
 #else
@@ -89,7 +89,7 @@
         [defaultStyle setValue:kNCFalse forKey:kNCStyleDisable];
         [defaultStyle setValue:kNCUndefined forKey:kNCStyleImage];
         [defaultStyle setValue:kNCUndefined forKey:kNCStyleText];
-        [defaultStyle setValue:kNCWhite forKey:kNCStyleTextColor];
+        [defaultStyle setValue:kNCStyleIos7DefaultBlue forKey:kNCStyleTextColor];
 
 #ifdef XCODE5
         // iOS6以下の場合の設定
@@ -109,7 +109,7 @@
     if ([component isEqualToString:kNCComponentBackButton]) {
         [defaultStyle setValue:kNCTrue forKey:kNCStyleVisibility];
         [defaultStyle setValue:kNCFalse forKey:kNCStyleDisable];
-        [defaultStyle setValue:kNCUndefined forKey:kNCStyleText];
+        [defaultStyle setValue:kNCStyleIos7DefaultBlue forKey:kNCStyleText];
 
 #ifdef XCODE5
         // iOS6以下の場合の設定
