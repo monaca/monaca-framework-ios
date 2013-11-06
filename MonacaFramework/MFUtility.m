@@ -70,7 +70,7 @@ static NSDictionary *queryParams;
 
     data = [[self class] correctJSON:data];
 
-    id jsonString = [data JSONObject];
+    id jsonDictionary = [data JSONObject];
     
     // send log error
     if (error) {
@@ -85,15 +85,10 @@ static NSDictionary *queryParams;
     }
     
     // return ui dictionary
-    if (jsonString == nil) {
+    if (jsonDictionary == nil) {
         return [NSMutableDictionary dictionary];
     } else {
-        CFDictionaryRef cfUiDict = CFPropertyListCreateDeepCopy(kCFAllocatorDefault,
-                                                                (__bridge CFPropertyListRef)(jsonString),
-                                                                kCFPropertyListMutableContainers);
-        NSMutableDictionary *uidict = [NSMutableDictionary dictionaryWithDictionary:(__bridge NSMutableDictionary *)cfUiDict];
-        CFRelease(cfUiDict);
-        return uidict;
+        return [self mutableJSONObject:jsonDictionary];
     }
 }
 
@@ -117,6 +112,29 @@ static NSDictionary *queryParams;
     } while ([results count] != 0);
     return data;
 }
+
++ (id)mutableJSONObject:(id)jsonData
+{
+    if ([jsonData isKindOfClass:[NSDictionary class]]) {
+        NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+        for (id data in jsonData) {
+            id correctData = [self mutableJSONObject:[jsonData objectForKey:data]];
+            [dict setObject:correctData forKey:data];
+        }
+        return dict;
+    }
+    if ([jsonData isKindOfClass:[NSArray class]]) {
+        NSMutableArray *array = [NSMutableArray array];
+        for (id data in jsonData) {
+            id correctData = [self mutableJSONObject:data];
+            [array addObject:correctData];
+        }
+        return array;
+    }
+
+    return jsonData;
+}
+
 
 + (NSDictionary *)parseJSON:(NSString *)json {
     return [json JSONObject];

@@ -2798,6 +2798,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
+					XCODE5,
 				);
 				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = "";
@@ -2830,6 +2831,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MonacaSandbox/MonacaSandbox-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = XCODE5;
 				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = "";
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;

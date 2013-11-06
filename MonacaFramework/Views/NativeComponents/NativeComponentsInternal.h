@@ -114,6 +114,7 @@
 #define kNCStyleIOSButtonStyle  @"iosButtonStyle"
 #define kNCStyleIOSFrame        @"ios-frame"
 #define kNCStyleIosThemeColor   @"iosThemeColor"
+#define kNCStyleIos7DefaultBlue   @"#007aff"
 
 #define kNCStyleScreenOrientation  @"screenOrientation"
 #define kNCOrientationPortrait  @"portrait"

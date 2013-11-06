@@ -29,6 +29,10 @@
 + (void)parse:(NSMutableDictionary *)dict withPosition:(NSString *)position;
 @end
 
+@interface EventNode : NSObject
++ (void)parse:(NSMutableDictionary *)dict withPosition:(NSString *)position;
+@end
+
 
 @implementation MFUIChecker
 
@@ -67,9 +71,14 @@
     if ([class isEqualToString:@"__NSCFConstantString"] ||
         [class isEqualToString:@"__NSCFString"]) {
         NSString *str = object;
-        NSRange range = [str rangeOfString:@"[^0-9.]" options:NSRegularExpressionSearch];
-        if (range.location == NSNotFound && ![str isEqualToString:kNCUndefined]) {
-            range = [str rangeOfString:@"[^0-9]" options:NSRegularExpressionSearch];
+        NSRange range;
+        NSRegularExpression *reg = [[NSRegularExpression alloc] initWithPattern:@"^[+-]?([0-9]*[.][0-9]+|[0-9]+[.]?[0-9]*)([eE][+-]?[0-9]+|)$"
+                                                                        options:0
+                                                                          error:nil];
+        NSTextCheckingResult *match = [reg firstMatchInString:str options:0 range:NSMakeRange(0, str.length)];
+        if (match.numberOfRanges) {
+            range = [str rangeOfString:@"[^0-9+-]" options:NSRegularExpressionSearch];
+
             if (range.location != NSNotFound) {
                 return @"Float";
             } else {
@@ -88,12 +97,14 @@
     }
     if ([class isEqualToString:@"__NSCFArray"] ||
         [class isEqualToString:@"__NSArrayI"] ||
+        [class isEqualToString:@"__NSArrayM"] ||
         [class isEqualToString:@"NSArray"] ||
         [class isEqualToString:@"CDVJKArray"]) {
         return @"Array";
     }
     if ([class isEqualToString:@"__NSCFDictionary"] ||
-        [class isEqualToString:@"__NSDictionaryI"]) {
+        [class isEqualToString:@"__NSDictionaryI"] ||
+        [class isEqualToString:@"__NSDictionaryM"]) {
         return @"Object";
     }
     if ([class isEqualToString:@"__NSCFNumber"] ||
@@ -345,6 +356,43 @@
             NSLog(NSLocalizedString(@"Key is not one of valid keys", nil), component, key, [MFUIChecker dictionaryKeysToString:validDict]);
             continue;
         }
+        if ([key isEqualToString:kNCTypeEvent]) {
+            [EventNode parse:[dict objectForKey:kNCTypeEvent] withPosition:nil];
+        }
     }
 }
+
+@end
+
+@implementation EventNode
+
++ (NSDictionary *)getValidDictionary
+{
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setValue:kNCUndefined forKey:kNCEventTypeTap];
+    [dict setValue:kNCUndefined forKey:kNCEventTypeChange];
+    [dict setValue:kNCUndefined forKey:kNCEventTypeSearch];
+
+    return  dict;
+}
+
++ (void)parse:(NSMutableDictionary *)dict withPosition:(NSString *)position
+{
+    NSDictionary *validDict = [self getValidDictionary];
+    NSEnumerator* enumerator = [[dict copy] keyEnumerator];
+    id key;
+    while (key = [enumerator nextObject]) {
+        if ([validDict objectForKey:key] == nil) {
+            NSLog(NSLocalizedString(@"Key is not one of valid keys", nil), kNCTypeEvent, key, [MFUIChecker dictionaryKeysToString:validDict]);
+            continue;
+        }
+        if (![[MFUIChecker valueType:[dict objectForKey:key]] isEqualToString:[MFUIChecker valueType:[validDict valueForKey:key]]]) {
+            NSLog(NSLocalizedString(@"Invalid value type", nil), kNCTypeEvent , key,
+                  [MFUIChecker valueType:[validDict objectForKey:key]], [dict valueForKey:key]);
+            [dict removeObjectForKey:key];
+            continue;
+        }
+    }
+}
+
 @end

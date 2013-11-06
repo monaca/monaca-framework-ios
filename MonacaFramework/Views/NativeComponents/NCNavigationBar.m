@@ -298,6 +298,8 @@
             [self setBackgroundColor:value];
         }
     }
+    
+#ifdef XCODE5
     if ([key isEqualToString:kNCStyleOpacity] && [MFDevice iOSVersionMajor] <= 6) {
         if (_navigationBar.barStyle == UIBarStyleDefault) {
             [self setOpacity:value];
@@ -310,6 +312,20 @@
             }
         }
     }
+#else
+    if ([key isEqualToString:kNCStyleOpacity]) {
+        if (_navigationBar.barStyle == UIBarStyleDefault) {
+            [self setOpacity:value];
+            if ([value floatValue] == 1.0) {
+                [_navigationBar setTranslucent:NO];
+                
+                [self updateUIStyle:[self retrieveUIStyle:kNCStyleIOSBarStyle] forKey:kNCStyleIOSBarStyle];
+            } else {
+                [_navigationBar setTranslucent:YES];
+            }
+        }
+    }
+#endif
 
     // title,subtitleに関してはNCTitleViewに委譲
     [_titleView updateUIStyle:value forKey:key];
