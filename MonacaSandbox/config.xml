@@ -39,7 +39,7 @@
     <preference name="AllowInlineMediaPlayback" value="false" />
     <preference name="AutoHideSplashScreen" value="true" />
     <preference name="BackupWebStorage" value="cloud" />
-    <preference name="DisallowOverscroll" value="true" />
+    <preference name="DisallowOverscroll" value="false" />
     <preference name="EnableLocation" value="false" /><!-- DEPRECATED -->
     <preference name="EnableViewportScale" value="false" />
     <preference name="FadeSplashScreen" value="true" />
@@ -48,7 +48,7 @@
     <preference name="KeyboardDisplayRequiresUserAction" value="true" />
     <preference name="KeyboardShrinksView" value="false" />
     <preference name="MediaPlaybackRequiresUserAction" value="false" />
-    <preference name="ShowSplashScreenSpinner" value="true" />
+    <preference name="ShowSplashScreenSpinner" value="false" />
     <preference name="SuppressesIncrementalRendering" value="false" />
     <preference name="TopActivityIndicator" value="gray" />
 
@@ -106,9 +106,6 @@
     </feature>
     <feature name="LocalStorage">
         <param name="ios-package" value="CDVLocalStorage"/>
-    </feature>
-    <feature name="SplashScreen">
-        <param name="ios-package" value="CDVSplashScreen"/>
     </feature>
     <!-- Deprecated plugins element. REmove in 3.0 -->
     
